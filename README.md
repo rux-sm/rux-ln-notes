@@ -83,7 +83,7 @@ ever copies the already-built sprite that `sync-ds.sh` delivered.
 
 ```sh
 sh tools/sync-guides.sh          # guides AND reviews -- emit.py --all --reviews
-node tools/build.mjs             # 19 pages: 1 index, 7 guides, 6 reviews, 6 summaries
+node tools/build.mjs             # 20 pages: 1 index, 7 guides, 6 reviews, 6 summaries
 ```
 
 A guide has no `kind` field and a review carries `review` or `summary`; that
@@ -154,7 +154,7 @@ is not the one `check-export-safe` asks. That gate answers "does this page
 carry guide data that must not reach rux-ds" — a question about a different
 repository — and it is largely vacuous besides, because `build.mjs` stamps
 `EXPORT-SAFE: exempt` into every page it writes and so it checks one file out
-of twenty. This one asks whether anything here should not be on the open
+of twenty-one. This one asks whether anything here should not be on the open
 internet, and it counts five classes: a person named, a colleague quoted
 speaking, a vendor document filename, a business partner id, a company name.
 
@@ -291,7 +291,7 @@ Seven guides, `contract: 2`, export tier. A guide is a procedure: an objective,
 plus troubleshooting, variants and handover rows.
 
 Cells arrive as **typed token arrays, never as Markdown** — 15 token types, of
-which `text` is 2,911 of 4,411. This project implements *rendering* and never
+which `text` is 2,648 of 4,124. This project implements *rendering* and never
 re-implements the marker contract. `../rux-ln-atlas/_standards/guide-json.md` is
 normative; `renderer-brief.md` is the covering note. Read both before designing.
 
@@ -329,12 +329,12 @@ all still true here; the fifth was found by counting contract 2's payloads.
    filter on the producing side silently deleted 33 menu commands while every
    check stayed green. If you filter tokens, count what survives.
 3. **`v` is not the payload key.** Five types keep theirs somewhere else, so a
-   renderer reaching for `token.v` uniformly blanks **212 of 4,411 tokens —
+   renderer reaching for `token.v` uniformly blanks **213 of 4,124 tokens —
    roughly 5% — without erroring:**
 
    | type | payload | count |
    | :--- | :--- | ---: |
-   | `session` | `code` | 117 |
+   | `session` | `code` | 118 |
    | `button` | `label`, plus `location` on 10 of the 50 | 50 |
    | `command` | `route` | 39 |
    | `path` | `route` | 5 |
@@ -343,7 +343,7 @@ all still true here; the fifth was found by counting contract 2's payloads.
    `pencil`'s 127 are a sixth type with no payload at all and are counted under
    bite 2, not here. `link` carries `href` **and** `v`. The remaining eight types
    use `v` alone, which is why the mistake survives a spot check — `text` is
-   2,911 of the 4,411 and reads correctly throughout.
+   2,648 of the 4,124 and reads correctly throughout.
 4. The two token vocabularies do not mix, but **`sections` carries both**.
    `strong`/`em` never appear in a step cell; `chip`/`field`/`command`/`button`/
    `value` never appear in a prose block — and a section may hold either,
@@ -365,7 +365,7 @@ asks of atlas in return is written up in `SEND-BACK.md`.
   every phase was performed against a live system and confirmed while the guide
   itself is `status: draft`.
 - **The training reviews publish too, and now do.** `reviews/` is a second
-  content type — six reviews and six summaries, rendering at 19 pages total. Atlas accepted a **third tier** with the
+  content type — six reviews and six summaries, rendering at 20 pages total. Atlas accepted a **third tier** with the
   fail-closed sweep scoped per tier, so relaxing it for reviews cannot quietly
   strip the name protection off guides. Two conditions: the tier is named for
   what it keeps rather than for who reads it, and issue ids and library paths
@@ -475,7 +475,7 @@ unbuilt, and three defect classes have no gate behind them.
 Published, and read by trainees at
 [rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/). The
 two syncs work and are verified — `sync-ds` was seen to refuse a dirty tree,
-not merely written to. `tools/build.mjs` writes `index.html` and twenty pages
+not merely written to. `tools/build.mjs` writes `index.html` and nineteen pages
 into `guides/` from `data/guides/` — seven guides, six reviews, six summaries —
 and a rebuild against a clean tree produces no diff.
 

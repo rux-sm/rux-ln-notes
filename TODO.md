@@ -13,9 +13,9 @@ Nothing else here is checked by anything.
 
 | | what it says today |
 | :--- | :--- |
-| `publishable.pages-flagged` | **0** of 28 — the condition for staying public |
+| `publishable.pages-flagged` | **0** of 29 — the condition for staying public |
 | `rux-ln-atlas.behind` | **0** |
-| `rux-ds.behind` | **0** |
+| `rux-ds.behind` | **2** |
 | `delivered.DIAGRAM-REPLY.md` | **no** |
 | `delivered.SEND-DS.md` | **no** |
 
@@ -47,7 +47,7 @@ edit it here.
 - **Retire or narrow `check-export-safe`.** It answers whether a page carries
   guide data that must not reach `rux-ds` — a question about a repository this
   one no longer pushes to — and `build.mjs` stamps `EXPORT-SAFE: exempt` into
-  every page it writes, so it checks one file out of twenty. **Its exemption
+  every page it writes, so it checks one file out of twenty-one. **Its exemption
   model made a gate vacuous twice**, most recently by swallowing
   `check-publishable` until that ran before the filter. Either scope it to
   `template-candidate.html` explicitly or remove it.

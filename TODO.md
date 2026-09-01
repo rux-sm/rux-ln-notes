@@ -77,6 +77,78 @@ in-step codes", which atlas reads as 46 or 106 and neither is 58; and that a
 cross-guide reference arrives as `link` in 9 places and as a `literal` carrying
 the same `SG-….md` filename in 19 others.
 
+## The stale-fact sweep - started 2026-09-01, not finished
+
+**`CLAUDE.md`'s one rule said this repository is PRIVATE.** It is public, and
+has been since `d2fe868`. Fixed. The README was already right — `b9fb00c`
+corrected it — so the two disagreed, and the routing file is the one that loads
+into every session.
+
+**What it cost, recorded because it is the argument for the rest of this file.**
+A review of all three repositories on 2026-09-01 recommended merging
+`rux-ln-atlas` into this one, reasoning from that sentence and nothing else.
+Acting on it would have moved client evidence into a public repository. The
+recommendation was withdrawn when the visibility was checked against GitHub
+rather than against the file.
+
+**Three comments still describe the old model.** In order of what they risk:
+
+- **`tools/check-publishable.mjs`** says *IT REPORTS, IT DOES NOT YET REFUSE*
+  and *nothing is public yet*. Both are false: it runs from
+  `tools/githooks/pre-commit` with a non-zero exit, and the site is live. A
+  gate whose own header understates its authority invites a bypass.
+- **`tools/check-export-safe.mjs`** opens *rux-ds is PUBLIC and this repository
+  is PRIVATE*. The section above already asks whether this gate should be
+  retired or narrowed. Correcting the header is the cheaper half of that
+  decision rather than a separate task.
+- **`tools/sync-guides.sh`** describes reviews emitting at an `attributed`
+  tier. `emit.py` has two, `export` and `--internal`; `attributed` was removed
+  the day it was built. A comment naming a looser tier that no longer exists,
+  in the script that enforces the boundary.
+
+`SEND-BACK.md` calls this a private repository too, and moves with the document
+under the next section rather than being edited in place.
+
+## Coordination moves to atlas - decided 2026-09-01, not started
+
+**A memo written here is public and its reply in atlas is private.** That is
+why the exchange goes undelivered: half the conversation lives in the
+repository you open to publish rather than the one you open to think.
+
+`MEASURED` reads `delivered.DIAGRAM-REPLY.md = no`, and atlas's `HANDOFF.md`
+lists an answer on `diagram-as-data.md` as the thing it waits for. The answer
+is written, here, and atlas has committed several times since without seeing
+it. Neither repository can notice that, because delivery is a person reading a
+file in a sibling checkout.
+
+**The move.** Decisions live in atlas, one file. `SEND-BACK.md`,
+`SEND-BACK-2.md`, `REVIEW-SHAPE.md` and `DIAGRAM-REPLY.md` go with them, and
+this repository keeps only what it publishes. That also deletes `MEASURED`'s
+`delivered.*` and `replied.*` blocks, which exist to track a channel that stops
+existing.
+
+**`SEND-DS.md` is the exception and does not move.** It encloses
+`template-candidate.html`, which is an artefact rather than a memo. It goes to
+`rux-ds` as a file, and the ask travels as the commit message.
+
+**A decision is not data.** Whether a cross-guide reference emits as `link` or
+`literal` is one person's choice, not client information, and it needs a commit
+rather than a negotiation. This file's own README already says it: *the waiting
+was mostly optional*.
+
+## Numbers are generated, or they are not written - decided 2026-09-01
+
+`MEASURED` is the pattern, and the rule behind it is atlas's: **a rule with no
+check is a principle, and belongs in the other half.** Between them those two
+are the whole fix for prose that rots. Nothing here needs inventing.
+
+`rux-ds` is the outlier, and it is named here only so the decision is on record
+in one place. Its README carries hand-written figures against a generated block
+covering a small fraction of the file. On 2026-09-01 it sent a reader to redo
+work finished eighteen commits earlier, and its portal reported a browser-gate
+figure the tool it reports on contradicted in the same working tree. **Not
+scoped here** — that is `rux-ds`'s work and needs its own sitting.
+
 ## Not doing
 
 - **A fourth repository.** Publishing changed what this one contains, not what
@@ -85,3 +157,15 @@ the same `SG-….md` filename in 19 others.
   gap markers, issue ids, names, vendor filenames — the answer was to author it
   out upstream. Cutting a token from a finished sentence leaves damaged prose
   and every check stays green.
+
+- **Merging any two of the three repositories.** All three boundaries are real:
+  atlas is private because it holds evidence and Infor's documentation, this is
+  public because it is the published site, and `rux-ds` is separate because it
+  is a generic design system with its own consumers. Three arrangements were
+  weighed on 2026-09-01 and all three rejected — one rulebook held in `rux-ds`,
+  shared ownership of this repository by the other two, and merging atlas into
+  this one. The third would have put client evidence on the open internet.
+- **One agent context file across the family.** The three rule sets differ in
+  kind, not in detail: `rux-ds` forbids inventing a class, atlas forbids
+  answering from anything but `evidence/`, this forbids publishing what atlas
+  holds back. A session loading all three reads two it cannot use.

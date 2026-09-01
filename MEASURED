@@ -3,8 +3,8 @@ rux-ln-atlas.pin = 371d835
 rux-ln-atlas.head = 371d835
 rux-ln-atlas.behind = 0
 rux-ds.pin = 23bf792
-rux-ds.head = 6eb1b9e
-rux-ds.behind = 2
+rux-ds.head = aa56e76
+rux-ds.behind = 3
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.at-pin = 10
@@ -48,7 +48,7 @@ export.strings = 1928
 export.candidate-clean = yes
 
 # reviews (REVIEW-SHAPE.md quotes these)
-reviews.dirty = no
+reviews.dirty = yes
 reviews.count = 6
 reviews.summaries = 6
 reviews.sections = 8

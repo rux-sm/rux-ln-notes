@@ -254,10 +254,17 @@ that flexbox squashed from 20px to 5px. `tools/check-ancestry.mjs` here is the
 invocation and not the rule: it points that gate at `guides/` and the root, and
 refuses rather than skipping when the sibling checkout is absent. The 1.8 MB of
 captures stay in rux-ds, where the rule is, and nothing crosses -- the pages are
-read from disk on the same machine. **It does not pass.** Two wrappers are
-missing, both on hand-authored pages rather than generated ones, and they are
-recorded in `TODO.md` rather than written into a KNOWN list: an exception list
-is not a passing check.
+read from disk on the same machine.
+
+**It reported two findings on the day it was wired in, and both were
+adjudicated upstream within the hour** — `card__description` on `index.html`
+and `btn--icon-only` on `template-candidate.html`, the two hand-authored pages,
+while all nineteen `build.mjs` writes were clean. Neither was written into a
+local KNOWN list to go green: rux-ds keyed both by class at `aa56e76`, with the
+reasons in the repository that owns the rule, and the gate now reads 2 declined
+and 0 missing. **This side inherits those declines and `TODO.md` records what
+that gives up** — a new fragment using one of the twenty-one declined classes
+is not adjudicated on its own.
 
 `check-export-safe` answers a different question: does this page carry anything
 from the guide data? rux-ds is public and nothing from here may reach it, so

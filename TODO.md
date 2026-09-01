@@ -15,7 +15,7 @@ Nothing else here is checked by anything.
 | :--- | :--- |
 | `publishable.pages-flagged` | **0** of 29 — the condition for staying public |
 | `rux-ln-atlas.behind` | **0** |
-| `rux-ds.behind` | **2** |
+| `rux-ds.behind` | **3** |
 | `delivered.DIAGRAM-REPLY.md` | **no** |
 | `delivered.SEND-DS.md` | **no** |
 
@@ -44,25 +44,6 @@ edit it here.
   reader most needs whole. Carbon's answer is `.rux--tag-label-tooltip` and the
   tooltip component is vendored. Using it is a conversation with rux-ds, which
   is what `SEND-DS.md` is for.
-- **Two missing wrappers, found the day `check-ancestry` was wired in.** The
-  gate reports 2 of 550 corroborated ancestries absent, and both are on the two
-  hand-authored pages rather than on anything `build.mjs` writes:
-
-  | page | class | missing | corroboration |
-  | :--- | :--- | :--- | ---: |
-  | `index.html` | `rux--card__description` | `.rux--lg:col-span-4` | 9 captures |
-  | `template-candidate.html` | `rux--btn--icon-only` | the tooltip wrappers | 185 captures |
-
-  **They are not equally strong and should not be treated as one task.** 185
-  captures is Carbon saying an icon-only button is always inside a tooltip, which
-  is an accessible-name question and the more serious of the two -- and it is on
-  the one page here intended to cross to rux-ds. 9 captures is a thinner claim:
-  a card description inside a grid column may be how every capture happened to
-  lay out rather than a wrapper the component requires. Read the captures before
-  either adding markup or recording a reason. **Neither belongs in a KNOWN list
-  to make the gate green** -- an exception list measures the entries, not the
-  rule.
-
 - **Retire or narrow `check-export-safe`.** It answers whether a page carries
   guide data that must not reach `rux-ds` — a question about a repository this
   one no longer pushes to — and `build.mjs` stamps `EXPORT-SAFE: exempt` into
@@ -80,6 +61,21 @@ edit it here.
   it and rule 8 were mutation-tested; this is tested coverage removed.
 - **The flush-tag defect has no gate.** It is fixed, but only looking catches a
   recurrence.
+- **This repository inherits rux-ds's class-wide ancestry declines.** Wiring
+  `check-ancestry` in raised exactly two findings here, and both were
+  adjudicated upstream rather than in a local list: `card__description` is
+  *"the story layout, not the component"* -- all 17 card stories mount the card
+  in a grid column and nothing in `css/rux.css` scopes one to it -- and
+  `btn--icon-only` is *"the icon-tooltip the sink declines throughout"*, a
+  standing decision where `aria-label` carries the name. rux-ds keyed both by
+  class at `aa56e76`, so the gate reads 2 declined, 0 missing and exits 0.
+
+  **What that gives up is stated in rux-ds and applies here too:** a new
+  fragment using one of those 21 classes inherits the decline instead of being
+  adjudicated on its own. So an icon-only button added to a page HERE, with no
+  tooltip and no `aria-label`, will not be reported. The gate covers the
+  wrapper class it was wired in for; it does not cover those 21.
+
 - **`rux-ln-guides` was briefly public with its full history**, on 2026-09-01,
   before `rux-ln-notes` existed. It is private again and unreachable —
   never-fetched URLs 404 — but the commits exist. Deleting or rewriting that

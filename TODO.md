@@ -44,6 +44,25 @@ edit it here.
   reader most needs whole. Carbon's answer is `.rux--tag-label-tooltip` and the
   tooltip component is vendored. Using it is a conversation with rux-ds, which
   is what `SEND-DS.md` is for.
+- **Two missing wrappers, found the day `check-ancestry` was wired in.** The
+  gate reports 2 of 550 corroborated ancestries absent, and both are on the two
+  hand-authored pages rather than on anything `build.mjs` writes:
+
+  | page | class | missing | corroboration |
+  | :--- | :--- | :--- | ---: |
+  | `index.html` | `rux--card__description` | `.rux--lg:col-span-4` | 9 captures |
+  | `template-candidate.html` | `rux--btn--icon-only` | the tooltip wrappers | 185 captures |
+
+  **They are not equally strong and should not be treated as one task.** 185
+  captures is Carbon saying an icon-only button is always inside a tooltip, which
+  is an accessible-name question and the more serious of the two -- and it is on
+  the one page here intended to cross to rux-ds. 9 captures is a thinner claim:
+  a card description inside a grid column may be how every capture happened to
+  lay out rather than a wrapper the component requires. Read the captures before
+  either adding markup or recording a reason. **Neither belongs in a KNOWN list
+  to make the gate green** -- an exception list measures the entries, not the
+  rule.
+
 - **Retire or narrow `check-export-safe`.** It answers whether a page carries
   guide data that must not reach `rux-ds` — a question about a repository this
   one no longer pushes to — and `build.mjs` stamps `EXPORT-SAFE: exempt` into
@@ -59,10 +78,8 @@ edit it here.
   meaningful. The Run record was the only structure that could answer it. "A
   value worth noting" is editorial judgement and no check holds judgement. Both
   it and rule 8 were mutation-tested; this is tested coverage removed.
-- **Two flush-tag defects and the missing-wrapper class have no gate either.**
-  The first is fixed but only looking catches a recurrence; the second is what
-  rux-ds's `check-ancestry` exists for and it needs the captures, which are not
-  vendored.
+- **The flush-tag defect has no gate.** It is fixed, but only looking catches a
+  recurrence.
 - **`rux-ln-guides` was briefly public with its full history**, on 2026-09-01,
   before `rux-ln-notes` existed. It is private again and unreachable —
   never-fetched URLs 404 — but the commits exist. Deleting or rewriting that

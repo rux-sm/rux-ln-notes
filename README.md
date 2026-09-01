@@ -130,6 +130,7 @@ node tools/check-structure.mjs    # is a compound pair split across two elements
 node tools/check-links.mjs        # does every local href and src point at a file?
 node tools/check-order.mjs        # do the phases come before the sections about them?
 node tools/check-publishable.mjs  # what still stands between these pages and public?
+node tools/check-ancestry.mjs     # is a wrapper Carbon never omits simply missing?
 node tools/check-export-safe.mjs <page.html>   # before ANYTHING goes to rux-ds
 ```
 
@@ -241,10 +242,22 @@ captured Carbon DOM stories, and `docs/` is not vendored. Between them they say
 a class resolves and is not structurally misplaced in the one way CSS can prove.
 
 **Neither can see a wrapper that is simply missing.** That is the defect class
-rux-ds's `check-ancestry` exists for, it needs the captures, and nothing here
-replaces it. A green run is narrower than it looks; both scripts say so in their
-own headers. Three defects passed both while `guide.html` was built, and all
-three were found by measuring in a browser instead.
+rux-ds's `check-ancestry` exists for. A green run from these two is narrower
+than it looks; both scripts say so in their own headers. Three defects passed
+both while `guide.html` was built, and all three were found by measuring in a
+browser instead.
+
+**That class has a gate now, and vendoring the captures was never what it
+needed.** rux-ds's `check-ancestry.mjs` takes roots on the command line, and
+its own comment names this project as the reason -- a missing `__icon` class
+that flexbox squashed from 20px to 5px. `tools/check-ancestry.mjs` here is the
+invocation and not the rule: it points that gate at `guides/` and the root, and
+refuses rather than skipping when the sibling checkout is absent. The 1.8 MB of
+captures stay in rux-ds, where the rule is, and nothing crosses -- the pages are
+read from disk on the same machine. **It does not pass.** Two wrappers are
+missing, both on hand-authored pages rather than generated ones, and they are
+recorded in `TODO.md` rather than written into a KNOWN list: an exception list
+is not a passing check.
 
 `check-export-safe` answers a different question: does this page carry anything
 from the guide data? rux-ds is public and nothing from here may reach it, so
@@ -518,7 +531,8 @@ never inside a prose run.
 all seven broken pages, because none of them models document order.
 `check-order` is that rule now, so the next generator change cannot quietly
 reintroduce it. The flush-tag defect has no gate and is still caught only by
-looking — as is the missing-wrapper class rux-ds's `check-ancestry` covers.
+looking. The missing-wrapper class does have one now — `check-ancestry`, run
+from rux-ds against these pages — and it is currently reporting two.
 
 **It has not been reviewed by rux-ds.** A copy with invented content is what
 would go over; `MEASURED` records `SEND-DS.md` as undelivered.

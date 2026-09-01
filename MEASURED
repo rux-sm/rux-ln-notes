@@ -1,6 +1,6 @@
 # upstreams
-rux-ln-atlas.pin = 0617f04
-rux-ln-atlas.head = 0617f04
+rux-ln-atlas.pin = 371d835
+rux-ln-atlas.head = 371d835
 rux-ln-atlas.behind = 0
 rux-ds.pin = 23bf792
 rux-ds.head = 23bf792
@@ -21,30 +21,30 @@ exported.reviews = 6
 exported.summaries = 6
 exported.reviews.tier = export
 exported.topics = 72
-tokens.total = 4416
+tokens.total = 4124
 tokens.types = 15
 tokens.payload-not-v = 213
-tokens.pencil = 134
+tokens.pencil = 127
 tokens.type.button = 50
-tokens.type.chip = 357
+tokens.type.chip = 346
 tokens.type.command = 39
 tokens.type.em = 9
-tokens.type.field = 279
+tokens.type.field = 277
 tokens.type.image = 1
 tokens.type.link = 9
-tokens.type.literal = 208
+tokens.type.literal = 203
 tokens.type.path = 5
-tokens.type.pencil = 134
+tokens.type.pencil = 127
 tokens.type.session = 118
 tokens.type.status = 72
-tokens.type.strong = 94
-tokens.type.text = 2914
+tokens.type.strong = 93
+tokens.type.text = 2648
 tokens.type.value = 127
 session-codes.in-sources = 108
 session-codes.in-steps = 58
 
 # export gate
-export.strings = 1933
+export.strings = 1928
 export.candidate-clean = yes
 
 # reviews (REVIEW-SHAPE.md quotes these)

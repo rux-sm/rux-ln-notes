@@ -100,7 +100,7 @@ documents and of nothing this file's prose is about.
 | icons | 59 symbols inlined by `tools/inline-sprite.mjs`, on all 8 |
 | console | no errors, no warnings, on all 8 |
 | tags | 0 flush pairs, after the join fix below |
-| order | phases ahead of Run record and Troubleshooting, on all 7 guides |
+| order | phases ahead of Troubleshooting and Variants, on all 7 guides |
 
 **Measuring is still what finds things, which is the whole reason to do it.**
 This pass found a defect five green gates could not: 19 cross-guide references
@@ -189,15 +189,19 @@ teaching content in the reviews, being how the concept was actually explained.
 If names ever return, the class returns with them.
 
 **`check-order` is here because a fix that lived in an artifact died with
-it.** `guide.html` was measured in a browser with its phases ahead of Run
-record and Troubleshooting; `build.mjs` replaced it, emitted every section and
-then the phases, and put all seven guides back into the broken order — where
-the troubleshooting rows are keyed by phase number and the run record opens
-"Fill in as you go", so a reader met the fix-it table before the instructions.
+it.** `guide.html` was measured in a browser with its phases ahead of the
+sections that refer back to them; `build.mjs` replaced it, emitted every
+section and then the phases, and put all seven guides back into the broken
+order — where the troubleshooting rows are keyed by phase number, so a reader
+met the fix-it table before the instructions it fixes.
 All four other gates were green on all seven pages, because none of them models
 document order and there was no rule to violate. Now there is one, and the
-boundary it enforces — back matter opens at the first `runrecord` — lives in
-`build.mjs` beside the code that acts on it. The gate was verified against the
+boundary it enforces lives in `build.mjs` beside the code that acts on it, and
+it has already earned its keep twice: once when the generator first put phases
+last, and again when the Run record was removed from the format on 2026-09-01
+and took the anchor with it. **The boundary is a SET now, not a kind** —
+Troubleshooting, Variants and What this unlocks — because keying a structural
+rule to one section makes the rule only as durable as that section. The gate was verified against the
 pre-fix output rather than only watched to pass: it reports four misplaced
 sections and exits 1.
 
@@ -277,7 +281,7 @@ needs a deliberate publication decision and a route, and there is none. Atlas's
 
 Seven guides, `contract: 2`, export tier. A guide is a procedure: an objective,
 6–13 numbered phases each with a route into an ERP screen and a table of steps,
-plus a fill-in run record, troubleshooting, variants and handover rows.
+plus troubleshooting, variants and handover rows.
 
 Cells arrive as **typed token arrays, never as Markdown** — 15 token types, of
 which `text` is 2,911 of 4,411. This project implements *rendering* and never
@@ -306,10 +310,15 @@ purpose, because a second key is a second thing to keep in step.
 all still true here; the fifth was found by counting contract 2's payloads.
 
 1. A `prose` block has **no `rows`** — iterating blocks uniformly will throw.
-   In `sections` the same trap has a second mouth: `runrecord` arrives
-   token-shaped 15 times and row-shaped 7, so branch on the keys present, never
-   on `kind`.
-2. A `pencil` token carries **no text** and must not be dropped as empty. A
+   In `sections` the same trap had a second mouth while the Run record
+   existed: it arrived token-shaped 15 times and row-shaped 7. That section is
+   gone, and the rule it taught is not — branch on the keys present, never on
+   `kind`.
+2. A `pencil` token carries **no text** and must not be dropped as empty. It
+   marked a value the Run record collected; with that section gone it marks a
+   value **worth writing down**, for a reader keeping their own notes, and the
+   accessible label moved with the meaning. 134 became 127 — the seven lost
+   were the "Steps marked ✎" sentence inside the removed sections. A
    filter on the producing side silently deleted 33 menu commands while every
    check stayed green. If you filter tokens, count what survives.
 3. **`v` is not the payload key.** Five types keep theirs somewhere else, so a
@@ -324,7 +333,7 @@ all still true here; the fifth was found by counting contract 2's payloads.
    | `path` | `route` | 5 |
    | `image` | `alt` + `src` | 1 |
 
-   `pencil`'s 134 are a sixth type with no payload at all and are counted under
+   `pencil`'s 127 are a sixth type with no payload at all and are counted under
    bite 2, not here. `link` carries `href` **and** `v`. The remaining eight types
    use `v` alone, which is why the mistake survives a spot check — `text` is
    2,911 of the 4,411 and reads correctly throughout.
@@ -474,12 +483,12 @@ the one defect the gates could not see: cross-guide references arriving as
 
 **Two of those three defects came back through the generator, and both are
 fixed with a rule rather than by hand.** `build.mjs` emitted every section and
-then the phases, so all seven guides read Troubleshooting and Run record before
+then the phases, so all seven guides read Troubleshooting and Variants before
 the work they refer to; and `tokens` joined on `''`, so two adjacent tags butted
 flush and read as one control. Both had been fixed in `guide.html` and neither
 travelled into the generator that replaced it, because the fix was in the
 artifact and deleting the artifact deleted it. Phases now sit between front and
-back matter — the boundary is the first `runrecord`, which is unambiguous in
+back matter — the boundary is the first back-matter section, unambiguous in
 all seven — and a space is emitted only between two tag-rendered neighbours,
 never inside a prose run.
 

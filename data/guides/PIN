@@ -1,6 +1,6 @@
-commit   0617f047f3b52439c8924093e7a15ffd00f8ecfc
-date     2026-09-01T16:22:38Z
-subject  refactor(tier): Drop the names, drop the tier
+commit   371d8351e7b9e5ce3fdb027f9fa98c68788349e9
+date     2026-09-01T17:58:12Z
+subject  docs(guides): Stop citing a section that is gone
 contract 2 
 tier     export
 

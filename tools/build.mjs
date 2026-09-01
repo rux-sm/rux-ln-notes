@@ -99,13 +99,18 @@ function token(t) {
     case 'em': return `<em>${esc(raw)}</em>`;
 
     // A PENCIL CARRIES NO TEXT AND MUST NOT BE DROPPED. The contract calls it
-    // "the step produces a Run record value"; 134 of them exist. An early
+    // "the step yields a value worth writing down"; 127 of them exist. An early
     // filter on the producing side tested only `v` and `label`, read every
     // token that keys its text differently as empty, and silently deleted 33
     // menu commands and 242 session codes with the sweep still green.
     // Rendered as a glyph with a real accessible name, never as nothing.
     case 'pencil':
-      return `<svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="produces a run record value"><use href="#i-edit"/></svg>`;
+      // THE LABEL IS THE TOKEN'S WHOLE MEANING, so it moved when the meaning
+      // did. It read "produces a run record value" and named a section that no
+      // longer exists -- a screen reader would have been sent looking for it.
+      // The mark now says the step yields something worth writing down, which
+      // is what a reader keeping their own notes needs from it.
+      return `<svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg>`;
 
     // A LINK BETWEEN GUIDES ARRIVES AS A `.md` FILENAME, because that is what
     // the guide is called in atlas. Nine of them exist across these seven and
@@ -275,7 +280,7 @@ function table(block, { numbered = false } = {}) {
       if (numbered && i === 0) return `<th scope="row" class="ln-step-id">${inner}</th>`;
       return `<td>${inner}</td>`;
     }).join('');
-    // `produces` marks a step that yields a Run record value. It is the same
+    // `produces` marks a step that yields a value worth noting. It is the same
     // fact the `pencil` token carries inline; the attribute lets the row be
     // styled without a class the stylesheet has never heard of.
     const flags = [
@@ -409,22 +414,27 @@ const HEADING = {
 // before the instructions. That shipped on all seven pages and no gate saw it,
 // because none of them reads document order.
 //
-// The boundary is THE FIRST `runrecord`. Everything before it introduces the
-// guide (objective, the warning, At a glance); everything from it on is a
-// companion to work already done. Checked against all seven guides at the time
-// of writing: the first `runrecord` is unambiguous in every one, and no
-// front-matter kind ever appears after it.
+// The boundary is THE FIRST SECTION OF A SET, not a named kind. It was
+// `runrecord` until that section was removed from the format on 2026-09-01,
+// and the anchor went with it: every guide put its phases last again, and
+// `check-order` reported twenty-one misplaced sections across seven pages.
+// That is the gate doing its job, and the lesson is that keying a structural
+// rule to ONE kind makes the rule only as durable as that kind.
 //
-// This restores the order the hand-built `guide.html` was measured in before
-// `build.mjs` replaced it -- At a glance, phases, Run record, Troubleshooting,
-// Variants, What this unlocks. That fix lived in the artifact rather than in a
-// rule, so deleting the artifact took it with it. It is a rule now, and
-// `check-order.mjs` is what keeps it one.
-const BACK_MATTER_OPENS_AT = 'runrecord';
+// A set survives any one member leaving. Troubleshooting, Variants and What
+// this unlocks are the sections that refer BACK to work already done -- the
+// troubleshooting rows are keyed by phase number -- so the first of them opens
+// the back matter. Everything before introduces the guide.
+//
+// `reference` is deliberately not in the set: it sits in front matter in one
+// guide and back matter in another, so it floats to wherever it was authored
+// rather than dragging the boundary with it. Checked across all seven: front
+// matter always holds `glance` and never holds a back-matter kind.
+const BACK_MATTER = new Set(['troubleshooting', 'variants', 'downstream', 'runrecord']);
 
 function splitSections(list) {
   const all = list ?? [];
-  const i = all.findIndex(s => s.kind === BACK_MATTER_OPENS_AT);
+  const i = all.findIndex(s => BACK_MATTER.has(s.kind));
   return i === -1 ? { front: all, back: [] } : { front: all.slice(0, i), back: all.slice(i) };
 }
 
@@ -593,7 +603,7 @@ function page({ title, site, activeId, body, depth }) {
 /* The step id column carries "1.10"-style ids and should not wrap or stretch. */
 .ln-step-id { inline-size: 4rem; white-space: nowrap; }
 
-/* A step that produces a Run record value. The pencil token says the same
+/* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
@@ -776,8 +786,8 @@ function indexPage(site) {
           <h1>Infor LN Notes</h1>
           <p class="rux--type-body-02">Procedures walked against a live Infor LN
              environment, and the record of the sessions they came out of. Each
-             scenario guide is an objective, a numbered set of phases with the
-             route into every screen, and a run record to fill in as you go.</p>
+             scenario guide is an objective and a numbered set of phases, each
+             with the route into its screen and a table of steps to follow.</p>
         </div>
 
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-guides">

@@ -2,9 +2,9 @@
 rux-ln-atlas.pin = 0617f04
 rux-ln-atlas.head = 0617f04
 rux-ln-atlas.behind = 0
-rux-ds.pin = 44fab72
+rux-ds.pin = 23bf792
 rux-ds.head = 23bf792
-rux-ds.behind = 11
+rux-ds.behind = 0
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.at-pin = 10

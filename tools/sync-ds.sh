@@ -46,6 +46,18 @@ mkdir -p "$OUT/css" "$OUT/assets" "$OUT/js"
 cp "$DS/css/rux.min.css" "$OUT/css/"
 cp "$DS/css/rux.css"     "$OUT/css/"
 cp "$DS/assets/icons.svg" "$OUT/assets/"
+# THE TYPEFACE IS PART OF THE DESIGN SYSTEM, NOT A DETAIL. rux.css names
+# IBM Plex Sans sixty-seven times and carries no @font-face at all -- those
+# live in assets/fonts/plex.css, which rux-ds's own templates link BEFORE
+# rux.css. Copying the stylesheet and not the fonts meant every published page
+# declared a typeface it had no way to load and quietly fell back to the
+# system sans. No gate could see it: the class resolves, the reference exists,
+# and the page renders.
+#
+# LICENSE.txt comes with them because IBM Plex is licensed and the licence
+# ships with the font, not beside it in a README.
+mkdir -p "$OUT/assets/fonts"
+cp "$DS/assets/fonts/"* "$OUT/assets/fonts/"
 cp "$DS/js/"*.js "$OUT/js/"
 
 # The pin is committed. A reader who never opens rux-ds can still tell which
@@ -63,4 +75,5 @@ EOF
 
 echo "vendored rux-ds @ $(echo "$SHA" | cut -c1-7)"
 echo "  css/rux.min.css  $(wc -c < "$OUT/css/rux.min.css" | tr -d ' ') bytes"
+echo "  assets/fonts/    $(ls "$OUT/assets/fonts" | wc -l | tr -d ' ') file(s)"
 echo "  js/              $(ls "$OUT/js" | wc -l | tr -d ' ') modules"

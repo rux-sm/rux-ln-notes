@@ -5,6 +5,8 @@ from `README.md` — follow the pointer instead.
 
 **Read first:** `README.md`. Its "Undecided" section is what has *not* been
 chosen, and choosing one of those quietly is the failure mode to avoid.
+`TODO.md` is what is outstanding, and it separates the rows `MEASURED` watches
+from the prose that can rot.
 
 ## The one rule
 

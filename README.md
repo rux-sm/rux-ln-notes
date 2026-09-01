@@ -14,21 +14,28 @@ is not built here… presentation work does not belong in this repo,"* because t
 library it replaced *"spent 65% of its commits on a publishing surface it then
 deleted."* Atlas processes knowledge. This renders it. Neither does both.
 
-**This repository is PRIVATE, and going public is a decided direction rather
-than a done thing.** It was built private because a rendered LN procedure is
-derived from Infor's copyrighted documentation and describes a configured
-environment. The intent now is that trainees read it on the open internet, and
-`node tools/check-publishable.mjs` says what still stands in the way — the
-counts are in `MEASURED` and every one of them has to reach zero first.
+**This is published, publicly, at
+[rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/).**
+It was built private, because a rendered LN procedure is derived from Infor's
+documentation and describes a configured environment. It went public on
+2026-09-01 once neither of those carried anything identifying: the environment
+is a training one throughout, the partners and item family are invented, and
+the reviews name roles rather than people.
 
-**Nothing about the split changes.** It stays three repositories: atlas holds
-the knowledge, this renders it, `rux-ds` is the design system. Publishing does
-not add a fourth project — it changes what this repository contains, not what
-it is for. `rux-ds` still holds nothing from here.
+`node tools/check-publishable.mjs` holds that on every commit, over pages and
+Markdown alike, with no exemption. `MEASURED` records
+`publishable.pages-flagged`, and it reads zero.
 
-**Until every row reads zero, this stays private.** The git history matters as
-much as `HEAD`: every commit to date carries names and identifiers, so going
-public means a fresh history, not a flipped switch.
+**Publishing did not add a fourth project.** It stays three: atlas holds the
+knowledge, this renders it, `rux-ds` is the design system. `rux-ds` still holds
+nothing from here.
+
+**The published remote is `origin` and it is NOT this repository's history.**
+`rux-ln-guides` carries forty commits that named six people and one person's
+employment background; it stays private, as the `private` remote and as the
+`history/pre-public` branch. What is public is `rux-ln-notes`, whose history
+starts at a single clean commit. A fresh history is the only thing that
+actually removes what a working tree has already dropped.
 
 | | job | visibility | holds |
 | :--- | :--- | :--- | :--- |
@@ -456,12 +463,21 @@ here; anything a document consults on their behalf does not.**
   arrived in `0aa5ed7`. Using it is a conversation with rux-ds, not a local
   rule — this is the case the "Undecided" note predicted would need one.
 
+## What is outstanding
+
+`TODO.md`, and it is arranged around this project's own recurring failure: the
+rows `MEASURED` watches are separated from the prose that can rot, and it says
+which is which. Two documents are undelivered, a notes surface is decided and
+unbuilt, and three defect classes have no gate behind them.
+
 ## Where this is
 
-Publishing. The two syncs work and are verified — `sync-ds` was seen to refuse
-a dirty tree, not merely written to. `tools/build.mjs` writes `index.html` and
-seven pages into `guides/` from `data/guides/`, and a rebuild against a clean
-tree produces no diff.
+Published, and read by trainees at
+[rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/). The
+two syncs work and are verified — `sync-ds` was seen to refuse a dirty tree,
+not merely written to. `tools/build.mjs` writes `index.html` and twenty pages
+into `guides/` from `data/guides/` — seven guides, six reviews, six summaries —
+and a rebuild against a clean tree produces no diff.
 
 **A pipeline now, not a template.** The throwaway script that made `guide.html`
 did its job — it kept build-time from being chosen by the back door while the
@@ -470,14 +486,20 @@ tool that is committed and swept. `guide.html` is gone; nothing is
 hand-editable any more, and editing a generated page is the same mistake as
 hand-editing `data/` or `vendor/`.
 
-**Five gates run, and every one was exercised against a failure**, not just
-watched to pass: a bogus class is reported unresolved, a rewritten `href` is
-reported missing, `check-order` reports four misplaced sections on the pre-fix
-output, `measure --check` moves when the data moves, and the pre-commit hook
-refused a staged page carrying guide data. That is what is known to work.
+**Every gate was exercised against a failure**, not just watched to pass: a
+bogus class is reported unresolved, a rewritten `href` is reported missing,
+`check-publishable` refuses a planted name in a page and in a Markdown file,
+`measure --check` moves when the data moves, and the pre-commit hook refuses
+the commit rather than reporting it. `check-order` has now caught two real
+regressions rather than a planted one — the generator putting phases last, and
+the Run record's removal taking its anchor with it.
 
-**All eight pages have now been measured in a browser**, which is what found
-the one defect the gates could not see: cross-guide references arriving as
+**The pages have been measured in a browser, at the live URL and not only on
+localhost** — stylesheets parsed, both IBM Plex faces loaded, 59 icons inlined,
+nothing overflowing, no console errors, and internal links followed by clicking
+rather than by typing. Measuring is still what finds what the gates cannot: a
+whole typeface was missing until someone read a sync log, and cross-guide
+references arrive as
 `literal` rather than `link`, rendering as truncated atlas filenames. See
 "Verified working, not assumed".
 

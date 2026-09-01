@@ -10,10 +10,37 @@ from the prose that can rot.
 
 ## The one rule
 
-**This repository is PRIVATE and its content never reaches `rux-ds`, which is
-PUBLIC.** No guide text, session code, route, screenshot or client value goes
-into a commit there, a template there, or an issue there. When something needs to
-exist in the design system, it is authored with **invented, generic** content.
+**This repository is PUBLIC.** Everything committed here is on the open
+internet from the moment it is pushed. This file said PRIVATE until
+2026-09-01, when `d2fe868` made `origin` the public site — the sentence
+outlived the decision it described, which is the most expensive way for a rule
+to fail.
+
+**One working tree, two destinations, and the default is the public one.**
+`origin` is `rux-ln-notes` and `main` tracks it, so a bare `git push`
+publishes. `private` is the `rux-ln-guides` archive, kept because its forty
+commits name six people, one person's employment background and the vendor
+documents the library holds — never made public, and a force-push would have
+left them reachable by hash. Nothing is pushed there any more; do not revive
+it as a place to put something that does not belong on `origin`.
+
+**The private material lives in `rux-ln-atlas`** — evidence, screenshots,
+recordings, gap markers, issue ids, deployment values, anything paraphrasing
+Infor's documentation closely. It reaches here only through `emit.py`'s
+**export tier**. `--internal` output never crosses and `tools/sync-guides.sh`
+must not grow a flag that lets it. Check: `check-publishable`, which reads
+`.md` as well as pages and refuses the commit from `tools/githooks/pre-commit`.
+
+**A clean run is not a clearance.** It counts verbatim quotation and matches
+atlas's own `PEOPLE` list, so it cannot tell whether a paraphrase of Infor's
+documentation is still too close to it, nor catch a name spelled a way that
+list does not. Those are a person's reading. Run it; do not assume it.
+
+**`rux-ds` is public too, and the rule there is different in kind** — scope,
+not secrecy. It is a generic design system with its own consumers, so nothing
+about this domain belongs in it: no guide text, session code, route or client
+value in a commit, a template or an issue there. When something needs to exist
+in the design system, it is authored with **invented, generic** content.
 
 ## Two upstreams, both pulled by hand
 

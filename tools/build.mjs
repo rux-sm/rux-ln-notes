@@ -1,0 +1,1029 @@
+#!/usr/bin/env node
+//
+// Generate every page in this project from `data/guides/*.json`.
+//
+// WHY BUILD-TIME, DECIDED 2026-08-31. README's "Undecided" carried this as an
+// open question and `renderer-brief.md` §4 argued build-time, then retracted
+// both of its arguments as rux-ds-specific: the 90 KB budget was rux-ds's own,
+// and the gates it named "do not run on the consuming project unless it
+// deliberately adopts them". That retraction was written when this project had
+// no gates. It has since adopted three, and that is what settles it.
+//
+// `check-classes.mjs` and `check-structure.mjs` read the HTML as TEXT. A
+// runtime renderer commits a shell whose `main` is empty, so both would find a
+// handful of resolving shell classes and exit 0 -- green because there was
+// nothing in the file to look at. That is `smoke.html`'s failure with a
+// different cause, and guides are expected to change often, so it is a dice
+// roll taken weekly rather than once.
+//
+// Two smaller reasons, both concrete:
+//   * A malformed guide throws HERE, before the commit, with a stack trace --
+//     rather than in a reader's browser, on one guide out of thirty.
+//   * A runtime fetch of data/guides/*.json is blocked over file://, silently,
+//     which is the exact failure `inline-sprite.mjs` exists to prevent. The way
+//     out is inlining the JSON, which is build-time wearing a different hat.
+//
+// THE OUTPUT IS COMMITTED, and that is half the decision rather than a detail.
+// Written to a gitignored `build/` the pages would be invisible to the gates
+// and to the pre-commit hook, which puts the vacuous-green problem back by
+// another route. Committing generated output is also what this repository
+// already does deliberately with `data/` and `vendor/`, and what rux-ds does
+// with `css/rux.css`.
+//
+//   node tools/build.mjs
+//
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync, copyFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const DATA = join(ROOT, 'data/guides');
+const OUT_DIR = join(ROOT, 'guides');
+
+// ---------------------------------------------------------------- escaping
+
+// EVERY STRING FROM THE DATA GOES THROUGH THIS. The guides are prose written by
+// people and contain `&`, `<` and quotes; one unescaped `&` is an invalid
+// entity and one unescaped `<` swallows the rest of a cell. Neither shows up as
+// a broken page -- text simply goes missing, which no gate here can see.
+const esc = s => String(s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+// ---------------------------------------------------------------- tokens
+
+// THE PAYLOAD KEY IS NOT ALWAYS `v`, AND THIS TABLE IS THE WHOLE REASON THIS
+// FILE HAS ONE. README's bite 3: a renderer reaching for `token.v` uniformly
+// blanks 212 of 4,405 tokens -- about 5% -- WITHOUT ERRORING, because `text` is
+// 2,905 of them and reads correctly throughout, so a spot check passes. Five
+// types keep their text elsewhere and `pencil` has none at all.
+//
+// Measured against all seven guides on 2026-08-31, which is what these counts
+// are: session/code 117, button/label 50, command/route 39, path/route 5,
+// image/alt+src 1, link/v+href 9, pencil none 134.
+const PAYLOAD = {
+  session: 'code', button: 'label', command: 'route', path: 'route',
+};
+
+// Filled before any rendering happens; the `link` case below needs to know
+// which ids are real so it can tell a cross-reference from a dead one.
+const GUIDE_IDS = new Set();
+
+// THE TAG COLOURS ARE README's "Decided", NOT A CHOICE MADE HERE. Seven of the
+// nine "named thing in the LN UI" types map onto compiled Carbon tag variants
+// with no `guide-*` namespace invented. 117 tags did not widen the page.
+const TAG = {
+  chip: 'blue', session: 'cyan', field: 'cool-gray', literal: 'gray',
+  value: 'warm-gray', status: 'teal', button: 'purple',
+};
+
+// `command` AND `path` ARE DELIBERATELY NOT TAGS, and this is not an oversight
+// to fix in passing. `.rux--tag` caps at 13rem and `.rux--tag__label`
+// ellipsises, so a menu route measured 324px against a 192px label and was
+// silently cut -- and a route is the single thing a reader most needs whole.
+// They are plain text, which loses the visual distinction the other seven have.
+//
+// SEND-DS.md §2 is the open question, and it is still unsent. Carbon's own
+// answer is `.rux--tag-label-tooltip`; until that is decided this stays as
+// README recorded it, rather than being reopened here.
+const PLAIN = new Set(['command', 'path']);
+
+function token(t) {
+  const key = PAYLOAD[t.t] ?? 'v';
+  const raw = t[key];
+
+  switch (t.t) {
+    case 'text': return esc(raw);
+    case 'strong': return `<strong>${esc(raw)}</strong>`;
+    case 'em': return `<em>${esc(raw)}</em>`;
+
+    // A PENCIL CARRIES NO TEXT AND MUST NOT BE DROPPED. The contract calls it
+    // "the step produces a Run record value"; 134 of them exist. An early
+    // filter on the producing side tested only `v` and `label`, read every
+    // token that keys its text differently as empty, and silently deleted 33
+    // menu commands and 242 session codes with the sweep still green.
+    // Rendered as a glyph with a real accessible name, never as nothing.
+    case 'pencil':
+      return `<svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="produces a run record value"><use href="#i-edit"/></svg>`;
+
+    // A LINK BETWEEN GUIDES ARRIVES AS A `.md` FILENAME, because that is what
+    // the guide is called in atlas. Nine of them exist across these seven and
+    // every one names a guide rendered here. Emitted verbatim they are nine
+    // dead links — and a dead link looks exactly like a live one, so nothing
+    // on the page or in the gates would have said so. A link checker found
+    // them; `check-classes` and `check-structure` cannot see an href at all.
+    //
+    // The rewrite is narrow: `<id>.md` where `<id>` is a guide we are
+    // generating. Anything else is left alone, and a `.md` naming a guide that
+    // does NOT exist stops the build rather than shipping a 404.
+    case 'link': {
+      let href = t.href;
+      const md = /^(.+)\.md$/.exec(href);
+      if (md) {
+        if (!GUIDE_IDS.has(md[1])) {
+          throw new Error(`link to "${href}" names no guide in data/guides/`);
+        }
+        href = `${md[1]}.html`;
+      }
+      return `<a class="rux--link" href="${esc(href)}">${esc(t.v)}</a>`;
+    }
+
+    // A TIMESTAMPED QUOTATION. The timestamp is data, so it renders as a real
+    // <cite> beside the speech rather than as three characters inside the
+    // sentence -- which is what it was before atlas tokenised it, and what a
+    // renderer would otherwise have to parse back out.
+    //
+    // `q` supplies its own quotation marks in every engine, so the token's
+    // value must NOT carry them: atlas strips them and doubling them here
+    // would show ""like this"".
+    case 'quote':
+      return `<q class="ln-quote-inline">${esc(t.v)}</q>`
+        + `<cite class="ln-at">${esc(t.at)}</cite>`;
+
+    // An image only ever names a file authored beside the guide; anything
+    // under `evidence/` is refused by the contract and by the tier sweep.
+    case 'image':
+      return `<img src="${esc(t.src)}" alt="${esc(t.alt)}" class="ln-figure">`;
+
+    default: {
+      if (raw == null) {
+        // LOUD, NOT SILENT. An unknown type with no payload is the exact shape
+        // of the bug this file is built to avoid, so it stops the build rather
+        // than rendering an empty span nobody notices.
+        throw new Error(`token type "${t.t}" has no payload under "${key}": ${JSON.stringify(t)}`);
+      }
+      if (PLAIN.has(t.t)) return esc(raw);
+      const colour = TAG[t.t];
+      if (!colour) throw new Error(`no rendering for token type "${t.t}": ${JSON.stringify(t)}`);
+      // THE FULL TEXT IS IN `title` ON EVERY TAG. Four long field names still
+      // truncate visually; carrying the whole string means the loss is visual
+      // and not informational.
+      const loc = t.location ? ` (${t.location})` : '';
+      return `<span class="rux--tag rux--tag--${colour}" title="${esc(raw + loc)}"><span class="rux--tag__label">${esc(raw)}</span></span>`;
+    }
+  }
+}
+
+// TWO ADJACENT TAGS NEED A SEPARATOR AND THE DATA DOES NOT CARRY ONE. Cells
+// like `ADNA02` `RAW MATERIALS` are two tokens with no `text` between them, so
+// joining on '' butts the pills flush and they read as one control. Sixteen
+// pairs did this on the hand-built page; the generator reintroduced it.
+//
+// The space goes ONLY between two tag-rendered neighbours. Joining everything
+// on ' ' instead would insert spaces inside ordinary prose runs and before
+// punctuation, which is a worse bug and a silent one.
+const isTag = t => t && !PLAIN.has(t.t) && !!TAG[t.t];
+
+const tokens = ts => {
+  const list = ts ?? [];
+  return list.map((t, i) => {
+    const html = token(t);
+    return i > 0 && isTag(t) && isTag(list[i - 1]) ? ' ' + html : html;
+  }).join('');
+};
+
+// ---------------------------------------------------------------- callouts
+
+// CONTRACT 2 HAS NO `callout` BLOCK KIND, so a callout arrives as a `prose`
+// block whose TOKEN STREAM begins with the blockquote marker:
+//
+//     {t:"text", v:"> "}  {t:"strong", v:"Warning"}  {t:"text", v:" > …"}
+//
+// Rendering that faithfully puts a literal "> Warning >" on the page, which
+// reads as a bug. Rendering it as a callout means recognising the shape.
+//
+// THE RULE IS STRUCTURAL AND ITS REACH IS MEASURED, which is the difference
+// between this and an exception list. It matches on token POSITION and TYPE --
+// not by parsing markers out of a string, which is the marker contract's job
+// and never this renderer's. Across all seven guides it matches exactly 15 of
+// 48 prose blocks, in three levels: Warning, Note, Prerequisite. The other 33
+// are untouched, and `assertCalloutReach` below fails the build if that count
+// moves without someone looking.
+//
+// THIS SHOULD STOP BEING INFERENCE. `REVIEW-SHAPE.md` already told atlas that
+// `callout` is one of four block kinds missing from contract 2. When it ships,
+// delete this function and branch on `kind` instead.
+const LEVEL = {
+  Warning: { variant: 'warning', icon: 'i-warning--filled' },
+  Note: { variant: 'info', icon: 'i-information--filled' },
+  Prerequisite: { variant: 'info', icon: 'i-information--filled' },
+};
+
+function asCallout(block) {
+  const ts = block.tokens ?? [];
+  if (ts.length < 3) return null;
+  if (ts[0].t !== 'text' || ts[0].v !== '> ') return null;
+  if (ts[1].t !== 'strong') return null;
+  const level = LEVEL[ts[1].v];
+  if (!level) return null;
+  if (ts[2].t !== 'text' || !ts[2].v.startsWith(' > ')) return null;
+
+  // The third token keeps its text; only the " > " separator is dropped.
+  const body = [{ ...ts[2], v: ts[2].v.slice(3) }, ...ts.slice(3)];
+  return { label: ts[1].v, level, body };
+}
+
+// NO `role="status"` AND NO CLOSE BUTTON, both deliberate deviations from
+// `sink/notification.html` and both recorded rather than quiet.
+//
+// Carbon's inline notification announces an EVENT. These are static document
+// callouts present at load, and a live region that is present at load makes a
+// screen reader announce all fifteen of them for no reason. The close button
+// goes for a plainer reason: `js/dismiss.js` would make a Warning dismissible,
+// and a warning a reader can delete from a procedure is worse than none.
+//
+// LOW CONTRAST, WHICH IS A CHOICE BETWEEN TWO SHIPPED STATES RATHER THAN A
+// DEVIATION. Carbon's DEFAULT inline notification is the high-contrast one --
+// #393939 on the white theme -- and `sink/notification.html` records that both
+// are real. The default is built to interrupt; these are Prerequisite and Note
+// blocks sitting inside a procedure, fifteen of them across seven guides, and
+// a page of dark slabs reads as fifteen alarms.
+//
+// Everything else is the captured markup unchanged.
+function callout({ label, level, body }) {
+  return `<div class="rux--inline-notification rux--inline-notification--${level.variant} rux--inline-notification--low-contrast">
+  <div class="rux--inline-notification__details">
+    <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#${level.icon}"/></svg>
+    <div class="rux--inline-notification__text-wrapper">
+      <div class="rux--inline-notification__title">${esc(label)}</div>
+      <div class="rux--inline-notification__subtitle">${tokens(body)}</div>
+    </div>
+  </div>
+</div>`;
+}
+
+// ---------------------------------------------------------------- blocks
+
+// BRANCH ON THE KEYS PRESENT, NEVER ON `kind`. README's bite 1 has two mouths:
+// a `prose` block has no `rows`, so iterating uniformly throws -- and in
+// `sections` the same trap bites again, because `runrecord` arrives
+// token-shaped 15 times and row-shaped 7 across these seven guides. One kind,
+// two shapes. `kind` cannot tell them apart and the keys can.
+const isRows = b => Array.isArray(b.rows);
+
+function table(block, { numbered = false } = {}) {
+  const cols = block.columns ?? [];
+  const head = cols.map(c =>
+    `<th scope="col"><div class="rux--table-header-label">${esc(c)}</div></th>`).join('');
+
+  const body = (block.rows ?? []).map(row => {
+    const cells = (row.cells ?? []).map((cell, i) => {
+      const inner = tokens(cell.tokens);
+      // The step id is the first column and is a row header, not data: it
+      // labels the row for anyone navigating the table by cell.
+      if (numbered && i === 0) return `<th scope="row" class="ln-step-id">${inner}</th>`;
+      return `<td>${inner}</td>`;
+    }).join('');
+    // `produces` marks a step that yields a Run record value. It is the same
+    // fact the `pencil` token carries inline; the attribute lets the row be
+    // styled without a class the stylesheet has never heard of.
+    const flags = [
+      row.produces ? ' data-produces="true"' : '',
+      row.optional ? ' data-optional="true"' : '',
+    ].join('');
+    return `<tr${flags}>${cells}</tr>`;
+  }).join('\n          ');
+
+  return `<div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr>${head}</tr></thead>
+            <tbody>
+          ${body}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+}
+
+// ---------------------------------------------------------------- reviews
+
+// THE SIX BLOCK KINDS A REVIEW CARRIES, four of which a guide never does.
+// A guide's blocks are identified by `kind` meaning something else entirely
+// (`prose`, `steps`, `runrecord`), so this dispatches on the review vocabulary
+// and never falls through to `block()` -- REVIEW-SHAPE.md section 2 named them
+// and atlas emits exactly these.
+function rblock(b) {
+  switch (b.kind) {
+    case 'prose':
+      // A blockquote that is not a callout. Both in the six are pull quotes of
+      // speech, and the framing is the point of them.
+      return b.quoted
+        ? `<blockquote class="ln-quote">${tokens(b.tokens)}</blockquote>`
+        : `<p>${tokens(b.tokens)}</p>`;
+
+    case 'list': {
+      // NO BARE `rux--list`. Carbon compiles the modifier and the item and
+      // NOT the base, so `rux--list` resolves against nothing -- check-classes
+      // caught it the first time this was written, which is the whole reason
+      // that gate reads the vendored stylesheet rather than a list of names.
+      const tag = b.ordered ? 'ol' : 'ul';
+      const cls = b.ordered ? 'rux--list--ordered' : 'rux--list--unordered';
+      const items = (b.items ?? []).map(i =>
+        `<li class="rux--list__item">${tokens(i.tokens)}</li>`).join('\n          ');
+      return `<${tag} class="${cls}">\n          ${items}\n        </${tag}>`;
+    }
+
+    case 'callout': {
+      // A review's callout NESTS BLOCKS and cannot be flattened to a string
+      // the way a guide's is -- the longest runs two paragraphs with its own
+      // citation and a dated correction inside it. That is why `callout()`
+      // above is not reused: it takes tokens, this takes blocks.
+      // ONE MAP FOR BOTH VOCABULARIES. A guide's callout arrives labelled
+      // `Warning`, a review's as `variant: "warning"`; the rendering is the
+      // same component and a second map would drift from this one. `i-warning`
+      // is NOT a symbol in the sprite -- `i-warning--filled` is -- so an
+      // invented icon name here would be a blank 20px box and no gate would
+      // see it.
+      const label = b.variant[0].toUpperCase() + b.variant.slice(1);
+      const level = LEVEL[label];
+      if (!level) throw new Error(`no callout level for variant "${b.variant}"`);
+      const body = (b.blocks ?? []).map(rblock).join('\n      ');
+      return `<div class="rux--inline-notification rux--inline-notification--${level.variant} rux--inline-notification--low-contrast">
+  <div class="rux--inline-notification__details">
+    <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#${level.icon}"/></svg>
+    <div class="rux--inline-notification__text-wrapper">
+      <div class="rux--inline-notification__title">${esc(label)}</div>
+      <div class="rux--inline-notification__subtitle">${body}</div>
+    </div>
+  </div>
+</div>`;
+    }
+
+    case 'source':
+      return `<p class="ln-source">${tokens(b.tokens)}</p>`;
+
+    case 'code':
+      // MUST SCROLL, NEVER WRAP. All three are ASCII pegging trees, the widest
+      // is 96 characters, and wrapping one destroys the only thing it conveys.
+      return `<div class="ln-code-scroll"><pre class="rux--type-code-01"><code>${esc(b.text)}</code></pre></div>`;
+
+    case 'table':
+      return table(b);
+
+    default:
+      throw new Error(`no rendering for review block kind "${b.kind}"`);
+  }
+}
+
+function rsection(id, heading, blocks) {
+  if (!blocks || !blocks.length) return '';
+  return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}">
+          <h2 id="${id}">${esc(heading)}</h2>
+          ${blocks.map(rblock).join('\n          ')}
+        </section>`;
+}
+
+function block(b, opts) {
+  if (isRows(b)) return table(b, opts);
+  const c = asCallout(b);
+  if (c) return callout(c);
+  return `<p>${tokens(b.tokens)}</p>`;
+}
+
+// ---------------------------------------------------------------- sections
+
+// SECTIONS ARE A FLAT ORDERED ARRAY AND CARRY NO TITLE. The heading comes from
+// `kind`, and a run of sections sharing a kind is ONE section with several
+// blocks in it -- `runrecord` is a sentence, then a table, then the fill-in
+// line. Emitting a heading per entry would put "Run record" on the page three
+// times running.
+const HEADING = {
+  glance: 'At a glance',
+  runrecord: 'Run record',
+  troubleshooting: 'Troubleshooting',
+  variants: 'Variants',
+  downstream: 'What this unlocks',
+  reference: 'Reference',
+  other: 'Reference',
+  prose: null,      // no heading -- prose belongs to whatever precedes it
+};
+
+// WHERE THE PHASES GO, WHICH THE DATA DOES NOT SAY. A guide arrives as two
+// independent top-level arrays -- `phases` and `sections` -- with nothing
+// relating them, so the renderer chooses. Printing all of `sections` and then
+// all of `phases` puts Troubleshooting, Run record and Variants AHEAD of the
+// work they belong to: the troubleshooting rows are keyed by phase number and
+// the run record opens "Fill in as you go", so a reader meets the fix-it table
+// before the instructions. That shipped on all seven pages and no gate saw it,
+// because none of them reads document order.
+//
+// The boundary is THE FIRST `runrecord`. Everything before it introduces the
+// guide (objective, the warning, At a glance); everything from it on is a
+// companion to work already done. Checked against all seven guides at the time
+// of writing: the first `runrecord` is unambiguous in every one, and no
+// front-matter kind ever appears after it.
+//
+// This restores the order the hand-built `guide.html` was measured in before
+// `build.mjs` replaced it -- At a glance, phases, Run record, Troubleshooting,
+// Variants, What this unlocks. That fix lived in the artifact rather than in a
+// rule, so deleting the artifact took it with it. It is a rule now, and
+// `check-order.mjs` is what keeps it one.
+const BACK_MATTER_OPENS_AT = 'runrecord';
+
+function splitSections(list) {
+  const all = list ?? [];
+  const i = all.findIndex(s => s.kind === BACK_MATTER_OPENS_AT);
+  return i === -1 ? { front: all, back: [] } : { front: all.slice(0, i), back: all.slice(i) };
+}
+
+function sections(list) {
+  const out = [];
+  let open = null;   // the kind whose heading is already on the page
+
+  for (const s of list ?? []) {
+    const heading = HEADING[s.kind];
+    if (heading === undefined) throw new Error(`unknown section kind "${s.kind}"`);
+
+    if (heading && s.kind !== open) {
+      if (open !== null) out.push('</section>');
+      const id = 's-' + s.kind;
+      out.push(`<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}">`);
+      out.push(`<h2 id="${id}">${esc(heading)}</h2>`);
+      open = s.kind;
+    }
+    out.push(block(s));
+  }
+  if (open !== null) out.push('</section>');
+  return out.join('\n      ');
+}
+
+// ---------------------------------------------------------------- phases
+
+function phase(p) {
+  // THE ROUTE IS THE THING A READER MOST NEEDS WHOLE, so it is a definition
+  // list beside the heading rather than a tag: see the note on PLAIN above.
+  const where = [
+    p.route ? `<div class="ln-meta-row"><dt>Route</dt><dd>${esc(p.route)}</dd></div>` : '',
+    p.session ? `<div class="ln-meta-row"><dt>Session</dt><dd>${esc(p.session)}${
+      p.sessionCode ? ` <span class="rux--type-code-01">${esc(p.sessionCode)}</span>` : ''}</dd></div>` : '',
+  ].filter(Boolean).join('');
+
+  // AN h3, NOT AN h2. Each phase sits inside the "Phases" section, so an h2
+  // here makes the outline read as fourteen siblings — "Phases", then "Phase 0"
+  // at the same level as the thing containing it. Someone navigating by heading
+  // gets no nesting to move through, which is the same class of defect as
+  // rux-ds's metric row putting bare numbers in the outline.
+  return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-${p.n}">
+        <h3 id="p-${p.n}">Phase ${esc(p.n)} — ${esc(p.title)}</h3>
+        ${where ? `<dl class="ln-meta">${where}</dl>` : ''}
+        ${(p.blocks ?? []).map(b => block(b, { numbered: true })).join('\n        ')}
+      </section>`;
+}
+
+// ---------------------------------------------------------------- the shell
+
+// ONE DEFINITION OF THE NAV, WHICH IS THE POINT OF GENERATING AT ALL. Eight
+// pages carry this markup; hand-authoring meant eight copies with nothing
+// keeping them in step, and guides are expected to be added and removed often.
+function nav(site, activeId) {
+  const link = (d) => {
+    const current = d.id === activeId ? ' aria-current="page"' : '';
+    return `          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="${
+      activeId === null ? 'guides/' : ''}${d.id}.html"${current}><span class="rux--side-nav__link-text">${esc(d.title)}</span></a></li>`;
+  };
+  const items = site.guides.map(link).join('\n');
+  // SUMMARIES ARE THE LISTED CATEGORY, reviews are reached from them. The
+  // agreement was scenario guides and meeting summaries; the full reviews are
+  // deferred rather than refused, and listing twelve documents under one
+  // heading would present them as one category when they are two.
+  const meetings = site.summaries.map(link).join('\n');
+
+  const guidesOpen = site.guides.some(g => g.id === activeId);
+  const meetingsOpen = [...site.reviews, ...site.summaries].some(d => d.id === activeId);
+  const home = activeId === null ? './' : '../';
+
+  return `  <nav class="rux--side-nav__navigation rux--side-nav rux--side-nav--ux" aria-label="Side navigation">
+    <ul class="rux--side-nav__items">
+
+      <!-- ORDER IS \`order\` FROM THE DATA, NOT ALPHABETICAL. Contract 2 derives
+           it and it sorts as a curriculum would -- build the family, plan, buy,
+           make, move, ship, then the end-to-end run. Atlas got there by reading
+           Prerequisite callouts as dependency edges; on Downstream rows alone
+           the guide that builds the test data came fourth. -->
+      <li class="rux--side-nav__item${guidesOpen ? ' rux--side-nav__item--active' : ''} rux--side-nav__item--icon">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="true">
+          <div class="rux--side-nav__icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-document"/></svg></div>
+          <span class="rux--side-nav__submenu-title">Scenario guides</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu">
+${items}
+        </ul>
+      </li>
+
+      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+           The agreement is scenario guides and meeting summaries; the six full
+           reviews render and are reached from their summary rather than listed
+           beside it, because putting twelve documents under one heading
+           presents two categories as one. -->
+      <li class="rux--side-nav__item rux--side-nav__item--icon">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="${meetingsOpen}">
+          <div class="rux--side-nav__icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-list"/></svg></div>
+          <span class="rux--side-nav__submenu-title">Meeting summaries</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu"${meetingsOpen ? '' : ' hidden'}>
+${meetings}
+        </ul>
+      </li>
+
+    </ul>
+  </nav>`;
+}
+
+const SCRIPTS = [
+  'overlay', 'popover', 'menu', 'list-box', 'date-picker', 'copy-button', 'tabs',
+  'accordion', 'data-table', 'form-controls', 'ui-shell', 'dismiss', 'tile', 'modal',
+];
+
+function page({ title, site, activeId, body, depth }) {
+  const up = depth ? '../' : '';
+  return `<!doctype html>
+<html lang="en" data-theme="white">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(title)}</title>
+<link rel="stylesheet" href="${up}vendor/rux-ds/css/rux.css">
+<style>
+/* GENERATED by tools/build.mjs. Do not edit this file -- the next build
+   overwrites it, and the fix belongs in the generator. */
+
+/* TRAP 3.2, from rux-ds templates/app-shell.html and NOT optional.
+   \`.rux--content\` is only ever indented by a SIBLING side nav, and this nav
+   lives inside the header, so none of Carbon's three rules match and the
+   content would start underneath the nav. 16rem clears it; the remaining 2rem
+   is the content's own padding. This CSS is not in rux.css, so check-classes
+   cannot see it missing -- the page would look built and be wrong. */
+@media (min-width: 66rem) {
+  .rux--content { padding-inline-start: 18rem; }
+}
+
+/* A WRAPPING TAG ROW. rux-ds's README records sixteen tag pairs sitting flush
+   in this project's first page: an unattested composition inherits no spacing,
+   so a tag beside another gets a 4px word space and nothing else.
+   \`stack-horizontal\` is NOT the fix -- it cannot wrap, and it truncates its
+   children in a narrow column. Plain class, not a \`rux--\` one: check-classes
+   ignores non-rux-- names, so an invented \`rux--\` one would be unpoliced. */
+.ln-tag-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+/* EQUAL-HEIGHT CARDS WITH THEIR ACTIONS ON ONE LINE, and it takes both rules.
+   Making the grid cell a flex parent is NOT enough on its own -- measured on
+   the page: \`.rux--card\` computes \`display: block\`, so stretching the card
+   left every footer at its own content height, 16px and 32px apart within one
+   row. The card becomes a flex column and the footer takes the slack. */
+.ln-card-cell { display: flex; }
+.ln-card-cell > .rux--card { inline-size: 100%; display: flex; flex-direction: column; }
+.ln-card-cell .rux--card__footer { margin-block-start: auto; }
+
+/* A step cell holds prose with tags in it, so the tags need to sit ON the text
+   baseline rather than as blocks. \`.rux--tag\` is inline-flex already; this
+   only stops a tag from setting the line height of a row it shares with text. */
+.rux--data-table td .rux--tag,
+.rux--data-table th .rux--tag { vertical-align: middle; max-inline-size: 100%; }
+
+/* The step id column carries "1.10"-style ids and should not wrap or stretch. */
+.ln-step-id { inline-size: 4rem; white-space: nowrap; }
+
+/* A step that produces a Run record value. The pencil token says the same
+   thing inline; this is the row-level view of it. */
+.ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
+
+/* Route and session, above a phase's steps. A definition list rather than
+   prose because they are labelled facts, and \`display: flex\` keeps each
+   label with its value instead of Carbon's default dt/dd block stacking. */
+/* REVIEW ELEMENTS. None of these is a Carbon component -- rux-ds compiles no
+   blockquote, no source attribution and no inline citation -- so they are
+   local rules on local class names, which is why they are ln- and not
+   rux--. A rux-- class invented here would resolve against nothing and
+   check-classes would say so. */
+
+/* A pull quote of speech. Both in the six reviews are quotations, so the rule
+   is a quiet left rail rather than a decorative blockquote. */
+.ln-quote {
+  margin: 0;
+  padding-inline-start: 1rem;
+  border-inline-start: 2px solid var(--rux-border-subtle-01, #e0e0e0);
+  color: var(--rux-text-secondary, #525252);
+}
+
+/* The source attribution, 17 of them. Small and muted, and attached to the
+   thing above it rather than floating between two blocks. */
+.ln-source {
+  margin-block-start: -0.5rem;
+  font-size: 0.75rem;
+  color: var(--rux-text-secondary, #525252);
+}
+
+/* A timestamped quotation. q supplies its own quotation marks, so the token
+   value must not carry them -- atlas strips them for exactly this reason. */
+.ln-quote-inline { font-style: italic; }
+.ln-at {
+  margin-inline-start: 0.25rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  color: var(--rux-text-secondary, #525252);
+}
+
+/* SCROLLS, NEVER WRAPS. All three fenced blocks are ASCII pegging trees and
+   the widest is 96 characters; wrapping one destroys the only thing it
+   conveys. The container scrolls so the page itself never does -- a page that
+   scrolls sideways is the defect this repo measured for. */
+.ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
+.ln-code-scroll pre { margin: 0; white-space: pre; }
+
+.ln-meta { margin: 0; }
+.ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
+.ln-meta dd { margin: 0; }
+
+.ln-figure { max-inline-size: 100%; block-size: auto; }
+
+/* THE HEADER IS \`position: fixed\` AND 48px TALL, so every in-page anchor
+   lands its target underneath it. Measured: jumping to a phase put the
+   heading at viewport top 0, behind the header, with the first thing visible
+   being the middle of its own table. This is not cosmetic on these pages --
+   the side nav links to #summaries and every phase carries an id.
+   3rem clears the header; the extra 1rem is so the heading does not sit
+   flush against it. */
+h1, h2, h3 { scroll-margin-block-start: 4rem; }
+</style>
+</head>
+<body>
+<!-- EXPORT-SAFE: exempt -- renders real guide data, never crosses to rux-ds -->
+<!-- GENERATED by tools/build.mjs from data/guides/. Do not edit by hand. -->
+
+<!-- SPRITE:BEGIN -->
+<!-- SPRITE:END -->
+
+<header class="rux--header" data-theme="g100" aria-label="Infor LN Notes">
+  <a class="rux--skip-to-content" href="#main-content">Skip to main content</a>
+
+  <!-- Ships closed, and carries __menu-toggle__hidden so it is display:none
+       above 66rem. Without that class the button shows at desktop, and closing
+       the nav there leaves the content indented against a nav that is no
+       longer beside it -- a state that does not exist in IBM's design. -->
+  <button type="button" class="rux--header__action rux--header__menu-trigger rux--header__menu-toggle rux--header__menu-toggle__hidden" aria-label="Toggle navigation" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-menu"/></svg></button>
+
+  <a class="rux--header__name" href="${up || './'}"><span class="rux--header__name--prefix">Infor</span>&nbsp;LN Notes</a>
+
+  <!-- NO __nav AND NO __global: one product, and nothing behind a
+       notifications or account glyph. An icon-only button with no handler is
+       an affordance that lies. -->
+
+  <div class="rux--side-nav__overlay"></div>
+
+${nav(site, activeId)}
+</header>
+
+<main id="main-content" class="rux--content">
+  <div class="rux--css-grid">
+    <div class="rux--css-grid-column rux--col-span-100">
+      <div class="rux--stack-vertical rux--stack-scale-7">
+${body}
+      </div>
+    </div>
+  </div>
+</main>
+
+${SCRIPTS.map(s => `<script src="${up}vendor/rux-ds/js/${s}.js"></script>`).join('\n')}
+</body>
+</html>
+`;
+}
+
+// ---------------------------------------------------------------- pages
+
+// A DRAFT IS LABELLED, NEVER WITHHELD. README's decision: six of the seven are
+// drafts, so withholding them leaves a site with one page on it. Contract 2
+// carries `status` in the export tier, so the badge is data rather than prose
+// to be mined.
+const statusTag = s => s === 'approved'
+  ? `<span class="rux--tag rux--tag--green"><span class="rux--tag__label">Approved</span></span>`
+  : `<span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>`;
+
+function indexPage(site) {
+  const { guides, summaries } = site;
+  const cards = guides.map(g => `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
+          <!-- NOT \`card--clickable\`. The captured clickable card is
+               role="button" with tabindex 0, which is right for a card that
+               fires an action and wrong for one that navigates, and there is
+               no card module in js/ to give it behaviour. The footer carries a
+               real <a>, so the browser does the navigation. -->
+          <div class="rux--card rux--card--productive">
+            <div class="rux--card__header">
+              <div class="rux--card__title">
+                <div class="rux--card__label">${esc(g.module)}</div>
+                <span class="rux--card__title-text-row" id="t-${esc(g.id)}">${esc(g.title)}</span>
+                <div class="rux--card__description">${esc(g.summary)}</div>
+              </div>
+            </div>
+            <div class="rux--card__body">
+              <div class="ln-tag-row">
+                ${statusTag(g.status)}
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${g.phases.length} phases</span></span>
+              </div>
+            </div>
+            <div class="rux--card__footer">
+              <!-- TWO IDS IN aria-labelledby, in reading order, so this reads
+                   "Open guide, <title>". Seven links all reading "Open guide"
+                   is a real defect for anyone listing the page's links, and
+                   Carbon's card title is a <span> rather than a heading, so
+                   there is no heading to land on instead. -->
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/${esc(g.id)}.html" id="o-${esc(g.id)}" aria-labelledby="o-${esc(g.id)} t-${esc(g.id)}">Open guide</a>
+            </div>
+          </div>
+        </div>`).join('\n');
+
+  // A SUMMARY'S CARD COUNTS TOPICS, not phases. It is the same card component
+  // and deliberately not the same facts: a summary has no phases, and showing
+  // a zero there would read as a guide with nothing in it.
+  const summaryCards = summaries.map(r => {
+    const first = (r.covered ?? []).find(b => b.kind === 'prose');
+    const blurb = first ? first.text : '';
+    return `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
+          <div class="rux--card rux--card--productive">
+            <div class="rux--card__header">
+              <div class="rux--card__title">
+                <div class="rux--card__label">Meeting summary</div>
+                <span class="rux--card__title-text-row" id="t-${esc(r.id)}">${esc(r.title)}</span>
+                <div class="rux--card__description">${esc(blurb)}</div>
+              </div>
+            </div>
+            <div class="rux--card__body">
+              <div class="ln-tag-row">
+                ${statusTag(r.status)}
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${(r.topics ?? []).length} topics</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">${esc(r.updated)}</span></span>
+              </div>
+            </div>
+            <div class="rux--card__footer">
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/${esc(r.id)}.html" id="o-${esc(r.id)}" aria-labelledby="o-${esc(r.id)} t-${esc(r.id)}">Open summary</a>
+            </div>
+          </div>
+        </div>`;
+  }).join('\n');
+
+  const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
+          <h1>Infor LN Notes</h1>
+          <p class="rux--type-body-02">Procedures walked against a live Infor LN
+             environment, and the record of the sessions they came out of. Each
+             scenario guide is an objective, a numbered set of phases with the
+             route into every screen, and a run record to fill in as you go.</p>
+        </div>
+
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-guides">
+          <h2 id="h-guides">Scenario guides</h2>
+          <!-- THE SPANS ARE PER-BREAKPOINT AND ALL THREE ARE REQUIRED: a bare
+               col-span plus an \`lg:\` override does nothing, because both are
+               one class of specificity and col-span-100 is emitted later in
+               the stylesheet. \`subgrid\` rather than a nested \`css-grid\`,
+               because this sits inside a column carrying margin-inline: 16px
+               and a fresh grid would start its tracks 16px in. -->
+          <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
+${cards}
+          </div>
+        </section>
+
+        <section id="summaries" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-summaries">
+          <h2 id="h-summaries">Meeting summaries</h2>
+          <p class="rux--type-body-02">Six training sessions, each summarised in
+             four parts — what it covered, the topics, what was decided, and the
+             key takeaways. Every summary links to the full review it came from.</p>
+          <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
+${summaryCards}
+          </div>
+        </section>`;
+
+  return page({ title: 'Infor LN Notes', site, activeId: null, body, depth: 0 });
+}
+
+// A REVIEW AND A SUMMARY ARE ONE PAGE BUILDER WITH TWO SLOT LISTS. They share
+// the topics model and nothing else, which is REVIEW-SHAPE.md section 5's
+// finding -- a summary is not a truncated review. Rendering them from one
+// function keeps the shell, the nav and the topic rendering identical while
+// the slots differ, which is the actual relationship between them.
+const REVIEW_SLOTS = [
+  ['objective', 'Objective'],
+  ['attendees', 'Attendees'],
+  ['__topics', 'Key topics discussed'],
+  ['decisions', 'Decisions made'],
+  ['actions', 'Action items'],
+  ['questions', 'Open questions'],
+  ['methodology', 'Methodology and process notes'],
+  ['sessions', 'Sessions referenced'],
+];
+
+const SUMMARY_SLOTS = [
+  ['covered', 'What this covered'],
+  ['__topics', 'Topics'],
+  ['decided', 'What was decided'],
+  ['takeaways', 'Key takeaways'],
+];
+
+function topicsSection(r) {
+  const heading = r.kind === 'summary' ? 'Topics' : 'Key topics discussed';
+  const items = (r.topics ?? []).map(t => {
+    // A review numbers its topics `3.n`; a summary's are titled and
+    // unnumbered. The id has to be stable either way, so it falls back to the
+    // index rather than emitting `id="t-undefined"` six times on one page.
+    const label = t.n ? `${t.n} ${t.title}` : t.title;
+    const id = `t-${(t.n ?? t.title).replace(/[^A-Za-z0-9.]+/g, '-').toLowerCase()}`;
+    return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}">
+            <h3 id="${id}">${esc(label)}</h3>
+            ${(t.blocks ?? []).map(rblock).join('\n            ')}
+          </section>`;
+  }).join('\n        ');
+  if (!items) return '';
+  return `<section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
+          <h2 id="h-topics">${esc(heading)}</h2>
+          ${items}
+        </section>`;
+}
+
+function reviewPage(r, site) {
+  const slots = r.kind === 'summary' ? SUMMARY_SLOTS : REVIEW_SLOTS;
+
+  // THE ONLY ROUTE TO A FULL REVIEW, so it is not decoration. Six review pages
+  // render and the nav lists summaries alone -- deliberately, because guides
+  // and summaries are the two agreed categories. Without this link the reviews
+  // are six pages at URLs nothing points at, and `check-links` says in its own
+  // header that a page nobody links to is exactly what it cannot see.
+  //
+  // The id is the relationship: atlas emits `<review-id>_summary`, and the
+  // pairing is asserted against the loaded set rather than assumed, so a
+  // summary whose review is missing drops the link instead of writing a 404.
+  const pairId = r.kind === 'summary' ? r.id.replace(/_summary$/, '') : `${r.id}_summary`;
+  const pair = [...site.reviews, ...site.summaries].find(d => d.id === pairId);
+  const pairLink = pair ? `
+          <p class="rux--type-body-01"><a class="rux--link" href="${esc(pair.id)}.html">${
+            r.kind === 'summary' ? 'Read the full review' : 'Read the summary'}</a></p>` : '';
+  const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
+          <h1>${esc(r.title)}</h1>
+          <div class="ln-tag-row">
+            ${statusTag(r.status)}
+            <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${r.kind === 'summary' ? 'Summary' : 'Review'}</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(r.updated)}</span></span>
+          </div>${pairLink}
+        </div>
+
+      ${slots.map(([slot, heading]) => slot === '__topics'
+        ? topicsSection(r)
+        : rsection(`s-${slot}`, heading, r[slot])).filter(Boolean).join('\n\n      ')}`;
+
+  return page({ title: `${r.title} — Infor LN Notes`, site, activeId: r.id, body, depth: 1 });
+}
+
+function guidePage(g, site) {
+  const { front, back } = splitSections(g.sections);
+  const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
+          <h1>${esc(g.title)}</h1>
+          <div class="ln-tag-row">
+            ${statusTag(g.status)}
+            <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${g.phases.length} phases</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(g.updated)}</span></span>
+          </div>
+          <p class="rux--type-body-02">${esc(g.module)}</p>
+        </div>
+
+      ${sections(front)}
+
+        <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-phases">
+          <h2 id="h-phases">Phases</h2>
+          ${g.phases.map(phase).join('\n        ')}
+        </section>
+
+      ${sections(back)}${g.verification ? `
+
+        <!-- The generated verification sentence. It is NOT a substitute for
+             the status badge and README says why: one guide's sentence claims
+             every phase was performed against a live system and confirmed
+             while the guide itself is status: draft. Both are shown. -->
+        <p class="rux--type-body-01">${esc(g.verification)}</p>` : ''}`;
+
+  return page({ title: `${g.title} — Infor LN Notes`, site, activeId: g.id, body, depth: 1 });
+}
+
+// ---------------------------------------------------------------- build
+
+// NOTHING BLOCKQUOTE-SHAPED MAY REACH THE PAGE UNRENDERED.
+//
+// THE FIRST VERSION OF THIS CHECK ASSERTED A COUNT -- "the rule must match
+// exactly 15 blocks" -- and it was wrong for the reason the project already
+// knows: a rule that needs a number edited every time the data grows is
+// measuring the number, not the rule. Guides are expected to be added and
+// removed often, so that check would have failed on every addition and been
+// bumped without being read, which is how an exception list starts. It was
+// tested by adding a guide, it refused the build, and that is what showed it.
+//
+// The invariant that does not move with the data: a prose block whose first
+// token is the blockquote marker MUST have become a callout. If atlas adds a
+// fourth label -- "Caution", say -- this fails and names it, rather than
+// printing "> Caution > …" on the page as literal text. It cares about shape,
+// not quantity, so seven guides and seventy both pass.
+function assertNoRawBlockquotes(guides) {
+  const raw = [];
+  let found = 0, prose = 0;
+
+  const visit = (b, where) => {
+    if (isRows(b) || !b.tokens) return;
+    prose++;
+    if (asCallout(b)) { found++; return; }
+    const t0 = b.tokens[0];
+    if (t0 && t0.t === 'text' && t0.v.startsWith('> ')) {
+      raw.push(`${where}: ${(b.text ?? '').slice(0, 90)}`);
+    }
+  };
+
+  for (const g of guides) {
+    for (const p of g.phases ?? []) for (const b of p.blocks ?? []) visit(b, `${g.id} phase ${p.n}`);
+    for (const s of g.sections ?? []) visit(s, `${g.id} section ${s.kind}`);
+  }
+
+  if (raw.length) {
+    throw new Error(
+      `${raw.length} block(s) start with a blockquote marker the callout rule did not recognise:\n`
+      + raw.map(r => `          ${r}`).join('\n')
+      + '\n\n        Contract 2 has no `callout` kind, so tools/build.mjs infers one from the'
+      + '\n        token stream and knows three labels: Warning, Note, Prerequisite. A new'
+      + '\n        label lands here rather than printing "> Label >" on the page as text.'
+      + '\n        Add it to LEVEL, or delete the rule if atlas has shipped the block kind.');
+  }
+  return { found, prose };
+}
+
+// THREE DOCUMENT CLASSES NOW ARRIVE, and they are told apart by `kind` rather
+// than by filename. A guide has no `kind` field -- it predates the second
+// content type -- so its absence is what identifies one, and a document
+// carrying an unknown `kind` stops the build instead of being rendered as
+// whatever it least resembles.
+const docs = readdirSync(DATA)
+  .filter(f => f.endsWith('.json'))
+  .map(f => JSON.parse(readFileSync(join(DATA, f), 'utf8')));
+
+for (const d of docs) {
+  const kind = d.kind ?? 'guide';
+  if (!['guide', 'review', 'summary'].includes(kind)) {
+    throw new Error(`${d.id}: unknown kind "${kind}" -- build.mjs renders guide, review, summary`);
+  }
+}
+
+const guides = docs.filter(d => !d.kind).sort((a, b) => a.order - b.order);
+const reviews = docs.filter(d => d.kind === 'review')
+  .sort((a, b) => String(b.updated).localeCompare(String(a.updated)));
+const summaries = docs.filter(d => d.kind === 'summary')
+  .sort((a, b) => String(b.updated).localeCompare(String(a.updated)));
+
+if (!guides.length) throw new Error(`no guides in ${DATA} -- run tools/sync-guides.sh first`);
+
+for (const g of guides) GUIDE_IDS.add(g.id);
+
+const reach = assertNoRawBlockquotes(guides);
+
+// REMOVAL HAS TO ACTUALLY REMOVE. A generator that only writes leaves a deleted
+// guide's page on disk: out of the nav, still at a URL that resolves, still
+// serving content that no longer exists upstream. That is a page which looks
+// fine and is wrong, which is the failure class this project cares most about.
+// The directory is rebuilt rather than added to.
+if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true });
+mkdirSync(OUT_DIR, { recursive: true });
+
+// ASSETS AUTHORED BESIDE THE GUIDES ARE COPIED IN, and this is not optional
+// either. An `image` token's `src` names a file sitting next to the guide in
+// atlas -- `order-to-shipment-flowchart.svg` is the one that exists -- so the
+// page references it relative to itself and it has to actually be there. It
+// arrives in `data/guides/`, which is not where the pages are.
+//
+// A missing image is a broken image icon and nothing else; no gate here reads
+// an `src`. Found by a link check, not by looking at the page.
+//
+// `PIN` is sync metadata rather than an asset, and `.json` is the data itself.
+const assets = readdirSync(DATA).filter(f => f !== 'PIN' && !f.endsWith('.json'));
+for (const a of assets) copyFileSync(join(DATA, a), join(OUT_DIR, a));
+
+const site = { guides, reviews, summaries };
+
+const written = [join(ROOT, 'index.html')];
+writeFileSync(written[0], indexPage(site));
+for (const g of guides) {
+  const file = join(OUT_DIR, `${g.id}.html`);
+  writeFileSync(file, guidePage(g, site));
+  written.push(file);
+}
+for (const r of [...reviews, ...summaries]) {
+  const file = join(OUT_DIR, `${r.id}.html`);
+  writeFileSync(file, reviewPage(r, site));
+  written.push(file);
+}
+
+// The sprite is inlined by the tool that owns that job, on the files just
+// written. Linking `vendor/rux-ds/assets/icons.svg#i-name` instead is blank in
+// Safari and blocked over file://, both silently.
+execFileSync(process.execPath, [join(ROOT, 'tools/inline-sprite.mjs'), ...written],
+  { stdio: 'inherit' });
+
+console.log(`\n  built ${written.length} page(s) from ${guides.length} guide(s)`);
+console.log(`  callouts: ${reach.found} of ${reach.prose} prose blocks matched the inferred rule`);
+console.log('\n  Generated. Check them:  node tools/check-classes.mjs && node tools/check-structure.mjs\n');

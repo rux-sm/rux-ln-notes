@@ -1,0 +1,11 @@
+# NOTE what is NOT here. data/guides/ and vendor/rux-ds/ are both regenerable
+# and both TRACKED, deliberately: `git diff` after a sync is how this project
+# notices atlas gaining information or the design system changing under it.
+# Ignoring them would make both invisible. See README, "The two upstreams".
+
+.DS_Store
+node_modules/
+
+# Generated output, once there is any. The renderer is undecided, so this is a
+# reservation rather than a description.
+build/

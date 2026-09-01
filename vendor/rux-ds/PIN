@@ -1,0 +1,7 @@
+commit  44fab72ffadd46d6947e9482d4d8662804fa2234
+date    2026-09-01T04:00:18Z
+subject docs(roadmap): Decline devendor, set a trigger
+
+Vendored by tools/sync-ds.sh from a clean tree.
+Re-run that script to move the pin; do not edit vendored files, the next
+sync overwrites them and the real fix belongs in rux-ds.

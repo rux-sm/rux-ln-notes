@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" viewBox="0 0 1400 1100"
+     role="img" aria-label="Level 1 swim-lane process map for Infor LN, six module lanes — Master Data, Sales, Enterprise Planning, Procurement, Manufacturing, Warehousing — across five stages: Prepare, Demand, Plan, Transfer, Execute. Master data supplies items, buy-from partner, bill of material, routing and the planning cluster row. A sales order creates demand. If on-hand plus on-order stock covers it, order planning generates no planned orders and the sales order goes straight to picking and shipping. If not, two silent gates must pass, MRP runs and produces planned production and purchase orders, and those cross the transfer boundary to become real orders. The purchase order brings raw materials into the warehouse, which feed the production order, whose finished item is received into stock and then shipped.">
+<style>
+  /* Palette carried over from the HTML original; both themes preserved. */
+  :root, svg { --page:#E9EBEF; --surface:#FFFFFF; --sunk:#F4F5F8;
+  --ink:#12161C; --ink-2:#39424E; --muted:#68717E;
+  --line:#D7DBE2; --line-2:#B6BDC8;
+  --hdr:#2F3742; --lanelbl:#525A66;
+  --accent:#9B1B30; --accent-soft:#F7E7EA;
+  --supply:#1F6444; --supply-soft:#E4F0E9;
+  --warn:#8A5A08;   --warn-soft:#FAF1DD;
+  --plan:#5B4B9E;   --plan-soft:#ECEAF7;
+  --lane-a:#F1F3F7; --lane-b:#FFFFFF; }
+  @media (prefers-color-scheme: dark) {
+    :root, svg { --page:#0C0F14; --surface:#161A21; --sunk:#1B2029;
+  --ink:#E8EBF0; --ink-2:#BAC1CC; --muted:#8A93A1;
+  --line:#272D37; --line-2:#3A414D;
+  --hdr:#C3CAD5; --lanelbl:#98A1AE;
+  --accent:#EC7186; --accent-soft:#2E181D;
+  --supply:#5FBF90; --supply-soft:#13271D;
+  --warn:#DFAC5A;   --warn-soft:#2A2314;
+  --plan:#AE9DEC;   --plan-soft:#211E33;
+  --lane-a:#1B2029; --lane-b:#161A21; }
+  }
+</style>
+
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+    <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--supply)"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="1100" fill="var(--surface)"/>
+
+  <!-- title -->
+  <text x="136" y="44" font-size="30" font-weight="700" letter-spacing="-.4" fill="var(--ink)">Order to Shipment</text>
+  <text x="136" y="68" font-size="14" fill="var(--muted)">Infor LN &#183; level 1 &#183; master data to confirmed shipment</text>
+
+  <!-- lane bands: start after the label gutter -->
+  <rect x="136" y="106"  width="1254" height="150" fill="var(--lane-a)"/>
+  <rect x="136" y="256"  width="1254" height="110" fill="var(--lane-b)"/>
+  <rect x="136" y="366"  width="1254" height="282" fill="var(--lane-a)"/>
+  <rect x="136" y="648"  width="1254" height="90"  fill="var(--lane-b)"/>
+  <rect x="136" y="738"  width="1254" height="110" fill="var(--lane-a)"/>
+  <rect x="136" y="848"  width="1254" height="206" fill="var(--lane-b)"/>
+
+  <!-- transfer band: spans planning through warehousing only.
+       Master Data and Sales sit above it, because nothing there is a planned order —
+       which is also why the YES rail can run above it rather than through it.
+       Capped and labelled so the top edge reads as a bound, not as a clip. -->
+  <rect x="812" y="366" width="128" height="688" fill="var(--accent-soft)"/>
+  <line x1="812" y1="366" x2="812"  y2="1054" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="6 4"/>
+  <line x1="940" y1="366" x2="940"  y2="1054" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="6 4"/>
+  <line x1="812" y1="366" x2="940"  y2="366"  stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="6 4"/>
+  <text x="876" y="446" transform="rotate(-90 876 446)" text-anchor="middle"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" font-weight="600"
+        letter-spacing="2.2" fill="var(--accent)" opacity=".85">THE BOUNDARY</text>
+
+  <!-- stage headers -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13.5" font-weight="600" letter-spacing="1.6" fill="var(--hdr)" text-anchor="middle">
+    <text x="278"  y="95">1 &#183; PREPARE</text>
+    <text x="487"  y="95">2 &#183; DEMAND</text>
+    <text x="682"  y="95">3 &#183; PLAN</text>
+    <text x="876"  y="95" fill="var(--accent)">4 &#183; TRANSFER</text>
+    <text x="1170" y="95">5 &#183; EXECUTE</text>
+  </g>
+  <line x1="136" y1="102" x2="1390" y2="102" stroke="var(--line-2)"/>
+  <line x1="136" y1="1054" x2="1390" y2="1054" stroke="var(--line-2)"/>
+
+  <!-- lane labels -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" font-weight="600" letter-spacing="1.1" fill="var(--lanelbl)" text-anchor="end">
+    <text x="126" y="185">MASTER DATA</text>
+    <text x="126" y="316">SALES</text>
+    <text x="126" y="500">ENTERPRISE</text>
+    <text x="126" y="518">PLANNING</text>
+    <text x="126" y="698">PROCUREMENT</text>
+    <text x="126" y="798">MANUFACTURING</text>
+    <text x="126" y="956">WAREHOUSING</text>
+  </g>
+
+  <!-- ===== LANE 1 · MASTER DATA ===== -->
+  <g text-anchor="middle">
+    <rect x="146" y="120" width="128" height="58" rx="5" fill="var(--surface)" stroke="var(--line-2)"/>
+    <text x="210" y="145" font-size="14.5" font-weight="600" fill="var(--ink)">Items &amp; groups</text>
+    <text x="210" y="165" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="var(--muted)">tcibd0501m100</text>
+
+    <rect x="282" y="120" width="128" height="58" rx="5" fill="var(--surface)" stroke="var(--line-2)"/>
+    <text x="346" y="145" font-size="14.5" font-weight="600" fill="var(--ink)">Buy-from BP</text>
+    <text x="346" y="165" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="var(--warn)">tdipu0601m000 *</text>
+
+    <rect x="146" y="188" width="128" height="58" rx="5" fill="var(--surface)" stroke="var(--line-2)"/>
+    <text x="210" y="213" font-size="14.5" font-weight="600" fill="var(--ink)">BOM &amp; routing</text>
+    <text x="210" y="233" font-size="12.5" fill="var(--muted)">both Approved</text>
+
+    <rect x="282" y="188" width="128" height="58" rx="5" fill="var(--surface)" stroke="var(--line-2)"/>
+    <text x="346" y="213" font-size="14.5" font-weight="600" fill="var(--ink)">Planning cluster</text>
+    <text x="346" y="233" font-size="12.5" fill="var(--muted)">row on the item</text>
+  </g>
+
+  <!-- master data feeds -->
+  <text x="428" y="170" font-size="12.5" fill="var(--muted)">prerequisites for everything to the right</text>
+  <path d="M 410 149 L 417 149 L 417 315 L 424 315" fill="none" stroke="var(--line-2)" stroke-width="1.3" stroke-dasharray="5 3"/>
+  <path d="M 410 217 L 556 217 L 556 412 L 564 412" fill="none" stroke="var(--line-2)" stroke-width="1.3" stroke-dasharray="5 3"/>
+
+  <!-- ===== LANE 2 · SALES ===== -->
+  <rect x="424" y="274" width="126" height="82" rx="5" fill="var(--surface)" stroke="var(--line-2)"/>
+  <text x="487" y="302" text-anchor="middle" font-size="15.5" font-weight="600" fill="var(--ink)">Sales order</text>
+  <text x="487" y="322" text-anchor="middle" font-size="12.5" fill="var(--muted)">demand exists</text>
+  <text x="487" y="342" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="var(--muted)">tdsls4601m200</text>
+  <line x1="550" y1="315" x2="562" y2="315" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="564" y="274" width="236" height="82" rx="5" fill="var(--surface)" stroke="var(--line-2)" stroke-width="2"/>
+  <text x="682" y="308" text-anchor="middle" font-size="16.5" font-weight="700" fill="var(--ink)">Does on-hand cover it?</text>
+  <text x="682" y="331" text-anchor="middle" font-size="12.5" fill="var(--muted)">on-hand + on-order vs. demand</text>
+
+  <!-- YES rail: one continuous line, passing above the transfer band -->
+  <path d="M 800 315 L 1360 315 L 1360 1020 L 1314 1020" fill="none" stroke="var(--supply)" stroke-width="2" marker-end="url(#ag)"/>
+  <rect x="1016" y="302" width="268" height="27" rx="13.5" fill="var(--supply-soft)" stroke="var(--supply)" stroke-width="1.4"/>
+  <text x="1150" y="320" text-anchor="middle" font-size="13" font-weight="700" fill="var(--supply)">YES &#8212; no planned orders generated</text>
+
+  <line x1="682" y1="356" x2="682" y2="384" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="696" y="376" font-size="13.5" font-weight="700" fill="var(--warn)">NO</text>
+
+  <!-- ===== LANE 3 · ENTERPRISE PLANNING ===== -->
+  <rect x="564" y="386" width="236" height="52" rx="5" fill="var(--surface)" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="5 3.5"/>
+  <text x="682" y="408" text-anchor="middle" font-size="14.5" font-weight="600" fill="var(--ink)">Gate &#8212; planning data exists</text>
+  <text x="682" y="428" text-anchor="middle" font-size="12" fill="var(--warn)">item and every component</text>
+  <line x1="682" y1="438" x2="682" y2="450" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="564" y="452" width="236" height="52" rx="5" fill="var(--surface)" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="5 3.5"/>
+  <text x="682" y="474" text-anchor="middle" font-size="14.5" font-weight="600" fill="var(--ink)">Gate &#8212; inside order horizon</text>
+  <text x="682" y="494" text-anchor="middle" font-size="12" fill="var(--warn)">counted in workdays</text>
+  <line x1="682" y1="504" x2="682" y2="516" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="564" y="518" width="236" height="54" rx="5" fill="var(--surface)" stroke="var(--line-2)" stroke-width="1.8"/>
+  <text x="682" y="541" text-anchor="middle" font-size="15.5" font-weight="600" fill="var(--ink)">Run MRP &#8212; with children</text>
+  <text x="682" y="561" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="var(--muted)">cprrp1220m000</text>
+
+  <!-- MRP splits into two planned orders -->
+  <path d="M 682 572 L 682 584 L 624 584 L 624 594" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M 682 572 L 682 584 L 740 584 L 740 594" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="570" y="596" width="108" height="42" rx="5" fill="var(--plan-soft)" stroke="var(--plan)" stroke-width="1.4"/>
+  <text x="624" y="615" text-anchor="middle" font-size="12" font-weight="700" letter-spacing=".5" fill="var(--plan)">PLANNED</text>
+  <text x="624" y="631" text-anchor="middle" font-size="12" fill="var(--ink)">production order</text>
+
+  <rect x="686" y="596" width="108" height="42" rx="5" fill="var(--plan-soft)" stroke="var(--plan)" stroke-width="1.4"/>
+  <text x="740" y="615" text-anchor="middle" font-size="12" font-weight="700" letter-spacing=".5" fill="var(--plan)">PLANNED</text>
+  <text x="740" y="631" text-anchor="middle" font-size="12" fill="var(--ink)">purchase order</text>
+
+  <path d="M 794 617 L 803 617 L 803 566 L 810 566" fill="none" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#ac)"/>
+
+  <!-- ===== STAGE 4 · TRANSFER ===== -->
+  <rect x="812" y="512" width="128" height="108" rx="5" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.4"/>
+  <text x="876" y="540" text-anchor="middle" font-size="14.5" font-weight="700" fill="var(--accent)">Transfer</text>
+  <text x="876" y="558" text-anchor="middle" font-size="14.5" font-weight="700" fill="var(--accent)">Order Planning</text>
+  <text x="876" y="580" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="var(--accent)">cppat1210m000</text>
+  <text x="876" y="600" text-anchor="middle" font-size="11.5" fill="var(--muted)">proposals &#8594; orders</text>
+
+  <path d="M 940 544 L 962 544 L 962 693 L 1026 693" fill="none" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#ac)"/>
+  <path d="M 940 592 L 984 592 L 984 794 L 1026 794" fill="none" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#ac)"/>
+
+  <!-- ===== LANE 4 · PROCUREMENT ===== -->
+  <rect x="1030" y="662" width="280" height="62" rx="5" fill="var(--surface)" stroke="var(--supply)" stroke-width="1.8"/>
+  <text x="1170" y="687" text-anchor="middle" font-size="15.5" font-weight="600" fill="var(--ink)">Purchase order &#8212; real</text>
+  <text x="1170" y="708" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="var(--muted)">tdpur4100m900</text>
+  <path d="M 1030 693 L 1006 693 L 1006 892 L 1026 892" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ===== LANE 5 · MANUFACTURING ===== -->
+  <rect x="1030" y="756" width="280" height="76" rx="5" fill="var(--surface)" stroke="var(--supply)" stroke-width="1.8"/>
+  <text x="1170" y="780" text-anchor="middle" font-size="15.5" font-weight="600" fill="var(--ink)">Production order &#8212; real</text>
+  <text x="1170" y="800" text-anchor="middle" font-size="12" fill="var(--muted)">release &#8594; issue &#8594; report complete</text>
+  <text x="1170" y="820" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="var(--muted)">tisfc0501m000</text>
+  <path d="M 1310 794 L 1334 794 L 1334 956 L 1314 956" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ===== LANE 6 · WAREHOUSING ===== -->
+  <rect x="1030" y="866" width="280" height="52" rx="5" fill="var(--surface)" stroke="var(--supply)" stroke-width="1.8"/>
+  <text x="1170" y="888" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">Receive raw materials</text>
+  <text x="1170" y="907" text-anchor="middle" font-size="11.5" fill="var(--muted)">drill in &#183; Actions &#8594; Receive &#183; <tspan font-family="ui-monospace, SFMono-Regular, Menlo, monospace">whinh3512m000</tspan></text>
+  <path d="M 1100 866 L 1100 836" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#a)"/>
+  <text x="1062" y="854" font-size="11.5" font-weight="600" fill="var(--muted)">feeds</text>
+
+  <rect x="1030" y="930" width="280" height="52" rx="5" fill="var(--surface)" stroke="var(--supply)" stroke-width="1.8"/>
+  <text x="1170" y="952" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">Finished item into stock</text>
+  <text x="1170" y="971" text-anchor="middle" font-size="11.5" fill="var(--muted)">now it is sellable</text>
+  <line x1="1170" y1="982" x2="1170" y2="992" stroke="currentColor" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="1030" y="994" width="280" height="52" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.2"/>
+  <text x="1170" y="1016" text-anchor="middle" font-size="15.5" font-weight="700" fill="var(--ink)">Advise &#8594; pick &#8594; ship</text>
+  <text x="1170" y="1035" text-anchor="middle" font-size="11.5" fill="var(--muted)">on-hand verified down</text>
+
+  <!-- ===== GUIDE BADGES ===== -->
+  <g font-size="11.5" font-weight="700" text-anchor="middle">
+    <g><circle cx="262"  cy="120" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="262"  y="124" fill="var(--hdr)">1</text></g>
+    <g><circle cx="262"  cy="188" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="262"  y="192" fill="var(--hdr)">1</text></g>
+    <g><circle cx="398"  cy="188" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="398"  y="192" fill="var(--hdr)">3</text></g>
+    <g><circle cx="538"  cy="274" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="538"  y="278" fill="var(--hdr)">2</text></g>
+    <g><circle cx="788"  cy="274" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="788"  y="278" fill="var(--hdr)">2</text></g>
+    <g><circle cx="788"  cy="386" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="788"  y="390" fill="var(--hdr)">3</text></g>
+    <g><circle cx="788"  cy="452" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="788"  y="456" fill="var(--hdr)">3</text></g>
+    <g><circle cx="788"  cy="518" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="788"  y="522" fill="var(--hdr)">3</text></g>
+    <g><circle cx="1298" cy="662" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="1298" y="666" fill="var(--hdr)">4</text></g>
+    <g><circle cx="1298" cy="756" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="1298" y="760" fill="var(--hdr)">5</text></g>
+    <g><circle cx="1298" cy="866" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="1298" y="870" fill="var(--hdr)">4</text></g>
+    <g><circle cx="1298" cy="930" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="1298" y="934" fill="var(--hdr)">5</text></g>
+    <g><circle cx="1298" cy="994" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="1298" y="998" fill="var(--hdr)">2</text></g>
+    <g><circle cx="928"  cy="512" r="9.5" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.4"/><text x="928"  y="516" fill="var(--accent)">7</text></g>
+  </g>
+
+  <!-- ===== SCENARIO GUIDES · fills the quadrant the flow leaves empty ===== -->
+  <rect x="150" y="668" width="646" height="366" rx="6" fill="var(--surface)" stroke="var(--line-2)"/>
+  <text x="174" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="600" letter-spacing="1.5" fill="var(--hdr)">SCENARIO GUIDES</text>
+  <line x1="174" y1="713" x2="772" y2="713" stroke="var(--line)"/>
+  <g font-size="11.5" font-weight="700" text-anchor="middle">
+    <g><circle cx="187" cy="734" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="187" y="738" fill="var(--hdr)">1</text></g>
+    <g><circle cx="187" cy="766" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="187" y="770" fill="var(--hdr)">2</text></g>
+    <g><circle cx="187" cy="798" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="187" y="802" fill="var(--hdr)">3</text></g>
+    <g><circle cx="187" cy="830" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="187" y="834" fill="var(--hdr)">4</text></g>
+    <g><circle cx="187" cy="862" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="187" y="866" fill="var(--hdr)">5</text></g>
+    <g><circle cx="187" cy="894" r="9.5" fill="var(--surface)" stroke="var(--hdr)" stroke-width="1.4"/><text x="187" y="898" fill="var(--hdr)">6</text></g>
+    <g><circle cx="187" cy="926" r="9.5" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.4"/><text x="187" y="930" fill="var(--accent)">7</text></g>
+  </g>
+  <g font-size="14" fill="var(--ink)">
+    <text x="208" y="739">Create Basic Test Items and Defaults</text>
+    <text x="208" y="771">Ship from Stock</text>
+    <text x="208" y="803">Run Order Planning for One Item</text>
+    <text x="208" y="835">Purchase Order to Warehouse Receipt</text>
+    <text x="208" y="867">Manual Production Order from Existing Master Data</text>
+    <text x="208" y="899">Transfer Item Between Warehouses</text>
+    <text x="208" y="931" fill="var(--accent)">Demand to Shipment via Planning</text>
+  </g>
+  <line x1="174" y1="946" x2="772" y2="946" stroke="var(--line)"/>
+  <text x="174" y="968" font-size="12.5" fill="var(--ink-2)"><tspan font-weight="700" fill="var(--accent)">7</tspan> is the spine &#8212; it chains 1&#8211;6 down this route and owns stage 4.</text>
+  <text x="174" y="990" font-size="12.5" fill="var(--ink-2)"><tspan font-weight="700">*</tspan> Buy-from BP is the transfer's hard prerequisite &#8212; without it LN refuses to generate a</text>
+  <text x="174" y="1006" font-size="12.5" fill="var(--ink-2)">purchase order for a purchased item. The partners themselves live in Items - Purchase</text>
+  <text x="174" y="1022" font-size="12.5" fill="var(--ink-2)">Business Partner (<tspan font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5">tdipu0110m000</tspan>), the <tspan font-style="italic">Item - Business Partner</tspan> tab on this screen.</text>
+
+  <!-- ===== LEGEND ===== -->
+  <g font-size="12.5" fill="var(--ink-2)">
+    <rect x="140" y="1072" width="26" height="15" rx="3" fill="var(--surface)" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="174" y="1084">Gate &#8212; fails with no message</text>
+    <rect x="410" y="1072" width="26" height="15" rx="3" fill="var(--plan-soft)" stroke="var(--plan)" stroke-width="1.5"/>
+    <text x="444" y="1084">Planned order &#8212; not real yet</text>
+    <rect x="700" y="1072" width="26" height="15" rx="3" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+    <text x="734" y="1084">Transfer &#8212; planning ends here</text>
+    <rect x="1004" y="1072" width="26" height="15" rx="3" fill="var(--surface)" stroke="var(--supply)" stroke-width="1.5"/>
+    <text x="1038" y="1084">Real order</text>
+    <rect x="1150" y="1072" width="26" height="15" rx="3" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
+    <text x="1184" y="1084">Final step</text>
+  </g>
+</svg>

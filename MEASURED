@@ -1,0 +1,77 @@
+# upstreams
+rux-ln-atlas.pin = 0617f04
+rux-ln-atlas.head = 0617f04
+rux-ln-atlas.behind = 0
+rux-ds.pin = 44fab72
+rux-ds.head = 1296840
+rux-ds.behind = 10
+
+# rux-ds surface (SEND-DS.md quotes these)
+rux-ds.templates.at-pin = 10
+rux-ds.gates.at-pin = 21
+rux-ds.templates.at-head = 10
+rux-ds.gates.at-head = 21
+
+# guide data
+guides.count = 7
+guides.contract = 2
+guides.tier = export
+guides.draft = 6
+exported.reviews = 6
+exported.summaries = 6
+exported.reviews.tier = export
+exported.topics = 72
+tokens.total = 4416
+tokens.types = 15
+tokens.payload-not-v = 213
+tokens.pencil = 134
+tokens.type.button = 50
+tokens.type.chip = 357
+tokens.type.command = 39
+tokens.type.em = 9
+tokens.type.field = 279
+tokens.type.image = 1
+tokens.type.link = 9
+tokens.type.literal = 208
+tokens.type.path = 5
+tokens.type.pencil = 134
+tokens.type.session = 118
+tokens.type.status = 72
+tokens.type.strong = 94
+tokens.type.text = 2914
+tokens.type.value = 127
+session-codes.in-sources = 108
+session-codes.in-steps = 58
+
+# export gate
+export.strings = 1933
+export.candidate-clean = yes
+
+# reviews (REVIEW-SHAPE.md quotes these)
+reviews.dirty = no
+reviews.count = 6
+reviews.summaries = 6
+reviews.sections = 8
+reviews.oi-ids = 111
+reviews.oi-ids.end-of-line = 43
+reviews.oi-ids.internal = 71
+reviews.oi-ids.frontmatter = 34
+reviews.oi-ids.residual = 6
+
+# publishable (0 in every row is the condition for going public)
+publishable.pages = 28
+publishable.pages-flagged = 0
+
+# delivery (a mention in the recipient, not a word in the document)
+delivered.SEND-BACK.md = yes
+delivered.SEND-BACK-2.md = yes
+delivered.REVIEW-SHAPE.md = yes
+delivered.DIAGRAM-REPLY.md = no
+delivered.SEND-DS.md = no
+
+# replies (a file in the recipient, not a claim in the ask)
+replied.SEND-BACK.md = _standards/send-back-reply.md
+replied.SEND-BACK-2.md = _standards/send-back-2-reply.md
+replied.REVIEW-SHAPE.md = _standards/review-shape-reply.md
+replied.DIAGRAM-REPLY.md = no
+replied.SEND-DS.md = no

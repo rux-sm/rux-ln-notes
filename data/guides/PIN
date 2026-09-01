@@ -1,0 +1,9 @@
+commit   0617f047f3b52439c8924093e7a15ffd00f8ecfc
+date     2026-09-01T16:22:38Z
+subject  refactor(tier): Drop the names, drop the tier
+contract 2 
+tier     export
+
+Emitted by tools/sync-guides.sh via atlas tools/emit.py --all.
+These files are INPUTS, not source. Do not hand-edit them -- the next sync
+overwrites them, and the real fix belongs in the guide in atlas.

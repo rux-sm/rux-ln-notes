@@ -1,0 +1,107 @@
+#!/bin/sh
+#
+# Refuse a commit that puts copied guide data into a page.
+#
+# WHY IT EXISTS. rux-ds is PUBLIC, this repository is PRIVATE, and a push is
+# public before it is noticed. tools/check-export-safe.mjs already answers the
+# question; until now it only answered when someone remembered to ask, on
+# exactly the occasion they are least likely to -- the moment they are focused
+# on getting a template accepted rather than on what it carries. It caught two
+# real leaks in the one session it was used in. This makes it unskippable.
+#
+# WHAT IT DOES NOT DO. It cannot protect rux-ds, which is a different
+# repository with its own history. It protects the artifact ON THIS SIDE from
+# becoming dirty before it ever crosses. The gate that guards rux-ds has to
+# live in rux-ds.
+#
+# NO FILENAME LIST. Every staged .html is checked. A page opts OUT by saying so
+# in its own text, with a reason:
+#
+#     <!-- EXPORT-SAFE: exempt -- renders real data, never crosses -->
+#
+# Forgetting the marker gets the page checked, which is the safe way to be
+# wrong. A list in this script would be the other way round, and a list is
+# also the thing that quietly grows until it is measuring itself.
+#
+# Install once:  git config core.hooksPath tools/githooks
+#
+set -eu
+
+cd "$(git rev-parse --show-toplevel)"
+
+# .md AS WELL AS .html. A public repository publishes every tracked file, not
+# just the rendered site, and the exchange documents are tracked: SEND-BACK.md
+# quoted the PEOPLE tuple literally while a hook that read only pages watched.
+pages=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(html|md)$' || true)
+[ -n "$pages" ] || exit 0
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node not found, so staged pages were NOT checked." >&2
+  echo "            This is a refusal, not a pass. Install node, or use" >&2
+  echo "            --no-verify and say in the commit body that you did." >&2
+  exit 1
+fi
+
+# Under .git/ on purpose, and as a REPO-RELATIVE path: check-export-safe
+# resolves its targets against the repository root, so an absolute path from
+# mktemp is joined onto the root and crashes. Found by testing the refusal
+# rather than by reading the script.
+tmp=.git/precommit-tmp
+rm -rf "$tmp"; mkdir -p "$tmp"
+trap 'rm -rf "$tmp"' EXIT
+
+# EVERY STAGED PAGE, AS STAGED. Both checks below read these copies rather than
+# the working tree: a gate that checks something other than what is being
+# committed is a suggestion.
+all=""
+for p in $pages; do
+  flat=$(printf '%s' "$p" | tr '/' '_')
+  git show ":$p" > "$tmp/$flat"
+  all="$all $tmp/$flat"
+done
+
+# PUBLISHABILITY FIRST, AND WITH NO EXEMPTION. This repository is headed for a
+# public remote, so "should this be on the open internet" has to be answered
+# before a commit rather than after a push -- a push is public before it is
+# noticed.
+#
+# IT RUNS BEFORE THE EXEMPT FILTER, and that ordering is the whole point. It
+# was written after it the first time, below the `[ -n "$targets" ] || exit 0`
+# that fires when every staged page is exempt -- and build.mjs stamps
+# `EXPORT-SAFE: exempt` into every page it writes, so the check never ran once.
+# The commit it was supposed to refuse went through. A public page cannot opt
+# out of being public, and an exemption written for a different question must
+# not answer this one.
+# shellcheck disable=SC2086
+if ! node tools/check-publishable.mjs $all; then
+  echo "" >&2
+  echo "  pre-commit: REFUSED. A staged page carries something that should" >&2
+  echo "  not be on the open internet. The fix belongs upstream in atlas --" >&2
+  echo "  author it out, do not filter it here." >&2
+  exit 1
+fi
+
+# The export gate is about PAGES crossing to rux-ds; a Markdown document here
+# never does, so it is not one of its targets.
+targets=""
+for p in $pages; do
+  case "$p" in *.html) ;; *) continue ;; esac
+  if git show ":$p" | grep -q 'EXPORT-SAFE: exempt'; then
+    why=$(git show ":$p" | sed -n 's/.*EXPORT-SAFE: exempt *-*//p' | sed 's/ *-->.*//' | head -1)
+    echo "  pre-commit: $p exempt --${why:- no reason given}"
+  else
+    flat=$(printf '%s' "$p" | tr '/' '_')
+    targets="$targets $tmp/$flat"
+  fi
+done
+
+[ -n "$targets" ] || exit 0
+
+# shellcheck disable=SC2086
+if ! node tools/check-export-safe.mjs $targets; then
+  echo "" >&2
+  echo "  pre-commit: REFUSED. A staged page carries strings from the guide" >&2
+  echo "  data. If the page is meant to hold real data and never crosses to" >&2
+  echo "  rux-ds, mark it exempt in its own text and say why." >&2
+  exit 1
+fi

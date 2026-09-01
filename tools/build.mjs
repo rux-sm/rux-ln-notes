@@ -504,6 +504,16 @@ function nav(site, activeId) {
   const meetingsOpen = [...site.reviews, ...site.summaries].some(d => d.id === activeId);
   const home = activeId === null ? './' : '../';
 
+  // NO LEADING ICONS, AND THAT IS WHAT SETS THE CHILD INDENT. Carbon binds
+  // `__link`'s padding-inline-start to the icon: 72px with
+  // `__item--icon`, 32px without. Both are real variants -- rux-ds records
+  // both in docs/carbon-react-spacing.json under `cds--side-nav__link` --
+  // so the indent is not independently adjustable without leaving Carbon.
+  // Measured 2026-09-01 on carbondesignsystem.com, which runs the component
+  // itself: 14 `__item`s, 0 carrying `__item--icon`, submenu buttons holding
+  // a title and a chevron and nothing else, `__link` computing 32px. The two
+  // icons that used to sit here (#i-document, #i-list) bought a wider indent
+  // than the labels needed and distinguished only two sections.
   return `  <nav class="rux--side-nav__navigation rux--side-nav rux--side-nav--ux" aria-label="Side navigation">
     <ul class="rux--side-nav__items">
 
@@ -512,9 +522,8 @@ function nav(site, activeId) {
            make, move, ship, then the end-to-end run. Atlas got there by reading
            Prerequisite callouts as dependency edges; on Downstream rows alone
            the guide that builds the test data came fourth. -->
-      <li class="rux--side-nav__item${guidesOpen ? ' rux--side-nav__item--active' : ''} rux--side-nav__item--icon">
+      <li class="rux--side-nav__item${guidesOpen ? ' rux--side-nav__item--active' : ''}">
         <button class="rux--side-nav__submenu" type="button" aria-expanded="true">
-          <div class="rux--side-nav__icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-document"/></svg></div>
           <span class="rux--side-nav__submenu-title">Scenario guides</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
@@ -528,9 +537,8 @@ ${items}
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
            presents two categories as one. -->
-      <li class="rux--side-nav__item rux--side-nav__item--icon">
+      <li class="rux--side-nav__item">
         <button class="rux--side-nav__submenu" type="button" aria-expanded="${meetingsOpen}">
-          <div class="rux--side-nav__icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-list"/></svg></div>
           <span class="rux--side-nav__submenu-title">Meeting summaries</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>

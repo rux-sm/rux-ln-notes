@@ -34,12 +34,21 @@
 //
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync, copyFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { join, dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const DATA = join(ROOT, 'data/guides');
-const OUT_DIR = join(ROOT, 'guides');
+// THE PUBLIC BUILD READS data/guides/ AND WRITES guides/, AND NOTHING ELSE
+// MAY. The two overrides exist for one caller: tools/sync-internal.sh, which
+// renders atlas's INTERNAL tier -- gaps, stamps, issue ids, the notes under
+// every phase, the concept pages that have no published tier -- into the
+// git-ignored build/ directory for a viewer only its author uses. With neither
+// variable set every path below is what it always was, and the public pages
+// come out byte-identical; `git status` after a build is the proof.
+const PRIVATE = Boolean(process.env.LN_DATA || process.env.LN_OUT);
+const DATA = process.env.LN_DATA ? resolve(process.env.LN_DATA) : join(ROOT, 'data/guides');
+const OUT_DIR = process.env.LN_OUT ? resolve(process.env.LN_OUT) : join(ROOT, 'guides');
+const INDEX = PRIVATE ? join(OUT_DIR, '..', 'index.html') : join(ROOT, 'index.html');
 
 // ---------------------------------------------------------------- escaping
 
@@ -127,6 +136,12 @@ function token(t) {
       const md = /^(.+)\.md$/.exec(href);
       if (md) {
         if (!GUIDE_IDS.has(md[1])) {
+          // INTERNAL TIER: a guide may point at a session file, a test sheet
+          // or a concept. Whatever is rendered in this build is linkable;
+          // anything else keeps its words and loses its href, because a page
+          // only its author reads should not stop over a file the site was
+          // never going to carry.
+          if (PRIVATE) return `<span class="ln-unlinked">${esc(t.v)}</span>`;
           throw new Error(`link to "${href}" names no guide in data/guides/`);
         }
         href = `${md[1]}.html`;
@@ -156,6 +171,17 @@ function token(t) {
     // decision (guide-json.md). A session with no `name` is the code alone.
     case 'session':
       return t.name ? `${tag('chip', t.name)} ${tag('session', t.code)}` : tag('session', t.code);
+
+    // INTERNAL TIER MARKERS, payload-less by design: the marker is the whole
+    // token and the sentence that follows it is separate text. The export tier
+    // never carries them -- atlas removes a marker and its sentence as a unit
+    // -- so these three reach the page only through tools/sync-internal.sh.
+    case 'gap':
+      return `<span class="rux--tag rux--tag--red"><span class="rux--tag__label">GAP</span></span>`;
+    case 'internal':
+      return `<span class="rux--tag rux--tag--gray"><span class="rux--tag__label">INTERNAL</span></span>`;
+    case 'branch':
+      return `<span class="rux--tag rux--tag--green"><span class="rux--tag__label">BRANCH</span></span>`;
 
     default: {
       if (raw == null) {
@@ -411,6 +437,12 @@ const HEADING = {
   reference: 'Reference',
   other: 'Reference',
   prose: null,      // no heading -- prose belongs to whatever precedes it
+  // INTERNAL TIER ONLY. The export tier drops these four structurally; they
+  // reach this table through tools/sync-internal.sh and nowhere else.
+  sources: 'Sources',
+  notes: null,
+  superseded: 'Superseded',
+  walked: 'Walked',
 };
 
 // WHERE THE PHASES GO, WHICH THE DATA DOES NOT SAY. A guide arrives as two
@@ -476,7 +508,19 @@ function phase(p) {
     p.route ? `<div class="ln-meta-row"><dt>Route</dt><dd>${esc(p.route)}</dd></div>` : '',
     p.session ? `<div class="ln-meta-row"><dt>Session</dt><dd>${esc(p.session)}${
       p.sessionCode ? ` <span class="rux--type-code-01">${esc(p.sessionCode)}</span>` : ''}</dd></div>` : '',
+    // The evidence stamp travels only in the internal tier; a client never
+    // sees it and the generated `verification` sentence stands in for it.
+    p.stamp ? `<div class="ln-meta-row"><dt>Evidence</dt><dd>${esc(p.stamp)}</dd></div>` : '',
   ].filter(Boolean).join('');
+
+  // INTERNAL TIER: a phase's notes arrive as `notes` blocks after its steps.
+  // They are collapsed on the source page too, so they are grouped under one
+  // disclosure here rather than printed as unlabelled paragraphs.
+  const open = (p.blocks ?? []).filter(b => b.kind !== 'notes');
+  const notes = (p.blocks ?? []).filter(b => b.kind === 'notes');
+  const notesHtml = notes.length ? `<details class="ln-notes"><summary>Notes on phase ${esc(p.n)}</summary>
+        ${notes.map(b => block(b)).join('\n        ')}
+        </details>` : '';
 
   // AN h3, NOT AN h2. Each phase sits inside the "Phases" section, so an h2
   // here makes the outline read as fourteen siblings — "Phases", then "Phase 0"
@@ -486,7 +530,7 @@ function phase(p) {
   return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-${p.n}">
         <h3 id="p-${p.n}">Phase ${esc(p.n)} — ${esc(p.title)}</h3>
         ${where ? `<dl class="ln-meta">${where}</dl>` : ''}
-        ${(p.blocks ?? []).map(b => block(b, { numbered: true })).join('\n        ')}
+        ${[...open.map(b => block(b, { numbered: true })), ...(notesHtml ? [notesHtml] : [])].join('\n        ')}
       </section>`;
 }
 
@@ -510,6 +554,22 @@ function nav(site, activeId) {
 
   const guidesOpen = site.guides.some(g => g.id === activeId);
   const meetingsOpen = [...site.reviews, ...site.summaries].some(d => d.id === activeId);
+  // CONCEPTS ARE NOT A PUBLISHED CATEGORY. atlas's concept-rules.md section 5
+  // gives them no tier, its emitter refuses them at export, and this group
+  // renders only when the data carries them -- which is the private build.
+  const concepts = (site.concepts ?? []).map(link).join('\n');
+  const conceptsOpen = (site.concepts ?? []).some(d => d.id === activeId);
+  const conceptsGroup = concepts ? `
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="${conceptsOpen}">
+          <span class="rux--side-nav__submenu-title">Concepts</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu"${conceptsOpen ? '' : ' hidden'}>
+${concepts}
+        </ul>
+      </li>
+` : '';
   const home = activeId === null ? './' : '../';
 
   // NO LEADING ICONS, AND THAT IS WHAT SETS THE CHILD INDENT. Carbon binds
@@ -554,7 +614,7 @@ ${items}
 ${meetings}
         </ul>
       </li>
-
+${conceptsGroup}
     </ul>
   </nav>`;
 }
@@ -818,7 +878,13 @@ ${cards}
           </div>
         </section>
 
-        <section id="summaries" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-summaries">
+        ${(site.concepts ?? []).length ? `<section id="concepts" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-concepts">
+          <h2 id="h-concepts">Concepts</h2>
+          <ul class="rux--list--unordered">
+            ${site.concepts.map(c => `<li class="rux--list__item"><a class="rux--link" href="guides/${esc(c.id)}.html">${esc(c.title)}</a></li>`).join('\n            ')}
+          </ul>
+        </section>
+        ` : ''}<section id="summaries" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-summaries">
           <h2 id="h-summaries">Meeting summaries</h2>
           <p class="rux--type-body-02">Six training sessions, each summarised in
              four parts — what it covered, the topics, what was decided, and the
@@ -905,6 +971,34 @@ function reviewPage(r, site) {
         : rsection(`s-${slot}`, heading, r[slot])).filter(Boolean).join('\n\n      ')}`;
 
   return page({ title: `${r.title} — Infor LN Notes`, site, activeId: r.id, body, depth: 1 });
+}
+
+// A CONCEPT PAGE, INTERNAL TIER ONLY. An intro, then the numbered sections
+// as topics -- the review's block vocabulary under a concept's headings.
+function conceptPage(c, site) {
+  const topics = (c.topics ?? []).map(t => {
+    const label = t.n != null ? `${t.n}. ${t.title}` : t.title;
+    const id = `t-${String(t.n ?? t.title).replace(/[^A-Za-z0-9.]+/g, '-').toLowerCase()}`;
+    return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}">
+          <h2 id="${id}">${esc(label)}</h2>
+          ${(t.blocks ?? []).map(rblock).join('\n          ')}
+        </section>`;
+  }).join('\n        ');
+  const terms = (c.terms ?? []).map(t =>
+    `<span class="rux--tag rux--tag--outline"><span class="rux--tag__label">${esc(t)}</span></span>`).join('\n            ');
+  const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
+          <h1>${esc(c.title)}</h1>
+          <div class="ln-tag-row">
+            <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Concept</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(c.updated)}</span></span>
+          </div>
+          <div class="ln-tag-row">
+            ${terms}
+          </div>
+          ${(c.intro ?? []).map(rblock).join('\n          ')}
+        </div>
+        ${topics}`;
+  return page({ title: `${c.title} — Infor LN Notes`, site, activeId: c.id, body, depth: 1 });
 }
 
 function guidePage(g, site) {
@@ -1004,8 +1098,11 @@ for (const d of docs) if (Number(d.contract) !== CONTRACT)
 
 for (const d of docs) {
   const kind = d.kind ?? 'guide';
-  if (!['guide', 'review', 'summary'].includes(kind)) {
-    throw new Error(`${d.id}: unknown kind "${kind}" -- build.mjs renders guide, review, summary`);
+  if (!['guide', 'review', 'summary', 'concept'].includes(kind)) {
+    throw new Error(`${d.id}: unknown kind "${kind}" -- build.mjs renders guide, review, summary, concept`);
+  }
+  if (kind === 'concept' && !PRIVATE) {
+    throw new Error(`${d.id}: a concept has no published tier and cannot sit in data/guides/`);
   }
 }
 
@@ -1014,10 +1111,13 @@ const reviews = docs.filter(d => d.kind === 'review')
   .sort((a, b) => String(b.updated).localeCompare(String(a.updated)));
 const summaries = docs.filter(d => d.kind === 'summary')
   .sort((a, b) => String(b.updated).localeCompare(String(a.updated)));
+const concepts = docs.filter(d => d.kind === 'concept')
+  .sort((a, b) => String(a.title).localeCompare(String(b.title)));
 
 if (!guides.length) throw new Error(`no guides in ${DATA} -- run tools/sync-guides.sh first`);
 
 for (const g of guides) GUIDE_IDS.add(g.id);
+if (PRIVATE) for (const d of [...reviews, ...summaries, ...concepts]) GUIDE_IDS.add(d.id);
 
 const reach = assertNoRawBlockquotes(guides);
 
@@ -1042,9 +1142,9 @@ mkdirSync(OUT_DIR, { recursive: true });
 const assets = readdirSync(DATA).filter(f => f !== 'PIN' && !f.endsWith('.json'));
 for (const a of assets) copyFileSync(join(DATA, a), join(OUT_DIR, a));
 
-const site = { guides, reviews, summaries };
+const site = { guides, reviews, summaries, concepts };
 
-const written = [join(ROOT, 'index.html')];
+const written = [INDEX];
 writeFileSync(written[0], indexPage(site));
 for (const g of guides) {
   const file = join(OUT_DIR, `${g.id}.html`);
@@ -1054,6 +1154,11 @@ for (const g of guides) {
 for (const r of [...reviews, ...summaries]) {
   const file = join(OUT_DIR, `${r.id}.html`);
   writeFileSync(file, reviewPage(r, site));
+  written.push(file);
+}
+for (const c of concepts) {
+  const file = join(OUT_DIR, `${c.id}.html`);
+  writeFileSync(file, conceptPage(c, site));
   written.push(file);
 }
 
@@ -1066,7 +1171,7 @@ for (const r of [...reviews, ...summaries]) {
 // sync-ds.sh, which is a step a person remembers or does not; a stale sprite
 // there is the silent-blank-icon failure with a later date. Listed rather than
 // swept, so a page that never asked for icons is not rewritten.
-const HAND = ['template-candidate.html'].map(f => join(ROOT, f)).filter(existsSync);
+const HAND = PRIVATE ? [] : ['template-candidate.html'].map(f => join(ROOT, f)).filter(existsSync);
 execFileSync(process.execPath, [join(ROOT, 'tools/inline-sprite.mjs'), ...written, ...HAND],
   { stdio: 'inherit' });
 

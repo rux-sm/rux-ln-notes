@@ -62,6 +62,7 @@ and gitignored; it does not travel with a clone or a copied folder.
 
 ```sh
 sh tools/sync-guides.sh    # atlas -> data/guides/   (export tier, never --internal)
+sh tools/sync-internal.sh  # atlas -> build/internal/ (INTERNAL tier, git-ignored, never published)
 sh tools/sync-ds.sh        # rux-ds -> vendor/rux-ds/
 ```
 

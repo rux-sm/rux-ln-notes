@@ -9,3 +9,7 @@ node_modules/
 # Reserved for generated output. The renderer was decided 2026-08-31 and
 # writes tracked pages into guides/; nothing lands here today.
 build/
+
+# Claude Code's per-machine permission allowlist. A global ignore file kept it
+# out on one Mac and nothing did on the other.
+.claude/settings.local.json

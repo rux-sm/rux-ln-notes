@@ -2,21 +2,17 @@
 //
 // What still stands between these pages and a PUBLIC repository?
 //
-// WHY IT EXISTS. `rux-ln-guides` was built private and its README says so in
-// its second paragraph. Publishing it for trainees changes the question every
-// other gate here answers. `check-export-safe` asks "does this page carry
-// guide data that must not reach rux-ds" -- a question about a DIFFERENT
-// repository, and one that is now largely vacuous besides: `build.mjs` stamps
-// `EXPORT-SAFE: exempt` into every page it writes, so that gate checks one
-// file out of twenty. This asks the question that actually decides publishing:
-// is there anything on this page that should not be on the open internet?
+// WHY IT EXISTS. This repository is public, served from main, so the question
+// that decides a commit is: is there anything on this page that should not be
+// on the open internet? Its predecessor gate, check-export-safe, asked whether
+// a page carried guide data bound for rux-ds -- a question about a different
+// repository, and one the generator had made vacuous by stamping every page
+// it wrote as exempt. It was retired on 2026-09-01; this is the one gate.
 //
-// IT REPORTS, IT DOES NOT YET REFUSE. The content rewrite that clears these is
-// atlas's, one pass over six reviews, and blocking every commit here until
-// that lands would stop work rather than protect anything -- nothing is public
-// yet. When the rewrite lands this becomes the commit gate and
-// `check-export-safe`'s exemption model goes, because a public repository has
-// no page that opts out.
+// IT REFUSES. tools/githooks/pre-commit runs it over the staged bytes of
+// every staged page and Markdown file and a non-zero exit stops the commit.
+// There is no exemption and no filename list: a public page cannot opt out
+// of being public.
 //
 // THE NAMES COME FROM ATLAS, NOT FROM A COPY. `export.py`'s PEOPLE tuple is
 // the one list of who must not be named, and a second copy here would drift

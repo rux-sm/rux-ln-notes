@@ -4,8 +4,8 @@
 // any of them fails. `node tools/check.mjs` is what a person types, what the
 // commit hook runs last, and what CI would run.
 //
-// WHY ONE FILE. Seven check scripts existed before this one and only two of
-// them ran without being typed. A gate nobody runs is a gate that passed, and
+// WHY ONE FILE. Six check scripts exist and until this one only one of them
+// ran without being typed. A gate nobody runs is a gate that passed, and
 // the repository already recorded that shape once (a dead link shipped with
 // everything else green). This file adds no rule; it only makes sure the rules
 // that exist are asked.
@@ -30,7 +30,6 @@ const GATES = [
   ['check-links',       []],
   ['check-order',       []],
   ['check-ancestry',    []],
-  ['check-export-safe', ['template-candidate.html']],
   ['check-publishable', []],
 ];
 

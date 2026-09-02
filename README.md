@@ -131,7 +131,7 @@ node tools/check-links.mjs        # does every local href and src point at a fil
 node tools/check-order.mjs        # do the phases come before the sections about them?
 node tools/check-publishable.mjs  # what still stands between these pages and public?
 node tools/check-ancestry.mjs     # is a wrapper Carbon never omits simply missing?
-node tools/check-export-safe.mjs <page.html>   # before ANYTHING goes to rux-ds
+node tools/check.mjs              # all of the above, in order; what the hook runs
 ```
 
 **The first four sweep the whole repository, not just its root.** They walked
@@ -150,14 +150,13 @@ a dead link is drawn exactly like a live one. Both are fixed in the generator �
 `.md` cross-references are rewritten, assets are copied — and the gate is what
 keeps them fixed.
 
-**`check-publishable` asks the question publishing actually turns on**, which
-is not the one `check-export-safe` asks. That gate answers "does this page
-carry guide data that must not reach rux-ds" — a question about a different
-repository — and it is largely vacuous besides, because `build.mjs` stamps
-`EXPORT-SAFE: exempt` into every page it writes and so it checks one file out
-of twenty-one. This one asks whether anything here should not be on the open
-internet, and it counts five classes: a person named, a colleague quoted
-speaking, a vendor document filename, a business partner id, a company name.
+**`check-publishable` asks the question publishing actually turns on**: is
+there anything here that should not be on the open internet? `check-export-safe`
+used to ask a different one — whether a page carried guide data bound for
+rux-ds — and was retired on 2026-09-01, because `build.mjs` stamped every page
+it wrote as exempt and the gate checked one file out of twenty-one. The
+remaining gate counts five classes: a person named, a vendor document filename,
+an evidence filename, an issue reference, a gap marker.
 
 **It refuses, and it is on the commit hook.** It reported while the reviews
 still carried names, because blocking every commit until a content rewrite
@@ -213,28 +212,16 @@ rule to one section makes the rule only as durable as that section. The gate was
 pre-fix output rather than only watched to pass: it reports four misplaced
 sections and exits 1.
 
-`check-export-safe` is wired to a commit hook, because it was the only check here
-whose failure cannot be undone — a push is public before it is noticed — and it
-was the only one that ran when someone remembered to run it. Install once:
+**The commit hook runs `check-publishable` over the staged bytes of every
+staged page and Markdown file, then `node tools/check.mjs` for everything
+else.** A push is public before it is noticed, so the one gate whose failure
+cannot be undone runs on what is actually being committed, with no exemption
+and no filename list. Install once per clone, and it arms the commit-message
+hook too:
 
 ```sh
 git config core.hooksPath tools/githooks
 ```
-
-It checks the **staged bytes** of every staged `.html`, and there is no filename
-list: a page opts out by saying `EXPORT-SAFE: exempt` in its own text with a
-reason, so forgetting the marker gets you checked. **It cannot protect rux-ds**
-— that is a different repository with its own history; it keeps the artifact on
-this side from becoming dirty before it ever crosses.
-
-**`build.mjs` now stamps that marker into every page it writes**, which changes
-what the no-filename-list argument is worth. The exemption is accurate — a
-generated page does render real data and never crosses — but no person can
-forget a marker a generator writes unconditionally, so "forgetting gets you
-checked" is load-bearing on exactly one file now: `template-candidate.html`,
-the only page here a human authors and the only one intended to cross. The
-gate narrowed onto the right target rather than away from it. It is worth
-knowing that it narrowed.
 
 `check-classes` and `check-structure` derive their rules from the **vendored stylesheet**, which is the only
 evidence this project holds — rux-ds answers structural questions from 641
@@ -266,15 +253,12 @@ and 0 missing. **This side inherits those declines and `TODO.md` records what
 that gives up** — a new fragment using one of the twenty-one declined classes
 is not adjudicated on its own.
 
-`check-export-safe` answers a different question: does this page carry anything
-from the guide data? rux-ds is public and nothing from here may reach it, so
-the check fails closed the way atlas's `emit.py` does rather than trusting the
-author. It was verified in both directions — `template-candidate.html` is clean
-at 0 of 1,106 strings, and a generated page fails it loudly:
-`SG-run-order-planning-for-one-item.html` carries 169. It caught two real leaks
-while the candidate was drafted, and the refusal was exercised end to end on
-2026-09-01 by staging a generated page with its marker stripped: the hook
-refused and no commit landed.
+`check-export-safe`, retired 2026-09-01, answered whether a page carried
+strings from the guide data. It caught two real leaks while
+`template-candidate.html` was drafted, and its exemption model then made it
+vacuous twice, the second time by swallowing `check-publishable` until that
+ran before the filter. `check-publishable` now covers the candidate page along
+with everything else, and nothing here opts out.
 
 ### The numbers in this file are re-derivable
 
@@ -544,48 +528,18 @@ from rux-ds against these pages — and it is currently reporting two.
 **It has not been reviewed by rux-ds.** A copy with invented content is what
 would go over; `MEASURED` records `SEND-DS.md` as undelivered.
 
-## The exchange, and why no status for it lives here
+## The exchange moved to atlas
 
-Five documents have been written across the boundary: `SEND-BACK.md` and
-`SEND-BACK-2.md` and `REVIEW-SHAPE.md` and `DIAGRAM-REPLY.md` to atlas,
-`SEND-DS.md` to the design system. Replies land in the recipient's own
-repository — atlas's are `_standards/*-reply.md` — and are the normative record
-of what was agreed. The asks stay here as written, so the exchange reads in
-order.
-
-**`DIAGRAM-REPLY.md` is the first one that answers rather than asks.** Atlas's
-`_standards/diagram-as-data.md` proposes that the flowchart stop being an SVG
-this repository ships and become a `diagram` block it emits and we render, and
-§4 asks this side directly whether the model can be rendered to at least the
-current standard. The answer is yes, conditional on two things: node boxes
-sized by `kind` rather than by their text, because there is no browser in the
-build to measure a string with; and `description` and `notes` rendered as HTML
-beside the figure rather than as SVG `<text>`, because prose inside markup is
-exactly what no gate on either side can read.
-
-**This file does not say which of them are delivered, answered or outstanding,
-and that is deliberate.** It said so three times and was wrong three times: a
-document described as unsent had already landed, twice, and two described as
-unanswered had been answered at the very commit `data/guides/PIN` names. Prose
-about another repository's state has no way to notice when that state moves.
-
-Three things watch it instead, and none can go stale:
-
-- **`sh tools/sync-guides.sh` prints atlas's log since the previous pin.** Every
-  sync shows what moved — a reply, a contract bump, a migration — because it is
-  the commit log rather than a summary of one.
-- **`MEASURED`'s `delivered.*` block** records delivery as a mention in the
-  recipient, re-derived on every run of `tools/measure.mjs`.
-- **`MEASURED`'s `replied.*` block** names the reply file, or says `no`.
-  **This one exists because its absence cost four commits.** Delivery was
-  measured and the reply was not, so this file went on asserting that atlas was
-  blocked on `REVIEW-SHAPE.md` §4 while `review-shape-reply.md` sat in atlas
-  saying the opposite — and the sentence was believed, and re-argued, before
-  anyone opened the reply. It reports the file's existence and never its
-  contents: whether a reply concedes anything is a person's reading, and a
-  generator that judged it would be this same mistake in a new place.
-
-Read those. `git log` in the recipient is the check for anything finer.
+Four documents were written across the boundary to atlas — `SEND-BACK.md`,
+`SEND-BACK-2.md`, `REVIEW-SHAPE.md`, `DIAGRAM-REPLY.md` — and on 2026-09-01
+they moved there, to `_standards/` beside the replies they belong with, as
+`send-back.md`, `send-back-2.md`, `review-shape.md` and `diagram-reply.md`.
+A memo written here is public and its reply in atlas is private, which is why
+half a conversation kept going undelivered; the conversation now lives in the
+repository you open to think, and this one keeps only what it publishes.
+`MEASURED` no longer carries `delivered.*` or `replied.*` rows for the same
+reason. `SEND-DS.md` stays: it encloses `template-candidate.html`, an artefact
+for `rux-ds` rather than a memo.
 
 ## What this side is building, and what it owes
 

@@ -131,15 +131,8 @@ guides.forEach(stepWalk);
 say('session-codes.in-sources', inSources.size);
 say('session-codes.in-steps', inSteps.size);
 
-// --- what check-export-safe holds -------------------------------------------
-head('export gate');
-const safe = execFileSync('node', [join(ROOT, 'tools/check-export-safe.mjs'), 'template-candidate.html'],
-  { cwd: ROOT, encoding: 'utf8' });
-say('export.strings', safe.match(/(\d+) distinctive strings/)?.[1] ?? 'unreadable');
-say('export.candidate-clean', /clean/.test(safe) ? 'yes' : 'NO');
-
-// --- the reviews REVIEW-SHAPE.md describes ----------------------------------
-head('reviews (REVIEW-SHAPE.md quotes these)');
+// --- the reviews atlas _standards/review-shape.md describes ----------------------------------
+head('reviews (atlas _standards/review-shape.md quotes these)');
 // Read the sibling at HEAD, never from its working tree. Measured the other
 // way once and the file moved because atlas was mid-edit on all six reviews --
 // a diff that reports someone else's unsaved work is a diff that means nothing,
@@ -208,45 +201,6 @@ head('publishable (0 in every row is the condition for going public)');
     say(`publishable.${what.replace(/^an? /, '').replace(/\s+/g, '-')}`, n);
   }
 }
-
-// --- has anything been delivered? -------------------------------------------
-// The drift that started all of this. Delivery is visible only as a mention in
-// the recipient, so that is what gets looked at -- not the bold word in the
-// document, which is the thing that was wrong.
-head('delivery (a mention in the recipient, not a word in the document)');
-const EXCHANGE = [['SEND-BACK.md', 'rux-ln-atlas'], ['SEND-BACK-2.md', 'rux-ln-atlas'],
-  ['REVIEW-SHAPE.md', 'rux-ln-atlas'], ['DIAGRAM-REPLY.md', 'rux-ln-atlas'],
-  ['SEND-DS.md', 'rux-ds']];
-for (const [doc, repo] of EXCHANGE) {
-  const hit = git(repo, 'grep', '-l', '--', doc, 'HEAD');
-  say(`delivered.${doc}`, hit === null ? (existsSync(join(ROOT, '..', repo)) ? 'no' : 'unavailable') : 'yes');
-}
-
-// --- and has it been ANSWERED? ----------------------------------------------
-// DELIVERY WAS MEASURED AND THE REPLY WAS NOT, WHICH COST FOUR COMMITS.
-// `review-shape-reply.md` had said section 4 was answered -- twice, in its
-// opening and its closing line -- while README.md went on claiming atlas was
-// blocked on section 4 and this side re-argued a settled question. Delivery
-// answers "did they see it". Nothing answered "did they reply", so a stale
-// sentence about another repository survived being read.
-//
-// A reply is a file in the recipient naming the ask, which is the convention
-// already in use: atlas's are `_standards/<ask>-reply.md`. This reports the
-// file's existence, never its contents -- whether the reply CONCEDES anything
-// is a person's reading, and a generator that tried would be the same mistake
-// in a new place.
-head('replies (a file in the recipient, not a claim in the ask)');
-for (const [doc, repo] of EXCHANGE) {
-  const stem = doc.replace(/\.md$/, '').toLowerCase();
-  const ls = git(repo, 'ls-tree', '-r', '--name-only', 'HEAD');
-  if (ls === null) { say(`replied.${doc}`, 'unavailable'); continue; }
-  // EXACT STEM, NOT A SUBSTRING. `send-back` is a prefix of `send-back-2`, so
-  // an includes() test reported SEND-BACK.md as answered by send-back-2-reply.
-  const want = `${stem}-reply.md`;
-  const hit = ls.split('\n').find((f) => f.toLowerCase().split('/').pop() === want);
-  say(`replied.${doc}`, hit ?? 'no');
-}
-
 const body = out.join('\n').replace(/^\n/, '') + '\n';
 const path = join(ROOT, 'MEASURED');
 

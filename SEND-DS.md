@@ -118,7 +118,7 @@ there, and anything that crosses is authored with invented, generic content.
 tree. So the same treatment applies:
 
 ```sh
-node tools/check-export-safe.mjs template-candidate.html
+node tools/check-publishable.mjs template-candidate.html
 ```
 
 It extracts every distinctive payload string the seven guides contribute — 1,110

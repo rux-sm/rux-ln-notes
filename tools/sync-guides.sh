@@ -33,10 +33,9 @@ fi
 
 mkdir -p "$OUT"
 # --reviews TAKES THE SECOND CONTENT TYPE. Reviews and summaries emit at the
-# `attributed` tier, not `export`: a review's Attendees table names people the
-# guide tier must never carry, and that table is the provenance of the
-# document. Everything else FORBIDDEN still applies and emit.py sweeps each
-# document at its own tier, so this cannot loosen what a guide carries.
+# same export tier as guides: an `attributed` tier existed for one day and was
+# removed once reviews named roles rather than people. emit.py sweeps every
+# document with one FORBIDDEN list, so nothing here can loosen what crosses.
 ( cd "$ATLAS" && python3 tools/emit.py --all --reviews --out "$OUT" )
 
 # CONTRACT CHECK. Every file carries a `contract` number -- 2 at the time of

@@ -1,10 +1,10 @@
 # upstreams
 rux-ln-atlas.pin = 371d835
-rux-ln-atlas.head = 146ad4f
-rux-ln-atlas.behind = 4
+rux-ln-atlas.head = 8634507
+rux-ln-atlas.behind = 7
 rux-ds.pin = 23bf792
-rux-ds.head = ea67f90
-rux-ds.behind = 15
+rux-ds.head = 2d42f6d
+rux-ds.behind = 16
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.at-pin = 10
@@ -43,11 +43,7 @@ tokens.type.value = 127
 session-codes.in-sources = 108
 session-codes.in-steps = 58
 
-# export gate
-export.strings = 1928
-export.candidate-clean = yes
-
-# reviews (REVIEW-SHAPE.md quotes these)
+# reviews (atlas _standards/review-shape.md quotes these)
 reviews.dirty = no
 reviews.count = 6
 reviews.summaries = 6
@@ -59,19 +55,5 @@ reviews.oi-ids.frontmatter = 34
 reviews.oi-ids.residual = 6
 
 # publishable (0 in every row is the condition for going public)
-publishable.pages = 30
+publishable.pages = 26
 publishable.pages-flagged = 0
-
-# delivery (a mention in the recipient, not a word in the document)
-delivered.SEND-BACK.md = yes
-delivered.SEND-BACK-2.md = yes
-delivered.REVIEW-SHAPE.md = yes
-delivered.DIAGRAM-REPLY.md = no
-delivered.SEND-DS.md = no
-
-# replies (a file in the recipient, not a claim in the ask)
-replied.SEND-BACK.md = _standards/send-back-reply.md
-replied.SEND-BACK-2.md = _standards/send-back-2-reply.md
-replied.REVIEW-SHAPE.md = _standards/review-shape-reply.md
-replied.DIAGRAM-REPLY.md = no
-replied.SEND-DS.md = no

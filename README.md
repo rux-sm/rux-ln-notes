@@ -1,4 +1,4 @@
-# rux-ln-guides
+# rux-ln-notes
 
 **The client-facing surface for Infor LN scenario guides.** It consumes two
 upstreams — procedure data from `rux-ln-atlas`, presentation from `rux-ds` — and
@@ -40,7 +40,7 @@ actually removes what a working tree has already dropped.
 | | job | visibility | holds |
 | :--- | :--- | :--- | :--- |
 | `rux-ln-atlas` | knowledge base, `emit.py` | private | all evidence — vendor PDFs, session help, screenshots |
-| **`rux-ln-guides`** | renders and publishes | **private** | export-tier data, vendored CSS |
+| **`rux-ln-notes`** | renders and publishes | **public** since 2026-09-01 | export-tier data, vendored CSS |
 | `rux-ds` | Carbon-quarried CSS and templates | public | nothing ERP, generic specimens only |
 
 ## The two upstreams

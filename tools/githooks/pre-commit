@@ -2,8 +2,8 @@
 #
 # Refuse a commit that puts copied guide data into a page.
 #
-# WHY IT EXISTS. rux-ds is PUBLIC, this repository is PRIVATE, and a push is
-# public before it is noticed. tools/check-export-safe.mjs already answers the
+# WHY IT EXISTS. This repository is PUBLIC and served from main, so a push is
+# a publication before it is noticed. tools/check-export-safe.mjs already answers the
 # question; until now it only answered when someone remembered to ask, on
 # exactly the occasion they are least likely to -- the moment they are focused
 # on getting a template accepted rather than on what it carries. It caught two
@@ -95,13 +95,19 @@ for p in $pages; do
   fi
 done
 
-[ -n "$targets" ] || exit 0
-
-# shellcheck disable=SC2086
-if ! node tools/check-export-safe.mjs $targets; then
-  echo "" >&2
-  echo "  pre-commit: REFUSED. A staged page carries strings from the guide" >&2
-  echo "  data. If the page is meant to hold real data and never crosses to" >&2
-  echo "  rux-ds, mark it exempt in its own text and say why." >&2
-  exit 1
+if [ -n "$targets" ]; then
+  # shellcheck disable=SC2086
+  if ! node tools/check-export-safe.mjs $targets; then
+    echo "" >&2
+    echo "  pre-commit: REFUSED. A staged page carries strings from the guide" >&2
+    echo "  data. If the page is meant to hold real data and never crosses to" >&2
+    echo "  rux-ds, mark it exempt in its own text and say why." >&2
+    exit 1
+  fi
 fi
+
+# THEN EVERY OTHER GATE, over the working tree. The two checks above read the
+# staged bytes because they are the privacy gates; the rest -- classes, links,
+# structure, order, ancestry -- are about whether the site works, and before
+# this line they ran only when someone typed them.
+node tools/check.mjs || exit 1

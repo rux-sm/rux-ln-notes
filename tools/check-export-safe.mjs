@@ -2,9 +2,9 @@
 //
 // Does this page carry anything that came from the guide data?
 //
-// WHY IT EXISTS. rux-ds is PUBLIC and this repository is PRIVATE, and the rule
-// in CLAUDE.md is absolute: no guide text, session code, route, screenshot or
-// client value reaches a commit there, a template there, or an issue there.
+// WHY IT EXISTS. Both repositories are public now, but the rule in AGENTS.md
+// still holds: no guide text, session code, route, screenshot or client value
+// reaches a commit in rux-ds, a template there, or an issue there.
 // Anything sent over is authored with invented, generic content.
 //
 // "I WAS CAREFUL" IS NOT THE STANDARD ANYWHERE ELSE IN THIS FAMILY. atlas's

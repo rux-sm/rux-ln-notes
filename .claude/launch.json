@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "rux-ln-guides",
+      "name": "rux-ln-notes",
       "runtimeExecutable": "node",
       "runtimeArgs": ["tools/serve.mjs"],
       "port": 8643

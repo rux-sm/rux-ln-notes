@@ -32,10 +32,11 @@ nothing from here.
 
 **The published remote is `origin` and it is NOT this repository's history.**
 `rux-ln-guides` carries forty commits that named six people and one person's
-employment background; it stays private, as the `private` remote and as the
-`history/pre-public` branch. What is public is `rux-ln-notes`, whose history
-starts at a single clean commit. A fresh history is the only thing that
-actually removes what a working tree has already dropped.
+employment background; it stays private, on GitHub as `rux-sm/rux-ln-guides`.
+What is public is `rux-ln-notes`, whose history starts at a single clean
+commit. A fresh history is the only thing that actually removes what a working
+tree has already dropped. The `private` remote and the `history/pre-public`
+branch some clones carry are local conveniences, not part of the repository.
 
 | | job | visibility | holds |
 | :--- | :--- | :--- | :--- |
@@ -107,7 +108,7 @@ documents and of nothing this file's prose is about.
 ### Verified working, not assumed
 
 `guide.html` was measured by hand on 2026-08-31 and `build.mjs` retired it.
-**All eight generated pages were measured on 2026-09-01**, served at
+**Every generated page was measured on 2026-09-01** (eight at the time; `tools/check.mjs` prints today's count), served at
 `http://localhost:8643` by `node tools/serve.mjs`, against a 1280 viewport:
 
 | | |
@@ -191,7 +192,7 @@ company names — and counting it was measuring nothing. If real customer data
 ever enters the library the class comes back; the condition is the environment,
 not the shape of the string.
 
-**All 21 pages are publishable.** `MEASURED` records `publishable.pages-flagged
+**Every page is publishable.** `MEASURED` records `publishable.pages-flagged
 = 0`. Getting there took one pass in atlas: attendee tables now carry Role,
 Count and Organisation; prose says *the consultant* and *the trainee*; action
 owners are roles; five identification-provenance passages are `INTERNAL` and

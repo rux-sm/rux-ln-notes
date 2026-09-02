@@ -12,9 +12,10 @@ procedure data comes from `rux-ln-atlas` (private), presentation from `rux-ds`
 (public). Atlas processes knowledge, `rux-ds` owns components, this renders.
 It does neither of the other two.
 
-A second remote, `private`, is the retired `rux-ln-guides` archive. Its forty
+The retired archive is `rux-sm/rux-ln-guides`, private on GitHub. Its forty
 commits name people and vendor documents; nothing is pushed there any more,
-and it is not a place to put something that does not belong on `origin`.
+and it is not a place to put something that does not belong on `origin`. A
+clone may carry it as a remote; a fresh clone does not, and nothing needs it.
 
 ## The one rule
 

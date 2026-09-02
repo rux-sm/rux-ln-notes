@@ -165,7 +165,7 @@ The artifact lands in **two places, and they are not copies of each other**:
 | | holds | content |
 | :--- | :--- | :--- |
 | `rux-ds` | `templates/document-page.html`, gated the way every template there is | invented |
-| `rux-ln-notes` | `guide.html`, the LN binding of it | real |
+| `rux-ln-notes` | `guides/<id>.html`, written by `tools/build.mjs` — the LN binding of it | real |
 
 This project then records which rux-ds commit its page derives from, the way
 `vendor/rux-ds/PIN` already records which commit the stylesheet came from. A

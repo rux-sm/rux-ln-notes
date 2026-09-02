@@ -25,7 +25,7 @@ const TYPES = {
 
 createServer(async (req, res) => {
   const url = decodeURIComponent(req.url.split('?')[0]);
-  const rel = normalize(url === '/' ? '/guide.html' : url).replace(/^(\.\.[/\\])+/, '');
+  const rel = normalize(url === '/' ? '/index.html' : url).replace(/^(\.\.[/\\])+/, '');
   const path = join(ROOT, rel);
   if (!path.startsWith(ROOT)) { res.writeHead(403).end('forbidden'); return; }
   try {

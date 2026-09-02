@@ -1,3 +1,3 @@
 @AGENTS.md
 
-Read `README.md` for what was decided and `TODO.md` for what is outstanding.
+Read `TODO.md` "Now" for the next step, then `README.md` only for what was decided and why.

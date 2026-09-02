@@ -51,6 +51,11 @@ a committed `PIN` naming the commit they came from.
 The order across the three repositories — pull all, finish and push the
 upstream, then sync here, then push — is `docs/operating-card.html` in rux-ds:
 a printable two-page card with the per-session loop and the once-per-Mac setup.
+One setup step there is atlas's and still matters here: `check-publishable`
+reads the names list from the atlas checkout beside this one, and atlas's own
+check wants its text cache, built once per Mac by a venv step (`python3 -m venv
+.venv`, install `pypdf`, run `tools/text.py` there). The venv is per machine
+and gitignored; it does not travel with a clone or a copied folder.
 
 ```sh
 sh tools/sync-guides.sh    # atlas -> data/guides/   (export tier, never --internal)

@@ -2,10 +2,12 @@
 #
 # Vendor the design system, and record exactly which commit was vendored.
 #
-# WHY A PIN AND NOT A VERSION. rux-ds publishes no version number -- its
-# package.json has no `version` field, and versioning is still an open decision
-# in its README. A commit SHA is therefore the only honest pin, and it is a
-# stricter one than a semver tag would be.
+# WHY A COMMIT AND NOT ONLY A TAG. rux-ds tags releases (v0.1.0 and on), and
+# its tools/new-project.sh writes the tag into a PIN. This script pins the
+# commit, which is what the bytes copied actually came from, tagged or not, and
+# records the tag beside it when HEAD sits on one. Whether this script retires
+# in favour of new-project.sh is an open decision in rux-ds's README ("Picking
+# this up"); until it is taken, both recipes exist and this one says so.
 #
 # WHY THE CLEAN CHECK IS NOT OPTIONAL. Vendoring from a dirty tree records a SHA
 # that does not describe the bytes copied, which is worse than recording nothing:
@@ -85,7 +87,9 @@ for f in $BEFORE; do case " $AFTER " in *" $f "*) ;; *) echo "  js removed: $f  
 # The pin is committed. A reader who never opens rux-ds can still tell which
 # design system this site was built against, and `git -C ../rux-ds show <sha>`
 # reconstructs it exactly.
+TAG="$(git -C "$DS" describe --tags --exact-match 2>/dev/null || true)"
 cat > "$OUT/PIN" <<EOF
+tag     ${TAG:-(none: a commit between tags)}
 commit  $SHA
 date    $(date -u +%Y-%m-%dT%H:%M:%SZ)
 subject $(git -C "$DS" log -1 --format=%s)

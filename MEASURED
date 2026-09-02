@@ -44,7 +44,7 @@ session-codes.in-sources = 108
 session-codes.in-steps = 58
 
 # reviews (atlas _standards/review-shape.md quotes these)
-reviews.dirty = yes
+reviews.dirty = no
 reviews.count = 6
 reviews.summaries = 6
 reviews.sections = 8

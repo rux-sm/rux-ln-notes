@@ -1060,7 +1060,14 @@ for (const r of [...reviews, ...summaries]) {
 // The sprite is inlined by the tool that owns that job, on the files just
 // written. Linking `vendor/rux-ds/assets/icons.svg#i-name` instead is blank in
 // Safari and blocked over file://, both silently.
-execFileSync(process.execPath, [join(ROOT, 'tools/inline-sprite.mjs'), ...written],
+//
+// HAND-WRITTEN PAGES THAT CARRY THE MARKERS GET THE SAME SPRITE. Until
+// 2026-09-02 template-candidate.html was re-inlined by hand after every
+// sync-ds.sh, which is a step a person remembers or does not; a stale sprite
+// there is the silent-blank-icon failure with a later date. Listed rather than
+// swept, so a page that never asked for icons is not rewritten.
+const HAND = ['template-candidate.html'].map(f => join(ROOT, f)).filter(existsSync);
+execFileSync(process.execPath, [join(ROOT, 'tools/inline-sprite.mjs'), ...written, ...HAND],
   { stdio: 'inherit' });
 
 console.log(`\n  built ${written.length} page(s) from ${guides.length} guide(s)`);

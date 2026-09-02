@@ -111,6 +111,14 @@ scoped here** — that is `rux-ds`'s work and needs its own sitting.
 
 ## Not doing
 
+- **The names list in CI, as a secret.** Considered and rejected 2026-09-02.
+  It would add sensitive state that has to move whenever atlas's tuple does,
+  its refusal message would have to be redacted to keep the names out of a
+  public log, and it still could not protect the repository: Actions runs
+  after the push, when the commit is already public history. It could stop a
+  deployment, not a disclosure. The data route is closed by the hash in
+  `data/guides/PIN` instead; the rest is held by the commit hook and the
+  setup probe, and `AGENTS.md` records the accepted case.
 - **A fourth repository.** Publishing changed what this one contains, not what
   it is for.
 - **Filtering rather than authoring.** Every time something had to come out —

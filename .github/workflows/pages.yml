@@ -8,9 +8,19 @@ name: pages
 #
 # What this cannot check: the names class of check-publishable. rux-ln-atlas
 # is private and its list is never shipped here, so that class reports
-# `unavailable` in CI and is held by the commit hook on a machine with the
-# sibling checkout -- outside CI that gap is a refusal. The other four
-# classes, and every other gate, run here.
+# `unavailable` in CI. On the sync route that is covered upstream: atlas's
+# emit.py sweeps every document it writes against the same list and writes
+# nothing if a name survives, on the private side where a printed match is
+# harmless. CI cannot read atlas, so the data route is closed another way:
+# check-data compares data/guides/ against the hash sync-guides.sh recorded
+# in its PIN, and data that did not come through atlas fails here before it
+# is built, with no name in sight. Two routes remain, and AGENTS.md records
+# them as the accepted case: a generator that injects text, and a hand-written
+# page or Markdown file, each needing the owner to type a name AND commit with
+# the hook bypassed or never armed. On a machine with the sibling checkout
+# the hook refuses; outside CI a missing list is a refusal too; and a check
+# that runs after a push could stop a deployment, never a disclosure. The
+# other four classes, and every other gate, run here.
 
 on:
   push:

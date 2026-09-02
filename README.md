@@ -46,7 +46,9 @@ actually removes what a working tree has already dropped.
 ## The two upstreams
 
 Both are pulled by hand, both refuse to run against a dirty tree, and both write
-a committed `PIN` naming the commit they came from.
+a committed `PIN` naming the commit they came from. The guides' PIN also carries
+a hash of the bytes written, and `tools/check-data.mjs` refuses a `data/guides/`
+that no longer matches it, in the hook, in the one check and in CI.
 
 The order across the three repositories — pull all, finish and push the
 upstream, then sync here, then push — is `docs/operating-card.html` in rux-ds:

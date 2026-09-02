@@ -3,6 +3,7 @@ date     2026-09-02T13:48:04Z
 subject  ci: Run the gate on every push
 contract 2 
 tier     export
+sha256   9ede3ad53cdc63b994d32155f2bc2eb5fb5484eb4f0c4ab7ad1cfcb23074fe08
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

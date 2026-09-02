@@ -31,6 +31,7 @@ const GATES = [
   ['check-links',       []],
   ['check-order',       []],
   ['check-ancestry',    []],
+  ['check-data',        []],
   ['check-publishable', []],
 ];
 

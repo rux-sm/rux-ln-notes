@@ -21,6 +21,15 @@
 // than passing quietly, because a check that silently skips is worse than one
 // that is absent.
 //
+// WHAT THE SYNC ROUTE ALREADY HOLDS, AND WHAT IT DOES NOT. Atlas's emit.py
+// sweeps every document it writes against that same tuple and writes nothing
+// if a name survives, so a name cannot arrive through sync-guides.sh. It can
+// still arrive by hand: an edit to data/guides/*.json, a generator that
+// injects text, or a hand-written page or Markdown file. This class is what
+// catches those, and it runs only where the tuple can be read -- the commit
+// hook on a machine with the sibling checkout. CI cannot read it, so a commit
+// that skips the hook is not re-checked for names anywhere.
+//
 // WHAT IT CANNOT SEE, said plainly:
 //   * whether a paraphrase of Infor's documentation is still too close to it.
 //     It counts verbatim quotation, which is the part a regex can find.
@@ -156,7 +165,8 @@ for (const [what, n] of [...totals].sort((a, b) => (b[1] === 'unavailable' ? -1 
 if (!PEOPLE) {
   console.log('\n  NAMES WERE NOT CHECKED: ../rux-ln-atlas is missing, or the commit');
   console.log('  data/guides/PIN names is not in it, so PEOPLE could not be read.');
-  console.log('  This is a gap in the run, not a clean result.');
+  console.log('  Nothing else re-checks names: the sync route is held by atlas emit.py,');
+  console.log('  and a hand edit to data, the generator or a page is not.');
 }
 // A GAP IS A REFUSAL OUTSIDE CI. Measured 2026-09-02 on a fresh clone with no
 // atlas beside it: the gap printed and check.mjs still said every gate passed,

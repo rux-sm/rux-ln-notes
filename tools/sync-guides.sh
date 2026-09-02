@@ -60,12 +60,20 @@ mkdir -p "$OUT"
 # on a bump, so read the line.
 CONTRACTS="$(grep -h '"contract"' "$OUT"/*.json | tr -d ' ",' | cut -d: -f2 | sort -u | tr '\n' ' ')"
 
+# THE HASH OF WHAT WAS WRITTEN, so tools/check-data.mjs -- in the hook, the
+# one check and CI -- can refuse a data/guides/ that did not come through
+# here. It is the one line in this file that closes a route rather than
+# reporting one: a hand-edited JSON file carries none of emit.py's sweep, and
+# CI cannot read atlas to notice. Only this script writes it.
+HASH="$(node "$HERE/tools/check-data.mjs" --hash)"
+
 cat > "$OUT/PIN" <<EOF
 commit   $SHA
 date     $(date -u +%Y-%m-%dT%H:%M:%SZ)
 subject  $(git -C "$ATLAS" log -1 --format=%s)
 contract $CONTRACTS
 tier     export
+sha256   $HASH
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

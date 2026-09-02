@@ -319,6 +319,10 @@
           "v": "Full record:"
         },
         {
+          "t": "text",
+          "v": " "
+        },
+        {
           "t": "literal",
           "v": "the source on file"
         },
@@ -335,7 +339,7 @@
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record:the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

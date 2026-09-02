@@ -100,20 +100,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Item Order Plan"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp0520m000"
+                  "code": "cprrp0520m000",
+                  "name": "Item Order Plan"
                 },
                 {
                   "t": "text",
-                  "v": ") — searched for "
+                  "v": " — searched for "
                 },
                 {
                   "t": "literal",
@@ -153,20 +146,13 @@
                   "v": " tab of "
                 },
                 {
-                  "t": "strong",
-                  "v": "Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd0501m100"
+                  "code": "tcibd0501m100",
+                  "name": "Item"
                 },
                 {
                   "t": "text",
-                  "v": "). Because "
+                  "v": ". Because "
                 },
                 {
                   "t": "literal",
@@ -281,20 +267,13 @@
                   "v": " tab of "
                 },
                 {
-                  "t": "strong",
-                  "v": "Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd0501m100"
+                  "code": "tcibd0501m100",
+                  "name": "Item"
                 },
                 {
                   "t": "text",
-                  "v": "), using the sales office from the order header."
+                  "v": ", using the sales office from the order header."
                 }
               ],
               "text": "Fixed by adding a row on the Sales Offices tab of Item (tcibd0501m100), using the sales office from the order header."
@@ -433,20 +412,13 @@
                   "v": "The order horizon was extended in "
                 },
                 {
-                  "t": "strong",
-                  "v": "Items - Planning"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprpd1100m000"
+                  "code": "cprpd1100m000",
+                  "name": "Items - Planning"
                 },
                 {
                   "t": "text",
-                  "v": "). The demand came back, and MRP added a "
+                  "v": ". The demand came back, and MRP added a "
                 },
                 {
                   "t": "strong",
@@ -522,20 +494,13 @@
               "v": " tab of "
             },
             {
-              "t": "strong",
-              "v": "Items - Planning"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprpd1100m000"
+              "code": "cprpd1100m000",
+              "name": "Items - Planning"
             },
             {
               "t": "text",
-              "v": ") you type a "
+              "v": " you type a "
             },
             {
               "t": "strong",
@@ -742,20 +707,13 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Planned Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp1100m000"
+              "code": "cprrp1100m000",
+              "name": "Planned Orders"
             },
             {
               "t": "text",
-              "v": ") is where results are actually reviewed, because you would normally run MRP for every plannable item, not one."
+              "v": " is where results are actually reviewed, because you would normally run MRP for every plannable item, not one."
             }
           ],
           "text": "Planned Orders (cprrp1100m000) is where results are actually reviewed, because you would normally run MRP for every plannable item, not one."
@@ -785,20 +743,13 @@
                   "v": " A planner who knows the supplier will override them — a suggestion to buy 101 makes no sense when the supplier ships in batches of 100, so you buy 200. LN can enforce that as an order-quantity rule on "
                 },
                 {
-                  "t": "strong",
-                  "v": "Items - Ordering"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd2100m000"
+                  "code": "tcibd2100m000",
+                  "name": "Items - Ordering"
                 },
                 {
                   "t": "text",
-                  "v": ")."
+                  "v": "."
                 }
               ],
               "text": "Planned orders are suggestions. A planner who knows the supplier will override them — a suggestion to buy 101 makes no sense when the supplier ships in batches of 100, so you buy 200. LN can enforce that as an order-quantity rule on Items - Ordering (tcibd2100m000)."
@@ -861,20 +812,13 @@
               "v": ", opening "
             },
             {
-              "t": "strong",
-              "v": "Order Pegging"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp0740m200"
+              "code": "cprrp0740m200",
+              "name": "Order Pegging"
             },
             {
               "t": "text",
-              "v": "):"
+              "v": ":"
             }
           ],
           "text": "What was shown — the Pegging - Upstream tree from Planned Orders, opening Order Pegging (cprrp0740m200):"
@@ -959,20 +903,13 @@
                   "v": " is a check box on "
                 },
                 {
-                  "t": "strong",
-                  "v": "Items - Planning"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprpd1100m000"
+                  "code": "cprpd1100m000",
+                  "name": "Items - Planning"
                 },
                 {
                   "t": "text",
-                  "v": "). Until it is selected, the "
+                  "v": ". Until it is selected, the "
                 },
                 {
                   "t": "strong",
@@ -1033,20 +970,13 @@
                   "v": " on "
                 },
                 {
-                  "t": "strong",
-                  "v": "Item Master Plan"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprmp2101m000"
+                  "code": "cprmp2101m000",
+                  "name": "Item Master Plan"
                 },
                 {
                   "t": "text",
-                  "v": ")."
+                  "v": "."
                 }
               ],
               "text": "The item master plan has to be initialized before it exists, using Initialize, Roll, and Update Scenario on Item Master Plan (cprmp2101m000)."
@@ -1241,6 +1171,10 @@
           "v": "Full record:"
         },
         {
+          "t": "text",
+          "v": " "
+        },
+        {
           "t": "literal",
           "v": "the source on file"
         },
@@ -1257,7 +1191,7 @@
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record:the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

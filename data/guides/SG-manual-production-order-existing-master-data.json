@@ -2,7 +2,7 @@
   "contract": 2,
   "tier": "export",
   "id": "SG-manual-production-order-existing-master-data",
-  "title": "Manual Production Order from Existing Master Data",
+  "title": "Production order",
   "module": "Manufacturing · Warehousing",
   "modules": [
     "Manufacturing",
@@ -76,6 +76,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "finished item"
                     },
@@ -85,6 +89,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -183,20 +191,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehouse - Item Inventory"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd2515m000"
+                      "code": "whwmd2515m000",
+                      "name": "Warehouse - Item Inventory"
                     },
                     {
                       "t": "text",
-                      "v": ") opens for the component"
+                      "v": " opens for the component"
                     }
                   ],
                   "text": "Warehouse - Item Inventory (whwmd2515m000) opens for the component"
@@ -232,6 +233,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "component warehouse"
                     },
@@ -241,6 +246,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -312,6 +321,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -450,6 +463,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "site"
                     }
@@ -489,6 +506,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -538,6 +559,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -689,6 +714,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "production order number"
                     }
@@ -783,6 +812,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "BOM and revision"
                     },
@@ -824,6 +857,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "routing and revision"
                     },
@@ -863,6 +900,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -912,6 +953,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1047,20 +1092,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Release Production Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0204m000"
+                      "code": "tisfc0204m000",
+                      "name": "Release Production Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Release Production Orders (tisfc0204m000) opens"
@@ -1140,6 +1178,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1330,6 +1372,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "material to issue"
                     },
@@ -1379,20 +1425,13 @@
                       "v": "If the line is not already unblocked, run "
                     },
                     {
-                      "t": "chip",
-                      "v": "Initiate Inventory Issue"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0207m000"
+                      "code": "tisfc0207m000",
+                      "name": "Initiate Inventory Issue"
                     },
                     {
                       "t": "text",
-                      "v": ") for the line"
+                      "v": " for the line"
                     }
                   ],
                   "text": "If the line is not already unblocked, run Initiate Inventory Issue (tisfc0207m000) for the line"
@@ -1429,20 +1468,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Warehousing Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2100m000"
+                      "code": "whinh2100m000",
+                      "name": "Warehousing Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") and find the production issue order for this production order"
+                      "v": " and find the production issue order for this production order"
                     }
                   ],
                   "text": "Open Warehousing Orders (whinh2100m000) and find the production issue order for this production order"
@@ -1496,20 +1528,9 @@
                       "v": " on the issue order — "
                     },
                     {
-                      "t": "chip",
-                      "v": "Warehousing Order"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2100m100"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "whinh2100m100",
+                      "name": "Warehousing Order"
                     }
                   ],
                   "text": "Click Drill In on the issue order — Warehousing Order (whinh2100m100)"
@@ -1521,20 +1542,13 @@
                       "v": "The order lines and the "
                     },
                     {
-                      "t": "chip",
-                      "v": "Outbound Line Status Overview"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2129m000"
+                      "code": "whinh2129m000",
+                      "name": "Outbound Line Status Overview"
                     },
                     {
                       "t": "text",
-                      "v": ") activity list are visible"
+                      "v": " activity list are visible"
                     }
                   ],
                   "text": "The order lines and the Outbound Line Status Overview (whinh2129m000) activity list are visible"
@@ -1688,6 +1702,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1918,20 +1936,13 @@
                       "v": "On the last operation's save, if "
                     },
                     {
-                      "t": "chip",
-                      "v": "Report Orders Completed"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0120s000"
+                      "code": "tisfc0120s000",
+                      "name": "Report Orders Completed"
                     },
                     {
                       "t": "text",
-                      "v": ") opens, enter the completed quantity in "
+                      "v": " opens, enter the completed quantity in "
                     },
                     {
                       "t": "field",
@@ -1992,6 +2003,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "receipt answer"
                     },
@@ -2001,6 +2016,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -2040,20 +2059,13 @@
                       "v": "Return to "
                     },
                     {
-                      "t": "chip",
-                      "v": "Production Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0501m000"
+                      "code": "tisfc0501m000",
+                      "name": "Production Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") and read "
+                      "v": " and read "
                     },
                     {
                       "t": "field",
@@ -2066,6 +2078,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -2157,20 +2173,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Inventory 360"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd4300m000"
+                      "code": "whwmd4300m000",
+                      "name": "Inventory 360"
                     },
                     {
                       "t": "text",
-                      "v": ") and filter the finished item at the receiving warehouse from step 1.5"
+                      "v": " and filter the finished item at the receiving warehouse from step 1.5"
                     }
                   ],
                   "text": "Open Inventory 360 (whwmd4300m000) and filter the finished item at the receiving warehouse from step 1.5"
@@ -2179,6 +2188,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -2236,20 +2249,13 @@
           "v": " this guide ends at finished-goods receipt. "
         },
         {
-          "t": "strong",
-          "v": "Close Production Orders"
-        },
-        {
-          "t": "text",
-          "v": " ("
-        },
-        {
           "t": "session",
-          "code": "ticst0201m000"
+          "code": "ticst0201m000",
+          "name": "Close Production Orders"
         },
         {
           "t": "text",
-          "v": ") — actual-cost calculation and financial posting — is out of scope and remains future work. "
+          "v": " — actual-cost calculation and financial posting — is out of scope and remains future work. "
         }
       ],
       "text": "Scope note: this guide ends at finished-goods receipt. Close Production Orders (ticst0201m000) — actual-cost calculation and financial posting — is out of scope and remains future work."
@@ -2593,20 +2599,13 @@
           "v": " confirms the receiving warehouse's on-hand increased by the same amount. Do not run "
         },
         {
-          "t": "strong",
-          "v": "Close Production Orders"
-        },
-        {
-          "t": "text",
-          "v": " ("
-        },
-        {
           "t": "session",
-          "code": "ticst0201m000"
+          "code": "ticst0201m000",
+          "name": "Close Production Orders"
         },
         {
           "t": "text",
-          "v": ") from this guide."
+          "v": " from this guide."
         }
       ],
       "text": "Use the finished-goods receipt as the boundary. This guide is complete only when Production Orders shows Order Status Completed with Quantity Delivered equal to the production quantity, and Inventory 360 confirms the receiving warehouse's on-hand increased by the same amount. Do not run Close Production Orders (ticst0201m000) from this guide."
@@ -2879,20 +2878,13 @@
                   "v": "Record the message; the release options this guide does not exercise (shortages, quality, printing) may be blocking it — check them against "
                 },
                 {
-                  "t": "chip",
-                  "v": "Production Order Parameters"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0100s000"
+                  "code": "tisfc0100s000",
+                  "name": "Production Order Parameters"
                 },
                 {
                   "t": "text",
-                  "v": ") before assuming a fault "
+                  "v": " before assuming a fault "
                 }
               ],
               "text": "Record the message; the release options this guide does not exercise (shortages, quality, printing) may be blocking it — check them against Production Order Parameters (tisfc0100s000) before assuming a fault"
@@ -2934,20 +2926,13 @@
                   "v": "Run "
                 },
                 {
-                  "t": "chip",
-                  "v": "Initiate Inventory Issue"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0207m000"
+                  "code": "tisfc0207m000",
+                  "name": "Initiate Inventory Issue"
                 },
                 {
                   "t": "text",
-                  "v": ") manually; if still blocked, stop and record what was observed "
+                  "v": " manually; if still blocked, stop and record what was observed "
                 }
               ],
               "text": "Run Initiate Inventory Issue (tisfc0207m000) manually; if still blocked, stop and record what was observed"
@@ -2989,20 +2974,13 @@
                   "v": " may be automatic for this material — confirm in "
                 },
                 {
-                  "t": "chip",
-                  "v": "Activities by Warehousing Order"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2104m000"
+                  "code": "whinh2104m000",
+                  "name": "Activities by Warehousing Order"
                 },
                 {
                   "t": "text",
-                  "v": ") before troubleshooting further"
+                  "v": " before troubleshooting further"
                 }
               ],
               "text": "Do not assume a fault. Direct Process Warehouse Order Line may be automatic for this material — confirm in Activities by Warehousing Order (whinh2104m000) before troubleshooting further"
@@ -3075,20 +3053,13 @@
                   "v": "The production receipt warehousing order may need manual processing, like phase 4's issue order. Check "
                 },
                 {
-                  "t": "chip",
-                  "v": "Warehousing Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2100m000"
+                  "code": "whinh2100m000",
+                  "name": "Warehousing Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") for an open receipt order before assuming an error "
+                  "v": " for an open receipt order before assuming an error "
                 }
               ],
               "text": "The production receipt warehousing order may need manual processing, like phase 4's issue order. Check Warehousing Orders (whinh2100m000) for an open receipt order before assuming an error"
@@ -3255,7 +3226,7 @@
               "tokens": [
                 {
                   "t": "link",
-                  "v": "Ship from Stock",
+                  "v": "Ship from stock",
                   "href": "SG-ship-from-stock.md"
                 },
                 {
@@ -3263,7 +3234,7 @@
                   "v": " — sell and ship what was produced"
                 }
               ],
-              "text": "Ship from Stock — sell and ship what was produced"
+              "text": "Ship from stock — sell and ship what was produced"
             },
             {
               "tokens": [
@@ -3291,11 +3262,11 @@
               "tokens": [
                 {
                   "t": "link",
-                  "v": "Transfer Item Between Warehouses",
+                  "v": "Warehouse transfer",
                   "href": "SG-transfer-item-between-warehouses.md"
                 }
               ],
-              "text": "Transfer Item Between Warehouses"
+              "text": "Warehouse transfer"
             },
             {
               "tokens": [

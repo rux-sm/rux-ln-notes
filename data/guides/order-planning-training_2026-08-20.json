@@ -237,20 +237,13 @@
               "v": "The session opened by searching "
             },
             {
-              "t": "strong",
-              "v": "Item Order Plan"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp0520m000"
+              "code": "cprrp0520m000",
+              "name": "Item Order Plan"
             },
             {
               "t": "text",
-              "v": ") for "
+              "v": " for "
             },
             {
               "t": "literal",
@@ -353,20 +346,13 @@
               "v": " (\"PCG CSAD NA Site 1 Manufacturi Houston,TX\") — both read from the selection block of "
             },
             {
-              "t": "strong",
-              "v": "Planned Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp1100m000"
+              "code": "cprrp1100m000",
+              "name": "Planned Orders"
             },
             {
               "t": "text",
-              "v": ")."
+              "v": "."
             }
           ],
           "text": "The environment's planning cluster is `NA1` (\"Cluster NA 1\") and the site is `CSADNA01` (\"PCG CSAD NA Site 1 Manufacturi Houston,TX\") — both read from the selection block of Planned Orders (cprrp1100m000)."
@@ -497,20 +483,13 @@
                   "v": " subtab of "
                 },
                 {
-                  "t": "strong",
-                  "v": "Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd0501m100"
+                  "code": "tcibd0501m100",
+                  "name": "Item"
                 },
                 {
                   "t": "text",
-                  "v": "), taking the sales office from the order header."
+                  "v": ", taking the sales office from the order header."
                 }
               ],
               "text": "An item cannot go on a sales order without a sales-office record for the order's sales office. The error message was read out as \"item sales by sales office not present\". The fix was to add the row on the Sales Offices subtab of Item (tcibd0501m100), taking the sales office from the order header."
@@ -724,20 +703,13 @@
               "v": "The order horizon was then extended in "
             },
             {
-              "t": "strong",
-              "v": "Items - Planning"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprpd1100m000"
+              "code": "cprpd1100m000",
+              "name": "Items - Planning"
             },
             {
               "t": "text",
-              "v": ") and the plan refreshed. The same session now shows "
+              "v": " and the plan refreshed. The same session now shows "
             },
             {
               "t": "strong",
@@ -760,6 +732,10 @@
               "v": "Sales Order"
             },
             {
+              "t": "text",
+              "v": " "
+            },
+            {
               "t": "literal",
               "v": "100000667"
             },
@@ -778,6 +754,10 @@
             {
               "t": "strong",
               "v": "Planned Production Order"
+            },
+            {
+              "t": "text",
+              "v": " "
             },
             {
               "t": "literal",
@@ -804,7 +784,7 @@
               "v": " — MRP's answer to five short of one on hand."
             }
           ],
-          "text": "The order horizon was then extended in Items - Planning (cprpd1100m000) and the plan refreshed. The same session now shows Order Horizon `8/28/2026` and two rows dated 8/27/2026: the Sales Order100000667 with Demand 5.0000, and a Planned Production Order000000061 with Supply 4.0000 and Planned Available 5.0000 — MRP's answer to five short of one on hand."
+          "text": "The order horizon was then extended in Items - Planning (cprpd1100m000) and the plan refreshed. The same session now shows Order Horizon `8/28/2026` and two rows dated 8/27/2026: the Sales Order 100000667 with Demand 5.0000, and a Planned Production Order 000000061 with Supply 4.0000 and Planned Available 5.0000 — MRP's answer to five short of one on hand."
         },
         {
           "kind": "source",
@@ -1273,20 +1253,13 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Planned Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp1100m000"
+              "code": "cprrp1100m000",
+              "name": "Planned Orders"
             },
             {
               "t": "text",
-              "v": ") is where results are actually reviewed, because "
+              "v": " is where results are actually reviewed, because "
             },
             {
               "t": "quote",
@@ -1351,6 +1324,10 @@
                   "v": "Planned orders are suggestions, not instructions."
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "quote",
                   "v": "These are only suggestions… the actual planners know their data better than we do",
                   "at": "23:11"
@@ -1368,20 +1345,13 @@
                   "v": ", set in "
                 },
                 {
-                  "t": "strong",
-                  "v": "Items - Ordering"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd2100m000"
+                  "code": "tcibd2100m000",
+                  "name": "Items - Ordering"
                 },
                 {
                   "t": "text",
-                  "v": ") among others — the Infor LN "
+                  "v": " among others — the Infor LN "
                 },
                 {
                   "t": "strong",
@@ -1400,13 +1370,17 @@
                   "v": " — \"Lot sizing\" (p. 21)."
                 }
               ],
-              "text": "Planned orders are suggestions, not instructions.. The worked example: a suggestion to buy 101 makes no sense where the supplier sells in batches of 100, so the planner buys 200. The vendor supports this as a configurable constraint rather than a judgement call — \"You can specify that the ordered quantity must be a multiple of 100 units. If you have a requirement for 530 units, LN generates an order for 600 units\", set in Items - Ordering (tcibd2100m000) among others — the Infor LN Order Planning user guide, Planning Concepts — \"Lot sizing\" (p. 21)."
+              "text": "Planned orders are suggestions, not instructions. . The worked example: a suggestion to buy 101 makes no sense where the supplier sells in batches of 100, so the planner buys 200. The vendor supports this as a configurable constraint rather than a judgement call — \"You can specify that the ordered quantity must be a multiple of 100 units. If you have a requirement for 530 units, LN generates an order for 600 units\", set in Items - Ordering (tcibd2100m000) among others — the Infor LN Order Planning user guide, Planning Concepts — \"Lot sizing\" (p. 21)."
             },
             {
               "tokens": [
                 {
                   "t": "strong",
                   "v": "A planned order becomes real by being transferred."
+                },
+                {
+                  "t": "text",
+                  "v": " "
                 },
                 {
                   "t": "quote",
@@ -1442,23 +1416,16 @@
                   "v": " — Infor LN help for "
                 },
                 {
-                  "t": "strong",
-                  "v": "Planned Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp1100m000"
+                  "code": "cprrp1100m000",
+                  "name": "Planned Orders"
                 },
                 {
                   "t": "text",
-                  "v": "), Field Information"
+                  "v": ", Field Information"
                 }
               ],
-              "text": "A planned order becomes real by being transferred.. cprrp1100m000's own help confirms the mechanism and names the destination: a planned order carries a flag for whether it \"is ready for transfer to the execution level\", and on transfer the information \"is passed on to the Job Shop Control module and the Purchase Control module.\" — Infor LN help for Planned Orders (cprrp1100m000), Field Information"
+              "text": "A planned order becomes real by being transferred. . cprrp1100m000's own help confirms the mechanism and names the destination: a planned order carries a flag for whether it \"is ready for transfer to the execution level\", and on transfer the information \"is passed on to the Job Shop Control module and the Purchase Control module.\" — Infor LN help for Planned Orders (cprrp1100m000), Field Information"
             }
           ]
         }
@@ -1495,20 +1462,13 @@
               "v": "The tree captured is "
             },
             {
-              "t": "strong",
-              "v": "Order Pegging"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp0740m200"
+              "code": "cprrp0740m200",
+              "name": "Order Pegging"
             },
             {
               "t": "text",
-              "v": "), reached as "
+              "v": ", reached as "
             },
             {
               "t": "strong",
@@ -1654,36 +1614,22 @@
                   "v": " in "
                 },
                 {
-                  "t": "strong",
-                  "v": "Generate Order Planning"
+                  "t": "session",
+                  "code": "cprrp1210m000",
+                  "name": "Generate Order Planning"
                 },
                 {
                   "t": "text",
-                  "v": " ("
+                  "v": ", or by running "
                 },
                 {
                   "t": "session",
-                  "code": "cprrp1210m000"
+                  "code": "cprrp0240m000",
+                  "name": "Generate Pegging Relations"
                 },
                 {
                   "t": "text",
-                  "v": "), or by running "
-                },
-                {
-                  "t": "strong",
-                  "v": "Generate Pegging Relations"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
-                  "t": "session",
-                  "code": "cprrp0240m000"
-                },
-                {
-                  "t": "text",
-                  "v": ") — and LN only generates them out to the "
+                  "v": " — and LN only generates them out to the "
                 },
                 {
                   "t": "strong",
@@ -1694,20 +1640,13 @@
                   "v": " set in "
                 },
                 {
-                  "t": "strong",
-                  "v": "Planning Parameters"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprpd0100m000"
+                  "code": "cprpd0100m000",
+                  "name": "Planning Parameters"
                 },
                 {
                   "t": "text",
-                  "v": "). The tree resolved on the call without this being discussed, which suggests the environment already has it configured, but that was not shown. the Infor LN "
+                  "v": ". The tree resolved on the call without this being discussed, which suggests the environment already has it configured, but that was not shown. the Infor LN "
                 },
                 {
                   "t": "strong",
@@ -1930,20 +1869,13 @@
                   "v": " command, visible as a toolbar button on "
                 },
                 {
-                  "t": "strong",
-                  "v": "Item Master Plan"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprmp2101m000"
+                  "code": "cprmp2101m000",
+                  "name": "Item Master Plan"
                 },
                 {
                   "t": "text",
-                  "v": ")."
+                  "v": "."
                 }
               ],
               "text": "The item master plan must then be initialized before it exists: . This is the Initialize, Roll, and Update Scenario command, visible as a toolbar button on Item Master Plan (cprmp2101m000)."
@@ -2067,6 +1999,10 @@
               "v": "Confirmed."
             },
             {
+              "t": "text",
+              "v": " "
+            },
+            {
               "t": "quote",
               "v": "If master planning is not used, then the planning horizon will always equal the order horizon",
               "at": "24:03"
@@ -2084,20 +2020,13 @@
               "v": " — Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Item Order Plan"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp0520m000"
+              "code": "cprrp0520m000",
+              "name": "Item Order Plan"
             },
             {
               "t": "text",
-              "v": "), Field Information, "
+              "v": ", Field Information, "
             },
             {
               "t": "em",
@@ -2140,7 +2069,7 @@
               "v": "."
             }
           ],
-          "text": "Confirmed.. This is stated almost word for word by the vendor: \"If the item does not have an item master plan, the planning horizon is equal to the order horizon.\" — Infor LN help for Item Order Plan (cprrp0520m000), Field Information, Planning Horizon. It is also visible on screen twice over: with master planning off, both horizons read 8/20/2026 and later 8/28/2026 together; with it on, they diverge to 9/4/2026 and 7/9/2027."
+          "text": "Confirmed. . This is stated almost word for word by the vendor: \"If the item does not have an item master plan, the planning horizon is equal to the order horizon.\" — Infor LN help for Item Order Plan (cprrp0520m000), Field Information, Planning Horizon. It is also visible on screen twice over: with master planning off, both horizons read 8/20/2026 and later 8/28/2026 together; with it on, they diverge to 9/4/2026 and 7/9/2027."
         },
         {
           "kind": "prose",
@@ -2148,6 +2077,10 @@
             {
               "t": "strong",
               "v": "Imprecise."
+            },
+            {
+              "t": "text",
+              "v": " "
             },
             {
               "t": "quote",
@@ -2199,7 +2132,7 @@
               "v": " — \"Major horizons and time fences\" (p. 19)."
             }
           ],
-          "text": "Imprecise.. The vendor does not treat these as a pair of siblings. The planning horizon is the total, and it \"consists of an order horizon and/or a master-planning horizon\"; the horizon that is specifically for master planning is the master-planning horizon, a sub-horizon, not the planning horizon — the Infor LN Order Planning user guide, Planning Concepts — \"Major horizons and time fences\" (p. 19)."
+          "text": "Imprecise. . The vendor does not treat these as a pair of siblings. The planning horizon is the total, and it \"consists of an order horizon and/or a master-planning horizon\"; the horizon that is specifically for master planning is the master-planning horizon, a sub-horizon, not the planning horizon — the Infor LN Order Planning user guide, Planning Concepts — \"Major horizons and time fences\" (p. 19)."
         },
         {
           "kind": "prose",
@@ -2229,6 +2162,10 @@
                 {
                   "t": "strong",
                   "v": "The vendor's third horizon has no matching field on the screen as deployed."
+                },
+                {
+                  "t": "text",
+                  "v": " "
                 },
                 {
                   "t": "literal",
@@ -2291,7 +2228,7 @@
                   "v": "Not documented for this release."
                 }
               ],
-              "text": "The vendor's third horizon has no matching field on the screen as deployed.cpordplanug names an order horizon, a master-planning horizon, and a planning horizon that contains them; cprpd1100m000's Horizons tab exposes only Order Horizon and Planning Horizon. Whether the master-planning horizon is simply the span between the two, or a field held elsewhere, is not established by anything in the folder. Not documented for this release."
+              "text": "The vendor's third horizon has no matching field on the screen as deployed. cpordplanug names an order horizon, a master-planning horizon, and a planning horizon that contains them; cprpd1100m000's Horizons tab exposes only Order Horizon and Planning Horizon. Whether the master-planning horizon is simply the span between the two, or a field held elsewhere, is not established by anything in the folder. Not documented for this release."
             }
           ]
         }
@@ -2658,6 +2595,10 @@
             {
               "t": "session",
               "code": "cprrp0740m200"
+            },
+            {
+              "t": "text",
+              "v": " "
             }
           ],
           "text": "Is the red/green colour convention in the pegging tree documented anywhere, or purely a UI affordance? — needs help for cprrp0740m200"

@@ -202,84 +202,49 @@
               "v": "Source: LN training environment, verified from the 2026-08-06 recording — screenshots for "
             },
             {
-              "t": "strong",
-              "v": "Item"
+              "t": "session",
+              "code": "tcibd0501m100",
+              "name": "Item"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ", "
             },
             {
               "t": "session",
-              "code": "tcibd0501m100"
+              "code": "tibom3100m000",
+              "name": "Job Shop BOM"
             },
             {
               "t": "text",
-              "v": "), "
-            },
-            {
-              "t": "strong",
-              "v": "Job Shop BOM"
-            },
-            {
-              "t": "text",
-              "v": " ("
+              "v": ", "
             },
             {
               "t": "session",
-              "code": "tibom3100m000"
+              "code": "tirou4600m000",
+              "name": "Job Shop Routing"
             },
             {
               "t": "text",
-              "v": "), "
-            },
-            {
-              "t": "strong",
-              "v": "Job Shop Routing"
-            },
-            {
-              "t": "text",
-              "v": " ("
+              "v": ", "
             },
             {
               "t": "session",
-              "code": "tirou4600m000"
+              "code": "ticpr0107m000",
+              "name": "Item - Costing"
             },
             {
               "t": "text",
-              "v": "), "
-            },
-            {
-              "t": "strong",
-              "v": "Item - Costing"
-            },
-            {
-              "t": "text",
-              "v": " ("
+              "v": ", and "
             },
             {
               "t": "session",
-              "code": "ticpr0107m000"
+              "code": "tisfc0101m100",
+              "name": "Production Order"
             },
             {
               "t": "text",
-              "v": "), and "
-            },
-            {
-              "t": "strong",
-              "v": "Production Order"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "tisfc0101m100"
-            },
-            {
-              "t": "text",
-              "v": ")."
+              "v": "."
             }
           ],
           "text": "Source: LN training environment, verified from the 2026-08-06 recording — screenshots for Item (tcibd0501m100), Job Shop BOM (tibom3100m000), Job Shop Routing (tirou4600m000), Item - Costing (ticpr0107m000), and Production Order (tisfc0101m100)."
@@ -401,20 +366,13 @@
                   "v": " are the order statuses named directly in "
                 },
                 {
-                  "t": "strong",
-                  "v": "Production Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0501m000"
+                  "code": "tisfc0501m000",
+                  "name": "Production Orders"
                 },
                 {
                   "t": "text",
-                  "v": ")'s opening description — the recording's sequence uses real, named statuses, not informal labels."
+                  "v": "'s opening description — the recording's sequence uses real, named statuses, not informal labels."
                 }
               ],
               "text": "Created, Printed, and Released are the order statuses named directly in Production Orders (tisfc0501m000)'s opening description — the recording's sequence uses real, named statuses, not informal labels."
@@ -559,52 +517,31 @@
               "v": "; Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Production Orders"
+              "t": "session",
+              "code": "tisfc0501m000",
+              "name": "Production Orders"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ", Field Information (Order Status, Actual WIP Transaction Done); Infor LN help for "
             },
             {
               "t": "session",
-              "code": "tisfc0501m000"
+              "code": "tibom3100m000",
+              "name": "Job Shop Bills of Material"
             },
             {
               "t": "text",
-              "v": "), Field Information (Order Status, Actual WIP Transaction Done); Infor LN help for "
-            },
-            {
-              "t": "strong",
-              "v": "Job Shop Bills of Material"
-            },
-            {
-              "t": "text",
-              "v": " ("
+              "v": " and Infor LN help for "
             },
             {
               "t": "session",
-              "code": "tibom3100m000"
+              "code": "tirou4100m000",
+              "name": "Job Shop Routings"
             },
             {
               "t": "text",
-              "v": ") and Infor LN help for "
-            },
-            {
-              "t": "strong",
-              "v": "Job Shop Routings"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "tirou4100m000"
-            },
-            {
-              "t": "text",
-              "v": "), Field Information (Use for Planning, Use for Costing, Approve Revision)."
+              "v": ", Field Information (Use for Planning, Use for Costing, Approve Revision)."
             }
           ],
           "text": "Source: LN training environment, verified from the 2026-08-06 recording — the source on file, the source on file, the source on file, and the source on file; Infor LN help for Production Orders (tisfc0501m000), Field Information (Order Status, Actual WIP Transaction Done); Infor LN help for Job Shop Bills of Material (tibom3100m000) and Infor LN help for Job Shop Routings (tirou4100m000), Field Information (Use for Planning, Use for Costing, Approve Revision)."
@@ -639,20 +576,13 @@
               "v": " in "
             },
             {
-              "t": "strong",
-              "v": "Report Operations Completed"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tisfc0130m000"
+              "code": "tisfc0130m000",
+              "name": "Report Operations Completed"
             },
             {
               "t": "text",
-              "v": "). Infor session help confirms that this session reports production progress through completed or rejected quantities for successive operations; for the last operation it can book the completed product into inventory."
+              "v": ". Infor session help confirms that this session reports production progress through completed or rejected quantities for successive operations; for the last operation it can book the completed product into inventory."
             }
           ],
           "text": "At 56:20 the presenter entered 1 as Additional Completed in Report Operations Completed (tisfc0130m000). Infor session help confirms that this session reports production progress through completed or rejected quantities for successive operations; for the last operation it can book the completed product into inventory."
@@ -665,20 +595,13 @@
               "v": "At 57:20 "
             },
             {
-              "t": "strong",
-              "v": "Report Orders Completed"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tisfc0120s000"
+              "code": "tisfc0120s000",
+              "name": "Report Orders Completed"
             },
             {
               "t": "text",
-              "v": ") showed "
+              "v": " showed "
             },
             {
               "t": "strong",
@@ -697,20 +620,13 @@
               "v": "; after the save, "
             },
             {
-              "t": "strong",
-              "v": "Production Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tisfc0501m000"
+              "code": "tisfc0501m000",
+              "name": "Production Orders"
             },
             {
               "t": "text",
-              "v": ") showed the order as "
+              "v": " showed the order as "
             },
             {
               "t": "literal",
@@ -755,36 +671,22 @@
               "v": "Sources: Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Report Operations Completed"
+              "t": "session",
+              "code": "tisfc0130m000",
+              "name": "Report Operations Completed"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ", opening description; Infor LN help for "
             },
             {
               "t": "session",
-              "code": "tisfc0130m000"
+              "code": "tisfc0501m000",
+              "name": "Production Orders"
             },
             {
               "t": "text",
-              "v": "), opening description; Infor LN help for "
-            },
-            {
-              "t": "strong",
-              "v": "Production Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "tisfc0501m000"
-            },
-            {
-              "t": "text",
-              "v": "), Field Information; LN training environment recording and screenshots dated 2026-08-06."
+              "v": ", Field Information; LN training environment recording and screenshots dated 2026-08-06."
             }
           ],
           "text": "Sources: Infor LN help for Report Operations Completed (tisfc0130m000), opening description; Infor LN help for Production Orders (tisfc0501m000), Field Information; LN training environment recording and screenshots dated 2026-08-06."
@@ -803,20 +705,13 @@
               "v": "The screen showed "
             },
             {
-              "t": "strong",
-              "v": "Material to Issue for Production Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "ticst0101m100"
+              "code": "ticst0101m100",
+              "name": "Material to Issue for Production Orders"
             },
             {
               "t": "text",
-              "v": "), the "
+              "v": ", the "
             },
             {
               "t": "strong",
@@ -849,20 +744,13 @@
               "v": ", from session help filed after this review was first written. "
             },
             {
-              "t": "strong",
-              "v": "Material to Issue for Production Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "ticst0101m100"
+              "code": "ticst0101m100",
+              "name": "Material to Issue for Production Orders"
             },
             {
               "t": "text",
-              "v": ") maintains material quantities that must move from the warehouse to the production center. The "
+              "v": " maintains material quantities that must move from the warehouse to the production center. The "
             },
             {
               "t": "strong",
@@ -873,20 +761,13 @@
               "v": " action relates to a distinct session, "
             },
             {
-              "t": "strong",
-              "v": "Initiate Inventory Issue"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tisfc0207m000"
+              "code": "tisfc0207m000",
+              "name": "Initiate Inventory Issue"
             },
             {
               "t": "text",
-              "v": "), which unblocks the material's warehouse order line so warehouse staff can begin the outbound procedure — generate advice, pick, ship to the job shop. Two check boxes decide how much of that is automatic:"
+              "v": ", which unblocks the material's warehouse order line so warehouse staff can begin the outbound procedure — generate advice, pick, ship to the job shop. Two check boxes decide how much of that is automatic:"
             }
           ],
           "text": "Updated 2026-08-13 — the underlying mechanism is now documented, from session help filed after this review was first written. Material to Issue for Production Orders (ticst0101m100) maintains material quantities that must move from the warehouse to the production center. The Initiate action relates to a distinct session, Initiate Inventory Issue (tisfc0207m000), which unblocks the material's warehouse order line so warehouse staff can begin the outbound procedure — generate advice, pick, ship to the job shop. Two check boxes decide how much of that is automatic:"
@@ -927,20 +808,13 @@
                   "v": " — if selected, the entire outbound procedure runs automatically once the line is unblocked; if cleared, the "
                 },
                 {
-                  "t": "strong",
-                  "v": "Activities by Warehousing Order"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2104m000"
+                  "code": "whinh2104m000",
+                  "name": "Activities by Warehousing Order"
                 },
                 {
                   "t": "text",
-                  "v": ") settings decide which of those outbound steps are automatic versus manual."
+                  "v": " settings decide which of those outbound steps are automatic versus manual."
                 }
               ],
               "text": "Direct Process Warehouse Order Line — if selected, the entire outbound procedure runs automatically once the line is unblocked; if cleared, the Activities by Warehousing Order (whinh2104m000) settings decide which of those outbound steps are automatic versus manual."
@@ -981,20 +855,13 @@
               "v": ". This segment is not a valid procedure; the clean 2026-08-11 run superseded it. Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Material to Issue for Production Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "ticst0101m100"
+              "code": "ticst0101m100",
+              "name": "Material to Issue for Production Orders"
             },
             {
               "t": "text",
-              "v": "), Field Information (Direct Initiate Inventory Issue, Direct Process Warehouse Order Line). "
+              "v": ", Field Information (Direct Initiate Inventory Issue, Direct Process Warehouse Order Line). "
             }
           ],
           "text": "Source: LN training environment, verified from the 2026-08-06 recording at 54:48–55:28; the source on file. This segment is not a valid procedure; the clean 2026-08-11 run superseded it. Infor LN help for Material to Issue for Production Orders (ticst0101m100), Field Information (Direct Initiate Inventory Issue, Direct Process Warehouse Order Line)."
@@ -1080,6 +947,10 @@
                     },
                     {
                       "t": "text",
+                      "v": " "
+                    },
+                    {
+                      "t": "text",
                       "v": "Use for Planning"
                     },
                     {
@@ -1111,39 +982,25 @@
                       "v": " as an action that records who/when, not as a gate. Source: Infor LN help for "
                     },
                     {
-                      "t": "chip",
-                      "v": "Job Shop Bills of Material"
+                      "t": "session",
+                      "code": "tibom3100m000",
+                      "name": "Job Shop Bills of Material"
                     },
                     {
                       "t": "text",
-                      "v": " ("
+                      "v": ", Infor LN help for "
                     },
                     {
                       "t": "session",
-                      "code": "tibom3100m000"
+                      "code": "tirou4100m000",
+                      "name": "Job Shop Routings"
                     },
                     {
                       "t": "text",
-                      "v": "), Infor LN help for "
-                    },
-                    {
-                      "t": "chip",
-                      "v": "Job Shop Routings"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
-                      "t": "session",
-                      "code": "tirou4100m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": "), Field Information"
+                      "v": ", Field Information"
                     }
                   ],
-                  "text": "Narrowed 2026-08-13.Use for Planning and Use for Costing are real, confirmed check boxes with a one-at-a-time rule per item/site (planning) and per product (costing) — section 3.2. Not confirmed: that approval is a hard precondition for either flag; the help documents Approve Revision as an action that records who/when, not as a gate. Source: Infor LN help for Job Shop Bills of Material (tibom3100m000), Infor LN help for Job Shop Routings (tirou4100m000), Field Information"
+                  "text": "Narrowed 2026-08-13. Use for Planning and Use for Costing are real, confirmed check boxes with a one-at-a-time rule per item/site (planning) and per product (costing) — section 3.2. Not confirmed: that approval is a hard precondition for either flag; the help documents Approve Revision as an action that records who/when, not as a gate. Source: Infor LN help for Job Shop Bills of Material (tibom3100m000), Infor LN help for Job Shop Routings (tirou4100m000), Field Information"
                 }
               ]
             },
@@ -1178,20 +1035,13 @@
                       "v": " Infor LN help for "
                     },
                     {
-                      "t": "chip",
-                      "v": "Job Shop Routing"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tirou4600m000"
+                      "code": "tirou4600m000",
+                      "name": "Job Shop Routing"
                     },
                     {
                       "t": "text",
-                      "v": ") defines "
+                      "v": " defines "
                     },
                     {
                       "t": "text",
@@ -1245,20 +1095,13 @@
                       "v": " Infor LN help for "
                     },
                     {
-                      "t": "chip",
-                      "v": "Release Production Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0204m000"
+                      "code": "tisfc0204m000",
+                      "name": "Release Production Orders"
                     },
                     {
                       "t": "text",
-                      "v": ")'s opening description: \"Use this session to release production orders to the job shop. The production order status changes to Released.\" The narrated claim is correct as stated"
+                      "v": "'s opening description: \"Use this session to release production orders to the job shop. The production order status changes to Released.\" The narrated claim is correct as stated"
                     }
                   ],
                   "text": "Verified 2026-08-13. Infor LN help for Release Production Orders (tisfc0204m000)'s opening description: \"Use this session to release production orders to the job shop. The production order status changes to Released.\" The narrated claim is correct as stated"
@@ -1292,20 +1135,13 @@
                       "v": "Verified by Infor LN help for "
                     },
                     {
-                      "t": "chip",
-                      "v": "Report Operations Completed"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0130m000"
+                      "code": "tisfc0130m000",
+                      "name": "Report Operations Completed"
                     },
                     {
                       "t": "text",
-                      "v": "), opening description"
+                      "v": ", opening description"
                     }
                   ],
                   "text": "Verified by Infor LN help for Report Operations Completed (tisfc0130m000), opening description"
@@ -1374,20 +1210,13 @@
                       "v": " Infor LN help for "
                     },
                     {
-                      "t": "chip",
-                      "v": "Close Production Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "ticst0201m000"
+                      "code": "ticst0201m000",
+                      "name": "Close Production Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") is now filed and describes what closing "
+                      "v": " is now filed and describes what closing "
                     },
                     {
                       "t": "text",

@@ -2,7 +2,7 @@
   "contract": 2,
   "tier": "export",
   "id": "SG-ship-from-stock",
-  "title": "Ship from Stock",
+  "title": "Ship from stock",
   "module": "Sales · Warehousing",
   "modules": [
     "Sales",
@@ -186,20 +186,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehouse - Item Inventory"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd2515m000"
+                      "code": "whwmd2515m000",
+                      "name": "Warehouse - Item Inventory"
                     },
                     {
                       "t": "text",
-                      "v": ") opens, item carried through"
+                      "v": " opens, item carried through"
                     }
                   ],
                   "text": "Warehouse - Item Inventory (whwmd2515m000) opens, item carried through"
@@ -255,6 +248,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "item"
                     },
@@ -264,6 +261,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -277,6 +278,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "on-hand"
                     },
@@ -286,6 +291,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -326,7 +335,7 @@
                     },
                     {
                       "t": "link",
-                      "v": "Manual Production Order from Existing Master Data",
+                      "v": "Production order",
                       "href": "SG-manual-production-order-existing-master-data.md"
                     },
                     {
@@ -343,7 +352,7 @@
                     },
                     {
                       "t": "link",
-                      "v": "Transfer Item Between Warehouses",
+                      "v": "Warehouse transfer",
                       "href": "SG-transfer-item-between-warehouses.md"
                     },
                     {
@@ -360,7 +369,7 @@
                     },
                     {
                       "t": "link",
-                      "v": "Purchase Order to Warehouse Receipt",
+                      "v": "Purchase to receipt",
                       "href": "SG-purchase-order-to-warehouse-receipt.md"
                     },
                     {
@@ -368,7 +377,7 @@
                       "v": ". Return here at phase 1"
                     }
                   ],
-                  "text": "if no warehouse holds enough to cover the order, replenish before continuing: make it with Manual Production Order from Existing Master Data, move it with Transfer Item Between Warehouses, or buy it in with Purchase Order to Warehouse Receipt. Return here at phase 1"
+                  "text": "if no warehouse holds enough to cover the order, replenish before continuing: make it with Production order, move it with Warehouse transfer, or buy it in with Purchase to receipt. Return here at phase 1"
                 },
                 {
                   "tokens": [
@@ -649,10 +658,10 @@
                     },
                     {
                       "t": "text",
-                      "v": " to the one from 0.4"
+                      "v": " to the warehouse recorded at 0.4"
                     }
                   ],
-                  "text": "Set Warehouse to the one from 0.4"
+                  "text": "Set Warehouse to the warehouse recorded at 0.4"
                 },
                 {
                   "tokens": [
@@ -712,6 +721,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -830,6 +843,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1263,20 +1280,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Sales Order Line Status"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tdsls4534s000"
+                      "code": "tdsls4534s000",
+                      "name": "Sales Order Line Status"
                     },
                     {
                       "t": "text",
-                      "v": ") opens on "
+                      "v": " opens on "
                     },
                     {
                       "t": "chip",
@@ -1415,20 +1425,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehousing Order"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2100m100"
+                      "code": "whinh2100m100",
+                      "name": "Warehousing Order"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Warehousing Order (whinh2100m100) opens"
@@ -1576,6 +1579,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "Run"
                     },
@@ -1585,6 +1592,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1999,6 +2010,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "shipment number"
                     }
@@ -2118,20 +2133,13 @@
                       "v": " on "
                     },
                     {
-                      "t": "chip",
-                      "v": "Shipment Lines"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh4131m000"
+                      "code": "whinh4131m000",
+                      "name": "Shipment Lines"
                     },
                     {
                       "t": "text",
-                      "v": "), not here"
+                      "v": ", not here"
                     }
                   ],
                   "text": "Shipping less than picked? Change Shipped Quantity on Shipment Lines (whinh4131m000), not here"
@@ -2140,6 +2148,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -2332,6 +2344,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "on-hand after"
                     },
@@ -2341,6 +2357,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -3777,20 +3797,13 @@
                   "v": " on "
                 },
                 {
-                  "t": "chip",
-                  "v": "Shipment Lines"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh4131m000"
+                  "code": "whinh4131m000",
+                  "name": "Shipment Lines"
                 },
                 {
                   "t": "text",
-                  "v": "); see 5.2. "
+                  "v": "; see 5.2. "
                 },
                 {
                   "t": "strong",
@@ -3925,20 +3938,9 @@
                   "v": " first. Source: Infor LN help for "
                 },
                 {
-                  "t": "chip",
-                  "v": "Default Order Types by Origin"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh0120m000"
-                },
-                {
-                  "t": "text",
-                  "v": ")"
+                  "code": "whinh0120m000",
+                  "name": "Default Order Types by Origin"
                 }
               ],
               "text": "Depends on the warehousing procedure attached to the order type. Check Advised Quantity first. Source: Infor LN help for Default Order Types by Origin (whinh0120m000)"

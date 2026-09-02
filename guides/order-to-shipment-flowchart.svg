@@ -224,13 +224,13 @@
     <g><circle cx="187" cy="926" r="9.5" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.4"/><text x="187" y="930" fill="var(--accent)">7</text></g>
   </g>
   <g font-size="14" fill="var(--ink)">
-    <text x="208" y="739">Create Basic Test Items and Defaults</text>
-    <text x="208" y="771">Ship from Stock</text>
-    <text x="208" y="803">Run Order Planning for One Item</text>
-    <text x="208" y="835">Purchase Order to Warehouse Receipt</text>
-    <text x="208" y="867">Manual Production Order from Existing Master Data</text>
-    <text x="208" y="899">Transfer Item Between Warehouses</text>
-    <text x="208" y="931" fill="var(--accent)">Demand to Shipment via Planning</text>
+    <text x="208" y="739">Create test items</text>
+    <text x="208" y="771">Ship from stock</text>
+    <text x="208" y="803">Run order planning</text>
+    <text x="208" y="835">Purchase to receipt</text>
+    <text x="208" y="867">Production order</text>
+    <text x="208" y="899">Warehouse transfer</text>
+    <text x="208" y="931" fill="var(--accent)">Plan to shipment</text>
   </g>
   <line x1="174" y1="946" x2="772" y2="946" stroke="var(--line)"/>
   <text x="174" y="968" font-size="12.5" fill="var(--ink-2)"><tspan font-weight="700" fill="var(--accent)">7</tspan> is the spine &#8212; it chains 1&#8211;6 down this route and owns stage 4.</text>

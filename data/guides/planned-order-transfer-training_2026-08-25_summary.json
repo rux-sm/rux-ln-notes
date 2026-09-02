@@ -83,20 +83,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Item Order Plan"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp0520m000"
+                  "code": "cprrp0520m000",
+                  "name": "Item Order Plan"
                 },
                 {
                   "t": "text",
-                  "v": ") — the Overview and Demand tabs for "
+                  "v": " — the Overview and Demand tabs for "
                 },
                 {
                   "t": "literal",
@@ -190,20 +183,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd0501m100"
+                  "code": "tcibd0501m100",
+                  "name": "Item"
                 },
                 {
                   "t": "text",
-                  "v": ") — the "
+                  "v": " — the "
                 },
                 {
                   "t": "strong",
@@ -295,20 +281,13 @@
                   "v": "From the Item Order Plan, "
                 },
                 {
-                  "t": "strong",
-                  "v": "References ➔ Items - Planning"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprpd1100m000"
+                  "code": "cprpd1100m000",
+                  "name": "References ➔ Items - Planning"
                 },
                 {
                   "t": "text",
-                  "v": "), Horizons tab — the order horizon changed from 10 days to 365 so that demand further out would be picked up."
+                  "v": ", Horizons tab — the order horizon changed from 10 days to 365 so that demand further out would be picked up."
                 }
               ],
               "text": "From the Item Order Plan, References ➔ Items - Planning (cprpd1100m000), Horizons tab — the order horizon changed from 10 days to 365 so that demand further out would be picked up."
@@ -346,20 +325,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Generate Order Planning (Item)"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp1220m000"
+                  "code": "cprrp1220m000",
+                  "name": "Generate Order Planning (Item)"
                 },
                 {
                   "t": "text",
-                  "v": ") run for "
+                  "v": " run for "
                 },
                 {
                   "t": "literal",
@@ -421,20 +393,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Planned Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp1100m000"
+                  "code": "cprrp1100m000",
+                  "name": "Planned Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") — the review screen for everything MRP produced. Two planned purchase orders for "
+                  "v": " — the review screen for everything MRP produced. Two planned purchase orders for "
                 },
                 {
                   "t": "literal",
@@ -466,20 +431,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Actions ➔ Transfer Order Planning"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cppat1210m000"
+                  "code": "cppat1210m000",
+                  "name": "Actions ➔ Transfer Order Planning"
                 },
                 {
                   "t": "text",
-                  "v": "). On the "
+                  "v": ". On the "
                 },
                 {
                   "t": "strong",
@@ -804,6 +762,10 @@
           "v": "Full record:"
         },
         {
+          "t": "text",
+          "v": " "
+        },
+        {
           "t": "literal",
           "v": "the source on file"
         },
@@ -820,7 +782,7 @@
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record:the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

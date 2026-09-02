@@ -2,7 +2,7 @@
   "contract": 2,
   "tier": "export",
   "id": "SG-demand-to-shipment-via-planning",
-  "title": "Demand to Shipment via Planning",
+  "title": "Plan to shipment",
   "module": "Sales · Enterprise Planning · Procurement · Manufacturing · Warehousing",
   "modules": [
     "Sales",
@@ -116,20 +116,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Inventory 360"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd4300m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "whwmd4300m000",
+                      "name": "Inventory 360"
                     }
                   ],
                   "text": "Open Inventory 360 (whwmd4300m000)"
@@ -186,6 +175,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "pair on-hand before"
                     },
@@ -195,6 +188,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -254,6 +251,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "rod on-hand before"
                     },
@@ -263,6 +264,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -294,20 +299,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Order Plan"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp0520m000"
+                      "code": "cprrp0520m000",
+                      "name": "Item Order Plan"
                     },
                     {
                       "t": "text",
-                      "v": ") and search each of the three items in turn"
+                      "v": " and search each of the three items in turn"
                     }
                   ],
                   "text": "Open Item Order Plan (cprrp0520m000) and search each of the three items in turn"
@@ -491,6 +489,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "sales order number"
                     },
@@ -502,6 +504,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "ordered quantity"
                     },
@@ -511,6 +517,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -584,20 +594,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Items - Planning"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprpd1100m000"
+                      "code": "cprpd1100m000",
+                      "name": "Items - Planning"
                     },
                     {
                       "t": "text",
-                      "v": ") for "
+                      "v": " for "
                     },
                     {
                       "t": "literal",
@@ -630,6 +633,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -703,20 +710,13 @@
                       "v": "Reopen "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Order Plan"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp0520m000"
+                      "code": "cprrp0520m000",
+                      "name": "Item Order Plan"
                     },
                     {
                       "t": "text",
-                      "v": ") for "
+                      "v": " for "
                     },
                     {
                       "t": "literal",
@@ -788,20 +788,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Generate Order Planning (Item)"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp1220m000"
+                      "code": "cprrp1220m000",
+                      "name": "Generate Order Planning (Item)"
                     },
                     {
                       "t": "text",
-                      "v": ") for "
+                      "v": " for "
                     },
                     {
                       "t": "literal",
@@ -815,6 +808,10 @@
                     {
                       "t": "field",
                       "v": "Scenario"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "literal",
@@ -833,7 +830,7 @@
                       "v": " are set"
                     }
                   ],
-                  "text": "ScenarioACT and Plan Item are set"
+                  "text": "Scenario ACT and Plan Item are set"
                 }
               ],
               "id": "2.1",
@@ -930,20 +927,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Order Plan"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp0520m000"
+                      "code": "cprrp0520m000",
+                      "name": "Item Order Plan"
                     },
                     {
                       "t": "text",
-                      "v": ") for "
+                      "v": " for "
                     },
                     {
                       "t": "literal",
@@ -960,6 +950,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1003,20 +997,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Planned Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp1100m000"
+                      "code": "cprrp1100m000",
+                      "name": "Planned Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") at "
+                      "v": " at "
                     },
                     {
                       "t": "path",
@@ -1047,6 +1034,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "planned purchase orders"
                     },
@@ -1059,11 +1050,15 @@
                       "v": "Order Status"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "status",
                       "v": "Planned"
                     }
                   ],
-                  "text": "planned purchase orders — every row at Order StatusPlanned"
+                  "text": "planned purchase orders — every row at Order Status Planned"
                 }
               ],
               "id": "2.5",
@@ -1098,6 +1093,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1176,6 +1175,10 @@
             {
               "t": "strong",
               "v": "you are testing it, not using it."
+            },
+            {
+              "t": "text",
+              "v": " "
             }
           ],
           "text": "> Warning > The purchase half of this phase is walked; the production half has never been run here. On 2026-08-25 two planned purchase orders for BAM-ROD became purchase order 100000682. The two planned production orders beside them were deliberately left untransferred and remain at Planned. Step 3.6 is therefore the one step in this guide nobody has performed — you are testing it, not using it."
@@ -1302,20 +1305,13 @@
                       "v": "In "
                     },
                     {
-                      "t": "chip",
-                      "v": "Confirm Order Planning"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp1200m000"
+                      "code": "cprrp1200m000",
+                      "name": "Confirm Order Planning"
                     },
                     {
                       "t": "text",
-                      "v": "), confirm the planned orders you intend to transfer"
+                      "v": ", confirm the planned orders you intend to transfer"
                     }
                   ],
                   "text": "In Confirm Order Planning (cprrp1200m000), confirm the planned orders you intend to transfer"
@@ -1368,20 +1364,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Transfer Order Planning"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cppat1210m000"
+                      "code": "cppat1210m000",
+                      "name": "Transfer Order Planning"
                     },
                     {
                       "t": "text",
-                      "v": "), select "
+                      "v": ", select "
                     },
                     {
                       "t": "field",
@@ -1446,6 +1435,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "real purchase order number"
                     },
@@ -1499,6 +1492,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "real production order number"
                     },
@@ -1507,20 +1504,13 @@
                       "v": " — expected in "
                     },
                     {
-                      "t": "chip",
-                      "v": "Production Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0501m000"
+                      "code": "tisfc0501m000",
+                      "name": "Production Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") at "
+                      "v": " at "
                     },
                     {
                       "t": "status",
@@ -1571,20 +1561,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Warehousing Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2100m000"
+                      "code": "whinh2100m000",
+                      "name": "Warehousing Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") and find the inbound order LN raised from the purchase order at 3.5, then "
+                      "v": " and find the inbound order LN raised from the purchase order at 3.5, then "
                     },
                     {
                       "t": "button",
@@ -1647,20 +1630,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehouse Receipt"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh3512m000"
+                      "code": "whinh3512m000",
+                      "name": "Warehouse Receipt"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Warehouse Receipt (whinh3512m000) opens"
@@ -1728,6 +1704,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1829,6 +1809,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1966,20 +1950,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Release Production Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0204m000"
+                      "code": "tisfc0204m000",
+                      "name": "Release Production Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Release Production Orders (tisfc0204m000) opens"
@@ -2053,20 +2030,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Material to Issue for Production Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "ticst0101m100"
+                      "code": "ticst0101m100",
+                      "name": "Material to Issue for Production Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") at "
+                      "v": " at "
                     },
                     {
                       "t": "path",
@@ -2135,20 +2105,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Report Operations"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tisfc0130m000"
+                      "code": "tisfc0130m000",
+                      "name": "Report Operations"
                     },
                     {
                       "t": "text",
-                      "v": ") at "
+                      "v": " at "
                     },
                     {
                       "t": "path",
@@ -2219,6 +2182,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -2292,6 +2259,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -2396,20 +2367,13 @@
                       "v": "In "
                     },
                     {
-                      "t": "chip",
-                      "v": "Warehouse Manager Dashboard"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2300m000"
+                      "code": "whinh2300m000",
+                      "name": "Warehouse Manager Dashboard"
                     },
                     {
                       "t": "text",
-                      "v": "), filter on your sales order number and "
+                      "v": ", filter on your sales order number and "
                     },
                     {
                       "t": "button",
@@ -2422,20 +2386,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehousing Order"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2100m100"
+                      "code": "whinh2100m100",
+                      "name": "Warehousing Order"
                     },
                     {
                       "t": "text",
-                      "v": "), "
+                      "v": ", "
                     },
                     {
                       "t": "chip",
@@ -2533,20 +2490,13 @@
                       "v": "In "
                     },
                     {
-                      "t": "chip",
-                      "v": "Picking List"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh4525m100"
+                      "code": "whinh4525m100",
+                      "name": "Picking List"
                     },
                     {
                       "t": "text",
-                      "v": "), tick the line and run "
+                      "v": ", tick the line and run "
                     },
                     {
                       "t": "command",
@@ -2593,6 +2543,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "shipment number"
                     }
@@ -2622,20 +2576,13 @@
                       "v": "In "
                     },
                     {
-                      "t": "chip",
-                      "v": "Shipments"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh4130m000"
+                      "code": "whinh4130m000",
+                      "name": "Shipments"
                     },
                     {
                       "t": "text",
-                      "v": "), find the shipment and "
+                      "v": ", find the shipment and "
                     },
                     {
                       "t": "button",
@@ -2713,6 +2660,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "shipped quantity"
                     },
@@ -2776,6 +2727,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -3514,6 +3469,10 @@
           "v": "`BAM-ROD` has a buy-from business partner and `BAM-SLEEVE` has not been checked."
         },
         {
+          "t": "text",
+          "v": " "
+        },
+        {
           "t": "literal",
           "v": "BP4000006"
         },
@@ -3550,7 +3509,7 @@
           "v": "Not documented for this release."
         }
       ],
-      "text": "> Warning > `BAM-ROD` has a buy-from business partner and `BAM-SLEEVE` has not been checked.BP4000006 FAIRFIELD ENGINEERING CO. was added to BAM-ROD on 2026-08-25 because the transfer refused it without one. If MRP proposes a planned purchase order for BAM-SLEEVE, phase 3 will very likely fail on it the same way. Not documented for this release."
+      "text": "> Warning > `BAM-ROD` has a buy-from business partner and `BAM-SLEEVE` has not been checked. BP4000006 FAIRFIELD ENGINEERING CO. was added to BAM-ROD on 2026-08-25 because the transfer refused it without one. If MRP proposes a planned purchase order for BAM-SLEEVE, phase 3 will very likely fail on it the same way. Not documented for this release."
     },
     {
       "kind": "troubleshooting",
@@ -3626,20 +3585,13 @@
                   "v": " tab of "
                 },
                 {
-                  "t": "chip",
-                  "v": "Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd0501m100"
+                  "code": "tcibd0501m100",
+                  "name": "Item"
                 },
                 {
                   "t": "text",
-                  "v": "). Add it, then close and reopen the order session"
+                  "v": ". Add it, then close and reopen the order session"
                 }
               ],
               "text": "No row for the order's sales office on the Sales Offices tab of Item (tcibd0501m100). Add it, then close and reopen the order session"
@@ -3774,20 +3726,9 @@
                   "v": "Pegging relations were not generated, or the demand is beyond the Pegging Horizon in "
                 },
                 {
-                  "t": "chip",
-                  "v": "Planning Parameters"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprpd0100m000"
-                },
-                {
-                  "t": "text",
-                  "v": ")"
+                  "code": "cprpd0100m000",
+                  "name": "Planning Parameters"
                 }
               ],
               "text": "Pegging relations were not generated, or the demand is beyond the Pegging Horizon in Planning Parameters (cprpd0100m000)"
@@ -3942,20 +3883,13 @@
                   "v": " tab; "
                 },
                 {
-                  "t": "chip",
-                  "v": "Purchase Order Line Status"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tdpur4534m000"
+                  "code": "tdpur4534m000",
+                  "name": "Purchase Order Line Status"
                 },
                 {
                   "t": "text",
-                  "v": ") names the activity a stuck line is waiting on"
+                  "v": " names the activity a stuck line is waiting on"
                 }
               ],
               "text": "Check the purchase order's Release to Warehousing tab; Purchase Order Line Status (tdpur4534m000) names the activity a stuck line is waiting on"
@@ -4001,20 +3935,13 @@
                   "v": " and "
                 },
                 {
-                  "t": "chip",
-                  "v": "Receipt Message Log"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh3530m000"
+                  "code": "whinh3530m000",
+                  "name": "Receipt Message Log"
                 },
                 {
                   "t": "text",
-                  "v": ") afterwards "
+                  "v": " afterwards "
                 }
               ],
               "text": "Capture the LOG detail before clearing it, and read Errors Logged and Receipt Message Log (whinh3530m000) afterwards"
@@ -4146,20 +4073,13 @@
                   "v": "Run "
                 },
                 {
-                  "t": "chip",
-                  "v": "Initiate Inventory Issue"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0207m000"
+                  "code": "tisfc0207m000",
+                  "name": "Initiate Inventory Issue"
                 },
                 {
                   "t": "text",
-                  "v": ") manually; if still blocked, record what you saw "
+                  "v": " manually; if still blocked, record what you saw "
                 }
               ],
               "text": "Run Initiate Inventory Issue (tisfc0207m000) manually; if still blocked, record what you saw"
@@ -4209,20 +4129,13 @@
                   "v": " path at 5.5. Check "
                 },
                 {
-                  "t": "chip",
-                  "v": "Warehousing Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2100m000"
+                  "code": "whinh2100m000",
+                  "name": "Warehousing Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") for an open production receipt order"
+                  "v": " for an open production receipt order"
                 }
               ],
               "text": "That is the No path at 5.5. Check Warehousing Orders (whinh2100m000) for an open production receipt order"

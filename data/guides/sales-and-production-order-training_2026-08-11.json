@@ -38,10 +38,10 @@
       "tokens": [
         {
           "t": "text",
-          "v": "Review a trainee's Ship from Stock execution, explain why warehousing activities can be manual or automatic, and begin a production-order exercise covering the manufactured item's bill of material, routing, order creation, release, and material issue."
+          "v": "Review a trainee's Ship from stock execution, explain why warehousing activities can be manual or automatic, and begin a production-order exercise covering the manufactured item's bill of material, routing, order creation, release, and material issue."
         }
       ],
-      "text": "Review a trainee's Ship from Stock execution, explain why warehousing activities can be manual or automatic, and begin a production-order exercise covering the manufactured item's bill of material, routing, order creation, release, and material issue."
+      "text": "Review a trainee's Ship from stock execution, explain why warehousing activities can be manual or automatic, and begin a production-order exercise covering the manufactured item's bill of material, routing, order creation, release, and material issue."
     },
     {
       "kind": "prose",
@@ -128,7 +128,7 @@
   "topics": [
     {
       "n": "3.1",
-      "title": "Ship from Stock walkthrough",
+      "title": "Ship from stock walkthrough",
       "blocks": [
         {
           "kind": "prose",
@@ -186,36 +186,22 @@
               "v": " in "
             },
             {
-              "t": "strong",
-              "v": "Warehouse - Item Inventory"
+              "t": "session",
+              "code": "whwmd2515m000",
+              "name": "Warehouse - Item Inventory"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ". After the walkthrough, "
             },
             {
               "t": "session",
-              "code": "whwmd2515m000"
+              "code": "whinr1510m000",
+              "name": "Inventory Transactions"
             },
             {
               "t": "text",
-              "v": "). After the walkthrough, "
-            },
-            {
-              "t": "strong",
-              "v": "Inventory Transactions"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "whinr1510m000"
-            },
-            {
-              "t": "text",
-              "v": ") showed an "
+              "v": " showed an "
             },
             {
               "t": "strong",
@@ -310,20 +296,13 @@
               "v": "The trainer explained that the warehousing order type and its linked procedures determine which activities apply and whether they run manually or automatically. Infor help confirms that "
             },
             {
-              "t": "strong",
-              "v": "Activities by Procedure"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "whinh0106m000"
+              "code": "whinh0106m000",
+              "name": "Activities by Procedure"
             },
             {
               "t": "text",
-              "v": ") selects activities for a warehousing procedure and that its "
+              "v": " selects activities for a warehousing procedure and that its "
             },
             {
               "t": "em",
@@ -344,20 +323,13 @@
               "v": "Source: Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Activities by Procedure"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "whinh0106m000"
+              "code": "whinh0106m000",
+              "name": "Activities by Procedure"
             },
             {
               "t": "text",
-              "v": "), opening description and Field Information; the Infor LN "
+              "v": ", opening description and Field Information; the Infor LN "
             },
             {
               "t": "strong",
@@ -432,36 +404,22 @@
               "v": "'s help confirms the default comes from the order type assigned to the "
             },
             {
-              "t": "strong",
-              "v": "Sold-to Business Partner"
+              "t": "session",
+              "code": "tccom4110s000",
+              "name": "Sold-to Business Partner"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ", falling back to the order type on the current user's "
             },
             {
               "t": "session",
-              "code": "tccom4110s000"
+              "code": "tdsls0139m000",
+              "name": "Sales User Profile"
             },
             {
               "t": "text",
-              "v": "), falling back to the order type on the current user's "
-            },
-            {
-              "t": "strong",
-              "v": "Sales User Profile"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "tdsls0139m000"
-            },
-            {
-              "t": "text",
-              "v": ") if the customer has none. See "
+              "v": " if the customer has none. See "
             },
             {
               "t": "literal",
@@ -496,20 +454,13 @@
               "v": " from "
             },
             {
-              "t": "strong",
-              "v": "Job Shop Routings"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tirou4100m000"
+              "code": "tirou4100m000",
+              "name": "Job Shop Routings"
             },
             {
               "t": "text",
-              "v": ") produced a report for product "
+              "v": " produced a report for product "
             },
             {
               "t": "literal",
@@ -650,36 +601,22 @@
               "v": "Source: Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Job Shop Bills of Material"
+              "t": "session",
+              "code": "tibom3100m000",
+              "name": "Job Shop Bills of Material"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ", Infor LN help for "
             },
             {
               "t": "session",
-              "code": "tibom3100m000"
+              "code": "tirou4100m000",
+              "name": "Job Shop Routings"
             },
             {
               "t": "text",
-              "v": "), Infor LN help for "
-            },
-            {
-              "t": "strong",
-              "v": "Job Shop Routings"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "tirou4100m000"
-            },
-            {
-              "t": "text",
-              "v": "), Field Information."
+              "v": ", Field Information."
             }
           ],
           "text": "Source: Infor LN help for Job Shop Bills of Material (tibom3100m000), Infor LN help for Job Shop Routings (tirou4100m000), Field Information."
@@ -735,20 +672,13 @@
                   "v": ", was visible in "
                 },
                 {
-                  "t": "strong",
-                  "v": "Production Order"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0101m100"
+                  "code": "tisfc0101m100",
+                  "name": "Production Order"
                 },
                 {
                   "t": "text",
-                  "v": ") with BOM "
+                  "v": " with BOM "
                 },
                 {
                   "t": "literal",
@@ -812,20 +742,13 @@
                   "v": " was invoked from "
                 },
                 {
-                  "t": "strong",
-                  "v": "Production Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0501m000"
+                  "code": "tisfc0501m000",
+                  "name": "Production Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") — per that session's own help, filed 2026-08-13, this is literally \"release production orders to the job shop,\" and it is what changes the status to "
+                  "v": " — per that session's own help, filed 2026-08-13, this is literally \"release production orders to the job shop,\" and it is what changes the status to "
                 },
                 {
                   "t": "strong",
@@ -845,20 +768,13 @@
                   "v": "In "
                 },
                 {
-                  "t": "strong",
-                  "v": "Material to Issue for Production Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "ticst0101m100"
+                  "code": "ticst0101m100",
+                  "name": "Material to Issue for Production Orders"
                 },
                 {
                   "t": "text",
-                  "v": "), material "
+                  "v": ", material "
                 },
                 {
                   "t": "literal",
@@ -898,20 +814,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Warehousing Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2100m000"
+                  "code": "whinh2100m000",
+                  "name": "Warehousing Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") showed a planned production receipt and an open production issue for order "
+                  "v": " showed a planned production receipt and an open production issue for order "
                 },
                 {
                   "t": "literal",
@@ -959,20 +868,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Outbound Line Status Overview"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2129m000"
+                  "code": "whinh2129m000",
+                  "name": "Outbound Line Status Overview"
                 },
                 {
                   "t": "text",
-                  "v": ") showed ordered quantity "
+                  "v": " showed ordered quantity "
                 },
                 {
                   "t": "literal",
@@ -1174,6 +1076,10 @@
               "v": "Updated 2026-08-13 — the mechanism behind step 5 is now sourced."
             },
             {
+              "t": "text",
+              "v": " "
+            },
+            {
               "t": "session",
               "code": "ticst0101m100"
             },
@@ -1192,6 +1098,10 @@
             {
               "t": "strong",
               "v": "Initiate Inventory Issue"
+            },
+            {
+              "t": "text",
+              "v": " "
             },
             {
               "t": "session",
@@ -1234,7 +1144,7 @@
               "v": " . "
             }
           ],
-          "text": "Updated 2026-08-13 — the mechanism behind step 5 is now sourced.ticst0101m100's help describes two check boxes that govern exactly this: Direct Initiate Inventory Issue (unblocks the material's warehouse order line automatically on release, versus needing Initiate Inventory Issuetisfc0207m000 run by hand) and Direct Process Warehouse Order Line (runs the whole outbound procedure automatically once unblocked, versus falling back to Activities by Warehousing Order's manual/automatic settings — the same session already cited in section 3.2). Generate and Release Outbound Advice needing to be run manually here is consistent with Direct Process Warehouse Order Line being off for this material, but which check box is actually set for Company 4100 is still not confirmed ."
+          "text": "Updated 2026-08-13 — the mechanism behind step 5 is now sourced. ticst0101m100's help describes two check boxes that govern exactly this: Direct Initiate Inventory Issue (unblocks the material's warehouse order line automatically on release, versus needing Initiate Inventory Issue tisfc0207m000 run by hand) and Direct Process Warehouse Order Line (runs the whole outbound procedure automatically once unblocked, versus falling back to Activities by Warehousing Order's manual/automatic settings — the same session already cited in section 3.2). Generate and Release Outbound Advice needing to be run manually here is consistent with Direct Process Warehouse Order Line being off for this material, but which check box is actually set for Company 4100 is still not confirmed ."
         }
       ]
     },
@@ -1260,20 +1170,13 @@
               "v": "Infor help confirms the limited meanings that "
             },
             {
-              "t": "strong",
-              "v": "Report Operations Completed"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tisfc0130m000"
+              "code": "tisfc0130m000",
+              "name": "Report Operations Completed"
             },
             {
               "t": "text",
-              "v": ") records production progress and that "
+              "v": " records production progress and that "
             },
             {
               "t": "em",
@@ -1284,36 +1187,22 @@
               "v": " is the finished-goods quantity posted to inventory. Sources: Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Report Operations Completed"
+              "t": "session",
+              "code": "tisfc0130m000",
+              "name": "Report Operations Completed"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ", opening description and Field Information; Infor LN help for "
             },
             {
               "t": "session",
-              "code": "tisfc0130m000"
+              "code": "tisfc0501m000",
+              "name": "Production Orders"
             },
             {
               "t": "text",
-              "v": "), opening description and Field Information; Infor LN help for "
-            },
-            {
-              "t": "strong",
-              "v": "Production Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "tisfc0501m000"
-            },
-            {
-              "t": "text",
-              "v": "), Field Information."
+              "v": ", Field Information."
             }
           ],
           "text": "Infor help confirms the limited meanings that Report Operations Completed (tisfc0130m000) records production progress and that Quantity Delivered is the finished-goods quantity posted to inventory. Sources: Infor LN help for Report Operations Completed (tisfc0130m000), opening description and Field Information; Infor LN help for Production Orders (tisfc0501m000), Field Information."
@@ -1355,20 +1244,13 @@
               "v": " determines the item's default supply method when on-hand inventory is insufficient, and Enterprise Planning can generate planned production and purchase orders before transfer to execution packages. Sources: Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Item Detail"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tcibd0501m100"
+              "code": "tcibd0501m100",
+              "name": "Item Detail"
             },
             {
               "t": "text",
-              "v": "), Field Information; the Infor LN "
+              "v": ", Field Information; the Infor LN "
             },
             {
               "t": "strong",

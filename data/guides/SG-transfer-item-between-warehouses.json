@@ -2,7 +2,7 @@
   "contract": 2,
   "tier": "export",
   "id": "SG-transfer-item-between-warehouses",
-  "title": "Transfer Item Between Warehouses",
+  "title": "Warehouse transfer",
   "module": "Warehousing",
   "modules": [
     "Warehousing"
@@ -91,23 +91,20 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehouse - Item Inventory"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd2515m000"
+                      "code": "whwmd2515m000",
+                      "name": "Warehouse - Item Inventory"
                     },
                     {
                       "t": "text",
-                      "v": ") opens, item carried through — "
+                      "v": " opens, item carried through — "
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -121,6 +118,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "source warehouse"
                     },
@@ -130,6 +131,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -169,6 +174,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "destination warehouse"
                     },
@@ -178,6 +187,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -287,6 +300,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "expected warehousing order type"
                     },
@@ -296,6 +313,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -371,20 +392,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehousing Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2100m000"
+                      "code": "whinh2100m000",
+                      "name": "Warehousing Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Warehousing Orders (whinh2100m000) opens"
@@ -616,6 +630,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "actual warehousing order type"
                     }
@@ -653,6 +671,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "transfer order number"
                     }
@@ -688,6 +710,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -772,20 +798,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Outbound Line Status Overview"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2129m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "whinh2129m000",
+                      "name": "Outbound Line Status Overview"
                     }
                   ],
                   "text": "Open Outbound Line Status Overview (whinh2129m000)"
@@ -964,6 +979,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1356,6 +1375,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "picking list Run number"
                     }
@@ -1481,6 +1504,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1678,20 +1705,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Warehouse Receipt"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh3512m000"
+                      "code": "whinh3512m000",
+                      "name": "Warehouse Receipt"
                     },
                     {
                       "t": "text",
-                      "v": ") opens for the transfer line"
+                      "v": " opens for the transfer line"
                     }
                   ],
                   "text": "Warehouse Receipt (whinh3512m000) opens for the transfer line"
@@ -1784,6 +1804,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "source on-hand after"
                     },
@@ -1793,6 +1817,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -2541,20 +2569,13 @@
             {
               "tokens": [
                 {
-                  "t": "chip",
-                  "v": "Transfer Order Planning"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cppat1210m000"
+                  "code": "cppat1210m000",
+                  "name": "Transfer Order Planning"
                 },
                 {
                   "t": "text",
-                  "v": "), reached via "
+                  "v": ", reached via "
                 },
                 {
                   "t": "command",
@@ -2642,7 +2663,7 @@
               "tokens": [
                 {
                   "t": "link",
-                  "v": "Ship from Stock",
+                  "v": "Ship from stock",
                   "href": "SG-ship-from-stock.md"
                 },
                 {
@@ -2650,7 +2671,7 @@
                   "v": " — ship from the destination"
                 }
               ],
-              "text": "Ship from Stock — ship from the destination"
+              "text": "Ship from stock — ship from the destination"
             },
             {
               "tokens": [

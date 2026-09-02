@@ -26,15 +26,15 @@
       "tokens": [
         {
           "t": "text",
-          "v": "Review of a trainee's earlier Ship from Stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next."
+          "v": "Review of a trainee's earlier Ship from stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next."
         }
       ],
-      "text": "Review of a trainee's earlier Ship from Stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next."
+      "text": "Review of a trainee's earlier Ship from stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next."
     }
   ],
   "topics": [
     {
-      "title": "Ship from Stock, confirmed working",
+      "title": "Ship from stock, confirmed working",
       "blocks": [
         {
           "kind": "prose",
@@ -71,24 +71,21 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Warehouse - Item Inventory"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whwmd2515m000"
+                  "code": "whwmd2515m000",
+                  "name": "Warehouse - Item Inventory"
                 },
                 {
                   "t": "text",
-                  "v": ") — starting position: "
+                  "v": " — starting position: "
                 },
                 {
                   "t": "strong",
                   "v": "On Hand"
+                },
+                {
+                  "t": "text",
+                  "v": " "
                 },
                 {
                   "t": "literal",
@@ -103,6 +100,10 @@
                   "v": "On Order"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "60"
                 },
@@ -113,6 +114,10 @@
                 {
                   "t": "strong",
                   "v": "Allocated"
+                },
+                {
+                  "t": "text",
+                  "v": " "
                 },
                 {
                   "t": "literal",
@@ -127,6 +132,10 @@
                   "v": "Blocked"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "0"
                 },
@@ -139,6 +148,10 @@
                   "v": "Economic Stock"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "816"
                 },
@@ -147,25 +160,18 @@
                   "v": "."
                 }
               ],
-              "text": "Warehouse - Item Inventory (whwmd2515m000) — starting position: On Hand966, On Order60, Allocated210, Blocked0, Economic Stock816."
+              "text": "Warehouse - Item Inventory (whwmd2515m000) — starting position: On Hand 966, On Order 60, Allocated 210, Blocked 0, Economic Stock 816."
             },
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Inventory Transactions"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinr1510m000"
+                  "code": "whinr1510m000",
+                  "name": "Inventory Transactions"
                 },
                 {
                   "t": "text",
-                  "v": ") — after the shipment, an "
+                  "v": " — after the shipment, an "
                 },
                 {
                   "t": "strong",
@@ -188,6 +194,10 @@
                   "v": "Inventory After Transaction"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "961.000"
                 },
@@ -196,7 +206,7 @@
                   "v": "."
                 }
               ],
-              "text": "Inventory Transactions (whinr1510m000) — after the shipment, an Issue transaction of 5.000 and Inventory After Transaction961.000."
+              "text": "Inventory Transactions (whinr1510m000) — after the shipment, an Issue transaction of 5.000 and Inventory After Transaction 961.000."
             },
             {
               "tokens": [
@@ -234,20 +244,13 @@
               "v": " attached to the order's type, configured in "
             },
             {
-              "t": "strong",
-              "v": "Activities by Procedure"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "whinh0106m000"
+              "code": "whinh0106m000",
+              "name": "Activities by Procedure"
             },
             {
               "t": "text",
-              "v": ") — an "
+              "v": " — an "
             },
             {
               "t": "strong",
@@ -352,20 +355,13 @@
                   "v": " from "
                 },
                 {
-                  "t": "strong",
-                  "v": "Job Shop Routings"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tirou4100m000"
+                  "code": "tirou4100m000",
+                  "name": "Job Shop Routings"
                 },
                 {
                   "t": "text",
-                  "v": ") for routing "
+                  "v": " for routing "
                 },
                 {
                   "t": "literal",
@@ -471,20 +467,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Production Order"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0101m100"
+                  "code": "tisfc0101m100",
+                  "name": "Production Order"
                 },
                 {
                   "t": "text",
-                  "v": ") — order "
+                  "v": " — order "
                 },
                 {
                   "t": "literal",
@@ -572,20 +561,13 @@
                   "v": " run from "
                 },
                 {
-                  "t": "strong",
-                  "v": "Production Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0501m000"
+                  "code": "tisfc0501m000",
+                  "name": "Production Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") — this is literally what \"release to the job shop\" means; it's also what changes the order's status to Released."
+                  "v": " — this is literally what \"release to the job shop\" means; it's also what changes the order's status to Released."
                 }
               ],
               "text": "Release Orders run from Production Orders (tisfc0501m000) — this is literally what \"release to the job shop\" means; it's also what changes the order's status to Released."
@@ -593,20 +575,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Material to Issue for Production Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "ticst0101m100"
+                  "code": "ticst0101m100",
+                  "name": "Material to Issue for Production Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") — material "
+                  "v": " — material "
                 },
                 {
                   "t": "literal",
@@ -621,6 +596,10 @@
                   "v": "Estimated"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "2.000"
                 },
@@ -631,6 +610,10 @@
                 {
                   "t": "strong",
                   "v": "Actual Qty"
+                },
+                {
+                  "t": "text",
+                  "v": " "
                 },
                 {
                   "t": "literal",
@@ -645,6 +628,10 @@
                   "v": "To Issue by Warehouse"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "2.000"
                 },
@@ -653,25 +640,18 @@
                   "v": " after release."
                 }
               ],
-              "text": "Material to Issue for Production Orders (ticst0101m100) — material 100400 showed Estimated2.000, Actual Qty0.000, To Issue by Warehouse2.000 after release."
+              "text": "Material to Issue for Production Orders (ticst0101m100) — material 100400 showed Estimated 2.000, Actual Qty 0.000, To Issue by Warehouse 2.000 after release."
             },
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Warehousing Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2100m000"
+                  "code": "whinh2100m000",
+                  "name": "Warehousing Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") showed a planned production receipt and an open production issue for the order. The issue's detail ("
+                  "v": " showed a planned production receipt and an open production issue for the order. The issue's detail ("
                 },
                 {
                   "t": "session",
@@ -711,20 +691,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Outbound Line Status Overview"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2129m000"
+                  "code": "whinh2129m000",
+                  "name": "Outbound Line Status Overview"
                 },
                 {
                   "t": "text",
-                  "v": ") — ordered quantity "
+                  "v": " — ordered quantity "
                 },
                 {
                   "t": "literal",
@@ -796,6 +769,10 @@
                   "v": "Actual Qty"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "2.000"
                 },
@@ -808,6 +785,10 @@
                   "v": "To Issue by Warehouse"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "0"
                 },
@@ -816,7 +797,7 @@
                   "v": ". (Active specifically means a real transaction — like this material issue — has happened against the order.)"
                 }
               ],
-              "text": "The issue order reached Shipped, ordered/advised quantity 2. Back in ticst0101m100: production order Active, Actual Qty2.000, To Issue by Warehouse0. (Active specifically means a real transaction — like this material issue — has happened against the order.)"
+              "text": "The issue order reached Shipped, ordered/advised quantity 2. Back in ticst0101m100: production order Active, Actual Qty 2.000, To Issue by Warehouse 0. (Active specifically means a real transaction — like this material issue — has happened against the order.)"
             }
           ]
         },
@@ -843,20 +824,13 @@
               "v": "The remaining steps — completing the operations, receiving the finished item through the receipt warehousing order, and reporting the production order complete — were assigned as follow-up, not demonstrated live. "
             },
             {
-              "t": "strong",
-              "v": "Report Operations Completed"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tisfc0130m000"
+              "code": "tisfc0130m000",
+              "name": "Report Operations Completed"
             },
             {
               "t": "text",
-              "v": ") records production progress, and its "
+              "v": " records production progress, and its "
             },
             {
               "t": "strong",
@@ -1056,6 +1030,10 @@
           "v": "Full record:"
         },
         {
+          "t": "text",
+          "v": " "
+        },
+        {
           "t": "literal",
           "v": "the source on file"
         },
@@ -1072,7 +1050,7 @@
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record:the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

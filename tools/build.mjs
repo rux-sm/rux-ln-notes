@@ -151,6 +151,12 @@ function token(t) {
     case 'image':
       return `<img src="${esc(t.src)}" alt="${esc(t.alt)}" class="ln-figure">`;
 
+    // A CITATION IS ONE TOKEN. Since atlas f092fb1 the name rides beside the
+    // code and the brackets are gone: how the two are presented is this side's
+    // decision (guide-json.md). A session with no `name` is the code alone.
+    case 'session':
+      return t.name ? `${tag('chip', t.name)} ${tag('session', t.code)}` : tag('session', t.code);
+
     default: {
       if (raw == null) {
         // LOUD, NOT SILENT. An unknown type with no payload is the exact shape
@@ -159,16 +165,18 @@ function token(t) {
         throw new Error(`token type "${t.t}" has no payload under "${key}": ${JSON.stringify(t)}`);
       }
       if (PLAIN.has(t.t)) return esc(raw);
-      const colour = TAG[t.t];
-      if (!colour) throw new Error(`no rendering for token type "${t.t}": ${JSON.stringify(t)}`);
-      // THE FULL TEXT IS IN `title` ON EVERY TAG. Four long field names still
-      // truncate visually; carrying the whole string means the loss is visual
-      // and not informational.
+      if (!TAG[t.t]) throw new Error(`no rendering for token type "${t.t}": ${JSON.stringify(t)}`);
       const loc = t.location ? ` (${t.location})` : '';
-      return `<span class="rux--tag rux--tag--${colour}" title="${esc(raw + loc)}"><span class="rux--tag__label">${esc(raw)}</span></span>`;
+      return tag(t.t, raw, raw + loc);
     }
   }
 }
+
+// THE FULL TEXT IS IN `title` ON EVERY TAG. Four long field names still
+// truncate visually; carrying the whole string means the loss is visual and
+// not informational.
+const tag = (type, text, title = text) =>
+  `<span class="rux--tag rux--tag--${TAG[type]}" title="${esc(title)}"><span class="rux--tag__label">${esc(text)}</span></span>`;
 
 // TWO ADJACENT TAGS NEED A SEPARATOR AND THE DATA DOES NOT CARRY ONE. Cells
 // like `ADNA02` `RAW MATERIALS` are two tokens with no `text` between them, so

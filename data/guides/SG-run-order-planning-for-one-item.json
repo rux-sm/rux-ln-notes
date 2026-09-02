@@ -2,7 +2,7 @@
   "contract": 2,
   "tier": "export",
   "id": "SG-run-order-planning-for-one-item",
-  "title": "Run Order Planning for One Item",
+  "title": "Run order planning",
   "module": "Enterprise Planning · Sales",
   "modules": [
     "Enterprise Planning",
@@ -124,20 +124,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Order Plan"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp0520m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "cprrp0520m000",
+                      "name": "Item Order Plan"
                     }
                   ],
                   "text": "Open Item Order Plan (cprrp0520m000)"
@@ -182,6 +171,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "finished item"
                     },
@@ -215,20 +208,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Items"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0501m000"
+                      "code": "tcibd0501m000",
+                      "name": "Items"
                     },
                     {
                       "t": "text",
-                      "v": ") via "
+                      "v": " via "
                     },
                     {
                       "t": "path",
@@ -244,20 +230,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Item"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0501m100"
+                      "code": "tcibd0501m100",
+                      "name": "Item"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Item (tcibd0501m100) opens"
@@ -301,6 +280,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "planning cluster"
                     },
@@ -310,6 +293,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -411,6 +398,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "components given plan data"
                     },
@@ -463,20 +454,13 @@
                       "v": "In "
                     },
                     {
-                      "t": "chip",
-                      "v": "Inventory 360"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd4300m000"
+                      "code": "whwmd4300m000",
+                      "name": "Inventory 360"
                     },
                     {
                       "t": "text",
-                      "v": "), read the finished item's on-hand at its warehouse"
+                      "v": ", read the finished item's on-hand at its warehouse"
                     }
                   ],
                   "text": "In Inventory 360 (whwmd4300m000), read the finished item's on-hand at its warehouse"
@@ -485,6 +469,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -590,6 +578,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "sales order number"
                     },
@@ -599,6 +591,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -612,6 +608,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "planned delivery date"
                     },
@@ -622,6 +622,10 @@
                     {
                       "t": "literal",
                       "v": "5"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "literal",
@@ -640,7 +644,7 @@
                       "v": " on hand"
                     }
                   ],
-                  "text": "sales order number, ordered quantity, planned delivery date — the observed run booked 5ea against 1 on hand"
+                  "text": "sales order number, ordered quantity, planned delivery date — the observed run booked 5 ea against 1 on hand"
                 }
               ],
               "id": "1.3",
@@ -684,20 +688,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Items - Planning"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprpd1100m000"
+                      "code": "cprpd1100m000",
+                      "name": "Items - Planning"
                     },
                     {
                       "t": "text",
-                      "v": ") for the finished item, "
+                      "v": " for the finished item, "
                     },
                     {
                       "t": "chip",
@@ -762,6 +759,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "order horizon"
                     },
@@ -795,20 +796,13 @@
                       "v": "Save, and reopen "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Order Plan"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp0520m000"
+                      "code": "cprrp0520m000",
+                      "name": "Item Order Plan"
                     },
                     {
                       "t": "text",
-                      "v": ") for the item"
+                      "v": " for the item"
                     }
                   ],
                   "text": "Save, and reopen Item Order Plan (cprrp0520m000) for the item"
@@ -926,20 +920,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Generate Order Planning (Item)"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp1220m000"
+                      "code": "cprrp1220m000",
+                      "name": "Generate Order Planning (Item)"
                     },
                     {
                       "t": "text",
-                      "v": ") for the finished item"
+                      "v": " for the finished item"
                     }
                   ],
                   "text": "Open Generate Order Planning (Item) (cprrp1220m000) for the finished item"
@@ -1167,6 +1154,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "planned production order number"
                     },
@@ -1176,6 +1167,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1281,6 +1276,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "component planned purchase order"
                     },
@@ -1290,6 +1289,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1333,20 +1336,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Planned Orders"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp1100m000"
+                      "code": "cprrp1100m000",
+                      "name": "Planned Orders"
                     },
                     {
                       "t": "text",
-                      "v": ") for the cluster and site from 0.4"
+                      "v": " for the cluster and site from 0.4"
                     }
                   ],
                   "text": "Open Planned Orders (cprrp1100m000) for the cluster and site from 0.4"
@@ -1362,11 +1358,15 @@
                       "v": "Order Status"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "status",
                       "v": "Planned"
                     }
                   ],
-                  "text": "Both planned orders listed, Order StatusPlanned"
+                  "text": "Both planned orders listed, Order Status Planned"
                 }
               ],
               "id": "4.5",
@@ -1461,20 +1461,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Order Pegging"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "cprrp0740m200"
+                      "code": "cprrp0740m200",
+                      "name": "Order Pegging"
                     },
                     {
                       "t": "text",
-                      "v": ") opens as a tree"
+                      "v": " opens as a tree"
                     }
                   ],
                   "text": "Order Pegging (cprrp0740m200) opens as a tree"
@@ -1542,6 +1535,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -1992,20 +1989,13 @@
                   "v": " tab of "
                 },
                 {
-                  "t": "chip",
-                  "v": "Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd0501m100"
+                  "code": "tcibd0501m100",
+                  "name": "Item"
                 },
                 {
                   "t": "text",
-                  "v": "), then close and reopen the order session"
+                  "v": ", then close and reopen the order session"
                 }
               ],
               "text": "The item has no row for the order's sales office. Add it on the Sales Offices tab of Item (tcibd0501m100), then close and reopen the order session"
@@ -2140,20 +2130,13 @@
                   "v": "Order-quantity rules in "
                 },
                 {
-                  "t": "chip",
-                  "v": "Items - Ordering"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd2100m000"
+                  "code": "tcibd2100m000",
+                  "name": "Items - Ordering"
                 },
                 {
                   "t": "text",
-                  "v": ") round it — \"Lot sizing\", "
+                  "v": " round it — \"Lot sizing\", "
                 },
                 {
                   "t": "literal",
@@ -2234,20 +2217,13 @@
                   "v": "Pegging relations were not generated, or the demand lies beyond the "
                 },
                 {
-                  "t": "chip",
-                  "v": "Pegging Horizon"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprpd0100m000"
+                  "code": "cprpd0100m000",
+                  "name": "Pegging Horizon"
                 },
                 {
                   "t": "text",
-                  "v": "). See the phase 5 Prerequisite"
+                  "v": ". See the phase 5 Prerequisite"
                 }
               ],
               "text": "Pegging relations were not generated, or the demand lies beyond the Pegging Horizon (cprpd0100m000). See the phase 5 Prerequisite"
@@ -2316,20 +2292,13 @@
             {
               "tokens": [
                 {
-                  "t": "chip",
-                  "v": "Generate Order Planning"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp1210m000"
+                  "code": "cprrp1210m000",
+                  "name": "Generate Order Planning"
                 },
                 {
                   "t": "text",
-                  "v": "), "
+                  "v": ", "
                 },
                 {
                   "t": "path",
@@ -2499,20 +2468,13 @@
                   "v": "Adjust order-quantity rules in "
                 },
                 {
-                  "t": "chip",
-                  "v": "Items - Ordering"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd2100m000"
+                  "code": "tcibd2100m000",
+                  "name": "Items - Ordering"
                 },
                 {
                   "t": "text",
-                  "v": ") and rerun phase 3"
+                  "v": " and rerun phase 3"
                 }
               ],
               "text": "Adjust order-quantity rules in Items - Ordering (tcibd2100m000) and rerun phase 3"
@@ -2542,20 +2504,13 @@
           "v": ", so the boundary is a handover rather than a cliff. "
         },
         {
-          "t": "strong",
-          "v": "Transfer Order Planning"
-        },
-        {
-          "t": "text",
-          "v": " ("
-        },
-        {
           "t": "session",
-          "code": "cppat1210m000"
+          "code": "cppat1210m000",
+          "name": "Transfer Order Planning"
         },
         {
           "t": "text",
-          "v": ") turns a planned order into a real one — production orders into Job Shop Control, purchase orders into Procurement — and the "
+          "v": " turns a planned order into a real one — production orders into Job Shop Control, purchase orders into Procurement — and the "
         },
         {
           "t": "strong",

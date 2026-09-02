@@ -60,20 +60,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tcibd0501m100"
+                  "code": "tcibd0501m100",
+                  "name": "Item"
                 },
                 {
                   "t": "text",
-                  "v": ") — manufactured item "
+                  "v": " — manufactured item "
                 },
                 {
                   "t": "literal",
@@ -97,20 +90,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Job Shop BOM"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tibom3100m000"
+                  "code": "tibom3100m000",
+                  "name": "Job Shop BOM"
                 },
                 {
                   "t": "text",
-                  "v": ") — bill of material "
+                  "v": " — bill of material "
                 },
                 {
                   "t": "literal",
@@ -150,20 +136,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Job Shop Routing"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tirou4600m000"
+                  "code": "tirou4600m000",
+                  "name": "Job Shop Routing"
                 },
                 {
                   "t": "text",
-                  "v": ") — routing "
+                  "v": " — routing "
                 },
                 {
                   "t": "literal",
@@ -195,20 +174,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Item - Costing"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "ticpr0107m000"
+                  "code": "ticpr0107m000",
+                  "name": "Item - Costing"
                 },
                 {
                   "t": "text",
-                  "v": ") — costing data for the item."
+                  "v": " — costing data for the item."
                 }
               ],
               "text": "Item - Costing (ticpr0107m000) — costing data for the item."
@@ -216,20 +188,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Production Order"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0101m100"
+                  "code": "tisfc0101m100",
+                  "name": "Production Order"
                 },
                 {
                   "t": "text",
-                  "v": ") — the order itself, built from the item/BOM/routing/costing above."
+                  "v": " — the order itself, built from the item/BOM/routing/costing above."
                 }
               ],
               "text": "Production Order (tisfc0101m100) — the order itself, built from the item/BOM/routing/costing above."
@@ -339,20 +304,13 @@
                   "v": " In "
                 },
                 {
-                  "t": "strong",
-                  "v": "Report Operations Completed"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0130m000"
+                  "code": "tisfc0130m000",
+                  "name": "Report Operations Completed"
                 },
                 {
                   "t": "text",
-                  "v": "), entered "
+                  "v": ", entered "
                 },
                 {
                   "t": "literal",
@@ -380,24 +338,25 @@
                   "v": "(57:20)"
                 },
                 {
-                  "t": "strong",
-                  "v": "Report Orders Completed"
-                },
-                {
                   "t": "text",
-                  "v": " ("
+                  "v": " "
                 },
                 {
                   "t": "session",
-                  "code": "tisfc0120s000"
+                  "code": "tisfc0120s000",
+                  "name": "Report Orders Completed"
                 },
                 {
                   "t": "text",
-                  "v": ") showed "
+                  "v": " showed "
                 },
                 {
                   "t": "strong",
                   "v": "Quantity Delivered"
+                },
+                {
+                  "t": "text",
+                  "v": " "
                 },
                 {
                   "t": "literal",
@@ -408,20 +367,13 @@
                   "v": " — this is the finished-goods quantity that gets posted into inventory. After saving, "
                 },
                 {
-                  "t": "strong",
-                  "v": "Production Orders"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tisfc0501m000"
+                  "code": "tisfc0501m000",
+                  "name": "Production Orders"
                 },
                 {
                   "t": "text",
-                  "v": ") showed the order as "
+                  "v": " showed the order as "
                 },
                 {
                   "t": "strong",
@@ -432,7 +384,7 @@
                   "v": "."
                 }
               ],
-              "text": "(57:20)Report Orders Completed (tisfc0120s000) showed Quantity Delivered1 — this is the finished-goods quantity that gets posted into inventory. After saving, Production Orders (tisfc0501m000) showed the order as Completed."
+              "text": "(57:20) Report Orders Completed (tisfc0120s000) showed Quantity Delivered 1 — this is the finished-goods quantity that gets posted into inventory. After saving, Production Orders (tisfc0501m000) showed the order as Completed."
             },
             {
               "tokens": [
@@ -466,20 +418,13 @@
               "v": " In "
             },
             {
-              "t": "strong",
-              "v": "Material to Issue for Production Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "ticst0101m100"
+              "code": "ticst0101m100",
+              "name": "Material to Issue for Production Orders"
             },
             {
               "t": "text",
-              "v": "), the presenter used the "
+              "v": ", the presenter used the "
             },
             {
               "t": "strong",
@@ -626,6 +571,10 @@
           "v": "Full record:"
         },
         {
+          "t": "text",
+          "v": " "
+        },
+        {
           "t": "literal",
           "v": "the source on file"
         },
@@ -642,7 +591,7 @@
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record:the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

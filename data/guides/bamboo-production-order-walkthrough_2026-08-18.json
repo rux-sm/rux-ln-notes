@@ -206,20 +206,13 @@
               "v": "The trainee built "
             },
             {
-              "t": "strong",
-              "v": "Job Shop Bill of Material"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tibom3600m000"
+              "code": "tibom3600m000",
+              "name": "Job Shop Bill of Material"
             },
             {
               "t": "text",
-              "v": ") "
+              "v": " "
             },
             {
               "t": "literal",
@@ -254,20 +247,13 @@
               "v": ", source Manual — with two material lines from "
             },
             {
-              "t": "strong",
-              "v": "Job Shop List of Materials"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tibom3110m000"
+              "code": "tibom3110m000",
+              "name": "Job Shop List of Materials"
             },
             {
               "t": "text",
-              "v": "): "
+              "v": ": "
             },
             {
               "t": "literal",
@@ -330,20 +316,13 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Job Shop Routing"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tirou4600m000"
+              "code": "tirou4600m000",
+              "name": "Job Shop Routing"
             },
             {
               "t": "text",
-              "v": ") "
+              "v": " "
             },
             {
               "t": "literal",
@@ -426,20 +405,13 @@
               "v": " command on "
             },
             {
-              "t": "strong",
-              "v": "Item"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tcibd0501m100"
+              "code": "tcibd0501m100",
+              "name": "Item"
             },
             {
               "t": "text",
-              "v": ") itself — "
+              "v": " itself — "
             },
             {
               "t": "strong",
@@ -496,36 +468,22 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Purchase Order Intake Workbench"
+                  "t": "session",
+                  "code": "tdpur4601m200",
+                  "name": "Purchase Order Intake Workbench"
                 },
                 {
                   "t": "text",
-                  "v": " ("
+                  "v": " → "
                 },
                 {
                   "t": "session",
-                  "code": "tdpur4601m200"
+                  "code": "tdpur4100m900",
+                  "name": "Purchase Order"
                 },
                 {
                   "t": "text",
-                  "v": ") → "
-                },
-                {
-                  "t": "strong",
-                  "v": "Purchase Order"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
-                  "t": "session",
-                  "code": "tdpur4100m900"
-                },
-                {
-                  "t": "text",
-                  "v": "), order "
+                  "v": ", order "
                 },
                 {
                   "t": "literal",
@@ -643,20 +601,13 @@
                   "v": "The order generated a "
                 },
                 {
-                  "t": "strong",
-                  "v": "Warehousing Order"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh2100m100"
+                  "code": "whinh2100m100",
+                  "name": "Warehousing Order"
                 },
                 {
                   "t": "text",
-                  "v": "), type "
+                  "v": ", type "
                 },
                 {
                   "t": "literal",
@@ -675,20 +626,13 @@
                   "v": " opened "
                 },
                 {
-                  "t": "strong",
-                  "v": "Warehouse Receipt"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh3512m000"
+                  "code": "whinh3512m000",
+                  "name": "Warehouse Receipt"
                 },
                 {
                   "t": "text",
-                  "v": "), receipt "
+                  "v": ", receipt "
                 },
                 {
                   "t": "literal",
@@ -862,20 +806,13 @@
               "v": "A "
             },
             {
-              "t": "strong",
-              "v": "Warehouse Inspection"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "whinh3122m000"
+              "code": "whinh3122m000",
+              "name": "Warehouse Inspection"
             },
             {
               "t": "text",
-              "v": ") ran against the finished "
+              "v": " ran against the finished "
             },
             {
               "t": "literal",

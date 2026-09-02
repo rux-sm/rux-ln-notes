@@ -217,13 +217,13 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu">
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-create-basic-test-items-and-defaults.html"><span class="rux--side-nav__link-text">Create Basic Test Items and Defaults</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-run-order-planning-for-one-item.html"><span class="rux--side-nav__link-text">Run Order Planning for One Item</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-purchase-order-to-warehouse-receipt.html"><span class="rux--side-nav__link-text">Purchase Order to Warehouse Receipt</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-manual-production-order-existing-master-data.html"><span class="rux--side-nav__link-text">Manual Production Order from Existing Master Data</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-transfer-item-between-warehouses.html"><span class="rux--side-nav__link-text">Transfer Item Between Warehouses</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-ship-from-stock.html"><span class="rux--side-nav__link-text">Ship from Stock</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-demand-to-shipment-via-planning.html"><span class="rux--side-nav__link-text">Demand to Shipment via Planning</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-create-basic-test-items-and-defaults.html"><span class="rux--side-nav__link-text">Create test items</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-run-order-planning-for-one-item.html"><span class="rux--side-nav__link-text">Run order planning</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-purchase-order-to-warehouse-receipt.html"><span class="rux--side-nav__link-text">Purchase to receipt</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-manual-production-order-existing-master-data.html"><span class="rux--side-nav__link-text">Production order</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-transfer-item-between-warehouses.html"><span class="rux--side-nav__link-text">Warehouse transfer</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-ship-from-stock.html"><span class="rux--side-nav__link-text">Ship from stock</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="SG-demand-to-shipment-via-planning.html"><span class="rux--side-nav__link-text">Plan to shipment</span></a></li>
         </ul>
       </li>
 
@@ -278,7 +278,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <p>That is deliberate. Change a material, change a date, change the demand, and you simply re-plan again. Every rerun wipes the planned orders it made last time and rebuilds them from scratch. Orders you have already transferred are untouched, because they are no longer planning&#39;s to manage.</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><strong>Item Order Plan</strong> (<span class="rux--tag rux--tag--cyan" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span>) — the Overview and Demand tabs for <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>, showing two sales orders of demand against one unit on hand, and a planned production order raised to cover the shortfall.</li>
+          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span> — the Overview and Demand tabs for <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>, showing two sales orders of demand against one unit on hand, and a planned production order raised to cover the shortfall.</li>
           <li class="rux--list__item">The plan for the component <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> showing the mirror image: the parent&#39;s planned production order appears here as demand, met by planned purchase orders.</li>
         </ol>
           </section>
@@ -288,7 +288,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <p>The cause was a missing <strong>planning cluster</strong> on the item. An item is linked to planning through its cluster; without that line, planning does not see it at all. The clue is on the Item Order Plan header, which shows the plan item prefixed by its cluster (<span class="rux--tag rux--tag--gray" title="NA1"><span class="rux--tag__label">NA1</span></span>).</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><strong>Item</strong> (<span class="rux--tag rux--tag--cyan" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span>) — the <strong>Clusters</strong> subtab, where the missing line was added: cluster <span class="rux--tag rux--tag--gray" title="NA1"><span class="rux--tag__label">NA1</span></span>, site <span class="rux--tag rux--tag--gray" title="CSADNA01"><span class="rux--tag__label">CSADNA01</span></span>, which carries warehouse <span class="rux--tag rux--tag--gray" title="ADNA02"><span class="rux--tag__label">ADNA02</span></span>.</li>
+          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span> — the <strong>Clusters</strong> subtab, where the missing line was added: cluster <span class="rux--tag rux--tag--gray" title="NA1"><span class="rux--tag__label">NA1</span></span>, site <span class="rux--tag rux--tag--gray" title="CSADNA01"><span class="rux--tag__label">CSADNA01</span></span>, which carries warehouse <span class="rux--tag rux--tag--gray" title="ADNA02"><span class="rux--tag__label">ADNA02</span></span>.</li>
           <li class="rux--list__item">Planning was then rerun, because the first run had never picked the item up.</li>
         </ol>
           </section>
@@ -297,7 +297,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <p>Planning only considers demand that falls inside the <strong>order horizon</strong>. With it set to 10 days, newer sales orders were invisible to the plan.</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">From the Item Order Plan, <strong>References ➔ Items - Planning</strong> (<span class="rux--tag rux--tag--cyan" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span>), Horizons tab — the order horizon changed from 10 days to 365 so that demand further out would be picked up.</li>
+          <li class="rux--list__item">From the Item Order Plan, <span class="rux--tag rux--tag--blue" title="References ➔ Items - Planning"><span class="rux--tag__label">References ➔ Items - Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span>, Horizons tab — the order horizon changed from 10 days to 365 so that demand further out would be picked up.</li>
           <li class="rux--list__item">The same change repeated for the component items, since a horizon is set per item.</li>
         </ol>
           </section>
@@ -305,7 +305,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <h3 id="t-running-mrp-across-the-whole-bill-of-material">Running MRP across the whole bill of material</h3>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><strong>Generate Order Planning (Item)</strong> (<span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>) run for <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> with <strong>Include Parent Items</strong> and <strong>Include Child Items</strong> both selected — this is what makes one run plan the finished item and everything beneath it.</li>
+          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Generate Order Planning (Item)"><span class="rux--tag__label">Generate Order Planning (Item)</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span> run for <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> with <strong>Include Parent Items</strong> and <strong>Include Child Items</strong> both selected — this is what makes one run plan the finished item and everything beneath it.</li>
           <li class="rux--list__item">This matters most on deep structures: an item can appear in a bill of material and have a bill of material of its own, several levels down. One run covers all of it.</li>
         </ol>
           </section>
@@ -313,8 +313,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <h3 id="t-the-transfer-and-what-stopped-it">The transfer, and what stopped it</h3>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><strong>Planned Orders</strong> (<span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span>) — the review screen for everything MRP produced. Two planned purchase orders for <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> were ticked: <span class="rux--tag rux--tag--gray" title="000000346"><span class="rux--tag__label">000000346</span></span> for 6 ea and <span class="rux--tag rux--tag--gray" title="000000347"><span class="rux--tag__label">000000347</span></span> for 10 ea.</li>
-          <li class="rux--list__item"><strong>Actions ➔ Transfer Order Planning</strong> (<span class="rux--tag rux--tag--cyan" title="cppat1210m000"><span class="rux--tag__label">cppat1210m000</span></span>). On the <strong>External</strong> tab: purchase order type <span class="rux--tag rux--tag--gray" title="IPO"><span class="rux--tag__label">IPO</span></span>, order series <span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span>, and <strong>Combine Orders</strong> selected. On the <strong>Options</strong> tab: process report and error report both selected.</li>
+          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span> — the review screen for everything MRP produced. Two planned purchase orders for <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> were ticked: <span class="rux--tag rux--tag--gray" title="000000346"><span class="rux--tag__label">000000346</span></span> for 6 ea and <span class="rux--tag rux--tag--gray" title="000000347"><span class="rux--tag__label">000000347</span></span> for 10 ea.</li>
+          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Actions ➔ Transfer Order Planning"><span class="rux--tag__label">Actions ➔ Transfer Order Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cppat1210m000"><span class="rux--tag__label">cppat1210m000</span></span>. On the <strong>External</strong> tab: purchase order type <span class="rux--tag rux--tag--gray" title="IPO"><span class="rux--tag__label">IPO</span></span>, order series <span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span>, and <strong>Combine Orders</strong> selected. On the <strong>Options</strong> tab: process report and error report both selected.</li>
           <li class="rux--list__item"><strong>The first transfer failed</strong>, and the error report said exactly why:</li>
         </ol>
             <p>&gt; Purchase Order cannot be generated. Buy-from BP cannot be determined for item <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span>; neither valid Item - BP data is present, nor a BP is linked to Item Purchase Data.</p>
@@ -346,7 +346,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>MRP needs to know who to buy from.</strong> A planned purchase order cannot become a real one without a buy-from business partner on the item. The transfer&#39;s error report names this precisely, so read it rather than guessing.</li>
           <li class="rux--list__item"><strong>Combine Orders decides the shape of what you get.</strong> Selected, several planned purchase orders become one purchase order with several lines — usually what you want when buying multiple parts from one supplier.</li>
         </ul>
-          <p><strong>Full record:</strong><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> in <span class="rux--tag rux--tag--gray" title="../ME/"><span class="rux--tag__label">../ME/</span></span> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p><strong>Full record:</strong> <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> in <span class="rux--tag rux--tag--gray" title="../ME/"><span class="rux--tag__label">../ME/</span></span> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
       </div>
     </div>

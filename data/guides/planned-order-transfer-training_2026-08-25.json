@@ -298,20 +298,13 @@
               "v": "The vendor states the same boundary as the session's purpose: "
             },
             {
-              "t": "strong",
-              "v": "Transfer Order Planning"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cppat1210m000"
+              "code": "cppat1210m000",
+              "name": "Transfer Order Planning"
             },
             {
               "t": "text",
-              "v": ") is used "
+              "v": " is used "
             },
             {
               "t": "em",
@@ -330,20 +323,13 @@
               "v": " — Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Transfer Order Planning"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cppat1210m000"
+              "code": "cppat1210m000",
+              "name": "Transfer Order Planning"
             },
             {
               "t": "text",
-              "v": "), session description."
+              "v": ", session description."
             }
           ],
           "text": "The vendor states the same boundary as the session's purpose: Transfer Order Planning (cppat1210m000) is used \"to transfer planned orders from Enterprise Planning to the execution level\", and the destinations are exact — \"Planned production orders and production plans are translated to production order in the Job Shop Control module in Manufacturing. Planned purchase orders and purchase plans are translated to purchase orders in Procurement.\" — Infor LN help for Transfer Order Planning (cppat1210m000), session description."
@@ -400,20 +386,13 @@
               "v": "The environment shows the field where the narration says it is. On "
             },
             {
-              "t": "strong",
-              "v": "Item"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tcibd0501m100"
+              "code": "tcibd0501m100",
+              "name": "Item"
             },
             {
               "t": "text",
-              "v": "), the "
+              "v": ", the "
             },
             {
               "t": "strong",
@@ -819,20 +798,13 @@
               "v": "The "
             },
             {
-              "t": "strong",
-              "v": "Items - Planning"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprpd1100m000"
+              "code": "cprpd1100m000",
+              "name": "Items - Planning"
             },
             {
               "t": "text",
-              "v": ") Horizons tab was captured again, this time for "
+              "v": " Horizons tab was captured again, this time for "
             },
             {
               "t": "literal",
@@ -907,20 +879,13 @@
               "v": " — Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Item Order Plan"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp0520m000"
+              "code": "cprrp0520m000",
+              "name": "Item Order Plan"
             },
             {
               "t": "text",
-              "v": "), Field Information, "
+              "v": ", Field Information, "
             },
             {
               "t": "em",
@@ -999,20 +964,13 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Generate Order Planning (Item)"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp1220m000"
+              "code": "cprrp1220m000",
+              "name": "Generate Order Planning (Item)"
             },
             {
               "t": "text",
-              "v": ") was run with "
+              "v": " was run with "
             },
             {
               "t": "strong",
@@ -1107,20 +1065,13 @@
               "v": " — Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Generate Order Planning Item"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp1220m000"
+              "code": "cprrp1220m000",
+              "name": "Generate Order Planning Item"
             },
             {
               "t": "text",
-              "v": "), Field Information. Disabled and selected therefore means the "
+              "v": ", Field Information. Disabled and selected therefore means the "
             },
             {
               "t": "literal",
@@ -1235,20 +1186,13 @@
                   "v": " cache: two independent extractions of Infor LN help for "
                 },
                 {
-                  "t": "strong",
-                  "v": "Generate Order Planning Item"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp1220m000"
+                  "code": "cprrp1220m000",
+                  "name": "Generate Order Planning Item"
                 },
                 {
                   "t": "text",
-                  "v": ") produce it. Rely on the bullets, which match both the field's name and the observed result. "
+                  "v": " produce it. Rely on the bullets, which match both the field's name and the observed result. "
                 },
                 {
                   "t": "strong",
@@ -1269,36 +1213,22 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Transfer Order Planning"
+              "t": "session",
+              "code": "cppat1210m000",
+              "name": "Transfer Order Planning"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": " was reached from "
             },
             {
               "t": "session",
-              "code": "cppat1210m000"
+              "code": "cprrp1100m000",
+              "name": "Planned Orders"
             },
             {
               "t": "text",
-              "v": ") was reached from "
-            },
-            {
-              "t": "strong",
-              "v": "Planned Orders"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "cprrp1100m000"
-            },
-            {
-              "t": "text",
-              "v": ") with rows ticked (27:20). Two planned purchase orders for "
+              "v": " with rows ticked (27:20). Two planned purchase orders for "
             },
             {
               "t": "literal",
@@ -1418,6 +1348,10 @@
               "v": "Purchase Order Type"
             },
             {
+              "t": "text",
+              "v": " "
+            },
+            {
               "t": "literal",
               "v": "IPO"
             },
@@ -1428,6 +1362,10 @@
             {
               "t": "strong",
               "v": "Purchase Order Series"
+            },
+            {
+              "t": "text",
+              "v": " "
             },
             {
               "t": "literal",
@@ -1470,7 +1408,7 @@
               "v": " both selected."
             }
           ],
-          "text": "The session as launched this way carries two tabs. External holds Purchase Order TypeIPO \"Inventory Purchase Order\", Purchase Order Series1 \"Purchase Orders\", Combine Orders selected, and Retain Buyer and Generate Request for Quotation cleared. Options holds Transfer Text cleared, and Process Report and Error Report both selected."
+          "text": "The session as launched this way carries two tabs. External holds Purchase Order Type IPO \"Inventory Purchase Order\", Purchase Order Series 1 \"Purchase Orders\", Combine Orders selected, and Retain Buyer and Generate Request for Quotation cleared. Options holds Transfer Text cleared, and Process Report and Error Report both selected."
         },
         {
           "kind": "source",
@@ -1536,6 +1474,10 @@
             {
               "t": "strong",
               "v": "The message names both places LN looks, and the fix screen shows both."
+            },
+            {
+              "t": "text",
+              "v": " "
             },
             {
               "t": "em",
@@ -1634,7 +1576,7 @@
               "v": "."
             }
           ],
-          "text": "The message names both places LN looks, and the fix screen shows both.\"Item - BP data\" is the line-level Item - Business Partner tab; \"a BP linked to Item Purchase Data\" is the header-level Buy-from BP field on Item - Purchase. The frame taken during the repair has the two visible at once: the header Buy-from BP field empty, and the newly added line below reading `BP4000006` FAIRFIELD ENGINEERING CO. on the Item - Business Partner tab — which is the third tab, as narrated (\"the third tab at the line level says Item Business Partner\", 30:07), and whose own status bar reads tdipu0601m000 inside an Item - Purchase dialog opened from tcibd0501m100."
+          "text": "The message names both places LN looks, and the fix screen shows both. \"Item - BP data\" is the line-level Item - Business Partner tab; \"a BP linked to Item Purchase Data\" is the header-level Buy-from BP field on Item - Purchase. The frame taken during the repair has the two visible at once: the header Buy-from BP field empty, and the newly added line below reading `BP4000006` FAIRFIELD ENGINEERING CO. on the Item - Business Partner tab — which is the third tab, as narrated (\"the third tab at the line level says Item Business Partner\", 30:07), and whose own status bar reads tdipu0601m000 inside an Item - Purchase dialog opened from tcibd0501m100."
         },
         {
           "kind": "source",
@@ -1726,20 +1668,13 @@
               "v": " — Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Transfer Order Planning"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cppat1210m000"
+              "code": "cppat1210m000",
+              "name": "Transfer Order Planning"
             },
             {
               "t": "text",
-              "v": "), Field Information, "
+              "v": ", Field Information, "
             },
             {
               "t": "em",
@@ -1837,20 +1772,13 @@
               "v": " — Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Generate Order Planning Item"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp1220m000"
+              "code": "cprrp1220m000",
+              "name": "Generate Order Planning Item"
             },
             {
               "t": "text",
-              "v": "), Field Information, "
+              "v": ", Field Information, "
             },
             {
               "t": "em",
@@ -2341,6 +2269,10 @@
               "v": "A greyed-out control is evidence about configuration, not just about the screen."
             },
             {
+              "t": "text",
+              "v": " "
+            },
+            {
               "t": "literal",
               "v": "Update Pegging Relations"
             },
@@ -2357,7 +2289,7 @@
               "v": " disabled resolves a question the previous review had to leave open, because the help explains exactly which scenario setting disables it. A tick alone would have proved less. Capture the enabled/disabled state, not only the value."
             }
           ],
-          "text": "A greyed-out control is evidence about configuration, not just about the screen.Update Pegging Relations being selected and disabled resolves a question the previous review had to leave open, because the help explains exactly which scenario setting disables it. A tick alone would have proved less. Capture the enabled/disabled state, not only the value."
+          "text": "A greyed-out control is evidence about configuration, not just about the screen. Update Pegging Relations being selected and disabled resolves a question the previous review had to leave open, because the help explains exactly which scenario setting disables it. A tick alone would have proved less. Capture the enabled/disabled state, not only the value."
         },
         {
           "tokens": [

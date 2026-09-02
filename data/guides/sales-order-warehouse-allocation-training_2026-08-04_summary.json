@@ -252,20 +252,13 @@
                   "v": " — "
                 },
                 {
-                  "t": "strong",
-                  "v": "Price Book"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "tdpcg0611m000"
+                  "code": "tdpcg0611m000",
+                  "name": "Price Book"
                 },
                 {
                   "t": "text",
-                  "v": ") with effective/expiry-dated records."
+                  "v": " with effective/expiry-dated records."
                 }
               ],
               "text": "Common ➔ Pricing ➔ Prices ➔ Price Books — Price Book (tdpcg0611m000) with effective/expiry-dated records."
@@ -273,20 +266,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Item Standard Costs"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "ticpr3501m000"
+                  "code": "ticpr3501m000",
+                  "name": "Item Standard Costs"
                 },
                 {
                   "t": "text",
-                  "v": ") — effective-dated cost records for the item."
+                  "v": " — effective-dated cost records for the item."
                 }
               ],
               "text": "Item Standard Costs (ticpr3501m000) — effective-dated cost records for the item."
@@ -301,20 +287,13 @@
               "v": "The discussion connected a sales-order line's price to "
             },
             {
-              "t": "strong",
-              "v": "Price Book Lines"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tdpcg0131m000"
+              "code": "tdpcg0131m000",
+              "name": "Price Book Lines"
             },
             {
               "t": "text",
-              "v": ") and distinguished sales price from standard cost — related but separate figures. The exact rule for which price-book record wins at a given order timestamp wasn't pinned down in this session."
+              "v": " and distinguished sales price from standard cost — related but separate figures. The exact rule for which price-book record wins at a given order timestamp wasn't pinned down in this session."
             }
           ],
           "text": "The discussion connected a sales-order line's price to Price Book Lines (tdpcg0131m000) and distinguished sales price from standard cost — related but separate figures. The exact rule for which price-book record wins at a given order timestamp wasn't pinned down in this session."
@@ -341,20 +320,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Item Order Plan"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "cprrp0520m000"
+                  "code": "cprrp0520m000",
+                  "name": "Item Order Plan"
                 },
                 {
                   "t": "text",
-                  "v": ") — item "
+                  "v": " — item "
                 },
                 {
                   "t": "literal",
@@ -386,20 +358,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Warehouse - Item Inventory"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whwmd2515m000"
+                  "code": "whwmd2515m000",
+                  "name": "Warehouse - Item Inventory"
                 },
                 {
                   "t": "text",
-                  "v": ") — the same item broken out by warehouse row, each with its own on-hand, on-order, allocated, blocked, and economic-stock figures."
+                  "v": " — the same item broken out by warehouse row, each with its own on-hand, on-order, allocated, blocked, and economic-stock figures."
                 }
               ],
               "text": "Warehouse - Item Inventory (whwmd2515m000) — the same item broken out by warehouse row, each with its own on-hand, on-order, allocated, blocked, and economic-stock figures."
@@ -475,20 +440,13 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Outbound Line Status Overview"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "whinh2129m000"
+              "code": "whinh2129m000",
+              "name": "Outbound Line Status Overview"
             },
             {
               "t": "text",
-              "v": ") — order type "
+              "v": " — order type "
             },
             {
               "t": "literal",
@@ -662,20 +620,13 @@
                   "v": "A purchase receipt's inbound line displayed "
                 },
                 {
-                  "t": "strong",
-                  "v": "Warehouse Inspections"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh3122m000"
+                  "code": "whinh3122m000",
+                  "name": "Warehouse Inspections"
                 },
                 {
                   "t": "text",
-                  "v": ") as its required activity."
+                  "v": " as its required activity."
                 }
               ],
               "text": "A purchase receipt's inbound line displayed Warehouse Inspections (whinh3122m000) as its required activity."
@@ -683,20 +634,13 @@
             {
               "tokens": [
                 {
-                  "t": "strong",
-                  "v": "Inbound Advice"
-                },
-                {
-                  "t": "text",
-                  "v": " ("
-                },
-                {
                   "t": "session",
-                  "code": "whinh3525m000"
+                  "code": "whinh3525m000",
+                  "name": "Inbound Advice"
                 },
                 {
                   "t": "text",
-                  "v": ") and the expanded "
+                  "v": " and the expanded "
                 },
                 {
                   "t": "strong",
@@ -736,6 +680,10 @@
                   "v": "ordered"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "20"
                 },
@@ -746,6 +694,10 @@
                 {
                   "t": "strong",
                   "v": "advised"
+                },
+                {
+                  "t": "text",
+                  "v": " "
                 },
                 {
                   "t": "literal",
@@ -760,6 +712,10 @@
                   "v": "released"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "0"
                 },
@@ -772,6 +728,10 @@
                   "v": "picked"
                 },
                 {
+                  "t": "text",
+                  "v": " "
+                },
+                {
                   "t": "literal",
                   "v": "0"
                 },
@@ -780,7 +740,7 @@
                   "v": "."
                 }
               ],
-              "text": "Sales warehouse order 100000636, item 100200: ordered20, advised5, released0, picked0."
+              "text": "Sales warehouse order 100000636, item 100200: ordered 20, advised 5, released 0, picked 0."
             }
           ]
         },
@@ -826,10 +786,10 @@
       "tokens": [
         {
           "t": "text",
-          "v": "Nothing was formally decided about configuration. The one real outcome: keep this recording as background material for a future \"what happens when there's a shortage\" scenario — it is not a substitute for the standard, verified Ship from Stock procedure."
+          "v": "Nothing was formally decided about configuration. The one real outcome: keep this recording as background material for a future \"what happens when there's a shortage\" scenario — it is not a substitute for the standard, verified Ship from stock procedure."
         }
       ],
-      "text": "Nothing was formally decided about configuration. The one real outcome: keep this recording as background material for a future \"what happens when there's a shortage\" scenario — it is not a substitute for the standard, verified Ship from Stock procedure."
+      "text": "Nothing was formally decided about configuration. The one real outcome: keep this recording as background material for a future \"what happens when there's a shortage\" scenario — it is not a substitute for the standard, verified Ship from stock procedure."
     }
   ],
   "takeaways": [
@@ -970,6 +930,10 @@
           "v": "Full record:"
         },
         {
+          "t": "text",
+          "v": " "
+        },
+        {
           "t": "literal",
           "v": "the source on file"
         },
@@ -986,7 +950,7 @@
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record:the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

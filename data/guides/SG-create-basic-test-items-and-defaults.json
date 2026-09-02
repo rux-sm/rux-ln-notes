@@ -2,7 +2,7 @@
   "contract": 2,
   "tier": "export",
   "id": "SG-create-basic-test-items-and-defaults",
-  "title": "Create Basic Test Items and Defaults",
+  "title": "Create test items",
   "module": "Common · Procurement · Manufacturing · Warehousing",
   "modules": [
     "Common",
@@ -114,6 +114,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "training company"
                     }
@@ -151,6 +155,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "site"
                     }
@@ -180,20 +188,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Warehouses"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd2500m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "whwmd2500m000",
+                      "name": "Warehouses"
                     }
                   ],
                   "text": "Open Warehouses (whwmd2500m000)"
@@ -272,6 +269,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "purchased-item warehouse"
                     }
@@ -307,6 +308,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -384,6 +389,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "Unit Set"
                     }
@@ -423,6 +432,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -601,6 +614,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -834,6 +851,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "made-supply item group"
                     }
@@ -996,20 +1017,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0102m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0102m000",
+                      "name": "Item Defaults"
                     }
                   ],
                   "text": "Open Item Defaults (tcibd0102m000)"
@@ -1246,6 +1256,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "purchased default supply source"
                     }
@@ -1280,10 +1294,18 @@
                     },
                     {
                       "t": "text",
-                      "v": " to the value from 0.8"
+                      "v": " to the "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Unit Set"
+                    },
+                    {
+                      "t": "text",
+                      "v": " recorded at 0.8"
                     }
                   ],
-                  "text": "Set Unit Set to the value from 0.8"
+                  "text": "Set Unit Set to the Unit Set recorded at 0.8"
                 },
                 {
                   "tokens": [
@@ -1322,10 +1344,18 @@
                     },
                     {
                       "t": "text",
-                      "v": " to the value from 0.9"
+                      "v": " to the "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Inventory Unit"
+                    },
+                    {
+                      "t": "text",
+                      "v": " recorded at 0.9"
                     }
                   ],
-                  "text": "Set Inventory Unit to the value from 0.9"
+                  "text": "Set Inventory Unit to the Inventory Unit recorded at 0.9"
                 },
                 {
                   "tokens": [
@@ -1435,20 +1465,9 @@
                       "v": "Continue in the automatically opened "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0502m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0502m000",
+                      "name": "Item Defaults"
                     }
                   ],
                   "text": "Continue in the automatically opened Item Defaults (tcibd0502m000)"
@@ -1662,20 +1681,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Item Ordering Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd2101m000"
+                      "code": "tcibd2101m000",
+                      "name": "Item Ordering Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Item Ordering Defaults (tcibd2101m000) opens"
@@ -1860,20 +1872,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Item Purchase Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tdipu0102m000"
+                      "code": "tdipu0102m000",
+                      "name": "Item Purchase Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Item Purchase Defaults (tdipu0102m000) opens"
@@ -2108,20 +2113,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Items - Warehousing Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd4101s000"
+                      "code": "whwmd4101s000",
+                      "name": "Items - Warehousing Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Items - Warehousing Defaults (whwmd4101s000) opens"
@@ -2293,20 +2291,9 @@
                       "v": "Save "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0502m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0502m000",
+                      "name": "Item Defaults"
                     }
                   ],
                   "text": "Save Item Defaults (tcibd0502m000)"
@@ -2393,6 +2380,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "purchased global subentities"
                     }
@@ -2467,20 +2458,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0102m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0102m000",
+                      "name": "Item Defaults"
                     }
                   ],
                   "text": "Open Item Defaults (tcibd0102m000)"
@@ -2717,6 +2697,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "made default supply source"
                     }
@@ -2751,10 +2735,18 @@
                     },
                     {
                       "t": "text",
-                      "v": " to the value from 0.8"
+                      "v": " to the "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Unit Set"
+                    },
+                    {
+                      "t": "text",
+                      "v": " recorded at 0.8"
                     }
                   ],
-                  "text": "Set Unit Set to the value from 0.8"
+                  "text": "Set Unit Set to the Unit Set recorded at 0.8"
                 },
                 {
                   "tokens": [
@@ -2793,10 +2785,18 @@
                     },
                     {
                       "t": "text",
-                      "v": " to the value from 0.9"
+                      "v": " to the "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Inventory Unit"
+                    },
+                    {
+                      "t": "text",
+                      "v": " recorded at 0.9"
                     }
                   ],
-                  "text": "Set Inventory Unit to the value from 0.9"
+                  "text": "Set Inventory Unit to the Inventory Unit recorded at 0.9"
                 },
                 {
                   "tokens": [
@@ -2906,20 +2906,9 @@
                       "v": "Continue in the automatically opened "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0502m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0502m000",
+                      "name": "Item Defaults"
                     }
                   ],
                   "text": "Continue in the automatically opened Item Defaults (tcibd0502m000)"
@@ -3133,20 +3122,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Item Ordering Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd2101m000"
+                      "code": "tcibd2101m000",
+                      "name": "Item Ordering Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Item Ordering Defaults (tcibd2101m000) opens"
@@ -3293,20 +3275,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Items - Warehousing Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whwmd4101s000"
+                      "code": "whwmd4101s000",
+                      "name": "Items - Warehousing Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Items - Warehousing Defaults (whwmd4101s000) opens"
@@ -3453,20 +3428,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Item - Production Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tiipd0102m100"
+                      "code": "tiipd0102m100",
+                      "name": "Item - Production Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Item - Production Defaults (tiipd0102m100) opens"
@@ -3651,20 +3619,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Item - Sales Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tdisa0102s000"
+                      "code": "tdisa0102s000",
+                      "name": "Item - Sales Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens"
+                      "v": " opens"
                     }
                   ],
                   "text": "Item - Sales Defaults (tdisa0102s000) opens"
@@ -3880,20 +3841,13 @@
                       "v": ". If "
                     },
                     {
-                      "t": "chip",
-                      "v": "Global Update of Item with Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tdisa0202m000"
+                      "code": "tdisa0202m000",
+                      "name": "Global Update of Item with Defaults"
                     },
                     {
                       "t": "text",
-                      "v": ") opens, do not select "
+                      "v": " opens, do not select "
                     },
                     {
                       "t": "chip",
@@ -4014,20 +3968,9 @@
                       "v": "Save "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Defaults"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0502m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0502m000",
+                      "name": "Item Defaults"
                     }
                   ],
                   "text": "Save Item Defaults (tcibd0502m000)"
@@ -4144,6 +4087,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -4663,20 +4610,13 @@
               "v": " portion. If "
             },
             {
-              "t": "strong",
-              "v": "General Projects"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tcmcs0152s000"
+              "code": "tcmcs0152s000",
+              "name": "General Projects"
             },
             {
               "t": "text",
-              "v": ") opens from the Project lookup, close it without creating a project."
+              "v": " opens from the Project lookup, close it without creating a project."
             }
           ],
           "text": "> Note > The Item identifier has separate Project and Item portions. These are standard test items: leave Project blank and enter the BAM-* code in the Item portion. If General Projects (tcmcs0152s000) opens from the Project lookup, close it without creating a project."
@@ -4707,20 +4647,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Items"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0501m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0501m000",
+                      "name": "Items"
                     }
                   ],
                   "text": "Open Items (tcibd0501m000)"
@@ -4817,6 +4746,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -4980,6 +4913,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -5299,6 +5236,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -5739,20 +5680,9 @@
                       "v": "Return to "
                     },
                     {
-                      "t": "chip",
-                      "v": "Items"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tcibd0501m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tcibd0501m000",
+                      "name": "Items"
                     }
                   ],
                   "text": "Return to Items (tcibd0501m000)"
@@ -5849,6 +5779,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -6385,6 +6319,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "purchased site subentities"
                     }
@@ -6506,6 +6444,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "finished-item site subentities"
                     },
@@ -6614,20 +6556,13 @@
               "v": " in "
             },
             {
-              "t": "strong",
-              "v": "Concept Activation"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tcemm4600m000"
+              "code": "tcemm4600m000",
+              "name": "Concept Activation"
             },
             {
               "t": "text",
-              "v": ") — the same setting phase 3's Production defaults depend on."
+              "v": " — the same setting phase 3's Production defaults depend on."
             }
           ],
           "text": "> Prerequisite > Phases 5–7 complete: all three items exist and each site row shows its intended Default Supply Source. Job Shop by Site must be Active or In Preparation in Concept Activation (tcemm4600m000) — the same setting phase 3's Production defaults depend on."
@@ -6658,20 +6593,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Job Shop Bills of Material"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tibom3100m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tibom3100m000",
+                      "name": "Job Shop Bills of Material"
                     }
                   ],
                   "text": "Open Job Shop Bills of Material (tibom3100m000)"
@@ -7010,6 +6934,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "BOM and revision"
                     },
@@ -7060,20 +6988,13 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Job Shop List of Materials"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tibom3110m000"
+                      "code": "tibom3110m000",
+                      "name": "Job Shop List of Materials"
                     },
                     {
                       "t": "text",
-                      "v": ") opens for this BOM and revision"
+                      "v": " opens for this BOM and revision"
                     }
                   ],
                   "text": "Job Shop List of Materials (tibom3110m000) opens for this BOM and revision"
@@ -7301,6 +7222,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "BOM materials stored"
                     },
@@ -7492,6 +7417,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "BOM approved and in use"
                     },
@@ -7550,36 +7479,22 @@
               "v": " Look them up first — "
             },
             {
-              "t": "strong",
-              "v": "Manufacturing ➔ Job Shop ➔ Shop Layout ➔ Work Centers"
+              "t": "session",
+              "code": "tirou0101m000",
+              "name": "Manufacturing ➔ Job Shop ➔ Shop Layout ➔ Work Centers"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": " and "
             },
             {
               "t": "session",
-              "code": "tirou0101m000"
+              "code": "tirou4150m000",
+              "name": "Manufacturing ➔ Job Shop ➔ Shop Layout ➔ Reference Operations"
             },
             {
               "t": "text",
-              "v": ") and "
-            },
-            {
-              "t": "strong",
-              "v": "Manufacturing ➔ Job Shop ➔ Shop Layout ➔ Reference Operations"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "tirou4150m000"
-            },
-            {
-              "t": "text",
-              "v": ") — and if neither has a usable entry for the site, stop and obtain one."
+              "v": " — and if neither has a usable entry for the site, stop and obtain one."
             }
           ],
           "text": "> Prerequisite > An existing work center and an existing reference operation for the site. This guide does not create work centers, machines, or reference operations. Look them up first — Manufacturing ➔ Job Shop ➔ Shop Layout ➔ Work Centers (tirou0101m000) and Manufacturing ➔ Job Shop ➔ Shop Layout ➔ Reference Operations (tirou4150m000) — and if neither has a usable entry for the site, stop and obtain one."
@@ -7610,20 +7525,9 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Job Shop Routings"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tirou4100m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tirou4100m000",
+                      "name": "Job Shop Routings"
                     }
                   ],
                   "text": "Open Job Shop Routings (tirou4100m000)"
@@ -7752,20 +7656,9 @@
                       "v": " and open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Job Shop Routing"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tirou4600m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tirou4600m000",
+                      "name": "Job Shop Routing"
                     }
                   ],
                   "text": "Select New and open Job Shop Routing (tirou4600m000)"
@@ -8194,6 +8087,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "routing operation and work center"
                     }
@@ -8469,6 +8366,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "routing and revision"
                     },
@@ -8529,20 +8430,13 @@
                       "v": "Open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item - Costing"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "ticpr0107m000"
+                      "code": "ticpr0107m000",
+                      "name": "Item - Costing"
                     },
                     {
                       "t": "text",
-                      "v": ") for the bamboo rod from 5.3"
+                      "v": " for the bamboo rod from 5.3"
                     }
                   ],
                   "text": "Open Item - Costing (ticpr0107m000) for the bamboo rod from 5.3"
@@ -8607,6 +8501,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "component standard costs"
                     },
@@ -8646,6 +8544,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -8689,6 +8591,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "finished-item standard cost"
                     }
@@ -8718,20 +8624,13 @@
                       "v": "For any item whose standard cost is missing or unexpected, open "
                     },
                     {
-                      "t": "chip",
-                      "v": "Item Standard Costs"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "ticpr3501m000"
+                      "code": "ticpr3501m000",
+                      "name": "Item Standard Costs"
                     },
                     {
                       "t": "text",
-                      "v": ") for that item and effective date"
+                      "v": " for that item and effective date"
                     }
                   ],
                   "text": "For any item whose standard cost is missing or unexpected, open Item Standard Costs (ticpr3501m000) for that item and effective date"
@@ -8879,6 +8778,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "rod on hand before"
                     },
@@ -8928,6 +8831,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "sleeve on hand before"
                     },
@@ -8961,20 +8868,9 @@
                       "v": "Create a purchase order in "
                     },
                     {
-                      "t": "chip",
-                      "v": "Purchase Order Intake Workbench"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tdpur4601m200"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "tdpur4601m200",
+                      "name": "Purchase Order Intake Workbench"
                     }
                   ],
                   "text": "Create a purchase order in Purchase Order Intake Workbench (tdpur4601m200)"
@@ -8982,23 +8878,20 @@
                 {
                   "tokens": [
                     {
-                      "t": "chip",
-                      "v": "Purchase Order"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "tdpur4100m900"
+                      "code": "tdpur4100m900",
+                      "name": "Purchase Order"
                     },
                     {
                       "t": "text",
-                      "v": ") opens — "
+                      "v": " opens — "
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -9067,6 +8960,10 @@
                       "v": "BP4000007"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "chip",
                       "v": "VISTA MACHINES INC."
                     },
@@ -9075,7 +8972,7 @@
                       "v": " from the standard test partners"
                     }
                   ],
-                  "text": "The partner list opens. One run used BP4000007VISTA MACHINES INC. from the standard test partners"
+                  "text": "The partner list opens. One run used BP4000007 VISTA MACHINES INC. from the standard test partners"
                 }
               ],
               "id": "11.5",
@@ -9252,20 +9149,13 @@
                       "v": "On the generated "
                     },
                     {
-                      "t": "chip",
-                      "v": "Warehousing Order"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh2100m100"
+                      "code": "whinh2100m100",
+                      "name": "Warehousing Order"
                     },
                     {
                       "t": "text",
-                      "v": "), run "
+                      "v": ", run "
                     },
                     {
                       "t": "command",
@@ -9322,20 +9212,9 @@
                       "v": "Confirm the "
                     },
                     {
-                      "t": "chip",
-                      "v": "Warehouse Receipt"
-                    },
-                    {
-                      "t": "text",
-                      "v": " ("
-                    },
-                    {
                       "t": "session",
-                      "code": "whinh3512m000"
-                    },
-                    {
-                      "t": "text",
-                      "v": ")"
+                      "code": "whinh3512m000",
+                      "name": "Warehouse Receipt"
                     }
                   ],
                   "text": "Confirm the Warehouse Receipt (whinh3512m000)"
@@ -9440,6 +9319,10 @@
                       "t": "pencil"
                     },
                     {
+                      "t": "text",
+                      "v": " "
+                    },
+                    {
                       "t": "value",
                       "v": "rod on hand after"
                     },
@@ -9449,6 +9332,10 @@
                     },
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -9771,6 +9658,10 @@
                   "tokens": [
                     {
                       "t": "pencil"
+                    },
+                    {
+                      "t": "text",
+                      "v": " "
                     },
                     {
                       "t": "value",
@@ -11786,11 +11677,11 @@
               "tokens": [
                 {
                   "t": "link",
-                  "v": "Manual Production Order from Existing Master Data",
+                  "v": "Production order",
                   "href": "SG-manual-production-order-existing-master-data.md"
                 }
               ],
-              "text": "Manual Production Order from Existing Master Data"
+              "text": "Production order"
             },
             {
               "tokens": [

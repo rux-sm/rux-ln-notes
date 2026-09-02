@@ -47,10 +47,10 @@
       "tokens": [
         {
           "t": "text",
-          "v": "The meeting was exploratory rather than a controlled end-to-end run. It ended with a partially advised outbound line and did not reach picking, shipment confirmation, or the Ship from Stock guide's final inventory check."
+          "v": "The meeting was exploratory rather than a controlled end-to-end run. It ended with a partially advised outbound line and did not reach picking, shipment confirmation, or the Ship from stock guide's final inventory check."
         }
       ],
-      "text": "The meeting was exploratory rather than a controlled end-to-end run. It ended with a partially advised outbound line and did not reach picking, shipment confirmation, or the Ship from Stock guide's final inventory check."
+      "text": "The meeting was exploratory rather than a controlled end-to-end run. It ended with a partially advised outbound line and did not reach picking, shipment confirmation, or the Ship from stock guide's final inventory check."
     }
   ],
   "attendees": [
@@ -318,6 +318,10 @@
               "v": "Updated 2026-08-13 — where the order type default comes from is now sourced."
             },
             {
+              "t": "text",
+              "v": " "
+            },
+            {
               "t": "session",
               "code": "tdsls4100m900"
             },
@@ -350,20 +354,13 @@
               "v": "); if the customer has none assigned, it falls back to the order type assigned to the current user's "
             },
             {
-              "t": "strong",
-              "v": "Sales User Profile"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tdsls0139m000"
+              "code": "tdsls0139m000",
+              "name": "Sales User Profile"
             },
             {
               "t": "text",
-              "v": "). Whether "
+              "v": ". Whether "
             },
             {
               "t": "literal",
@@ -374,7 +371,7 @@
               "v": " came from the customer record or the user profile in this demonstration was not captured on screen — the rule is sourced, the specific trace is not."
             }
           ],
-          "text": "Updated 2026-08-13 — where the order type default comes from is now sourced.tdsls4100m900's own help states the Sales Order Type field defaults from the order type assigned to the customer (Sold-to Business Partner, tccom4110s000); if the customer has none assigned, it falls back to the order type assigned to the current user's Sales User Profile (tdsls0139m000). Whether N10 came from the customer record or the user profile in this demonstration was not captured on screen — the rule is sourced, the specific trace is not."
+          "text": "Updated 2026-08-13 — where the order type default comes from is now sourced. tdsls4100m900's own help states the Sales Order Type field defaults from the order type assigned to the customer (Sold-to Business Partner, tccom4110s000); if the customer has none assigned, it falls back to the order type assigned to the current user's Sales User Profile (tdsls0139m000). Whether N10 came from the customer record or the user profile in this demonstration was not captured on screen — the rule is sourced, the specific trace is not."
         },
         {
           "kind": "prose",
@@ -400,20 +397,13 @@
               "v": ". These are demonstration values, not defaults. Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Sales Order Lines Overview"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tdsls4100m900"
+              "code": "tdsls4100m900",
+              "name": "Sales Order Lines Overview"
             },
             {
               "t": "text",
-              "v": "), Field Information (Sales Order Type)."
+              "v": ", Field Information (Sales Order Type)."
             }
           ],
           "text": "Source: LN training environment, verified from the recording dated 2026-08-04 — the source on file and the source on file. These are demonstration values, not defaults. Infor LN help for Sales Order Lines Overview (tdsls4100m900), Field Information (Sales Order Type)."
@@ -474,20 +464,13 @@
               "v": "The narration connected sales-price retrieval to price-book effective timing and distinguished sales price from standard cost. The local help confirms that a sales-order-line price can be retrieved from "
             },
             {
-              "t": "strong",
-              "v": "Price Book Lines"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tdpcg0131m000"
+              "code": "tdpcg0131m000",
+              "name": "Price Book Lines"
             },
             {
               "t": "text",
-              "v": "), but the exact effective-time selection rule and the meanings of "
+              "v": ", but the exact effective-time selection rule and the meanings of "
             },
             {
               "t": "session",
@@ -520,20 +503,13 @@
               "v": "Sources: LN training environment screenshots dated 2026-08-04; Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Sales Order Lines Detail"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "tdsls4101m000"
+              "code": "tdsls4101m000",
+              "name": "Sales Order Lines Detail"
             },
             {
               "t": "text",
-              "v": "), Field Information."
+              "v": ", Field Information."
             }
           ],
           "text": "Sources: LN training environment screenshots dated 2026-08-04; Infor LN help for Sales Order Lines Detail (tdsls4101m000), Field Information."
@@ -548,20 +524,13 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Item Order Plan"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "cprrp0520m000"
+              "code": "cprrp0520m000",
+              "name": "Item Order Plan"
             },
             {
               "t": "text",
-              "v": ") showed item "
+              "v": " showed item "
             },
             {
               "t": "literal",
@@ -572,20 +541,13 @@
               "v": ", inventory on hand, demand/supply transactions, Planned Available, and ATP. Later, "
             },
             {
-              "t": "strong",
-              "v": "Warehouse - Item Inventory"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "whwmd2515m000"
+              "code": "whwmd2515m000",
+              "name": "Warehouse - Item Inventory"
             },
             {
               "t": "text",
-              "v": ") showed the same item distributed across warehouse rows with separate on-hand, on-order, allocated, blocked, and economic-stock quantities."
+              "v": " showed the same item distributed across warehouse rows with separate on-hand, on-order, allocated, blocked, and economic-stock quantities."
             }
           ],
           "text": "Item Order Plan (cprrp0520m000) showed item 100200, inventory on hand, demand/supply transactions, Planned Available, and ATP. Later, Warehouse - Item Inventory (whwmd2515m000) showed the same item distributed across warehouse rows with separate on-hand, on-order, allocated, blocked, and economic-stock quantities."
@@ -656,6 +618,10 @@
               "code": "cprrp4800m000"
             },
             {
+              "t": "text",
+              "v": " "
+            },
+            {
               "t": "strong",
               "v": "ATP Handling"
             },
@@ -664,7 +630,7 @@
               "v": ", not opened in this recording) — the two use different time buckets, and the order-entry check can include CTP options this planning view does not. So the Item Order Plan screen is directionally correct but not guaranteed to match the number a sales order entry would actually get blocked or allowed on. "
             }
           ],
-          "text": "Updated 2026-08-13 — the ATP calculation itself is now sourced. In Item Order Plan, Available-to-Promise for a given period is the minimum of Planned Available and Total Demand across that period and every period after it — a shortage anywhere in the future horizon pulls today's ATP down, not just a shortage today. This session's own help is explicit that its ATP figure will not always match the live check run at sales-order entry (different session, cprrp4800m000ATP Handling, not opened in this recording) — the two use different time buckets, and the order-entry check can include CTP options this planning view does not. So the Item Order Plan screen is directionally correct but not guaranteed to match the number a sales order entry would actually get blocked or allowed on."
+          "text": "Updated 2026-08-13 — the ATP calculation itself is now sourced. In Item Order Plan, Available-to-Promise for a given period is the minimum of Planned Available and Total Demand across that period and every period after it — a shortage anywhere in the future horizon pulls today's ATP down, not just a shortage today. This session's own help is explicit that its ATP figure will not always match the live check run at sales-order entry (different session, cprrp4800m000 ATP Handling, not opened in this recording) — the two use different time buckets, and the order-entry check can include CTP options this planning view does not. So the Item Order Plan screen is directionally correct but not guaranteed to match the number a sales order entry would actually get blocked or allowed on."
         },
         {
           "kind": "prose",
@@ -674,36 +640,22 @@
               "v": "Sources: Infor LN help for "
             },
             {
-              "t": "strong",
-              "v": "Item Order Plan"
+              "t": "session",
+              "code": "cprrp0520m000",
+              "name": "Item Order Plan"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": ", Field Information (Planned Available, ATP); Infor LN help for "
             },
             {
               "t": "session",
-              "code": "cprrp0520m000"
+              "code": "whwmd2515m000",
+              "name": "Warehouse Item Inventory"
             },
             {
               "t": "text",
-              "v": "), Field Information (Planned Available, ATP); Infor LN help for "
-            },
-            {
-              "t": "strong",
-              "v": "Warehouse Item Inventory"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "whwmd2515m000"
-            },
-            {
-              "t": "text",
-              "v": "), Field Information; screenshots dated 2026-08-04."
+              "v": ", Field Information; screenshots dated 2026-08-04."
             }
           ],
           "text": "Sources: Infor LN help for Item Order Plan (cprrp0520m000), Field Information (Planned Available, ATP); Infor LN help for Warehouse Item Inventory (whwmd2515m000), Field Information; screenshots dated 2026-08-04."
@@ -718,20 +670,13 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "strong",
-              "v": "Outbound Line Status Overview"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
               "t": "session",
-              "code": "whinh2129m000"
+              "code": "whinh2129m000",
+              "name": "Outbound Line Status Overview"
             },
             {
               "t": "text",
-              "v": ") showed order type "
+              "v": " showed order type "
             },
             {
               "t": "literal",
@@ -765,10 +710,10 @@
           "tokens": [
             {
               "t": "text",
-              "v": "This is corroborating dated environment evidence. The later 2026-08-09 successful run remains the current authority for the Ship from Stock guide."
+              "v": "This is corroborating dated environment evidence. The later 2026-08-09 successful run remains the current authority for the Ship from stock guide."
             }
           ],
-          "text": "This is corroborating dated environment evidence. The later 2026-08-09 successful run remains the current authority for the Ship from Stock guide."
+          "text": "This is corroborating dated environment evidence. The later 2026-08-09 successful run remains the current authority for the Ship from stock guide."
         },
         {
           "kind": "prose",
@@ -810,36 +755,22 @@
               "v": "The presenter investigated a purchase receipt whose inbound line displayed "
             },
             {
-              "t": "strong",
-              "v": "Warehouse Inspections"
+              "t": "session",
+              "code": "whinh3122m000",
+              "name": "Warehouse Inspections"
             },
             {
               "t": "text",
-              "v": " ("
+              "v": " as its activity. The screen later showed "
             },
             {
               "t": "session",
-              "code": "whinh3122m000"
+              "code": "whinh3525m000",
+              "name": "Inbound Advice"
             },
             {
               "t": "text",
-              "v": ") as its activity. The screen later showed "
-            },
-            {
-              "t": "strong",
-              "v": "Inbound Advice"
-            },
-            {
-              "t": "text",
-              "v": " ("
-            },
-            {
-              "t": "session",
-              "code": "whinh3525m000"
-            },
-            {
-              "t": "text",
-              "v": ") and the expanded "
+              "v": " and the expanded "
             },
             {
               "t": "strong",
@@ -985,10 +916,10 @@
       "tokens": [
         {
           "t": "text",
-          "v": "No configuration or production-process decisions were documented. For this library, the evidence supports one scope decision: retain the recording as input to a future shortage/allocation variant, not as a replacement for the verified Ship from Stock base guide."
+          "v": "No configuration or production-process decisions were documented. For this library, the evidence supports one scope decision: retain the recording as input to a future shortage/allocation variant, not as a replacement for the verified Ship from stock base guide."
         }
       ],
-      "text": "No configuration or production-process decisions were documented. For this library, the evidence supports one scope decision: retain the recording as input to a future shortage/allocation variant, not as a replacement for the verified Ship from Stock base guide."
+      "text": "No configuration or production-process decisions were documented. For this library, the evidence supports one scope decision: retain the recording as input to a future shortage/allocation variant, not as a replacement for the verified Ship from stock base guide."
     }
   ],
   "actions": [
@@ -1115,10 +1046,10 @@
               "tokens": [
                 {
                   "t": "text",
-                  "v": "Build a future Ship from Stock shortage/allocation variant only after the controlled rerun"
+                  "v": "Build a future Ship from stock shortage/allocation variant only after the controlled rerun"
                 }
               ],
-              "text": "Build a future Ship from Stock shortage/allocation variant only after the controlled rerun"
+              "text": "Build a future Ship from stock shortage/allocation variant only after the controlled rerun"
             },
             {
               "tokens": [

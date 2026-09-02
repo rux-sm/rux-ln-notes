@@ -1,6 +1,6 @@
-commit   371d8351e7b9e5ce3fdb027f9fa98c68788349e9
-date     2026-09-01T17:58:12Z
-subject  docs(guides): Stop citing a section that is gone
+commit   a4cea8b90b029d250ca66246e63a59b1f5bb0cda
+date     2026-09-02T13:48:04Z
+subject  ci: Run the gate on every push
 contract 2 
 tier     export
 

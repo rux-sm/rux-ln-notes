@@ -9,13 +9,12 @@ Nothing else here is checked by anything.
 
 ---
 
-## Watched — `MEASURED` answers these, and cannot go stale
+## Watched — `MEASURED` answers these; read them there
 
-| | what it says today |
-| :--- | :--- |
-| `publishable.pages-flagged` | **0** of 26 — the condition for staying public |
-| `rux-ln-atlas.behind` | **8** |
-| `rux-ds.behind` | **48** |
+`publishable.pages-flagged` (0 is the condition for staying public),
+`rux-ln-atlas.behind` and `rux-ds.behind`. This file used to copy the three
+values and was wrong within a day of doing so; `node tools/measure.mjs` is the
+only place they are written.
 
 One document has never been sent:
 

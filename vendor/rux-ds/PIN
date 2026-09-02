@@ -1,6 +1,7 @@
-commit  23bf792be5a4c982e548b44d73946a72b749489f
-date    2026-09-01T17:43:05Z
-subject docs(2.1): Admit the DEFER set as capacity allows
+tag     (none: a commit between tags)
+commit  6a64dbd736c43266b84c860c5d0ca74c903e78cc
+date    2026-09-02T18:28:35Z
+subject docs(portal): Answer the hub's name
 
 Vendored by tools/sync-ds.sh from a clean tree.
 Re-run that script to move the pin; do not edit vendored files, the next

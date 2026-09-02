@@ -1,12 +1,12 @@
 /* ==========================================================================
-   rux-ds — TOGGLE, NUMBER STEPPERS, SEARCH CLEAR, INDETERMINATE
+   rux-ds — FORM CONTROL STATE
                                                         Phase 5, roadmap §4.5
    --------------------------------------------------------------------------
    Requires js/overlay.js only to share the `window.Rux` namespace. None of
    these overlays anything, so none of them joins the dismiss stack.
 
-   FOUR SMALL CONTROLS IN ONE FILE, because each is a handful of lines and a
-   file per control would be four script tags for 30 lines of behaviour. They
+   SMALL FORM CONTROLS LIVE IN ONE FILE, because each is a handful of lines and
+   a file per control would add script tags for very little behaviour. They
    are grouped by what they are — form controls that only ever mutate
    themselves — rather than by component name.
 
@@ -40,6 +40,15 @@
    https://react.carbondesignsystem.com/iframe.html?id=components-numberinput--default
    and https://react.carbondesignsystem.com/iframe.html?id=components-toggle--default
 
+   EDIT IN PLACE verified live 2026-09-01 on
+   https://ibm-products.carbondesignsystem.com/iframe.html?id=components-editinplace--default
+   Focusing its input added `c4p--edit-in-place--focused` to the host and the
+   host drew a 2px rgb(15, 98, 254) outline. Its React layer also replaces the
+   single edit action with Cancel and Save; this module does NOT reimplement
+   that editing transaction. The captured static fragment has one edit action,
+   so this module only enters focus, applies the required host class, and
+   removes it when focus leaves the component.
+
    THE STEPPER ORDER IS RIGHT AND THE REASON GIVEN FOR IT WAS WRONG. Carbon does render
    decrement first and increment second -- confirmed, with the subtract glyph on the first
    and add on the second -- so this module always stepped the right way. But it marks them
@@ -48,6 +57,9 @@
    buttons sat at `order: 0` and rendered in DOM order, which is the only reason reading
    position worked. Both classes are now in the markup and the module reads them, keeping
    position as a fallback.
+
+   ADDED 2026-09-01, not driven live: the selectable structured list's two row classes,
+   `--focused-within` on focus and `--selected` on change (see the handler below).
 
    THE TOGGLE IS CONFIRMED WHOLE: a <button role="switch"> with aria-checked, beside a
    `toggle__switch` that takes `toggle__switch--checked`, and a `toggle__text` carrying the
@@ -150,6 +162,45 @@
   document.addEventListener('focusin', e => fluidFocus(e.target, true));
   document.addEventListener('focusout', e => fluidFocus(e.target, false));
 
+  /* ── edit in place focus ──────────────────────────────────────────────── */
+  // Carbon suppresses the input's own outline and draws the ring from the
+  // host's `--focused` class. Its React transition and this module's deliberate
+  // limit are recorded in the BEHAVIOUR label above.
+  const editInPlace = target => target.closest?.('.rux--edit-in-place');
+  document.addEventListener('focusin', e => {
+    if (!e.target.matches?.('.rux--edit-in-place__text-input')) return;
+    editInPlace(e.target)?.classList.add('rux--edit-in-place--focused');
+  });
+  document.addEventListener('focusout', e => {
+    const root = editInPlace(e.target);
+    if (!root || root.contains(e.relatedTarget)) return;
+    root.classList.remove('rux--edit-in-place--focused');
+  });
+
+  /* ── structured list, selectable ──────────────────────────────────────── */
+  // Added 2026-09-01 with structured-list's admission. Carbon draws the focus
+  // ring on the ROW through `structured-list-row--focused-within`, a class
+  // React toggles when the visually-hidden radio inside it has focus, and
+  // marks the chosen row `--selected` the same way. Measured on the sink
+  // before this: focusing the radio changed nothing on the row, the cell or
+  // the check mark. Reimplemented on the AGENTS.md rule for behaviour Carbon
+  // keeps in its React layer.
+  const listRow = input => input.closest?.('.rux--structured-list-row');
+  const listFocus = (target, on) => {
+    if (!target.matches?.('.rux--structured-list-input')) return;
+    listRow(target)?.classList.toggle('rux--structured-list-row--focused-within', on);
+  };
+  document.addEventListener('focusin', e => listFocus(e.target, true));
+  document.addEventListener('focusout', e => listFocus(e.target, false));
+  document.addEventListener('change', e => {
+    const input = e.target;
+    if (!input.matches?.('.rux--structured-list-input') || !input.checked) return;
+    const list = input.closest('.rux--structured-list');
+    list?.querySelectorAll('.rux--structured-list-row--selected')
+      .forEach(row => row.classList.remove('rux--structured-list-row--selected'));
+    listRow(input)?.classList.add('rux--structured-list-row--selected');
+  });
+
   /* ── search clear ──────────────────────────────────────────────────────── */
   const syncSearch = search => {
     const input = search.querySelector('.rux--search-input');
@@ -171,6 +222,12 @@
     }
     const stepper = event.target.closest('.rux--number__control-btn');
     if (stepper) { step(stepper); return; }
+
+    const edit = event.target.closest('.rux--edit-in-place__btn-edit');
+    if (edit) {
+      editInPlace(edit)?.querySelector('.rux--edit-in-place__text-input')?.focus();
+      return;
+    }
 
     const clear = event.target.closest('.rux--search-close');
     if (clear) {

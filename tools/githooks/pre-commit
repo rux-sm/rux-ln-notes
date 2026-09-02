@@ -36,7 +36,14 @@ if command -v node >/dev/null 2>&1; then
 fi
 
 pages=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(html|md)$' || true)
-[ -n "$pages" ] || exit 0
+
+# NO PAGE STAGED IS NOT NO CHECK. Until 2026-09-02 this was `exit 0`, so a
+# commit touching only tools/, vendor/, data/ or the workflow ran no gate at
+# all and CI was the first thing to look. The privacy check below has nothing
+# to read in that case; every other gate still does.
+if [ -z "$pages" ]; then
+  exec node tools/check.mjs
+fi
 
 if ! command -v node >/dev/null 2>&1; then
   echo "pre-commit: node not found, so staged pages were NOT checked." >&2

@@ -9,7 +9,7 @@
 # emit.py writes nothing and names the pattern.
 #
 # WHAT DOES NOT COME ACROSS. evidence/ stays in atlas -- the vendor PDFs, the
-# session help and the 82 screenshots of a licensed environment. A guide that
+# session help and the screenshots of a licensed environment. A guide that
 # wants to show a screenshot needs a deliberate publication decision and a
 # route, and there is none. See atlas _standards/renderer-brief.md section 6.
 #
@@ -25,9 +25,24 @@ OUT="$HERE/data/guides"
 
 SHA="$(git -C "$ATLAS" rev-parse HEAD)"
 OLD="$(sed -n 's/^commit  *//p' "$OUT/PIN" 2>/dev/null)"
-if [ -n "$(git -C "$ATLAS" status --porcelain)" ]; then
-  echo "rux-ln-atlas at $ATLAS has uncommitted changes."
+# TRACKED CHANGES ONLY (-uno), for sync-ds.sh's reason: an untracked file is
+# not in the commit the pin names, so it cannot make the pin wrong.
+if [ -n "$(git -C "$ATLAS" status --porcelain -uno)" ]; then
+  echo "rux-ln-atlas at $ATLAS has uncommitted changes to tracked files."
   echo "Commit them first -- data pinned to a dirty tree cannot be reproduced."
+  exit 1
+fi
+
+# PUSHED, NOT ONLY CLEAN. A pin names a commit; if the other machine never
+# receives it, the pin names nothing there. Measured 2026-09-02: the portal
+# sat committed and unpushed on one Mac while the README on the other pointed
+# at it. Compared against the last fetch, which is the best a local check has.
+UP="$(git -C "$ATLAS" rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || true)"
+if [ -z "$UP" ]; then
+  echo "note: rux-ln-atlas has no upstream branch; pushed-ness not checked"
+elif [ "$(git -C "$ATLAS" rev-list --count "$UP..HEAD")" != "0" ]; then
+  echo "rux-ln-atlas has commits not on $UP. Push them first -- a pin that names an"
+  echo "unpushed commit names nothing on the other machine."
   exit 1
 fi
 
@@ -72,6 +87,8 @@ if [ -n "$OLD" ] && [ "$OLD" != "$SHA" ]; then
   echo
   echo "atlas moved $(git -C "$ATLAS" rev-list --count "$OLD..$SHA") commit(s) since the previous pin:"
   git -C "$ATLAS" log --oneline --no-decorate "$OLD..$SHA" | sed 's/^/  /'
+  R="$(git -C "$ATLAS" log --name-only --format= "$OLD..$SHA" -- '_standards/*-reply.md' | sort -u)"
+  [ -n "$R" ] && { echo "  replies touched in that range:"; echo "$R" | sed 's/^/    /'; }
   echo
   echo "  Replies to this side land in $ATLAS/_standards/*-reply.md."
 elif [ -z "$OLD" ]; then

@@ -87,7 +87,7 @@ ever copies the already-built sprite that `sync-ds.sh` delivered.
 
 ```sh
 sh tools/sync-guides.sh          # guides AND reviews -- emit.py --all --reviews
-node tools/build.mjs             # 20 pages: 1 index, 7 guides, 6 reviews, 6 summaries
+node tools/build.mjs             # every page: index.html and guides/, from data/guides/
 ```
 
 A guide has no `kind` field and a review carries `review` or `summary`; that
@@ -165,7 +165,7 @@ an evidence filename, an issue reference, a gap marker.
 **It refuses, and it is on the commit hook.** It reported while the reviews
 still carried names, because blocking every commit until a content rewrite
 landed would have stopped work rather than protected anything. The rewrite has
-landed, every class reads zero across all 21 pages, and the job changed from
+landed, every class reads zero across every page, and the job changed from
 measuring the distance to holding it. There is no exemption marker and no
 filename list: a public page cannot opt out of being public.
 
@@ -228,7 +228,7 @@ git config core.hooksPath tools/githooks
 ```
 
 `check-classes` and `check-structure` derive their rules from the **vendored stylesheet**, which is the only
-evidence this project holds — rux-ds answers structural questions from 641
+evidence this project holds — rux-ds answers structural questions from its
 captured Carbon DOM stories, and `docs/` is not vendored. Between them they say
 a class resolves and is not structurally misplaced in the one way CSS can prove.
 
@@ -287,7 +287,7 @@ became 118, not that the paragraph around it now argues the wrong thing.
 
 ### What does not come across
 
-`evidence/` stays in atlas — 11 vendor PDFs, 115 session help exports, 82
+`evidence/` stays in atlas — 11 vendor PDFs, 115 session help exports,
 screenshots of a licensed environment. A guide that wants to show a screenshot
 needs a deliberate publication decision and a route, and there is none. Atlas's
 `_standards/renderer-brief.md` §6 flags this as something to send back.
@@ -299,7 +299,7 @@ Seven guides, `contract: 2`, export tier. A guide is a procedure: an objective,
 plus troubleshooting, variants and handover rows.
 
 Cells arrive as **typed token arrays, never as Markdown** — 15 token types, of
-which `text` is 2,648 of 4,124. This project implements *rendering* and never
+which `text` is the large majority (`tokens.type.text` against `tokens.total` in `MEASURED`). This project implements *rendering* and never
 re-implements the marker contract. `../rux-ln-atlas/_standards/guide-json.md` is
 normative; `renderer-brief.md` is the covering note. Read both before designing.
 
@@ -373,7 +373,7 @@ asks of atlas in return is written up in `SEND-BACK.md`.
   every phase was performed against a live system and confirmed while the guide
   itself is `status: draft`.
 - **The training reviews publish too, and now do.** `reviews/` is a second
-  content type — six reviews and six summaries, rendering at 20 pages total. Atlas accepted a **third tier** with the
+  content type — six reviews and six summaries, rendering as pages beside the guides. Atlas accepted a **third tier** with the
   fail-closed sweep scoped per tier, so relaxing it for reviews cannot quietly
   strip the name protection off guides. Two conditions: the tier is named for
   what it keeps rather than for who reads it, and issue ids and library paths
@@ -433,7 +433,7 @@ here; anything a document consults on their behalf does not.**
   and from the gates, then withdrew both: the budget was rux-ds's own, and the
   gates it named "do not run on the consuming project unless it deliberately
   adopts them". That was written when this project had no gates. It has since
-  adopted four, and `check-classes` and `check-structure` read the HTML as
+  adopted the gates `tools/check.mjs` lists, and `check-classes` and `check-structure` read the HTML as
   TEXT — so a runtime renderer would commit a shell whose `main` is empty and
   both would exit 0 having found nothing to look at. That is `smoke.html`'s
   failure with a different cause, and it would be rolled on every guide change
@@ -483,7 +483,7 @@ unbuilt, and three defect classes have no gate behind them.
 Published, and read by trainees at
 [rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/). The
 two syncs work and are verified — `sync-ds` was seen to refuse a dirty tree,
-not merely written to. `tools/build.mjs` writes `index.html` and nineteen pages
+not merely written to. `tools/build.mjs` writes `index.html` and the pages
 into `guides/` from `data/guides/` — seven guides, six reviews, six summaries —
 and a rebuild against a clean tree produces no diff.
 
@@ -527,7 +527,7 @@ all seven broken pages, because none of them models document order.
 `check-order` is that rule now, so the next generator change cannot quietly
 reintroduce it. The flush-tag defect has no gate and is still caught only by
 looking. The missing-wrapper class does have one now — `check-ancestry`, run
-from rux-ds against these pages — and it is currently reporting two.
+from rux-ds against these pages — and its count is whatever `node tools/check-ancestry.mjs` prints today.
 
 **It has not been reviewed by rux-ds.** A copy with invented content is what
 would go over; `MEASURED` records `SEND-DS.md` as undelivered.

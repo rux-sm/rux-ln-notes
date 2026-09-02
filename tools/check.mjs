@@ -43,6 +43,15 @@ for (const [gate, args] of GATES) {
   if (run(gate, args) !== 0) failed.push(gate);
 }
 
+// THE HOOKS ARE PER CLONE, and until 2026-09-02 nothing here said so: a fresh
+// clone commits with no checks and every gate still passes. Reported, not
+// enforced -- CI has no hooks and no need of them.
+if (!process.env.CI) {
+  const hp = (spawnSync('git', ['config', 'core.hooksPath'], { cwd: ROOT, encoding: 'utf8' }).stdout ?? '').trim();
+  if (hp !== 'tools/githooks')
+    console.log('\n  WARNING: commit hooks are not armed in this clone — git config core.hooksPath tools/githooks');
+}
+
 console.log('\n── measure --check (informational)');
 const stale = run('measure', ['--check']) !== 0;
 

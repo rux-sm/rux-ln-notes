@@ -158,6 +158,12 @@ if (!PEOPLE) {
   console.log('  data/guides/PIN names is not in it, so PEOPLE could not be read.');
   console.log('  This is a gap in the run, not a clean result.');
 }
+// A GAP IS A REFUSAL OUTSIDE CI. Measured 2026-09-02 on a fresh clone with no
+// atlas beside it: the gap printed and check.mjs still said every gate passed,
+// so a half-set-up machine read as healthy. CI is the one place the names
+// cannot be read by design -- pages.yml says why -- and GitHub sets CI there.
+const gap = !PEOPLE && !process.env.CI;
+if (gap) console.log('  Outside CI that is a refusal: clone rux-ln-atlas beside this repository.');
 console.log('\n  A clean run says a regex found nothing, and nothing about whether a');
 console.log('  paraphrase is close enough to still be a copy. See the header.\n');
 
@@ -165,4 +171,4 @@ console.log('  paraphrase is close enough to still be a copy. See the header.\n'
 // blocking every commit until a content rewrite landed would have stopped work
 // rather than protected anything. The rewrite has landed and every class reads
 // zero, so the job changes from measuring the distance to holding it.
-process.exit(flagged ? 1 : 0);
+process.exit(flagged || gap ? 1 : 0);

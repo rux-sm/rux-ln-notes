@@ -3,7 +3,7 @@
 **Unsent.** This is the first thing this project has ever asked of the design
 system, and it asks for one template and one decision.
 
-`SEND-BACK.md` and `SEND-BACK-2.md` run the other way, to `rux-ln-atlas`, and
+`send-back.md` and `send-back-2.md`, now in atlas `_standards/`, run the other way and
 are about *what arrives*. This one is about *what it is rendered with*.
 
 Enclosed: **`template-candidate.html`**, a complete page carrying invented
@@ -72,7 +72,7 @@ seven have. Three ways out, and the choice belongs to rux-ds:
 3. **A tag is the wrong component for a route**, and something else is right.
 
 **What this project will not do is write a local rule that overrides a `rux--`
-component's own sizing.** CLAUDE.md forbids it, and the first draft of
+component's own sizing.** AGENTS.md forbids it, and the first draft of
 `detail-page.html` records why: invented classes are invisible to
 `check-classes`, so an override that is wrong is also unpoliced.
 
@@ -109,7 +109,7 @@ one thing that cannot be obtained on this side at any effort.
 
 ## §5 The candidate carries nothing from the guide data, and that is proved
 
-`rux-ds` is public. `CLAUDE.md` here is absolute: no guide text, session code,
+`rux-ds` is public. `AGENTS.md` here is absolute: no guide text, session code,
 route, screenshot or client value reaches a commit, a template or an issue
 there, and anything that crosses is authored with invented, generic content.
 
@@ -165,7 +165,7 @@ The artifact lands in **two places, and they are not copies of each other**:
 | | holds | content |
 | :--- | :--- | :--- |
 | `rux-ds` | `templates/document-page.html`, gated the way every template there is | invented |
-| `rux-ln-guides` | `guide.html`, the LN binding of it | real |
+| `rux-ln-notes` | `guide.html`, the LN binding of it | real |
 
 This project then records which rux-ds commit its page derives from, the way
 `vendor/rux-ds/PIN` already records which commit the stylesheet came from. A

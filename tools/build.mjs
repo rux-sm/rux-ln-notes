@@ -994,6 +994,14 @@ const docs = readdirSync(DATA)
   .filter(f => f.endsWith('.json'))
   .map(f => JSON.parse(readFileSync(join(DATA, f), 'utf8')));
 
+// THE CONTRACT IS PINNED HERE, NOT ONLY REPORTED. sync-guides.sh prints the
+// contract set and enforces nothing, so a renderer written for one shape could
+// silently consume the next. Bump this constant when this file is updated for
+// a new contract, and not before.
+const CONTRACT = 2;
+for (const d of docs) if (Number(d.contract) !== CONTRACT)
+  throw new Error(`${d.id ?? '?'}: contract ${d.contract}, this renderer reads ${CONTRACT} -- update build.mjs for it, then this constant`);
+
 for (const d of docs) {
   const kind = d.kind ?? 'guide';
   if (!['guide', 'review', 'summary'].includes(kind)) {

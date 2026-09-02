@@ -20,13 +20,21 @@ cd "$(git rev-parse --show-toplevel)"
 # .md AS WELL AS .html. A public repository publishes every tracked file, not
 # just the rendered site, and the exchange documents are tracked: SEND-BACK.md
 # quoted the PEOPLE tuple literally while a hook that read only pages watched.
+# MEASURED IS DERIVED, LIKE A PIN, so it is regenerated and staged here rather
+# than remembered. It records the sibling repositories heads and went stale
+# on every rux-ds commit while a person was asked to re-run it by hand.
+if command -v node >/dev/null 2>&1; then
+  node tools/measure.mjs >/dev/null 2>&1 && git add MEASURED
+fi
+
 pages=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(html|md)$' || true)
 [ -n "$pages" ] || exit 0
 
 if ! command -v node >/dev/null 2>&1; then
   echo "pre-commit: node not found, so staged pages were NOT checked." >&2
-  echo "            This is a refusal, not a pass. Install node, or use" >&2
-  echo "            --no-verify and say in the commit body that you did." >&2
+  echo "            This is a refusal, not a pass. Install node. A person may" >&2
+  echo "            bypass with --no-verify and must say why in the body;" >&2
+  echo "            an agent never does." >&2
   exit 1
 fi
 

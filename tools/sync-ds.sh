@@ -37,6 +37,20 @@ if [ -n "$(git -C "$DS" status --porcelain -uno)" ]; then
   exit 1
 fi
 
+
+# PUSHED, NOT ONLY CLEAN. A pin names a commit; if the other machine never
+# receives it, the pin names nothing there. Measured 2026-09-02: the portal
+# sat committed and unpushed on one Mac while the README on the other pointed
+# at it. Compared against the last fetch, which is the best a local check has.
+UP="$(git -C "$DS" rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || true)"
+if [ -z "$UP" ]; then
+  echo "note: rux-ds has no upstream branch; pushed-ness not checked"
+elif [ "$(git -C "$DS" rev-list --count "$UP..HEAD")" != "0" ]; then
+  echo "rux-ds has commits not on $UP. Push them first -- a pin that names an"
+  echo "unpushed commit names nothing on the other machine."
+  exit 1
+fi
+
 # Reported, never fatal: an untracked file is invisible to the pin, so a reader
 # reconstructing from the SHA gets something subtly different if one mattered.
 UNTRACKED="$(git -C "$DS" ls-files --others --exclude-standard | tr '\n' ' ')"
@@ -58,7 +72,15 @@ cp "$DS/assets/icons.svg" "$OUT/assets/"
 # ships with the font, not beside it in a README.
 mkdir -p "$OUT/assets/fonts"
 cp "$DS/assets/fonts/"* "$OUT/assets/fonts/"
+# THE MODULE LIST IN build.mjs IS STATIC, so a module rux-ds added or removed
+# has to be named here or nobody learns of it. Removed ones are deleted rather
+# than left behind: vendor/ is overwritten, not accumulated.
+BEFORE="$(ls "$OUT/js" 2>/dev/null | tr '\n' ' ')"
+rm -f "$OUT/js/"*.js
 cp "$DS/js/"*.js "$OUT/js/"
+AFTER="$(ls "$OUT/js" | tr '\n' ' ')"
+for f in $AFTER; do case " $BEFORE " in *" $f "*) ;; *) echo "  js added:   $f  -- add it to SCRIPTS in tools/build.mjs";; esac; done
+for f in $BEFORE; do case " $AFTER " in *" $f "*) ;; *) echo "  js removed: $f  -- remove it from SCRIPTS in tools/build.mjs";; esac; done
 
 # The pin is committed. A reader who never opens rux-ds can still tell which
 # design system this site was built against, and `git -C ../rux-ds show <sha>`

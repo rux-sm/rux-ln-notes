@@ -9,7 +9,8 @@ name: pages
 # What this cannot check: the names class of check-publishable. rux-ln-atlas
 # is private and its list is never shipped here, so that class reports
 # `unavailable` in CI and is held by the commit hook on a machine with the
-# sibling checkout. The other four classes, and every other gate, run here.
+# sibling checkout -- outside CI that gap is a refusal. The other four
+# classes, and every other gate, run here.
 
 on:
   push:
@@ -46,6 +47,13 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '22'
+
+      # THE PAGES ARE GENERATED AND COMMITTED. Rebuild, and refuse a push whose
+      # committed pages differ from what data/guides/ produces -- the
+      # sync-then-build step a person used to have to remember. rux-ds CI
+      # holds css/ and its README the same way.
+      - run: node tools/build.mjs && git diff --quiet -- guides index.html || { git diff --stat -- guides index.html; echo "committed pages are stale: run node tools/build.mjs and commit"; exit 1; }
+        working-directory: site
 
       - run: node tools/check.mjs
         working-directory: site

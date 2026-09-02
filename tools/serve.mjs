@@ -37,4 +37,4 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(404, { 'content-type': 'text/plain' }).end(`404 ${rel}`);
   }
-}).listen(PORT, () => console.log(`  rux-ln-guides → http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`  rux-ln-notes → http://localhost:${PORT}`));

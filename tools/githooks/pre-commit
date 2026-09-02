@@ -24,7 +24,15 @@ cd "$(git rev-parse --show-toplevel)"
 # than remembered. It records the sibling repositories heads and went stale
 # on every rux-ds commit while a person was asked to re-run it by hand.
 if command -v node >/dev/null 2>&1; then
-  node tools/measure.mjs >/dev/null 2>&1 && git add MEASURED
+  before=$(git hash-object MEASURED 2>/dev/null || true)
+  if node tools/measure.mjs >/dev/null 2>&1; then
+    if [ "$(git hash-object MEASURED)" != "$before" ]; then
+      git add MEASURED
+      echo "pre-commit: MEASURED moved and was staged into this commit" >&2
+    fi
+  else
+    echo "pre-commit: measure.mjs failed, so MEASURED was not regenerated" >&2
+  fi
 fi
 
 pages=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(html|md)$' || true)

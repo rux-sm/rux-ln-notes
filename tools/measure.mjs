@@ -15,6 +15,7 @@
 //
 //   node tools/measure.mjs            # write MEASURED
 //   node tools/measure.mjs --check    # exit 1 if MEASURED is out of date
+//   node tools/measure.mjs --live     # where the sibling checkouts stand; printed, never written
 //
 // NO TIMESTAMP IN THE OUTPUT. A file that changes on every run has a diff that
 // means nothing. Upstream state is recorded as a commit, not as a date.
@@ -48,16 +49,19 @@ const pinOf = (file) => {
   return m ? m[1] : null;
 };
 
-// --- upstream pins, and how far behind they sit -----------------------------
+// --- upstream pins ----------------------------------------------------------
+// THE PIN ONLY. Until 2026-09-02 this file also recorded each sibling's HEAD,
+// how far past the pin it sat, and whether atlas's working tree was dirty. All
+// three describe the MACHINE the file was written on, not this repository: two
+// Macs with different pulls wrote different files from identical trees, the
+// pre-commit hook staged the difference into every commit, and a divergent
+// pull conflicted on it every time. Live state is printed by `--live` and by
+// the sync scripts, and never committed.
 head('upstreams');
-for (const [repo, pinFile] of [['rux-ln-atlas', 'data/guides/PIN'], ['rux-ds', 'vendor/rux-ds/PIN']]) {
+const PINS = [['rux-ln-atlas', 'data/guides/PIN'], ['rux-ds', 'vendor/rux-ds/PIN']];
+for (const [repo, pinFile] of PINS) {
   const pin = pinOf(pinFile);
   say(`${repo}.pin`, pin ? pin.slice(0, 7) : 'unreadable');
-  const headRev = git(repo, 'rev-parse', 'HEAD');
-  if (!headRev) { say(`${repo}.head`, 'unavailable'); say(`${repo}.behind`, 'unavailable'); continue; }
-  say(`${repo}.head`, headRev.slice(0, 7));
-  const behind = git(repo, 'rev-list', '--count', `${pin}..HEAD`);
-  say(`${repo}.behind`, behind ?? 'unavailable');
 }
 
 // --- the rux-ds surface SEND-DS.md counts -----------------------------------
@@ -68,10 +72,8 @@ const dsCount = (rev, path, filter) => {
   return ls.split('\n').filter(Boolean).filter(filter).length;
 };
 const dsPin = pinOf('vendor/rux-ds/PIN');
-for (const [label, rev] of [['at-pin', dsPin], ['at-head', 'HEAD']]) {
-  say(`rux-ds.templates.${label}`, dsCount(rev, 'templates/', () => true));
-  say(`rux-ds.gates.${label}`, dsCount(rev, 'tools/', (n) => /\/check-/.test(n)));
-}
+say('rux-ds.templates.at-pin', dsCount(dsPin, 'templates/', () => true));
+say('rux-ds.gates.at-pin', dsCount(dsPin, 'tools/', (n) => /\/check-/.test(n)));
 
 // --- the guide data ---------------------------------------------------------
 head('guide data');
@@ -133,23 +135,24 @@ say('session-codes.in-steps', inSteps.size);
 
 // --- the reviews atlas _standards/review-shape.md describes ----------------------------------
 head('reviews (atlas _standards/review-shape.md quotes these)');
-// Read the sibling at HEAD, never from its working tree. Measured the other
-// way once and the file moved because atlas was mid-edit on all six reviews --
-// a diff that reports someone else's unsaved work is a diff that means nothing,
-// the same reason there is no timestamp in this file. `.dirty` says the working
-// tree differs so a reader knows the counts are behind, without the counts
-// themselves moving.
-const atlasLs = git('rux-ln-atlas', 'ls-tree', '--name-only', 'HEAD', 'reviews/');
+// Read the sibling AT THE PINNED COMMIT, never its HEAD or its working tree.
+// These figures describe the content the site was built from, which is the
+// only thing another machine can reproduce; what atlas has done since is
+// `--live`. Reading HEAD once made the file move while atlas was mid-edit on
+// all six reviews, and reading the working tree reported someone else's
+// unsaved work -- a diff that means nothing, the same reason there is no
+// timestamp in this file.
+const atlasPin = pinOf('data/guides/PIN');
+const atlasLs = atlasPin ? git('rux-ln-atlas', 'ls-tree', '--name-only', atlasPin, 'reviews/') : null;
 if (atlasLs === null) {
-  for (const k of ['count', 'summaries', 'sections', 'oi-ids', 'oi-ids.end-of-line', 'dirty'])
+  for (const k of ['count', 'summaries', 'sections', 'oi-ids', 'oi-ids.end-of-line'])
     say(`reviews.${k}`, 'unavailable');
 } else {
-  say('reviews.dirty', git('rux-ln-atlas', 'status', '--porcelain', '--', 'reviews/') ? 'yes' : 'no');
   const all = atlasLs.split('\n').filter((n) => n.endsWith('.md'));
   const full = all.filter((n) => !n.endsWith('_summary.md'));
   say('reviews.count', full.length);
   say('reviews.summaries', all.length - full.length);
-  const text = full.map((n) => git('rux-ln-atlas', 'show', `HEAD:${n}`) ?? '');
+  const text = full.map((n) => git('rux-ln-atlas', 'show', `${atlasPin}:${n}`) ?? '');
   const heads = new Set(text.flatMap((t) => t.split('\n').filter((l) => l.startsWith('## '))));
   say('reviews.sections', heads.size);
   const ids = text.flatMap((t) => t.match(/OI-\d{3}/g) ?? []);
@@ -201,6 +204,19 @@ head('publishable (0 in every row is the condition for going public)');
     say(`publishable.${what.replace(/^an? /, '').replace(/\s+/g, '-')}`, n);
   }
 }
+// --- live checkout state: printed by check.mjs and the syncs, never written --
+if (process.argv.includes('--live')) {
+  for (const [repo, pinFile] of PINS) {
+    const pin = pinOf(pinFile);
+    const headRev = git(repo, 'rev-parse', 'HEAD');
+    if (!headRev) { console.log(`  ${repo}: unavailable -- no checkout beside this one`); continue; }
+    const past = pin ? (git(repo, 'rev-list', '--count', `${pin}..HEAD`) ?? '?') : '?';
+    const dirty = git(repo, 'status', '--porcelain', '-uno') ? 'dirty' : 'clean';
+    console.log(`  ${repo}: head ${headRev.slice(0, 7)} · pin ${pin ? pin.slice(0, 7) : '?'} · ${past} commit(s) past the pin · tracked files ${dirty}`);
+  }
+  process.exit(0);
+}
+
 const body = out.join('\n').replace(/^\n/, '') + '\n';
 const path = join(ROOT, 'MEASURED');
 

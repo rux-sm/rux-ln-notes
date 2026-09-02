@@ -10,11 +10,12 @@
 // everything else green). This file adds no rule; it only makes sure the rules
 // that exist are asked.
 //
-// MEASURED IS REPORTED, NOT ENFORCED. `measure.mjs --check` goes stale whenever
-// rux-ln-atlas or rux-ds gains a commit, because MEASURED records their heads.
-// Refusing a commit here because a sibling repository moved would be a gate
-// people route around, so its result prints and does not fail. Re-run
-// `node tools/measure.mjs` when it says so.
+// MEASURED IS REPORTED, NOT ENFORCED. Since 2026-09-02 it records only what is
+// derived from this repository and the two PINs, so it is the same file on
+// every machine and moves only when the data or a pin moves. Refusing a commit
+// over it would still be a gate people route around, so its result prints and
+// does not fail. Re-run `node tools/measure.mjs` when it says so. Where the
+// sibling checkouts stand is printed below by `measure --live`, never written.
 //
 import { spawnSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
@@ -54,6 +55,9 @@ if (!process.env.CI) {
 
 console.log('\n── measure --check (informational)');
 const stale = run('measure', ['--check']) !== 0;
+
+console.log('\n── siblings (live, never committed)');
+run('measure', ['--live']);
 
 console.log('');
 if (stale) console.log('  MEASURED is stale — run `node tools/measure.mjs` and commit it.');

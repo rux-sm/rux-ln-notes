@@ -1,16 +1,10 @@
 # upstreams
 rux-ln-atlas.pin = a4cea8b
-rux-ln-atlas.head = 176da53
-rux-ln-atlas.behind = 3
 rux-ds.pin = 23bf792
-rux-ds.head = 609ec3d
-rux-ds.behind = 61
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.at-pin = 10
 rux-ds.gates.at-pin = 21
-rux-ds.templates.at-head = 10
-rux-ds.gates.at-head = 21
 
 # guide data
 guides.count = 7
@@ -44,7 +38,6 @@ session-codes.in-sources = 108
 session-codes.in-steps = 58
 
 # reviews (atlas _standards/review-shape.md quotes these)
-reviews.dirty = yes
 reviews.count = 6
 reviews.summaries = 6
 reviews.sections = 8

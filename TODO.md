@@ -21,10 +21,11 @@ Nothing else here is checked by anything.
 
 ## Watched — `MEASURED` answers these; read them there
 
-`publishable.pages-flagged` (0 is the condition for staying public),
-`rux-ln-atlas.behind` and `rux-ds.behind`. This file used to copy the three
-values and was wrong within a day of doing so; `node tools/measure.mjs` is the
-only place they are written.
+`publishable.pages-flagged` (0 is the condition for staying public) and the
+two `*.pin` rows. How far each sibling's checkout has moved past its pin is
+live state, printed by `node tools/check.mjs` and by the sync scripts, and
+since 2026-09-02 never written to the file. This file used to copy the values
+and was wrong within a day of doing so.
 
 One document has never been sent:
 
@@ -35,7 +36,7 @@ One document has never been sent:
 
 ## Decided, not built
 
-- **A notes surface.** The 127 ✎ marks say "worth writing down" and there is
+- **A notes surface.** The ✎ marks (`tokens.pencil` in `MEASURED`) say "worth writing down" and there is
   nowhere to write. A persistent floating notepad — write, paste, keep across
   pages — is the intended answer and the reason the pencil survived the Run
   record. Local storage, no server; nothing about it needs atlas.
@@ -47,7 +48,7 @@ One document has never been sent:
 
 ## Known losses, recorded so they are not rediscovered
 
-- **127 pencils have no gate behind them.** Rule 9 in atlas checked that every
+- **The pencils have no gate behind them.** Rule 9 in atlas checked that every
   ✎ was collected by a Run record row, which made a marked step provably
   meaningful. The Run record was the only structure that could answer it. "A
   value worth noting" is editorial judgement and no check holds judgement. Both

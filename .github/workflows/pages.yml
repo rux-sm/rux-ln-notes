@@ -52,7 +52,13 @@ jobs:
       # committed pages differ from what data/guides/ produces -- the
       # sync-then-build step a person used to have to remember. rux-ds CI
       # holds css/ and its README the same way.
-      - run: node tools/build.mjs && git diff --quiet -- guides index.html || { git diff --stat -- guides index.html; echo "committed pages are stale: run node tools/build.mjs and commit"; exit 1; }
+      - run: |
+          node tools/build.mjs
+          if ! git diff --quiet -- guides index.html; then
+            git diff --stat -- guides index.html
+            echo "committed pages are stale -- run node tools/build.mjs and commit"
+            exit 1
+          fi
         working-directory: site
 
       - run: node tools/check.mjs

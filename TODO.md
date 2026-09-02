@@ -13,9 +13,9 @@ Nothing else here is checked by anything.
 
 | | what it says today |
 | :--- | :--- |
-| `publishable.pages-flagged` | **0** of 29 — the condition for staying public |
-| `rux-ln-atlas.behind` | **0** |
-| `rux-ds.behind` | **3** |
+| `publishable.pages-flagged` | **0** of 26 — the condition for staying public |
+| `rux-ln-atlas.behind` | **8** |
+| `rux-ds.behind` | **48** |
 
 One document has never been sent:
 

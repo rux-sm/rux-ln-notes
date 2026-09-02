@@ -1,0 +1,68 @@
+name: pages
+
+# A push to main used to BE the publication: GitHub Pages served the branch
+# as-is and nothing ran between the commit hook and the internet. Now the
+# gates run here first and the site deploys from this workflow only if they
+# pass. A push that fails stays in git and is never served; the last good
+# deployment keeps serving.
+#
+# What this cannot check: the names class of check-publishable. rux-ln-atlas
+# is private and its list is never shipped here, so that class reports
+# `unavailable` in CI and is held by the commit hook on a machine with the
+# sibling checkout. The other four classes, and every other gate, run here.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: site
+
+      # check-ancestry needs rux-ds beside this repository, at the commit the
+      # vendored copy was taken from -- the PIN says which.
+      - id: pin
+        run: echo "sha=$(awk '/^commit/{print $2}' site/vendor/rux-ds/PIN)" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v7
+        with:
+          repository: rux-sm/rux-ds
+          ref: ${{ steps.pin.outputs.sha }}
+          path: rux-ds
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - run: node tools/check.mjs
+        working-directory: site
+        env:
+          DS: ../rux-ds
+
+  deploy:
+    needs: check
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

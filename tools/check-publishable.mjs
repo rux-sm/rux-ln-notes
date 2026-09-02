@@ -54,13 +54,23 @@ function pages(dir) {
   });
 }
 
-// PEOPLE, read out of atlas rather than restated here.
+// PEOPLE, read out of atlas rather than restated here -- AT THE PINNED COMMIT.
+// It read atlas HEAD until 2026-09-01. data/guides/ is emitted at one commit
+// and named in its PIN; if atlas later shortened the list, HEAD would have
+// judged data emitted under the longer one and passed it. The list that
+// applies to this data is the one at the commit that emitted it. The names
+// are never shipped here in any form: a list of who must not be named, in a
+// public repository, would publish them.
 function peoplePattern() {
-  const file = join(ROOT, '..', 'rux-ln-atlas', 'tools', 'export.py');
-  if (!existsSync(file)) return null;
+  const atlas = join(ROOT, '..', 'rux-ln-atlas');
+  if (!existsSync(join(atlas, 'tools', 'export.py'))) return null;
+  const pinFile = join(ROOT, 'data', 'guides', 'PIN');
+  const pin = existsSync(pinFile)
+    ? /^commit\s+([0-9a-f]{7,40})/m.exec(readFileSync(pinFile, 'utf8'))?.[1] : null;
+  if (!pin) return null;
   try {
-    const src = execFileSync('git', ['-C', join(ROOT, '..', 'rux-ln-atlas'),
-      'show', 'HEAD:tools/export.py'], { encoding: 'utf8' });
+    const src = execFileSync('git', ['-C', atlas, 'show', `${pin}:tools/export.py`],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
     const block = /PEOPLE\s*=\s*\(([^)]*)\)/s.exec(src);
     if (!block) return null;
     const names = [...block[1].matchAll(/"([^"]+)"/g)].map(m => m[1]);
@@ -144,8 +154,9 @@ for (const [what, n] of [...totals].sort((a, b) => (b[1] === 'unavailable' ? -1 
   console.log(`  ${String(n).padStart(6)}  ${what}`);
 }
 if (!PEOPLE) {
-  console.log('\n  NAMES WERE NOT CHECKED: ../rux-ln-atlas is missing, so PEOPLE could');
-  console.log('  not be read. This is a gap in the run, not a clean result.');
+  console.log('\n  NAMES WERE NOT CHECKED: ../rux-ln-atlas is missing, or the commit');
+  console.log('  data/guides/PIN names is not in it, so PEOPLE could not be read.');
+  console.log('  This is a gap in the run, not a clean result.');
 }
 console.log('\n  A clean run says a regex found nothing, and nothing about whether a');
 console.log('  paraphrase is close enough to still be a copy. See the header.\n');

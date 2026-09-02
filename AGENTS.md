@@ -62,9 +62,9 @@ the fix belongs upstream.
 
     node tools/check.mjs
 
-Runs every gate: classes, structure, links, order, ancestry (needs a `rux-ds`
-checkout beside this one), export-safe, publishable. The commit hook runs the
-two privacy gates on the staged bytes and then this. `MEASURED` staleness is
+Runs every gate `tools/check.mjs` lists: classes, structure, links, order,
+ancestry (needs a `rux-ds` checkout beside this one) and publishable. The
+commit hook runs the privacy gate on the staged bytes and then this. `MEASURED` staleness is
 reported, not enforced; re-run `node tools/measure.mjs` when it says so.
 
 ## Commits

@@ -6,6 +6,6 @@
 .DS_Store
 node_modules/
 
-# Generated output, once there is any. The renderer is undecided, so this is a
-# reservation rather than a description.
+# Reserved for generated output. The renderer was decided 2026-08-31 and
+# writes tracked pages into guides/; nothing lands here today.
 build/

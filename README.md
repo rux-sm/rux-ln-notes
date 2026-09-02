@@ -48,6 +48,10 @@ actually removes what a working tree has already dropped.
 Both are pulled by hand, both refuse to run against a dirty tree, and both write
 a committed `PIN` naming the commit they came from.
 
+The order across the three repositories — pull all, finish and push the
+upstream, then sync here, then push — is `docs/operating-card.html` in rux-ds:
+a printable two-page card with the per-session loop and the once-per-Mac setup.
+
 ```sh
 sh tools/sync-guides.sh    # atlas -> data/guides/   (export tier, never --internal)
 sh tools/sync-ds.sh        # rux-ds -> vendor/rux-ds/

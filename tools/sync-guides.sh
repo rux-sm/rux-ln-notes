@@ -47,13 +47,13 @@ elif [ "$(git -C "$ATLAS" rev-list --count "$UP..HEAD")" != "0" ]; then
 fi
 
 mkdir -p "$OUT"
-# --reviews TAKES THE SECOND CONTENT TYPE. Reviews and summaries emit at the
-# same export tier as guides: an `attributed` tier existed for one day and was
-# removed once reviews named roles rather than people. emit.py sweeps every
-# document with one FORBIDDEN list, so nothing here can loosen what crosses.
-( cd "$ATLAS" && python3 tools/emit.py --all --reviews --out "$OUT" )
+# Reviews, summaries and exercises emit at the same export tier as guides.
+# Tests do not: --exercises reads exercises/ only, so scenario matrices and run
+# sheets remain internal. emit.py sweeps every emitted document with one
+# FORBIDDEN list, so nothing here can loosen what crosses.
+( cd "$ATLAS" && python3 tools/emit.py --all --reviews --exercises --out "$OUT" )
 
-# CONTRACT CHECK. Every file carries a `contract` number -- 2 at the time of
+# CONTRACT CHECK. Every file carries a `contract` number -- 3 at the time of
 # writing -- and atlas bumps it when the shape changes. A renderer written
 # against one number must not silently consume the next, so this reports the
 # set rather than assuming it. Reporting is not enforcing: nothing here fails
@@ -75,7 +75,7 @@ contract $CONTRACTS
 tier     export
 sha256   $HASH
 
-Emitted by tools/sync-guides.sh via atlas tools/emit.py --all.
+Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync
 overwrites them, and the real fix belongs in the guide in atlas.
 EOF

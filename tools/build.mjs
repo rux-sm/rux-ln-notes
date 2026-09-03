@@ -336,9 +336,9 @@ function table(block, { numbered = false } = {}) {
       </div>`;
 }
 
-// ---------------------------------------------------------------- reviews
+// --------------------------------------------------------- prose documents
 
-// THE SIX BLOCK KINDS A REVIEW CARRIES, four of which a guide never does.
+// THE SIX BLOCK KINDS REVIEWS AND EXERCISES CARRY, four of which a guide never does.
 // A guide's blocks are identified by `kind` meaning something else entirely
 // (`prose`, `steps`, `runrecord`), so this dispatches on the review vocabulary
 // and never falls through to `block()` -- REVIEW-SHAPE.md section 2 named them
@@ -546,6 +546,7 @@ function nav(site, activeId) {
       activeId === null ? 'guides/' : ''}${d.id}.html"${current}><span class="rux--side-nav__link-text">${esc(d.title)}</span></a></li>`;
   };
   const items = site.guides.map(link).join('\n');
+  const practice = site.exercises.map(link).join('\n');
   // SUMMARIES ARE THE LISTED CATEGORY, reviews are reached from them. The
   // agreement was scenario guides and meeting summaries; the full reviews are
   // deferred rather than refused, and listing twelve documents under one
@@ -553,6 +554,7 @@ function nav(site, activeId) {
   const meetings = site.summaries.map(link).join('\n');
 
   const guidesOpen = site.guides.some(g => g.id === activeId);
+  const practiceOpen = site.exercises.some(e => e.id === activeId);
   const meetingsOpen = [...site.reviews, ...site.summaries].some(d => d.id === activeId);
   // CONCEPTS ARE NOT A PUBLISHED CATEGORY. atlas's concept-rules.md section 5
   // gives them no tier, its emitter refuses them at export, and this group
@@ -600,7 +602,20 @@ ${items}
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item${practiceOpen ? ' rux--side-nav__item--active' : ''}">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="${practiceOpen}">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu"${practiceOpen ? '' : ' hidden'}>
+${practice}
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -733,6 +748,16 @@ function page({ title, site, activeId, body, depth }) {
    scrolls sideways is the defect this repo measured for. */
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
+
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
 
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -934,7 +959,7 @@ const statusTag = s => s === 'approved'
   : `<span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>`;
 
 function indexPage(site) {
-  const { guides, summaries } = site;
+  const { guides, exercises, summaries } = site;
   const cards = guides.map(g => `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
           <!-- NOT \`card--clickable\`. The captured clickable card is
                role="button" with tabindex 0, which is right for a card that
@@ -995,12 +1020,34 @@ function indexPage(site) {
         </div>`;
   }).join('\n');
 
+  const exerciseCards = exercises.map(e => `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
+          <div class="rux--card rux--card--productive">
+            <div class="rux--card__header">
+              <div class="rux--card__title">
+                <div class="rux--card__label">Practice exercise</div>
+                <span class="rux--card__title-text-row" id="t-${esc(e.id)}">${esc(e.title)}</span>
+                <div class="rux--card__description">${esc(e.summary)}</div>
+              </div>
+            </div>
+            <div class="rux--card__body">
+              <div class="ln-tag-row">
+                ${statusTag(e.status)}
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${e.assignments.length} assignments</span></span>
+              </div>
+            </div>
+            <div class="rux--card__footer">
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/${esc(e.id)}.html" id="o-${esc(e.id)}" aria-labelledby="o-${esc(e.id)} t-${esc(e.id)}">Open exercise</a>
+            </div>
+          </div>
+        </div>`).join('\n');
+
   const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>Rux Notes</h1>
           <p class="rux--type-body-02">Procedures walked against a live Infor LN
-             environment, and the record of the sessions they came out of. Each
-             scenario guide is an objective and a numbered set of phases, each
-             with the route into its screen and a table of steps to follow.</p>
+             environment, focused practice for explaining their results, and
+             the record of the sessions they came out of. Each scenario guide
+             keeps the procedure; each exercise asks you to predict, observe
+             and report back.</p>
         </div>
 
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-guides">
@@ -1013,6 +1060,16 @@ function indexPage(site) {
                and a fresh grid would start its tracks 16px in. -->
           <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
 ${cards}
+          </div>
+        </section>
+
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-practice">
+          <h2 id="h-practice">Practice</h2>
+          <p class="rux--type-body-02">Guided assignments for predicting an LN
+             result, following the relevant guide, explaining what happened and
+             reporting the evidence.</p>
+          <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
+${exerciseCards}
           </div>
         </section>
 
@@ -1109,6 +1166,33 @@ function reviewPage(r, site) {
         : rsection(`s-${slot}`, heading, r[slot])).filter(Boolean).join('\n\n      ')}`;
 
   return page({ title: `${r.title} — Rux Notes`, site, activeId: r.id, body, depth: 1 });
+}
+
+// AN EXERCISE IS ORDERED PRACTICE, not guide phases. The prose block vocabulary
+// is shared with reviews, while the top-level shape is an intro followed by the
+// numbered assignments the learner completes.
+function exercisePage(e, site) {
+  const assignments = (e.assignments ?? []).map(a => {
+    const id = `a-${a.n}`;
+    return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}">
+          <h2 id="${id}">${esc(a.n)}. ${esc(a.title)}</h2>
+          ${(a.blocks ?? []).map(rblock).join('\n          ')}
+        </section>`;
+  }).join('\n        ');
+
+  const body = `        <div class="rux--stack-vertical rux--stack-scale-5 ln-exercise">
+          <h1>${esc(e.title)}</h1>
+          <div class="ln-tag-row">
+            ${statusTag(e.status)}
+            <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Homework</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">${e.assignments.length} assignments</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(e.updated)}</span></span>
+          </div>
+          ${(e.intro ?? []).map(rblock).join('\n          ')}
+          ${assignments}
+        </div>`;
+
+  return page({ title: `${e.title} — Rux Notes`, site, activeId: e.id, body, depth: 1 });
 }
 
 // A CONCEPT PAGE, INTERNAL TIER ONLY. An intro, then the numbered sections
@@ -1217,7 +1301,7 @@ function assertNoRawBlockquotes(guides) {
   return { found, prose };
 }
 
-// THREE DOCUMENT CLASSES NOW ARRIVE, and they are told apart by `kind` rather
+// FOUR PUBLISHED DOCUMENT CLASSES NOW ARRIVE, and they are told apart by `kind` rather
 // than by filename. A guide has no `kind` field -- it predates the second
 // content type -- so its absence is what identifies one, and a document
 // carrying an unknown `kind` stops the build instead of being rendered as
@@ -1230,14 +1314,14 @@ const docs = readdirSync(DATA)
 // contract set and enforces nothing, so a renderer written for one shape could
 // silently consume the next. Bump this constant when this file is updated for
 // a new contract, and not before.
-const CONTRACT = 2;
+const CONTRACT = 3;
 for (const d of docs) if (Number(d.contract) !== CONTRACT)
   throw new Error(`${d.id ?? '?'}: contract ${d.contract}, this renderer reads ${CONTRACT} -- update build.mjs for it, then this constant`);
 
 for (const d of docs) {
   const kind = d.kind ?? 'guide';
-  if (!['guide', 'review', 'summary', 'concept'].includes(kind)) {
-    throw new Error(`${d.id}: unknown kind "${kind}" -- build.mjs renders guide, review, summary, concept`);
+  if (!['guide', 'review', 'summary', 'exercise', 'concept'].includes(kind)) {
+    throw new Error(`${d.id}: unknown kind "${kind}" -- build.mjs renders guide, review, summary, exercise, concept`);
   }
   if (kind === 'concept' && !PRIVATE) {
     throw new Error(`${d.id}: a concept has no published tier and cannot sit in data/guides/`);
@@ -1249,13 +1333,15 @@ const reviews = docs.filter(d => d.kind === 'review')
   .sort((a, b) => String(b.updated).localeCompare(String(a.updated)));
 const summaries = docs.filter(d => d.kind === 'summary')
   .sort((a, b) => String(b.updated).localeCompare(String(a.updated)));
+const exercises = docs.filter(d => d.kind === 'exercise')
+  .sort((a, b) => String(a.title).localeCompare(String(b.title)));
 const concepts = docs.filter(d => d.kind === 'concept')
   .sort((a, b) => String(a.title).localeCompare(String(b.title)));
 
 if (!guides.length) throw new Error(`no guides in ${DATA} -- run tools/sync-guides.sh first`);
 
 for (const g of guides) GUIDE_IDS.add(g.id);
-if (PRIVATE) for (const d of [...reviews, ...summaries, ...concepts]) GUIDE_IDS.add(d.id);
+if (PRIVATE) for (const d of [...reviews, ...summaries, ...exercises, ...concepts]) GUIDE_IDS.add(d.id);
 
 const reach = assertNoRawBlockquotes(guides);
 
@@ -1280,7 +1366,7 @@ mkdirSync(OUT_DIR, { recursive: true });
 const assets = readdirSync(DATA).filter(f => f !== 'PIN' && !f.endsWith('.json'));
 for (const a of assets) copyFileSync(join(DATA, a), join(OUT_DIR, a));
 
-const site = { guides, reviews, summaries, concepts };
+const site = { guides, reviews, summaries, exercises, concepts };
 
 const written = [INDEX];
 writeFileSync(written[0], indexPage(site));
@@ -1292,6 +1378,11 @@ for (const g of guides) {
 for (const r of [...reviews, ...summaries]) {
   const file = join(OUT_DIR, `${r.id}.html`);
   writeFileSync(file, reviewPage(r, site));
+  written.push(file);
+}
+for (const e of exercises) {
+  const file = join(OUT_DIR, `${e.id}.html`);
+  writeFileSync(file, exercisePage(e, site));
   written.push(file);
 }
 for (const c of concepts) {

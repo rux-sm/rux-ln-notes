@@ -80,7 +80,7 @@ head('guide data');
 const files = readdirSync(join(ROOT, 'data/guides')).filter((n) => n.endsWith('.json'));
 const docs = files.map((n) => JSON.parse(readFileSync(join(ROOT, 'data/guides', n), 'utf8')));
 
-// THREE CLASSES SHARE ONE DIRECTORY, so `guides.count` has to mean guides. It
+// FOUR CLASSES SHARE ONE DIRECTORY, so `guides.count` has to mean guides. It
 // briefly did not: reviews and summaries landed in `data/guides/` and the
 // count read 19, which is the number of documents and the number of nothing
 // this file's prose is about. A guide has no `kind`; that absence is what
@@ -88,12 +88,18 @@ const docs = files.map((n) => JSON.parse(readFileSync(join(ROOT, 'data/guides', 
 const guides = docs.filter((d) => !d.kind);
 const reviewDocs = docs.filter((d) => d.kind === 'review');
 const summaryDocs = docs.filter((d) => d.kind === 'summary');
+const exerciseDocs = docs.filter((d) => d.kind === 'exercise');
 say('guides.count', guides.length);
 say('guides.contract', [...new Set(docs.map((g) => g.contract))].join('/'));
 say('guides.tier', [...new Set(guides.map((g) => g.tier))].join('/'));
 say('guides.draft', guides.filter((g) => g.status === 'draft').length);
 say('exported.reviews', reviewDocs.length);
 say('exported.summaries', summaryDocs.length);
+if (exerciseDocs.length) {
+  say('exported.exercises', exerciseDocs.length);
+  say('exported.exercise-assignments', exerciseDocs.reduce((n, d) => n + (d.assignments ?? []).length, 0));
+  say('exported.exercises.tier', [...new Set(exerciseDocs.map((d) => d.tier))].join('/'));
+}
 say('exported.reviews.tier', [...new Set([...reviewDocs, ...summaryDocs].map((d) => d.tier))].join('/'));
 say('exported.topics', [...reviewDocs, ...summaryDocs]
   .reduce((n, d) => n + (d.topics ?? []).length, 0));

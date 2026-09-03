@@ -1,8 +1,8 @@
 # rux-ln-notes
 
-**The client-facing surface for Infor LN scenario guides.** It consumes two
-upstreams — procedure data from `rux-ln-atlas`, presentation from `rux-ds` — and
-publishes guides a junior consultant can walk.
+**The client-facing surface for Infor LN scenario guides, meeting reviews and practice exercises.** It consumes two
+upstreams — authored content from `rux-ln-atlas`, presentation from `rux-ds` — and
+publishes material a junior consultant can follow and complete.
 
 It is the first consumer of the design system, and the only place the two ever
 meet.
@@ -94,19 +94,23 @@ It is **not** rux-ds's `tools/icons.mjs`, which regenerates the sprite from
 `@carbon/icons` and rewrites `templates/*.html` — neither applies here. This only
 ever copies the already-built sprite that rux-ds's `new-project.sh` delivered.
 
-### Two content types
+### Three published content categories
 
 ```sh
-sh tools/sync-guides.sh          # guides AND reviews -- emit.py --all --reviews
+sh tools/sync-guides.sh          # guides, reviews, summaries and exercises
 node tools/build.mjs             # every page: index.html and guides/, from data/guides/
 ```
 
-A guide has no `kind` field and a review carries `review` or `summary`; that
-absence is what identifies a guide, and an unknown `kind` stops the build
-rather than being rendered as whatever it least resembles. The three classes
-share `data/guides/`, which is why `MEASURED` separates `guides.count` from
-`exported.reviews` — it briefly read 19 guides, a number that is the count of
-documents and of nothing this file's prose is about.
+A guide has no `kind` field; meeting documents carry `review` or `summary`, and
+practice carries `exercise`. That absence is what identifies a guide, and an
+unknown `kind` stops the build rather than being rendered as whatever it least
+resembles. All four classes share `data/guides/`; their category counts must be
+kept separate from the total document count.
+
+**Exercises are not tests.** Atlas `tests/` holds internal scenario matrices and
+run sheets. A published exercise lives in Atlas `exercises/`, carries
+`type: exercise`, links to guides for procedure, and owns only the prediction,
+answer and report-back shape.
 
 ### Verified working, not assumed
 
@@ -305,7 +309,8 @@ needs a deliberate publication decision and a route, and there is none. Atlas's
 
 ## What arrives
 
-Seven guides, `contract: 2`, export tier. A guide is a procedure: an objective,
+Guides, meeting reviews and summaries, and practice exercises arrive at
+`contract: 3`, export tier. A guide is a procedure: an objective,
 6–13 numbered phases each with a route into an ERP screen and a table of steps,
 plus troubleshooting, variants and handover rows.
 
@@ -326,6 +331,12 @@ normative; `renderer-brief.md` is the covering note. Read both before designing.
 - The H1 no longer arrives as a prose block with a literal `# ` in it. Section
   zero is the objective, and nothing has to be skipped by position.
 - An `image` token carrying `alt` and `src`, with the diagram beside the guides.
+
+**What contract 3 added:** `kind: "exercise"`, with opening instructional
+blocks and numbered `assignments`. An exercise links to guides for the procedure
+and owns only the learner's prediction, observation, explanation and report-back
+work. Internal scenario matrices and run sheets remain `type: test` in atlas and
+do not publish.
 
 **`id` is stable and will not be renamed.** Atlas committed to that in writing,
 and `check.py` binds `id` to the filename stem, so it cannot drift without a
@@ -559,8 +570,8 @@ for `rux-ds` rather than a memo.
 
 ## What this side is building, and what it owes
 
-**Scenario guides and meeting summaries**, and both now render. The nav lists
-those two categories; the six full reviews render as pages and are reached from
+**Scenario guides, meeting summaries and practice exercises** now render. The
+nav lists those three categories; the six full reviews render as pages and are reached from
 their summary rather than listed beside it, because putting twelve documents
 under one heading presents two categories as one. The screen reference is still
 deferred rather than refused.
@@ -570,7 +581,7 @@ decided, Key takeaways — sharing the topics model with a review rather than
 being a truncated one. It renders from `SUMMARY_SLOTS` in `build.mjs`, the same
 page builder as a review with a different slot list.
 
-**`PUBLISHES` is resolved.** It reads `{"guide", "review"}`. `summary` stays
+**`PUBLISHES` is resolved.** It reads `{"exercise", "guide", "review"}`. `summary` stays
 out deliberately rather than by omission: a summary rides the review emitter as
 `kind: "summary"`, which is `SEND-BACK.md` §3.4's reading, and giving it a
 second route with its own rules is the drift that file exists to prevent.
@@ -593,7 +604,7 @@ and when the emitter lacks a class you need, add it in the same sitting.**
 
 **Three answers are owed to atlas and no open document carries them:** whether
 the 32 session codes with no `sessions/` file publish as name-only or are
-omitted, that an `openIssues` count is wanted in contract 2, and a re-measure of
+omitted, that an `openIssues` count is wanted in contract 3, and a re-measure of
 this side's "58 distinct in-step codes" — atlas gets 46 or 106 depending on the
 reading, and neither is 58. That figure was taken at `288bf72` and the screen
 reference leans on it.

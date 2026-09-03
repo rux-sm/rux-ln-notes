@@ -22,7 +22,7 @@ OUT="$HERE/build/internal"
 
 rm -rf "$OUT"
 mkdir -p "$OUT/data" "$OUT/site"
-(cd "$ATLAS" && python3 tools/emit.py --all --reviews --concepts --internal --out "$OUT/data" >/dev/null)
+(cd "$ATLAS" && python3 tools/emit.py --all --reviews --exercises --concepts --internal --out "$OUT/data" >/dev/null)
 # The pages reach the design system at ../vendor/, so the private site root
 # gets the same vendor/ this project tracks, by link rather than copy.
 ln -s "$HERE/vendor" "$OUT/site/vendor"

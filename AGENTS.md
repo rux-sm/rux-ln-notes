@@ -7,7 +7,8 @@ long version: what was decided, what is outstanding, how each tool works.
 ## What this repository is
 
 **Public.** It is served as-is from `main` at rux-sm.github.io/rux-ln-notes,
-so a bare `git push` is a publication. It renders Infor LN scenario guides:
+so a bare `git push` is a publication. It renders Infor LN scenario guides,
+meeting reviews and practice exercises:
 procedure data comes from `rux-ln-atlas` (private), presentation from `rux-ds`
 (public). Atlas processes knowledge, `rux-ds` owns components, this renders.
 It does neither of the other two.
@@ -50,7 +51,7 @@ generic content.
 
 | | from | by |
 |---|---|---|
-| `data/guides/` | `rux-ln-atlas`, export tier only | `sh tools/sync-guides.sh` |
+| `data/guides/` | `rux-ln-atlas`, export tier only — guides, reviews, summaries and exercises | `sh tools/sync-guides.sh` |
 | `vendor/rux-ds/` | `rux-ds`, pinned to one tag | `sh tools/new-project.sh ~/Developer/rux-ln-notes`, run from a rux-ds clone at a tag |
 
 Both are tracked so `git diff` after a sync shows what moved upstream. Both

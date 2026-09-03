@@ -197,9 +197,26 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 
   <a class="rux--header__name" href="../"><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
 
-  <!-- NO __nav AND NO __global: one product, and nothing behind a
-       notifications or account glyph. An icon-only button with no handler is
-       an affordance that lies. -->
+  <!-- NO __nav: one product. __global carries the switcher and nothing else,
+       because an icon-only button with no handler is an affordance that lies:
+       the grid button has one (vendor/rux-ds/js/ui-shell.js opens and closes
+       the panel), a notifications or account glyph would not, until rux-ds
+       §4.13 gives the account one. The panel ships Home and this app as its
+       entries; /switcher.js at the account root replaces them with the shared
+       list in switcher.json and marks the app you are on. Served alone -- a
+       local tools/serve.mjs, or offline -- the shipped entries stay. Both
+       paths are root-absolute by decision (rux-ds roadmap §4.12): the root
+       is rux-sm.github.io and this site sits under it at /rux-ln-notes/. -->
+  <div class="rux--header__global">
+    <button type="button" class="rux--header__action rux--btn rux--layout--size-lg rux--btn--ghost rux--btn--icon-only" aria-label="App switcher" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-grid"/></svg></button>
+  </div>
+  <div class="rux--header-panel">
+    <ul class="rux--switcher" aria-label="Applications">
+    <li class="rux--switcher__item"><a class="rux--switcher__item-link" href="/">Home</a></li>
+    <li><hr class="rux--switcher__item--divider"></li>
+    <li class="rux--switcher__item"><a class="rux--switcher__item-link" href="/rux-ln-notes/" aria-current="page">Notes</a></li>
+  </ul>
+  </div>
 
   <div class="rux--side-nav__overlay"></div>
 
@@ -414,5 +431,6 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <script src="../vendor/rux-ds/js/dismiss.js"></script>
 <script src="../vendor/rux-ds/js/tile.js"></script>
 <script src="../vendor/rux-ds/js/modal.js"></script>
+<script src="/switcher.js"></script>
 </body>
 </html>

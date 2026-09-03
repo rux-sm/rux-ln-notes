@@ -63,7 +63,18 @@ const REF = /(?:href|src)="([^"]*)"/g;
 const external = href => href === '' || href.startsWith('#')
   || /^[a-z][a-z0-9+.-]*:/i.test(href);
 
-let missing = 0, checked = 0;
+// A ROOT-ABSOLUTE REFERENCE IS THE ACCOUNT ROOT'S, NOT THIS REPOSITORY'S.
+// Since 2026-09-02 the shell links /switcher.js and lists /, /rux-ln-notes/
+// (rux-ds roadmap §4.12): paths served by rux-sm.github.io, where this site
+// sits under /rux-ln-notes/. No file here answers them, so they are counted
+// and printed rather than resolved. Before this rule `/` passed by accident
+// -- join(dir, '/') is dir -- and /switcher.js would have failed as
+// `guides/switcher.js`. WHAT THIS CANNOT SEE: a root path with a typo in it
+// passes here; the hub's tools/check.mjs guards switcher.json's paths, and
+// nothing guards the entries this site ships as its fallback. Open the page.
+const rootAbsolute = href => href.startsWith('/') && !href.startsWith('//');
+
+let missing = 0, checked = 0, root = 0;
 
 for (const path of files) {
   const html = readFileSync(path, 'utf8');
@@ -71,6 +82,7 @@ for (const path of files) {
 
   for (const [, href] of html.matchAll(REF)) {
     if (external(href)) continue;
+    if (rootAbsolute(href)) { root++; continue; }
     // The fragment is dropped: this answers whether the FILE is there.
     const file = href.split('#')[0];
     if (!file) continue;
@@ -89,7 +101,7 @@ for (const path of files) {
   }
 }
 
-console.log(`\n  ${files.length} page(s) · ${checked} local reference(s) checked · ${missing} missing`);
+console.log(`\n  ${files.length} page(s) · ${checked} local reference(s) checked · ${missing} missing · ${root} root-absolute, the hub's to answer`);
 console.log('  This says the file is THERE. It does not say it is the right one,');
 console.log('  and it reads no fragment: #summaries is checked as far as the page.\n');
 

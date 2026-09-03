@@ -21,7 +21,7 @@ cd "$(git rev-parse --show-toplevel)"
 # them, `git -C ../rux-ln-atlas` and `git -C ../rux-ds` still read this
 # repository, so every sibling-dependent check answers the wrong question.
 # The current checkout remains discoverable from the working directory.
-unset GIT_DIR GIT_WORK_TREE
+unset GIT_DIR GIT_INDEX_FILE GIT_WORK_TREE
 
 # .md AS WELL AS .html. A public repository publishes every tracked file, not
 # just the rendered site, and the exchange documents are tracked: SEND-BACK.md

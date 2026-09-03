@@ -46,10 +46,12 @@ branch some clones carry are local conveniences, not part of the repository.
 
 ## The two upstreams
 
-Both are pulled by hand, both refuse to run against a dirty tree, and both write
-a committed `PIN` naming the commit they came from. The guides' PIN also carries
-a hash of the bytes written, and `tools/check-data.mjs` refuses a `data/guides/`
-that no longer matches it, in the hook, in the one check and in CI.
+The two publishable upstreams are pulled by hand, refuse to run against a dirty
+tree, and write a committed `PIN` naming the commit they came from. The guides'
+PIN also carries a hash of the bytes written, and `tools/check-data.mjs` refuses
+a `data/guides/` that no longer matches it, in the hook, in the one check and in
+CI. `sync-internal.sh` is different: it builds a local preview into git-ignored
+`build/`, records no pin, and publishes nothing.
 
 The order across the three repositories — pull all, finish and push the
 upstream, then sync here, then push — is `docs/operating-card.html` in rux-ds:
@@ -68,14 +70,14 @@ sh tools/sync-internal.sh  # atlas -> build/internal/ (INTERNAL tier, git-ignore
 #   sh tools/new-project.sh ~/Developer/rux-ln-notes
 ```
 
-**Both outputs are tracked, deliberately.** They are regenerable, so tracking
-them is not about safety — it is that `git diff` after a sync shows exactly what
-moved upstream. That is the mechanism by which this project notices atlas gaining
-information, or the design system changing under it. An ignored `data/` would
-make both invisible.
+**Both publishable upstream outputs are tracked, deliberately:** `data/guides/`
+from atlas and `vendor/rux-ds/` from the design system. They are regenerable, so
+tracking them is not about safety — it is that `git diff` after a sync shows
+exactly what moved upstream. The internal preview is deliberately the opposite:
+regenerated into ignored `build/` and never allowed into history.
 
-**Never hand-edit either.** The next sync overwrites them, and the real fix
-belongs in the upstream repository.
+**Never hand-edit either tracked upstream.** The next sync overwrites it, and the
+real fix belongs in the upstream repository.
 
 ### The sprite must be inlined into every page
 

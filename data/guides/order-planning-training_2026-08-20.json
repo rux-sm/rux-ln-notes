@@ -4,7 +4,7 @@
   "kind": "review",
   "id": "order-planning-training_2026-08-20",
   "title": "Order Planning Training — Review",
-  "updated": "2026-09-02",
+  "updated": "2026-09-03",
   "status": "draft",
   "sources": [
     "cprmp2101m000",
@@ -2686,6 +2686,27 @@
             }
           ],
           "text": "Record what the narration left out, not only what it got wrong. The pegging prerequisite in section 3.6 is not an error — nothing false was said — but a guide written from the transcript alone would produce an empty tree for anyone whose environment had not already generated pegging relations."
+        },
+        {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Recording:"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": " — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
+            }
+          ],
+          "text": "Recording: the source on file — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
         }
       ]
     }

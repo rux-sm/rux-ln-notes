@@ -4,7 +4,7 @@
   "kind": "review",
   "id": "planned-order-transfer-training_2026-08-25",
   "title": "Planned Order Transfer Training — Review",
-  "updated": "2026-09-02",
+  "updated": "2026-09-03",
   "status": "draft",
   "sources": [
     "cppat1210m000",
@@ -2417,6 +2417,27 @@
             }
           ],
           "text": "Say which half of a step was walked. This session performs the transfer for planned purchase orders only. Recording it as \"the transfer was walked\" would have made the production half look closer to done than it is."
+        },
+        {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Recording:"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": " — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
+            }
+          ],
+          "text": "Recording: the source on file — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
         }
       ]
     }

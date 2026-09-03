@@ -1,9 +1,9 @@
-commit   125639dce1704b78c9887136ddeb6021feb504f2
-date     2026-09-03T22:58:56Z
-subject  feat(check): Refuse git-ignored paths
+commit   25aacaeb6d067bd7dbf5c2ceaec39f161f7029b2
+date     2026-09-03T23:22:41Z
+subject  feat(evidence): Cite every file, add ledgers
 contract 3 
 tier     export
-sha256   481ddc60e4ebc554275e78a772afb2e91c0ff4253604ca4aaa11da0d7dffc058
+sha256   dadf13c2fdd3f2bbd1b28bdd7498ab408eaaac484de98a8b5e901b2edca4ecd5
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

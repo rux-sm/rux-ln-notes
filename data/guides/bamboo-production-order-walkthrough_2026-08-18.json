@@ -4,7 +4,7 @@
   "kind": "review",
   "id": "bamboo-production-order-walkthrough_2026-08-18",
   "title": "Bamboo Production Order Walkthrough — Review",
-  "updated": "2026-09-02",
+  "updated": "2026-09-03",
   "status": "draft",
   "sources": [
     "tccom4520m000",
@@ -1298,6 +1298,27 @@
             }
           ],
           "text": "Deliberately running a \"wrong\" or out-of-scope action during training is itself worth recording. Running Close Production Orders here, and creating-then-expiring a second BOM revision, were both teaching choices, not procedure — the review records them as what happened without pulling them into either Scenario Guide's scope."
+        },
+        {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Recording:"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": " — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
+            }
+          ],
+          "text": "Recording: the source on file — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
         }
       ]
     }

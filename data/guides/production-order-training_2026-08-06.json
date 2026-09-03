@@ -4,7 +4,7 @@
   "kind": "review",
   "id": "production-order-training_2026-08-06",
   "title": "Production Order Training — Review",
-  "updated": "2026-09-02",
+  "updated": "2026-09-03",
   "status": "draft",
   "sources": [
     "tcibd0501m100",
@@ -2425,6 +2425,67 @@
             }
           ],
           "text": "The meeting transcript has timestamps but no speaker labels. Attribution beyond the visible screen sharer was not inferred."
+        },
+        {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Recording:"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": " — the raw video stays local and never commits; the manifest carries its checksum and lists the "
+            },
+            {
+              "t": "literal",
+              "v": ".srt"
+            },
+            {
+              "t": "text",
+              "v": ". The "
+            },
+            {
+              "t": "literal",
+              "v": ".json"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "literal",
+              "v": ".txt"
+            },
+            {
+              "t": "text",
+              "v": " filed beside it — "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": " — are named by no manifest, and the folder is immutable; this line is their only inventory until the class decides otherwise."
+            }
+          ],
+          "text": "Recording: the source on file — the raw video stays local and never commits; the manifest carries its checksum and lists the .srt. The .json and .txt filed beside it — the source on file, the source on file — are named by no manifest, and the folder is immutable; this line is their only inventory until the class decides otherwise."
         }
       ]
     }

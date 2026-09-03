@@ -1752,6 +1752,27 @@
             }
           ],
           "text": "A chat thread that grows out of a recording is itself evidence, on the recording's own timeline — the two are not independent sources to reconcile, they are one incident split across two capture mechanisms. Filing both under one narrative (here, and in the session file) rather than two disconnected write-ups kept the account coherent."
+        },
+        {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Recording:"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": " — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
+            }
+          ],
+          "text": "Recording: the source on file — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
         }
       ]
     }

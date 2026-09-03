@@ -4,7 +4,7 @@
   "kind": "review",
   "id": "sales-order-warehouse-allocation-training_2026-08-04",
   "title": "Sales Order and Warehouse Allocation Training — Review",
-  "updated": "2026-08-28",
+  "updated": "2026-09-03",
   "status": "draft",
   "sources": [
     "cprrp0520m000",
@@ -1208,6 +1208,27 @@
             }
           ],
           "text": "The transcripts have timestamps but no speaker labels; speaker attribution was not inferred beyond visible screen sharing and explicit introductions."
+        },
+        {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Recording:"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": " — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
+            }
+          ],
+          "text": "Recording: the source on file — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives."
         }
       ]
     }

@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = 125639d
+rux-ln-atlas.pin = 25aacae
 rux-ds.pin = 38111ec
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -44,10 +44,10 @@ session-codes.in-steps = 58
 reviews.count = 7
 reviews.summaries = 7
 reviews.sections = 8
-reviews.oi-ids = 132
+reviews.oi-ids = 133
 reviews.oi-ids.end-of-line = 47
 reviews.oi-ids.internal = 84
-reviews.oi-ids.frontmatter = 40
+reviews.oi-ids.frontmatter = 41
 reviews.oi-ids.residual = 8
 
 # publishable (0 in every row is the condition for going public)

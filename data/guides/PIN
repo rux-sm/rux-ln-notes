@@ -1,9 +1,9 @@
-commit   8b2bedcfaa63eebd317ae81ca600a4b7a5e33ed0
-date     2026-09-03T17:44:44Z
-subject  docs(plan): Add the improvement roadmap
+commit   125639dce1704b78c9887136ddeb6021feb504f2
+date     2026-09-03T22:58:56Z
+subject  feat(check): Refuse git-ignored paths
 contract 3 
 tier     export
-sha256   f2a31a797c210c615ff6fc8170cb626b24aa90d689007e02463691fc5df0ca0a
+sha256   481ddc60e4ebc554275e78a772afb2e91c0ff4253604ca4aaa11da0d7dffc058
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

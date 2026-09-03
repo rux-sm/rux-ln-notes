@@ -8,7 +8,7 @@
     "Enterprise Planning",
     "Sales"
   ],
-  "updated": "2026-09-02",
+  "updated": "2026-09-03",
   "status": "draft",
   "summary": "make one finished item visible to planning, give it a demand it cannot cover from stock, run MRP, and read the result — a planned supply chain covering the shortfall — in the Item Order Plan, in Planned Orders, and in the pegging tree.",
   "order": 1,
@@ -2184,6 +2184,37 @@
                 }
               ],
               "text": "The component has no planning data of its own. Step 0.6 — MRP skips it silently"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "3"
+                }
+              ],
+              "text": "3"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "The run produces nothing at all, or nothing propagates to the parent"
+                }
+              ],
+              "text": "The run produces nothing at all, or nothing propagates to the parent"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "Check which item you launched the generation on. Running it from a component does not traverse upward — re-run from the top-level (finished) item, per step 3.1"
+                }
+              ],
+              "text": "Check which item you launched the generation on. Running it from a component does not traverse upward — re-run from the top-level (finished) item, per step 3.1"
             }
           ]
         },

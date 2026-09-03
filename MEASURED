@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = 8b2bedc
+rux-ln-atlas.pin = 125639d
 rux-ds.pin = 38111ec
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -11,14 +11,14 @@ guides.count = 7
 guides.contract = 3
 guides.tier = export
 guides.draft = 6
-exported.reviews = 6
-exported.summaries = 6
+exported.reviews = 7
+exported.summaries = 7
 exported.exercises = 1
 exported.exercise-assignments = 8
 exported.exercises.tier = export
 exported.reviews.tier = export
-exported.topics = 73
-tokens.total = 3769
+exported.topics = 91
+tokens.total = 3772
 tokens.types = 15
 tokens.payload-not-v = 196
 tokens.pencil = 125
@@ -35,20 +35,20 @@ tokens.type.pencil = 125
 tokens.type.session = 114
 tokens.type.status = 72
 tokens.type.strong = 143
-tokens.type.text = 2419
+tokens.type.text = 2422
 tokens.type.value = 125
 session-codes.in-sources = 108
 session-codes.in-steps = 58
 
 # reviews (atlas _standards/review-shape.md quotes these)
-reviews.count = 6
-reviews.summaries = 6
+reviews.count = 7
+reviews.summaries = 7
 reviews.sections = 8
-reviews.oi-ids = 115
-reviews.oi-ids.end-of-line = 43
-reviews.oi-ids.internal = 74
-reviews.oi-ids.frontmatter = 35
-reviews.oi-ids.residual = 6
+reviews.oi-ids = 132
+reviews.oi-ids.end-of-line = 47
+reviews.oi-ids.internal = 84
+reviews.oi-ids.frontmatter = 40
+reviews.oi-ids.residual = 8
 
 # publishable (0 in every row is the condition for going public)
 publishable.pages = 27

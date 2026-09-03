@@ -36,7 +36,7 @@
 // rux-ds's own history with `git archive` into a temporary directory; the
 // checkout beside this one is never touched or switched. When that checkout's
 // HEAD is not the pin, a second run at HEAD follows, as information about what
-// the next sync-ds.sh would be judged by, and its result does not count.
+// the next pin move (rux-ds tools/new-project.sh) would be judged by, and its result does not count.
 //
 //   node tools/check-ancestry.mjs          # every page, via ../rux-ds at the pin
 //   DS=../elsewhere node tools/check-ancestry.mjs
@@ -103,7 +103,7 @@ try {
 
 const head = execFileSync('git', ['-C', DS, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
 if (!head.startsWith(pin)) {
-  const at = runAt(DS, `at rux-ds HEAD ${head.slice(0, 7)} -- informational: what the next sync-ds.sh would be judged by`);
+  const at = runAt(DS, `at rux-ds HEAD ${head.slice(0, 7)} -- informational: what the next pin move would be judged by`);
   if (at !== 0) console.log('  (the HEAD run does not count; re-vendor and re-adjudicate when you sync)');
 }
 process.exit(status);

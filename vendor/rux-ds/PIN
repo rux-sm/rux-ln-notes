@@ -1,8 +1,8 @@
-tag     (none: a commit between tags)
-commit  6a64dbd736c43266b84c860c5d0ca74c903e78cc
-date    2026-09-02T18:28:35Z
-subject docs(portal): Answer the hub's name
+tag     v0.1.2
+commit  61657c8ae18b6728d55abbaa18427661736f1ebd
+date    2026-09-03T01:34:45Z
+subject docs: Write the manifest contract, begin step 2
 
-Vendored by tools/sync-ds.sh from a clean tree.
-Re-run that script to move the pin; do not edit vendored files, the next
-sync overwrites them and the real fix belongs in rux-ds.
+Written by rux-ds tools/new-project.sh from a clean tree. Re-run it to move
+the pin; do not edit anything under vendor/, the next run overwrites it.
+CHANGES.md in rux-ds names any class that left between two tags.

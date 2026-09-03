@@ -1,10 +1,10 @@
 # upstreams
 rux-ln-atlas.pin = a4cea8b
-rux-ds.pin = 6a64dbd
+rux-ds.pin = 61657c8
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.at-pin = 10
-rux-ds.gates.at-pin = 21
+rux-ds.gates.at-pin = 22
 
 # guide data
 guides.count = 7

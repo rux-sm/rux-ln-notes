@@ -11,7 +11,7 @@ Nothing else here is checked by anything.
 
 ## Now — the one next step, in order
 
-1. Re-vendor rux-ds: `sh tools/sync-ds.sh`, then build, check, commit, push.
+1. Re-vendor rux-ds: `sh tools/new-project.sh ~/Developer/rux-ln-notes` from a rux-ds clone at a tag, then build, check, commit, push.
    The pin is from 2026-09-01, before the switcher landed there.
 2. Add the switcher button and panel to the shell, once rux-ds has written the
    `switcher.json` contract down (rux-ds README "Picking this up" lists it as

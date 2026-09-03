@@ -63,7 +63,9 @@ and gitignored; it does not travel with a clone or a copied folder.
 ```sh
 sh tools/sync-guides.sh    # atlas -> data/guides/   (export tier, never --internal)
 sh tools/sync-internal.sh  # atlas -> build/internal/ (INTERNAL tier, git-ignored, never published)
-sh tools/sync-ds.sh        # rux-ds -> vendor/rux-ds/
+# rux-ds -> vendor/rux-ds/, run FROM a rux-ds clone at a tag (since 2026-09-02;
+# tools/sync-ds.sh retired for it, rux-ds roadmap §4.11):
+#   sh tools/new-project.sh ~/Developer/rux-ln-notes
 ```
 
 **Both outputs are tracked, deliberately.** They are regenerable, so tracking
@@ -90,7 +92,7 @@ page missing its markers rather than writing nothing quietly.
 
 It is **not** rux-ds's `tools/icons.mjs`, which regenerates the sprite from
 `@carbon/icons` and rewrites `templates/*.html` — neither applies here. This only
-ever copies the already-built sprite that `sync-ds.sh` delivered.
+ever copies the already-built sprite that rux-ds's `new-project.sh` delivered.
 
 ### Two content types
 
@@ -492,7 +494,8 @@ unbuilt, and three defect classes have no gate behind them.
 Published, and read by trainees at
 [rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/). The
 two syncs work and are verified — `sync-ds` was seen to refuse a dirty tree,
-not merely written to. `tools/build.mjs` writes `index.html` and the pages
+not merely written to (retired 2026-09-02 for rux-ds's `new-project.sh`, which
+refuses the same and also refuses an unpushed commit). `tools/build.mjs` writes `index.html` and the pages
 into `guides/` from `data/guides/` — seven guides, six reviews, six summaries —
 and a rebuild against a clean tree produces no diff.
 

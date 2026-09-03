@@ -51,7 +51,7 @@ generic content.
 | | from | by |
 |---|---|---|
 | `data/guides/` | `rux-ln-atlas`, export tier only | `sh tools/sync-guides.sh` |
-| `vendor/rux-ds/` | `rux-ds`, pinned to one commit | `sh tools/sync-ds.sh` |
+| `vendor/rux-ds/` | `rux-ds`, pinned to one tag | `sh tools/new-project.sh ~/Developer/rux-ln-notes`, run from a rux-ds clone at a tag |
 
 Both are tracked so `git diff` after a sync shows what moved upstream. Both
 carry a `PIN`. Neither is ever hand-edited; the next sync overwrites it and

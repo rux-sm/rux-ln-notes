@@ -13,7 +13,7 @@
 // WHY THIS IS NOT rux-ds's tools/icons.mjs. That script regenerates the sprite
 // from @carbon/icons and then rewrites `templates/*.html` -- both wrong here.
 // This project has no @carbon/icons and no templates/ directory; it has an
-// already-built sprite delivered by sync-ds.sh. So this only ever COPIES, and
+// already-built sprite delivered by rux-ds's new-project.sh. So this only ever COPIES, and
 // the sprite's content is rux-ds's business, pinned in vendor/rux-ds/PIN.
 //
 //   node tools/inline-sprite.mjs <file.html> [more.html ...]

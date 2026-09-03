@@ -749,7 +749,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <!-- SPRITE:BEGIN -->
 <!-- SPRITE:END -->
 
-<header class="rux--header" data-theme="g100" aria-label="Infor LN Notes">
+<header class="rux--header" data-theme="g100" aria-label="Rux Notes">
   <a class="rux--skip-to-content" href="#main-content">Skip to main content</a>
 
   <!-- Ships closed, and carries __menu-toggle__hidden so it is display:none
@@ -758,7 +758,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
        longer beside it -- a state that does not exist in IBM's design. -->
   <button type="button" class="rux--header__action rux--header__menu-trigger rux--header__menu-toggle rux--header__menu-toggle__hidden" aria-label="Toggle navigation" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-menu"/></svg></button>
 
-  <a class="rux--header__name" href="${up || './'}"><span class="rux--header__name--prefix">Infor</span>&nbsp;LN Notes</a>
+  <a class="rux--header__name" href="${up || './'}"><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
 
   <!-- NO __nav AND NO __global: one product, and nothing behind a
        notifications or account glyph. An icon-only button with no handler is
@@ -858,7 +858,7 @@ function indexPage(site) {
   }).join('\n');
 
   const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
-          <h1>Infor LN Notes</h1>
+          <h1>Rux Notes</h1>
           <p class="rux--type-body-02">Procedures walked against a live Infor LN
              environment, and the record of the sessions they came out of. Each
              scenario guide is an objective and a numbered set of phases, each
@@ -894,7 +894,7 @@ ${summaryCards}
           </div>
         </section>`;
 
-  return page({ title: 'Infor LN Notes', site, activeId: null, body, depth: 0 });
+  return page({ title: 'Rux Notes', site, activeId: null, body, depth: 0 });
 }
 
 // A REVIEW AND A SUMMARY ARE ONE PAGE BUILDER WITH TWO SLOT LISTS. They share
@@ -970,7 +970,7 @@ function reviewPage(r, site) {
         ? topicsSection(r)
         : rsection(`s-${slot}`, heading, r[slot])).filter(Boolean).join('\n\n      ')}`;
 
-  return page({ title: `${r.title} — Infor LN Notes`, site, activeId: r.id, body, depth: 1 });
+  return page({ title: `${r.title} — Rux Notes`, site, activeId: r.id, body, depth: 1 });
 }
 
 // A CONCEPT PAGE, INTERNAL TIER ONLY. An intro, then the numbered sections
@@ -998,7 +998,7 @@ function conceptPage(c, site) {
           ${(c.intro ?? []).map(rblock).join('\n          ')}
         </div>
         ${topics}`;
-  return page({ title: `${c.title} — Infor LN Notes`, site, activeId: c.id, body, depth: 1 });
+  return page({ title: `${c.title} — Rux Notes`, site, activeId: c.id, body, depth: 1 });
 }
 
 function guidePage(g, site) {
@@ -1028,7 +1028,7 @@ function guidePage(g, site) {
              while the guide itself is status: draft. Both are shown. -->
         <p class="rux--type-body-01">${esc(g.verification)}</p>` : ''}`;
 
-  return page({ title: `${g.title} — Infor LN Notes`, site, activeId: g.id, body, depth: 1 });
+  return page({ title: `${g.title} — Rux Notes`, site, activeId: g.id, body, depth: 1 });
 }
 
 // ---------------------------------------------------------------- build

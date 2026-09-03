@@ -105,6 +105,16 @@
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
 
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
+
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -363,7 +373,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -374,11 +397,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu" hidden>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
         </ul>
       </li>
@@ -396,7 +419,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">6 phases</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-08-26</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
           </div>
           <p class="rux--type-body-02">Manufacturing · Warehousing</p>
         </div>
@@ -428,6 +451,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-0">
         <h3 id="p-0">Phase 0 — Confirm the existing foundation</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Inventory 360</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Nothing yet. A production order is built from master data that must already exist, and LN will not say at creation which of it is missing or wrong; it says so at release, at material issue or at completion. This phase reads the finished item, its component, the BOM and routing revisions, the warehouses and the stock before the order asks for them.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -447,6 +471,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-1">
         <h3 id="p-1">Phase 1 — Create the production order</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Manufacturing ➔ Job Shop ➔ Production Orders</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Production Orders <span class="rux--type-code-01">tisfc0501m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> On save LN reads the item&#39;s BOM and routing valid on the <em>Reference Date</em> and generates the order&#39;s operations and estimated materials from them. <em>Quantity Ordered</em> is what is to be produced and <em>Warehouse</em> is where the result will be received. The order exists at <strong>Created</strong>; nothing has moved.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -468,6 +493,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-2">
         <h3 id="p-2">Phase 2 — Verify the generated foundation</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Manufacturing ➔ Job Shop ➔ Production Orders</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Production Orders <span class="rux--type-code-01">tisfc0501m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> The detail session shows what LN generated at creation: the planning area holds the operations from the routing and the estimated-materials area holds the components from the BOM, scaled to the order quantity. A missing operation, BOM or component here is a stop condition, not something to repair inside the order.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -487,6 +513,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-3">
         <h3 id="p-3">Phase 3 — Release the order</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Manufacturing ➔ Job Shop ➔ Production Orders</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Production Orders <span class="rux--type-code-01">tisfc0501m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Release changes the order to <strong>Released</strong>, the state in which production can start, and at the same moment LN creates two warehousing orders: one to issue the component out of its warehouse and one to receive the finished item into its own. Phase 4 works the first; phase 5 depends on the second.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -505,6 +532,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-4">
         <h3 id="p-4">Phase 4 — Issue material to the job shop</h3>
         
+        <p><strong>What LN is doing.</strong> Material issue turns the estimated quantities into an outbound warehousing order from the raw-material warehouse to the work center, and each issued quantity books a WIP transaction. That first WIP transaction is what moves the order to <strong>Active</strong>; release alone does not. How much of the outbound procedure LN runs for you depends on two check boxes on the material line.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -526,6 +554,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-5">
         <h3 id="p-5">Phase 5 — Report the operation complete and confirm warehouse receipt</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Manufacturing ➔ Job Shop ➔ Production Control ➔ Report Operations</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Report Operations <span class="rux--type-code-01">tisfc0130m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Reporting the last operation complete records the quantity produced and, depending on a parameter, posts it to inventory silently, not at all, or after asking. The order becomes <strong>Production Completed</strong> when reported and <strong>Completed</strong> only when Warehousing finishes the inbound receipt, so the two statuses are a handoff, not a failure. The phase ends with an inventory read because the Manufacturing-side status alone does not prove the stock arrived.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">

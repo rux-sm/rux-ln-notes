@@ -105,6 +105,16 @@
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
 
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
+
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -363,7 +373,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -374,11 +397,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu" hidden>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
         </ul>
       </li>
@@ -394,9 +417,10 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>Rux Notes</h1>
           <p class="rux--type-body-02">Procedures walked against a live Infor LN
-             environment, and the record of the sessions they came out of. Each
-             scenario guide is an objective and a numbered set of phases, each
-             with the route into its screen and a table of steps to follow.</p>
+             environment, focused practice for explaining their results, and
+             the record of the sessions they came out of. Each scenario guide
+             keeps the procedure; each exercise asks you to predict, observe
+             and report back.</p>
         </div>
 
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-guides">
@@ -425,7 +449,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <div class="rux--card__body">
               <div class="ln-tag-row">
                 <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
-                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">13 phases</span></span>
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">11 phases</span></span>
               </div>
             </div>
             <div class="rux--card__footer">
@@ -599,7 +623,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               <div class="rux--card__title">
                 <div class="rux--card__label">Sales · Enterprise Planning · Procurement · Manufacturing · Warehousing</div>
                 <span class="rux--card__title-text-row" id="t-SG-demand-to-shipment-via-planning">Plan to shipment</span>
-                <div class="rux--card__description">run the bamboo family down the long route of `WG_01_Order_to_Shipment_Flowchart.html` — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down.</div>
+                <div class="rux--card__description">run the bamboo family down the long route of `order-to-shipment-flowchart.svg` — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down.</div>
               </div>
             </div>
             <div class="rux--card__body">
@@ -621,6 +645,35 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </div>
         </section>
 
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-practice">
+          <h2 id="h-practice">Practice</h2>
+          <p class="rux--type-body-02">Guided assignments for predicting an LN
+             result, following the relevant guide, explaining what happened and
+             reporting the evidence.</p>
+          <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
+        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
+          <div class="rux--card rux--card--productive">
+            <div class="rux--card__header">
+              <div class="rux--card__title">
+                <div class="rux--card__label">Practice exercise</div>
+                <span class="rux--card__title-text-row" id="t-HOMEWORK-production-and-planning">Homework — understand a production result</span>
+                <div class="rux--card__description">finish one production run, explain which master data produced the result, change one condition and predict the difference, then connect planning to production.</div>
+              </div>
+            </div>
+            <div class="rux--card__body">
+              <div class="ln-tag-row">
+                <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">8 assignments</span></span>
+              </div>
+            </div>
+            <div class="rux--card__footer">
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/HOMEWORK-production-and-planning.html" id="o-HOMEWORK-production-and-planning" aria-labelledby="o-HOMEWORK-production-and-planning t-HOMEWORK-production-and-planning">Open exercise</a>
+            </div>
+          </div>
+        </div>
+          </div>
+        </section>
+
         <section id="summaries" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-summaries">
           <h2 id="h-summaries">Meeting summaries</h2>
           <p class="rux--type-body-02">Six training sessions, each summarised in
@@ -632,19 +685,19 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <div class="rux--card__header">
               <div class="rux--card__title">
                 <div class="rux--card__label">Meeting summary</div>
-                <span class="rux--card__title-text-row" id="t-planned-order-transfer-training_2026-08-25_summary">Turning Planned Orders Into Real Orders — Summary</span>
-                <div class="rux--card__description">The follow-on to the previous order-planning session. MRP had already been run and had produced planned orders; this session took the next step and turned them into actual purchase orders. Along the way it repaired an item that planning had been quietly ignoring, and hit a transfer failure worth understanding.</div>
+                <span class="rux--card__title-text-row" id="t-bamboo-production-order-walkthrough_2026-08-18_summary">Bamboo Production Order Walkthrough — Summary</span>
+                <div class="rux--card__description">Taking the bamboo training items (a rod, a sleeve, and a finished chopstick pair) all the way from bare item records to a produced, received finished good — building the bill of material, the routing, the cost, and the stock the production order needed, then running that order to completion.</div>
               </div>
             </div>
             <div class="rux--card__body">
               <div class="ln-tag-row">
                 <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
-                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">5 topics</span></span>
-                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-08-25</span></span>
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">4 topics</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-09-02</span></span>
               </div>
             </div>
             <div class="rux--card__footer">
-              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/planned-order-transfer-training_2026-08-25_summary.html" id="o-planned-order-transfer-training_2026-08-25_summary" aria-labelledby="o-planned-order-transfer-training_2026-08-25_summary t-planned-order-transfer-training_2026-08-25_summary">Open summary</a>
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/bamboo-production-order-walkthrough_2026-08-18_summary.html" id="o-bamboo-production-order-walkthrough_2026-08-18_summary" aria-labelledby="o-bamboo-production-order-walkthrough_2026-08-18_summary t-bamboo-production-order-walkthrough_2026-08-18_summary">Open summary</a>
             </div>
           </div>
         </div>
@@ -661,7 +714,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               <div class="ln-tag-row">
                 <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
                 <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">7 topics</span></span>
-                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-08-20</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-09-02</span></span>
               </div>
             </div>
             <div class="rux--card__footer">
@@ -674,40 +727,19 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <div class="rux--card__header">
               <div class="rux--card__title">
                 <div class="rux--card__label">Meeting summary</div>
-                <span class="rux--card__title-text-row" id="t-bamboo-production-order-walkthrough_2026-08-18_summary">Bamboo Production Order Walkthrough — Summary</span>
-                <div class="rux--card__description">Taking the bamboo training items (a rod, a sleeve, and a finished chopstick pair) all the way from bare item records to a produced, received finished good — building the bill of material, the routing, the cost, and the stock the production order needed, then running that order to completion.</div>
+                <span class="rux--card__title-text-row" id="t-planned-order-transfer-training_2026-08-25_summary">Turning Planned Orders Into Real Orders — Summary</span>
+                <div class="rux--card__description">The follow-on to the previous order-planning session. MRP had already been run and had produced planned orders; this session took the next step and turned them into actual purchase orders. Along the way it repaired an item that planning had been quietly ignoring, and hit a transfer failure worth understanding.</div>
               </div>
             </div>
             <div class="rux--card__body">
               <div class="ln-tag-row">
                 <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
-                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">4 topics</span></span>
-                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-08-18</span></span>
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">5 topics</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-09-02</span></span>
               </div>
             </div>
             <div class="rux--card__footer">
-              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/bamboo-production-order-walkthrough_2026-08-18_summary.html" id="o-bamboo-production-order-walkthrough_2026-08-18_summary" aria-labelledby="o-bamboo-production-order-walkthrough_2026-08-18_summary t-bamboo-production-order-walkthrough_2026-08-18_summary">Open summary</a>
-            </div>
-          </div>
-        </div>
-        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
-          <div class="rux--card rux--card--productive">
-            <div class="rux--card__header">
-              <div class="rux--card__title">
-                <div class="rux--card__label">Meeting summary</div>
-                <span class="rux--card__title-text-row" id="t-sales-and-production-order-training_2026-08-11_summary">Sales and Production Order Training — Summary</span>
-                <div class="rux--card__description">Review of a trainee&#39;s earlier Ship from stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next.</div>
-              </div>
-            </div>
-            <div class="rux--card__body">
-              <div class="ln-tag-row">
-                <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
-                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">7 topics</span></span>
-                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-08-11</span></span>
-              </div>
-            </div>
-            <div class="rux--card__footer">
-              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/sales-and-production-order-training_2026-08-11_summary.html" id="o-sales-and-production-order-training_2026-08-11_summary" aria-labelledby="o-sales-and-production-order-training_2026-08-11_summary t-sales-and-production-order-training_2026-08-11_summary">Open summary</a>
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/planned-order-transfer-training_2026-08-25_summary.html" id="o-planned-order-transfer-training_2026-08-25_summary" aria-labelledby="o-planned-order-transfer-training_2026-08-25_summary t-planned-order-transfer-training_2026-08-25_summary">Open summary</a>
             </div>
           </div>
         </div>
@@ -724,11 +756,32 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               <div class="ln-tag-row">
                 <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
                 <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">4 topics</span></span>
-                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-08-06</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-09-02</span></span>
               </div>
             </div>
             <div class="rux--card__footer">
               <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/production-order-training_2026-08-06_summary.html" id="o-production-order-training_2026-08-06_summary" aria-labelledby="o-production-order-training_2026-08-06_summary t-production-order-training_2026-08-06_summary">Open summary</a>
+            </div>
+          </div>
+        </div>
+        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
+          <div class="rux--card rux--card--productive">
+            <div class="rux--card__header">
+              <div class="rux--card__title">
+                <div class="rux--card__label">Meeting summary</div>
+                <span class="rux--card__title-text-row" id="t-sales-and-production-order-training_2026-08-11_summary">Sales and Production Order Training — Summary</span>
+                <div class="rux--card__description">Review of a trainee&#39;s earlier Ship from stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next.</div>
+              </div>
+            </div>
+            <div class="rux--card__body">
+              <div class="ln-tag-row">
+                <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">7 topics</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-09-02</span></span>
+              </div>
+            </div>
+            <div class="rux--card__footer">
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/sales-and-production-order-training_2026-08-11_summary.html" id="o-sales-and-production-order-training_2026-08-11_summary" aria-labelledby="o-sales-and-production-order-training_2026-08-11_summary t-sales-and-production-order-training_2026-08-11_summary">Open summary</a>
             </div>
           </div>
         </div>
@@ -745,7 +798,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               <div class="ln-tag-row">
                 <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
                 <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">6 topics</span></span>
-                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-08-04</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-09-02</span></span>
               </div>
             </div>
             <div class="rux--card__footer">

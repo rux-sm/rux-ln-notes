@@ -105,6 +105,16 @@
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
 
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
+
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -363,7 +373,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -374,11 +397,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu" hidden>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
         </ul>
       </li>
@@ -396,12 +419,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">6 phases</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-08-26</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
           </div>
           <p class="rux--type-body-02">Procurement · Warehousing</p>
         </div>
 
-      <p><strong>Objective:</strong> buy raw materials from an external supplier and bring them into a raw-material warehouse on a purchase order — and verify that on-hand at that warehouse rose by exactly the quantity received. <strong>Base guide</strong> — this is the atomic &quot;buy it in&quot; process. It was extracted from phase 11 of <span class="rux--tag rux--tag--gray" title="SG-create-basic-test-items-and-defaults.md"><span class="rux--tag__label">SG-create-basic-test-items-and-defaults.md</span></span>, which walked it inside a master-data guide. </p>
+      <p><strong>Objective:</strong> buy raw materials from an external supplier and bring them into a raw-material warehouse on a purchase order — and verify that on-hand at that warehouse rose by exactly the quantity received. <strong>Base guide</strong> — this is the atomic &quot;buy it in&quot; process. It was extracted from phase 9 of <span class="rux--tag rux--tag--gray" title="SG-create-basic-test-items-and-defaults.md"><span class="rux--tag__label">SG-create-basic-test-items-and-defaults.md</span></span>, which walked it inside a master-data guide. </p>
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-glance">
       <h2 id="s-glance">At a glance</h2>
       <div class="rux--data-table-container">
@@ -436,6 +459,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     </div>
   </div>
 </div>
+        <p><strong>What LN is doing.</strong> Nothing yet. A confirmed receipt is a document reaching a status; only the on-hand figure at the receiving warehouse proves stock moved, and it cannot prove anything unless it was read before the order existed. A new item is not necessarily at zero.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -453,6 +477,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-1">
         <h3 id="p-1">Phase 1 — Create the purchase order</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Procurement ➔ Orders ➔ Order Intake Workbench</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Purchase Order Intake Workbench <span class="rux--type-code-01">tdpur4601m200</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> The buy-from business partner decides most of the header: LN defaults the <em>Purchase Order Type</em>, <em>Purchase Office</em> and <em>Buyer</em> from the partner record, falling back to the user profile where the partner leaves a field empty. The workbench opens the Purchase Order session to carry the order; the lookup only selects a partner and never creates one.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -471,6 +496,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-2">
         <h3 id="p-2">Phase 2 — Book the lines</h3>
         
+        <p><strong>What LN is doing.</strong> Each line names an item, a quantity and a warehouse, and the warehouse on the line is what LN will raise the inbound order against in phase 3. A line saved to the wrong warehouse produces a receipt that never reaches the stock you meant to build.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -489,6 +515,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-3">
         <h3 id="p-3">Phase 3 — Receive against the order</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Orders ➔ Orders</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Warehousing Orders <span class="rux--type-code-01">whinh2100m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> You do not create this order; the purchase order generates a warehousing order whose origin, purchase, gives it inbound activities. That is the handoff from Procurement to Warehousing. The purchase order&#39;s own <strong>Release to Warehousing</strong> tab shows which lines are still waiting, and its line status session says which activity has to happen first.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -506,6 +533,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-4">
         <h3 id="p-4">Phase 4 — Confirm the receipt</h3>
         
+        <p><strong>What LN is doing.</strong> The receive command lands you in a receipt whose lines LN built from the inbound order lines you linked, and confirming it is what books the goods. Every flag on the header summarises its lines, so <em>Confirmed</em> is cleared both when a line is unconfirmed and when there are no lines at all.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -525,6 +553,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-5">
         <h3 id="p-5">Phase 5 — Verify the inventory increase</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Inventory 360</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Nothing new. This phase re-reads the figure from phase 0, because the receipt reaching <strong>Confirmed</strong> is not the proof; the number changing by exactly the received quantity is. A difference that is not the ordered quantity means something else moved stock in between, and adjusting it to match buries the evidence.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -567,7 +596,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <tbody>
           <tr><td><span class="rux--tag rux--tag--blue" title="Purchase with inspection"><span class="rux--tag__label">Purchase with inspection</span></span></td><td>An inspection activity sits between receipt and put-away. <span class="rux--tag rux--tag--blue" title="Warehouse Inspections"><span class="rux--tag__label">Warehouse Inspections</span></span> <span class="rux--tag rux--tag--cyan" title="whinh3122m000"><span class="rux--tag__label">whinh3122m000</span></span> runs against a receipt in this environment. This adds a phase and would earn its own guide. </td></tr>
           <tr><td><span class="rux--tag rux--tag--blue" title="Direct-delivery purchase"><span class="rux--tag__label">Direct-delivery purchase</span></span></td><td>Goods ship from the supplier to a customer without entering your warehouse. That removes phases 3–5 entirely, so it is a different process, not a variant of this one</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue" title="Booking opening stock instead of buying"><span class="rux--tag__label">Booking opening stock instead of buying</span></span></td><td>Route B from <span class="rux--tag rux--tag--gray" title="SG-create-basic-test-items-and-defaults.md"><span class="rux--tag__label">SG-create-basic-test-items-and-defaults.md</span></span> phase 11 — a cycle counting/adjustment order. Faster, but it bypasses purchase defaults and leaves no purchase price history. Its entry session was never captured </td></tr>
+          <tr><td><span class="rux--tag rux--tag--blue" title="Booking opening stock instead of buying"><span class="rux--tag__label">Booking opening stock instead of buying</span></span></td><td>The adjustment route the notes of <span class="rux--tag rux--tag--gray" title="SG-create-basic-test-items-and-defaults.md"><span class="rux--tag__label">SG-create-basic-test-items-and-defaults.md</span></span> phase 9 describe — a cycle counting/adjustment order. Faster, but it bypasses purchase defaults and leaves no purchase price history. Its entry session was never captured </td></tr>
             </tbody>
           </table>
         </div>

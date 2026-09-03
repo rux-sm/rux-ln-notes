@@ -105,6 +105,16 @@
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
 
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
+
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -363,7 +373,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -374,11 +397,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu" hidden>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
         </ul>
       </li>
@@ -396,7 +419,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--green"><span class="rux--tag__label">Approved</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">7 phases</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-08-29</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
           </div>
           <p class="rux--type-body-02">Sales · Warehousing</p>
         </div>
@@ -437,6 +460,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-0">
         <h3 id="p-0">Phase 0 — Confirm there is stock</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Inventory 360</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Inventory 360 shows what is physically on hand, and <em>Allocated</em> shows how much of it other orders have already claimed. Stock is usually spread across several warehouses, and the sales order must name one that actually holds enough, or LN will raise nothing to pick. This phase records that choice before the order exists.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -455,6 +479,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-1">
         <h3 id="p-1">Phase 1 — Create and approve the sales order</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Sales ➔ Orders ➔ Order Intake Workbench</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Sales Order Intake Workbench <span class="rux--type-code-01">tdsls4601m200</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Approving the order is what makes its lines eligible for warehousing: LN releases only approved lines, and an unapproved order fails at the next phase with no obvious reason. The Order Acknowledgement that prints carries the sales order number, which the warehousing order will inherit.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -480,6 +505,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-2">
         <h3 id="p-2">Phase 2 — Release to warehousing</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Sales ➔ Orders ➔ Order Intake Workbench</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Sales Order Intake Workbench <span class="rux--type-code-01">tdsls4601m200</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Releasing hands the approved lines from Sales to Warehousing: LN creates a warehousing order that carries the sales order&#39;s number, and from here the activities of the warehousing procedure, not the sales order, decide what happens next. The release runs from the Actions menu; the <em>Lines ready for</em> panel only counts.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -501,6 +527,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-3">
         <h3 id="p-3">Phase 3 — Generate outbound advice</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Manager Dashboard</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Warehouse Manager Dashboard <span class="rux--type-code-01">whinh2300m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Generating advice is LN deciding which stock, in which locations, will satisfy each outbound line. In this environment the next activity, releasing the advice, is automatic, so one action fills both the <em>Advised</em> and <em>Released</em> columns and prints the picking list. That is a property of the order type&#39;s procedure, not of LN.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -520,6 +547,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-4">
         <h3 id="p-4">Phase 4 — Pick the goods</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Outbound/Inspections ➔ Picking List</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Picking List <span class="rux--type-code-01">whinh4525m100</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> The picking list is the record of stock physically moving to staging, and confirming it is what fills <em>Picked</em>. The phase exists because this environment sets the <em>Picking List</em> activity to manual and the warehouse is location-controlled; change either and LN ticks <em>Picked</em> on release and the phase disappears. Once a line is staged, LN creates the shipment line.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -539,6 +567,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-5">
         <h3 id="p-5">Phase 5 — Ship</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Shipments ➔ Shipments</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Shipments <span class="rux--type-code-01">whinh4130m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Freezing fixes the shipment&#39;s contents and confirming relieves inventory; the status is always derived from those two actions, never set by hand. Freezing is mandatory here, carried from the warehousing order type, and confirming is a one-way door: a correction from there needs a return shipment.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -557,6 +586,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-6">
         <h3 id="p-6">Phase 6 — Verify it worked</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Inventory 360</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
+        <p><strong>What LN is doing.</strong> Nothing new. This phase reads the same figures phase 0 read, because a confirmed shipment is a document reaching a status and the inventory figure is the only proof that stock moved.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">

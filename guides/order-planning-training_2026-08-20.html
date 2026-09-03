@@ -105,6 +105,16 @@
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
 
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
+
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -363,7 +373,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -374,11 +397,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu">
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
         </ul>
       </li>
@@ -396,7 +419,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Review</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-08-25</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
           </div>
           <p class="rux--type-body-01"><a class="rux--link" href="order-planning-training_2026-08-20_summary.html">Read the summary</a></p>
         </div>
@@ -516,7 +539,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     <div class="rux--inline-notification__text-wrapper">
       <div class="rux--inline-notification__title">Note</div>
       <div class="rux--inline-notification__subtitle"><p><strong>The narration did not mention a prerequisite the vendor treats as mandatory.</strong> Multi-level pegging is only browsable once pegging relations have been generated — either by selecting <strong>Update Pegging Relations</strong> in <span class="rux--tag rux--tag--blue" title="Generate Order Planning"><span class="rux--tag__label">Generate Order Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1210m000"><span class="rux--tag__label">cprrp1210m000</span></span>, or by running <span class="rux--tag rux--tag--blue" title="Generate Pegging Relations"><span class="rux--tag__label">Generate Pegging Relations</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp0240m000"><span class="rux--tag__label">cprrp0240m000</span></span> — and LN only generates them out to the <strong>Pegging Horizon</strong> set in <span class="rux--tag rux--tag--blue" title="Planning Parameters"><span class="rux--tag__label">Planning Parameters</span></span> <span class="rux--tag rux--tag--cyan" title="cprpd0100m000"><span class="rux--tag__label">cprpd0100m000</span></span>. The tree resolved on the call without this being discussed, which suggests the environment already has it configured, but that was not shown. the Infor LN <strong>Order Planning</strong> user guide, <em>Order Based Planning</em> — &quot;Pegging for planned orders&quot; (p. 113–114).</p>
-      <p><strong>Shown 2026-08-25, and the answer is stronger than &quot;already configured&quot;.</strong> The next session in the series captured <span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>&#39;s full option set, where <strong>Update Pegging Relations is selected _and_ read-only</strong> — <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span>. Its help states <em>&quot;You can modify this check box only if the `Update Pegging Relations during Order Planning` field in the Scenarios (cprpd4100m000) session is `User Specified`&quot;</em>, so the disabled state means the <span class="rux--tag rux--tag--gray" title="ACT"><span class="rux--tag__label">ACT</span></span> scenario is <strong>not</strong> set to <span class="rux--tag rux--tag--gray" title="User Specified"><span class="rux--tag__label">User Specified</span></span> and pegging relations are rebuilt on every run regardless of operator intent. Nobody on the 2026-08-20 call could have turned it off, which is why the tree resolved without the prerequisite being discussed. See <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> §3.5.</p></div>
+      <p><strong>Shown 2026-08-25, and the answer is stronger than &quot;already configured&quot;.</strong> The next session in the series captured <span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>&#39;s full option set, where <strong>Update Pegging Relations is selected _and_ read-only</strong> — <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span>. Its help states <em>&quot;You can modify this check box only if the `Update Pegging Relations during Order Planning` field in the Scenarios (cprpd4100m000) session is `User Specified`&quot;</em>, so the disabled state means the <span class="rux--tag rux--tag--gray" title="ACT"><span class="rux--tag__label">ACT</span></span> scenario is <strong>not</strong> set to <span class="rux--tag rux--tag--gray" title="User Specified"><span class="rux--tag__label">User Specified</span></span> and pegging relations are rebuilt on every run regardless of operator intent. Nobody on the 2026-08-20 call could have turned it off, which is why the tree resolved without the prerequisite being discussed. See <span class="rux--tag rux--tag--gray" title="planned-order-transfer-training_2026-08-25.md"><span class="rux--tag__label">planned-order-transfer-training_2026-08-25.md</span></span> §3.5.</p></div>
     </div>
   </div>
 </div>

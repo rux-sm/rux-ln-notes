@@ -105,6 +105,16 @@
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
 
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
+
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -363,7 +373,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -374,11 +397,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu">
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html" aria-current="page"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
         </ul>
       </li>
@@ -396,7 +419,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Summary</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-08-06</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
           </div>
           <p class="rux--type-body-01"><a class="rux--link" href="production-order-training_2026-08-06.html">Read the full review</a></p>
         </div>
@@ -415,7 +438,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <ol class="rux--list--ordered">
           <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span> — manufactured item <span class="rux--tag rux--tag--gray" title="ITEM-A"><span class="rux--tag__label">ITEM-A</span></span> with component <span class="rux--tag rux--tag--gray" title="ITEM-A.1"><span class="rux--tag__label">ITEM-A.1</span></span>.</li>
           <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Job Shop BOM"><span class="rux--tag__label">Job Shop BOM</span></span> <span class="rux--tag rux--tag--cyan" title="tibom3100m000"><span class="rux--tag__label">tibom3100m000</span></span> — bill of material <span class="rux--tag rux--tag--gray" title="JB0000236"><span class="rux--tag__label">JB0000236</span></span>, status <strong>Approved</strong>, with <strong>Approve Revision</strong> and <strong>Use for Planning</strong> actions available on the record. Only one BOM per item and site can actually be used for planning at a time (same rule for costing) — that&#39;s what &quot;Use for Planning&quot; / &quot;Use for Costing&quot; mean: which one wins, not just a label.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Job Shop Routing"><span class="rux--tag__label">Job Shop Routing</span></span> <span class="rux--tag rux--tag--cyan" title="tirou4600m000"><span class="rux--tag__label">tirou4600m000</span></span> — routing <span class="rux--tag rux--tag--gray" title="0"><span class="rux--tag__label">0</span></span>, operation <span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span>, work center <span class="rux--tag rux--tag--gray" title="ASM-01"><span class="rux--tag__label">ASM-01</span></span>, a 60-minute cycle time. That cycle time is defined against a specific batch size (the routing&#39;s own &quot;quantity&quot; setting) — it isn&#39;t automatically &quot;60 minutes per single unit&quot; unless that batch size is 1.</li>
+          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Job Shop Routing"><span class="rux--tag__label">Job Shop Routing</span></span> <span class="rux--tag rux--tag--cyan" title="tirou4600m000"><span class="rux--tag__label">tirou4600m000</span></span> — routing <span class="rux--tag rux--tag--gray" title="0"><span class="rux--tag__label">0</span></span>, operation <span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span>, reference operation <span class="rux--tag rux--tag--gray" title="ASM-01"><span class="rux--tag__label">ASM-01</span></span>, work center <span class="rux--tag rux--tag--gray" title="10A1A1"><span class="rux--tag__label">10A1A1</span></span>, and a 60-minute cycle time. That cycle time is defined against a specific batch size (the routing&#39;s own &quot;quantity&quot; setting) — it isn&#39;t automatically &quot;60 minutes per single unit&quot; unless that batch size is 1.</li>
           <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Item - Costing"><span class="rux--tag__label">Item - Costing</span></span> <span class="rux--tag rux--tag--cyan" title="ticpr0107m000"><span class="rux--tag__label">ticpr0107m000</span></span> — costing data for the item.</li>
           <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Production Order"><span class="rux--tag__label">Production Order</span></span> <span class="rux--tag rux--tag--cyan" title="tisfc0101m100"><span class="rux--tag__label">tisfc0101m100</span></span> — the order itself, built from the item/BOM/routing/costing above.</li>
         </ol>
@@ -456,7 +479,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item">Don&#39;t reuse the material-issue steps from this session directly (54:48–55:28) — that segment had a known warehouse-selection mistake.</li>
           <li class="rux--list__item">A later session (2026-08-11) redid material issue cleanly, start to finish.</li>
         </ul>
-          <p><strong>Full record:</strong> <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> in <span class="rux--tag rux--tag--gray" title="../ME/"><span class="rux--tag__label">../ME/</span></span> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p><strong>Full record:</strong> <a class="rux--link" href="production-order-training_2026-08-06.html">`production-order-training_2026-08-06.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
       </div>
     </div>

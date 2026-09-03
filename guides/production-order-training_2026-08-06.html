@@ -105,6 +105,16 @@
 .ln-code-scroll { overflow-x: auto; max-inline-size: 100%; }
 .ln-code-scroll pre { margin: 0; white-space: pre; }
 
+/* A WORKSHEET ANSWER CELL NEEDS VISIBLE SPACE even before it has an answer.
+   Empty table cells otherwise collapse to one text line and the published
+   exercise looks complete while leaving nowhere to write. Scoped to exercise
+   pages so ordinary guide and review tables remain dense. */
+.ln-exercise .rux--data-table td:empty::after {
+  content: '';
+  display: block;
+  min-block-size: 3rem;
+}
+
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -363,7 +373,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </ul>
       </li>
 
-      <!-- THE SECOND CONTENT TYPE, and it is the summaries that are listed.
+      <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
+           get their own group because a learner opens one to predict, record
+           and explain, not to perform an SOP-like runbook. -->
+      <li class="rux--side-nav__item">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+          <span class="rux--side-nav__submenu-title">Practice</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        </ul>
+      </li>
+
+      <!-- THE MEETING CONTENT GROUP lists summaries rather than full reviews.
            The agreement is scenario guides and meeting summaries; the six full
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
@@ -374,11 +397,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu">
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
         </ul>
       </li>
@@ -396,7 +419,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Review</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-08-28</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
           </div>
           <p class="rux--type-body-01"><a class="rux--link" href="production-order-training_2026-08-06_summary.html">Read the summary</a></p>
         </div>
@@ -427,7 +450,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <h2 id="h-topics">Key topics discussed</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.1">
             <h3 id="t-3.1">3.1 Production data dependencies</h3>
-            <p>The demonstration created or reviewed a manufactured item, a component item, a job-shop bill of material, a job-shop routing, costing data, and then a production order. The screen showed <span class="rux--tag rux--tag--gray" title="ITEM-A"><span class="rux--tag__label">ITEM-A</span></span> with component <span class="rux--tag rux--tag--gray" title="ITEM-A.1"><span class="rux--tag__label">ITEM-A.1</span></span>, BOM <span class="rux--tag rux--tag--gray" title="JB0000236"><span class="rux--tag__label">JB0000236</span></span>, routing <span class="rux--tag rux--tag--gray" title="0"><span class="rux--tag__label">0</span></span>, operation <span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span>, work center <span class="rux--tag rux--tag--gray" title="ASM-01"><span class="rux--tag__label">ASM-01</span></span>, and a 60-minute cycle time. These are demonstration values observed in Company 4100, not documented defaults.</p>
+            <p>The demonstration created or reviewed a manufactured item, a component item, a job-shop bill of material, a job-shop routing, costing data, and then a production order. The screen showed <span class="rux--tag rux--tag--gray" title="ITEM-A"><span class="rux--tag__label">ITEM-A</span></span> with component <span class="rux--tag rux--tag--gray" title="ITEM-A.1"><span class="rux--tag__label">ITEM-A.1</span></span>, BOM <span class="rux--tag rux--tag--gray" title="JB0000236"><span class="rux--tag__label">JB0000236</span></span>, routing <span class="rux--tag rux--tag--gray" title="0"><span class="rux--tag__label">0</span></span>, operation <span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span>, reference operation <span class="rux--tag rux--tag--gray" title="ASM-01"><span class="rux--tag__label">ASM-01</span></span>, work center <span class="rux--tag rux--tag--gray" title="10A1A1"><span class="rux--tag__label">10A1A1</span></span>, and a 60-minute cycle time. These are demonstration values observed in Company 4100, not documented defaults.</p>
             <p>Source: LN training environment, verified from the 2026-08-06 recording — screenshots for <span class="rux--tag rux--tag--blue" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span>, <span class="rux--tag rux--tag--blue" title="Job Shop BOM"><span class="rux--tag__label">Job Shop BOM</span></span> <span class="rux--tag rux--tag--cyan" title="tibom3100m000"><span class="rux--tag__label">tibom3100m000</span></span>, <span class="rux--tag rux--tag--blue" title="Job Shop Routing"><span class="rux--tag__label">Job Shop Routing</span></span> <span class="rux--tag rux--tag--cyan" title="tirou4600m000"><span class="rux--tag__label">tirou4600m000</span></span>, <span class="rux--tag rux--tag--blue" title="Item - Costing"><span class="rux--tag__label">Item - Costing</span></span> <span class="rux--tag rux--tag--cyan" title="ticpr0107m000"><span class="rux--tag__label">ticpr0107m000</span></span>, and <span class="rux--tag rux--tag--blue" title="Production Order"><span class="rux--tag__label">Production Order</span></span> <span class="rux--tag rux--tag--cyan" title="tisfc0101m100"><span class="rux--tag__label">tisfc0101m100</span></span>.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.2">
@@ -476,6 +499,52 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </table>
         </div>
       </div>
+          </section>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.6">
+            <h3 id="t-3.6">3.6 Frames on file</h3>
+            <p>Moved here 2026-09-02 from <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span>, where a screenshot index of one recording had been filed under a parameters title. These are values in one training demonstration, not defaults.</p>
+            <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">Object</div></th><th scope="col"><div class="rux--table-header-label">Observed value</div></th></tr></thead>
+            <tbody>
+          <tr><td>Finished item</td><td><span class="rux--tag rux--tag--gray" title="ITEM-A"><span class="rux--tag__label">ITEM-A</span></span></td></tr>
+          <tr><td>Component item</td><td><span class="rux--tag rux--tag--gray" title="ITEM-A.1"><span class="rux--tag__label">ITEM-A.1</span></span></td></tr>
+          <tr><td>Job Shop BOM</td><td><span class="rux--tag rux--tag--gray" title="JB0000236"><span class="rux--tag__label">JB0000236</span></span></td></tr>
+          <tr><td>Routing</td><td><span class="rux--tag rux--tag--gray" title="0"><span class="rux--tag__label">0</span></span></td></tr>
+          <tr><td>Operation</td><td><span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span></td></tr>
+          <tr><td>Reference Operation</td><td><span class="rux--tag rux--tag--gray" title="ASM-01"><span class="rux--tag__label">ASM-01</span></span> (Assembly) — corrected 2026-08-18; the column order is settled in <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> §4. </td></tr>
+          <tr><td>Work center</td><td><span class="rux--tag rux--tag--gray" title="10A1A1"><span class="rux--tag__label">10A1A1</span></span> (Right Arm)</td></tr>
+          <tr><td>Machine Type</td><td>blank on this row</td></tr>
+          <tr><td>Cycle time</td><td>60 minutes</td></tr>
+          <tr><td>Production order</td><td><span class="rux--tag rux--tag--gray" title="010000739"><span class="rux--tag__label">010000739</span></span></td></tr>
+          <tr><td>Site</td><td><span class="rux--tag rux--tag--gray" title="CSADNA01"><span class="rux--tag__label">CSADNA01</span></span></td></tr>
+          <tr><td>Finished-goods warehouse</td><td><span class="rux--tag rux--tag--gray" title="ADNA01"><span class="rux--tag__label">ADNA01</span></span></td></tr>
+          <tr><td>Raw-material warehouse</td><td><span class="rux--tag rux--tag--gray" title="ADNA02"><span class="rux--tag__label">ADNA02</span></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">Screen</div></th><th scope="col"><div class="rux--table-header-label">Observation</div></th><th scope="col"><div class="rux--table-header-label">Evidence</div></th></tr></thead>
+            <tbody>
+          <tr><td>Job Shop BOM (<span class="rux--tag rux--tag--cyan" title="tibom3100m000"><span class="rux--tag__label">tibom3100m000</span></span>)</td><td>Row status <span class="rux--tag rux--tag--gray" title="Approved"><span class="rux--tag__label">Approved</span></span>; <span class="rux--tag rux--tag--blue" title="Approve Revision"><span class="rux--tag__label">Approve Revision</span></span> and <span class="rux--tag rux--tag--blue" title="Use for Planning"><span class="rux--tag__label">Use for Planning</span></span> actions visible</td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+          <tr><td>Item - Costing (<span class="rux--tag rux--tag--cyan" title="ticpr0107m000"><span class="rux--tag__label">ticpr0107m000</span></span>)</td><td>Material costs <span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span>, operation costs <span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span>, standard cost <span class="rux--tag rux--tag--gray" title="20"><span class="rux--tag__label">20</span></span></td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+          <tr><td>Production Order (<span class="rux--tag rux--tag--cyan" title="tisfc0101m100"><span class="rux--tag__label">tisfc0101m100</span></span>)</td><td>Order created with routing operation <span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span> and 60-minute cycle time</td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+          <tr><td>Release Production Orders (<span class="rux--tag rux--tag--cyan" title="tisfc0204m000"><span class="rux--tag__label">tisfc0204m000</span></span>)</td><td>Release dialog and options visible</td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+          <tr><td>Material to Issue (<span class="rux--tag rux--tag--cyan" title="ticst0101m100"><span class="rux--tag__label">ticst0101m100</span></span>)</td><td>Status <span class="rux--tag rux--tag--gray" title="Released"><span class="rux--tag__label">Released</span></span>; warehouse issue quantity <span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span> after initiation</td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+          <tr><td>Report Operations (<span class="rux--tag rux--tag--cyan" title="tisfc0130m000"><span class="rux--tag__label">tisfc0130m000</span></span>)</td><td>Additional Completed entered as <span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span> while order was <span class="rux--tag rux--tag--gray" title="Active"><span class="rux--tag__label">Active</span></span></td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+          <tr><td>Report Orders Completed (<span class="rux--tag rux--tag--cyan" title="tisfc0120s000"><span class="rux--tag__label">tisfc0120s000</span></span>)</td><td>Quantity Delivered displayed as <span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span> before save</td><td>Recording at 57:20; no standalone evidence frame</td></tr>
+          <tr><td>Production Orders (<span class="rux--tag rux--tag--cyan" title="tisfc0501m000"><span class="rux--tag__label">tisfc0501m000</span></span>)</td><td>Order <span class="rux--tag rux--tag--gray" title="010000739"><span class="rux--tag__label">010000739</span></span> displayed as <span class="rux--tag rux--tag--gray" title="Completed"><span class="rux--tag__label">Completed</span></span> after reporting completion</td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+          <tr><td>Close Production Orders (<span class="rux--tag rux--tag--cyan" title="ticst0201m000"><span class="rux--tag__label">ticst0201m000</span></span>)</td><td>Close dialog and processing state visible</td><td><span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            <p><span class="rux--tag rux--tag--blue" title="Close Production Orders was filed under the wrong code"><span class="rux--tag__label">Close Production Orders was filed under the wrong code</span></span> <span class="rux--tag rux--tag--cyan" title="ticst0210m000"><span class="rux--tag__label">ticst0210m000</span></span> from 2026-08-09 to 2026-08-13 — a digit transposition inherited from the original screen capture. <span class="rux--tag rux--tag--cyan" title="ticst0210m000"><span class="rux--tag__label">ticst0210m000</span></span> is <strong>Calculate Estimated End Item Unit Costs</strong>, a distinct session. <span class="rux--tag rux--tag--blue" title="Report Operations"><span class="rux--tag__label">Report Operations</span></span> <span class="rux--tag rux--tag--cyan" title="tisfc0130m000"><span class="rux--tag__label">tisfc0130m000</span></span> is titled <em>Report Operations Completed</em> in the filed help. </p>
+            <p class="ln-source">LN training environment, recording dated 2026-08-06 — the frames above</p>
           </section>
         </section>
 

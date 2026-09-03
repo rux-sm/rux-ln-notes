@@ -1341,7 +1341,10 @@ const concepts = docs.filter(d => d.kind === 'concept')
 if (!guides.length) throw new Error(`no guides in ${DATA} -- run tools/sync-guides.sh first`);
 
 for (const g of guides) GUIDE_IDS.add(g.id);
-if (PRIVATE) for (const d of [...reviews, ...summaries, ...exercises, ...concepts]) GUIDE_IDS.add(d.id);
+// Reviews, summaries and exercises publish in both tiers, so a link between
+// them is linkable in both -- only a concept is PRIVATE-only (line ~1327).
+for (const d of [...reviews, ...summaries, ...exercises]) GUIDE_IDS.add(d.id);
+if (PRIVATE) for (const d of concepts) GUIDE_IDS.add(d.id);
 
 const reach = assertNoRawBlockquotes(guides);
 

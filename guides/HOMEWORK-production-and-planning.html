@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bamboo Production Order Walkthrough — Summary — Rux Notes</title>
+<title>Homework — understand a production result — Rux Notes</title>
 <!-- PLEX FIRST, THEN rux.css, WHICH IS THE ORDER rux-ds USES IN ITS OWN
      TEMPLATES. rux.css names IBM Plex Sans sixty-seven times and declares no
      @font-face; the faces live here. Linking the stylesheet without this one
@@ -376,13 +376,13 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
       <!-- EXERCISES COMPOSE GUIDES; they do not repeat their procedures. They
            get their own group because a learner opens one to predict, record
            and explain, not to perform an SOP-like runbook. -->
-      <li class="rux--side-nav__item">
-        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
+      <li class="rux--side-nav__item rux--side-nav__item--active">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="true">
           <span class="rux--side-nav__submenu-title">Practice</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
-        <ul class="rux--side-nav__menu" hidden>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
+        <ul class="rux--side-nav__menu">
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="HOMEWORK-production-and-planning.html" aria-current="page"><span class="rux--side-nav__link-text">Homework — understand a production result</span></a></li>
         </ul>
       </li>
 
@@ -392,12 +392,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
            beside it, because putting twelve documents under one heading
            presents two categories as one. -->
       <li class="rux--side-nav__item">
-        <button class="rux--side-nav__submenu" type="button" aria-expanded="true">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
           <span class="rux--side-nav__submenu-title">Meeting summaries</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
-        <ul class="rux--side-nav__menu">
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html" aria-current="page"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
+        <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
@@ -414,77 +414,232 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
   <div class="rux--css-grid">
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
-        <div class="rux--stack-vertical rux--stack-scale-5">
-          <h1>Bamboo Production Order Walkthrough — Summary</h1>
+        <div class="rux--stack-vertical rux--stack-scale-5 ln-exercise">
+          <h1>Homework — understand a production result</h1>
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
-            <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Summary</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
+            <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Homework</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">8 assignments</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-03</span></span>
           </div>
-          <p class="rux--type-body-01"><a class="rux--link" href="bamboo-production-order-walkthrough_2026-08-18.html">Read the full review</a></p>
+          <p><strong>Goal:</strong> finish one production run, explain which master data produced the result, change one condition and predict the difference, then connect planning to production.</p>
+          <p>Use the bamboo test family in Company <span class="rux--tag rux--tag--gray" title="4100"><span class="rux--tag__label">4100</span></span>. Work in order and stop after any result you cannot explain. A surprising result is useful evidence; do not click through it or repair several values at once.</p>
+          <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast">
+  <div class="rux--inline-notification__details">
+    <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-warning--filled"/></svg>
+    <div class="rux--inline-notification__text-wrapper">
+      <div class="rux--inline-notification__title">Warning</div>
+      <div class="rux--inline-notification__subtitle"><p>Change only test-item data. Do not change the shared <span class="rux--tag rux--tag--gray" title="BAM-RM"><span class="rux--tag__label">BAM-RM</span></span> or <span class="rux--tag rux--tag--gray" title="BAM-FG"><span class="rux--tag__label">BAM-FG</span></span> item groups or their defaults.</p></div>
+    </div>
+  </div>
+</div>
+          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-1">
+          <h2 id="a-1">1. Before you start</h2>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">Write this down</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
+            <tbody>
+          <tr><td>Your name</td><td></td></tr>
+          <tr><td>Date</td><td></td></tr>
+          <tr><td>Company</td><td><span class="rux--tag rux--tag--gray" title="4100"><span class="rux--tag__label">4100</span></span></td></tr>
+          <tr><td>Site</td><td></td></tr>
+          <tr><td>Finished item</td><td><span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span></td></tr>
+          <tr><td>Raw-material warehouse</td><td></td></tr>
+          <tr><td>Finished-goods warehouse</td><td></td></tr>
+            </tbody>
+          </table>
         </div>
-
-      <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
-          <h2 id="s-covered">What this covered</h2>
-          <p>Taking the bamboo training items (a rod, a sleeve, and a finished chopstick pair) all the way from bare item records to a produced, received finished good — building the bill of material, the routing, the cost, and the stock the production order needed, then running that order to completion.</p>
+      </div>
+          <p>Create one folder for the screenshots from this run. Every screenshot must show the whole LN window and a readable status bar.</p>
         </section>
-
-      <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
-          <h2 id="h-topics">Topics</h2>
-          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-building-the-recipe-bill-of-material-and-routing">
-            <h3 id="t-building-the-recipe-bill-of-material-and-routing">Building the recipe: bill of material and routing</h3>
-            <p>The chopstick pair needs a bill of material (what goes into it) and a routing (the steps to make it). Both were built from scratch.</p>
-            <p><strong>What was shown:</strong></p>
-            <ol class="rux--list--ordered">
-          <li class="rux--list__item">Job Shop Bill of Material — created BOM <span class="rux--tag rux--tag--gray" title="JB0000242"><span class="rux--tag__label">JB0000242</span></span> for the chopstick pair: 2 rods, 1 sleeve.</li>
-          <li class="rux--list__item">Job Shop Routing — one cutting operation, at work center <span class="rux--tag rux--tag--gray" title="A1000"><span class="rux--tag__label">A1000</span></span>.</li>
-          <li class="rux--list__item">Later, a second BOM revision was created on purpose, just to show how revisions work: create the new one, approve it, then mark the old one &quot;expired&quot; so the system switches over automatically.</li>
-        </ol>
-          </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-costing-the-item">
-            <h3 id="t-costing-the-item">Costing the item</h3>
-            <p>Before you can produce something, LN needs to know what it costs. This turned out to be simpler than expected — it&#39;s a button right on the item&#39;s own screen (<strong>Calculate and Actualize Standard Costs</strong>), not a separate session.</p>
-          </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-getting-materials-on-hand-the-purchasing-route">
-            <h3 id="t-getting-materials-on-hand-the-purchasing-route">Getting materials on hand — the purchasing route</h3>
-            <p>The rod and sleeve had to physically be in the warehouse before production could use them. The team bought them from an existing test supplier (Vista Machines Inc.) rather than just adjusting inventory by hand — a real purchase order, all the way through to a warehouse receipt.</p>
-            <p><strong>What was shown:</strong></p>
-            <ol class="rux--list--ordered">
-          <li class="rux--list__item">Created a purchase order for 2 rods and 1 sleeve.</li>
-          <li class="rux--list__item">Hit a real system error on receiving (&quot;Stock Point Details not found&quot;) — worked through it and the receipt still closed out successfully.</li>
-        </ol>
-          </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-running-the-production-order">
-            <h3 id="t-running-the-production-order">Running the production order</h3>
-            <p>With the recipe, cost, and materials all in place, the order ran start to finish: created, released, materials issued, operation completed, and the finished pair received into the warehouse — with an inspection step in between.</p>
-            <p><strong>What was shown:</strong></p>
-            <ol class="rux--list--ordered">
-          <li class="rux--list__item">Production order created and released.</li>
-          <li class="rux--list__item">Materials issued to the shop floor.</li>
-          <li class="rux--list__item">Finished pair inspected, then the order closed — closing it required both the materials being fully issued <em>and</em> the finished item being fully put away, not just received.</li>
-        </ol>
-          </section>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-2">
+          <h2 id="a-2">2. Homework 1 — map the production foundation</h2>
+          <p>Follow phases 6–10 of <a class="rux--link" href="SG-create-basic-test-items-and-defaults.html">Create basic test items and defaults</a>. Read the records; do not rebuild them.</p>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
+            <tbody>
+          <tr><td>☐</td><td>What is the finished item&#39;s supply source?</td><td></td></tr>
+          <tr><td>☐</td><td>Which BOM and revision should the order use?</td><td></td></tr>
+          <tr><td>☐</td><td>Which components and quantities make one finished item?</td><td></td></tr>
+          <tr><td>☐</td><td>Which routing and revision should the order use?</td><td></td></tr>
+          <tr><td>☐</td><td>Which operation and work center should appear?</td><td></td></tr>
+          <tr><td>☐</td><td>Has the standard cost been actualized? What proves it?</td><td></td></tr>
+          <tr><td>☐</td><td>How much of each component is on hand before production?</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">Your prediction</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
+            <tbody>
+          <tr><td>If you create an order for one finished item, what components, quantities, routing and operation should LN generate?</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
         </section>
-
-      <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-decided">
-          <h2 id="s-decided">What was decided</h2>
-          <ol class="rux--list--ordered">
-          <li class="rux--list__item">Buying components in through a real purchase order is the standard way to stock these training items — not manually adjusting inventory.</li>
-          <li class="rux--list__item">Vista Machines Inc. is the go-to test supplier for this kind of purchase.</li>
-          <li class="rux--list__item">Closing out a production order stays a separate, later step — not part of the standard walkthrough, even though it was demonstrated here.</li>
-        </ol>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-3">
+          <h2 id="a-3">3. Homework 2 — run one clean production order</h2>
+          <p>Follow <a class="rux--link" href="SG-manual-production-order-existing-master-data.html">Manual production order from existing master data</a> through finished-goods receipt. Do not run <span class="rux--tag rux--tag--blue" title="Close Production Orders"><span class="rux--tag__label">Close Production Orders</span></span> <span class="rux--tag rux--tag--cyan" title="ticst0201m000"><span class="rux--tag__label">ticst0201m000</span></span>; closing and its financial postings are outside that guide.</p>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Checkpoint</div></th><th scope="col"><div class="rux--table-header-label">Record the result</div></th></tr></thead>
+            <tbody>
+          <tr><td>☐</td><td>Production order number</td><td></td></tr>
+          <tr><td>☐</td><td>Quantity ordered</td><td></td></tr>
+          <tr><td>☐</td><td>Status immediately after save</td><td></td></tr>
+          <tr><td>☐</td><td>BOM and revision LN selected</td><td></td></tr>
+          <tr><td>☐</td><td>Routing and revision LN selected</td><td></td></tr>
+          <tr><td>☐</td><td>Generated operation and work center</td><td></td></tr>
+          <tr><td>☐</td><td>Estimated material quantities</td><td></td></tr>
+          <tr><td>☐</td><td>Status after release</td><td></td></tr>
+          <tr><td>☐</td><td>Production issue warehousing-order number</td><td></td></tr>
+          <tr><td>☐</td><td>Finished-item receipt warehousing-order number</td><td></td></tr>
+          <tr><td>☐</td><td>Actual material quantities after issue</td><td></td></tr>
+          <tr><td>☐</td><td>Status after the first real transaction</td><td></td></tr>
+          <tr><td>☐</td><td>Operation quantity completed</td><td></td></tr>
+          <tr><td>☐</td><td>Quantity delivered</td><td></td></tr>
+          <tr><td>☐</td><td>Final production-order status</td><td></td></tr>
+          <tr><td>☐</td><td>Finished-item on-hand before</td><td></td></tr>
+          <tr><td>☐</td><td>Finished-item on-hand after</td><td></td></tr>
+          <tr><td>☐</td><td>Does the on-hand change equal the delivered quantity?</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+          <p>A complete, readable set of the last six answers above may improve the production guide. </p>
         </section>
-
-      <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-takeaways">
-          <h2 id="s-takeaways">Key takeaways</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-4">
+          <h2 id="a-4">4. Homework 3 — explain the result</h2>
+          <p>Answer without describing which buttons you clicked.</p>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your explanation</div></th></tr></thead>
+            <tbody>
+          <tr><td>Why did LN select this BOM?</td><td></td></tr>
+          <tr><td>Why did LN select this routing and operation?</td><td></td></tr>
+          <tr><td>How did you calculate the expected component quantities?</td><td></td></tr>
+          <tr><td>What event moved the order into each status you observed?</td><td></td></tr>
+          <tr><td>What proves that production affected inventory?</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        </section>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-5">
+          <h2 id="a-5">5. Homework 4 — change one condition</h2>
+          <p>Create a second production order for the same item with a different <em>Quantity Ordered</em>. Change nothing else.</p>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
+            <tbody>
+          <tr><td>New production quantity</td><td></td></tr>
+          <tr><td>Predicted <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> quantity</td><td></td></tr>
+          <tr><td>Predicted <span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span> quantity</td><td></td></tr>
+          <tr><td>Actual estimated rod quantity</td><td></td></tr>
+          <tr><td>Actual estimated sleeve quantity</td><td></td></tr>
+          <tr><td>Did the same BOM and routing appear?</td><td></td></tr>
+          <tr><td>Did LN match your prediction?</td><td></td></tr>
+          <tr><td>If not, what differed?</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+          <p>Stop after verifying the generated foundation unless you have a reason to complete the second order. The purpose of this run is to prove that you can predict the result of one controlled change.</p>
+        </section>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-6">
+          <h2 id="a-6">6. Homework 5 — connect planning to production</h2>
+          <p>First follow <a class="rux--link" href="SG-run-order-planning-for-one-item.html">Run order planning for one item</a> to create uncovered demand, run MRP and reconcile the pegging tree. Then use phase 3 of <a class="rux--link" href="SG-demand-to-shipment-via-planning.html">Demand to shipment via planning</a> to attempt the production half of the transfer.</p>
+          <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast">
+  <div class="rux--inline-notification__details">
+    <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-warning--filled"/></svg>
+    <div class="rux--inline-notification__text-wrapper">
+      <div class="rux--inline-notification__title">Warning</div>
+      <div class="rux--inline-notification__subtitle"><p>The production-order transfer has not been walked in this environment. You are running a test, not following an established procedure. Capture every prompt, report, error and resulting order before continuing.</p></div>
+    </div>
+  </div>
+</div>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Checkpoint</div></th><th scope="col"><div class="rux--table-header-label">Record the result</div></th></tr></thead>
+            <tbody>
+          <tr><td>☐</td><td>Sales-order demand</td><td></td></tr>
+          <tr><td>☐</td><td>Finished-item on-hand</td><td></td></tr>
+          <tr><td>☐</td><td>Expected production shortfall</td><td></td></tr>
+          <tr><td>☐</td><td>Planned production-order number and quantity</td><td></td></tr>
+          <tr><td>☐</td><td>Does the pegging arithmetic reconcile?</td><td></td></tr>
+          <tr><td>☐</td><td>Transfer options used</td><td></td></tr>
+          <tr><td>☐</td><td>Transfer report or exact error</td><td></td></tr>
+          <tr><td>☐</td><td>Real production-order number, if created</td><td></td></tr>
+          <tr><td>☐</td><td>Does its item and quantity match the planned order?</td><td></td></tr>
+          <tr><td>☐</td><td>Does it contain the expected BOM, routing and materials?</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+          <p>A complete transfer capture, including the resulting order or exact failure, may improve the planning guide. </p>
+        </section>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-7">
+          <h2 id="a-7">7. Optional investigation — `BAM-SLEEVE`</h2>
+          <p>Do this only after Homework 1–5. The earlier run added planning data for <span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span>, reran planning, and still produced no planned supply. The authored records disagree about whether the cause was its order horizon or stock covering the requirement.</p>
+          <p>Record all four values in one sitting before changing anything:</p>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Read this</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
+            <tbody>
+          <tr><td>☐</td><td>Cluster and site on the item&#39;s planning row</td><td></td></tr>
+          <tr><td>☐</td><td>Order-horizon days and displayed horizon date</td><td></td></tr>
+          <tr><td>☐</td><td>On-hand and existing supply</td><td></td></tr>
+          <tr><td>☐</td><td>Demand date and quantity</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+          <p>Then run MRP once and capture the <span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span> result or its absence in <span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span>, Planning ➔ Order Planning ➔ Planned Orders.</p>
+          <p>The four baseline readings plus the MRP result can establish the cause. </p>
+        </section>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-8">
+          <h2 id="a-8">8. Report back</h2>
+          <p>Send back:</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item">Standard costing lives on the item screen itself as an action, not a separate costing session.</li>
-          <li class="rux--list__item">A BOM revision doesn&#39;t take effect until the old one is expired — approve the new one, then expire the old one.</li>
-          <li class="rux--list__item">Closing a production order needs everything finished on both sides: materials fully issued out, and the finished item fully put away, not just received.</li>
-          <li class="rux--list__item">Real errors happen even on a &quot;known good&quot; path (the stock-point error on receipt) — and the system can still recover and complete normally.</li>
+          <li class="rux--list__item">This completed worksheet.</li>
+          <li class="rux--list__item">The screenshots, with the date and session code in each filename.</li>
+          <li class="rux--list__item">Any process or error report produced by planning or transfer.</li>
+          <li class="rux--list__item">A short answer to the question below.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="bamboo-production-order-walkthrough_2026-08-18.html">`bamboo-production-order-walkthrough_2026-08-18.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <div class="rux--data-table-container">
+        <div class="rux--data-table-content">
+          <table class="rux--data-table rux--data-table--md">
+            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
+            <tbody>
+          <tr><td>Which master-data value had the greatest effect on your result, and how did you prove it?</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+          <p>For each unexpected result, report it without guessing:</p>
+          <div class="ln-code-scroll"><pre class="rux--type-code-01"><code>Question I was testing:
+Baseline value:
+One value changed:
+Expected result and source:
+Observed result:
+Order number(s):
+Screenshot filename(s):
+Baseline restored and confirmed: Yes / No / Not applicable
+What remains unexplained:</code></pre></div>
+          <p>Reporting a result does not automatically close an issue. The capture must show the relevant value, result and LN status bar; it can then be mined into the owning session or guide and the issue can be evaluated against its exact wording.</p>
         </section>
+        </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "id": "SG-ship-from-stock",
   "title": "Ship from stock",
@@ -8,7 +8,7 @@
     "Sales",
     "Warehousing"
   ],
-  "updated": "2026-08-29",
+  "updated": "2026-09-02",
   "status": "approved",
   "summary": "take a sales order for an item already in stock through to a confirmed shipment, then verify that inventory decreased by the shipped quantity.",
   "order": 5,
@@ -39,6 +39,28 @@
       "session": "Inventory 360",
       "sessionCode": "whwmd4300m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Inventory 360 shows what is physically on hand, and "
+            },
+            {
+              "t": "em",
+              "v": "Allocated"
+            },
+            {
+              "t": "text",
+              "v": " shows how much of it other orders have already claimed. Stock is usually spread across several warehouses, and the sales order must name one that actually holds enough, or LN will raise nothing to pick. This phase records that choice before the order exists."
+            }
+          ],
+          "text": "What LN is doing. Inventory 360 shows what is physically on hand, and Allocated shows how much of it other orders have already claimed. Stock is usually spread across several warehouses, and the sales order must name one that actually holds enough, or LN will raise nothing to pick. This phase records that choice before the order exists."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -404,6 +426,20 @@
       "session": "Sales Order Intake Workbench",
       "sessionCode": "tdsls4601m200",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Approving the order is what makes its lines eligible for warehousing: LN releases only approved lines, and an unapproved order fails at the next phase with no obvious reason. The Order Acknowledgement that prints carries the sales order number, which the warehousing order will inherit."
+            }
+          ],
+          "text": "What LN is doing. Approving the order is what makes its lines eligible for warehousing: LN releases only approved lines, and an unapproved order fails at the next phase with no obvious reason. The Order Acknowledgement that prints carries the sales order number, which the warehousing order will inherit."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -960,6 +996,28 @@
       "sessionCode": "tdsls4601m200",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Releasing hands the approved lines from Sales to Warehousing: LN creates a warehousing order that carries the sales order's number, and from here the activities of the warehousing procedure, not the sales order, decide what happens next. The release runs from the Actions menu; the "
+            },
+            {
+              "t": "em",
+              "v": "Lines ready for"
+            },
+            {
+              "t": "text",
+              "v": " panel only counts."
+            }
+          ],
+          "text": "What LN is doing. Releasing hands the approved lines from Sales to Warehousing: LN creates a warehousing order that carries the sales order's number, and from here the activities of the warehousing procedure, not the sales order, decide what happens next. The release runs from the Actions menu; the Lines ready for panel only counts."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1328,6 +1386,36 @@
       "sessionCode": "whinh2300m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Generating advice is LN deciding which stock, in which locations, will satisfy each outbound line. In this environment the next activity, releasing the advice, is automatic, so one action fills both the "
+            },
+            {
+              "t": "em",
+              "v": "Advised"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "Released"
+            },
+            {
+              "t": "text",
+              "v": " columns and prints the picking list. That is a property of the order type's procedure, not of LN."
+            }
+          ],
+          "text": "What LN is doing. Generating advice is LN deciding which stock, in which locations, will satisfy each outbound line. In this environment the next activity, releasing the advice, is automatic, so one action fills both the Advised and Released columns and prints the picking list. That is a property of the order type's procedure, not of LN."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1687,6 +1775,44 @@
       "sessionCode": "whinh4525m100",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The picking list is the record of stock physically moving to staging, and confirming it is what fills "
+            },
+            {
+              "t": "em",
+              "v": "Picked"
+            },
+            {
+              "t": "text",
+              "v": ". The phase exists because this environment sets the "
+            },
+            {
+              "t": "em",
+              "v": "Picking List"
+            },
+            {
+              "t": "text",
+              "v": " activity to manual and the warehouse is location-controlled; change either and LN ticks "
+            },
+            {
+              "t": "em",
+              "v": "Picked"
+            },
+            {
+              "t": "text",
+              "v": " on release and the phase disappears. Once a line is staged, LN creates the shipment line."
+            }
+          ],
+          "text": "What LN is doing. The picking list is the record of stock physically moving to staging, and confirming it is what fills Picked. The phase exists because this environment sets the Picking List activity to manual and the warehouse is location-controlled; change either and LN ticks Picked on release and the phase disappears. Once a line is staged, LN creates the shipment line."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -2037,6 +2163,20 @@
       "sessionCode": "whinh4130m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Freezing fixes the shipment's contents and confirming relieves inventory; the status is always derived from those two actions, never set by hand. Freezing is mandatory here, carried from the warehousing order type, and confirming is a one-way door: a correction from there needs a return shipment."
+            }
+          ],
+          "text": "What LN is doing. Freezing fixes the shipment's contents and confirming relieves inventory; the status is always derived from those two actions, never set by hand. Freezing is mandatory here, carried from the warehousing order type, and confirming is a one-way door: a correction from there needs a return shipment."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -2310,6 +2450,20 @@
       "session": "Inventory 360",
       "sessionCode": "whwmd4300m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Nothing new. This phase reads the same figures phase 0 read, because a confirmed shipment is a document reaching a status and the inventory figure is the only proof that stock moved."
+            }
+          ],
+          "text": "What LN is doing. Nothing new. This phase reads the same figures phase 0 read, because a confirmed shipment is a document reaching a status and the inventory figure is the only proof that stock moved."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -4098,5 +4252,6 @@
       ]
     }
   ],
-  "verification": "Note Every phase of this procedure has been performed against a live system and its result confirmed."
+  "verification": "Note Every phase of this procedure has been performed against a live system and its result confirmed.",
+  "openIssues": 7
 }

@@ -1,5 +1,5 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "id": "SG-demand-to-shipment-via-planning",
   "title": "Plan to shipment",
@@ -11,9 +11,9 @@
     "Manufacturing",
     "Warehousing"
   ],
-  "updated": "2026-08-27",
+  "updated": "2026-09-02",
   "status": "draft",
-  "summary": "run the bamboo family down the long route of `WG_01_Order_to_Shipment_Flowchart.html` — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down.",
+  "summary": "run the bamboo family down the long route of `order-to-shipment-flowchart.svg` — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down.",
   "order": 6,
   "sources": [
     "cppat1210m000",
@@ -89,6 +89,20 @@
             }
           ],
           "text": "> Prerequisite > The bamboo family as section 2 describes it. If any of it is missing, SG-create-basic-test-items-and-defaults.md builds it and SG-run-order-planning-for-one-item.md phase 0 adds the planning data."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Nothing yet. This chain fails silently in two places, an item with no planning data and a component whose stock already covers the requirement, and both are decided by figures readable before anything is created. The Item Order Plan shows whether each item is plannable; Inventory 360 shows what MRP will net against."
+            }
+          ],
+          "text": "What LN is doing. Nothing yet. This chain fails silently in two places, an item with no planning data and a component whose stock already covers the requirement, and both are decided by figures readable before anything is created. The Item Order Plan shows whether each item is plannable; Inventory 360 shows what MRP will net against."
         },
         {
           "kind": "steps",
@@ -377,6 +391,20 @@
       "session": "Sales Order Intake Workbench",
       "sessionCode": "tdsls4601m200",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " A sales order for more pairs than exist creates the shortfall the rest of the chain answers. Planning will see it only if its delivery date falls inside the item's order horizon, which LN computes in workdays on a calendar, and the order is approved now because phase 6's release needs it, not because planning does."
+            }
+          ],
+          "text": "What LN is doing. A sales order for more pairs than exist creates the shortfall the rest of the chain answers. Planning will see it only if its delivery date falls inside the item's order horizon, which LN computes in workdays on a calendar, and the order is approved now because phase 6's release needs it, not because planning does."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -762,6 +790,20 @@
       "session": null,
       "sessionCode": null,
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " MRP nets the demand against stock and generates a planned production order for the pairs, then, through the BOM, planned purchase orders for the rods the pairs need. The arithmetic in the pegging tree is the test that it did so correctly."
+            }
+          ],
+          "text": "What LN is doing. MRP nets the demand against stock and generates a planned production order for the pairs, then, through the BOM, planned purchase orders for the rods the pairs need. The arithmetic in the pegging tree is the test that it did so correctly."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -1184,6 +1226,20 @@
           "text": "> Warning > The purchase half of this phase is walked; the production half has never been run here. On 2026-08-25 two planned purchase orders for BAM-ROD became purchase order 100000682. The two planned production orders beside them were deliberately left untransferred and remain at Planned. Step 3.6 is therefore the one step in this guide nobody has performed — you are testing it, not using it."
         },
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " A planned order is a proposal that no other module can see. Confirming marks it approved, and transferring translates it: a planned production order becomes a production order in Job Shop Control and a planned purchase order becomes a purchase order in Procurement, decided by the item's supply source. A transfer run against unconfirmed orders appears to do nothing."
+            }
+          ],
+          "text": "What LN is doing. A planned order is a proposal that no other module can see. Confirming marks it approved, and transferring translates it: a planned production order becomes a production order in Job Shop Control and a planned purchase order becomes a purchase order in Procurement, decided by the item's supply source. A transfer run against unconfirmed orders appears to do nothing."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1536,6 +1592,20 @@
       "sessionCode": "whinh2100m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The purchase order generated an inbound warehousing order; receiving against it and confirming the receipt books the components into the raw-material warehouse. The on-hand figure, not the receipt status, is the proof."
+            }
+          ],
+          "text": "What LN is doing. The purchase order generated an inbound warehousing order; receiving against it and confirming the receipt books the components into the raw-material warehouse. The on-hand figure, not the receipt status, is the proof."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1841,6 +1911,36 @@
       "session": "Production Orders",
       "sessionCode": "tisfc0501m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The production order releases, issues the components from the warehouse to the work center, and on the last operation reported complete posts the finished pairs to inventory, silently or after asking depending on a parameter. "
+            },
+            {
+              "t": "strong",
+              "v": "Production Completed"
+            },
+            {
+              "t": "text",
+              "v": " is the handoff to Warehousing, not a failed "
+            },
+            {
+              "t": "strong",
+              "v": "Completed"
+            },
+            {
+              "t": "text",
+              "v": "."
+            }
+          ],
+          "text": "What LN is doing. The production order releases, issues the components from the warehouse to the work center, and on the last operation reported complete posts the finished pairs to inventory, silently or after asking depending on a parameter. Production Completed is the handoff to Warehousing, not a failed Completed."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -2291,6 +2391,20 @@
       "session": "Warehouse Manager Dashboard",
       "sessionCode": "whinh2300m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The sales order from phase 1 is released to warehousing, advised, picked, frozen and confirmed, exactly as in the ship-from-stock guide. On-hand at the shipping warehouse down by the shipped quantity is the completion test for the whole chain."
+            }
+          ],
+          "text": "What LN is doing. The sales order from phase 1 is released to warehousing, advised, picked, frozen and confirmed, exactly as in the ship-from-stock guide. On-hand at the shipping warehouse down by the shipped quantity is the completion test for the whole chain."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -2767,7 +2881,7 @@
         },
         {
           "t": "literal",
-          "v": "WG_01_Order_to_Shipment_Flowchart.html"
+          "v": "order-to-shipment-flowchart.svg"
         },
         {
           "t": "text",
@@ -2782,7 +2896,7 @@
           "v": " — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it."
         }
       ],
-      "text": "Objective: run the bamboo family down the long route of WG_01_Order_to_Shipment_Flowchart.html — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down. Spine guide — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it."
+      "text": "Objective: run the bamboo family down the long route of order-to-shipment-flowchart.svg — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down. Spine guide — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it."
     },
     {
       "kind": "glance",
@@ -4491,5 +4605,6 @@
       ]
     }
   ],
-  "verification": "Warning Partly verified. Phases 1, 6 have been performed against a live system and confirmed. Phases 0, 2, 3, 4, 5 have not. Follow those as a plan, not as a record."
+  "verification": "Warning Partly verified. Phases 1, 6 have been performed against a live system and confirmed. Phases 0, 2, 3, 4, 5 have not. Follow those as a plan, not as a record.",
+  "openIssues": 12
 }

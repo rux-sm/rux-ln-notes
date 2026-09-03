@@ -1,10 +1,10 @@
-commit   a4cea8b90b029d250ca66246e63a59b1f5bb0cda
-date     2026-09-02T13:48:04Z
-subject  ci: Run the gate on every push
-contract 2 
+commit   8b2bedcfaa63eebd317ae81ca600a4b7a5e33ed0
+date     2026-09-03T17:44:44Z
+subject  docs(plan): Add the improvement roadmap
+contract 3 
 tier     export
-sha256   9ede3ad53cdc63b994d32155f2bc2eb5fb5484eb4f0c4ab7ad1cfcb23074fe08
+sha256   f2a31a797c210c615ff6fc8170cb626b24aa90d689007e02463691fc5df0ca0a
 
-Emitted by tools/sync-guides.sh via atlas tools/emit.py --all.
+Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync
 overwrites them, and the real fix belongs in the guide in atlas.

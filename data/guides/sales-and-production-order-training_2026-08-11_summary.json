@@ -1,10 +1,10 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "kind": "summary",
   "id": "sales-and-production-order-training_2026-08-11_summary",
   "title": "Sales and Production Order Training — Summary",
-  "updated": "2026-08-11",
+  "updated": "2026-09-02",
   "status": "draft",
   "sources": [
     "tcibd0501m100",
@@ -1034,23 +1034,16 @@
           "v": " "
         },
         {
-          "t": "literal",
-          "v": "the source on file"
-        },
-        {
-          "t": "text",
-          "v": " in "
-        },
-        {
-          "t": "literal",
-          "v": "../ME/"
+          "t": "link",
+          "v": "`sales-and-production-order-training_2026-08-11.md`",
+          "href": "sales-and-production-order-training_2026-08-11.md"
         },
         {
           "t": "text",
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: `sales-and-production-order-training_2026-08-11.md` — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "id": "SG-transfer-item-between-warehouses",
   "title": "Warehouse transfer",
@@ -7,7 +7,7 @@
   "modules": [
     "Warehousing"
   ],
-  "updated": "2026-08-26",
+  "updated": "2026-09-02",
   "status": "draft",
   "summary": "move a quantity of one item from a source warehouse to a destination warehouse, both in the same logistic company, using a manually created warehousing order — and verify that on-hand at the source dropped and on-hand at the destination rose by the same quantity.",
   "order": 4,
@@ -36,6 +36,20 @@
       "session": "Inventory 360",
       "sessionCode": "whwmd4300m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Nothing yet. Reading inventory does not change with the transaction type, only what happens to the order does, and a transfer is proved at both ends, so both starting figures are needed. The expected order type comes from the origin and transaction-type combination in Default Order Types by Origin, and its warehousing procedure is what will decide which later steps LN runs itself."
+            }
+          ],
+          "text": "What LN is doing. Nothing yet. Reading inventory does not change with the transaction type, only what happens to the order does, and a transfer is proved at both ends, so both starting figures are needed. The expected order type comes from the origin and transaction-type combination in Default Order Types by Origin, and its warehousing procedure is what will decide which later steps LN runs itself."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -357,6 +371,20 @@
       "session": "Warehousing Orders",
       "sessionCode": "whinh2100m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " A manually created warehousing order has no originating package, so the transaction type is set by hand and the order number comes from the Warehousing number group rather than from a sales or purchase order. For a same-company transfer LN copies the outbound and shipment activities and then the inbound and inspection activities onto this one order, so it carries both sides of the move."
+            }
+          ],
+          "text": "What LN is doing. A manually created warehousing order has no originating package, so the transaction type is set by hand and the order number comes from the Warehousing number group rather than from a sales or purchase order. For a same-company transfer LN copies the outbound and shipment activities and then the inbound and inspection activities onto this one order, so it carries both sides of the move."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -773,6 +801,20 @@
       "sessionCode": "whinh2129m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The order type supplied a default procedure, and the header or the line may have overridden it. The activity table on the line is the only thing that says which steps LN will run automatically and which are yours, so it is read before advice is generated; predicting it from the item is how a step gets repeated or missed."
+            }
+          ],
+          "text": "What LN is doing. The order type supplied a default procedure, and the header or the line may have overridden it. The activity table on the line is the only thing that says which steps LN will run automatically and which are yours, so it is read before advice is generated; predicting it from the item is how a step gets repeated or missed."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1166,6 +1208,28 @@
       "sessionCode": "whinh4525m100",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Picking is an activity only for a location-controlled warehouse, and a manual step only where the procedure says so; otherwise "
+            },
+            {
+              "t": "em",
+              "v": "Picked"
+            },
+            {
+              "t": "text",
+              "v": " fills without confirmation. The mechanics are the same session and actions as a sales pick, on the transfer's own outbound line."
+            }
+          ],
+          "text": "What LN is doing. Picking is an activity only for a location-controlled warehouse, and a manual step only where the procedure says so; otherwise Picked fills without confirmation. The mechanics are the same session and actions as a sales pick, on the transfer's own outbound line."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1402,6 +1466,20 @@
       "sessionCode": "whinh4130m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " A transfer between two different warehouses always creates a shipment; only a transfer within one warehouse does not. Whether that shipment is frozen and confirmed by you or by the procedure is the question phase 2's activity table answers."
+            }
+          ],
+          "text": "What LN is doing. A transfer between two different warehouses always creates a shipment; only a transfer within one warehouse does not. Whether that shipment is frozen and confirmed by you or by the procedure is the question phase 2's activity table answers."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1629,6 +1707,20 @@
       "sessionCode": null,
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The same order now runs its inbound half: the mandatory activities for any inbound line are the receipt and the inbound advice, and the transfer order's inbound lines are received and confirmed in the same receipt session a purchase uses. Confirming is what puts the goods away at the destination."
+            }
+          ],
+          "text": "What LN is doing. The same order now runs its inbound half: the mandatory activities for any inbound line are the receipt and the inbound advice, and the transfer order's inbound lines are received and confirmed in the same receipt session a purchase uses. Confirming is what puts the goods away at the destination."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1770,6 +1862,20 @@
       "session": "Inventory 360",
       "sessionCode": "whwmd4300m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Nothing new. A transfer is proved twice: the source down and the destination up by the same quantity. The one run on file satisfied only the second half, which is why this phase reads both."
+            }
+          ],
+          "text": "What LN is doing. Nothing new. A transfer is proved twice: the source down and the destination up by the same quantity. The one run on file satisfied only the second half, which is why this phase reads both."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -2613,10 +2719,35 @@
                 },
                 {
                   "t": "text",
-                  "v": " tab applies to rental and serialized transfers specifically. This variant is outside the scope of the base guide. "
+                  "v": " tab applies to rental and serialized transfers specifically. This variant is outside the scope of the base guide. Source: Infor LN help for "
+                },
+                {
+                  "t": "session",
+                  "code": "whinh2100m100",
+                  "name": "Warehousing Order"
+                },
+                {
+                  "t": "text",
+                  "v": ", Field Information — Reclassification ("
+                },
+                {
+                  "t": "field",
+                  "v": "Rental Product Transfer"
+                },
+                {
+                  "t": "text",
+                  "v": ", "
+                },
+                {
+                  "t": "field",
+                  "v": "Serial Number"
+                },
+                {
+                  "t": "text",
+                  "v": ")"
                 }
               ],
-              "text": "The order header's Reclassification tab applies to rental and serialized transfers specifically. This variant is outside the scope of the base guide."
+              "text": "The order header's Reclassification tab applies to rental and serialized transfers specifically. This variant is outside the scope of the base guide. Source: Infor LN help for Warehousing Order (whinh2100m100), Field Information — Reclassification (Rental Product Transfer, Serial Number)"
             }
           ]
         }
@@ -2687,5 +2818,6 @@
       ]
     }
   ],
-  "verification": "Warning Partly verified. Phases 0, 1, 2 have been performed against a live system and confirmed. Phases 3, 4, 5, 6 have not. Follow those as a plan, not as a record."
+  "verification": "Warning Partly verified. Phases 0, 1, 2 have been performed against a live system and confirmed. Phases 3, 4, 5, 6 have not. Follow those as a plan, not as a record.",
+  "openIssues": 5
 }

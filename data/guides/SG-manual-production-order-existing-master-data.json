@@ -1,5 +1,5 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "id": "SG-manual-production-order-existing-master-data",
   "title": "Production order",
@@ -8,7 +8,7 @@
     "Manufacturing",
     "Warehousing"
   ],
-  "updated": "2026-08-26",
+  "updated": "2026-09-02",
   "status": "draft",
   "summary": "create a quantity-one manual production order from an existing finished item, existing components, an existing BOM, and an existing routing; verify the generated operations and estimated materials; release the order; issue material to the job shop; report the operation(s) complete; and confirm the finished item is received into the warehouse.",
   "order": 3,
@@ -42,6 +42,20 @@
       "session": "Inventory 360",
       "sessionCode": "whwmd4300m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Nothing yet. A production order is built from master data that must already exist, and LN will not say at creation which of it is missing or wrong; it says so at release, at material issue or at completion. This phase reads the finished item, its component, the BOM and routing revisions, the warehouses and the stock before the order asks for them."
+            }
+          ],
+          "text": "What LN is doing. Nothing yet. A production order is built from master data that must already exist, and LN will not say at creation which of it is missing or wrong; it says so at release, at material issue or at completion. This phase reads the finished item, its component, the BOM and routing revisions, the warehouses and the stock before the order asks for them."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -349,6 +363,52 @@
       "session": "Production Orders",
       "sessionCode": "tisfc0501m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " On save LN reads the item's BOM and routing valid on the "
+            },
+            {
+              "t": "em",
+              "v": "Reference Date"
+            },
+            {
+              "t": "text",
+              "v": " and generates the order's operations and estimated materials from them. "
+            },
+            {
+              "t": "em",
+              "v": "Quantity Ordered"
+            },
+            {
+              "t": "text",
+              "v": " is what is to be produced and "
+            },
+            {
+              "t": "em",
+              "v": "Warehouse"
+            },
+            {
+              "t": "text",
+              "v": " is where the result will be received. The order exists at "
+            },
+            {
+              "t": "strong",
+              "v": "Created"
+            },
+            {
+              "t": "text",
+              "v": "; nothing has moved."
+            }
+          ],
+          "text": "What LN is doing. On save LN reads the item's BOM and routing valid on the Reference Date and generates the order's operations and estimated materials from them. Quantity Ordered is what is to be produced and Warehouse is where the result will be received. The order exists at Created; nothing has moved."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -741,6 +801,20 @@
       "sessionCode": "tisfc0501m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The detail session shows what LN generated at creation: the planning area holds the operations from the routing and the estimated-materials area holds the components from the BOM, scaled to the order quantity. A missing operation, BOM or component here is a stop condition, not something to repair inside the order."
+            }
+          ],
+          "text": "What LN is doing. The detail session shows what LN generated at creation: the planning area holds the operations from the routing and the estimated-materials area holds the components from the BOM, scaled to the order quantity. A missing operation, BOM or component here is a stop condition, not something to repair inside the order."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1028,6 +1102,28 @@
       "sessionCode": "tisfc0501m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Release changes the order to "
+            },
+            {
+              "t": "strong",
+              "v": "Released"
+            },
+            {
+              "t": "text",
+              "v": ", the state in which production can start, and at the same moment LN creates two warehousing orders: one to issue the component out of its warehouse and one to receive the finished item into its own. Phase 4 works the first; phase 5 depends on the second."
+            }
+          ],
+          "text": "What LN is doing. Release changes the order to Released, the state in which production can start, and at the same moment LN creates two warehousing orders: one to issue the component out of its warehouse and one to receive the finished item into its own. Phase 4 works the first; phase 5 depends on the second."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1252,6 +1348,28 @@
       "session": null,
       "sessionCode": null,
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Material issue turns the estimated quantities into an outbound warehousing order from the raw-material warehouse to the work center, and each issued quantity books a WIP transaction. That first WIP transaction is what moves the order to "
+            },
+            {
+              "t": "strong",
+              "v": "Active"
+            },
+            {
+              "t": "text",
+              "v": "; release alone does not. How much of the outbound procedure LN runs for you depends on two check boxes on the material line."
+            }
+          ],
+          "text": "What LN is doing. Material issue turns the estimated quantities into an outbound warehousing order from the raw-material warehouse to the work center, and each issued quantity books a WIP transaction. That first WIP transaction is what moves the order to Active; release alone does not. How much of the outbound procedure LN runs for you depends on two check boxes on the material line."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -1738,6 +1856,36 @@
       "session": "Report Operations",
       "sessionCode": "tisfc0130m000",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Reporting the last operation complete records the quantity produced and, depending on a parameter, posts it to inventory silently, not at all, or after asking. The order becomes "
+            },
+            {
+              "t": "strong",
+              "v": "Production Completed"
+            },
+            {
+              "t": "text",
+              "v": " when reported and "
+            },
+            {
+              "t": "strong",
+              "v": "Completed"
+            },
+            {
+              "t": "text",
+              "v": " only when Warehousing finishes the inbound receipt, so the two statuses are a handoff, not a failure. The phase ends with an inventory read because the Manufacturing-side status alone does not prove the stock arrived."
+            }
+          ],
+          "text": "What LN is doing. Reporting the last operation complete records the quantity produced and, depending on a parameter, posts it to inventory silently, not at all, or after asking. The order becomes Production Completed when reported and Completed only when Warehousing finishes the inbound receipt, so the two statuses are a handoff, not a failure. The phase ends with an inventory read because the Manufacturing-side status alone does not prove the stock arrived."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -3313,5 +3461,6 @@
       ]
     }
   ],
-  "verification": "Note Every phase of this procedure has been performed against a live system and its result confirmed."
+  "verification": "Note Every phase of this procedure has been performed against a live system and its result confirmed.",
+  "openIssues": 8
 }

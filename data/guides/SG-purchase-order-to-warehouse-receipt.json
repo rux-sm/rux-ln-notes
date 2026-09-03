@@ -1,5 +1,5 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "id": "SG-purchase-order-to-warehouse-receipt",
   "title": "Purchase to receipt",
@@ -8,7 +8,7 @@
     "Procurement",
     "Warehousing"
   ],
-  "updated": "2026-08-26",
+  "updated": "2026-09-02",
   "status": "draft",
   "summary": "buy raw materials from an external supplier and bring them into a raw-material warehouse on a purchase order — and verify that on-hand at that warehouse rose by exactly the quantity received.",
   "order": 2,
@@ -66,6 +66,20 @@
             }
           ],
           "text": "> Prerequisite > The materials exist as items with purchase defaults, and the receiving warehouse exists. SG-create-basic-test-items-and-defaults.md phases 2 and 5 build both. A buy-from business partner must also exist — this guide selects one, it does not create one."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Nothing yet. A confirmed receipt is a document reaching a status; only the on-hand figure at the receiving warehouse proves stock moved, and it cannot prove anything unless it was read before the order existed. A new item is not necessarily at zero."
+            }
+          ],
+          "text": "What LN is doing. Nothing yet. A confirmed receipt is a document reaching a status; only the on-hand figure at the receiving warehouse proves stock moved, and it cannot prove anything unless it was read before the order existed. A new item is not necessarily at zero."
         },
         {
           "kind": "steps",
@@ -298,6 +312,44 @@
       "session": "Purchase Order Intake Workbench",
       "sessionCode": "tdpur4601m200",
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The buy-from business partner decides most of the header: LN defaults the "
+            },
+            {
+              "t": "em",
+              "v": "Purchase Order Type"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "em",
+              "v": "Purchase Office"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "Buyer"
+            },
+            {
+              "t": "text",
+              "v": " from the partner record, falling back to the user profile where the partner leaves a field empty. The workbench opens the Purchase Order session to carry the order; the lookup only selects a partner and never creates one."
+            }
+          ],
+          "text": "What LN is doing. The buy-from business partner decides most of the header: LN defaults the Purchase Order Type, Purchase Office and Buyer from the partner record, falling back to the user profile where the partner leaves a field empty. The workbench opens the Purchase Order session to carry the order; the lookup only selects a partner and never creates one."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -607,6 +659,20 @@
       "sessionCode": null,
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Each line names an item, a quantity and a warehouse, and the warehouse on the line is what LN will raise the inbound order against in phase 3. A line saved to the wrong warehouse produces a receipt that never reaches the stock you meant to build."
+            }
+          ],
+          "text": "What LN is doing. Each line names an item, a quantity and a warehouse, and the warehouse on the line is what LN will raise the inbound order against in phase 3. A line saved to the wrong warehouse produces a receipt that never reaches the stock you meant to build."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -882,6 +948,28 @@
       "sessionCode": "whinh2100m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " You do not create this order; the purchase order generates a warehousing order whose origin, purchase, gives it inbound activities. That is the handoff from Procurement to Warehousing. The purchase order's own "
+            },
+            {
+              "t": "strong",
+              "v": "Release to Warehousing"
+            },
+            {
+              "t": "text",
+              "v": " tab shows which lines are still waiting, and its line status session says which activity has to happen first."
+            }
+          ],
+          "text": "What LN is doing. You do not create this order; the purchase order generates a warehousing order whose origin, purchase, gives it inbound activities. That is the handoff from Procurement to Warehousing. The purchase order's own Release to Warehousing tab shows which lines are still waiting, and its line status session says which activity has to happen first."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1102,6 +1190,28 @@
       "session": null,
       "sessionCode": null,
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The receive command lands you in a receipt whose lines LN built from the inbound order lines you linked, and confirming it is what books the goods. Every flag on the header summarises its lines, so "
+            },
+            {
+              "t": "em",
+              "v": "Confirmed"
+            },
+            {
+              "t": "text",
+              "v": " is cleared both when a line is unconfirmed and when there are no lines at all."
+            }
+          ],
+          "text": "What LN is doing. The receive command lands you in a receipt whose lines LN built from the inbound order lines you linked, and confirming it is what books the goods. Every flag on the header summarises its lines, so Confirmed is cleared both when a line is unconfirmed and when there are no lines at all."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -1422,6 +1532,28 @@
       "sessionCode": "whwmd4300m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Nothing new. This phase re-reads the figure from phase 0, because the receipt reaching "
+            },
+            {
+              "t": "strong",
+              "v": "Confirmed"
+            },
+            {
+              "t": "text",
+              "v": " is not the proof; the number changing by exactly the received quantity is. A difference that is not the ordered quantity means something else moved stock in between, and adjusting it to match buries the evidence."
+            }
+          ],
+          "text": "What LN is doing. Nothing new. This phase re-reads the figure from phase 0, because the receipt reaching Confirmed is not the proof; the number changing by exactly the received quantity is. A difference that is not the ordered quantity means something else moved stock in between, and adjusting it to match buries the evidence."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1576,7 +1708,7 @@
         },
         {
           "t": "text",
-          "v": " — this is the atomic \"buy it in\" process. It was extracted from phase 11 of "
+          "v": " — this is the atomic \"buy it in\" process. It was extracted from phase 9 of "
         },
         {
           "t": "literal",
@@ -1587,7 +1719,7 @@
           "v": ", which walked it inside a master-data guide. "
         }
       ],
-      "text": "Objective: buy raw materials from an external supplier and bring them into a raw-material warehouse on a purchase order — and verify that on-hand at that warehouse rose by exactly the quantity received. Base guide — this is the atomic \"buy it in\" process. It was extracted from phase 11 of SG-create-basic-test-items-and-defaults.md, which walked it inside a master-data guide."
+      "text": "Objective: buy raw materials from an external supplier and bring them into a raw-material warehouse on a purchase order — and verify that on-hand at that warehouse rose by exactly the quantity received. Base guide — this is the atomic \"buy it in\" process. It was extracted from phase 9 of SG-create-basic-test-items-and-defaults.md, which walked it inside a master-data guide."
     },
     {
       "kind": "glance",
@@ -2239,7 +2371,7 @@
               "tokens": [
                 {
                   "t": "text",
-                  "v": "Route B from "
+                  "v": "The adjustment route the notes of "
                 },
                 {
                   "t": "literal",
@@ -2247,10 +2379,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " phase 11 — a cycle counting/adjustment order. Faster, but it bypasses purchase defaults and leaves no purchase price history. Its entry session was never captured "
+                  "v": " phase 9 describe — a cycle counting/adjustment order. Faster, but it bypasses purchase defaults and leaves no purchase price history. Its entry session was never captured "
                 }
               ],
-              "text": "Route B from SG-create-basic-test-items-and-defaults.md phase 11 — a cycle counting/adjustment order. Faster, but it bypasses purchase defaults and leaves no purchase price history. Its entry session was never captured"
+              "text": "The adjustment route the notes of SG-create-basic-test-items-and-defaults.md phase 9 describe — a cycle counting/adjustment order. Faster, but it bypasses purchase defaults and leaves no purchase price history. Its entry session was never captured"
             }
           ]
         }
@@ -2335,5 +2467,6 @@
       ]
     }
   ],
-  "verification": "Warning Partly verified. Phases 1, 2, 3, 4 have been performed against a live system and confirmed. Phases 0, 5 have not. Follow those as a plan, not as a record."
+  "verification": "Warning Partly verified. Phases 1, 2, 3, 4 have been performed against a live system and confirmed. Phases 0, 5 have not. Follow those as a plan, not as a record.",
+  "openIssues": 5
 }

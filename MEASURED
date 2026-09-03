@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = a4cea8b
+rux-ln-atlas.pin = 8b2bedc
 rux-ds.pin = 40164f7
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -8,32 +8,35 @@ rux-ds.gates.at-pin = 22
 
 # guide data
 guides.count = 7
-guides.contract = 2
+guides.contract = 3
 guides.tier = export
 guides.draft = 6
 exported.reviews = 6
 exported.summaries = 6
+exported.exercises = 1
+exported.exercise-assignments = 8
+exported.exercises.tier = export
 exported.reviews.tier = export
-exported.topics = 72
-tokens.total = 4041
+exported.topics = 73
+tokens.total = 3769
 tokens.types = 15
-tokens.payload-not-v = 213
-tokens.pencil = 127
-tokens.type.button = 50
-tokens.type.chip = 247
+tokens.payload-not-v = 196
+tokens.pencil = 125
+tokens.type.button = 37
+tokens.type.chip = 223
 tokens.type.command = 39
-tokens.type.em = 9
-tokens.type.field = 283
+tokens.type.em = 25
+tokens.type.field = 258
 tokens.type.image = 1
 tokens.type.link = 9
-tokens.type.literal = 203
+tokens.type.literal = 174
 tokens.type.path = 5
-tokens.type.pencil = 127
-tokens.type.session = 118
+tokens.type.pencil = 125
+tokens.type.session = 114
 tokens.type.status = 72
-tokens.type.strong = 86
-tokens.type.text = 2665
-tokens.type.value = 127
+tokens.type.strong = 143
+tokens.type.text = 2419
+tokens.type.value = 125
 session-codes.in-sources = 108
 session-codes.in-steps = 58
 
@@ -41,10 +44,10 @@ session-codes.in-steps = 58
 reviews.count = 6
 reviews.summaries = 6
 reviews.sections = 8
-reviews.oi-ids = 111
+reviews.oi-ids = 115
 reviews.oi-ids.end-of-line = 43
-reviews.oi-ids.internal = 71
-reviews.oi-ids.frontmatter = 34
+reviews.oi-ids.internal = 74
+reviews.oi-ids.frontmatter = 35
 reviews.oi-ids.residual = 6
 
 # publishable (0 in every row is the condition for going public)

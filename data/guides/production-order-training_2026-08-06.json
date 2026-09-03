@@ -1,10 +1,10 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "kind": "review",
   "id": "production-order-training_2026-08-06",
   "title": "Production Order Training — Review",
-  "updated": "2026-08-28",
+  "updated": "2026-09-02",
   "status": "draft",
   "sources": [
     "tcibd0501m100",
@@ -181,7 +181,7 @@
             },
             {
               "t": "text",
-              "v": ", work center "
+              "v": ", reference operation "
             },
             {
               "t": "literal",
@@ -189,10 +189,18 @@
             },
             {
               "t": "text",
+              "v": ", work center "
+            },
+            {
+              "t": "literal",
+              "v": "10A1A1"
+            },
+            {
+              "t": "text",
               "v": ", and a 60-minute cycle time. These are demonstration values observed in Company 4100, not documented defaults."
             }
           ],
-          "text": "The demonstration created or reviewed a manufactured item, a component item, a job-shop bill of material, a job-shop routing, costing data, and then a production order. The screen showed ITEM-A with component ITEM-A.1, BOM JB0000236, routing 0, operation 10, work center ASM-01, and a 60-minute cycle time. These are demonstration values observed in Company 4100, not documented defaults."
+          "text": "The demonstration created or reviewed a manufactured item, a component item, a job-shop bill of material, a job-shop routing, costing data, and then a production order. The screen showed ITEM-A with component ITEM-A.1, BOM JB0000236, routing 0, operation 10, reference operation ASM-01, work center 10A1A1, and a 60-minute cycle time. These are demonstration values observed in Company 4100, not documented defaults."
         },
         {
           "kind": "prose",
@@ -1232,6 +1240,864 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "n": "3.6",
+      "title": "Frames on file",
+      "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Moved here 2026-09-02 from "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ", where a screenshot index of one recording had been filed under a parameters title. These are values in one training demonstration, not defaults."
+            }
+          ],
+          "text": "Moved here 2026-09-02 from the source on file, where a screenshot index of one recording had been filed under a parameters title. These are values in one training demonstration, not defaults."
+        },
+        {
+          "kind": "table",
+          "columns": [
+            "Object",
+            "Observed value"
+          ],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Finished item"
+                    }
+                  ],
+                  "text": "Finished item"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "ITEM-A"
+                    }
+                  ],
+                  "text": "ITEM-A"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Component item"
+                    }
+                  ],
+                  "text": "Component item"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "ITEM-A.1"
+                    }
+                  ],
+                  "text": "ITEM-A.1"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Job Shop BOM"
+                    }
+                  ],
+                  "text": "Job Shop BOM"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "JB0000236"
+                    }
+                  ],
+                  "text": "JB0000236"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Routing"
+                    }
+                  ],
+                  "text": "Routing"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "0"
+                    }
+                  ],
+                  "text": "0"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Operation"
+                    }
+                  ],
+                  "text": "Operation"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "10"
+                    }
+                  ],
+                  "text": "10"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Reference Operation"
+                    }
+                  ],
+                  "text": "Reference Operation"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "ASM-01"
+                    },
+                    {
+                      "t": "text",
+                      "v": " (Assembly) — corrected 2026-08-18; the column order is settled in "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    },
+                    {
+                      "t": "text",
+                      "v": " §4. "
+                    }
+                  ],
+                  "text": "ASM-01 (Assembly) — corrected 2026-08-18; the column order is settled in the source on file §4."
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Work center"
+                    }
+                  ],
+                  "text": "Work center"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "10A1A1"
+                    },
+                    {
+                      "t": "text",
+                      "v": " (Right Arm)"
+                    }
+                  ],
+                  "text": "10A1A1 (Right Arm)"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Machine Type"
+                    }
+                  ],
+                  "text": "Machine Type"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "blank on this row"
+                    }
+                  ],
+                  "text": "blank on this row"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Cycle time"
+                    }
+                  ],
+                  "text": "Cycle time"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "60 minutes"
+                    }
+                  ],
+                  "text": "60 minutes"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Production order"
+                    }
+                  ],
+                  "text": "Production order"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "010000739"
+                    }
+                  ],
+                  "text": "010000739"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Site"
+                    }
+                  ],
+                  "text": "Site"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "CSADNA01"
+                    }
+                  ],
+                  "text": "CSADNA01"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Finished-goods warehouse"
+                    }
+                  ],
+                  "text": "Finished-goods warehouse"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "ADNA01"
+                    }
+                  ],
+                  "text": "ADNA01"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Raw-material warehouse"
+                    }
+                  ],
+                  "text": "Raw-material warehouse"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "ADNA02"
+                    }
+                  ],
+                  "text": "ADNA02"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "columns": [
+            "Screen",
+            "Observation",
+            "Evidence"
+          ],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Job Shop BOM ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "tibom3100m000"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Job Shop BOM (tibom3100m000)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Row status "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Approved"
+                    },
+                    {
+                      "t": "text",
+                      "v": "; "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Approve Revision"
+                    },
+                    {
+                      "t": "text",
+                      "v": " and "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Use for Planning"
+                    },
+                    {
+                      "t": "text",
+                      "v": " actions visible"
+                    }
+                  ],
+                  "text": "Row status Approved; Approve Revision and Use for Planning actions visible"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Item - Costing ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "ticpr0107m000"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Item - Costing (ticpr0107m000)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Material costs "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "10"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", operation costs "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "10"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", standard cost "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "20"
+                    }
+                  ],
+                  "text": "Material costs 10, operation costs 10, standard cost 20"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Production Order ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "tisfc0101m100"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Production Order (tisfc0101m100)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Order created with routing operation "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "10"
+                    },
+                    {
+                      "t": "text",
+                      "v": " and 60-minute cycle time"
+                    }
+                  ],
+                  "text": "Order created with routing operation 10 and 60-minute cycle time"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Release Production Orders ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "tisfc0204m000"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Release Production Orders (tisfc0204m000)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Release dialog and options visible"
+                    }
+                  ],
+                  "text": "Release dialog and options visible"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Material to Issue ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "ticst0101m100"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Material to Issue (ticst0101m100)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Status "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Released"
+                    },
+                    {
+                      "t": "text",
+                      "v": "; warehouse issue quantity "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "1"
+                    },
+                    {
+                      "t": "text",
+                      "v": " after initiation"
+                    }
+                  ],
+                  "text": "Status Released; warehouse issue quantity 1 after initiation"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Report Operations ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "tisfc0130m000"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Report Operations (tisfc0130m000)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Additional Completed entered as "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "1"
+                    },
+                    {
+                      "t": "text",
+                      "v": " while order was "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Active"
+                    }
+                  ],
+                  "text": "Additional Completed entered as 1 while order was Active"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Report Orders Completed ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "tisfc0120s000"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Report Orders Completed (tisfc0120s000)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Quantity Delivered displayed as "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "1"
+                    },
+                    {
+                      "t": "text",
+                      "v": " before save"
+                    }
+                  ],
+                  "text": "Quantity Delivered displayed as 1 before save"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Recording at 57:20; no standalone evidence frame"
+                    }
+                  ],
+                  "text": "Recording at 57:20; no standalone evidence frame"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Production Orders ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "tisfc0501m000"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Production Orders (tisfc0501m000)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Order "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "010000739"
+                    },
+                    {
+                      "t": "text",
+                      "v": " displayed as "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Completed"
+                    },
+                    {
+                      "t": "text",
+                      "v": " after reporting completion"
+                    }
+                  ],
+                  "text": "Order 010000739 displayed as Completed after reporting completion"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Close Production Orders ("
+                    },
+                    {
+                      "t": "session",
+                      "code": "ticst0201m000"
+                    },
+                    {
+                      "t": "text",
+                      "v": ")"
+                    }
+                  ],
+                  "text": "Close Production Orders (ticst0201m000)"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Close dialog and processing state visible"
+                    }
+                  ],
+                  "text": "Close dialog and processing state visible"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    }
+                  ],
+                  "text": "the source on file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "session",
+              "code": "ticst0210m000",
+              "name": "Close Production Orders was filed under the wrong code"
+            },
+            {
+              "t": "text",
+              "v": " from 2026-08-09 to 2026-08-13 — a digit transposition inherited from the original screen capture. "
+            },
+            {
+              "t": "session",
+              "code": "ticst0210m000"
+            },
+            {
+              "t": "text",
+              "v": " is "
+            },
+            {
+              "t": "strong",
+              "v": "Calculate Estimated End Item Unit Costs"
+            },
+            {
+              "t": "text",
+              "v": ", a distinct session. "
+            },
+            {
+              "t": "session",
+              "code": "tisfc0130m000",
+              "name": "Report Operations"
+            },
+            {
+              "t": "text",
+              "v": " is titled "
+            },
+            {
+              "t": "em",
+              "v": "Report Operations Completed"
+            },
+            {
+              "t": "text",
+              "v": " in the filed help. "
+            }
+          ],
+          "text": "Close Production Orders was filed under the wrong code (ticst0210m000) from 2026-08-09 to 2026-08-13 — a digit transposition inherited from the original screen capture. ticst0210m000 is Calculate Estimated End Item Unit Costs, a distinct session. Report Operations (tisfc0130m000) is titled Report Operations Completed in the filed help."
+        },
+        {
+          "kind": "source",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "LN training environment, recording dated 2026-08-06 — the frames above"
+            }
+          ],
+          "text": "LN training environment, recording dated 2026-08-06 — the frames above"
         }
       ]
     }

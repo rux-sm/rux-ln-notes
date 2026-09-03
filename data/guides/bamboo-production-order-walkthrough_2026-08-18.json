@@ -1,10 +1,10 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "kind": "review",
   "id": "bamboo-production-order-walkthrough_2026-08-18",
   "title": "Bamboo Production Order Walkthrough — Review",
-  "updated": "2026-08-19",
+  "updated": "2026-09-02",
   "status": "draft",
   "sources": [
     "tccom4520m000",
@@ -64,7 +64,7 @@
         },
         {
           "t": "text",
-          "v": " phases 8–12 and "
+          "v": " phases 6–10 and "
         },
         {
           "t": "literal",
@@ -75,7 +75,7 @@
           "v": " phases 3–5 had been waiting on."
         }
       ],
-      "text": "Continue the bamboo test-item training case (BAM-ROD, BAM-SLEEVE, BAM-CHOP-PAIR) past master-data creation: build a job shop bill of material and routing, calculate a standard cost, source component stock by purchasing and receiving, and run the resulting production order through to a finished-goods receipt. This is the walk SG-create-basic-test-items-and-defaults.md phases 8–12 and SG-manual-production-order-existing-master-data.md phases 3–5 had been waiting on."
+      "text": "Continue the bamboo test-item training case (BAM-ROD, BAM-SLEEVE, BAM-CHOP-PAIR) past master-data creation: build a job shop bill of material and routing, calculate a standard cost, source component stock by purchasing and receiving, and run the resulting production order through to a finished-goods receipt. This is the walk SG-create-basic-test-items-and-defaults.md phases 6–10 and SG-manual-production-order-existing-master-data.md phases 3–5 had been waiting on."
     }
   ],
   "attendees": [

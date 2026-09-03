@@ -1,10 +1,10 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "kind": "review",
   "id": "planned-order-transfer-training_2026-08-25",
   "title": "Planned Order Transfer Training — Review",
-  "updated": "2026-08-25",
+  "updated": "2026-09-02",
   "status": "draft",
   "sources": [
     "cppat1210m000",

@@ -1,5 +1,5 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "id": "SG-run-order-planning-for-one-item",
   "title": "Run order planning",
@@ -8,7 +8,7 @@
     "Enterprise Planning",
     "Sales"
   ],
-  "updated": "2026-08-26",
+  "updated": "2026-09-02",
   "status": "draft",
   "summary": "make one finished item visible to planning, give it a demand it cannot cover from stock, run MRP, and read the result — a planned supply chain covering the shortfall — in the Item Order Plan, in Planned Orders, and in the pegging tree.",
   "order": 1,
@@ -97,6 +97,20 @@
             }
           ],
           "text": "> Prerequisite > A finished item with an Approved BOM and routing, components, and stock data — the qualified training case from SG-create-basic-test-items-and-defaults.md. The 2026-08-20 session used BAM-CHOP-PAIR with components BAM-ROD and BAM-SLEEVE."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The planning screens read an item's planning data, and an item that has none is not refused; it is absent, with nothing to explain why. The link is a row for the planning cluster on the item, and MRP plans a BOM component only if the component has planning data of its own, so this phase checks every item in the structure, not just the parent."
+            }
+          ],
+          "text": "What LN is doing. The planning screens read an item's planning data, and an item that has none is not refused; it is absent, with nothing to explain why. The link is a row for the planning cluster on the item, and MRP plans a BOM component only if the component has planning data of its own, so this phase checks every item in the structure, not just the parent."
         },
         {
           "kind": "steps",
@@ -429,6 +443,20 @@
       "sessionCode": "tdsls4601m200",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " Planning acts on uncovered demand. A sales order for more than is on hand creates a shortfall, and that shortfall is exactly the quantity MRP should propose, which is what makes the run checkable. Planning sees the demand without the order being approved."
+            }
+          ],
+          "text": "What LN is doing. Planning acts on uncovered demand. A sales order for more than is on hand creates a shortfall, and that shortfall is exactly the quantity MRP should propose, which is what makes the run checkable. Planning sees the demand without the order being approved."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -663,6 +691,20 @@
       "sessionCode": "cprpd1100m000",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The order horizon decides which demand planning sees at all: demand beyond it is not late or flagged, it does not exist to planning. LN turns the number of days you enter into a date by counting workdays on the calendar of the item's warehouse, so the date it shows is the one to trust."
+            }
+          ],
+          "text": "What LN is doing. The order horizon decides which demand planning sees at all: demand beyond it is not late or flagged, it does not exist to planning. LN turns the number of days you enter into a date by counting workdays on the calendar of the item's warehouse, so the date it shows is the one to trust."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -895,6 +937,20 @@
       "sessionCode": null,
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The run reads every demand inside the horizon, nets it against stock and existing supply, and generates planned orders for the shortfall, multi-level through the BOM when child items are included. With pegging relations updated it also records which demand each planned order exists to serve, which is what phase 5 reads."
+            }
+          ],
+          "text": "What LN is doing. The run reads every demand inside the horizon, nets it against stock and existing supply, and generates planned orders for the shortfall, multi-level through the BOM when child items are included. With pegging relations updated it also records which demand each planned order exists to serve, which is what phase 5 reads."
+        },
+        {
           "kind": "steps",
           "columns": [
             "#",
@@ -1082,6 +1138,20 @@
       "session": null,
       "sessionCode": null,
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " One planned order plays two roles: it is supply on the parent's plan and demand on the component's, and the component's own plan has already answered it. Planned quantities equal the raw shortfall only when the item's ordering data imposes no lot-size rule; a minimum or a multiple changes the number before you see it."
+            }
+          ],
+          "text": "What LN is doing. One planned order plays two roles: it is supply on the parent's plan and demand on the component's, and the component's own plan has already answered it. Planned quantities equal the raw shortfall only when the item's ordering data imposes no lot-size rule; a minimum or a multiple changes the number before you see it."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -1384,6 +1454,20 @@
       "session": null,
       "sessionCode": null,
       "blocks": [
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "What LN is doing."
+            },
+            {
+              "t": "text",
+              "v": " The pegging tree walks the relations the run recorded: upstream, what will supply this demand; downstream, what demand caused this order. The tree exists only if pegging relations were generated, which in this environment happens on every run because the option is locked on."
+            }
+          ],
+          "text": "What LN is doing. The pegging tree walks the relations the run recorded: upstream, what will supply this demand; downstream, what demand caused this order. The tree exists only if pegging relations were generated, which in this environment happens on every run because the option is locked on."
+        },
         {
           "kind": "steps",
           "columns": [
@@ -2594,5 +2678,6 @@
       "text": "- A purchased component will not transfer without buy-from business partner data. The transfer fails and prints \"Buy-from BP cannot be determined for item … ; neither valid Item - BP data is present, nor a BP is linked to Item Purchase Data.\" The fix is a row on the Item - Business Partner tab of the item's purchase data. Nothing in this guide's phases surfaces this, because a planned purchase order is generated happily without it — the gap only appears at transfer. Not documented for this release."
     }
   ],
-  "verification": "Warning No phase of this procedure has yet been performed end to end against a live system. Follow it as a plan, not as a record."
+  "verification": "Warning No phase of this procedure has yet been performed end to end against a live system. Follow it as a plan, not as a record.",
+  "openIssues": 7
 }

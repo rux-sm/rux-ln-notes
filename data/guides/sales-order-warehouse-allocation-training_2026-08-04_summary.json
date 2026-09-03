@@ -1,10 +1,10 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "kind": "summary",
   "id": "sales-order-warehouse-allocation-training_2026-08-04_summary",
   "title": "Sales Order and Warehouse Allocation Training — Summary",
-  "updated": "2026-08-04",
+  "updated": "2026-09-02",
   "status": "draft",
   "sources": [
     "cprrp0520m000",
@@ -934,23 +934,16 @@
           "v": " "
         },
         {
-          "t": "literal",
-          "v": "the source on file"
-        },
-        {
-          "t": "text",
-          "v": " in "
-        },
-        {
-          "t": "literal",
-          "v": "../ME/"
+          "t": "link",
+          "v": "`sales-order-warehouse-allocation-training_2026-08-04.md`",
+          "href": "sales-order-warehouse-allocation-training_2026-08-04.md"
         },
         {
           "t": "text",
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: `sales-order-warehouse-allocation-training_2026-08-04.md` — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

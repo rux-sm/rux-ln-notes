@@ -1,10 +1,10 @@
 {
-  "contract": 2,
+  "contract": 3,
   "tier": "export",
   "kind": "summary",
   "id": "production-order-training_2026-08-06_summary",
   "title": "Production Order Training — Summary",
-  "updated": "2026-08-06",
+  "updated": "2026-09-02",
   "status": "draft",
   "sources": [
     "tcibd0501m100",
@@ -158,7 +158,7 @@
                 },
                 {
                   "t": "text",
-                  "v": ", work center "
+                  "v": ", reference operation "
                 },
                 {
                   "t": "literal",
@@ -166,10 +166,18 @@
                 },
                 {
                   "t": "text",
-                  "v": ", a 60-minute cycle time. That cycle time is defined against a specific batch size (the routing's own \"quantity\" setting) — it isn't automatically \"60 minutes per single unit\" unless that batch size is 1."
+                  "v": ", work center "
+                },
+                {
+                  "t": "literal",
+                  "v": "10A1A1"
+                },
+                {
+                  "t": "text",
+                  "v": ", and a 60-minute cycle time. That cycle time is defined against a specific batch size (the routing's own \"quantity\" setting) — it isn't automatically \"60 minutes per single unit\" unless that batch size is 1."
                 }
               ],
-              "text": "Job Shop Routing (tirou4600m000) — routing 0, operation 10, work center ASM-01, a 60-minute cycle time. That cycle time is defined against a specific batch size (the routing's own \"quantity\" setting) — it isn't automatically \"60 minutes per single unit\" unless that batch size is 1."
+              "text": "Job Shop Routing (tirou4600m000) — routing 0, operation 10, reference operation ASM-01, work center 10A1A1, and a 60-minute cycle time. That cycle time is defined against a specific batch size (the routing's own \"quantity\" setting) — it isn't automatically \"60 minutes per single unit\" unless that batch size is 1."
             },
             {
               "tokens": [
@@ -575,23 +583,16 @@
           "v": " "
         },
         {
-          "t": "literal",
-          "v": "the source on file"
-        },
-        {
-          "t": "text",
-          "v": " in "
-        },
-        {
-          "t": "literal",
-          "v": "../ME/"
+          "t": "link",
+          "v": "`production-order-training_2026-08-06.md`",
+          "href": "production-order-training_2026-08-06.md"
         },
         {
           "t": "text",
           "v": " — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
         }
       ],
-      "text": "Full record: the source on file in ../ME/ — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
+      "text": "Full record: `production-order-training_2026-08-06.md` — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only."
     }
   ]
 }

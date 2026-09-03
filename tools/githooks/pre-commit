@@ -17,6 +17,12 @@ set -eu
 
 cd "$(git rev-parse --show-toplevel)"
 
+# Git exports its current repository variables to hooks. Without clearing
+# them, `git -C ../rux-ln-atlas` and `git -C ../rux-ds` still read this
+# repository, so every sibling-dependent check answers the wrong question.
+# The current checkout remains discoverable from the working directory.
+unset GIT_DIR GIT_WORK_TREE
+
 # .md AS WELL AS .html. A public repository publishes every tracked file, not
 # just the rendered site, and the exchange documents are tracked: SEND-BACK.md
 # quoted the PEOPLE tuple literally while a hook that read only pages watched.
@@ -53,11 +59,11 @@ if ! command -v node >/dev/null 2>&1; then
   exit 1
 fi
 
-# Under .git/ on purpose, and as a REPO-RELATIVE path: the checks resolve
-# their targets against the repository root, so an absolute path from mktemp
-# is joined onto the root and crashes. Found by testing the refusal rather
-# than by reading the script.
-tmp=.git/precommit-tmp
+# Under ignored build/, and as a REPO-RELATIVE path: the checks resolve their
+# targets against the repository root, so an absolute path from mktemp is
+# joined onto the root and crashes. `.git` is a file in a linked worktree, so
+# it cannot hold this directory there. Found by running the hook in one.
+tmp=build/precommit-tmp
 rm -rf "$tmp"; mkdir -p "$tmp"
 trap 'rm -rf "$tmp"' EXIT
 

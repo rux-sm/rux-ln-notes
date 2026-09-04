@@ -63,8 +63,7 @@ and gitignored; it does not travel with a clone or a copied folder.
 ```sh
 sh tools/sync-guides.sh    # atlas -> data/guides/   (export tier, never --internal)
 sh tools/sync-internal.sh  # atlas -> build/internal/ (INTERNAL tier, git-ignored, never published)
-# rux-ds -> vendor/rux-ds/, run FROM a rux-ds clone at a tag (since 2026-09-02;
-# tools/sync-ds.sh retired for it, rux-ds roadmap §4.11):
+# rux-ds -> vendor/rux-ds/: the recipe is rux-ds docs/starting-a-project.md, "Moving the pin"
 #   sh tools/new-project.sh ~/Developer/rux-ln-notes
 ```
 

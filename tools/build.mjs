@@ -562,7 +562,7 @@ function nav(site, activeId) {
   const concepts = (site.concepts ?? []).map(link).join('\n');
   const conceptsOpen = (site.concepts ?? []).some(d => d.id === activeId);
   const conceptsGroup = concepts ? `
-      <li class="rux--side-nav__item">
+      <li class="rux--side-nav__item${conceptsOpen ? ' rux--side-nav__item--active' : ''}">
         <button class="rux--side-nav__submenu" type="button" aria-expanded="${conceptsOpen}">
           <span class="rux--side-nav__submenu-title">Concepts</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
@@ -593,11 +593,11 @@ ${concepts}
            Prerequisite callouts as dependency edges; on Downstream rows alone
            the guide that builds the test data came fourth. -->
       <li class="rux--side-nav__item${guidesOpen ? ' rux--side-nav__item--active' : ''}">
-        <button class="rux--side-nav__submenu" type="button" aria-expanded="true">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="${guidesOpen}">
           <span class="rux--side-nav__submenu-title">Scenario guides</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
-        <ul class="rux--side-nav__menu">
+        <ul class="rux--side-nav__menu"${guidesOpen ? '' : ' hidden'}>
 ${items}
         </ul>
       </li>
@@ -620,7 +620,7 @@ ${practice}
            reviews render and are reached from their summary rather than listed
            beside it, because putting twelve documents under one heading
            presents two categories as one. -->
-      <li class="rux--side-nav__item">
+      <li class="rux--side-nav__item${meetingsOpen ? ' rux--side-nav__item--active' : ''}">
         <button class="rux--side-nav__submenu" type="button" aria-expanded="${meetingsOpen}">
           <span class="rux--side-nav__submenu-title">Meeting summaries</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
@@ -791,47 +791,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
        longer beside it -- a state that does not exist in IBM's design. -->
   <button type="button" class="rux--header__action rux--header__menu-trigger rux--header__menu-toggle rux--header__menu-toggle__hidden" aria-label="Toggle navigation" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-menu"/></svg></button>
 
-  <!-- THE MARK is rux-ds's, copied from templates/app-shell.html verbatim and
-       not a choice (docs/choices.md): it is the brand, the same 33x30 glyph in
-       the same place in every app on the account. -->
-  <a class="rux--header__name" href="${up || './'}">
-<svg width="33" height="30" viewBox="0 0 11 10" aria-hidden="true"
-         style="margin-right:.5rem;flex:none;color:#c6c6c6;--rux-mark-slab:#0f62fe">
-    <g fill="currentColor">
-    <rect x="2" y="0" width="4" height="1"/>
-    <rect x="9" y="0" width="1" height="1"/>
-    <rect x="2" y="1" width="1" height="1"/>
-    <rect x="4" y="1" width="1" height="1"/>
-    <rect x="10" y="1" width="1" height="1"/>
-    <rect x="2" y="2" width="5" height="1"/>
-    <rect x="10" y="2" width="1" height="1"/>
-    <rect x="2" y="3" width="6" height="1"/>
-    <rect x="10" y="3" width="1" height="1"/>
-    <rect x="2" y="4" width="2" height="1"/>
-    <rect x="10" y="4" width="1" height="1"/>
-    <rect x="2" y="5" width="8" height="1"/>
-    <rect x="1" y="6" width="9" height="1"/>
-    <rect x="1" y="7" width="9" height="1"/>
-    <rect x="2" y="8" width="8" height="1"/>
-    <rect x="2" y="9" width="1" height="1"/>
-    <rect x="4" y="9" width="1" height="1"/>
-    <rect x="7" y="9" width="1" height="1"/>
-    <rect x="9" y="9" width="1" height="1"/>
-    </g>
-    <g fill="var(--rux-mark-slab, currentColor)">
-    <rect x="1" y="0" width="1" height="1"/>
-    <rect x="0" y="1" width="2" height="1"/>
-    <rect x="0" y="2" width="2" height="1"/>
-    <rect x="0" y="3" width="2" height="1"/>
-    <rect x="0" y="4" width="2" height="1"/>
-    <rect x="0" y="5" width="2" height="1"/>
-    </g>
-    <g fill="var(--rux-mark-feature, #0f62fe)">
-    <rect x="3" y="1" width="1" height="1"/>
-    <rect x="5" y="1" width="1" height="1"/>
-    <rect x="7" y="2" width="1" height="1"/>
-    </g>
-</svg><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
+  <!-- PLACEHOLDER for the square mark, still being designed in rux-ds
+       (tools/make-marks.mjs there): a 24x24 dashed box in currentColor, no
+       invented class. Synced from rux-ds templates/app-shell.html; swap
+       for the real mark once it lands there. -->
+  <a class="rux--header__name" href="${up || './'}"><span aria-hidden="true" style="width:1.5rem;height:1.5rem;margin-right:.5rem;flex:none;border:1px dashed currentColor;opacity:.6"></span><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
 
   <!-- NO __nav: one product. __global carries the two actions every app has
        since rux-ds v0.1.3 (§4.13): the Account action and the switcher, each

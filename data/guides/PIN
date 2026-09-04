@@ -1,9 +1,9 @@
-commit   25aacaeb6d067bd7dbf5c2ceaec39f161f7029b2
-date     2026-09-03T23:22:41Z
-subject  feat(evidence): Cite every file, add ledgers
+commit   8b4f314a49e761d8e4a6e662f9aa6b9dca98912b
+date     2026-09-04T16:50:36Z
+subject  fix(emit): Scrub concepts/ paths at export tier
 contract 3 
 tier     export
-sha256   dadf13c2fdd3f2bbd1b28bdd7498ab408eaaac484de98a8b5e901b2edca4ecd5
+sha256   c6e1fe14f466575809bf20c28f1f22089e3394acb46b97f7d894c4fdbc738c5a
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

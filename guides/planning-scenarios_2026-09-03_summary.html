@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Turning Planned Orders Into Real Orders — Summary — Rux Notes</title>
+<title>Planning Scenarios — Summary — Rux Notes</title>
 <!-- PLEX FIRST, THEN rux.css, WHICH IS THE ORDER rux-ds USES IN ITS OWN
      TEMPLATES. rux.css names IBM Plex Sans sixty-seven times and declares no
      @font-face; the faces live here. Linking the stylesheet without this one
@@ -361,10 +361,10 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu">
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planning-scenarios_2026-09-03_summary.html"><span class="rux--side-nav__link-text">Planning Scenarios — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planning-scenarios_2026-09-03_summary.html" aria-current="page"><span class="rux--side-nav__link-text">Planning Scenarios — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html" aria-current="page"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="production-order-training_2026-08-06_summary.html"><span class="rux--side-nav__link-text">Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-and-production-order-training_2026-08-11_summary.html"><span class="rux--side-nav__link-text">Sales and Production Order Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="sales-order-warehouse-allocation-training_2026-08-04_summary.html"><span class="rux--side-nav__link-text">Sales Order and Warehouse Allocation Training — Summary</span></a></li>
@@ -380,97 +380,76 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
         <div class="rux--stack-vertical rux--stack-scale-5">
-          <h1>Turning Planned Orders Into Real Orders — Summary</h1>
+          <h1>Planning Scenarios — Summary</h1>
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Summary</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-02</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-03</span></span>
           </div>
-          <p class="rux--type-body-01"><a class="rux--link" href="planned-order-transfer-training_2026-08-25.html">Read the full review</a></p>
+          <p class="rux--type-body-01"><a class="rux--link" href="planning-scenarios_2026-09-03.html">Read the full review</a></p>
         </div>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
           <h2 id="s-covered">What this covered</h2>
-          <p>The follow-on to the previous order-planning session. MRP had already been run and had produced planned orders; this session took the next step and turned them into actual purchase orders. Along the way it repaired an item that planning had been quietly ignoring, and hit a transfer failure worth understanding.</p>
+          <p>An open-ended planning training session: a sales order becomes demand, MRP turns demand into planned orders, planned orders transfer into real purchase and production orders, and those get received through to put-away. Two extra wrinkles got explored along the way — a contract-based order type that behaves differently from a sales order, and a live puzzle about why a safety-stock top-up seemed to split into three orders instead of one.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Topics</h2>
-          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-a-planned-order-is-not-a-real-order-yet">
-            <h3 id="t-a-planned-order-is-not-a-real-order-yet">A planned order is not a real order yet</h3>
-            <p>This is the idea the whole session rests on. MRP produces <strong>planned orders</strong>, which are suggestions. They become real only when you <strong>transfer</strong> them — until then you can rerun MRP as many times as you like without consequence.</p>
-            <p>That is deliberate. Change a material, change a date, change the demand, and you simply re-plan again. Every rerun wipes the planned orders it made last time and rebuilds them from scratch. Orders you have already transferred are untouched, because they are no longer planning&#39;s to manage.</p>
+          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-demand-shows-up-before-you-plan-for-it">
+            <h3 id="t-demand-shows-up-before-you-plan-for-it">Demand shows up before you plan for it</h3>
+            <p>The moment a sales order line is saved, it&#39;s visible as demand — no planning run needed to see it. You do still need to run MRP (&quot;Generate Orders&quot;) to turn that demand into an actual planned production or purchase order.</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span> — the Overview and Demand tabs for <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>, showing two sales orders of demand against one unit on hand, and a planned production order raised to cover the shortfall.</li>
-          <li class="rux--list__item">The plan for the component <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> showing the mirror image: the parent&#39;s planned production order appears here as demand, met by planned purchase orders.</li>
+          <li class="rux--list__item">Entering a sales order line, then finding it immediately on the planning screen.</li>
+          <li class="rux--list__item">Running MRP on a component by itself doesn&#39;t pick up its parent item&#39;s needs — you have to run it from the top-level item with &quot;include child items&quot; turned on, or nothing propagates down the bill of material.</li>
         </ol>
           </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-an-item-with-no-planning-cluster-is-skipped-and-nothing-tells-you">
-            <h3 id="t-an-item-with-no-planning-cluster-is-skipped-and-nothing-tells-you">An item with no planning cluster is skipped, and nothing tells you</h3>
-            <p><span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span> produced no planned orders while its siblings did. There was no error and no warning — it was simply absent from the results.</p>
-            <p>The cause was a missing <strong>planning cluster</strong> on the item. An item is linked to planning through its cluster; without that line, planning does not see it at all. The clue is on the Item Order Plan header, which shows the plan item prefixed by its cluster (<span class="rux--tag rux--tag--gray" title="NA1"><span class="rux--tag__label">NA1</span></span>).</p>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-turning-planned-orders-into-real-ones-and-receiving-them">
+            <h3 id="t-turning-planned-orders-into-real-ones-and-receiving-them">Turning planned orders into real ones, and receiving them</h3>
+            <p>Planned orders (MRP&#39;s suggestions) get transferred into real purchase/production orders in a batch. Several small receiving rules got worked out live:</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span> — the <strong>Clusters</strong> subtab, where the missing line was added: cluster <span class="rux--tag rux--tag--gray" title="NA1"><span class="rux--tag__label">NA1</span></span>, site <span class="rux--tag rux--tag--gray" title="CSADNA01"><span class="rux--tag__label">CSADNA01</span></span>, which carries warehouse <span class="rux--tag rux--tag--gray" title="ADNA02"><span class="rux--tag__label">ADNA02</span></span>.</li>
-          <li class="rux--list__item">Planning was then rerun, because the first run had never picked the item up.</li>
+          <li class="rux--list__item">Multiple planned purchase orders combined into a single real purchase order automatically.</li>
+          <li class="rux--list__item">A brand-new purchase order can&#39;t be received until it&#39;s released — printing it is what releases it.</li>
+          <li class="rux--list__item">A moment of confusion — &quot;why are there two purchase orders with the same number?&quot; — turned out to be one purchase order with two order lines, just displayed as two rows on a summary screen. Not a bug, just a screen that shows lines, not orders.</li>
+          <li class="rux--list__item">Receiving happens in stages: receive → confirm → (if the warehouse uses locations) advise a location → put away. Confirming isn&#39;t the same as putting away.</li>
+          <li class="rux--list__item">If an item is flagged &quot;location controlled&quot; but you receive it into a warehouse that isn&#39;t set up for locations, LN just ignores the item&#39;s flag. The warehouse&#39;s setting wins.</li>
+          <li class="rux--list__item">Receiving something earlier than its planned date pops a specific warning, sourced from tolerance settings on the item&#39;s purchasing data.</li>
         </ol>
           </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-extending-the-order-horizon">
-            <h3 id="t-extending-the-order-horizon">Extending the order horizon</h3>
-            <p>Planning only considers demand that falls inside the <strong>order horizon</strong>. With it set to 10 days, newer sales orders were invisible to the plan.</p>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-a-second-kind-of-demand-contract-deliverables">
+            <h3 id="t-a-second-kind-of-demand-contract-deliverables">A second kind of demand: contract deliverables</h3>
+            <p>Sales orders aren&#39;t the only thing that can drive planning. A &quot;contract deliverable&quot; can too — but it behaves differently.</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">From the Item Order Plan, <span class="rux--tag rux--tag--blue" title="References ➔ Items - Planning"><span class="rux--tag__label">References ➔ Items - Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span>, Horizons tab — the order horizon changed from 10 days to 365 so that demand further out would be picked up.</li>
-          <li class="rux--list__item">The same change repeated for the component items, since a horizon is set per item.</li>
+          <li class="rux--list__item">Unlike a sales order (recognized by planning the instant it&#39;s created), a contract deliverable sits inactive until someone deliberately activates it. Left inactive, MRP ignores it completely, with no warning.</li>
+          <li class="rux--list__item">Once activated, it plans and ships the same way a sales order would, but it&#39;s tagged to a specific project the whole way through — the production order made for it is &quot;pegged&quot; to that one contract.</li>
         </ol>
           </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-running-mrp-across-the-whole-bill-of-material">
-            <h3 id="t-running-mrp-across-the-whole-bill-of-material">Running MRP across the whole bill of material</h3>
-            <p><strong>What was shown:</strong></p>
-            <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Generate Order Planning (Item)"><span class="rux--tag__label">Generate Order Planning (Item)</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span> run for <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> with <strong>Include Parent Items</strong> and <strong>Include Child Items</strong> both selected — this is what makes one run plan the finished item and everything beneath it.</li>
-          <li class="rux--list__item">This matters most on deep structures: an item can appear in a bill of material and have a bill of material of its own, several levels down. One run covers all of it.</li>
-        </ol>
-          </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-the-transfer-and-what-stopped-it">
-            <h3 id="t-the-transfer-and-what-stopped-it">The transfer, and what stopped it</h3>
-            <p><strong>What was shown:</strong></p>
-            <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span> — the review screen for everything MRP produced. Two planned purchase orders for <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> were ticked: <span class="rux--tag rux--tag--gray" title="000000346"><span class="rux--tag__label">000000346</span></span> for 6 ea and <span class="rux--tag rux--tag--gray" title="000000347"><span class="rux--tag__label">000000347</span></span> for 10 ea.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue" title="Actions ➔ Transfer Order Planning"><span class="rux--tag__label">Actions ➔ Transfer Order Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cppat1210m000"><span class="rux--tag__label">cppat1210m000</span></span>. On the <strong>External</strong> tab: purchase order type <span class="rux--tag rux--tag--gray" title="IPO"><span class="rux--tag__label">IPO</span></span>, order series <span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span>, and <strong>Combine Orders</strong> selected. On the <strong>Options</strong> tab: process report and error report both selected.</li>
-          <li class="rux--list__item"><strong>The first transfer failed</strong>, and the error report said exactly why:</li>
-        </ol>
-            <p>&gt; Purchase Order cannot be generated. Buy-from BP cannot be determined for item <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span>; neither valid Item - BP data is present, nor a BP is linked to Item Purchase Data.</p>
-            <p>LN had no way of knowing who to buy from.</p>
-            <ol class="rux--list--ordered">
-          <li class="rux--list__item"><strong>The fix</strong> — on the item&#39;s purchase data, the <strong>Item - Business Partner</strong> tab (the third tab at line level), where a buy-from business partner was added: <span class="rux--tag rux--tag--gray" title="BP4000006"><span class="rux--tag__label">BP4000006</span></span>, Fairfield Engineering Co.</li>
-          <li class="rux--list__item"><strong>The second transfer succeeded</strong>, and the report showed both planned orders landing on the <em>same</em> purchase order — <span class="rux--tag rux--tag--gray" title="100000682"><span class="rux--tag__label">100000682</span></span>. That is the <strong>Combine Orders</strong> setting at work: several planned purchase orders merged into one real purchase order with a line each, rather than two separate orders.</li>
-        </ol>
-            <p>Only the purchase orders were transferred. The two planned production orders were deliberately left alone, and correctly stayed at status <span class="rux--tag rux--tag--gray" title="Planned"><span class="rux--tag__label">Planned</span></span>.</p>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-the-safety-stock-puzzle-see-the-dedicated-write-up-">
+            <h3 id="t-the-safety-stock-puzzle-see-the-dedicated-write-up-">The safety-stock puzzle (see the dedicated write-up)</h3>
+            <p>A safety-stock question from this same session — why setting safety stock to 50 for a test item seemed to generate three separate orders instead of one — is written up separately, since it got fully resolved afterward in a chat thread. Short version: it wasn&#39;t really a safety-stock problem at all. Only one of the three orders was actually tied to safety stock; the other two were ordinary orders for two unrelated sales orders that just happened to be sitting in the same list.</p>
           </section>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-decided">
           <h2 id="s-decided">What was decided</h2>
           <ol class="rux--list--ordered">
-          <li class="rux--list__item">The next exercise is a full <strong>order-to-cash cycle driven from planning</strong>: create a sales order for more than you have on hand, run MRP, transfer what it suggests, buy the materials, produce the item, and ship it — working from the Item Order Plan throughout.</li>
-          <li class="rux--list__item">The bamboo item family continues as the training vehicle.</li>
-          <li class="rux--list__item">Transferring <strong>production</strong> orders was described as working the same way, but was not demonstrated.</li>
+          <li class="rux--list__item">Always run MRP from the top-level item, not a component, when you want the whole bill of material to plan.</li>
+          <li class="rux--list__item">A &quot;two orders with the same number&quot; reading on a summary screen almost certainly means one order with two lines — check line-level detail before assuming a bug.</li>
+          <li class="rux--list__item">Contract deliverables need their own documentation — they don&#39;t behave like sales orders and nothing in this library explained them before this session.</li>
         </ol>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-takeaways">
           <h2 id="s-takeaways">Key takeaways</h2>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Planned orders are free to get wrong.</strong> Re-plan as often as you like; nothing is real until you transfer it. That is the whole reason planning and execution are separate.</li>
-          <li class="rux--list__item"><strong>A rerun deletes and rebuilds.</strong> Planned orders do not survive a run on merit — every one of them is swept and regenerated. Only confirmed orders, and orders already transferred, persist.</li>
-          <li class="rux--list__item"><strong>A missing planning cluster is a silent failure.</strong> The item does not error; it simply never appears in the results. If an item you expect to be planned is absent, check its cluster line before anything else.</li>
-          <li class="rux--list__item"><strong>Set the order horizon before you blame the plan.</strong> Demand beyond the horizon is not &quot;missed&quot; — planning is configured not to look that far.</li>
-          <li class="rux--list__item"><strong>MRP needs to know who to buy from.</strong> A planned purchase order cannot become a real one without a buy-from business partner on the item. The transfer&#39;s error report names this precisely, so read it rather than guessing.</li>
-          <li class="rux--list__item"><strong>Combine Orders decides the shape of what you get.</strong> Selected, several planned purchase orders become one purchase order with several lines — usually what you want when buying multiple parts from one supplier.</li>
+          <li class="rux--list__item">Demand appears on the planning screen the instant an order is saved; running MRP is a separate step that turns that demand into supply.</li>
+          <li class="rux--list__item">A warehouse&#39;s own settings can override an item&#39;s own flag — a location-controlled item in a non-location-controlled warehouse gets treated as if it isn&#39;t.</li>
+          <li class="rux--list__item">Not every demand source auto-plans. Sales orders do; contract deliverables have to be turned on first, silently, with nothing telling you why nothing happened if you forget.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="planned-order-transfer-training_2026-08-25.html">`planned-order-transfer-training_2026-08-25.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p><strong>Full record:</strong> <a class="rux--link" href="planning-scenarios_2026-09-03.html">`planning-scenarios_2026-09-03.md`</a> — sourced, dated, and cross-checked against six frames pulled directly from the recording. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
       </div>
     </div>

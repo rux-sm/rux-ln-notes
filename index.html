@@ -212,47 +212,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
        longer beside it -- a state that does not exist in IBM's design. -->
   <button type="button" class="rux--header__action rux--header__menu-trigger rux--header__menu-toggle rux--header__menu-toggle__hidden" aria-label="Toggle navigation" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-menu"/></svg></button>
 
-  <!-- THE MARK is rux-ds's, copied from templates/app-shell.html verbatim and
-       not a choice (docs/choices.md): it is the brand, the same 33x30 glyph in
-       the same place in every app on the account. -->
-  <a class="rux--header__name" href="./">
-<svg width="33" height="30" viewBox="0 0 11 10" aria-hidden="true"
-         style="margin-right:.5rem;flex:none;color:#c6c6c6;--rux-mark-slab:#0f62fe">
-    <g fill="currentColor">
-    <rect x="2" y="0" width="4" height="1"/>
-    <rect x="9" y="0" width="1" height="1"/>
-    <rect x="2" y="1" width="1" height="1"/>
-    <rect x="4" y="1" width="1" height="1"/>
-    <rect x="10" y="1" width="1" height="1"/>
-    <rect x="2" y="2" width="5" height="1"/>
-    <rect x="10" y="2" width="1" height="1"/>
-    <rect x="2" y="3" width="6" height="1"/>
-    <rect x="10" y="3" width="1" height="1"/>
-    <rect x="2" y="4" width="2" height="1"/>
-    <rect x="10" y="4" width="1" height="1"/>
-    <rect x="2" y="5" width="8" height="1"/>
-    <rect x="1" y="6" width="9" height="1"/>
-    <rect x="1" y="7" width="9" height="1"/>
-    <rect x="2" y="8" width="8" height="1"/>
-    <rect x="2" y="9" width="1" height="1"/>
-    <rect x="4" y="9" width="1" height="1"/>
-    <rect x="7" y="9" width="1" height="1"/>
-    <rect x="9" y="9" width="1" height="1"/>
-    </g>
-    <g fill="var(--rux-mark-slab, currentColor)">
-    <rect x="1" y="0" width="1" height="1"/>
-    <rect x="0" y="1" width="2" height="1"/>
-    <rect x="0" y="2" width="2" height="1"/>
-    <rect x="0" y="3" width="2" height="1"/>
-    <rect x="0" y="4" width="2" height="1"/>
-    <rect x="0" y="5" width="2" height="1"/>
-    </g>
-    <g fill="var(--rux-mark-feature, #0f62fe)">
-    <rect x="3" y="1" width="1" height="1"/>
-    <rect x="5" y="1" width="1" height="1"/>
-    <rect x="7" y="2" width="1" height="1"/>
-    </g>
-</svg><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
+  <!-- PLACEHOLDER for the square mark, still being designed in rux-ds
+       (tools/make-marks.mjs there): a 24x24 dashed box in currentColor, no
+       invented class. Synced from rux-ds templates/app-shell.html; swap
+       for the real mark once it lands there. -->
+  <a class="rux--header__name" href="./"><span aria-hidden="true" style="width:1.5rem;height:1.5rem;margin-right:.5rem;flex:none;border:1px dashed currentColor;opacity:.6"></span><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
 
   <!-- NO __nav: one product. __global carries the two actions every app has
        since rux-ds v0.1.3 (§4.13): the Account action and the switcher, each
@@ -270,9 +234,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
        /rux-ln-notes/. The account panel is the standard one from rux-ds's
        template, verbatim: the local profile (js/profile.js) under the key
        every app on the origin shares, so a theme chosen here is the theme
-       the hub opens in. account.js, loaded near the end of body from the
-       account root, adds the cloud half: an anonymous session, syncing
-       platform.profiles, and the Sign in button's actual behaviour. -->
+       the hub opens in. -->
   <div class="rux--header__global">
     <button type="button" class="rux--header__action rux--btn rux--layout--size-lg rux--btn--ghost rux--btn--icon-only" aria-label="Account" aria-expanded="false" aria-controls="rux-account-panel"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-user--avatar"/></svg></button>
     <button type="button" class="rux--header__action rux--btn rux--layout--size-lg rux--btn--ghost rux--btn--icon-only" aria-label="App switcher" aria-expanded="false" aria-controls="rux-switcher-panel"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-grid"/></svg></button>
@@ -360,11 +322,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
            Prerequisite callouts as dependency edges; on Downstream rows alone
            the guide that builds the test data came fourth. -->
       <li class="rux--side-nav__item">
-        <button class="rux--side-nav__submenu" type="button" aria-expanded="true">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="false">
           <span class="rux--side-nav__submenu-title">Scenario guides</span>
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
-        <ul class="rux--side-nav__menu">
+        <ul class="rux--side-nav__menu" hidden>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/SG-create-basic-test-items-and-defaults.html"><span class="rux--side-nav__link-text">Create test items</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/SG-run-order-planning-for-one-item.html"><span class="rux--side-nav__link-text">Run order planning</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/SG-purchase-order-to-warehouse-receipt.html"><span class="rux--side-nav__link-text">Purchase to receipt</span></a></li>
@@ -399,6 +361,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu" hidden>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/planning-scenarios_2026-09-03_summary.html"><span class="rux--side-nav__link-text">Planning Scenarios — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="guides/planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
@@ -687,6 +650,27 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <div class="rux--card__header">
               <div class="rux--card__title">
                 <div class="rux--card__label">Meeting summary</div>
+                <span class="rux--card__title-text-row" id="t-planning-scenarios_2026-09-03_summary">Planning Scenarios — Summary</span>
+                <div class="rux--card__description">An open-ended planning training session: a sales order becomes demand, MRP turns demand into planned orders, planned orders transfer into real purchase and production orders, and those get received through to put-away. Two extra wrinkles got explored along the way — a contract-based order type that behaves differently from a sales order, and a live puzzle about why a safety-stock top-up seemed to split into three orders instead of one.</div>
+              </div>
+            </div>
+            <div class="rux--card__body">
+              <div class="ln-tag-row">
+                <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
+                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">4 topics</span></span>
+                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">2026-09-03</span></span>
+              </div>
+            </div>
+            <div class="rux--card__footer">
+              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/planning-scenarios_2026-09-03_summary.html" id="o-planning-scenarios_2026-09-03_summary" aria-labelledby="o-planning-scenarios_2026-09-03_summary t-planning-scenarios_2026-09-03_summary">Open summary</a>
+            </div>
+          </div>
+        </div>
+        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
+          <div class="rux--card rux--card--productive">
+            <div class="rux--card__header">
+              <div class="rux--card__title">
+                <div class="rux--card__label">Meeting summary</div>
                 <span class="rux--card__title-text-row" id="t-bamboo-production-order-walkthrough_2026-08-18_summary">Bamboo Production Order Walkthrough — Summary</span>
                 <div class="rux--card__description">Taking the bamboo training items (a rod, a sleeve, and a finished chopstick pair) all the way from bare item records to a produced, received finished good — building the bill of material, the routing, the cost, and the stock the production order needed, then running that order to completion.</div>
               </div>
@@ -831,16 +815,5 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <script src="vendor/rux-ds/js/modal.js"></script>
 <script src="vendor/rux-ds/js/profile.js"></script>
 <script src="/switcher.js"></script>
-
-<!-- The cloud half of the profile, same as the hub (rux-ds roadmap §4.13
-     step 5 and the profile-completeness pass after it, 2026-09-04):
-     account.js lives at the account root, not here, so this is a reference
-     to the one copy rather than a second file to keep in sync. It opens an
-     anonymous session, syncs platform.profiles, and adds the "Account
-     settings" link to the panel above — none of that existed on this page
-     before, which is the gap this fixes. -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
-<script src="/account.js"></script>
 </body>
 </html>

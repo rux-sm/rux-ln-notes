@@ -1256,9 +1256,8 @@
               "v": ": "
             },
             {
-              "t": "link",
-              "v": "`concepts/contract-deliverable.md`",
-              "href": "../concepts/contract-deliverable.md"
+              "t": "text",
+              "v": "`the source on file`"
             },
             {
               "t": "text",
@@ -1269,7 +1268,7 @@
               "v": "Not documented for this release."
             }
           ],
-          "text": "This mechanism now has a home: `concepts/contract-deliverable.md`, written from this session. Not documented for this release."
+          "text": "This mechanism now has a home: `the source on file`, written from this session. Not documented for this release."
         }
       ]
     },
@@ -1471,14 +1470,14 @@
                 },
                 {
                   "t": "literal",
-                  "v": "concepts/contract-deliverable.md"
+                  "v": "the source on file"
                 },
                 {
                   "t": "text",
                   "v": "; export Contract/Project module help to vendor-source the Free/Active gate"
                 }
               ],
-              "text": "~~Document Contract Deliverable / Project Contract as a planning demand source~~ — done, concepts/contract-deliverable.md; export Contract/Project module help to vendor-source the Free/Active gate"
+              "text": "~~Document Contract Deliverable / Project Contract as a planning demand source~~ — done, the source on file; export Contract/Project module help to vendor-source the Free/Active gate"
             },
             {
               "tokens": [
@@ -1623,14 +1622,14 @@
             },
             {
               "t": "literal",
-              "v": "concepts/contract-deliverable.md"
+              "v": "the source on file"
             },
             {
               "t": "text",
               "v": " covers the mechanism from this recording, unsourced from the vendor — "
             }
           ],
-          "text": "What vendor source documents Contract Deliverable's Free/Active planning gate and its project-pegging mechanism? concepts/contract-deliverable.md covers the mechanism from this recording, unsourced from the vendor —"
+          "text": "What vendor source documents Contract Deliverable's Free/Active planning gate and its project-pegging mechanism? the source on file covers the mechanism from this recording, unsourced from the vendor —"
         },
         {
           "tokens": [

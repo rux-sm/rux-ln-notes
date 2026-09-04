@@ -270,7 +270,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
        /rux-ln-notes/. The account panel is the standard one from rux-ds's
        template, verbatim: the local profile (js/profile.js) under the key
        every app on the origin shares, so a theme chosen here is the theme
-       the hub opens in. -->
+       the hub opens in. account.js, loaded near the end of body from the
+       account root, adds the cloud half: an anonymous session, syncing
+       platform.profiles, and the Sign in button's actual behaviour. -->
   <div class="rux--header__global">
     <button type="button" class="rux--header__action rux--btn rux--layout--size-lg rux--btn--ghost rux--btn--icon-only" aria-label="Account" aria-expanded="false" aria-controls="rux-account-panel"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-user--avatar"/></svg></button>
     <button type="button" class="rux--header__action rux--btn rux--layout--size-lg rux--btn--ghost rux--btn--icon-only" aria-label="App switcher" aria-expanded="false" aria-controls="rux-switcher-panel"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-grid"/></svg></button>
@@ -829,5 +831,16 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <script src="vendor/rux-ds/js/modal.js"></script>
 <script src="vendor/rux-ds/js/profile.js"></script>
 <script src="/switcher.js"></script>
+
+<!-- The cloud half of the profile, same as the hub (rux-ds roadmap §4.13
+     step 5 and the profile-completeness pass after it, 2026-09-04):
+     account.js lives at the account root, not here, so this is a reference
+     to the one copy rather than a second file to keep in sync. It opens an
+     anonymous session, syncs platform.profiles, and adds the "Account
+     settings" link to the panel above — none of that existed on this page
+     before, which is the gap this fixes. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+<script src="/account.js"></script>
 </body>
 </html>

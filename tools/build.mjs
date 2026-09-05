@@ -791,11 +791,15 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
        longer beside it -- a state that does not exist in IBM's design. -->
   <button type="button" class="rux--header__action rux--header__menu-trigger rux--header__menu-toggle rux--header__menu-toggle__hidden" aria-label="Toggle navigation" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-menu"/></svg></button>
 
-  <!-- PLACEHOLDER for the square mark, still being designed in rux-ds
-       (tools/make-marks.mjs there): a 24x24 dashed box in currentColor, no
-       invented class. Synced from rux-ds templates/app-shell.html; swap
-       for the real mark once it lands there. -->
-  <a class="rux--header__name" href="${up || './'}"><span aria-hidden="true" style="width:1.5rem;height:1.5rem;margin-right:.5rem;flex:none;border:1px dashed currentColor;opacity:.6"></span><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
+  <!-- The logo is brand/logo.svg, one file, this project's own. Swap it and
+       every page here picks it up on reload: no rebuild, no markup edit, no
+       re-pin. It is an img, not inline SVG, which is what makes that swap
+       free and costs nothing: the shell header is #161616 with #f4f4f4 text
+       in all four themes, so one colourway serves every theme. Sized by
+       HEIGHT so the file's own aspect governs. rux-ds brand/README.md is the
+       contract; tools/new-project.sh there seeds this file and, because it
+       only seeds when absent, never overwrites a logo you replaced. -->
+  <a class="rux--header__name" href="${up || './'}"><img src="${up}brand/logo.svg" alt="" style="height:1.5rem;width:auto;margin-right:.5rem;flex:none"><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
 
   <!-- NO __nav: one product. __global carries the two actions every app has
        since rux-ds v0.1.3 (§4.13): the Account action and the switcher, each

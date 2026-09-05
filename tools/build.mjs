@@ -653,6 +653,7 @@ function page({ title, site, activeId, body, depth }) {
      @font-face; the faces live here. Linking the stylesheet without this one
      renders every page in the system sans while every gate stays green --
      the class resolves, the reference exists, and the page looks built. -->
+<link rel="icon" href="${up}brand/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="${up}vendor/rux-ds/assets/fonts/IBMPlexSans-Regular-Latin1.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="${up}vendor/rux-ds/assets/fonts/IBMPlexSans-SemiBold-Latin1.woff2">
 <link rel="stylesheet" href="${up}vendor/rux-ds/assets/fonts/plex.css">

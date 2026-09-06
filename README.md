@@ -14,6 +14,12 @@ front. Every page ends with the atlas revision it was built from. A draft
 guide is labelled on the page, never withheld. Nothing here is written by
 hand: markup lives in `tools/build.mjs`, content arrives as data.
 
+An exercise page is a worksheet: the answer spaces atlas marked are text
+areas, a box column is a tick per row, the pass condition is a box, and a
+question with a key can reveal it once something has been written. What a
+learner types stays in their own browser, and the rail exports it as
+Markdown for the report-back. `js/exercise.js` is the whole of that.
+
 ## Where it comes from
 
 Two upstreams, both pulled by a script, both pinned, neither ever hand-edited:

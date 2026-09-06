@@ -1,9 +1,9 @@
-commit   33ba25546659d2d1709cad61f35109e240cf126e
-date     2026-09-06T04:52:07Z
-subject  docs(planning): Prove order interval consolidation
-contract 3 
+commit   335b8bca6fadbca45150a4646c0c0b8379d14d75
+date     2026-09-06T17:15:07Z
+subject  feat(exercises): Answer spaces and a key
+contract 4 
 tier     export
-sha256   e1e8f939dc78f9ac0882bc34fe1143a93932d0e1b0e11b30306e667df5af22b3
+sha256   504706b24cd718d0bc18d5113d434d0ac549f5156cd60c627e64d1c658620dc7
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

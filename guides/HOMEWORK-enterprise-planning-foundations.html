@@ -117,6 +117,43 @@
 }
 
 .ln-revision { color: var(--rux-text-secondary); margin: 0; }
+/* THE EXERCISE PAGE IS A WORKSHEET. Two columns on a wide viewport -- the
+   work, and a rail that stays put holding progress, notes and the export --
+   one column otherwise. Local layout classes, because Carbon's css-grid is
+   already the page's outer frame and a nested one would re-derive the shell's
+   16-column arithmetic for a two-column split. */
+.ln-ex { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+@media (min-width: 88rem) {
+  .ln-ex { grid-template-columns: minmax(0, 1fr) 20rem; }
+  .ln-ex-rail { position: sticky; inset-block-start: 4rem; }
+}
+.ln-ex-status { margin-inline-start: .75rem; vertical-align: middle; }
+.ln-q-list { display: grid; gap: .75rem; }
+.ln-q { display: grid; gap: .75rem; }
+.ln-q-head { display: grid; gap: .5rem; }
+.ln-q-label { margin: 0; font-weight: 600; }
+.ln-q-fields { display: grid; gap: .75rem; }
+@media (min-width: 66rem) {
+  .ln-q-fields[data-cols="2"], .ln-q-fields[data-cols="3"] {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+/* Carbon sizes a text area by its `cols`; a worksheet space is as wide as
+   its item. Measured 2026-09-06: 12rem by default, three words per line. */
+.ln-ex .rux--form-item, .ln-ex .rux--text-area__wrapper, .ln-ex .rux--text-area { inline-size: 100%; }
+.ln-q .rux--text-area { min-block-size: 3.25rem; resize: vertical; }
+.ln-q-reveal { margin-block-start: .25rem; }
+/* `hidden` alone loses to Carbon's `.rux--tile { display: block }`, which
+   is more specific than the UA rule; measured 2026-09-06 with every key
+   open on first paint. */
+.ln-q-key { margin-block-start: .5rem; }
+.ln-q-key[hidden] { display: none; }
+.ln-q-key p { margin: 0; }
+.ln-pass .rux--checkbox-label-text { font-weight: 400; }
+.ln-ex-work { display: grid; gap: 1rem; }
+.ln-ex-work h3 { margin: 0; }
+.ln-ex-progress { margin: 0; color: var(--rux-text-secondary); }
+.ln-ex-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -386,13 +423,14 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
   <div class="rux--css-grid">
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
-        <div class="rux--stack-vertical rux--stack-scale-5 ln-exercise">
+        <div class="ln-ex ln-exercise" data-ln-doc="HOMEWORK-enterprise-planning-foundations">
+        <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>Homework — learn Enterprise Planning as a consultant</h1>
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Homework</span></span>
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">7 assignments</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-05</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-06</span></span>
           </div>
           <p><strong>Goal:</strong> explain an LN planning result from demand through execution, identify the effective configuration that caused it, predict the result of one controlled change, and prove the explanation with Item Order Plan and Order Pegging.</p>
           <p>This is a six-sitting curriculum for the planning processes documented in this library. Complete it in order. Do not continue when a result is unexplained: capture it, restore the baseline if safe, and report what remains unknown.</p>
@@ -405,115 +443,565 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     </div>
   </div>
 </div>
-          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-1">
-          <h2 id="a-1">1. Sitting 1 — map the planning landscape</h2>
+          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-1" data-ln-section="1">
+          <h2 id="a-1">1. Sitting 1 — map the planning landscape <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Start with the main work areas, then deliberately inspect <strong>Views</strong>, <strong>References</strong>, and <strong>Actions</strong> rather than treating the main grid as the whole session.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Main session</div></th><th scope="col"><div class="rux--table-header-label">Route</div></th><th scope="col"><div class="rux--table-header-label">Explain it in one sentence</div></th></tr></thead>
-            <tbody>
-          <tr><td><span class="rux--tag rux--tag--blue" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span></td><td>Planning ➔ Order Planning ➔ Item Order Plan</td><td></td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span></td><td>Planning ➔ Order Planning ➔ Planned Orders</td><td></td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span></td><td>Planning ➔ Master Data ➔ Items ➔ Items - Planning</td><td></td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue" title="Scenarios"><span class="rux--tag__label">Scenarios</span></span> <span class="rux--tag rux--tag--cyan" title="cprpd4100m000"><span class="rux--tag__label">cprpd4100m000</span></span></td><td>Planning ➔ Master Data ➔ Scenarios ➔ Scenarios</td><td></td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue" title="Items - Ordering"><span class="rux--tag__label">Items - Ordering</span></span> <span class="rux--tag rux--tag--cyan" title="tcibd2100m000"><span class="rux--tag__label">tcibd2100m000</span></span></td><td>Master Data ➔ Items ➔ Miscellaneous ➔ Items - Ordering</td><td></td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue" title="Warehouse Manager Dashboard"><span class="rux--tag__label">Warehouse Manager Dashboard</span></span> <span class="rux--tag rux--tag--cyan" title="whinh2300m000"><span class="rux--tag__label">whinh2300m000</span></span></td><td>Warehousing ➔ Dashboard ➔ Warehouse Manager Dashboard</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="1:4hk81j">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1a0wjmy"><span class="rux--tag rux--tag--blue" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span></p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Order Planning ➔ Item Order Plan</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-18k3dzq">Explain it in one sentence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-18k3dzq" class="rux--text-area" rows="2" data-ln-answer="1:4hk81j:2" data-ln-given="" placeholder="Explain it in one sentence"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="1:qbyzcd">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-ed7l19"><span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span></p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Order Planning ➔ Planned Orders</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-itn9rd">Explain it in one sentence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-itn9rd" class="rux--text-area" rows="2" data-ln-answer="1:qbyzcd:2" data-ln-given="" placeholder="Explain it in one sentence"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:9l1wgk">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1db137z"><span class="rux--tag rux--tag--blue" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span></p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Master Data ➔ Items ➔ Items - Planning</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1ubx2bf">Explain it in one sentence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1ubx2bf" class="rux--text-area" rows="2" data-ln-answer="1:9l1wgk:2" data-ln-given="" placeholder="Explain it in one sentence"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:rgwxw8">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-f3zwqv"><span class="rux--tag rux--tag--blue" title="Scenarios"><span class="rux--tag__label">Scenarios</span></span> <span class="rux--tag rux--tag--cyan" title="cprpd4100m000"><span class="rux--tag__label">cprpd4100m000</span></span></p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Master Data ➔ Scenarios ➔ Scenarios</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1bs8xrn">Explain it in one sentence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1bs8xrn" class="rux--text-area" rows="2" data-ln-answer="1:rgwxw8:2" data-ln-given="" placeholder="Explain it in one sentence"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:3fhpol">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-19c5xwc"><span class="rux--tag rux--tag--blue" title="Items - Ordering"><span class="rux--tag__label">Items - Ordering</span></span> <span class="rux--tag rux--tag--cyan" title="tcibd2100m000"><span class="rux--tag__label">tcibd2100m000</span></span></p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Master Data ➔ Items ➔ Miscellaneous ➔ Items - Ordering</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-6igbrc">Explain it in one sentence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-6igbrc" class="rux--text-area" rows="2" data-ln-answer="1:3fhpol:2" data-ln-given="" placeholder="Explain it in one sentence"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:7a6jqk">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1bsrfdw"><span class="rux--tag rux--tag--blue" title="Warehouse Manager Dashboard"><span class="rux--tag__label">Warehouse Manager Dashboard</span></span> <span class="rux--tag rux--tag--cyan" title="whinh2300m000"><span class="rux--tag__label">whinh2300m000</span></span></p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Dashboard ➔ Warehouse Manager Dashboard</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1mf8aq8">Explain it in one sentence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1mf8aq8" class="rux--text-area" rows="2" data-ln-answer="1:7a6jqk:2" data-ln-given="" placeholder="Explain it in one sentence"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
           <p>For each session, write down which questions it answers, which questions it cannot answer, and one sub-session or reference it opens.</p>
-          <p><strong>Pass condition:</strong> you can choose the correct starting session for a demand question, a configuration question, a planned-order question, and an execution question without searching the menu.</p>
+          <div class="rux--form-item rux--checkbox-wrapper ln-pass">
+            <input id="p-1" class="rux--checkbox" type="checkbox" data-ln-pass="1">
+            <label for="p-1" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can choose the correct starting session for a demand question, a configuration question, a planned-order question, and an execution question without searching the menu.</div></label>
+          </div>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-2">
-          <h2 id="a-2">2. Sitting 2 — trace demand before generating anything</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-2" data-ln-section="2">
+          <h2 id="a-2">2. Sitting 2 — trace demand before generating anything <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Use <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>. In <strong>Item Order Plan</strong>, identify every demand and supply row before running planning.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>What is current on-hand inventory?</td><td></td></tr>
-          <tr><td>Which rows are sales demand?</td><td></td></tr>
-          <tr><td>Is there a safety-stock requirement?</td><td></td></tr>
-          <tr><td>Is any demand carrying a Specification indicator?</td><td></td></tr>
-          <tr><td>Which rows are actual supply and which are planned supply?</td><td></td></tr>
-          <tr><td>What is Planned Available after each row?</td><td></td></tr>
-          <tr><td>Can you reconcile the running balance as prior balance − demand + supply?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="2:mfakve">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-6d3sq3">What is current on-hand inventory?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-14fymxi">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-14fymxi" class="rux--text-area" rows="2" data-ln-answer="2:mfakve:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="2:1rqjq8r">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-21n6ju">Which rows are sales demand?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-prri8l">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-prri8l" class="rux--text-area" rows="2" data-ln-answer="2:1rqjq8r:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:1o981if">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1y07eua">Is there a safety-stock requirement?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-k2d3wt">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-k2d3wt" class="rux--text-area" rows="2" data-ln-answer="2:1o981if:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:1cccksv">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1r37s2n">Is any demand carrying a Specification indicator?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-hef77u">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-hef77u" class="rux--text-area" rows="2" data-ln-answer="2:1cccksv:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:1wo9wzy">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-57otqj">Which rows are actual supply and which are planned supply?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1u638xi">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1u638xi" class="rux--text-area" rows="2" data-ln-answer="2:1wo9wzy:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:16hieia">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-y2d0mw">What is Planned Available after each row?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-jazmsj">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-jazmsj" class="rux--text-area" rows="2" data-ln-answer="2:16hieia:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:pi2j2g">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-8c479b">Can you reconcile the running balance as prior balance − demand + supply?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1llsn56">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1llsn56" class="rux--text-area" rows="2" data-ln-answer="2:pi2j2g:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
           <p>Open Order Pegging for each planned supply. Record the exact demand it answers. Treat the grid quantity as the result and the pegging tree as the explanation.</p>
-          <p><strong>Pass condition:</strong> you can explain why two demands for the same item may still need separate supply.</p>
+          <div class="rux--form-item rux--checkbox-wrapper ln-pass">
+            <input id="p-2" class="rux--checkbox" type="checkbox" data-ln-pass="2">
+            <label for="p-2" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can explain why two demands for the same item may still need separate supply.</div></label>
+          </div>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-3">
-          <h2 id="a-3">3. Sitting 3 — find the effective master-data value</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-3" data-ln-section="3">
+          <h2 id="a-3">3. Sitting 3 — find the effective master-data value <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Trace ordering data from the warehouse level upward:</p>
           <ol class="rux--list--ordered">
           <li class="rux--list__item">In <strong>Item Data by Warehouse</strong>, record whether <strong>Use Item Ordering Data by Site</strong> is selected.</li>
           <li class="rux--list__item">In <span class="rux--tag rux--tag--blue" title="Item - Ordering by Site"><span class="rux--tag__label">Item - Ordering by Site</span></span> <span class="rux--tag rux--tag--cyan" title="tcibd2150m000"><span class="rux--tag__label">tcibd2150m000</span></span>, reached off-menu from the item context, record whether <strong>Use Global Item Ordering</strong> is selected.</li>
           <li class="rux--list__item">In <strong>Items - Ordering</strong>, record <strong>Method</strong>, <strong>Interval</strong>, <strong>Safety Stock</strong>, <strong>Order Increment</strong>, <strong>Minimum</strong>, <strong>Maximum</strong>, and <strong>Fixed Order</strong>.</li>
         </ol>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Level</div></th><th scope="col"><div class="rux--table-header-label">Uses its own value or inherits?</div></th><th scope="col"><div class="rux--table-header-label">Effective source</div></th><th scope="col"><div class="rux--table-header-label">Evidence</div></th></tr></thead>
-            <tbody>
-          <tr><td>Warehouse</td><td></td><td></td><td></td></tr>
-          <tr><td>Site</td><td></td><td></td><td></td></tr>
-          <tr><td>Global item</td><td></td><td></td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="3:jyxno8">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1yd0r36">Warehouse</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1gkcax9">Uses its own value or inherits?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1gkcax9" class="rux--text-area" rows="2" data-ln-answer="3:jyxno8:1" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1gkcaxa">Effective source</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1gkcaxa" class="rux--text-area" rows="2" data-ln-answer="3:jyxno8:2" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1gkcaxb">Evidence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1gkcaxb" class="rux--text-area" rows="2" data-ln-answer="3:jyxno8:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
-          <p><strong>Pass condition:</strong> you can point to the record that owns the effective Order Interval and explain why editing a different level would have no effect.</p>
+        <div class="rux--tile ln-q" data-ln-row="3:yk2u4a">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-8q15jm">Site</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1gcxh19">Uses its own value or inherits?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1gcxh19" class="rux--text-area" rows="2" data-ln-answer="3:yk2u4a:1" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1gcxh1a">Effective source</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1gcxh1a" class="rux--text-area" rows="2" data-ln-answer="3:yk2u4a:2" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1gcxh1b">Evidence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1gcxh1b" class="rux--text-area" rows="2" data-ln-answer="3:yk2u4a:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1fbp83p">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-qb37cm">Global item</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-nzj9y9">Uses its own value or inherits?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-nzj9y9" class="rux--text-area" rows="2" data-ln-answer="3:1fbp83p:1" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-nzj9ya">Effective source</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-nzj9ya" class="rux--text-area" rows="2" data-ln-answer="3:1fbp83p:2" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-nzj9yb">Evidence</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-nzj9yb" class="rux--text-area" rows="2" data-ln-answer="3:1fbp83p:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-pass">
+            <input id="p-3" class="rux--checkbox" type="checkbox" data-ln-pass="3">
+            <label for="p-3" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can point to the record that owns the effective Order Interval and explain why editing a different level would have no effect.</div></label>
+          </div>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-4">
-          <h2 id="a-4">4. Sitting 4 — horizons, time fences, and run scope</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-4" data-ln-section="4">
+          <h2 id="a-4">4. Sitting 4 — horizons, time fences, and run scope <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Read <strong>Items - Planning</strong> before opening the planning run.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Boundary</div></th><th scope="col"><div class="rux--table-header-label">Value</div></th><th scope="col"><div class="rux--table-header-label">What result would fall outside it?</div></th></tr></thead>
-            <tbody>
-          <tr><td>Order Horizon</td><td></td><td></td></tr>
-          <tr><td>Planning Horizon</td><td></td><td></td></tr>
-          <tr><td>Time Fence</td><td></td><td></td></tr>
-          <tr><td>Forecast Time Fence</td><td></td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="4:zvlcmi">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-454g88">Order Horizon</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="2">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-101jhsj">Value</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-101jhsj" class="rux--text-area" rows="2" data-ln-answer="4:zvlcmi:1" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-101jhsk">What result would fall outside it?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-101jhsk" class="rux--text-area" rows="2" data-ln-answer="4:zvlcmi:2" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="4:13lrgat">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-ptgl1t">Planning Horizon</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="2">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1mz74vw">Value</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1mz74vw" class="rux--text-area" rows="2" data-ln-answer="4:13lrgat:1" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1mz74vx">What result would fall outside it?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1mz74vx" class="rux--text-area" rows="2" data-ln-answer="4:13lrgat:2" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="4:15twaid">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-r9t9gy">Time Fence</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="2">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-8x4lel">Value</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-8x4lel" class="rux--text-area" rows="2" data-ln-answer="4:15twaid:1" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-8x4lem">What result would fall outside it?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-8x4lem" class="rux--text-area" rows="2" data-ln-answer="4:15twaid:2" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="4:y9cibw">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-2akbka">Forecast Time Fence</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="2">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-bhrws5">Value</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-bhrws5" class="rux--text-area" rows="2" data-ln-answer="4:y9cibw:1" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-bhrws6">What result would fall outside it?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-bhrws6" class="rux--text-area" rows="2" data-ln-answer="4:y9cibw:2" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
           <p>Then open <span class="rux--tag rux--tag--blue" title="Generate Order Planning (Item)"><span class="rux--tag__label">Generate Order Planning (Item)</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>, which has no menu entry and is reached from the item-planning context. Record the state of <strong>Include Parent Items</strong>, <strong>Include Child Items</strong>, <strong>Generate within</strong>, <strong>Confirm within</strong>, <strong>Update Pegging Relations</strong>, and <strong>Automatic Order Grouping</strong>.</p>
           <p>Run two controlled tests:</p>
           <ol class="rux--list--ordered">
           <li class="rux--list__item">Generate from a component only and record whether parent demand is included.</li>
           <li class="rux--list__item">Generate from the top-level item with <strong>Include Child Items</strong> selected and record which components are planned.</li>
         </ol>
-          <p><strong>Pass condition:</strong> you can distinguish “the item was not selected for the run” from “the item was selected but a planning boundary prevented an order.”</p>
+          <div class="rux--form-item rux--checkbox-wrapper ln-pass">
+            <input id="p-4" class="rux--checkbox" type="checkbox" data-ln-pass="4">
+            <label for="p-4" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can distinguish “the item was not selected for the run” from “the item was selected but a planning boundary prevented an order.”</div></label>
+          </div>
           <p><strong>Not documented for this release.</strong></p>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-5">
-          <h2 id="a-5">5. Sitting 5 — order quantity laboratory</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-5" data-ln-section="5">
+          <h2 id="a-5">5. Sitting 5 — order quantity laboratory <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Use the same demand baseline for every run. Change one value at a time and restore it before the next test.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Test</div></th><th scope="col"><div class="rux--table-header-label">Baseline</div></th><th scope="col"><div class="rux--table-header-label">One change</div></th><th scope="col"><div class="rux--table-header-label">Prediction</div></th><th scope="col"><div class="rux--table-header-label">Actual planned orders</div></th><th scope="col"><div class="rux--table-header-label">Pegging reconciled?</div></th></tr></thead>
-            <tbody>
-          <tr><td>Order Interval</td><td><span class="rux--tag rux--tag--gray" title="0"><span class="rux--tag__label">0</span></span> Days</td><td><span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span> Days</td><td></td><td></td><td></td></tr>
-          <tr><td>Maximum quantity</td><td>Unbound test value</td><td>A value below total demand</td><td></td><td></td><td></td></tr>
-          <tr><td>Minimum quantity</td><td><span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span></td><td>A value above one requirement</td><td></td><td></td><td></td></tr>
-          <tr><td>Fixed order quantity</td><td><span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span></td><td>A deliberate test quantity</td><td></td><td></td><td></td></tr>
-          <tr><td>Safety stock</td><td>Record first</td><td>One controlled increase</td><td></td><td></td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="5:lu9kxy">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1ol1aei">Order Interval</p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Baseline</dt><dd><span class="rux--tag rux--tag--gray" title="0"><span class="rux--tag__label">0</span></span> Days</dd></div><div class="ln-meta-row"><dt>One change</dt><dd><span class="rux--tag rux--tag--gray" title="10"><span class="rux--tag__label">10</span></span> Days</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1nngt1z">Prediction</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1nngt1z" class="rux--text-area" rows="2" data-ln-answer="5:lu9kxy:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1nngt20">Actual planned orders</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1nngt20" class="rux--text-area" rows="2" data-ln-answer="5:lu9kxy:4" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1nngt21">Pegging reconciled?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1nngt21" class="rux--text-area" rows="2" data-ln-answer="5:lu9kxy:5" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="5:4mswgy">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-o7tocf">Maximum quantity</p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Baseline</dt><dd>Unbound test value</dd></div><div class="ln-meta-row"><dt>One change</dt><dd>A value below total demand</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-k7x4a4">Prediction</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-k7x4a4" class="rux--text-area" rows="2" data-ln-answer="5:4mswgy:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-k7x4a5">Actual planned orders</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-k7x4a5" class="rux--text-area" rows="2" data-ln-answer="5:4mswgy:4" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-k7x4a6">Pegging reconciled?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-k7x4a6" class="rux--text-area" rows="2" data-ln-answer="5:4mswgy:5" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:1olrehs">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-pxwmgi">Minimum quantity</p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Baseline</dt><dd><span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span></dd></div><div class="ln-meta-row"><dt>One change</dt><dd>A value above one requirement</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1fe5mfz">Prediction</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1fe5mfz" class="rux--text-area" rows="2" data-ln-answer="5:1olrehs:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1fe5mg0">Actual planned orders</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1fe5mg0" class="rux--text-area" rows="2" data-ln-answer="5:1olrehs:4" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-1fe5mg1">Pegging reconciled?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1fe5mg1" class="rux--text-area" rows="2" data-ln-answer="5:1olrehs:5" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:h6fne8">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1ksbf0j">Fixed order quantity</p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Baseline</dt><dd><span class="rux--tag rux--tag--gray" title="1"><span class="rux--tag__label">1</span></span></dd></div><div class="ln-meta-row"><dt>One change</dt><dd>A deliberate test quantity</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-17pdhyo">Prediction</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-17pdhyo" class="rux--text-area" rows="2" data-ln-answer="5:h6fne8:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-17pdhyp">Actual planned orders</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-17pdhyp" class="rux--text-area" rows="2" data-ln-answer="5:h6fne8:4" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-17pdhyq">Pegging reconciled?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-17pdhyq" class="rux--text-area" rows="2" data-ln-answer="5:h6fne8:5" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:5kv2d1">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-otqccx">Safety stock</p>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Baseline</dt><dd>Record first</dd></div><div class="ln-meta-row"><dt>One change</dt><dd>One controlled increase</dd></div></dl>
+          </div>
+          <div class="ln-q-fields" data-cols="3">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-17n31mm">Prediction</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-17n31mm" class="rux--text-area" rows="2" data-ln-answer="5:5kv2d1:3" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-17n31mn">Actual planned orders</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-17n31mn" class="rux--text-area" rows="2" data-ln-answer="5:5kv2d1:4" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label" for="f-17n31mo">Pegging reconciled?</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-17n31mo" class="rux--text-area" rows="2" data-ln-answer="5:5kv2d1:5" data-ln-given="" placeholder=""></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
           <p>For the Order Interval test, confirm that the interval begins with the first requirement and includes requirements inside its workday or working-hour window. Keep <strong>Automatic Order Grouping</strong> cleared so it cannot be mistaken for the cause.</p>
-          <p><strong>Pass condition:</strong> before pressing Generate, you can predict both the number of planned orders and their quantities, then explain any difference using the lot-size rules and pegging.</p>
+          <div class="rux--form-item rux--checkbox-wrapper ln-pass">
+            <input id="p-5" class="rux--checkbox" type="checkbox" data-ln-pass="5">
+            <label for="p-5" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> before pressing Generate, you can predict both the number of planned orders and their quantities, then explain any difference using the lot-size rules and pegging.</div></label>
+          </div>
           <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast">
   <div class="rux--inline-notification__details">
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-warning--filled"/></svg>
@@ -524,32 +1012,126 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
   </div>
 </div>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-6">
-          <h2 id="a-6">6. Sitting 6 — transfer, execution, and exception handling</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-6" data-ln-section="6">
+          <h2 id="a-6">6. Sitting 6 — transfer, execution, and exception handling <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Review the result in <strong>Planned Orders</strong>, select one planned order, and follow the documented transfer path.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>What planned-order type was generated?</td><td></td></tr>
-          <tr><td>Which demand does it answer?</td><td></td></tr>
-          <tr><td>What transfer session opens?</td><td></td></tr>
-          <tr><td>Does <span class="rux--tag rux--tag--blue" title="Combine Orders"><span class="rux--tag__label">Combine Orders</span></span> apply to this order class?</td><td></td></tr>
-          <tr><td>What real order number was created?</td><td></td></tr>
-          <tr><td>Where does the order appear in execution?</td><td></td></tr>
-          <tr><td>Which report, warning, or exception message was produced?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="6:he0ku7">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1g750rt">What planned-order type was generated?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-j8sidw">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-j8sidw" class="rux--text-area" rows="2" data-ln-answer="6:he0ku7:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="6:ie46mw">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1guho29">Which demand does it answer?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-fb8hks">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-fb8hks" class="rux--text-area" rows="2" data-ln-answer="6:ie46mw:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:1w8ge86">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1qewijz">What transfer session opens?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1r9wva2">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1r9wva2" class="rux--text-area" rows="2" data-ln-answer="6:1w8ge86:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:18pcfxq">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-mqg2ps">Does <span class="rux--tag rux--tag--blue" title="Combine Orders"><span class="rux--tag__label">Combine Orders</span></span> apply to this order class?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-13933vv">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-13933vv" class="rux--text-area" rows="2" data-ln-answer="6:18pcfxq:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:82u4v8">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-k65spi">What real order number was created?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-htkiip">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-htkiip" class="rux--text-area" rows="2" data-ln-answer="6:82u4v8:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:1kakw23">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1jgch95">Where does the order appear in execution?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-d7rbyc">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-d7rbyc" class="rux--text-area" rows="2" data-ln-answer="6:1kakw23:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:167zc5z">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-kc37kv">Which report, warning, or exception message was produced?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1j3398q">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1j3398q" class="rux--text-area" rows="2" data-ln-answer="6:167zc5z:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
           <p>For purchase supply, compare generation-time Order Interval with transfer-time <strong>Combine Orders</strong> in <span class="rux--tag rux--tag--blue" title="Transfer Order Planning"><span class="rux--tag__label">Transfer Order Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cppat1210m000"><span class="rux--tag__label">cppat1210m000</span></span>, reached from selected rows in Planned Orders. Explain why they can both reduce the number of visible orders while acting at different stages.</p>
           <p>For production supply, treat the transfer as a test: it has not been walked end to end in this environment. Capture the transfer report or exact error and the resulting production order. <strong>Not documented for this release.</strong></p>
           <p><strong>Not documented for this release.</strong></p>
-          <p><strong>Pass condition:</strong> you can narrate the complete chain: demand → effective parameters → planning run → planned order → pegging → transfer → execution order → warehouse activity.</p>
+          <div class="rux--form-item rux--checkbox-wrapper ln-pass">
+            <input id="p-6" class="rux--checkbox" type="checkbox" data-ln-pass="6">
+            <label for="p-6" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can narrate the complete chain: demand → effective parameters → planning run → planned order → pegging → transfer → execution order → warehouse activity.</div></label>
+          </div>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-7">
-          <h2 id="a-7">7. Consultant report-back</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-7" data-ln-section="7">
+          <h2 id="a-7">7. Consultant report-back <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Present one surprising result to the team in this format:</p>
           <div class="ln-code-scroll"><pre class="rux--type-code-01"><code>Question tested:
 Demand and required date:
@@ -568,7 +1150,26 @@ Baseline restored and confirmed:</code></pre></div>
           <p><strong>Not documented for this release.</strong></p>
         </section>
         </div>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 33ba255 · contract 3</p>
+        <aside class="ln-ex-rail" aria-label="Your work">
+          <div class="rux--tile ln-ex-work">
+            <h3 class="rux--type-heading-compact-02">Your work</h3>
+            <p class="rux--type-body-compact-01 ln-ex-progress" data-ln-progress>Nothing answered yet</p>
+            <div class="rux--form-item">
+              <label class="rux--label" for="ln-notes">Notes</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="ln-notes" class="rux--text-area" rows="6" data-ln-notes placeholder="Anything worth writing down as you go"></textarea>
+              </div>
+              <div class="rux--form__helper-text">Saved in this browser only, with your answers. Export to keep or send them.</div>
+            </div>
+            <div class="ln-ex-actions">
+              <button type="button" class="rux--btn rux--btn--primary rux--btn--sm" data-ln-export>Export answers</button>
+              <button type="button" class="rux--btn rux--btn--tertiary rux--btn--sm" data-ln-copy>Copy</button>
+              <button type="button" class="rux--btn rux--btn--danger--ghost rux--btn--sm" data-ln-clear>Clear</button>
+            </div>
+          </div>
+        </aside>
+        </div>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 335b8bc · contract 4</p>
       </div>
     </div>
   </div>
@@ -589,6 +1190,7 @@ Baseline restored and confirmed:</code></pre></div>
 <script src="../vendor/rux-ds/js/tile.js"></script>
 <script src="../vendor/rux-ds/js/modal.js"></script>
 <script src="../vendor/rux-ds/js/profile.js"></script>
+<script src="../js/exercise.js"></script>
 <script src="/switcher.js"></script>
 </body>
 </html>

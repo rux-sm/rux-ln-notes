@@ -26,6 +26,14 @@ mkdir -p "$OUT/data" "$OUT/site"
 # The pages reach the design system at ../vendor/, so the private site root
 # gets the same vendor/ this project tracks, by link rather than copy.
 ln -s "$HERE/vendor" "$OUT/site/vendor"
+# The pages also reach this project's own behaviour at ../js/ and the mark at
+# ../brand/, by the same relative paths the public site uses.
+ln -s "$HERE/js" "$OUT/site/js"
+ln -s "$HERE/brand" "$OUT/site/brand"
+# And this project's own two override hooks at the root, linked after the
+# vendored ones by every page; without them the viewer 404s twice per page.
+ln -s "$HERE/rux-theme.css" "$OUT/site/rux-theme.css"
+ln -s "$HERE/rux-overrides.css" "$OUT/site/rux-overrides.css"
 LN_DATA="$OUT/data" LN_OUT="$OUT/site/guides" node "$HERE/tools/build.mjs"
 
 echo "  private site: $OUT/site  (git-ignored, never published)"

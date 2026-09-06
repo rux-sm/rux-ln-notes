@@ -117,6 +117,43 @@
 }
 
 .ln-revision { color: var(--rux-text-secondary); margin: 0; }
+/* THE EXERCISE PAGE IS A WORKSHEET. Two columns on a wide viewport -- the
+   work, and a rail that stays put holding progress, notes and the export --
+   one column otherwise. Local layout classes, because Carbon's css-grid is
+   already the page's outer frame and a nested one would re-derive the shell's
+   16-column arithmetic for a two-column split. */
+.ln-ex { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+@media (min-width: 88rem) {
+  .ln-ex { grid-template-columns: minmax(0, 1fr) 20rem; }
+  .ln-ex-rail { position: sticky; inset-block-start: 4rem; }
+}
+.ln-ex-status { margin-inline-start: .75rem; vertical-align: middle; }
+.ln-q-list { display: grid; gap: .75rem; }
+.ln-q { display: grid; gap: .75rem; }
+.ln-q-head { display: grid; gap: .5rem; }
+.ln-q-label { margin: 0; font-weight: 600; }
+.ln-q-fields { display: grid; gap: .75rem; }
+@media (min-width: 66rem) {
+  .ln-q-fields[data-cols="2"], .ln-q-fields[data-cols="3"] {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+/* Carbon sizes a text area by its `cols`; a worksheet space is as wide as
+   its item. Measured 2026-09-06: 12rem by default, three words per line. */
+.ln-ex .rux--form-item, .ln-ex .rux--text-area__wrapper, .ln-ex .rux--text-area { inline-size: 100%; }
+.ln-q .rux--text-area { min-block-size: 3.25rem; resize: vertical; }
+.ln-q-reveal { margin-block-start: .25rem; }
+/* `hidden` alone loses to Carbon's `.rux--tile { display: block }`, which
+   is more specific than the UA rule; measured 2026-09-06 with every key
+   open on first paint. */
+.ln-q-key { margin-block-start: .5rem; }
+.ln-q-key[hidden] { display: none; }
+.ln-q-key p { margin: 0; }
+.ln-pass .rux--checkbox-label-text { font-weight: 400; }
+.ln-ex-work { display: grid; gap: 1rem; }
+.ln-ex-work h3 { margin: 0; }
+.ln-ex-progress { margin: 0; color: var(--rux-text-secondary); }
+.ln-ex-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -386,13 +423,14 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
   <div class="rux--css-grid">
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
-        <div class="rux--stack-vertical rux--stack-scale-5 ln-exercise">
+        <div class="ln-ex ln-exercise" data-ln-doc="HOMEWORK-production-and-planning">
+        <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>Homework — understand a production result</h1>
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Homework</span></span>
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">8 assignments</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-03</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-06</span></span>
           </div>
           <p><strong>Goal:</strong> finish one production run, explain which master data produced the result, change one condition and predict the difference, then connect planning to production.</p>
           <p>Use the bamboo test family in Company <span class="rux--tag rux--tag--gray" title="4100"><span class="rux--tag__label">4100</span></span>. Work in order and stop after any result you cannot explain. A surprising result is useful evidence; do not click through it or repair several values at once.</p>
@@ -405,130 +443,807 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     </div>
   </div>
 </div>
-          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-1">
-          <h2 id="a-1">1. Before you start</h2>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Write this down</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>Your name</td><td></td></tr>
-          <tr><td>Date</td><td></td></tr>
-          <tr><td>Company</td><td><span class="rux--tag rux--tag--gray" title="4100"><span class="rux--tag__label">4100</span></span></td></tr>
-          <tr><td>Site</td><td></td></tr>
-          <tr><td>Finished item</td><td><span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span></td></tr>
-          <tr><td>Raw-material warehouse</td><td></td></tr>
-          <tr><td>Finished-goods warehouse</td><td></td></tr>
-            </tbody>
-          </table>
+          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-1" data-ln-section="1">
+          <h2 id="a-1">1. Before you start <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="1:7ysc45">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1cb08vz">Your name</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1634ay2">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1634ay2" class="rux--text-area" rows="2" data-ln-answer="1:7ysc45:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="1:yjr3gj">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-jp2cdl">Date</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1wwzxuc">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1wwzxuc" class="rux--text-area" rows="2" data-ln-answer="1:yjr3gj:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:egkj8c">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-6otsuk">Company</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-13w04c7">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-13w04c7" class="rux--text-area" rows="2" data-ln-answer="1:egkj8c:1" data-ln-given="4100" placeholder="Your answer">4100</textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:yk2u4a">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-jofyxc">Site</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1e471a3">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1e471a3" class="rux--text-area" rows="2" data-ln-answer="1:yk2u4a:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:1iensym">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-yp4fbq">Finished item</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1wk2i81">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1wk2i81" class="rux--text-area" rows="2" data-ln-answer="1:1iensym:1" data-ln-given="BAM-CHOP-PAIR" placeholder="Your answer">BAM-CHOP-PAIR</textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:1oo72ri">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-12qrkf7">Raw-material warehouse</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1yc49se">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1yc49se" class="rux--text-area" rows="2" data-ln-answer="1:1oo72ri:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="1:1knxotn">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-106aetf">Finished-goods warehouse</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-174jv1q">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-174jv1q" class="rux--text-area" rows="2" data-ln-answer="1:1knxotn:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
           <p>Create one folder for the screenshots from this run. Every screenshot must show the whole LN window and a readable status bar.</p>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-2">
-          <h2 id="a-2">2. Homework 1 — map the production foundation</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-2" data-ln-section="2">
+          <h2 id="a-2">2. Homework 1 — map the production foundation <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Follow phases 6–10 of <a class="rux--link" href="SG-create-basic-test-items-and-defaults.html">Create basic test items and defaults</a>. Read the records; do not rebuild them.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>☐</td><td>What is the finished item&#39;s supply source?</td><td></td></tr>
-          <tr><td>☐</td><td>Which BOM and revision should the order use?</td><td></td></tr>
-          <tr><td>☐</td><td>Which components and quantities make one finished item?</td><td></td></tr>
-          <tr><td>☐</td><td>Which routing and revision should the order use?</td><td></td></tr>
-          <tr><td>☐</td><td>Which operation and work center should appear?</td><td></td></tr>
-          <tr><td>☐</td><td>Has the standard cost been actualized? What proves it?</td><td></td></tr>
-          <tr><td>☐</td><td>How much of each component is on hand before production?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="2:1laa2au">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1wvfbp4">What is the finished item&#39;s supply source?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1t0r06c">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1t0r06c" class="rux--text-area" rows="2" data-ln-answer="2:1laa2au:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1wvfbp4" class="rux--checkbox" type="checkbox" data-ln-check="2:1laa2au">
+            <label for="c-1wvfbp4" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
         </div>
-      </div>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Your prediction</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>If you create an order for one finished item, what components, quantities, routing and operation should LN generate?</td><td></td></tr>
-            </tbody>
-          </table>
+        <div class="rux--tile ln-q" data-ln-row="2:1vc02cw">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-4bofsn">Which BOM and revision should the order use?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-l8u8gz">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-l8u8gz" class="rux--text-area" rows="2" data-ln-answer="2:1vc02cw:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-4bofsn" class="rux--checkbox" type="checkbox" data-ln-check="2:1vc02cw">
+            <label for="c-4bofsn" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="2:jj8qs0">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-4h5ltd">Which components and quantities make one finished item?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-18ux8d9">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-18ux8d9" class="rux--text-area" rows="2" data-ln-answer="2:jj8qs0:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-4h5ltd" class="rux--checkbox" type="checkbox" data-ln-check="2:jj8qs0">
+            <label for="c-4h5ltd" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:1jtlqvu">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1vyim94">Which routing and revision should the order use?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1ryy2tw">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1ryy2tw" class="rux--text-area" rows="2" data-ln-answer="2:1jtlqvu:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1vyim94" class="rux--checkbox" type="checkbox" data-ln-check="2:1jtlqvu">
+            <label for="c-1vyim94" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:wa493">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-17fmq6h">Which operation and work center should appear?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1salhpx">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1salhpx" class="rux--text-area" rows="2" data-ln-answer="2:wa493:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-17fmq6h" class="rux--checkbox" type="checkbox" data-ln-check="2:wa493">
+            <label for="c-17fmq6h" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:1xgtwfu">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-5qlpt3">Has the standard cost been actualized? What proves it?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1y24yfn">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1y24yfn" class="rux--text-area" rows="2" data-ln-answer="2:1xgtwfu:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-5qlpt3" class="rux--checkbox" type="checkbox" data-ln-check="2:1xgtwfu">
+            <label for="c-5qlpt3" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:5hu82u">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1577nc2">How much of each component is on hand before production?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1aoaary">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1aoaary" class="rux--text-area" rows="2" data-ln-answer="2:5hu82u:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1577nc2" class="rux--checkbox" type="checkbox" data-ln-check="2:5hu82u">
+            <label for="c-1577nc2" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="2:apdli">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-170g8ez">If you create an order for one finished item, what components, quantities, routing and operation should LN generate?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-v9ugp2">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-v9ugp2" class="rux--text-area" rows="2" data-ln-answer="2:apdli:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-3">
-          <h2 id="a-3">3. Homework 2 — run one clean production order</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-3" data-ln-section="3">
+          <h2 id="a-3">3. Homework 2 — run one clean production order <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Follow <a class="rux--link" href="SG-manual-production-order-existing-master-data.html">Manual production order from existing master data</a> through finished-goods receipt. Do not run <span class="rux--tag rux--tag--blue" title="Close Production Orders"><span class="rux--tag__label">Close Production Orders</span></span> <span class="rux--tag rux--tag--cyan" title="ticst0201m000"><span class="rux--tag__label">ticst0201m000</span></span>; closing and its financial postings are outside that guide.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Checkpoint</div></th><th scope="col"><div class="rux--table-header-label">Record the result</div></th></tr></thead>
-            <tbody>
-          <tr><td>☐</td><td>Production order number</td><td></td></tr>
-          <tr><td>☐</td><td>Quantity ordered</td><td></td></tr>
-          <tr><td>☐</td><td>Status immediately after save</td><td></td></tr>
-          <tr><td>☐</td><td>BOM and revision LN selected</td><td></td></tr>
-          <tr><td>☐</td><td>Routing and revision LN selected</td><td></td></tr>
-          <tr><td>☐</td><td>Generated operation and work center</td><td></td></tr>
-          <tr><td>☐</td><td>Estimated material quantities</td><td></td></tr>
-          <tr><td>☐</td><td>Status after release</td><td></td></tr>
-          <tr><td>☐</td><td>Production issue warehousing-order number</td><td></td></tr>
-          <tr><td>☐</td><td>Finished-item receipt warehousing-order number</td><td></td></tr>
-          <tr><td>☐</td><td>Actual material quantities after issue</td><td></td></tr>
-          <tr><td>☐</td><td>Status after the first real transaction</td><td></td></tr>
-          <tr><td>☐</td><td>Operation quantity completed</td><td></td></tr>
-          <tr><td>☐</td><td>Quantity delivered</td><td></td></tr>
-          <tr><td>☐</td><td>Final production-order status</td><td></td></tr>
-          <tr><td>☐</td><td>Finished-item on-hand before</td><td></td></tr>
-          <tr><td>☐</td><td>Finished-item on-hand after</td><td></td></tr>
-          <tr><td>☐</td><td>Does the on-hand change equal the delivered quantity?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="3:p6z26p">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1welxm">Production order number</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-9dnxyu">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-9dnxyu" class="rux--text-area" rows="2" data-ln-answer="3:p6z26p:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1welxm" class="rux--checkbox" type="checkbox" data-ln-check="3:p6z26p">
+            <label for="c-1welxm" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="3:11j9e21">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1r5si5b">Quantity ordered</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-oa7vwr">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-oa7vwr" class="rux--text-area" rows="2" data-ln-answer="3:11j9e21:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1r5si5b" class="rux--checkbox" type="checkbox" data-ln-check="3:11j9e21">
+            <label for="c-1r5si5b" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1ezakym">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-q4g4hg">Status immediately after save</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-106pr34">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-106pr34" class="rux--text-area" rows="2" data-ln-answer="3:1ezakym:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-q4g4hg" class="rux--checkbox" type="checkbox" data-ln-check="3:1ezakym">
+            <label for="c-q4g4hg" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:8skbm0">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-11vhkyv">BOM and revision LN selected</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1bljidv">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1bljidv" class="rux--text-area" rows="2" data-ln-answer="3:8skbm0:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-11vhkyv" class="rux--checkbox" type="checkbox" data-ln-check="3:8skbm0">
+            <label for="c-11vhkyv" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:5nmaky">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-zu3l3b">Routing and revision LN selected</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-tjmy2b">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-tjmy2b" class="rux--text-area" rows="2" data-ln-answer="3:5nmaky:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-zu3l3b" class="rux--checkbox" type="checkbox" data-ln-check="3:5nmaky">
+            <label for="c-zu3l3b" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:hce8f0">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1wmg14g">Generated operation and work center</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-6ggaxo">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-6ggaxo" class="rux--text-area" rows="2" data-ln-answer="3:hce8f0:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1wmg14g" class="rux--checkbox" type="checkbox" data-ln-check="3:hce8f0">
+            <label for="c-1wmg14g" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1t7p53v">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-yixg0s">Estimated material quantities</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-n94o3s">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-n94o3s" class="rux--text-area" rows="2" data-ln-answer="3:1t7p53v:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-yixg0s" class="rux--checkbox" type="checkbox" data-ln-check="3:1t7p53v">
+            <label for="c-yixg0s" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:l9vli4">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1yedzx2">Status after release</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-mwwd36">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-mwwd36" class="rux--text-area" rows="2" data-ln-answer="3:l9vli4:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1yedzx2" class="rux--checkbox" type="checkbox" data-ln-check="3:l9vli4">
+            <label for="c-1yedzx2" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:jfnd5f">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1xzdtrj">Production issue warehousing-order number</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1u8ilp7">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1u8ilp7" class="rux--text-area" rows="2" data-ln-answer="3:jfnd5f:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1xzdtrj" class="rux--checkbox" type="checkbox" data-ln-check="3:jfnd5f">
+            <label for="c-1xzdtrj" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1rc97zp">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-y27z0y">Finished-item receipt warehousing-order number</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-f2dxz2">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-f2dxz2" class="rux--text-area" rows="2" data-ln-answer="3:1rc97zp:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-y27z0y" class="rux--checkbox" type="checkbox" data-ln-check="3:1rc97zp">
+            <label for="c-y27z0y" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1e38fm8">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-opfplq">Actual material quantities after issue</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1jrosy2">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1jrosy2" class="rux--text-area" rows="2" data-ln-answer="3:1e38fm8:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-opfplq" class="rux--checkbox" type="checkbox" data-ln-check="3:1e38fm8">
+            <label for="c-opfplq" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:ijrury">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1xf07pz">Status after the first real transaction</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-i1n8g3">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-i1n8g3" class="rux--text-area" rows="2" data-ln-answer="3:ijrury:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1xf07pz" class="rux--checkbox" type="checkbox" data-ln-check="3:ijrury">
+            <label for="c-1xf07pz" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:60plg2">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-z9p0jx">Operation quantity completed</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1fkw5bt">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1fkw5bt" class="rux--text-area" rows="2" data-ln-answer="3:60plg2:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-z9p0jx" class="rux--checkbox" type="checkbox" data-ln-check="3:60plg2">
+            <label for="c-z9p0jx" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1s5gtdk">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-xu2dg5">Quantity delivered</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1ghgfi9">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1ghgfi9" class="rux--text-area" rows="2" data-ln-answer="3:1s5gtdk:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-xu2dg5" class="rux--checkbox" type="checkbox" data-ln-check="3:1s5gtdk">
+            <label for="c-xu2dg5" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1afhu6b">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-n5a3rz">Final production-order status</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1pssvez">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1pssvez" class="rux--text-area" rows="2" data-ln-answer="3:1afhu6b:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-n5a3rz" class="rux--checkbox" type="checkbox" data-ln-check="3:1afhu6b">
+            <label for="c-n5a3rz" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:35do77">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-xf2h8b">Finished-item on-hand before</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-p0b6ef">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-p0b6ef" class="rux--text-area" rows="2" data-ln-answer="3:35do77:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-xf2h8b" class="rux--checkbox" type="checkbox" data-ln-check="3:35do77">
+            <label for="c-xf2h8b" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1bfi282">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-nsk4a8">Finished-item on-hand after</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1jnlnq4">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1jnlnq4" class="rux--text-area" rows="2" data-ln-answer="3:1bfi282:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-nsk4a8" class="rux--checkbox" type="checkbox" data-ln-check="3:1bfi282">
+            <label for="c-nsk4a8" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1bwzd5z">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-o4yhqh">Does the on-hand change equal the delivered quantity?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-4jq8fp">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-4jq8fp" class="rux--text-area" rows="2" data-ln-answer="3:1bwzd5z:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-o4yhqh" class="rux--checkbox" type="checkbox" data-ln-check="3:1bwzd5z">
+            <label for="c-o4yhqh" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
           <p>A complete, readable set of the last six answers above may improve the production guide. </p>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-4">
-          <h2 id="a-4">4. Homework 3 — explain the result</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-4" data-ln-section="4">
+          <h2 id="a-4">4. Homework 3 — explain the result <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Answer without describing which buttons you clicked.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your explanation</div></th></tr></thead>
-            <tbody>
-          <tr><td>Why did LN select this BOM?</td><td></td></tr>
-          <tr><td>Why did LN select this routing and operation?</td><td></td></tr>
-          <tr><td>How did you calculate the expected component quantities?</td><td></td></tr>
-          <tr><td>What event moved the order into each status you observed?</td><td></td></tr>
-          <tr><td>What proves that production affected inventory?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="4:17imypp">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-scg4yy">Why did LN select this BOM?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-155alat">Your explanation</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-155alat" class="rux--text-area" rows="2" data-ln-answer="4:17imypp:1" data-ln-given="" placeholder="Your explanation"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="4:gvm7kb">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1qviwpt">Why did LN select this routing and operation?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1wvivws">Your explanation</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1wvivws" class="rux--text-area" rows="2" data-ln-answer="4:gvm7kb:1" data-ln-given="" placeholder="Your explanation"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="4:1tda6t7">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1vpxhha">How did you calculate the expected component quantities?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-hb0usp">Your explanation</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-hb0usp" class="rux--text-area" rows="2" data-ln-answer="4:1tda6t7:1" data-ln-given="" placeholder="Your explanation"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="4:1s1mw7s">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1u2x23a">What event moved the order into each status you observed?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-7ywpoh">Your explanation</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-7ywpoh" class="rux--text-area" rows="2" data-ln-answer="4:1s1mw7s:1" data-ln-given="" placeholder="Your explanation"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="4:18z91gv">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-talbgd">What proves that production affected inventory?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-8jawiw">Your explanation</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-8jawiw" class="rux--text-area" rows="2" data-ln-answer="4:18z91gv:1" data-ln-given="" placeholder="Your explanation"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-5">
-          <h2 id="a-5">5. Homework 4 — change one condition</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-5" data-ln-section="5">
+          <h2 id="a-5">5. Homework 4 — change one condition <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Create a second production order for the same item with a different <em>Quantity Ordered</em>. Change nothing else.</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>New production quantity</td><td></td></tr>
-          <tr><td>Predicted <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> quantity</td><td></td></tr>
-          <tr><td>Predicted <span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span> quantity</td><td></td></tr>
-          <tr><td>Actual estimated rod quantity</td><td></td></tr>
-          <tr><td>Actual estimated sleeve quantity</td><td></td></tr>
-          <tr><td>Did the same BOM and routing appear?</td><td></td></tr>
-          <tr><td>Did LN match your prediction?</td><td></td></tr>
-          <tr><td>If not, what differed?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="5:13a4wad">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1lvxaq1">New production quantity</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-ybcqr8">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-ybcqr8" class="rux--text-area" rows="2" data-ln-answer="5:13a4wad:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="5:1idrf8a">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-lwgf6r">Predicted <span class="rux--tag rux--tag--gray" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> quantity</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1jg12z2">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1jg12z2" class="rux--text-area" rows="2" data-ln-answer="5:1idrf8a:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:1kw3xh5">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-nj4wvj">Predicted <span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span> quantity</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1ir2s4a">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1ir2s4a" class="rux--text-area" rows="2" data-ln-answer="5:1kw3xh5:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:fdb5gj">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1ke2n1i">Actual estimated rod quantity</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-130jn81">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-130jn81" class="rux--text-area" rows="2" data-ln-answer="5:fdb5gj:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:klpcw2">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1nsjw2v">Actual estimated sleeve quantity</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1eej6oi">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1eej6oi" class="rux--text-area" rows="2" data-ln-answer="5:klpcw2:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:mkcw9a">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1p26hxc">Did the same BOM and routing appear?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-a14xyj">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-a14xyj" class="rux--text-area" rows="2" data-ln-answer="5:mkcw9a:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:ela8bg">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1jweh53">Did LN match your prediction?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1odjg2">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1odjg2" class="rux--text-area" rows="2" data-ln-answer="5:ela8bg:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:sc9ihp">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1srfcmc">If not, what differed?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1qzmdlb">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1qzmdlb" class="rux--text-area" rows="2" data-ln-answer="5:sc9ihp:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
           <p>Stop after verifying the generated foundation unless you have a reason to complete the second order. The purpose of this run is to prove that you can predict the result of one controlled change.</p>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-6">
-          <h2 id="a-6">6. Homework 5 — connect planning to production</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-6" data-ln-section="6">
+          <h2 id="a-6">6. Homework 5 — connect planning to production <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>First follow <a class="rux--link" href="SG-run-order-planning-for-one-item.html">Run order planning for one item</a> to create uncovered demand, run MRP and reconcile the pegging tree. Then use phase 3 of <a class="rux--link" href="SG-demand-to-shipment-via-planning.html">Demand to shipment via planning</a> to attempt the production half of the transfer.</p>
           <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast">
   <div class="rux--inline-notification__details">
@@ -539,49 +1254,273 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     </div>
   </div>
 </div>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Checkpoint</div></th><th scope="col"><div class="rux--table-header-label">Record the result</div></th></tr></thead>
-            <tbody>
-          <tr><td>☐</td><td>Sales-order demand</td><td></td></tr>
-          <tr><td>☐</td><td>Finished-item on-hand</td><td></td></tr>
-          <tr><td>☐</td><td>Expected production shortfall</td><td></td></tr>
-          <tr><td>☐</td><td>Planned production-order number and quantity</td><td></td></tr>
-          <tr><td>☐</td><td>Does the pegging arithmetic reconcile?</td><td></td></tr>
-          <tr><td>☐</td><td>Transfer options used</td><td></td></tr>
-          <tr><td>☐</td><td>Transfer report or exact error</td><td></td></tr>
-          <tr><td>☐</td><td>Real production-order number, if created</td><td></td></tr>
-          <tr><td>☐</td><td>Does its item and quantity match the planned order?</td><td></td></tr>
-          <tr><td>☐</td><td>Does it contain the expected BOM, routing and materials?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="6:ijedlb">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1gz3kpr">Sales-order demand</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-cnp4i3">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-cnp4i3" class="rux--text-area" rows="2" data-ln-answer="6:ijedlb:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1gz3kpr" class="rux--checkbox" type="checkbox" data-ln-check="6:ijedlb">
+            <label for="c-1gz3kpr" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="6:1xozqcw">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1s5ga4y">Finished-item on-hand</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-11jsrcu">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-11jsrcu" class="rux--text-area" rows="2" data-ln-answer="6:1xozqcw:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1s5ga4y" class="rux--checkbox" type="checkbox" data-ln-check="6:1xozqcw">
+            <label for="c-1s5ga4y" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:uwhaul">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1ozxy6j">Expected production shortfall</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-ddnq2f">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-ddnq2f" class="rux--text-area" rows="2" data-ln-answer="6:uwhaul:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1ozxy6j" class="rux--checkbox" type="checkbox" data-ln-check="6:uwhaul">
+            <label for="c-1ozxy6j" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:182idu">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-fpw9wy">Planned production-order number and quantity</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1yyat0e">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1yyat0e" class="rux--text-area" rows="2" data-ln-answer="6:182idu:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-fpw9wy" class="rux--checkbox" type="checkbox" data-ln-check="6:182idu">
+            <label for="c-fpw9wy" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:3poo3z">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-i5cetf">Does the pegging arithmetic reconcile?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-h3508f">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-h3508f" class="rux--text-area" rows="2" data-ln-answer="6:3poo3z:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-i5cetf" class="rux--checkbox" type="checkbox" data-ln-check="6:3poo3z">
+            <label for="c-i5cetf" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:zrs4zr">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1s54bis">Transfer options used</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-rhymtc">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-rhymtc" class="rux--text-area" rows="2" data-ln-answer="6:zrs4zr:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1s54bis" class="rux--checkbox" type="checkbox" data-ln-check="6:zrs4zr">
+            <label for="c-1s54bis" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:13pyi9y">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-jif0d9">Transfer report or exact error</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-9vdrpl">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-9vdrpl" class="rux--text-area" rows="2" data-ln-answer="6:13pyi9y:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-jif0d9" class="rux--checkbox" type="checkbox" data-ln-check="6:13pyi9y">
+            <label for="c-jif0d9" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:kfji8l">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1i6zg4d">Real production-order number, if created</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1pmt5xl">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1pmt5xl" class="rux--text-area" rows="2" data-ln-answer="6:kfji8l:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1i6zg4d" class="rux--checkbox" type="checkbox" data-ln-check="6:kfji8l">
+            <label for="c-1i6zg4d" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:u4qfgs">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1notyen">Does its item and quantity match the planned order?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-8w3mxn">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-8w3mxn" class="rux--text-area" rows="2" data-ln-answer="6:u4qfgs:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1notyen" class="rux--checkbox" type="checkbox" data-ln-check="6:u4qfgs">
+            <label for="c-1notyen" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:1e5i8r6">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1epe9d5">Does it contain the expected BOM, routing and materials?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-r7up5h">Record the result</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-r7up5h" class="rux--text-area" rows="2" data-ln-answer="6:1e5i8r6:2" data-ln-given="" placeholder="Record the result"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1epe9d5" class="rux--checkbox" type="checkbox" data-ln-check="6:1e5i8r6">
+            <label for="c-1epe9d5" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
           <p>A complete transfer capture, including the resulting order or exact failure, may improve the planning guide. </p>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-7">
-          <h2 id="a-7">7. Optional investigation — `BAM-SLEEVE`</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-7" data-ln-section="7">
+          <h2 id="a-7">7. Optional investigation — `BAM-SLEEVE` <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Do this only after Homework 1–5. The earlier run added planning data for <span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span>, reran planning, and still produced no planned supply. The authored records disagree about whether the cause was its order horizon or stock covering the requirement.</p>
           <p>Record all four values in one sitting before changing anything:</p>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">☐</div></th><th scope="col"><div class="rux--table-header-label">Read this</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>☐</td><td>Cluster and site on the item&#39;s planning row</td><td></td></tr>
-          <tr><td>☐</td><td>Order-horizon days and displayed horizon date</td><td></td></tr>
-          <tr><td>☐</td><td>On-hand and existing supply</td><td></td></tr>
-          <tr><td>☐</td><td>Demand date and quantity</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="7:flhfid">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-19lgxr7">Cluster and site on the item&#39;s planning row</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-3vmsen">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-3vmsen" class="rux--text-area" rows="2" data-ln-answer="7:flhfid:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-19lgxr7" class="rux--checkbox" type="checkbox" data-ln-check="7:flhfid">
+            <label for="c-19lgxr7" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
         </div>
-      </div>
+        <div class="rux--tile ln-q" data-ln-row="7:t5ft4x">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1hksz5x">Order-horizon days and displayed horizon date</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-tz2prl">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-tz2prl" class="rux--text-area" rows="2" data-ln-answer="7:t5ft4x:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1hksz5x" class="rux--checkbox" type="checkbox" data-ln-check="7:t5ft4x">
+            <label for="c-1hksz5x" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="7:56hu39">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-ctn3ii">On-hand and existing supply</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-16lmkza">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-16lmkza" class="rux--text-area" rows="2" data-ln-answer="7:56hu39:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-ctn3ii" class="rux--checkbox" type="checkbox" data-ln-check="7:56hu39">
+            <label for="c-ctn3ii" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="7:3v5am6">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-cr4jvc">Demand date and quantity</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-11jqf5w">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-11jqf5w" class="rux--text-area" rows="2" data-ln-answer="7:3v5am6:2" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-cr4jvc" class="rux--checkbox" type="checkbox" data-ln-check="7:3v5am6">
+            <label for="c-cr4jvc" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
           <p>Then run MRP once and capture the <span class="rux--tag rux--tag--gray" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span> result or its absence in <span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span>, Planning ➔ Order Planning ➔ Planned Orders.</p>
           <p>The four baseline readings plus the MRP result can establish the cause. </p>
         </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-8">
-          <h2 id="a-8">8. Report back</h2>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="a-8" data-ln-section="8">
+          <h2 id="a-8">8. Report back <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
           <p>Send back:</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item">This completed worksheet.</li>
@@ -589,16 +1528,23 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item">Any process or error report produced by planning or transfer.</li>
           <li class="rux--list__item">A short answer to the question below.</li>
         </ul>
-          <div class="rux--data-table-container">
-        <div class="rux--data-table-content">
-          <table class="rux--data-table rux--data-table--md">
-            <thead><tr><th scope="col"><div class="rux--table-header-label">Question</div></th><th scope="col"><div class="rux--table-header-label">Your answer</div></th></tr></thead>
-            <tbody>
-          <tr><td>Which master-data value had the greatest effect on your result, and how did you prove it?</td><td></td></tr>
-            </tbody>
-          </table>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="8:153rkds">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-d7s4n8">Which master-data value had the greatest effect on your result, and how did you prove it?</p>
+            
+          </div>
+          <div class="ln-q-fields" data-cols="1">
+            <div class="rux--form-item ln-q-field">
+              <label class="rux--label rux--visually-hidden" for="f-1855gz3">Your answer</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="f-1855gz3" class="rux--text-area" rows="2" data-ln-answer="8:153rkds:1" data-ln-given="" placeholder="Your answer"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
+        </div>
           <p>For each unexpected result, report it without guessing:</p>
           <div class="ln-code-scroll"><pre class="rux--type-code-01"><code>Question I was testing:
 Baseline value:
@@ -612,7 +1558,26 @@ What remains unexplained:</code></pre></div>
           <p>Reporting a result does not automatically close an issue. The capture must show the relevant value, result and LN status bar; it can then be mined into the owning session or guide and the issue can be evaluated against its exact wording.</p>
         </section>
         </div>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 33ba255 · contract 3</p>
+        <aside class="ln-ex-rail" aria-label="Your work">
+          <div class="rux--tile ln-ex-work">
+            <h3 class="rux--type-heading-compact-02">Your work</h3>
+            <p class="rux--type-body-compact-01 ln-ex-progress" data-ln-progress>Nothing answered yet</p>
+            <div class="rux--form-item">
+              <label class="rux--label" for="ln-notes">Notes</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="ln-notes" class="rux--text-area" rows="6" data-ln-notes placeholder="Anything worth writing down as you go"></textarea>
+              </div>
+              <div class="rux--form__helper-text">Saved in this browser only, with your answers. Export to keep or send them.</div>
+            </div>
+            <div class="ln-ex-actions">
+              <button type="button" class="rux--btn rux--btn--primary rux--btn--sm" data-ln-export>Export answers</button>
+              <button type="button" class="rux--btn rux--btn--tertiary rux--btn--sm" data-ln-copy>Copy</button>
+              <button type="button" class="rux--btn rux--btn--danger--ghost rux--btn--sm" data-ln-clear>Clear</button>
+            </div>
+          </div>
+        </aside>
+        </div>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 335b8bc · contract 4</p>
       </div>
     </div>
   </div>
@@ -633,6 +1598,7 @@ What remains unexplained:</code></pre></div>
 <script src="../vendor/rux-ds/js/tile.js"></script>
 <script src="../vendor/rux-ds/js/modal.js"></script>
 <script src="../vendor/rux-ds/js/profile.js"></script>
+<script src="../js/exercise.js"></script>
 <script src="/switcher.js"></script>
 </body>
 </html>

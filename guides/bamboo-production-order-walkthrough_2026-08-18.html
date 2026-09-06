@@ -117,6 +117,43 @@
 }
 
 .ln-revision { color: var(--rux-text-secondary); margin: 0; }
+/* THE EXERCISE PAGE IS A WORKSHEET. Two columns on a wide viewport -- the
+   work, and a rail that stays put holding progress, notes and the export --
+   one column otherwise. Local layout classes, because Carbon's css-grid is
+   already the page's outer frame and a nested one would re-derive the shell's
+   16-column arithmetic for a two-column split. */
+.ln-ex { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+@media (min-width: 88rem) {
+  .ln-ex { grid-template-columns: minmax(0, 1fr) 20rem; }
+  .ln-ex-rail { position: sticky; inset-block-start: 4rem; }
+}
+.ln-ex-status { margin-inline-start: .75rem; vertical-align: middle; }
+.ln-q-list { display: grid; gap: .75rem; }
+.ln-q { display: grid; gap: .75rem; }
+.ln-q-head { display: grid; gap: .5rem; }
+.ln-q-label { margin: 0; font-weight: 600; }
+.ln-q-fields { display: grid; gap: .75rem; }
+@media (min-width: 66rem) {
+  .ln-q-fields[data-cols="2"], .ln-q-fields[data-cols="3"] {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+/* Carbon sizes a text area by its `cols`; a worksheet space is as wide as
+   its item. Measured 2026-09-06: 12rem by default, three words per line. */
+.ln-ex .rux--form-item, .ln-ex .rux--text-area__wrapper, .ln-ex .rux--text-area { inline-size: 100%; }
+.ln-q .rux--text-area { min-block-size: 3.25rem; resize: vertical; }
+.ln-q-reveal { margin-block-start: .25rem; }
+/* `hidden` alone loses to Carbon's `.rux--tile { display: block }`, which
+   is more specific than the UA rule; measured 2026-09-06 with every key
+   open on first paint. */
+.ln-q-key { margin-block-start: .5rem; }
+.ln-q-key[hidden] { display: none; }
+.ln-q-key p { margin: 0; }
+.ln-pass .rux--checkbox-label-text { font-weight: 400; }
+.ln-ex-work { display: grid; gap: 1rem; }
+.ln-ex-work h3 { margin: 0; }
+.ln-ex-progress { margin: 0; color: var(--rux-text-secondary); }
+.ln-ex-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -538,7 +575,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
       </div>
           <p></p>
         </section>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 33ba255 · contract 3</p>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 335b8bc · contract 4</p>
       </div>
     </div>
   </div>
@@ -559,6 +596,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <script src="../vendor/rux-ds/js/tile.js"></script>
 <script src="../vendor/rux-ds/js/modal.js"></script>
 <script src="../vendor/rux-ds/js/profile.js"></script>
+
 <script src="/switcher.js"></script>
 </body>
 </html>

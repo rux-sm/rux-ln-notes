@@ -662,7 +662,7 @@ const revisionLine = () => REVISION
   ? `<p class="rux--type-caption-01 ln-revision">Built from ${esc(REVISION)}</p>`
   : '';
 
-function page({ title, site, activeId, body, depth }) {
+function page({ title, site, activeId, body, depth, scripts = [] }) {
   const up = depth ? '../' : '';
   return `<!doctype html>
 <html lang="en" data-theme="white">
@@ -783,6 +783,43 @@ function page({ title, site, activeId, body, depth }) {
 }
 
 .ln-revision { color: var(--rux-text-secondary); margin: 0; }
+/* THE EXERCISE PAGE IS A WORKSHEET. Two columns on a wide viewport -- the
+   work, and a rail that stays put holding progress, notes and the export --
+   one column otherwise. Local layout classes, because Carbon's css-grid is
+   already the page's outer frame and a nested one would re-derive the shell's
+   16-column arithmetic for a two-column split. */
+.ln-ex { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+@media (min-width: 88rem) {
+  .ln-ex { grid-template-columns: minmax(0, 1fr) 20rem; }
+  .ln-ex-rail { position: sticky; inset-block-start: 4rem; }
+}
+.ln-ex-status { margin-inline-start: .75rem; vertical-align: middle; }
+.ln-q-list { display: grid; gap: .75rem; }
+.ln-q { display: grid; gap: .75rem; }
+.ln-q-head { display: grid; gap: .5rem; }
+.ln-q-label { margin: 0; font-weight: 600; }
+.ln-q-fields { display: grid; gap: .75rem; }
+@media (min-width: 66rem) {
+  .ln-q-fields[data-cols="2"], .ln-q-fields[data-cols="3"] {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+/* Carbon sizes a text area by its \`cols\`; a worksheet space is as wide as
+   its item. Measured 2026-09-06: 12rem by default, three words per line. */
+.ln-ex .rux--form-item, .ln-ex .rux--text-area__wrapper, .ln-ex .rux--text-area { inline-size: 100%; }
+.ln-q .rux--text-area { min-block-size: 3.25rem; resize: vertical; }
+.ln-q-reveal { margin-block-start: .25rem; }
+/* \`hidden\` alone loses to Carbon's \`.rux--tile { display: block }\`, which
+   is more specific than the UA rule; measured 2026-09-06 with every key
+   open on first paint. */
+.ln-q-key { margin-block-start: .5rem; }
+.ln-q-key[hidden] { display: none; }
+.ln-q-key p { margin: 0; }
+.ln-pass .rux--checkbox-label-text { font-weight: 400; }
+.ln-ex-work { display: grid; gap: 1rem; }
+.ln-ex-work h3 { margin: 0; }
+.ln-ex-progress { margin: 0; color: var(--rux-text-secondary); }
+.ln-ex-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -935,6 +972,7 @@ ${revisionLine()}
 </main>
 
 ${SCRIPTS.map(s => `<script src="${up}vendor/rux-ds/js/${s}.js"></script>`).join('\n')}
+${scripts.map(s => `<script src="${up}${s}"></script>`).join('\n')}
 <script src="/switcher.js"></script>
 </body>
 </html>
@@ -1164,32 +1202,148 @@ function reviewPage(r, site) {
 // AN EXERCISE IS ORDERED PRACTICE, not guide phases. The prose block vocabulary
 // is shared with reviews, while the top-level shape is an intro followed by the
 // numbered assignments the learner completes.
+// ---------------------------------------------------------------- exercise
+
+// A STABLE ID FOR A QUESTION, so an answer saved in the browser survives a
+// rebuild and a re-sync. Keyed by the section number and the question's own
+// text rather than its position: a row inserted above it must not hand it
+// someone else's answer. A reworded question orphans its answer, which is the
+// honest outcome -- the answer was to the old wording.
+const djb2 = (str) => {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+};
+
+// A CHECKBOX, exactly as Carbon renders one: wrapper, input, label, text.
+const checkbox = ({ id, text, attrs = '', cls = '' }) =>
+  `<div class="rux--form-item rux--checkbox-wrapper ${cls}">
+            <input id="${id}" class="rux--checkbox" type="checkbox"${attrs}>
+            <label for="${id}" class="rux--checkbox-label"><div class="rux--checkbox-label-text">${text}</div></label>
+          </div>`;
+
+// A TABLE WITH ANSWER SPACES IS A LIST OF QUESTIONS, NOT A GRID. The source
+// draws it as a table because Markdown has nothing else; on the page each row
+// is one item -- what is asked, what is given, then one text area per answer
+// column, and beneath an answer that has a key, the control that reveals it.
+// The data says which columns are which (`answers`, `check`); nothing here
+// guesses from an empty cell.
+function answerList(block, n) {
+  const cols = block.columns ?? [];
+  const answers = new Set(block.answers ?? []);
+  const check = block.check ?? null;
+  const fixed = cols.map((_, i) => i).filter(i => !answers.has(i) && i !== check);
+  const labelCol = fixed[0];
+  const single = answers.size === 1;
+
+  const items = (block.rows ?? []).map((row, r) => {
+    const cells = row.cells ?? [];
+    const labelText = cells[labelCol]?.text ?? `row ${r + 1}`;
+    const rowId = `${n}:${djb2(labelText)}`;
+    const keys = new Map((row.key ?? []).map(k => [k.col, k]));
+    const meta = fixed.slice(1).filter(i => (cells[i]?.tokens ?? []).length).map(i =>
+      `<div class="ln-meta-row"><dt>${esc(cols[i])}</dt><dd>${tokens(cells[i].tokens)}</dd></div>`).join('');
+    const fields = [...answers].map(i => {
+      const qid = `${rowId}:${i}`;
+      const fid = `f-${djb2(qid)}`;
+      const key = keys.get(i);
+      const given = cells[i]?.text ?? '';
+      const label = single
+        ? `<label class="rux--label rux--visually-hidden" for="${fid}">${esc(cols[i])}</label>`
+        : `<label class="rux--label" for="${fid}">${esc(cols[i])}</label>`;
+      const reveal = key ? `
+              <button type="button" class="rux--btn rux--btn--ghost rux--btn--sm ln-q-reveal" data-ln-reveal="${fid}-key" aria-controls="${fid}-key" aria-expanded="false" disabled>Reveal answer</button>
+              <div class="rux--tile ln-q-key" id="${fid}-key" hidden><p>${tokens(key.tokens)}</p></div>` : '';
+      return `<div class="rux--form-item ln-q-field">
+              ${label}
+              <div class="rux--text-area__wrapper">
+                <textarea id="${fid}" class="rux--text-area" rows="2" data-ln-answer="${qid}" data-ln-given="${esc(given)}" placeholder="${single ? esc(cols[i]) : ''}">${esc(given)}</textarea>
+              </div>${reveal}
+            </div>`;
+    }).join('\n            ');
+    const box = check !== null
+      ? checkbox({ id: `c-${djb2(rowId)}`, text: 'Done', attrs: ` data-ln-check="${rowId}"`, cls: 'ln-q-check' })
+      : '';
+    return `<div class="rux--tile ln-q" data-ln-row="${rowId}">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-${djb2(rowId)}">${tokens(cells[labelCol]?.tokens ?? [])}</p>
+            ${meta ? `<dl class="ln-meta">${meta}</dl>` : ''}
+          </div>
+          <div class="ln-q-fields" data-cols="${answers.size}">
+            ${fields}
+          </div>
+          ${box}
+        </div>`;
+  }).join('\n        ');
+
+  return `<div class="ln-q-list">\n        ${items}\n        </div>`;
+}
+
+// THE PASS CONDITION IS A BOX THE LEARNER TICKS. It arrives as its own block
+// kind since contract 4, so this branches on `kind` and never on a paragraph
+// that happens to open with the words.
+const passItem = (b, n) => checkbox({
+  id: `p-${n}`, attrs: ` data-ln-pass="${n}"`, cls: 'ln-pass',
+  text: `<strong>Pass condition:</strong> ${tokens(b.tokens)}`,
+});
+
+const eblock = (b, n) => {
+  if (b.kind === 'pass') return passItem(b, n);
+  if (b.kind === 'table' && (b.answers ?? []).length) return answerList(b, n);
+  return rblock(b);
+};
+
 function exercisePage(e, site) {
-  const assignments = (e.assignments ?? []).map(a => {
+  const sections = (e.assignments ?? []).map(a => {
     const id = `a-${a.n}`;
-    return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}">
-          <h2 id="${id}">${esc(a.n)}. ${esc(a.title)}</h2>
-          ${(a.blocks ?? []).map(rblock).join('\n          ')}
+    return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}" data-ln-section="${a.n}">
+          <h2 id="${id}">${esc(a.n)}. ${esc(a.title)} <span class="rux--tag rux--tag--gray ln-ex-status" data-ln-status>Not started</span></h2>
+          ${(a.blocks ?? []).map(b => eblock(b, a.n)).join('\n          ')}
         </section>`;
   }).join('\n        ');
 
-  const body = `        <div class="rux--stack-vertical rux--stack-scale-5 ln-exercise">
+  // THE RAIL. Progress, a notepad, and the way out. Everything a learner
+  // types stays in this browser's storage until they export it -- there is no
+  // server behind this page and the helper text says so. The export is the
+  // report-back the exercise already asks for, as a file.
+  const rail = `<aside class="ln-ex-rail" aria-label="Your work">
+          <div class="rux--tile ln-ex-work">
+            <h3 class="rux--type-heading-compact-02">Your work</h3>
+            <p class="rux--type-body-compact-01 ln-ex-progress" data-ln-progress>Nothing answered yet</p>
+            <div class="rux--form-item">
+              <label class="rux--label" for="ln-notes">Notes</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="ln-notes" class="rux--text-area" rows="6" data-ln-notes placeholder="Anything worth writing down as you go"></textarea>
+              </div>
+              <div class="rux--form__helper-text">Saved in this browser only, with your answers. Export to keep or send them.</div>
+            </div>
+            <div class="ln-ex-actions">
+              <button type="button" class="rux--btn rux--btn--primary rux--btn--sm" data-ln-export>Export answers</button>
+              <button type="button" class="rux--btn rux--btn--tertiary rux--btn--sm" data-ln-copy>Copy</button>
+              <button type="button" class="rux--btn rux--btn--danger--ghost rux--btn--sm" data-ln-clear>Clear</button>
+            </div>
+          </div>
+        </aside>`;
+
+  const body = `        <div class="ln-ex ln-exercise" data-ln-doc="${esc(e.id)}">
+        <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>${esc(e.title)}</h1>
           <div class="ln-tag-row">
             ${statusTag(e.status)}
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Homework</span></span>
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">${e.assignments.length} assignments</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(e.updated)}</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(e.updated)}</span></span>${e.keyed ? `
+            <span class="rux--tag rux--tag--blue"><span class="rux--tag__label">Answer key</span></span>` : ''}
           </div>
           ${(e.intro ?? []).map(rblock).join('\n          ')}
-          ${assignments}
+          ${sections}
+        </div>
+        ${rail}
         </div>`;
 
-  return page({ title: `${e.title} — Rux Notes`, site, activeId: e.id, body, depth: 1 });
+  return page({ title: `${e.title} — Rux Notes`, site, activeId: e.id, body, depth: 1, scripts: ['js/exercise.js'] });
 }
 
-// A CONCEPT PAGE, INTERNAL TIER ONLY. An intro, then the numbered sections
-// as topics -- the review's block vocabulary under a concept's headings.
 function conceptPage(c, site) {
   const topics = (c.topics ?? []).map(t => {
     const label = t.n != null ? `${t.n}. ${t.title}` : t.title;
@@ -1307,7 +1461,7 @@ const docs = readdirSync(DATA)
 // contract set and enforces nothing, so a renderer written for one shape could
 // silently consume the next. Bump this constant when this file is updated for
 // a new contract, and not before.
-const CONTRACT = 3;
+const CONTRACT = 4;
 for (const d of docs) if (Number(d.contract) !== CONTRACT)
   throw new Error(`${d.id ?? '?'}: contract ${d.contract}, this renderer reads ${CONTRACT} -- update build.mjs for it, then this constant`);
 

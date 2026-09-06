@@ -1,10 +1,10 @@
 {
-  "contract": 3,
+  "contract": 4,
   "tier": "export",
   "kind": "exercise",
   "id": "HOMEWORK-production-and-planning",
   "title": "Homework — understand a production result",
-  "updated": "2026-09-03",
+  "updated": "2026-09-06",
   "status": "draft",
   "summary": "finish one production run, explain which master data produced the result, change one condition and predict the difference, then connect planning to production.",
   "sources": [
@@ -22,6 +22,7 @@
     "whinh2100m000",
     "whwmd4300m000"
   ],
+  "keyed": false,
   "intro": [
     {
       "kind": "prose",
@@ -229,6 +230,9 @@
                 }
               ]
             }
+          ],
+          "answers": [
+            1
           ]
         },
         {
@@ -269,7 +273,7 @@
         {
           "kind": "table",
           "columns": [
-            "☐",
+            "",
             "Question",
             "Your answer"
           ],
@@ -277,13 +281,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -303,13 +302,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -329,13 +323,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -355,13 +344,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -381,13 +365,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -407,13 +386,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -433,13 +407,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -456,7 +425,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "answers": [
+            2
+          ],
+          "check": 0
         },
         {
           "kind": "table",
@@ -482,6 +455,9 @@
                 }
               ]
             }
+          ],
+          "answers": [
+            1
           ]
         }
       ]
@@ -521,7 +497,7 @@
         {
           "kind": "table",
           "columns": [
-            "☐",
+            "",
             "Checkpoint",
             "Record the result"
           ],
@@ -529,13 +505,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -555,13 +526,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -581,13 +547,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -607,13 +568,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -633,13 +589,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -659,13 +610,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -685,13 +631,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -711,13 +652,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -737,13 +673,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -763,13 +694,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -789,13 +715,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -815,13 +736,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -841,13 +757,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -867,13 +778,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -893,13 +799,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -919,13 +820,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -945,13 +841,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -971,13 +862,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -994,7 +880,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "answers": [
+            2
+          ],
+          "check": 0
         },
         {
           "kind": "prose",
@@ -1114,6 +1004,9 @@
                 }
               ]
             }
+          ],
+          "answers": [
+            1
           ]
         }
       ]
@@ -1299,6 +1192,9 @@
                 }
               ]
             }
+          ],
+          "answers": [
+            1
           ]
         },
         {
@@ -1364,7 +1260,7 @@
         {
           "kind": "table",
           "columns": [
-            "☐",
+            "",
             "Checkpoint",
             "Record the result"
           ],
@@ -1372,13 +1268,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1398,13 +1289,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1424,13 +1310,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1450,13 +1331,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1476,13 +1352,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1502,13 +1373,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1528,13 +1394,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1554,13 +1415,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1580,13 +1436,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1606,13 +1457,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1629,7 +1475,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "answers": [
+            2
+          ],
+          "check": 0
         },
         {
           "kind": "prose",
@@ -1678,7 +1528,7 @@
         {
           "kind": "table",
           "columns": [
-            "☐",
+            "",
             "Read this",
             "Your answer"
           ],
@@ -1686,13 +1536,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1712,13 +1557,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1738,13 +1578,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1764,13 +1599,8 @@
             {
               "cells": [
                 {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "☐"
-                    }
-                  ],
-                  "text": "☐"
+                  "tokens": [],
+                  "text": ""
                 },
                 {
                   "tokens": [
@@ -1787,7 +1617,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "answers": [
+            2
+          ],
+          "check": 0
         },
         {
           "kind": "prose",
@@ -1916,6 +1750,9 @@
                 }
               ]
             }
+          ],
+          "answers": [
+            1
           ]
         },
         {

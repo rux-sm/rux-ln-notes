@@ -64,6 +64,12 @@ the fix belongs upstream.
 - **Markup lives in `tools/build.mjs` and nowhere else.** Every page is
   generated from it; editing a generated page is the same mistake as editing
   `data/`. `template-candidate.html` is the single hand-written page.
+- **Behaviour that is this project's own lives in `js/`, one file per page
+  kind that needs it** — `js/exercise.js` for the worksheet — linked only by
+  the pages that use it. It reads the data attributes `build.mjs` wrote and
+  nothing else, never the marker contract; and a page with the script gone is
+  still the whole document. What a learner types stays in their browser: no
+  server, no account, and the page says so beside the notepad.
 - **Every `rux--*` class comes from `vendor/rux-ds/`.** A class the design
   system does not compile is a request to `rux-ds` with invented content,
   never a local rule. `check-classes` catches the invented one.

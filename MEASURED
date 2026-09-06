@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = 33ba255
+rux-ln-atlas.pin = 335b8bc
 rux-ds.pin = 5bdaac5
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -8,7 +8,7 @@ rux-ds.gates.at-pin = 23
 
 # guide data
 guides.count = 7
-guides.contract = 3
+guides.contract = 4
 guides.tier = export
 guides.draft = 6
 exported.reviews = 7

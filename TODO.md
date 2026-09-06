@@ -33,10 +33,15 @@ and was wrong within a day of doing so.
 
 ## Decided, not built
 
-- **A notes surface.** The ✎ marks (`tokens.pencil` in `MEASURED`) say "worth writing down" and there is
-  nowhere to write. A persistent floating notepad — write, paste, keep across
-  pages — is the intended answer and the reason the pencil survived the Run
-  record. Local storage, no server; nothing about it needs atlas.
+- **A notes surface on guide pages.** The ✎ marks (`tokens.pencil` in `MEASURED`) say "worth writing down" and there is
+  nowhere to write on a guide. **The exercise pages have it since 2026-09-06**
+  — `js/exercise.js`: answer spaces, ticks, a notepad, a revealable answer key
+  and a Markdown export, all in local storage with no server — and a guide
+  page's notepad is the same file bound to the pencil steps, not yet written.
+- **The answer key on the public site.** Atlas emits it at contract 4 but
+  withholds it at the export tier until the exercise carries
+  `reviewed: {by, date}`; the private viewer shows it now. Until the
+  attestation lands, a public exercise page has spaces and no reveal.
 - **`command` and `path` are still plain text, not tags.** `.rux--tag` caps at
   13rem and ellipsises, so a menu route was being cut to 192px — the thing a
   reader most needs whole. Carbon's answer is `.rux--tag-label-tooltip` and the

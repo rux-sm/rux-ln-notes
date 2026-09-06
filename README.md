@@ -65,7 +65,17 @@ sh tools/sync-guides.sh    # atlas -> data/guides/   (export tier, never --inter
 sh tools/sync-internal.sh  # atlas -> build/internal/ (INTERNAL tier, git-ignored, never published)
 # rux-ds -> vendor/rux-ds/: the recipe is rux-ds docs/starting-a-project.md, "Moving the pin"
 #   sh tools/new-project.sh ~/Developer/rux-ln-notes
+node tools/publish.mjs --publish   # the whole route: sync, build, check, commit, push, watch Pages
 ```
+
+**`publish.mjs` is the sync, the build, the check, the commit and the push as
+one run**, added 2026-09-06 so the loop is one command rather than a sequence
+a person remembers. It fetches both remotes first, refuses either repository
+that is behind or ahead of `origin/main` or has uncommitted tracked changes,
+commits through both hooks and never around them, and watches the Pages run
+for that commit to its end. `--dry-run` reports what would move and every
+blocker without writing anything tracked; `--prepare` stops after the checks
+with the tree ready to review. `AGENTS.md` "Publishing" is the rule.
 
 **Both outputs are tracked, deliberately.** They are regenerable, so tracking
 them is not about safety — it is that `git diff` after a sync shows exactly what

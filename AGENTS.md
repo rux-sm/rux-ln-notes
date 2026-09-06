@@ -82,6 +82,25 @@ ancestry (needs a `rux-ds` checkout beside this one) and publishable. The
 commit hook runs the privacy gate on the staged bytes and then this. `MEASURED` staleness is
 reported, not enforced; re-run `node tools/measure.mjs` when it says so.
 
+## Publishing
+
+    node tools/publish.mjs --dry-run    # what would move and what blocks it; writes nothing tracked
+    node tools/publish.mjs --prepare    # sync, build, check, report; commits nothing
+    node tools/publish.mjs --publish    # commit through both hooks, push, watch Pages to its end
+
+The one route from an atlas commit to the live site, and it lives here
+because this side pulls and atlas never pushes. It fetches both remotes and
+refuses either repository that is behind or ahead of `origin/main` or carries
+uncommitted tracked changes; then it is `sync-guides.sh`, `build.mjs` and
+`check.mjs` in that order, a commit made through the hooks and never around
+them, a push, and `gh run watch` on the Pages run for that commit. It adds no
+gate and runs every one that exists. A dry run collects every blocker and still
+prints the document diff, emitted to a temporary directory, so one run says
+everything in the way. An atlas commit with no public effect publishes nothing.
+
+A publish is an intent. Nothing here, and nothing in atlas, runs this on its
+own; "commit and push" in atlas moves nothing here.
+
 ## Commits
 
 `type(scope): Subject`, capitalised, imperative, subject ≤50 chars, body

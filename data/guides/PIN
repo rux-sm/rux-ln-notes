@@ -1,6 +1,6 @@
-commit   335b8bca6fadbca45150a4646c0c0b8379d14d75
-date     2026-09-06T17:15:07Z
-subject  feat(exercises): Answer spaces and a key
+commit   0eabbc1eedf673b917e43c33d9b8cd9d8a634721
+date     2026-09-06T17:26:22Z
+subject  docs(exercises): Key every answer space
 contract 4 
 tier     export
 sha256   504706b24cd718d0bc18d5113d434d0ac549f5156cd60c627e64d1c658620dc7

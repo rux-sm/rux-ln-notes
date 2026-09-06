@@ -1,9 +1,9 @@
-commit   a3f153fe41cb59ab87b63db6537e56cf400951c0
-date     2026-09-06T17:50:35Z
-subject  docs(exercises): List the captures owed
+commit   0e12983af797cac94cf8e8acc12f4122dd343bcf
+date     2026-09-06T17:54:43Z
+subject  docs(exercises): Attest the answer key
 contract 4 
 tier     export
-sha256   b8db195192dd2d8f22d2e374b5fe72f26eeb129870334abc4c3314cac377cdc5
+sha256   68536c43bd5e1e85db27181074ffd147610fc0b3aef78ac7ebcb504083b105e0
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

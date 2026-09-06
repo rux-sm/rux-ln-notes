@@ -18,7 +18,7 @@
     "tcibd2150m000",
     "whinh2300m000"
   ],
-  "keyed": false,
+  "keyed": true,
   "intro": [
     {
       "kind": "prose",
@@ -141,6 +141,18 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A time-phased view of one item's order planning: demand and forecast against scheduled receipts and planned supply — the demand question starts here"
+                    }
+                  ],
+                  "text": "A time-phased view of one item's order planning: demand and forecast against scheduled receipts and planned supply — the demand question starts here"
+                }
               ]
             },
             {
@@ -167,6 +179,18 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The planned orders a run produced, for review and selection before they are transferred to execution — the planned-order question starts here"
+                    }
+                  ],
+                  "text": "The planned orders a run produced, for review and selection before they are transferred to execution — the planned-order question starts here"
                 }
               ]
             },
@@ -195,6 +219,26 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The order horizon, planning horizon and time fences that decide whether, and how far ahead, an item is planned — a configuration question about "
+                    },
+                    {
+                      "t": "text",
+                      "v": "reach"
+                    },
+                    {
+                      "t": "text",
+                      "v": " starts here"
+                    }
+                  ],
+                  "text": "The order horizon, planning horizon and time fences that decide whether, and how far ahead, an item is planned — a configuration question about reach starts here"
+                }
               ]
             },
             {
@@ -221,6 +265,18 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The scenario a planning run executes in: its horizon, whether the plan rolls, and whether a run is net change or a full regeneration"
+                    }
+                  ],
+                  "text": "The scenario a planning run executes in: its horizon, whether the plan rolls, and whether a run is net change or a full regeneration"
                 }
               ]
             },
@@ -249,6 +305,26 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Supply-planning boundaries, lot sizing and the ordering interval — how much LN plans and in how many orders; a configuration question about "
+                    },
+                    {
+                      "t": "text",
+                      "v": "quantity"
+                    },
+                    {
+                      "t": "text",
+                      "v": " starts here"
+                    }
+                  ],
+                  "text": "Supply-planning boundaries, lot sizing and the ordering interval — how much LN plans and in how many orders; a configuration question about quantity starts here"
+                }
               ]
             },
             {
@@ -275,6 +351,18 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Management overviews of inbound and outbound warehousing orders — the execution question starts here"
+                    }
+                  ],
+                  "text": "Management overviews of inbound and outbound warehousing orders — the execution question starts here"
                 }
               ]
             }
@@ -357,6 +445,22 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "field",
+                      "v": "Inventory on Hand"
+                    },
+                    {
+                      "t": "text",
+                      "v": " on the form header, before any grid row is applied. The Overview grid's running balance starts from it"
+                    }
+                  ],
+                  "text": "Inventory on Hand on the form header, before any grid row is applied. The Overview grid's running balance starts from it"
+                }
               ]
             },
             {
@@ -373,6 +477,18 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Rows whose Order Type is Sales Order, each carrying its demand quantity and the sales order number it comes from"
+                    }
+                  ],
+                  "text": "Rows whose Order Type is Sales Order, each carrying its demand quantity and the sales order number it comes from"
                 }
               ]
             },
@@ -391,6 +507,26 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Only if "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Safety Stock"
+                    },
+                    {
+                      "t": "text",
+                      "v": " is set on the item's ordering record. A safety-stock top-up appears as a demand of its own, and planning answers it with supply of its own, separate from the sales-order-driven supply"
+                    }
+                  ],
+                  "text": "Only if Safety Stock is set on the item's ordering record. A safety-stock top-up appears as a demand of its own, and planning answers it with supply of its own, separate from the sales-order-driven supply"
+                }
               ]
             },
             {
@@ -407,6 +543,22 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Not settled in this library. The help says a specification check box is present on a demand line when demand pegging applies, and says nothing about what it shows. Open one demand row, capture the line with the box visible and the status bar readable, and hand the capture in with your report-back; it goes to the library's inbox and this sitting is updated from it. "
+                    },
+                    {
+                      "t": "strong",
+                      "v": "Not documented for this release."
+                    }
+                  ],
+                  "text": "Not settled in this library. The help says a specification check box is present on a demand line when demand pegging applies, and says nothing about what it shows. Open one demand row, capture the line with the box visible and the status bar readable, and hand the capture in with your report-back; it goes to the library's inbox and this sitting is updated from it. Not documented for this release."
                 }
               ]
             },
@@ -425,6 +577,34 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Actual supply is an existing order with a number and a status — a purchase order advice, a production order. Planned supply is what the run created — a "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Planned Production Order"
+                    },
+                    {
+                      "t": "text",
+                      "v": " or planned purchase order, status "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Planned"
+                    },
+                    {
+                      "t": "text",
+                      "v": " — and it exists only until it is transferred"
+                    }
+                  ],
+                  "text": "Actual supply is an existing order with a number and a status — a purchase order advice, a production order. Planned supply is what the run created — a Planned Production Order or planned purchase order, status Planned — and it exists only until it is transferred"
+                }
               ]
             },
             {
@@ -442,6 +622,26 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "field",
+                      "v": "Planned Available"
+                    },
+                    {
+                      "t": "text",
+                      "v": " is a running balance: the previous row's figure, minus that row's demand, plus its supply, starting from "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Inventory on Hand"
+                    }
+                  ],
+                  "text": "Planned Available is a running balance: the previous row's figure, minus that row's demand, plus its supply, starting from Inventory on Hand"
+                }
               ]
             },
             {
@@ -458,6 +658,26 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Yes, and it reproduces every value on screen. It is the one arithmetic the grid makes visible; pegging is what explains "
+                    },
+                    {
+                      "t": "text",
+                      "v": "which"
+                    },
+                    {
+                      "t": "text",
+                      "v": " demand a supply answers"
+                    }
+                  ],
+                  "text": "Yes, and it reproduces every value on screen. It is the one arithmetic the grid makes visible; pegging is what explains which demand a supply answers"
                 }
               ]
             }
@@ -752,6 +972,50 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Use Item Ordering Data by Site"
+                    },
+                    {
+                      "t": "text",
+                      "v": " on the warehouse record. The library holds one capture of it, selected, and reads the chain as warehouse ➔ site ➔ global item; the box's own help is not filed, so its meaning is inferred from that one frame. Capture the form with the box and the status bar; this row is settled from it. "
+                    },
+                    {
+                      "t": "strong",
+                      "v": "Not documented for this release."
+                    }
+                  ],
+                  "text": "Read Use Item Ordering Data by Site on the warehouse record. The library holds one capture of it, selected, and reads the chain as warehouse ➔ site ➔ global item; the box's own help is not filed, so its meaning is inferred from that one frame. Capture the form with the box and the status bar; this row is settled from it. Not documented for this release."
+                },
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The site record while the box is selected, on the reading above — unverified"
+                    }
+                  ],
+                  "text": "The site record while the box is selected, on the reading above — unverified"
+                },
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A capture of the warehouse record showing the check box, the item and warehouse codes, and the status bar"
+                    }
+                  ],
+                  "text": "A capture of the warehouse record showing the check box, the item and warehouse codes, and the status bar"
+                }
               ]
             },
             {
@@ -777,6 +1041,66 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Inherits while "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Use Global Item Ordering"
+                    },
+                    {
+                      "t": "text",
+                      "v": " is selected: the site is a live mirror of the company-level record, and a change there synchronises to it. Cleared, the site is an independent copy and stops following"
+                    }
+                  ],
+                  "text": "Inherits while Use Global Item Ordering is selected: the site is a live mirror of the company-level record, and a change there synchronises to it. Cleared, the site is an independent copy and stops following"
+                },
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "chip",
+                      "v": "Items - Ordering"
+                    },
+                    {
+                      "t": "text",
+                      "v": " while the box is selected; "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Item - Ordering by Site"
+                    },
+                    {
+                      "t": "text",
+                      "v": " once it is cleared"
+                    }
+                  ],
+                  "text": "Items - Ordering while the box is selected; Item - Ordering by Site once it is cleared"
+                },
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A capture of "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Item - Ordering by Site"
+                    },
+                    {
+                      "t": "text",
+                      "v": " with the check box and the Lot Sizes tab visible, and the status bar readable"
+                    }
+                  ],
+                  "text": "A capture of Item - Ordering by Site with the check box and the Lot Sizes tab visible, and the status bar readable"
+                }
               ]
             },
             {
@@ -801,6 +1125,71 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Its own value. This is the record that holds the company-level lot-sizing fields and the ordering interval, and the one the site mirrors while "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Use Global Item Ordering"
+                    },
+                    {
+                      "t": "text",
+                      "v": " is selected"
+                    }
+                  ],
+                  "text": "Its own value. This is the record that holds the company-level lot-sizing fields and the ordering interval, and the one the site mirrors while Use Global Item Ordering is selected"
+                },
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "session",
+                      "code": "tcibd2100m000",
+                      "name": "Items - Ordering"
+                    }
+                  ],
+                  "text": "Items - Ordering (tcibd2100m000)"
+                },
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A capture of "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Items - Ordering"
+                    },
+                    {
+                      "t": "text",
+                      "v": " showing "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Order Method"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Order Interval"
+                    },
+                    {
+                      "t": "text",
+                      "v": " and the lot-size fields, with the status bar"
+                    }
+                  ],
+                  "text": "A capture of Items - Ordering showing Order Method, Order Interval and the lot-size fields, with the status bar"
                 }
               ]
             }
@@ -984,6 +1373,36 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read it on the item's "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Items - Planning"
+                    },
+                    {
+                      "t": "text",
+                      "v": " record: the workdays you enter, and the date LN shows for them. A deployed value belongs to this environment on this date and is not printed here; write down what you see and when"
+                    }
+                  ],
+                  "text": "Read it on the item's Items - Planning record: the workdays you enter, and the date LN shows for them. A deployed value belongs to this environment on this date and is not printed here; write down what you see and when"
+                },
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A demand dated after the current date plus the horizon's workdays. Planning does not see it, so no planned order answers it, and nothing says why"
+                    }
+                  ],
+                  "text": "A demand dated after the current date plus the horizon's workdays. Planning does not see it, so no planned order answers it, and nothing says why"
+                }
               ]
             },
             {
@@ -1004,6 +1423,44 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read it on the same record. If "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Master Plan"
+                    },
+                    {
+                      "t": "text",
+                      "v": " is cleared the field is not editable and its date equals the order horizon's"
+                    }
+                  ],
+                  "text": "Read it on the same record. If Master Plan is cleared the field is not editable and its date equals the order horizon's"
+                },
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The total period an item is planned for. It is editable only with "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Master Plan"
+                    },
+                    {
+                      "t": "text",
+                      "v": " selected; without a master plan it equals the order horizon, so for these items it adds no boundary of its own"
+                    }
+                  ],
+                  "text": "The total period an item is planned for. It is editable only with Master Plan selected; without a master plan it equals the order horizon, so for these items it adds no boundary of its own"
                 }
               ]
             },
@@ -1026,6 +1483,60 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Time Fence"
+                    },
+                    {
+                      "t": "text",
+                      "v": " and its unit, and whether "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Use Time Fence"
+                    },
+                    {
+                      "t": "text",
+                      "v": " is selected — a fence that is not in use is no boundary"
+                    }
+                  ],
+                  "text": "Read Time Fence and its unit, and whether Use Time Fence is selected — a fence that is not in use is no boundary"
+                },
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The date a set number of workdays ahead. Inside it, what a run does to existing planned orders depends on "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Use Time Fence"
+                    },
+                    {
+                      "t": "text",
+                      "v": " together with "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Generate within"
+                    },
+                    {
+                      "t": "text",
+                      "v": " on the generate session — check both before reading a result as a fence effect"
+                    }
+                  ],
+                  "text": "The date a set number of workdays ahead. Inside it, what a run does to existing planned orders depends on Use Time Fence together with Generate within on the generate session — check both before reading a result as a fence effect"
+                }
               ]
             },
             {
@@ -1046,6 +1557,28 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read it on the same record; it is counted on the enterprise unit's calendar, falling back to the company's"
+                    }
+                  ],
+                  "text": "Read it on the same record; it is counted on the enterprise unit's calendar, falling back to the company's"
+                },
+                {
+                  "col": 2,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Before it, planning counts only actual customer orders; beyond it, demand is actual orders plus forecast. A forecast-driven planned order can only appear beyond the fence"
+                    }
+                  ],
+                  "text": "Before it, planning counts only actual customer orders; beyond it, demand is actual orders plus forecast. A forecast-driven planned order can only appear beyond the fence"
                 }
               ]
             }
@@ -1356,6 +1889,62 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "At "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "0"
+                    },
+                    {
+                      "t": "text",
+                      "v": " days, one planned order per requirement. At "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "10"
+                    },
+                    {
+                      "t": "text",
+                      "v": " days, every requirement whose date falls inside the window that opens at the first requirement is netted into one planned order — the library saw three requirements become one on 2026-09-05. Predict the count from the requirement dates, the quantity as their sum"
+                    }
+                  ],
+                  "text": "At 0 days, one planned order per requirement. At 10 days, every requirement whose date falls inside the window that opens at the first requirement is netted into one planned order — the library saw three requirements become one on 2026-09-05. Predict the count from the requirement dates, the quantity as their sum"
+                },
+                {
+                  "col": 4,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Planned Orders"
+                    },
+                    {
+                      "t": "text",
+                      "v": " after the run: count the rows for the item and note each quantity and date"
+                    }
+                  ],
+                  "text": "Read Planned Orders after the run: count the rows for the item and note each quantity and date"
+                },
+                {
+                  "col": 5,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Open each planned order's pegging: one order pegged to several demands is the interval at work, and the sum of the pegged demands must equal the order quantity"
+                    }
+                  ],
+                  "text": "Open each planned order's pegging: one order pegged to several demands is the interval at work, and the sum of the pegged demands must equal the order quantity"
+                }
               ]
             },
             {
@@ -1398,6 +1987,38 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A requirement above the maximum splits into as many orders as it takes, each at the maximum — the help's own example is 430 against a ceiling of 400 giving two orders of 400. Predict ceil(demand ÷ maximum) orders"
+                    }
+                  ],
+                  "text": "A requirement above the maximum splits into as many orders as it takes, each at the maximum — the help's own example is 430 against a ceiling of 400 giving two orders of 400. Predict ceil(demand ÷ maximum) orders"
+                },
+                {
+                  "col": 4,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Count the rows and quantities as above; the last order may be smaller than the maximum only if the rules round it, which the help's example does not"
+                    }
+                  ],
+                  "text": "Count the rows and quantities as above; the last order may be smaller than the maximum only if the rules round it, which the help's example does not"
+                },
+                {
+                  "col": 5,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Each split order pegs to the same demand; together they must cover it and no more"
+                    }
+                  ],
+                  "text": "Each split order pegs to the same demand; together they must cover it and no more"
                 }
               ]
             },
@@ -1442,6 +2063,38 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A requirement below the minimum is raised to it; the excess becomes planned inventory. Predict one order at the minimum for any requirement under it"
+                    }
+                  ],
+                  "text": "A requirement below the minimum is raised to it; the excess becomes planned inventory. Predict one order at the minimum for any requirement under it"
+                },
+                {
+                  "col": 4,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read the quantity on the planned order and compare it with the requirement it answers"
+                    }
+                  ],
+                  "text": "Read the quantity on the planned order and compare it with the requirement it answers"
+                },
+                {
+                  "col": 5,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The pegged demand is smaller than the order; the difference is not a second demand"
+                    }
+                  ],
+                  "text": "The pegged demand is smaller than the order; the difference is not a second demand"
+                }
               ]
             },
             {
@@ -1485,6 +2138,38 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Every planned order is the fixed quantity, and a requirement larger than it takes several. Predict ceil(demand ÷ fixed) orders of the fixed quantity"
+                    }
+                  ],
+                  "text": "Every planned order is the fixed quantity, and a requirement larger than it takes several. Predict ceil(demand ÷ fixed) orders of the fixed quantity"
+                },
+                {
+                  "col": 4,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Count the rows; every quantity should be the fixed value"
+                    }
+                  ],
+                  "text": "Count the rows; every quantity should be the fixed value"
+                },
+                {
+                  "col": 5,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Several orders peg to one demand, as for the maximum"
+                    }
+                  ],
+                  "text": "Several orders peg to one demand, as for the maximum"
+                }
               ]
             },
             {
@@ -1527,6 +2212,50 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 3,
+                  "tokens": [
+                    {
+                      "t": "field",
+                      "v": "Safety Stock"
+                    },
+                    {
+                      "t": "text",
+                      "v": " is the minimum the plan preserves, so raising it creates a demand of its own for the increase; predict one planned order for that amount, dated at the start of the plan, separate from the sales-order-driven supply"
+                    }
+                  ],
+                  "text": "Safety Stock is the minimum the plan preserves, so raising it creates a demand of its own for the increase; predict one planned order for that amount, dated at the start of the plan, separate from the sales-order-driven supply"
+                },
+                {
+                  "col": 4,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read the new row and its date; the library's 2026-09-03 capture showed the top-up as its own "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Planned Production Order"
+                    },
+                    {
+                      "t": "text",
+                      "v": " beside the ordinary ones"
+                    }
+                  ],
+                  "text": "Read the new row and its date; the library's 2026-09-03 capture showed the top-up as its own Planned Production Order beside the ordinary ones"
+                },
+                {
+                  "col": 5,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The top-up pegs to the safety-stock requirement, not to a sales order — that is how you tell it from ordinary supply"
+                    }
+                  ],
+                  "text": "The top-up pegs to the safety-stock requirement, not to a sales order — that is how you tell it from ordinary supply"
                 }
               ]
             }
@@ -1720,6 +2449,34 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Order Type"
+                    },
+                    {
+                      "t": "text",
+                      "v": " on the row in "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Planned Orders"
+                    },
+                    {
+                      "t": "text",
+                      "v": ": a planned production order for an item whose supply source is production, a planned purchase order for one whose supply source is purchase. The item's ordering data decides which"
+                    }
+                  ],
+                  "text": "Read Order Type on the row in Planned Orders: a planned production order for an item whose supply source is production, a planned purchase order for one whose supply source is purchase. The item's ordering data decides which"
+                }
               ]
             },
             {
@@ -1737,6 +2494,18 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Open the planned order and its pegging. The pegged demand names the sales order line, or the safety-stock requirement, that this supply exists for; the grid quantity is the result and the pegging is the explanation"
+                    }
+                  ],
+                  "text": "Open the planned order and its pegging. The pegged demand names the sales order line, or the safety-stock requirement, that this supply exists for; the grid quantity is the result and the pegging is the explanation"
+                }
               ]
             },
             {
@@ -1753,6 +2522,23 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "session",
+                      "code": "cppat1210m000",
+                      "name": "Transfer Order Planning"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", opened from the rows selected in Planned Orders"
+                    }
+                  ],
+                  "text": "Transfer Order Planning (cppat1210m000), opened from the rows selected in Planned Orders"
                 }
               ]
             },
@@ -1779,6 +2565,26 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Only to the four classes that have a "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Combine Orders"
+                    },
+                    {
+                      "t": "text",
+                      "v": " field at transfer — subcontracting, intra-company distribution, purchase and multicompany distribution. An ordinary job-shop planned production order has no equivalent, so for production supply the answer is no"
+                    }
+                  ],
+                  "text": "Only to the four classes that have a Combine Orders field at transfer — subcontracting, intra-company distribution, purchase and multicompany distribution. An ordinary job-shop planned production order has no equivalent, so for production supply the answer is no"
+                }
               ]
             },
             {
@@ -1795,6 +2601,54 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "field",
+                      "v": "Process Report"
+                    },
+                    {
+                      "t": "text",
+                      "v": " on "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Transfer Order Planning"
+                    },
+                    {
+                      "t": "text",
+                      "v": " lists the orders processed with the numbers they became, and "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Error Report"
+                    },
+                    {
+                      "t": "text",
+                      "v": " lists what did not transfer and why. If nothing transferred and no error printed, the orders were still "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Planned"
+                    },
+                    {
+                      "t": "text",
+                      "v": " and the "
+                    },
+                    {
+                      "t": "text",
+                      "v": "Transfer Status … as Well"
+                    },
+                    {
+                      "t": "text",
+                      "v": " box was not ticked — that is a status, not an error"
+                    }
+                  ],
+                  "text": "Process Report on Transfer Order Planning lists the orders processed with the numbers they became, and Error Report lists what did not transfer and why. If nothing transferred and no error printed, the orders were still Planned and the Transfer Status … as Well box was not ticked — that is a status, not an error"
                 }
               ]
             },
@@ -1813,6 +2667,30 @@
                   "tokens": [],
                   "text": ""
                 }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "A planned purchase order becomes a purchase order, one order for several planned ones where "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Combine Orders"
+                    },
+                    {
+                      "t": "text",
+                      "v": " was selected. For production supply the transfer has not been walked in this environment: capture the resulting production order, or the exact error, with the status bar readable and hand it in; this sitting is updated from it. "
+                    },
+                    {
+                      "t": "strong",
+                      "v": "Not documented for this release."
+                    }
+                  ],
+                  "text": "A planned purchase order becomes a purchase order, one order for several planned ones where Combine Orders was selected. For production supply the transfer has not been walked in this environment: capture the resulting production order, or the exact error, with the status bar readable and hand it in; this sitting is updated from it. Not documented for this release."
+                }
               ]
             },
             {
@@ -1829,6 +2707,18 @@
                 {
                   "tokens": [],
                   "text": ""
+                }
+              ],
+              "key": [
+                {
+                  "col": 1,
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Read both reports on the transfer. One message is already known for a purchased item with no buy-from business partner: the transfer fails and says the purchase order cannot be generated because the buy-from partner cannot be determined. Any other message is worth a capture: it goes to the library's inbox and the session file gains it"
+                    }
+                  ],
+                  "text": "Read both reports on the transfer. One message is already known for a purchased item with no buy-from business partner: the transfer fails and says the purchase order cannot be generated because the buy-from partner cannot be determined. Any other message is worth a capture: it goes to the library's inbox and the session file gains it"
                 }
               ]
             }

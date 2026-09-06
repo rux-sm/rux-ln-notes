@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = 8b4f314
+rux-ln-atlas.pin = 33ba255
 rux-ds.pin = 5bdaac5
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -13,8 +13,8 @@ guides.tier = export
 guides.draft = 6
 exported.reviews = 7
 exported.summaries = 7
-exported.exercises = 1
-exported.exercise-assignments = 8
+exported.exercises = 2
+exported.exercise-assignments = 15
 exported.exercises.tier = export
 exported.reviews.tier = export
 exported.topics = 91
@@ -44,12 +44,12 @@ session-codes.in-steps = 58
 reviews.count = 7
 reviews.summaries = 7
 reviews.sections = 8
-reviews.oi-ids = 133
-reviews.oi-ids.end-of-line = 47
-reviews.oi-ids.internal = 84
+reviews.oi-ids = 132
+reviews.oi-ids.end-of-line = 46
+reviews.oi-ids.internal = 83
 reviews.oi-ids.frontmatter = 41
 reviews.oi-ids.residual = 8
 
 # publishable (0 in every row is the condition for going public)
-publishable.pages = 29
+publishable.pages = 30
 publishable.pages-flagged = 0

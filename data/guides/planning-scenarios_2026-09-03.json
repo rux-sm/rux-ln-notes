@@ -4,7 +4,7 @@
   "kind": "review",
   "id": "planning-scenarios_2026-09-03",
   "title": "Planning Scenarios — Review",
-  "updated": "2026-09-03",
+  "updated": "2026-09-05",
   "status": "draft",
   "sources": [
     "cprrp0520m000",
@@ -1345,10 +1345,120 @@
             },
             {
               "t": "text",
-              "v": " Days here and untested. "
+              "v": " Days at the time."
             }
           ],
-          "text": "This recording is the live origin of the BAM-CHOP-PAIR safety-stock-50 question mined into the source on file §5. Not repeated here — see that section for the full account, including the trainer's on-camera guess (warehouse-level ordering data, explicitly left unconfirmed: \"I don't know, look later\") against an attendee's later, screen-verified pegging explanation from the chat thread. The follow-up combine-orders question ran further than this recording: Combine Orders was ruled out from cppat1210m000's \"Watch out\" section, then the same chat thread's next round pointed at tcibd2100m000's Order Interval instead — a generation-time mechanism, deployed at 0 Days here and untested."
+          "text": "This recording is the live origin of the BAM-CHOP-PAIR safety-stock-50 question mined into the source on file §5. Not repeated here — see that section for the full account, including the trainer's on-camera guess (warehouse-level ordering data, explicitly left unconfirmed: \"I don't know, look later\") against an attendee's later, screen-verified pegging explanation from the chat thread. The follow-up combine-orders question ran further than this recording: Combine Orders was ruled out from cppat1210m000's \"Watch out\" section, then the same chat thread's next round pointed at tcibd2100m000's Order Interval instead — a generation-time mechanism, deployed at 0 Days at the time."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Settled in a controlled follow-up on 2026-09-05."
+            },
+            {
+              "t": "text",
+              "v": " The baseline still showed the three planned production orders for "
+            },
+            {
+              "t": "literal",
+              "v": "20"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "20"
+            },
+            {
+              "t": "text",
+              "v": ", and "
+            },
+            {
+              "t": "literal",
+              "v": "10"
+            },
+            {
+              "t": "text",
+              "v": ". With the global interval changed to "
+            },
+            {
+              "t": "literal",
+              "v": "10"
+            },
+            {
+              "t": "text",
+              "v": " Days through the warehouse → site → global inheritance chain, regenerating the plan replaced them with one planned production order for "
+            },
+            {
+              "t": "literal",
+              "v": "50"
+            },
+            {
+              "t": "text",
+              "v": "; "
+            },
+            {
+              "t": "strong",
+              "v": "Automatic Order Grouping"
+            },
+            {
+              "t": "text",
+              "v": " was cleared. The project-contract supply remained separate with its Specification indicator. Sources: "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ", and "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            },
+            {
+              "t": "text",
+              "v": ". "
+            }
+          ],
+          "text": "Settled in a controlled follow-up on 2026-09-05. The baseline still showed the three planned production orders for 20, 20, and 10. With the global interval changed to 10 Days through the warehouse → site → global inheritance chain, regenerating the plan replaced them with one planned production order for 50; Automatic Order Grouping was cleared. The project-contract supply remained separate with its Specification indicator. Sources: the source on file, the source on file, the source on file, the source on file, the source on file, and the source on file."
         }
       ]
     },
@@ -1436,6 +1546,19 @@
             }
           ],
           "text": "Contract Deliverable is confirmed as a second, distinct demand mechanism worth its own documentation pass, not folded into the existing sales-order-demand write-ups."
+        },
+        {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Order Interval, not Combine Orders or Automatic Order Grouping, is the generation-time control that netted the three ordinary requirements into one planned production order"
+            },
+            {
+              "t": "text",
+              "v": " in the 2026-09-05 follow-up."
+            }
+          ],
+          "text": "Order Interval, not Combine Orders or Automatic Order Grouping, is the generation-time control that netted the three ordinary requirements into one planned production order in the 2026-09-05 follow-up."
         }
       ]
     }
@@ -1630,55 +1753,6 @@
             }
           ],
           "text": "What vendor source documents Contract Deliverable's Free/Active planning gate and its project-pegging mechanism? the source on file covers the mechanism from this recording, unsourced from the vendor —"
-        },
-        {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "Can the two sales-order-pegged supplies for "
-            },
-            {
-              "t": "literal",
-              "v": "BAM-CHOP-PAIR"
-            },
-            {
-              "t": "text",
-              "v": " be combined into one? "
-            },
-            {
-              "t": "literal",
-              "v": "Combine Orders"
-            },
-            {
-              "t": "text",
-              "v": " is ruled out (§3.13); "
-            },
-            {
-              "t": "session",
-              "code": "tcibd2100m000"
-            },
-            {
-              "t": "text",
-              "v": "'s "
-            },
-            {
-              "t": "em",
-              "v": "Order Interval"
-            },
-            {
-              "t": "text",
-              "v": ", deployed at "
-            },
-            {
-              "t": "literal",
-              "v": "0"
-            },
-            {
-              "t": "text",
-              "v": " Days, is the untested candidate — "
-            }
-          ],
-          "text": "Can the two sales-order-pegged supplies for BAM-CHOP-PAIR be combined into one? Combine Orders is ruled out (§3.13); tcibd2100m000's Order Interval, deployed at 0 Days, is the untested candidate —"
         },
         {
           "tokens": [

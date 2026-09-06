@@ -640,6 +640,28 @@ const SCRIPTS = [
   'profile',
 ];
 
+// THE REVISION ON THE PAGE, READ FROM THE PIN AT BUILD TIME. data/guides/PIN
+// already names the atlas commit that produced the data and check-data holds
+// the bytes to it; until 2026-09-06 no page carried it, so a reader looking
+// at a published procedure could not say which library state it came from
+// without cloning this repository. Seven characters of the commit and the
+// contract number, nothing else: no date, so a rebuild from the same PIN is
+// byte-identical and pages.yml's stale-page check still holds. The internal
+// viewer builds from a directory with no PIN and says so rather than naming
+// atlas HEAD, which is a working tree and not a revision.
+const REVISION = (() => {
+  const pin = join(DATA, 'PIN');
+  if (!existsSync(pin)) return PRIVATE ? 'internal tier, unpinned working tree' : null;
+  const text = readFileSync(pin, 'utf8');
+  const commit = /^commit\s+([0-9a-f]{7,40})/m.exec(text)?.[1];
+  const contract = /^contract\s+(\d+)/m.exec(text)?.[1];
+  if (!commit) throw new Error('data/guides/PIN names no commit -- run sh tools/sync-guides.sh');
+  return `rux-ln-atlas ${commit.slice(0, 7)}${contract ? ` · contract ${contract}` : ''}`;
+})();
+const revisionLine = () => REVISION
+  ? `<p class="rux--type-caption-01 ln-revision">Built from ${esc(REVISION)}</p>`
+  : '';
+
 function page({ title, site, activeId, body, depth }) {
   const up = depth ? '../' : '';
   return `<!doctype html>
@@ -760,6 +782,7 @@ function page({ title, site, activeId, body, depth }) {
   min-block-size: 3rem;
 }
 
+.ln-revision { color: var(--rux-text-secondary); margin: 0; }
 .ln-meta { margin: 0; }
 .ln-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
@@ -905,6 +928,7 @@ ${nav(site, activeId)}
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
 ${body}
+${revisionLine()}
       </div>
     </div>
   </div>

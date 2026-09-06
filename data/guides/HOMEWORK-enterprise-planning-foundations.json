@@ -477,6 +477,94 @@
           "text": "Open Order Pegging for each planned supply. Record the exact demand it answers. Treat the grid quantity as the result and the pegging tree as the explanation."
         },
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Captures to hand in with your report-back — whole LN window, status bar readable:"
+            }
+          ],
+          "text": "Captures to hand in with your report-back — whole LN window, status bar readable:"
+        },
+        {
+          "kind": "table",
+          "columns": [
+            "",
+            "Capture"
+          ],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The Item Order Plan Overview grid for "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "BAM-CHOP-PAIR"
+                    },
+                    {
+                      "t": "text",
+                      "v": " before any planning run, with "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Inventory on Hand"
+                    },
+                    {
+                      "t": "text",
+                      "v": " visible"
+                    }
+                  ],
+                  "text": "The Item Order Plan Overview grid for BAM-CHOP-PAIR before any planning run, with Inventory on Hand visible"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "One demand row opened, with its Specification check box visible"
+                    }
+                  ],
+                  "text": "One demand row opened, with its Specification check box visible"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Order Pegging for one planned supply, showing the demand it answers"
+                    }
+                  ],
+                  "text": "Order Pegging for one planned supply, showing the demand it answers"
+                }
+              ]
+            }
+          ],
+          "answers": [],
+          "check": 0
+        },
+        {
           "kind": "pass",
           "tokens": [
             {
@@ -724,6 +812,118 @@
           ]
         },
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Captures to hand in — one per level, each with the check box that decides inheritance visible:"
+            }
+          ],
+          "text": "Captures to hand in — one per level, each with the check box that decides inheritance visible:"
+        },
+        {
+          "kind": "table",
+          "columns": [
+            "",
+            "Capture"
+          ],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The warehouse record with "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Use Item Ordering Data by Site"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", the item and warehouse codes, and the status bar"
+                    }
+                  ],
+                  "text": "The warehouse record with Use Item Ordering Data by Site, the item and warehouse codes, and the status bar"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "chip",
+                      "v": "Item - Ordering by Site"
+                    },
+                    {
+                      "t": "text",
+                      "v": " with "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Use Global Item Ordering"
+                    },
+                    {
+                      "t": "text",
+                      "v": " and the Lot Sizes tab"
+                    }
+                  ],
+                  "text": "Item - Ordering by Site with Use Global Item Ordering and the Lot Sizes tab"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "chip",
+                      "v": "Items - Ordering"
+                    },
+                    {
+                      "t": "text",
+                      "v": " with "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Order Method"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Order Interval"
+                    },
+                    {
+                      "t": "text",
+                      "v": " and the lot-size fields"
+                    }
+                  ],
+                  "text": "Items - Ordering with Order Method, Order Interval and the lot-size fields"
+                }
+              ]
+            }
+          ],
+          "answers": [],
+          "check": 0
+        },
+        {
           "kind": "pass",
           "tokens": [
             {
@@ -963,6 +1163,102 @@
               "text": "Generate from the top-level item with Include Child Items selected and record which components are planned."
             }
           ]
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Captures to hand in:"
+            }
+          ],
+          "text": "Captures to hand in:"
+        },
+        {
+          "kind": "table",
+          "columns": [
+            "",
+            "Capture"
+          ],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The item's "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "Items - Planning"
+                    },
+                    {
+                      "t": "text",
+                      "v": " record with all four horizons and "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Use Time Fence"
+                    },
+                    {
+                      "t": "text",
+                      "v": " visible"
+                    }
+                  ],
+                  "text": "The item's Items - Planning record with all four horizons and Use Time Fence visible"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "chip",
+                      "v": "Generate Order Planning (Item)"
+                    },
+                    {
+                      "t": "text",
+                      "v": " as run, with every check box and range visible"
+                    }
+                  ],
+                  "text": "Generate Order Planning (Item) as run, with every check box and range visible"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "chip",
+                      "v": "Planned Orders"
+                    },
+                    {
+                      "t": "text",
+                      "v": " after each of the two controlled tests"
+                    }
+                  ],
+                  "text": "Planned Orders after each of the two controlled tests"
+                }
+              ]
+            }
+          ],
+          "answers": [],
+          "check": 0
         },
         {
           "kind": "pass",
@@ -1260,6 +1556,99 @@
           "text": "For the Order Interval test, confirm that the interval begins with the first requirement and includes requirements inside its workday or working-hour window. Keep Automatic Order Grouping cleared so it cannot be mistaken for the cause."
         },
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Captures to hand in — for every test, before and after:"
+            }
+          ],
+          "text": "Captures to hand in — for every test, before and after:"
+        },
+        {
+          "kind": "table",
+          "columns": [
+            "",
+            "Capture"
+          ],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The ordering record showing the one changed value, before the run"
+                    }
+                  ],
+                  "text": "The ordering record showing the one changed value, before the run"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "chip",
+                      "v": "Planned Orders"
+                    },
+                    {
+                      "t": "text",
+                      "v": " for the item after the run, every row visible"
+                    }
+                  ],
+                  "text": "Planned Orders for the item after the run, every row visible"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Order Pegging for one planned order the change produced"
+                    }
+                  ],
+                  "text": "Order Pegging for one planned order the change produced"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The ordering record restored to its baseline"
+                    }
+                  ],
+                  "text": "The ordering record restored to its baseline"
+                }
+              ]
+            }
+          ],
+          "answers": [],
+          "check": 0
+        },
+        {
           "kind": "pass",
           "tokens": [
             {
@@ -1498,6 +1887,123 @@
             }
           ],
           "text": "Not documented for this release."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Captures to hand in:"
+            }
+          ],
+          "text": "Captures to hand in:"
+        },
+        {
+          "kind": "table",
+          "columns": [
+            "",
+            "Capture"
+          ],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "chip",
+                      "v": "Transfer Order Planning"
+                    },
+                    {
+                      "t": "text",
+                      "v": " as run, with the transfer-status boxes and "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Combine Orders"
+                    },
+                    {
+                      "t": "text",
+                      "v": " visible"
+                    }
+                  ],
+                  "text": "Transfer Order Planning as run, with the transfer-status boxes and Combine Orders visible"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Process Report"
+                    },
+                    {
+                      "t": "text",
+                      "v": " or "
+                    },
+                    {
+                      "t": "field",
+                      "v": "Error Report"
+                    },
+                    {
+                      "t": "text",
+                      "v": " it produced, whole"
+                    }
+                  ],
+                  "text": "The Process Report or Error Report it produced, whole"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The resulting production or purchase order, or the exact error, with the status bar"
+                    }
+                  ],
+                  "text": "The resulting production or purchase order, or the exact error, with the status bar"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [],
+                  "text": ""
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "The order where it appears in execution"
+                    }
+                  ],
+                  "text": "The order where it appears in execution"
+                }
+              ]
+            }
+          ],
+          "answers": [],
+          "check": 0
         },
         {
           "kind": "pass",

@@ -796,6 +796,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 .ln-ex-status { margin-inline-start: .75rem; vertical-align: middle; }
 .ln-q-list { display: grid; gap: .75rem; }
 .ln-q { display: grid; gap: .75rem; }
+.ln-q-check { margin-block-start: -.25rem; }
 .ln-q-head { display: grid; gap: .5rem; }
 .ln-q-label { margin: 0; font-weight: 600; }
 .ln-q-fields { display: grid; gap: .75rem; }
@@ -1269,9 +1270,9 @@ function answerList(block, n) {
             <p class="ln-q-label" id="l-${djb2(rowId)}">${tokens(cells[labelCol]?.tokens ?? [])}</p>
             ${meta ? `<dl class="ln-meta">${meta}</dl>` : ''}
           </div>
-          <div class="ln-q-fields" data-cols="${answers.size}">
+          ${answers.size ? `<div class="ln-q-fields" data-cols="${answers.size}">
             ${fields}
-          </div>
+          </div>` : ''}
           ${box}
         </div>`;
   }).join('\n        ');
@@ -1289,7 +1290,9 @@ const passItem = (b, n) => checkbox({
 
 const eblock = (b, n) => {
   if (b.kind === 'pass') return passItem(b, n);
-  if (b.kind === 'table' && (b.answers ?? []).length) return answerList(b, n);
+  // A tick column alone -- a checklist of captures to hand in -- is a list
+  // of items too, each with its box and no space to write in.
+  if (b.kind === 'table' && ((b.answers ?? []).length || b.check != null)) return answerList(b, n);
   return rblock(b);
 };
 

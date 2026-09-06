@@ -165,6 +165,24 @@
     out.push(`# ${text(root.querySelector('h1'))}`);
     const rev = text(document.querySelector('.ln-revision'));
     out.push(`${rev ? rev + ' · ' : ''}exported ${today()}`, '');
+    // THE CHECKLIST FIRST. Every ticked row on the page -- the captures each
+    // sitting asks to be handed in, and any other box -- so the report-back
+    // opens with what is attached and what is still owed, before the answers.
+    const boxes = $('input[data-ln-check]');
+    if (boxes.length) {
+      const done = boxes.filter(b => b.checked).length;
+      out.push(`## Checklist — ${done} of ${boxes.length} done`, '');
+      for (const section of $('[data-ln-section]')) {
+        const rows = $('.ln-q:has(input[data-ln-check])', section);
+        if (!rows.length) continue;
+        out.push(`**${text(section.querySelector('h2')).replace(/\s*(Not started|In progress|Done)$/, '')}**`);
+        for (const item of rows) {
+          const box = item.querySelector('input[data-ln-check]');
+          out.push(`${box.checked ? '- [x] ' : '- [ ] '}${text(item.querySelector('.ln-q-label'))}`);
+        }
+        out.push('');
+      }
+    }
     for (const section of $('[data-ln-section]')) {
       const h = section.querySelector('h2');
       const title = text(h).replace(/\s*(Not started|In progress|Done)$/, '');

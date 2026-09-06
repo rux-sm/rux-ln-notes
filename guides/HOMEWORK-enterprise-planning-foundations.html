@@ -130,6 +130,7 @@
 .ln-ex-status { margin-inline-start: .75rem; vertical-align: middle; }
 .ln-q-list { display: grid; gap: .75rem; }
 .ln-q { display: grid; gap: .75rem; }
+.ln-q-check { margin-block-start: -.25rem; }
 .ln-q-head { display: grid; gap: .5rem; }
 .ln-q-label { margin: 0; font-weight: 600; }
 .ln-q-fields { display: grid; gap: .75rem; }
@@ -655,6 +656,42 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </div>
         </div>
           <p>Open Order Pegging for each planned supply. Record the exact demand it answers. Treat the grid quantity as the result and the pegging tree as the explanation.</p>
+          <p>Captures to hand in with your report-back — whole LN window, status bar readable:</p>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="2:1cria83">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1rdxefg">The Item Order Plan Overview grid for <span class="rux--tag rux--tag--gray" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> before any planning run, with <span class="rux--tag rux--tag--cool-gray" title="Inventory on Hand"><span class="rux--tag__label">Inventory on Hand</span></span> visible</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1rdxefg" class="rux--checkbox" type="checkbox" data-ln-check="2:1cria83">
+            <label for="c-1rdxefg" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:1otzxch">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-67j6q">One demand row opened, with its Specification check box visible</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-67j6q" class="rux--checkbox" type="checkbox" data-ln-check="2:1otzxch">
+            <label for="c-67j6q" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="2:18kboz3">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-zexqn7">Order Pegging for one planned supply, showing the demand it answers</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-zexqn7" class="rux--checkbox" type="checkbox" data-ln-check="2:18kboz3">
+            <label for="c-zexqn7" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
           <div class="rux--form-item rux--checkbox-wrapper ln-pass">
             <input id="p-2" class="rux--checkbox" type="checkbox" data-ln-pass="2">
             <label for="p-2" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can explain why two demands for the same item may still need separate supply.</div></label>
@@ -749,6 +786,42 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
           </div>
           
+        </div>
+        </div>
+          <p>Captures to hand in — one per level, each with the check box that decides inheritance visible:</p>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="3:1uvpanx">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-10eqohx">The warehouse record with <span class="rux--tag rux--tag--blue" title="Use Item Ordering Data by Site"><span class="rux--tag__label">Use Item Ordering Data by Site</span></span>, the item and warehouse codes, and the status bar</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-10eqohx" class="rux--checkbox" type="checkbox" data-ln-check="3:1uvpanx">
+            <label for="c-10eqohx" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:1iaacly">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-s7zp4m"><span class="rux--tag rux--tag--blue" title="Item - Ordering by Site"><span class="rux--tag__label">Item - Ordering by Site</span></span> with <span class="rux--tag rux--tag--cool-gray" title="Use Global Item Ordering"><span class="rux--tag__label">Use Global Item Ordering</span></span> and the Lot Sizes tab</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-s7zp4m" class="rux--checkbox" type="checkbox" data-ln-check="3:1iaacly">
+            <label for="c-s7zp4m" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="3:7zyqs6">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-11dfuba"><span class="rux--tag rux--tag--blue" title="Items - Ordering"><span class="rux--tag__label">Items - Ordering</span></span> with <span class="rux--tag rux--tag--cool-gray" title="Order Method"><span class="rux--tag__label">Order Method</span></span>, <span class="rux--tag rux--tag--cool-gray" title="Order Interval"><span class="rux--tag__label">Order Interval</span></span> and the lot-size fields</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-11dfuba" class="rux--checkbox" type="checkbox" data-ln-check="3:7zyqs6">
+            <label for="c-11dfuba" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
         </div>
         </div>
           <div class="rux--form-item rux--checkbox-wrapper ln-pass">
@@ -851,6 +924,42 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item">Generate from a component only and record whether parent demand is included.</li>
           <li class="rux--list__item">Generate from the top-level item with <strong>Include Child Items</strong> selected and record which components are planned.</li>
         </ol>
+          <p>Captures to hand in:</p>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="4:osyn">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-111mxvg">The item&#39;s <span class="rux--tag rux--tag--blue" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> record with all four horizons and <span class="rux--tag rux--tag--cool-gray" title="Use Time Fence"><span class="rux--tag__label">Use Time Fence</span></span> visible</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-111mxvg" class="rux--checkbox" type="checkbox" data-ln-check="4:osyn">
+            <label for="c-111mxvg" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="4:2d4vis">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-s6q5m7"><span class="rux--tag rux--tag--blue" title="Generate Order Planning (Item)"><span class="rux--tag__label">Generate Order Planning (Item)</span></span> as run, with every check box and range visible</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-s6q5m7" class="rux--checkbox" type="checkbox" data-ln-check="4:2d4vis">
+            <label for="c-s6q5m7" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="4:x2wks2">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1ir1pg"><span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> after each of the two controlled tests</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1ir1pg" class="rux--checkbox" type="checkbox" data-ln-check="4:x2wks2">
+            <label for="c-1ir1pg" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
           <div class="rux--form-item rux--checkbox-wrapper ln-pass">
             <input id="p-4" class="rux--checkbox" type="checkbox" data-ln-pass="4">
             <label for="p-4" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can distinguish “the item was not selected for the run” from “the item was selected but a planning boundary prevented an order.”</div></label>
@@ -998,6 +1107,53 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </div>
         </div>
           <p>For the Order Interval test, confirm that the interval begins with the first requirement and includes requirements inside its workday or working-hour window. Keep <strong>Automatic Order Grouping</strong> cleared so it cannot be mistaken for the cause.</p>
+          <p>Captures to hand in — for every test, before and after:</p>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="5:1p9uiu5">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-pl9i5y">The ordering record showing the one changed value, before the run</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-pl9i5y" class="rux--checkbox" type="checkbox" data-ln-check="5:1p9uiu5">
+            <label for="c-pl9i5y" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:1tx8qs2">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-tdnajj"><span class="rux--tag rux--tag--blue" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> for the item after the run, every row visible</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-tdnajj" class="rux--checkbox" type="checkbox" data-ln-check="5:1tx8qs2">
+            <label for="c-tdnajj" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:cnekme">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1inbz6v">Order Pegging for one planned order the change produced</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1inbz6v" class="rux--checkbox" type="checkbox" data-ln-check="5:cnekme">
+            <label for="c-1inbz6v" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="5:715nnh">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-oy116d">The ordering record restored to its baseline</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-oy116d" class="rux--checkbox" type="checkbox" data-ln-check="5:715nnh">
+            <label for="c-oy116d" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
           <div class="rux--form-item rux--checkbox-wrapper ln-pass">
             <input id="p-5" class="rux--checkbox" type="checkbox" data-ln-pass="5">
             <label for="p-5" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> before pressing Generate, you can predict both the number of planned orders and their quantities, then explain any difference using the lot-size rules and pegging.</div></label>
@@ -1125,6 +1281,53 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <p>For purchase supply, compare generation-time Order Interval with transfer-time <strong>Combine Orders</strong> in <span class="rux--tag rux--tag--blue" title="Transfer Order Planning"><span class="rux--tag__label">Transfer Order Planning</span></span> <span class="rux--tag rux--tag--cyan" title="cppat1210m000"><span class="rux--tag__label">cppat1210m000</span></span>, reached from selected rows in Planned Orders. Explain why they can both reduce the number of visible orders while acting at different stages.</p>
           <p>For production supply, treat the transfer as a test: it has not been walked end to end in this environment. Capture the transfer report or exact error and the resulting production order. <strong>Not documented for this release.</strong></p>
           <p><strong>Not documented for this release.</strong></p>
+          <p>Captures to hand in:</p>
+          <div class="ln-q-list">
+        <div class="rux--tile ln-q" data-ln-row="6:rpqng3">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1mxatn4"><span class="rux--tag rux--tag--blue" title="Transfer Order Planning"><span class="rux--tag__label">Transfer Order Planning</span></span> as run, with the transfer-status boxes and <span class="rux--tag rux--tag--cool-gray" title="Combine Orders"><span class="rux--tag__label">Combine Orders</span></span> visible</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1mxatn4" class="rux--checkbox" type="checkbox" data-ln-check="6:rpqng3">
+            <label for="c-1mxatn4" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:1m5g0xy">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1jvqzw0">The <span class="rux--tag rux--tag--cool-gray" title="Process Report"><span class="rux--tag__label">Process Report</span></span> or <span class="rux--tag rux--tag--cool-gray" title="Error Report"><span class="rux--tag__label">Error Report</span></span> it produced, whole</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1jvqzw0" class="rux--checkbox" type="checkbox" data-ln-check="6:1m5g0xy">
+            <label for="c-1jvqzw0" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:1a5y5td">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1c4jaci">The resulting production or purchase order, or the exact error, with the status bar</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1c4jaci" class="rux--checkbox" type="checkbox" data-ln-check="6:1a5y5td">
+            <label for="c-1c4jaci" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        <div class="rux--tile ln-q" data-ln-row="6:bazj69">
+          <div class="ln-q-head">
+            <p class="ln-q-label" id="l-1ca3fnv">The order where it appears in execution</p>
+            
+          </div>
+          
+          <div class="rux--form-item rux--checkbox-wrapper ln-q-check">
+            <input id="c-1ca3fnv" class="rux--checkbox" type="checkbox" data-ln-check="6:bazj69">
+            <label for="c-1ca3fnv" class="rux--checkbox-label"><div class="rux--checkbox-label-text">Done</div></label>
+          </div>
+        </div>
+        </div>
           <div class="rux--form-item rux--checkbox-wrapper ln-pass">
             <input id="p-6" class="rux--checkbox" type="checkbox" data-ln-pass="6">
             <label for="p-6" class="rux--checkbox-label"><div class="rux--checkbox-label-text"><strong>Pass condition:</strong> you can narrate the complete chain: demand → effective parameters → planning run → planned order → pegging → transfer → execution order → warehouse activity.</div></label>
@@ -1169,7 +1372,7 @@ Baseline restored and confirmed:</code></pre></div>
           </div>
         </aside>
         </div>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0eabbc1 · contract 4</p>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas a3f153f · contract 4</p>
       </div>
     </div>
   </div>

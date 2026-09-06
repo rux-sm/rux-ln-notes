@@ -16,10 +16,12 @@ Nothing else here is checked by anything.
 2. Add the switcher button and panel to the shell, once rux-ds has written the
    `switcher.json` contract down (rux-ds README "Picking this up" lists it as
    an open decision).
-3. Decide `SEND-DS.md`: send it to rux-ds, or retire it and
-   `template-candidate.html` with it. `template-candidate.html` already clears
-   `check-publishable`, which was the stated blocker. Sending needs a copy of
-   a page with invented content, and that is this side's work, not theirs.
+3. `SEND-DS.md` is **sent, 2026-09-06**: rux-ds `README.md` "Picking this up"
+   item 3 names it and `template-candidate.html` as an open ask, read in
+   place. Both files stay here until rux-ds answers §1 and §2; the answer
+   arrives as a commit there, and `git log` there is the check. If a document
+   template is adopted, `build.mjs` copies it and records the rux-ds commit it
+   derives from.
 
 ## Watched — `MEASURED` answers these; read them there
 

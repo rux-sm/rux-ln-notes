@@ -1,7 +1,13 @@
 # Send-back to rux-ds: one more template
 
-**Unsent.** This is the first thing this project has ever asked of the design
-system, and it asks for one template and one decision.
+**Sent 2026-09-06**, the way everything in this family is sent: read in place,
+and pointed at from the other side's own handover — rux-ds `README.md`
+"Picking this up" names this file and its exhibit as an open item. Nothing was
+copied across, because rux-ds admits nothing from this domain into any
+directory, and this memo names it throughout. This is the first thing this
+project has ever asked of the design system, and it asks for one template and
+one decision. Written 2026-09-01; §3, §5 and §6 were brought up to date on the
+day it was sent, and each says what changed.
 
 `send-back.md` and `send-back-2.md`, now in atlas `_standards/`, run the other way and
 are about *what arrives*. This one is about *what it is rendered with*.
@@ -93,8 +99,14 @@ derive from the vendored stylesheet and `docs/` is not vendored. The gap is not 
    data holds them in two arrays and file order is not reading order.
 
 The first is the one that matters here. **A `check-ancestry` run over the
-candidate is worth more to this project than approval of it**, and it is the
-one thing that cannot be obtained on this side at any effort.
+candidate is worth more to this project than approval of it.** When this was
+written it could not be obtained on this side at any effort. **Since
+2026-09-01 it can** (`a14b1f4` here): `tools/check-ancestry.mjs` here points your gate at this
+repository's pages from the checkout beside it, and the candidate was among
+the first files it read. It raised one finding on the candidate,
+`btn--icon-only`, adjudicated upstream at `aa56e76` as the icon-tooltip the
+sink declines throughout, and reads 0 missing today. So §3's ask is met by
+the arrangement, and what remains is §1 and §2.
 
 ## §4 What this is not asking
 
@@ -117,27 +129,35 @@ there, and anything that crosses is authored with invented, generic content.
 `emit.py` fails closed and names the pattern, and both syncs refuse a dirty
 tree. So the same treatment applies:
 
+**How it was proved, and what proves it today — these are two different
+gates, and the memo said otherwise until 2026-09-06.** While the candidate
+was drafted, `check-export-safe` extracted every distinctive payload string
+the seven guides contribute — 1,110 of them, across session codes, routes,
+guide ids, and the chip, field, literal, value, button and status texts — and
+refused the page if any appeared, with ordinary English held to sentence
+length. It was verified in both directions: the candidate clean at 0 of
+1,110, the real page failing at 173 hits. Two real leaks were caught that way
+and would otherwise have gone: the candidate's side nav listed all seven real
+guide titles, and one sentence had been lifted verbatim from a real run record.
+
+That gate was **retired on 2026-09-01**, because its exemption model had made
+it vacuous over every generated page; the record is in this repository's
+history. What holds the candidate now is the one gate this repository runs
+over every page and Markdown file:
+
 ```sh
 node tools/check-publishable.mjs template-candidate.html
 ```
 
-It extracts every distinctive payload string the seven guides contribute — 1,110
-of them, across session codes, routes, guide ids, and the chip, field, literal,
-value, button and status texts — and refuses the page if any appears. Ordinary
-English is held to sentence length, because a six-character fragment is a
-coincidence and a copied sentence is not.
+It counts five classes — a person named, a vendor document filename, an
+evidence filename, an issue reference, a gap marker — and the candidate reads
+zero in each. It does **not** re-extract guide payloads, so the 0-of-1,110
+result above is a fact about the page as it stood on 2026-09-01, and the
+candidate has not been edited since (`git log` on it is the check).
 
-It was **verified in both directions.** The candidate is clean, 0 of 1,110. The
-real page fails it at 173 hits, naming session codes, routes and item codes. A
-gate that has never been seen to fail is not evidence of anything.
-
-Two real leaks were caught this way while drafting, both of which would
-otherwise have gone: the candidate's side nav listed all seven **real guide
-titles**, and one sentence had been lifted verbatim from a real run record.
-
-**What it cannot see, stated plainly:** a real value paraphrased rather than
-copied, anything not in the guide JSON, and whether the invented content is
-sensible. A person reads the page before it goes. The gate proves nothing was
+**What neither gate can see, stated plainly:** a real value paraphrased rather
+than copied, anything not in the guide JSON, and whether the invented content
+is sensible. A person reads the page before it goes. A gate proves nothing was
 copied; it does not prove the page is fit to publish.
 
 ## §5b Why this document quotes no counts of yours
@@ -172,7 +192,8 @@ This project then records which rux-ds commit its page derives from, the way
 template that drifts upstream becomes visible here the same way the stylesheet
 does.
 
-And the next content type starts from it. `reviews/` is decided but unbuilt,
-waiting on four block kinds atlas has not emitted yet; when it arrives it is
-the same shape minus the numbered phases, which is precisely what a document
-template is for.
+And every other content type is already the same shape. When this was written
+`reviews/` was decided but unbuilt; it has since arrived, and so have
+summaries and exercises, and all three render from the same shell minus the
+numbered phases — which is precisely what a document template is for. The
+template would now be bound four times over, not once.

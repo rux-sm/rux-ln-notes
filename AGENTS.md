@@ -1,8 +1,9 @@
 # AGENTS.md — the policy
 
 This is the one instruction file. `CLAUDE.md` imports it, Codex reads it
-directly, and nothing here is repeated anywhere else. `README.md` is the
-long version: what was decided, what is outstanding, how each tool works.
+directly, and nothing here is repeated anywhere else. `README.md` says what
+is published, where it comes from, how to preview and deploy it, and what is
+never hand-edited; `TODO.md` is what is outstanding.
 
 ## What this repository is
 
@@ -69,9 +70,21 @@ the fix belongs upstream.
 - **The marker contract is Atlas's.** `../rux-ln-atlas/_standards/guide-json.md`
   is normative; re-implementing any part of it here re-creates the drift that
   broke a renderer once already.
-- **Decisions in README "Decided" stay decided.** Build-time rendering,
-  token styling and publishability were settled on 2026-08-31; do not reopen
-  them by scaffolding an alternative.
+- **Five decisions stay decided, and are not reopened by scaffolding an
+  alternative.** Settled 2026-08-31 to 2026-09-01; the record of how, with
+  its measurements, is `git show 55c22fb:README.md`.
+  - *Build-time rendering, output committed.* `build.mjs` writes the pages
+    and they are tracked, because pages in an ignored directory are invisible
+    to the gates and to the commit hook, which is the only place the names
+    class can run.
+  - *Every guide publishes, drafts included.* A draft is labelled on the
+    page, never withheld; `status` arrives as data.
+  - *Reviews and summaries publish at the same export tier as guides.* No
+    tier relaxes the name sweep; the reviews name roles, not people.
+  - *An `image` names only a file authored beside the guide.* Reviews publish
+    without images; a citation of a frame renders as a plain unlinked name.
+  - *The knowledge base does not publish.* `sessions/`, `config/`, `tests/`,
+    `build/` and `evidence/` stay in atlas at every tier.
 
 ## The one check
 

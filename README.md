@@ -1,645 +1,90 @@
 # rux-ln-notes
 
-**The client-facing surface for Infor LN scenario guides, meeting reviews and practice exercises.** It consumes two
-upstreams — authored content from `rux-ln-atlas`, presentation from `rux-ds` — and
-publishes material a junior consultant can follow and complete.
+**The public site for Infor LN scenario guides, meeting reviews and practice
+exercises**, at [rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/).
+It renders; it does not author. `AGENTS.md` is the policy. This file says
+what is published, where it comes from, how to preview it, how it deploys,
+and what must never be edited by hand.
 
-It is the first consumer of the design system, and the only place the two ever
-meet.
+## What it publishes
 
-## Why this repository exists at all
+Scenario guides, meeting reviews with their summaries, and practice
+exercises, each a generated page under `guides/` with `index.html` as the
+front. Every page ends with the atlas revision it was built from. A draft
+guide is labelled on the page, never withheld. Nothing here is written by
+hand: markup lives in `tools/build.mjs`, content arrives as data.
 
-`rux-ln-atlas` decided it, and recorded the reason: *"The customer-facing surface
-is not built here… presentation work does not belong in this repo,"* because the
-library it replaced *"spent 65% of its commits on a publishing surface it then
-deleted."* Atlas processes knowledge. This renders it. Neither does both.
+## Where it comes from
 
-**This is published, publicly, at
-[rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/).**
-It was built private, because a rendered LN procedure is derived from Infor's
-documentation and describes a configured environment. It went public on
-2026-09-01 once neither of those carried anything identifying: the environment
-is a training one throughout, the partners and item family are invented, and
-the reviews name roles rather than people.
+Two upstreams, both pulled by a script, both pinned, neither ever hand-edited:
 
-`node tools/check-publishable.mjs` holds that on every commit, over pages and
-Markdown alike, with no exemption. `MEASURED` records
-`publishable.pages-flagged`, and it reads zero.
+| | from | by | pin |
+|---|---|---|---|
+| `data/guides/` | `rux-ln-atlas`, **private**, export tier only | `sh tools/sync-guides.sh` | `data/guides/PIN` — atlas commit, contract, and a sha256 of the bytes |
+| `vendor/rux-ds/` | `rux-ds`, public, at one tag | rux-ds `tools/new-project.sh` from a clone at that tag | `vendor/rux-ds/PIN` |
 
-**Publishing did not add a fourth project.** It stays three: atlas holds the
-knowledge, this renders it, `rux-ds` is the design system. `rux-ds` still holds
-nothing from here.
+Atlas holds the knowledge — evidence, session help, screenshots of a licensed
+environment — and none of it comes across. `emit.py` there writes the export
+tier and refuses to write anything if a name, an issue id or an evidence path
+survives; `tools/check-data.mjs` here refuses a `data/guides/` whose bytes do
+not match the hash the sync recorded. The data contract is atlas's
+`_standards/guide-json.md`, and `_standards/renderer-brief.md` §5 lists what
+bites when rendering it; both are read, never re-implemented.
 
-**The published remote is `origin` and it is NOT this repository's history.**
-`rux-ln-guides` carries forty commits that named six people and one person's
-employment background; it stays private, on GitHub as `rux-sm/rux-ln-guides`.
-What is public is `rux-ln-notes`, whose history starts at a single clean
-commit. A fresh history is the only thing that actually removes what a working
-tree has already dropped. The `private` remote and the `history/pre-public`
-branch some clones carry are local conveniences, not part of the repository.
+The internal tier, with gaps, issue ids and the concept pages, renders only
+into the git-ignored `build/` by `sh tools/sync-internal.sh`, and is never
+published.
 
-| | job | visibility | holds |
-| :--- | :--- | :--- | :--- |
-| `rux-ln-atlas` | knowledge base, `emit.py` | private | all evidence — vendor PDFs, session help, screenshots |
-| **`rux-ln-notes`** | renders and publishes | **public** since 2026-09-01 | export-tier data, vendored CSS |
-| `rux-ds` | Carbon-quarried CSS and templates | public | nothing ERP, generic specimens only |
-
-## The two upstreams
-
-Both are pulled by hand, both refuse to run against a dirty tree, and both write
-a committed `PIN` naming the commit they came from. The guides' PIN also carries
-a hash of the bytes written, and `tools/check-data.mjs` refuses a `data/guides/`
-that no longer matches it, in the hook, in the one check and in CI.
-
-The order across the three repositories — pull all, finish and push the
-upstream, then sync here, then push — is `docs/operating-card.html` in rux-ds:
-a printable two-page card with the per-session loop and the once-per-Mac setup.
-One setup step there is atlas's and still matters here: `check-publishable`
-reads the names list from the atlas checkout beside this one, and atlas's own
-check wants its text cache, built once per Mac by a venv step (`python3 -m venv
-.venv`, install `pypdf`, run `tools/text.py` there). The venv is per machine
-and gitignored; it does not travel with a clone or a copied folder.
+## Preview locally
 
 ```sh
-sh tools/sync-guides.sh    # atlas -> data/guides/   (export tier, never --internal)
-sh tools/sync-internal.sh  # atlas -> build/internal/ (INTERNAL tier, git-ignored, never published)
-# rux-ds -> vendor/rux-ds/: the recipe is rux-ds docs/starting-a-project.md, "Moving the pin"
-#   sh tools/new-project.sh ~/Developer/rux-ln-notes
-node tools/publish.mjs --publish   # the whole route: sync, build, check, commit, push, watch Pages
+sh tools/sync-guides.sh          # pull the export tier from ../rux-ln-atlas
+node tools/build.mjs             # write index.html and guides/ from data/guides/
+node tools/serve.mjs             # http://localhost:8643
+node tools/check.mjs             # every gate, in order; what the commit hook runs
+
+sh tools/sync-internal.sh        # the private viewer, into build/ (never published)
+(cd build/internal/site && PORT=8644 node ../../../tools/serve.mjs)
 ```
 
-**`publish.mjs` is the sync, the build, the check, the commit and the push as
-one run**, added 2026-09-06 so the loop is one command rather than a sequence
-a person remembers. It fetches both remotes first, refuses either repository
-that is behind or ahead of `origin/main` or has uncommitted tracked changes,
-commits through both hooks and never around them, and watches the Pages run
-for that commit to its end. `--dry-run` reports what would move and every
-blocker without writing anything tracked; `--prepare` stops after the checks
-with the tree ready to review. `AGENTS.md` "Publishing" is the rule.
+Once per clone: `git config core.hooksPath tools/githooks`, and the sibling
+checkouts beside this one — `../rux-ln-atlas` for the names list that
+`check-publishable` reads, `../rux-ds` for `check-ancestry`. Atlas's `SETUP.md`
+covers its own once-per-machine steps.
 
-**Both outputs are tracked, deliberately.** They are regenerable, so tracking
-them is not about safety — it is that `git diff` after a sync shows exactly what
-moved upstream. That is the mechanism by which this project notices atlas gaining
-information, or the design system changing under it. An ignored `data/` would
-make both invisible.
-
-**Never hand-edit either.** The next sync overwrites them, and the real fix
-belongs in the upstream repository.
-
-### The sprite must be inlined into every page
+## How it deploys
 
 ```sh
-node tools/inline-sprite.mjs <page.html>      # between SPRITE:BEGIN / SPRITE:END
+node tools/publish.mjs --dry-run    # what would move and what blocks it; writes nothing tracked
+node tools/publish.mjs --prepare    # sync, build, check, report; commits nothing
+node tools/publish.mjs --publish    # commit through both hooks, push, watch Pages to its end
 ```
 
-Linking `vendor/rux-ds/assets/icons.svg#i-name` from a `<use>` does not work and
-**fails silently**: WebKit has never supported a cross-document `<use>`, so every
-icon is blank in Safari, and `file://` blocks the fetch in every engine. The page
-looks built and simply has no icons. rux-ds inlines into each of its templates
-for the same reason and gates it; this is the local equivalent, and it refuses a
-page missing its markers rather than writing nothing quietly.
-
-It is **not** rux-ds's `tools/icons.mjs`, which regenerates the sprite from
-`@carbon/icons` and rewrites `templates/*.html` — neither applies here. This only
-ever copies the already-built sprite that rux-ds's `new-project.sh` delivered.
-
-### Three published content categories
-
-```sh
-sh tools/sync-guides.sh          # guides, reviews, summaries and exercises
-node tools/build.mjs             # every page: index.html and guides/, from data/guides/
-```
-
-A guide has no `kind` field; meeting documents carry `review` or `summary`, and
-practice carries `exercise`. That absence is what identifies a guide, and an
-unknown `kind` stops the build rather than being rendered as whatever it least
-resembles. All four classes share `data/guides/`; their category counts must be
-kept separate from the total document count.
-
-**Exercises are not tests.** Atlas `tests/` holds internal scenario matrices and
-run sheets. A published exercise lives in Atlas `exercises/`, carries
-`type: exercise`, links to guides for procedure, and owns only the prediction,
-answer and report-back shape.
-
-### Verified working, not assumed
-
-`guide.html` was measured by hand on 2026-08-31 and `build.mjs` retired it.
-**Every generated page was measured on 2026-09-01** (eight at the time; `tools/check.mjs` prints today's count), served at
-`http://localhost:8643` by `node tools/serve.mjs`, against a 1280 viewport:
-
-| | |
-|---|---|
-| shell | copied from rux-ds `templates/detail-page.html`, header and side nav intact |
-| layout | `.rux--content` clears the 256px nav with `padding-inline-start: 288px` — §3.2's offset carried across |
-| width | document 1280 against a 1280 viewport, zero elements overflowing, on all 8 |
-| icons | 59 symbols inlined by `tools/inline-sprite.mjs`, on all 8 |
-| console | no errors, no warnings, on all 8 |
-| tags | 0 flush pairs, after the join fix below |
-| order | phases ahead of Troubleshooting and Variants, on all 7 guides |
-
-**Measuring is still what finds things, which is the whole reason to do it.**
-This pass found a defect five green gates could not: 19 cross-guide references
-arrive as `literal` tokens rather than `link`, so they render as gray tags
-reading `SG-manual-production-order-existing-master-data.md` — an atlas
-filename, truncated at Carbon's 13rem cap, not a link, naming a file that does
-not exist in this repository. Nine of them visibly clip. The same references
-arriving as `link` tokens are rewritten to `.html` and resolve correctly, so
-the page carries both treatments of one idea. That is an upstream
-inconsistency and is written up for atlas rather than patched here: rewriting
-a `literal` locally would re-implement the marker contract, which is the drift
-this project exists not to re-create.
-
-### Checking a page
-
-```sh
-node tools/build.mjs              # regenerate every page from data/guides/
-node tools/check-classes.mjs      # does every rux-- class exist in the vendored CSS?
-node tools/check-structure.mjs    # is a compound pair split across two elements?
-node tools/check-links.mjs        # does every local href and src point at a file?
-node tools/check-order.mjs        # do the phases come before the sections about them?
-node tools/check-publishable.mjs  # what still stands between these pages and public?
-node tools/check-ancestry.mjs     # is a wrapper Carbon never omits simply missing?
-node tools/check.mjs              # all of the above, in order; what the hook runs
-```
-
-**The first four sweep the whole repository, not just its root.** They walked
-`readdirSync(ROOT)` and stopped there until 2026-08-31, when `build.mjs` began
-writing seven pages into `guides/` — the no-argument form would have reported a
-clean run over one file and printed a count that looked like coverage. rux-ds
-found the identical bug on its own side, where `pageTargets()` was hardcoded so
-a consumer page could never become a sweep cell.
-
-**`check-links` is here because the first generated build shipped ten dead
-references with everything else green.** Nine were cross-guide links pointing at
-`SG-….md`, which is what a guide is called in atlas; one was the flowchart,
-referenced relative to the page and delivered into `data/guides/`. Nothing else
-here reads an attribute that names a file, and neither fault shows on the page:
-a dead link is drawn exactly like a live one. Both are fixed in the generator —
-`.md` cross-references are rewritten, assets are copied — and the gate is what
-keeps them fixed.
-
-**`check-publishable` asks the question publishing actually turns on**: is
-there anything here that should not be on the open internet? `check-export-safe`
-used to ask a different one — whether a page carried guide data bound for
-rux-ds — and was retired on 2026-09-01, because `build.mjs` stamped every page
-it wrote as exempt and the gate checked one file out of twenty-one. The
-remaining gate counts five classes: a person named, a vendor document filename,
-an evidence filename, an issue reference, a gap marker.
-
-**It refuses, and it is on the commit hook.** It reported while the reviews
-still carried names, because blocking every commit until a content rewrite
-landed would have stopped work rather than protected anything. The rewrite has
-landed, every class reads zero across every page, and the job changed from
-measuring the distance to holding it. There is no exemption marker and no
-filename list: a public page cannot opt out of being public.
-
-**The names are read out of atlas's `PEOPLE`, never copied.** A second list
-here would drift from the first, which is the failure the whole arrangement is
-built against; if the sibling checkout is missing the class reports
-`unavailable` rather than passing quietly.
-
-**The partner and company identifiers are not checked, and the reason is in
-the script.** `BP4000006`, `CSADNA01`, `ADNA02`, `FAIRFIELD ENGINEERING CO.`,
-`VISTA MACHINES INC.` and the `BAM-*` item family read like a customer's master
-data and are not: all 46 source attributions in the library say *"LN training
-environment"*, and the owner confirmed the partners, companies and items are
-invented. That was the largest class the gate counted — 104 identifiers and 9
-company names — and counting it was measuring nothing. If real customer data
-ever enters the library the class comes back; the condition is the environment,
-not the shape of the string.
-
-**Every page is publishable.** `MEASURED` records `publishable.pages-flagged
-= 0`. Getting there took one pass in atlas: attendee tables now carry Role,
-Count and Organisation; prose says *the consultant* and *the trainee*; action
-owners are roles; five identification-provenance passages are `INTERNAL` and
-removed structurally; and twenty vendor filenames became citations that name
-the help topic and its session code, which is what a reader can act on.
-
-**Timestamped quotations are not counted, and that is the one judgement in the
-file rather than a measurement.** Forty-eight were blocking while the reviews
-named people, because a quotation beside a name is attributable. They name
-roles now, so a reader sees a sentence at `(03:45)` from *the consultant* and
-has no way to reach an individual — and those quotations are the most useful
-teaching content in the reviews, being how the concept was actually explained.
-If names ever return, the class returns with them.
-
-**`check-order` is here because a fix that lived in an artifact died with
-it.** `guide.html` was measured in a browser with its phases ahead of the
-sections that refer back to them; `build.mjs` replaced it, emitted every
-section and then the phases, and put all seven guides back into the broken
-order — where the troubleshooting rows are keyed by phase number, so a reader
-met the fix-it table before the instructions it fixes.
-All four other gates were green on all seven pages, because none of them models
-document order and there was no rule to violate. Now there is one, and the
-boundary it enforces lives in `build.mjs` beside the code that acts on it, and
-it has already earned its keep twice: once when the generator first put phases
-last, and again when the Run record was removed from the format on 2026-09-01
-and took the anchor with it. **The boundary is a SET now, not a kind** —
-Troubleshooting, Variants and What this unlocks — because keying a structural
-rule to one section makes the rule only as durable as that section. The gate was verified against the
-pre-fix output rather than only watched to pass: it reports four misplaced
-sections and exits 1.
-
-**The commit hook runs `check-publishable` over the staged bytes of every
-staged page and Markdown file, then `node tools/check.mjs` for everything
-else.** A push is public before it is noticed, so the one gate whose failure
-cannot be undone runs on what is actually being committed, with no exemption
-and no filename list. Install once per clone, and it arms the commit-message
-hook too:
-
-```sh
-git config core.hooksPath tools/githooks
-```
-
-`check-classes` and `check-structure` derive their rules from the **vendored stylesheet**, which is the only
-evidence this project holds — rux-ds answers structural questions from its
-captured Carbon DOM stories, and `docs/` is not vendored. Between them they say
-a class resolves and is not structurally misplaced in the one way CSS can prove.
-
-**Neither can see a wrapper that is simply missing.** That is the defect class
-rux-ds's `check-ancestry` exists for. A green run from these two is narrower
-than it looks; both scripts say so in their own headers. Three defects passed
-both while `guide.html` was built, and all three were found by measuring in a
-browser instead.
-
-**That class has a gate now, and vendoring the captures was never what it
-needed.** rux-ds's `check-ancestry.mjs` takes roots on the command line, and
-its own comment names this project as the reason -- a missing `__icon` class
-that flexbox squashed from 20px to 5px. `tools/check-ancestry.mjs` here is the
-invocation and not the rule: it points that gate at `guides/` and the root, and
-refuses rather than skipping when the sibling checkout is absent. The 1.8 MB of
-captures stay in rux-ds, where the rule is, and nothing crosses -- the pages are
-read from disk on the same machine.
-
-**It reported two findings on the day it was wired in, and both were
-adjudicated upstream within the hour** — `card__description` on `index.html`
-and `btn--icon-only` on `template-candidate.html`, the two hand-authored pages,
-while all nineteen `build.mjs` writes were clean. Neither was written into a
-local KNOWN list to go green: rux-ds keyed both by class at `aa56e76`, with the
-reasons in the repository that owns the rule, and the gate now reads 2 declined
-and 0 missing. **This side inherits those declines and `TODO.md` records what
-that gives up** — a new fragment using one of the twenty-one declined classes
-is not adjudicated on its own.
-
-`check-export-safe`, retired 2026-09-01, answered whether a page carried
-strings from the guide data. It caught two real leaks while
-`template-candidate.html` was drafted, and its exemption model then made it
-vacuous twice, the second time by swallowing `check-publishable` until that
-ran before the filter. `check-publishable` now covers the candidate page along
-with everything else, and nothing here opts out.
-
-### The numbers in this file are re-derivable
-
-```sh
-node tools/measure.mjs            # write MEASURED
-node tools/measure.mjs --check    # exit 1 if it has moved
-```
-
-`MEASURED` is a committed state file, the same idea as a `PIN` and for the same
-reason: it is regenerable, so tracking it is not about safety — it is that
-`git diff` shows what moved. Every count this repository quotes about itself
-lives there, so prose cites one place instead of remembering.
-
-**It writes state, never prose.** The argument in this file is the valuable
-part of it and no generator can write *"a draft is labelled on the page, not
-withheld from it."* A person reads the diff and writes the sentence.
-
-It is **not** wired to the commit hook. A stale number is embarrassing, not
-unrecoverable, and a second hook spends the same patience the first one needs.
-It also cannot see whether a number is *used* correctly — it will tell you 112
-became 118, not that the paragraph around it now argues the wrong thing.
-
-### What does not come across
-
-`evidence/` stays in atlas — 11 vendor PDFs, 115 session help exports,
-screenshots of a licensed environment. A guide that wants to show a screenshot
-needs a deliberate publication decision and a route, and there is none. Atlas's
-`_standards/renderer-brief.md` §6 flags this as something to send back.
-
-## What arrives
-
-Guides, meeting reviews and summaries, and practice exercises arrive at
-`contract: 3`, export tier. A guide is a procedure: an objective,
-6–13 numbered phases each with a route into an ERP screen and a table of steps,
-plus troubleshooting, variants and handover rows.
-
-Cells arrive as **typed token arrays, never as Markdown** — 15 token types, of
-which `text` is the large majority (`tokens.type.text` against `tokens.total` in `MEASURED`). This project implements *rendering* and never
-re-implements the marker contract. `../rux-ln-atlas/_standards/guide-json.md` is
-normative; `renderer-brief.md` is the covering note. Read both before designing.
-
-**What contract 2 added**, all of it asked for in `SEND-BACK.md` §1–§2:
-
-- `status`, `summary`, `modules` and `order` are top-level fields. The badge, the
-  card blurb, the facet and the sort order are data now, not prose to be mined.
-- `order` is derived, and it sorts as a curriculum would — build the family,
-  plan, buy, make, move, ship, then the end-to-end run. Atlas got there by
-  reading **Prerequisite** callouts as dependency edges; on Downstream rows alone
-  the guide that builds the test data came fourth. Guides outside the chain fall
-  back to alphabetical, and that fallback is stated rather than hidden.
-- The H1 no longer arrives as a prose block with a literal `# ` in it. Section
-  zero is the objective, and nothing has to be skipped by position.
-- An `image` token carrying `alt` and `src`, with the diagram beside the guides.
-
-**What contract 3 added:** `kind: "exercise"`, with opening instructional
-blocks and numbered `assignments`. An exercise links to guides for the procedure
-and owns only the learner's prediction, observation, explanation and report-back
-work. Internal scenario matrices and run sheets remain `type: test` in atlas and
-do not publish.
-
-**`id` is stable and will not be renamed.** Atlas committed to that in writing,
-and `check.py` binds `id` to the filename stem, so it cannot drift without a
-rename visible in review. Routes may be built on it — there is no `slug`, on
-purpose, because a second key is a second thing to keep in step.
-
-**Five things that bite.** The first four were found on the atlas side and are
-all still true here; the fifth was found by counting contract 2's payloads.
-
-1. A `prose` block has **no `rows`** — iterating blocks uniformly will throw.
-   In `sections` the same trap had a second mouth while the Run record
-   existed: it arrived token-shaped 15 times and row-shaped 7. That section is
-   gone, and the rule it taught is not — branch on the keys present, never on
-   `kind`.
-2. A `pencil` token carries **no text** and must not be dropped as empty. It
-   marked a value the Run record collected; with that section gone it marks a
-   value **worth writing down**, for a reader keeping their own notes, and the
-   accessible label moved with the meaning. 134 became 127 — the seven lost
-   were the "Steps marked ✎" sentence inside the removed sections. A
-   filter on the producing side silently deleted 33 menu commands while every
-   check stayed green. If you filter tokens, count what survives.
-3. **`v` is not the payload key.** Five types keep theirs somewhere else, so a
-   renderer reaching for `token.v` uniformly blanks **213 of 4,124 tokens —
-   roughly 5% — without erroring:**
-
-   | type | payload | count |
-   | :--- | :--- | ---: |
-   | `session` | `code` | 118 |
-   | `button` | `label`, plus `location` on 10 of the 50 | 50 |
-   | `command` | `route` | 39 |
-   | `path` | `route` | 5 |
-   | `image` | `alt` + `src` | 1 |
-
-   `pencil`'s 127 are a sixth type with no payload at all and are counted under
-   bite 2, not here. `link` carries `href` **and** `v`. The remaining eight types
-   use `v` alone, which is why the mistake survives a spot check — `text` is
-   2,648 of the 4,124 and reads correctly throughout.
-4. The two token vocabularies do not mix, but **`sections` carries both**.
-   `strong`/`em` never appear in a step cell; `chip`/`field`/`command`/`button`/
-   `value` never appear in a prose block — and a section may hold either,
-   depending on its kind. Rendering a bold sentence as a control chip once pushed
-   a page 1,334px wide. Keying the decision off the block alone is what does it.
-5. Step ids are strings — `"1.10"` sorts after `"1.9"` only if you split on the
-   dot.
-
-## Decided
-
-Scaffolding deliberately left these open; they are now answered. What each one
-asks of atlas in return is written up in `SEND-BACK.md`.
-
-- **Every guide publishes, drafts included.** Six of the seven are
-  `status: draft`, so withholding them would leave a site with one page on it. A
-  draft is labelled on the page, not withheld from it. Contract 2 carries
-  `status` in the export tier, so the badge is data. The generated `verification`
-  sentence was never a substitute, and still is not: one guide's sentence says
-  every phase was performed against a live system and confirmed while the guide
-  itself is `status: draft`.
-- **The training reviews publish too, and now do.** `reviews/` is a second
-  content type — six reviews and six summaries, rendering as pages beside the guides. Atlas accepted a **third tier** with the
-  fail-closed sweep scoped per tier, so relaxing it for reviews cannot quietly
-  strip the name protection off guides. Two conditions: the tier is named for
-  what it keeps rather than for who reads it, and issue ids and library paths
-  stay stripped. The blocker `SEND-BACK.md` §3.2 found was fixed first —
-  `PEOPLE` covered one person in four spellings while the attendee tables name
-  five others, which was never the guarantee it advertised.
-
-  **The emitter exists.** `tools/_review.py` and `emit.py`'s `review()` parse
-  the eight named sections and the four new block kinds; `sh tools/sync-guides.sh`
-  takes them with `--reviews`. Every count matches what `REVIEW-SHAPE.md`
-  measured — 82 list items, 12 callouts, 17 sources, 3 code blocks, 20 tables,
-  topics 5/6/6/7/7/8 — which is the check that the parser reads the documents
-  rather than something shaped like them.
-  **§4 is answered, and this file said otherwise for longer than it should
-  have.** `_standards/review-shape-reply.md` closes it in its opening line and
-  again in its last — *"§4 no longer blocks it"* — and answers it by building:
-  `_degap()` removes an INTERNAL marker structurally, taking the rest of the
-  cell with it. The reply also corrects §4's arithmetic. Its 102-load-bearing
-  figure counted frontmatter arrays as prose; the real obligation was **fifteen
-  sentences**, out of 40 edit sites, in a migration already run.
-
-  **The blocker moves to §1 and §2** — the eight named slots and the four block
-  kinds contract 2 lacks, all four accepted in the reply. Summaries emit as
-  reviews with `kind: "summary"` pointing at the full review's id. The review
-  emitter remains atlas's own outstanding work.
-- **Assets are settled, both halves.** The flowchart ships:
-  `order-to-shipment-flowchart.svg` holds no evidence, it arrived tracked beside
-  the guides, and contract 2's `image` token carries its `alt` and `src` — the
-  stray `!` that contract 1 rendered is gone. An `image` may only name a file
-  authored beside the guide; pointing one at `evidence/` is refused twice, by
-  that rule and by the tier sweep, and atlas verified the refusal rather than
-  asserting it. **Reviews publish without images, their citations rendered as
-  plain unlinked names** — the six cite 42 distinct `SS_*.png` frames of a
-  licensed environment, `evidence/` is immutable and stays in atlas. Atlas would
-  not soften the consequence and neither should this file: a review's claim about
-  what *was seen* is often anchored to the frame that shows it, and unlinked
-  citations are weaker. If that guts the reviews in practice, the answer is a
-  deliberate publication route decided on its own terms — not a quiet exception
-  in the exporter.
-- **The knowledge base does not publish.** `sessions/`, `config/`, `tests/`,
-  `build/` and `evidence/` stay in atlas in every tier, meeting transcripts
-  included. They are read through the documents that cite them, never directly.
-
-The rule behind all four: **anything a person sits down and reads becomes a page
-here; anything a document consults on their behalf does not.**
-
-## Undecided, and deliberately not decided by scaffolding
-
-- **~~Build-time generation or runtime rendering.~~ DECIDED 2026-08-31:
-  build-time, output committed.** `tools/build.mjs` reads `data/guides/` and
-  writes `index.html` and `guides/<id>.html`; adding, changing or removing a
-  guide is `sync-guides.sh` then `build.mjs`. Still no `package.json` and no
-  framework.
-
-  **What decided it was not the brief's argument, which the brief itself
-  retracted.** `renderer-brief.md` §4 argued build-time from the 90 KB budget
-  and from the gates, then withdrew both: the budget was rux-ds's own, and the
-  gates it named "do not run on the consuming project unless it deliberately
-  adopts them". That was written when this project had no gates. It has since
-  adopted the gates `tools/check.mjs` lists, and `check-classes` and `check-structure` read the HTML as
-  TEXT — so a runtime renderer would commit a shell whose `main` is empty and
-  both would exit 0 having found nothing to look at. That is `smoke.html`'s
-  failure with a different cause, and it would be rolled on every guide change
-  rather than once.
-
-  Two smaller reasons: a malformed guide throws in the generator with a stack
-  trace instead of in a reader's browser on one guide out of thirty; and a
-  runtime fetch of `data/guides/*.json` is blocked over `file://`, silently,
-  which is the exact failure `inline-sprite.mjs` exists to prevent.
-
-  **The output is committed, and that is half the decision.** In a gitignored
-  `build/` the pages would be invisible to the gates and to the pre-commit
-  hook, which restores the vacuous-green problem by another route.
-- **How the tokens are styled — answered for seven of the nine, open for two.**
-  `tools/build.mjs` maps the "named thing in the LN UI" types onto compiled
-  Carbon tag variants and no `guide-*` namespace: `chip` blue, `session` cyan,
-  `field` cool-gray, `literal` gray, `value` warm-gray, `status` teal, `button`
-  purple. It read, and 117 tags did not widen the page, when `guide.html` was
-  measured — the mapping moved into the generator unchanged, and now runs
-  across all seven guides rather than the one that was looked at.
-
-  **`command` and `path` do not fit and were moved out of tags.**
-  `.rux--tag` caps at 13rem by Carbon's own design and ellipsises the label, so
-  `Planning ➔ Order Planning ➔ Generate Order Planning` needed 324px and was
-  silently cut to 192 — a menu route, which is the thing a reader most needs
-  whole. They are set as text for now.
-
-  **The tags that actually clip are not `field` names.** Measuring all eight
-  pages on 2026-09-01 found nine clipped labels and every one is a guide
-  filename arriving as a `literal` — see "Verified working, not assumed".
-  No `field`, `chip`, `session`, `value` or `status` tag clips at 1280. Every
-  tag carries its full text in `title`, so the loss is visual only.
-
-  Carbon's own answer is `.rux--tag-label-tooltip`, and the tooltip component
-  arrived in `0aa5ed7`. Using it is a conversation with rux-ds, not a local
-  rule — this is the case the "Undecided" note predicted would need one.
-
-## What is outstanding
-
-`TODO.md`, and it is arranged around this project's own recurring failure: the
-rows `MEASURED` watches are separated from the prose that can rot, and it says
-which is which. Two documents are undelivered, a notes surface is decided and
-unbuilt, and three defect classes have no gate behind them.
-
-## Where this is
-
-Published, and read by trainees at
-[rux-sm.github.io/rux-ln-notes](https://rux-sm.github.io/rux-ln-notes/). The
-two syncs work and are verified — `sync-ds` was seen to refuse a dirty tree,
-not merely written to (retired 2026-09-02 for rux-ds's `new-project.sh`, which
-refuses the same and also refuses an unpushed commit). `tools/build.mjs` writes `index.html` and the pages
-into `guides/` from `data/guides/` — seven guides, six reviews, six summaries —
-and a rebuild against a clean tree produces no diff.
-
-**A pipeline now, not a template.** The throwaway script that made `guide.html`
-did its job — it kept build-time from being chosen by the back door while the
-question was open — and the question is answered, so it has been replaced by a
-tool that is committed and swept. `guide.html` is gone; nothing is
-hand-editable any more, and editing a generated page is the same mistake as
-hand-editing `data/` or `vendor/`.
-
-**Every gate was exercised against a failure**, not just watched to pass: a
-bogus class is reported unresolved, a rewritten `href` is reported missing,
-`check-publishable` refuses a planted name in a page and in a Markdown file,
-`measure --check` moves when the data moves, and the pre-commit hook refuses
-the commit rather than reporting it. `check-order` has now caught two real
-regressions rather than a planted one — the generator putting phases last, and
-the Run record's removal taking its anchor with it.
-
-**The pages have been measured in a browser, at the live URL and not only on
-localhost** — stylesheets parsed, both IBM Plex faces loaded, 59 icons inlined,
-nothing overflowing, no console errors, and internal links followed by clicking
-rather than by typing. Measuring is still what finds what the gates cannot: a
-whole typeface was missing until someone read a sync log, and cross-guide
-references arrive as
-`literal` rather than `link`, rendering as truncated atlas filenames. See
-"Verified working, not assumed".
-
-**Two of those three defects came back through the generator, and both are
-fixed with a rule rather than by hand.** `build.mjs` emitted every section and
-then the phases, so all seven guides read Troubleshooting and Variants before
-the work they refer to; and `tokens` joined on `''`, so two adjacent tags butted
-flush and read as one control. Both had been fixed in `guide.html` and neither
-travelled into the generator that replaced it, because the fix was in the
-artifact and deleting the artifact deleted it. Phases now sit between front and
-back matter — the boundary is the first back-matter section, unambiguous in
-all seven — and a space is emitted only between two tag-rendered neighbours,
-never inside a prose run.
-
-**The lesson is the gate, not the fix.** All four other checks were green on
-all seven broken pages, because none of them models document order.
-`check-order` is that rule now, so the next generator change cannot quietly
-reintroduce it. The flush-tag defect has no gate and is still caught only by
-looking. The missing-wrapper class does have one now — `check-ancestry`, run
-from rux-ds against these pages — and its count is whatever `node tools/check-ancestry.mjs` prints today.
-
-**It has not been reviewed by rux-ds.** A copy with invented content is what
-would go over; `MEASURED` records `SEND-DS.md` as undelivered.
-
-## The exchange moved to atlas
-
-Four documents were written across the boundary to atlas — `SEND-BACK.md`,
-`SEND-BACK-2.md`, `REVIEW-SHAPE.md`, `DIAGRAM-REPLY.md` — and on 2026-09-01
-they moved there, to `_standards/` beside the replies they belong with, as
-`send-back.md`, `send-back-2.md`, `review-shape.md` and `diagram-reply.md`.
-A memo written here is public and its reply in atlas is private, which is why
-half a conversation kept going undelivered; the conversation now lives in the
-repository you open to think, and this one keeps only what it publishes.
-`MEASURED` no longer carries `delivered.*` or `replied.*` rows for the same
-reason. `SEND-DS.md` stays: it encloses `template-candidate.html`, an artefact
-for `rux-ds` rather than a memo.
-
-## What this side is building, and what it owes
-
-**Scenario guides, meeting summaries and practice exercises** now render. The
-nav lists those three categories; the six full reviews render as pages and are reached from
-their summary rather than listed beside it, because putting twelve documents
-under one heading presents two categories as one. The screen reference is still
-deferred rather than refused.
-
-A summary is its own four-slot shape — What this covered, Topics, What was
-decided, Key takeaways — sharing the topics model with a review rather than
-being a truncated one. It renders from `SUMMARY_SLOTS` in `build.mjs`, the same
-page builder as a review with a different slot list.
-
-**`PUBLISHES` is resolved.** It reads `{"exercise", "guide", "review"}`. `summary` stays
-out deliberately rather than by omission: a summary rides the review emitter as
-`kind: "summary"`, which is `SEND-BACK.md` §3.4's reading, and giving it a
-second route with its own rules is the drift that file exists to prevent.
-
-**Reviews arrive at the same export tier a guide does, and a third tier
-existed for one day.** `attributed` was built to carry an Attendees table past
-the name sweep; the reviews name roles now, so it relaxed nothing, and a tier
-that relaxes nothing is a second rule to keep in step with the first for no
-gain. `sweep()` reads one strict list again. It also gained a pattern for
-vendor document filenames, so the citations stay citations.
-
-**The waiting was mostly optional, and that is the lesson.** The review
-emitter was described here for four commits as atlas's outstanding work. It was
-never a delivery that had not arrived: `sync-guides.sh` line 35 already RUNS
-`emit.py` from this side, against atlas's checkout, so the pull model was
-always in place — what was missing was a code path in a program this repo
-already invokes, in a sibling repo with the same author. Writing it was a
-two-repo commit, not a dependency. **Strip at the source, render at the sink,
-and when the emitter lacks a class you need, add it in the same sitting.**
-
-**Three answers are owed to atlas and no open document carries them:** whether
-the 32 session codes with no `sessions/` file publish as name-only or are
-omitted, that an `openIssues` count is wanted in contract 3, and a re-measure of
-this side's "58 distinct in-step codes" — atlas gets 46 or 106 depending on the
-reading, and neither is 58. That figure was taken at `288bf72` and the screen
-reference leans on it.
-
-**A fourth is now owed, and it was found by measuring rather than by
-reasoning.** A cross-guide reference arrives as a `link` token in 9 places and
-as a `literal` carrying the same `SG-….md` filename in 19 others. The renderer
-rewrites and resolves the first and can only draw the second as a truncated
-grey pill naming a file that does not exist here. Both readings are legal under
-the contract, which is why no check catches it. The ask is that atlas emit a
-cross-guide reference as `link` consistently — not that this side start
-guessing which `literal` is secretly a filename.
-
-**A fifth is answered rather than owed.** `DIAGRAM-REPLY.md` responds to
-atlas's diagram proposal, and it carries one finding atlas could not have had:
-its §1.2 argument — that a diagram hides text from every check — is true on
-this side too. `check-links` resolves the SVG as a target and never opens it,
-the other three sweep `.html`, and the commit hook greps `\.html$`. The
-diagram is opaque in both repositories at once, and the format is the reason
-rather than either side's gates.
-
-**How anything gets "sent", since nothing about it is automatic.** The sync
-tools only pull, and there is no channel the other way. A document is delivered
-by the other side reading it *in place* and pointing at it from its own handoff
-— `SEND-BACK.md` was answered that way and never copied. So delivery is visible
-only as a commit in the other repository, and `git log` there is the check.
-That is the whole reason the section above tracks no status: a channel with no
-signal cannot be narrated accurately from this side, and three attempts to do
-it anyway all went stale.
+A push to `main` is a publication. `.github/workflows/pages.yml` rebuilds the
+pages, refuses a push whose committed pages differ from what `data/guides/`
+produces, runs `node tools/check.mjs`, and deploys only if every gate passes;
+a failed run leaves the previous deployment live. CI cannot read atlas, so
+the names class of `check-publishable` runs only in the commit hook on a
+machine with the sibling checkout, and `pages.yml` says so in its header.
+
+`MEASURED` is the one place this repository's counts about itself live. The
+commit hook regenerates it; `node tools/measure.mjs --check` says whether it
+has moved.
+
+## Never edited by hand
+
+`data/guides/`, `vendor/rux-ds/`, `guides/`, `index.html` and `MEASURED` are
+all generated. The next sync or build overwrites them, and the real fix
+belongs upstream — in atlas for content, in rux-ds for a component, in
+`tools/build.mjs` for markup. `rux-theme.css` and `rux-overrides.css` at the
+root are this project's own override hooks, linked after the vendored ones and
+empty by design; a rule goes there only when this project, not rux-ds, has to
+change something.
+
+## Where the rest went
+
+What is outstanding is `TODO.md`. The decisions that bind — build-time
+rendering with committed output, drafts labelled, reviews at export tier,
+what never publishes — are in `AGENTS.md`. The long record of how each was
+reached, with its measurements, is in this file's history: `git show
+55c22fb:README.md` is the last version that carried it.

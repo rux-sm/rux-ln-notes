@@ -12,12 +12,14 @@ Nothing else here is checked by anything.
 ## Now — the one next step, in order
 
 1. Re-vendor rux-ds: `sh tools/new-project.sh ~/Developer/rux-ln-notes` from a rux-ds clone at a tag, then build, check, commit, push.
-   The pin is from 2026-09-01, before the switcher landed there.
+   The pin is from 2026-09-05; `node tools/check.mjs` prints how far the checkout has moved past it.
 2. Add the switcher button and panel to the shell, once rux-ds has written the
    `switcher.json` contract down (rux-ds README "Picking this up" lists it as
    an open decision).
-3. Send `SEND-DS.md` to rux-ds. `template-candidate.html` already clears
-   `check-publishable`, which was the stated blocker.
+3. Decide `SEND-DS.md`: send it to rux-ds, or retire it and
+   `template-candidate.html` with it. `template-candidate.html` already clears
+   `check-publishable`, which was the stated blocker. Sending needs a copy of
+   a page with invented content, and that is this side's work, not theirs.
 
 ## Watched — `MEASURED` answers these; read them there
 
@@ -26,13 +28,6 @@ two `*.pin` rows. How far each sibling's checkout has moved past its pin is
 live state, printed by `node tools/check.mjs` and by the sync scripts, and
 since 2026-09-02 never written to the file. This file used to copy the values
 and was wrong within a day of doing so.
-
-One document has never been sent:
-
-- **`SEND-DS.md`** has never been sent at all. The case is stronger now than
-  when it was written: `rux-ds` has a live public consumer, which is the thing
-  that document exists to argue. Sending it needs a copy of a page with
-  invented content, and that is this side's work, not theirs.
 
 ## Decided, not built
 
@@ -77,37 +72,11 @@ One document has never been sent:
 
 ## Owed to atlas, and no open document carries them
 
-Four answers, listed in `README.md` under the exchange: whether the 32 session
-codes with no `sessions/` file publish as name-only or are omitted; that an
-`openIssues` count is wanted in contract 2; a re-measure of "58 distinct
-in-step codes", which atlas reads as 46 or 106 and neither is 58; and that a
-cross-guide reference arrives as `link` in 9 places and as a `literal` carrying
-the same `SG-….md` filename in 19 others.
-
-## The stale-fact sweep and the move to atlas — done 2026-09-01
-
-`CLAUDE.md` said this repository was private; it is public, and `AGENTS.md`
-now says so and is the one policy file. `check-publishable.mjs`'s header now
-says it refuses, because it does. `check-export-safe.mjs` is gone and
-`build.mjs` no longer stamps `EXPORT-SAFE: exempt`. `sync-guides.sh` no longer
-describes an `attributed` tier. `SEND-BACK.md`, `SEND-BACK-2.md`,
-`REVIEW-SHAPE.md` and `DIAGRAM-REPLY.md` live in atlas `_standards/`, and
-`MEASURED` dropped its `delivered.*` and `replied.*` rows with them.
-`SEND-DS.md` stays, as decided: it goes to `rux-ds` as a file, with the ask as
-the commit message, once a page copy with invented content exists.
-
-## Numbers are generated, or they are not written - decided 2026-09-01
-
-`MEASURED` is the pattern, and the rule behind it is atlas's: **a rule with no
-check is a principle, and belongs in the other half.** Between them those two
-are the whole fix for prose that rots. Nothing here needs inventing.
-
-`rux-ds` is the outlier, and it is named here only so the decision is on record
-in one place. Its README carries hand-written figures against a generated block
-covering a small fraction of the file. On 2026-09-01 it sent a reader to redo
-work finished eighteen commits earlier, and its portal reported a browser-gate
-figure the tool it reports on contradicted in the same working tree. **Not
-scoped here** — that is `rux-ds`'s work and needs its own sitting.
+Four answers: whether the 32 session codes with no `sessions/` file publish
+as name-only or are omitted; that an `openIssues` count is wanted in contract
+2; a re-measure of "58 distinct in-step codes", which atlas reads as 46 or 106
+and neither is 58; and that a cross-guide reference arrives as `link` in 9
+places and as a `literal` carrying the same `SG-….md` filename in 19 others.
 
 ## Not doing
 
@@ -119,13 +88,18 @@ scoped here** — that is `rux-ds`'s work and needs its own sitting.
   deployment, not a disclosure. The data route is closed by the hash in
   `data/guides/PIN` instead; the rest is held by the commit hook and the
   setup probe, and `AGENTS.md` records the accepted case.
+- **Generated pages in an ignored directory.** Weighed again 2026-09-06 and
+  kept as decided: the saving is about 1.7 MB of tracked HTML, and the cost
+  is the rendered-page names sweep leaving the commit hook, which is the only
+  place it can run. Admissible only if the hook builds and sweeps the output
+  itself, every check is re-rooted at it, and equivalence is proven locally
+  first; nobody wants it that much.
 - **A fourth repository.** Publishing changed what this one contains, not what
   it is for.
 - **Filtering rather than authoring.** Every time something had to come out —
   gap markers, issue ids, names, vendor filenames — the answer was to author it
   out upstream. Cutting a token from a finished sentence leaves damaged prose
   and every check stays green.
-
 - **Merging any two of the three repositories.** All three boundaries are real:
   atlas is private because it holds evidence and Infor's documentation, this is
   public because it is the published site, and `rux-ds` is separate because it
@@ -136,4 +110,6 @@ scoped here** — that is `rux-ds`'s work and needs its own sitting.
 - **One agent context file across the family.** The three rule sets differ in
   kind, not in detail: `rux-ds` forbids inventing a class, atlas forbids
   answering from anything but `evidence/`, this forbids publishing what atlas
-  holds back. A session loading all three reads two it cannot use.
+  holds back. A session loading all three reads two it cannot use. Atlas's
+  `AGENTS.md` points here before any change to this repository, which is a
+  pointer and not a merge.

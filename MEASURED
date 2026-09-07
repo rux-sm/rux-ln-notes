@@ -1,6 +1,6 @@
 # upstreams
 rux-ln-atlas.pin = 0e12983
-rux-ds.pin = 19d7bf1
+rux-ds.pin = a0196fa
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.at-pin = 10

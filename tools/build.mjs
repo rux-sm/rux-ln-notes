@@ -844,7 +844,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <!-- SPRITE:BEGIN -->
 <!-- SPRITE:END -->
 
-<header class="rux--header" data-theme="g100" aria-label="Rux Notes">
+<header class="rux--header" data-theme="g100" aria-label="Rux LN Notes">
   <a class="rux--skip-to-content" href="#main-content">Skip to main content</a>
 
   <!-- Ships closed, and carries __menu-toggle__hidden so it is display:none
@@ -861,7 +861,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
        HEIGHT so the file's own aspect governs. rux-ds brand/README.md is the
        contract; tools/new-project.sh there seeds this file and, because it
        only seeds when absent, never overwrites a logo you replaced. -->
-  <a class="rux--header__name" href="${up || './'}"><img src="${up}brand/logo.svg" alt="" style="height:1.5rem;width:auto;margin-right:.5rem;flex:none"><span class="rux--header__name--prefix">Rux</span>&nbsp;Notes</a>
+  <a class="rux--header__name" href="${up || './'}"><img src="${up}brand/logo.svg" alt="" style="height:1.5rem;width:auto;margin-right:.5rem;flex:none"><span class="rux--header__name--prefix">Rux</span>&nbsp;LN Notes</a>
 
   <!-- NO __nav: one product. __global carries the two actions every app has
        since rux-ds v0.1.3 (§4.13): the Account action and the switcher, each
@@ -888,7 +888,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     <ul class="rux--switcher" aria-label="Applications">
     <li class="rux--switcher__item"><a class="rux--switcher__item-link" href="/">Home</a></li>
     <li><hr class="rux--switcher__item--divider"></li>
-    <li class="rux--switcher__item"><a class="rux--switcher__item-link" href="/rux-ln-notes/" aria-current="page">Notes</a></li>
+    <li class="rux--switcher__item"><a class="rux--switcher__item-link" href="/rux-ln-notes/" aria-current="page">LN Notes</a></li>
   </ul>
   </div>
   <!-- THE ACCOUNT PANEL: the same header panel, opened by the Account action
@@ -1074,7 +1074,7 @@ function indexPage(site) {
         </div>`).join('\n');
 
   const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
-          <h1>Rux Notes</h1>
+          <h1>Rux LN Notes</h1>
           <p class="rux--type-body-02">Procedures walked against a live Infor LN
              environment, focused practice for explaining their results, and
              the record of the sessions they came out of. Each scenario guide
@@ -1121,7 +1121,7 @@ ${summaryCards}
           </div>
         </section>`;
 
-  return page({ title: 'Rux Notes', site, activeId: null, body, depth: 0 });
+  return page({ title: 'Rux LN Notes', site, activeId: null, body, depth: 0 });
 }
 
 // A REVIEW AND A SUMMARY ARE ONE PAGE BUILDER WITH TWO SLOT LISTS. They share
@@ -1197,7 +1197,7 @@ function reviewPage(r, site) {
         ? topicsSection(r)
         : rsection(`s-${slot}`, heading, r[slot])).filter(Boolean).join('\n\n      ')}`;
 
-  return page({ title: `${r.title} — Rux Notes`, site, activeId: r.id, body, depth: 1 });
+  return page({ title: `${r.title} — Rux LN Notes`, site, activeId: r.id, body, depth: 1 });
 }
 
 // AN EXERCISE IS ORDERED PRACTICE, not guide phases. The prose block vocabulary
@@ -1344,7 +1344,7 @@ function exercisePage(e, site) {
         ${rail}
         </div>`;
 
-  return page({ title: `${e.title} — Rux Notes`, site, activeId: e.id, body, depth: 1, scripts: ['js/exercise.js'] });
+  return page({ title: `${e.title} — Rux LN Notes`, site, activeId: e.id, body, depth: 1, scripts: ['js/exercise.js'] });
 }
 
 function conceptPage(c, site) {
@@ -1370,7 +1370,7 @@ function conceptPage(c, site) {
           ${(c.intro ?? []).map(rblock).join('\n          ')}
         </div>
         ${topics}`;
-  return page({ title: `${c.title} — Rux Notes`, site, activeId: c.id, body, depth: 1 });
+  return page({ title: `${c.title} — Rux LN Notes`, site, activeId: c.id, body, depth: 1 });
 }
 
 function guidePage(g, site) {
@@ -1400,7 +1400,7 @@ function guidePage(g, site) {
              while the guide itself is status: draft. Both are shown. -->
         <p class="rux--type-body-01">${esc(g.verification)}</p>` : ''}`;
 
-  return page({ title: `${g.title} — Rux Notes`, site, activeId: g.id, body, depth: 1 });
+  return page({ title: `${g.title} — Rux LN Notes`, site, activeId: g.id, body, depth: 1 });
 }
 
 // ---------------------------------------------------------------- build

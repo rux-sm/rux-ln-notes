@@ -3263,6 +3263,29 @@
       "tokens": [
         {
           "t": "strong",
+          "v": "The level-2 view holds what the diagram leaves out."
+        },
+        {
+          "t": "text",
+          "v": " "
+        },
+        {
+          "t": "link",
+          "v": "The session map",
+          "href": "demand-to-shipment-session-map.md"
+        },
+        {
+          "t": "text",
+          "v": " names all 21 sessions this chain touches, each with its route, the action performed there and what it leaves for the next one. It is the page to keep open beside the screen while you walk this guide; every tile names the phase step here that owns its detail, so the two cannot drift apart quietly."
+        }
+      ],
+      "text": "The level-2 view holds what the diagram leaves out. The session map names all 21 sessions this chain touches, each with its route, the action performed there and what it leaves for the next one. It is the page to keep open beside the screen while you walk this guide; every tile names the phase step here that owns its detail, so the two cannot drift apart quietly."
+    },
+    {
+      "kind": "prose",
+      "tokens": [
+        {
+          "t": "strong",
           "v": "The Item Order Plan is the progress indicator for phases 0–2; the order status is the indicator from phase 3 on."
         },
         {

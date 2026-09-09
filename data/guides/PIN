@@ -1,9 +1,9 @@
-commit   e392017007be71b458e08a533b63f30f21b31280
-date     2026-09-09T20:55:05Z
-subject  fix(exercises): Put an id behind its marker
+commit   ccbfb7c78b0a66d746f2b4bb3b2482a82feaf21d
+date     2026-09-09T21:02:50Z
+subject  docs(guides): Link the session map from the spine
 contract 5 
 tier     export
-sha256   5efcb43c6264d24613e62305e15c1f9078dd6328ff2cac941ebb8b527768b0b8
+sha256   d1527d3ed774f317cde19c61f12a957745ace91646fa99ba629009938584df3f
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises --references.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

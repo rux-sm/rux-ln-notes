@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = e392017
+rux-ln-atlas.pin = ccbfb7c
 rux-ds.pin = a0196fa
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -18,7 +18,7 @@ exported.exercise-assignments = 15
 exported.exercises.tier = export
 exported.reviews.tier = export
 exported.topics = 112
-tokens.total = 3772
+tokens.total = 3776
 tokens.types = 15
 tokens.payload-not-v = 196
 tokens.pencil = 125
@@ -28,14 +28,14 @@ tokens.type.command = 39
 tokens.type.em = 25
 tokens.type.field = 258
 tokens.type.image = 1
-tokens.type.link = 9
+tokens.type.link = 10
 tokens.type.literal = 174
 tokens.type.path = 5
 tokens.type.pencil = 125
 tokens.type.session = 114
 tokens.type.status = 72
-tokens.type.strong = 143
-tokens.type.text = 2422
+tokens.type.strong = 144
+tokens.type.text = 2424
 tokens.type.value = 125
 session-codes.in-sources = 108
 session-codes.in-steps = 58

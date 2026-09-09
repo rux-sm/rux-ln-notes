@@ -1488,7 +1488,7 @@ function diagramFigure(dg) {
       if (!here.length) continue;
       const tiles = here.map(n => `<details class="ln-tile ln-tile--${esc(n.kind)}">
                 <summary><span class="ln-tile-n">${esc(n.n != null ? String(n.n) : '·')}</span><span class="ln-tile-name">${
-                  esc(n.session)}</span><code class="ln-tile-code">${esc(n.code)}</code></summary>
+                  esc(n.session)}</span>${n.code ? `<code class="ln-tile-code">${esc(n.code)}</code>` : ''}</summary>
                 <div class="ln-dg-detail">
                   ${field(n, 'route', 'Route')}
                   ${field(n, 'does', 'Does')}

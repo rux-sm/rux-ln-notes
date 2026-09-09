@@ -190,7 +190,7 @@ if (DRY) {
   heading('documents (emitted to a temporary directory, compared with data/guides/)');
   const tmp = mkdtempSync(join(tmpdir(), 'ln-publish-'));
   try {
-    const e = run('python3', ['tools/emit.py', '--all', '--reviews', '--exercises', '--out', tmp], { cwd: ATLAS });
+    const e = run('python3', ['tools/emit.py', '--all', '--reviews', '--exercises', '--references', '--out', tmp], { cwd: ATLAS });
     if (e.unreachable) stop('emit', `emit.py could not be started: ${e.err}`);
     else if (!e.ok) { stop('emit', `emit.py refused (exit ${e.status}); the diff is not known`); console.log(e.out); console.error(e.err); }
     else {

@@ -26,6 +26,11 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // Order: the cheap structural checks first, publishability last so its
 // refusal is the final word on the screen.
 const GATES = [
+  // rux-ds's shared check FIRST, and app-specific gates after it: the
+  // convention tools/app-check.mjs states, and the one rux-scheduler follows.
+  // Added 2026-09-09 after an undeclared token shipped in 28 pages with all
+  // seven gates below green -- none of them reads a token.
+  ['check-app',         []],
   ['check-classes',     []],
   ['check-structure',   []],
   ['check-links',       []],

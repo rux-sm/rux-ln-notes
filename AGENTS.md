@@ -98,8 +98,18 @@ the fix belongs upstream.
 
     node tools/check.mjs
 
-Runs every gate `tools/check.mjs` lists: classes, structure, links, order,
-ancestry (needs a `rux-ds` checkout beside this one) and publishable. The
+Runs every gate `tools/check.mjs` lists. **First is rux-ds's own shared check**,
+run from the vendored copy at the pin (`tools/check-app.mjs`): classes, tokens,
+file references and id references, over every page. Then this project's own:
+classes, structure, links, order, ancestry (needs a `rux-ds` checkout beside
+this one), data and publishable.
+
+**The shared check was wired up on 2026-09-09, and it should have been from the
+start.** None of the seven gates below it reads a TOKEN, so
+`var(--rux-font-mono)` — a name rux-ds has never declared — shipped in 28
+generated pages with every gate green. It rendered correctly throughout,
+because every use carried a fallback, which is why nothing noticed. It was
+found from outside, by running rux-ds's implementation from a rux-ds clone. The
 commit hook runs the privacy gate on the staged bytes and then this. `MEASURED` staleness is
 reported, not enforced; re-run `node tools/measure.mjs` when it says so.
 

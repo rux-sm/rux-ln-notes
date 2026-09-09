@@ -98,11 +98,26 @@ the fix belongs upstream.
 
     node tools/check.mjs
 
-Runs every gate `tools/check.mjs` lists. **First is rux-ds's own shared check**,
-run from the vendored copy at the pin (`tools/check-app.mjs`): classes, tokens,
-file references and id references, over every page. Then this project's own:
-classes, structure, links, order, ancestry (needs a `rux-ds` checkout beside
-this one), data and publishable.
+Runs every gate `tools/check.mjs` lists. **First it rebuilds** — `node
+tools/build.mjs`, then a diff against `guides/` and `index.html`, failing if
+rebuilding changed anything committed; this is the same check `pages.yml` runs
+before it deploys, so a stale build is caught here before a push rather than
+only after. **Then rux-ds's own shared check**, run from the vendored copy at
+the pin (`tools/check-app.mjs`): classes, tokens, file references and id
+references, over every page. Then this project's own: classes, structure,
+links, order, ancestry (needs a `rux-ds` checkout beside this one), data and
+publishable.
+
+**The rebuild gate was added 2026-09-09, after moving the pin to `v0.1.12`
+committed stale pages that only `pages.yml` caught, on push.** `build.mjs`
+inlines rux-ds's whole icon sprite into every page, and two icons had joined
+it since this project last built; the shared check could not see it, because
+it only verifies a page's inlined icons are somewhere in what rux-ds ships,
+never that the sprite is current. Neither `roll-out.sh` nor "Two upstreams" below, which names
+`new-project.sh` as the whole procedure for moving `vendor/rux-ds/`, said to
+rebuild first. Both gaps are the same fix: the rebuild is now inside the one
+check itself, so nothing that calls `node tools/check.mjs` — a person,
+`roll-out.sh`, the commit hook — can skip it.
 
 **The shared check was wired up on 2026-09-09, and it should have been from the
 start.** None of the seven gates below it reads a TOKEN, so

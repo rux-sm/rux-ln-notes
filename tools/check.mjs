@@ -26,7 +26,15 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // Order: the cheap structural checks first, publishability last so its
 // refusal is the final word on the screen.
 const GATES = [
-  // rux-ds's shared check FIRST, and app-specific gates after it: the
+  // THE REBUILD, FIRST OF ALL. Everything after this reads guides/ and
+  // index.html; if they were stale, this gate rewrote them from data/ before
+  // any of it ran, so every gate below sees current content, not a snapshot
+  // from the last time someone remembered to type `node tools/build.mjs`.
+  // Added 2026-09-09 after a pin move committed pages stale against the new
+  // sprite, and nothing before this gate would have caught it locally --
+  // only pages.yml's own build-and-diff step did, on push.
+  ['check-build',       []],
+  // rux-ds's shared check next, and app-specific gates after it: the
   // convention tools/app-check.mjs states, and the one rux-scheduler follows.
   // Added 2026-09-09 after an undeclared token shipped in 28 pages with all
   // seven gates below green -- none of them reads a token.

@@ -1,9 +1,9 @@
-commit   f49cba41f3a5b4d0f598c83a8367df694bd5160d
-date     2026-09-09T21:41:05Z
-subject  fix(handoff): Tokenise the diagram edge label
-contract 6 
+commit   bba52e09f202e9c9e9f792c2cbdd83ba34a08e7c
+date     2026-09-09T21:50:34Z
+subject  feat(handoff): Convert the flowchart, drop the SVG
+contract 7 
 tier     export
-sha256   3869ca7b7a3e775c33d1de326abe1daa63daacfc37a0e2de9f0fbea2243cac8d
+sha256   c93cc21442f213010c2952897ef93db76ef40c9d58ddbdefe28fa98f2e761320
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises --references.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

@@ -161,10 +161,10 @@ function token(t) {
       return `<q class="ln-quote-inline">${esc(t.v)}</q>`
         + `<cite class="ln-at">${esc(t.at)}</cite>`;
 
-    // An image only ever names a file authored beside the guide; anything
-    // under `evidence/` is refused by the contract and by the tier sweep.
-    case 'image':
-      return `<img src="${esc(t.src)}" alt="${esc(t.alt)}" class="ln-figure">`;
+    // THE IMAGE TOKEN RETIRED AT CONTRACT 7. A diagram used to arrive as an
+    // SVG copied beside the guide; both diagrams are `diagram` blocks now, so
+    // nothing emits this token and nothing copies a file. `.ln-figure` goes
+    // with it.
 
     // A CITATION IS ONE TOKEN. Since atlas f092fb1 the name rides beside the
     // code and the brackets are gone: how the two are presented is this side's
@@ -847,7 +847,6 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
 .ln-meta dd { margin: 0; }
 
-.ln-figure { max-inline-size: 100%; block-size: auto; }
 
 /* THE DIAGRAM. Lane and stage arrive as coordinates, so placement is a grid
    lookup and nothing here measures or solves anything. Only grid-column and
@@ -1636,7 +1635,7 @@ const docs = readdirSync(DATA)
 // contract set and enforces nothing, so a renderer written for one shape could
 // silently consume the next. Bump this constant when this file is updated for
 // a new contract, and not before.
-const CONTRACT = 6;
+const CONTRACT = 7;
 for (const d of docs) if (Number(d.contract) !== CONTRACT)
   throw new Error(`${d.id ?? '?'}: contract ${d.contract}, this renderer reads ${CONTRACT} -- update build.mjs for it, then this constant`);
 

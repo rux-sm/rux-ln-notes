@@ -161,7 +161,6 @@
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
 .ln-meta dd { margin: 0; }
 
-.ln-figure { max-inline-size: 100%; block-size: auto; }
 
 /* THE DIAGRAM. Lane and stage arrive as coordinates, so placement is a grid
    lookup and nothing here measures or solves anything. Only grid-column and
@@ -472,6 +471,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </button>
         <ul class="rux--side-nav__menu">
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="demand-to-shipment-session-map.html" aria-current="page"><span class="rux--side-nav__link-text">Demand to shipment — session map</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-to-shipment-overview.html"><span class="rux--side-nav__link-text">Order to shipment — the overview</span></a></li>
         </ul>
       </li>
 
@@ -491,7 +491,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-09</span></span>
           </div>
           <p><strong>This file is the source. The picture is generated from it.</strong> Sections 3 to 6 are the drawing: lanes, stages, nodes, edges. Editing a cell here and regenerating is the whole loop, and no coordinate, colour or pixel appears anywhere in this document — that split is the one <span class="rux--tag rux--tag--gray" title="exchange/diagram-as-data.md"><span class="rux--tag__label">exchange/diagram-as-data.md</span></span> §3 draws, applied to a second diagram before it becomes a second hand-placed artefact.</p>
-          <p><strong>It is a level-2 companion, not a replacement.</strong> <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> is level 1 — six lanes, five stages, master data through shipment, fourteen boxes — and <span class="rux--tag rux--tag--gray" title="START-HERE.md"><span class="rux--tag__label">START-HERE.md</span></span>, <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> and the spine guide all point at it. This one starts where that one&#39;s stage 2 starts, at sales demand, and answers a different question: <strong>which session, reached how, and what do I actually do in it.</strong></p>
+          <p><strong>It is a level-2 companion, not a replacement.</strong> <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> is level 1 — six lanes, five stages, master data through shipment — and <span class="rux--tag rux--tag--gray" title="START-HERE.md"><span class="rux--tag__label">START-HERE.md</span></span>, <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> and the spine guide all point at it. This one starts where that one&#39;s stage 2 starts, at sales demand, and answers a different question: <strong>which session, reached how, and what do I actually do in it.</strong></p>
           <p><strong>It composes and owns nothing.</strong> Every route, action and status below is already carried by <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> or by the <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span> file for that code. Section 5&#39;s <strong>Guide step</strong> column is the link back, so a step that moves in the guide is findable here rather than silently stale. If this map and its guide disagree, the guide is right and this is the bug.</p>
         </div>
         <figure class="ln-dg" style="--dg-cols:9">
@@ -802,7 +802,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     </div>
   </div>
 </div>
-          <p><strong>D5 is settled by a run, not by a preference.</strong> <span class="rux--tag rux--tag--gray" title="tools/export.py"><span class="rux--tag__label">tools/export.py</span></span>&#39;s <span class="rux--tag rux--tag--gray" title="sweep"><span class="rux--tag__label">sweep</span></span> — the same function <span class="rux--tag rux--tag--gray" title="tools/emit.py"><span class="rux--tag__label">tools/emit.py</span></span> runs over a copied SVG&#39;s bytes before writing it — returns <strong>five hits</strong> against the drafted figure and <strong>zero</strong> against <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span>. D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep. </p>
+          <p><strong>D5 is settled by a run, not by a preference.</strong> <span class="rux--tag rux--tag--gray" title="tools/export.py"><span class="rux--tag__label">tools/export.py</span></span>&#39;s <span class="rux--tag rux--tag--gray" title="sweep"><span class="rux--tag__label">sweep</span></span> — the same function <span class="rux--tag rux--tag--gray" title="tools/emit.py"><span class="rux--tag__label">tools/emit.py</span></span> runs over a copied SVG&#39;s bytes before writing it — returns <strong>five hits</strong> against the drafted figure and <strong>zero</strong> against the SVG it then replaced. D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep. </p>
           <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast">
   <div class="rux--inline-notification__details">
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-information--filled"/></svg>
@@ -1183,7 +1183,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>`the source on file` and `the source on file`</strong> — measured 2026-09-09, and all 23 codes in <span class="rux--tag rux--tag--gray" title="sources:"><span class="rux--tag__label">sources:</span></span> settle against principle 3&#39;s test. Sixteen appear in one or both extracts. The seven that do not — <span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>, <span class="rux--tag rux--tag--cyan" title="tdpur4100m900"><span class="rux--tag__label">tdpur4100m900</span></span>, <span class="rux--tag rux--tag--cyan" title="tdsls4501m140"><span class="rux--tag__label">tdsls4501m140</span></span>, <span class="rux--tag rux--tag--cyan" title="tisfc0100s000"><span class="rux--tag__label">tisfc0100s000</span></span>, <span class="rux--tag rux--tag--cyan" title="whinh2100m100"><span class="rux--tag__label">whinh2100m100</span></span>, <span class="rux--tag rux--tag--cyan" title="whinh3512m000"><span class="rux--tag__label">whinh3512m000</span></span>, <span class="rux--tag rux--tag--cyan" title="whinh4630m000"><span class="rux--tag__label">whinh4630m000</span></span> — each have help exported from this environment, and each is written above as no-menu-entry or drill-in, which is what their absence means. One runs the other way: <strong>`cprrp1200m000` is in the extracts and has no help filed here</strong>, so its route is evidenced and its meaning rests on the guide alone.</li>
         </ol>
         </section>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas f49cba4 · contract 6</p>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas bba52e0 · contract 7</p>
       </div>
     </div>
   </div>

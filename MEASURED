@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = f49cba4
+rux-ln-atlas.pin = bba52e0
 rux-ds.pin = a0196fa
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -8,7 +8,7 @@ rux-ds.gates.at-pin = 24
 
 # guide data
 guides.count = 7
-guides.contract = 6
+guides.contract = 7
 guides.tier = export
 guides.draft = 6
 exported.reviews = 8
@@ -18,16 +18,15 @@ exported.exercise-assignments = 15
 exported.exercises.tier = export
 exported.reviews.tier = export
 exported.topics = 112
-tokens.total = 3776
-tokens.types = 15
-tokens.payload-not-v = 196
+tokens.total = 3775
+tokens.types = 14
+tokens.payload-not-v = 195
 tokens.pencil = 125
 tokens.type.button = 37
 tokens.type.chip = 223
 tokens.type.command = 39
 tokens.type.em = 25
 tokens.type.field = 258
-tokens.type.image = 1
 tokens.type.link = 10
 tokens.type.literal = 174
 tokens.type.path = 5
@@ -51,5 +50,5 @@ reviews.oi-ids.frontmatter = 55
 reviews.oi-ids.residual = 14
 
 # publishable (0 in every row is the condition for going public)
-publishable.pages = 33
+publishable.pages = 34
 publishable.pages-flagged = 0

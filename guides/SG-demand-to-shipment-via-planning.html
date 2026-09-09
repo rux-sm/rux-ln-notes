@@ -161,7 +161,6 @@
 .ln-meta dt { font-weight: 600; min-inline-size: 4.5rem; }
 .ln-meta dd { margin: 0; }
 
-.ln-figure { max-inline-size: 100%; block-size: auto; }
 
 /* THE DIAGRAM. Lane and stage arrive as coordinates, so placement is a grid
    lookup and nothing here measures or solves anything. Only grid-column and
@@ -472,6 +471,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </button>
         <ul class="rux--side-nav__menu" hidden>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="demand-to-shipment-session-map.html"><span class="rux--side-nav__link-text">Demand to shipment — session map</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-to-shipment-overview.html"><span class="rux--side-nav__link-text">Order to shipment — the overview</span></a></li>
         </ul>
       </li>
 
@@ -493,7 +493,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <p class="rux--type-body-02">Sales · Enterprise Planning · Procurement · Manufacturing · Warehousing</p>
         </div>
 
-      <p><strong>Objective:</strong> run the bamboo family down the long route of <span class="rux--tag rux--tag--gray" title="order-to-shipment-flowchart.svg"><span class="rux--tag__label">order-to-shipment-flowchart.svg</span></span> — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down. <strong>Spine guide</strong> — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it.</p>
+      <p><strong>Objective:</strong> run the bamboo family down the long route of <span class="rux--tag rux--tag--gray" title="order-to-shipment-overview.md"><span class="rux--tag__label">order-to-shipment-overview.md</span></span> — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down. <strong>Spine guide</strong> — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it.</p>
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-glance">
       <h2 id="s-glance">At a glance</h2>
       <div class="rux--data-table-container">
@@ -512,8 +512,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </table>
         </div>
       </div>
-      <p><img src="order-to-shipment-flowchart.svg" alt="Order to shipment — the long route" class="ln-figure"></p>
-      <p><strong>The diagram is the level-1 view of this guide</strong> — five phases across six module lanes, master data through confirmed shipment. The <strong>YES</strong> rail along the top is a ship-from-stock order that never crosses the transfer boundary; everything below it is the route this guide walks. Its sessions and their routes are stated per phase below, not on the diagram.</p>
+      <p><strong>[The overview](order-to-shipment-overview.md) is the level-1 view of this guide</strong> — five stages across six module lanes, master data through confirmed shipment. The <strong>YES</strong> rail along the top is a ship-from-stock order that never crosses the transfer boundary; everything below it is the route this guide walks. Its sessions and their routes are stated per phase below, not on the diagram.</p>
       <p><strong>The level-2 view holds what the diagram leaves out.</strong> <a class="rux--link" href="demand-to-shipment-session-map.html">The session map</a> names all 21 sessions this chain touches, each with its route, the action performed there and what it leaves for the next one. It is the page to keep open beside the screen while you walk this guide; every tile names the phase step here that owns its detail, so the two cannot drift apart quietly.</p>
       <p><strong>The Item Order Plan is the progress indicator for phases 0–2; the order status is the indicator from phase 3 on.</strong> Planned ➔ Confirmed ➔ transferred ➔ real order ➔ received or completed ➔ shipped.</p>
       <p>Values verified 2026-08-25 — <span class="rux--tag rux--tag--gray" title="the source on file"><span class="rux--tag__label">the source on file</span></span>, which owns them. Do not re-derive them here.</p>
@@ -772,7 +771,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
              every phase was performed against a live system and confirmed
              while the guide itself is status: draft. Both are shown. -->
         <p class="rux--type-body-01">Warning Partly verified. Phases 1, 6 have been performed against a live system and confirmed. Phases 0, 2, 3, 4, 5 have not. Follow those as a plan, not as a record.</p>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas f49cba4 · contract 6</p>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas bba52e0 · contract 7</p>
       </div>
     </div>
   </div>

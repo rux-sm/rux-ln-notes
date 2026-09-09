@@ -87,8 +87,10 @@ the fix belongs upstream.
     page, never withheld; `status` arrives as data.
   - *Reviews and summaries publish at the same export tier as guides.* No
     tier relaxes the name sweep; the reviews name roles, not people.
-  - *An `image` names only a file authored beside the guide.* Reviews publish
-    without images; a citation of a frame renders as a plain unlinked name.
+  - *An `image` names only a file authored beside the guide.* **Retired
+    2026-09-09**, not reopened: atlas removed the token at contract 7 and both
+    diagrams are `diagram` blocks now, so no file travels beside a document.
+    A citation of a frame still renders as a plain unlinked name.
   - *The knowledge base does not publish.* `sessions/`, `config/`, `tests/`,
     `build/` and `evidence/` stay in atlas at every tier.
 

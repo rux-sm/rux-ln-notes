@@ -1,5 +1,5 @@
 {
-  "contract": 6,
+  "contract": 7,
   "tier": "export",
   "kind": "reference",
   "id": "demand-to-shipment-session-map",
@@ -74,7 +74,7 @@
         },
         {
           "t": "text",
-          "v": " is level 1 — six lanes, five stages, master data through shipment, fourteen boxes — and "
+          "v": " is level 1 — six lanes, five stages, master data through shipment — and "
         },
         {
           "t": "literal",
@@ -97,7 +97,7 @@
           "v": "which session, reached how, and what do I actually do in it."
         }
       ],
-      "text": "It is a level-2 companion, not a replacement. the source on file is level 1 — six lanes, five stages, master data through shipment, fourteen boxes — and START-HERE.md, the source on file and the spine guide all point at it. This one starts where that one's stage 2 starts, at sales demand, and answers a different question: which session, reached how, and what do I actually do in it."
+      "text": "It is a level-2 companion, not a replacement. the source on file is level 1 — six lanes, five stages, master data through shipment — and START-HERE.md, the source on file and the spine guide all point at it. This one starts where that one's stage 2 starts, at sales demand, and answers a different question: which session, reached how, and what do I actually do in it."
     },
     {
       "kind": "prose",
@@ -633,18 +633,10 @@
             },
             {
               "t": "text",
-              "v": " against "
-            },
-            {
-              "t": "literal",
-              "v": "the source on file"
-            },
-            {
-              "t": "text",
-              "v": ". D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep. "
+              "v": " against the SVG it then replaced. D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep. "
             }
           ],
-          "text": "D5 is settled by a run, not by a preference. tools/export.py's sweep — the same function tools/emit.py runs over a copied SVG's bytes before writing it — returns five hits against the drafted figure and zero against the source on file. D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep."
+          "text": "D5 is settled by a run, not by a preference. tools/export.py's sweep — the same function tools/emit.py runs over a copied SVG's bytes before writing it — returns five hits against the drafted figure and zero against the SVG it then replaced. D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep."
         },
         {
           "kind": "callout",
@@ -6341,10 +6333,10 @@
       {
         "id": "1",
         "session": "Sales Order Intake Workbench",
-        "code": "tdsls4601m200",
         "lane": "Sales",
         "stage": 1,
         "kind": "step",
+        "code": "tdsls4601m200",
         "n": 1,
         "route": {
           "tokens": [
@@ -6525,10 +6517,10 @@
       {
         "id": "16",
         "session": "Release Sales Order Lines to Warehousing",
-        "code": "tdsls4501m140",
         "lane": "Sales",
         "stage": 7,
         "kind": "step",
+        "code": "tdsls4501m140",
         "n": 16,
         "route": {
           "tokens": [
@@ -6615,10 +6607,10 @@
       {
         "id": "2",
         "session": "Items - Planning",
-        "code": "cprpd1100m000",
         "lane": "Enterprise Planning",
         "stage": 2,
         "kind": "step",
+        "code": "cprpd1100m000",
         "n": 2,
         "route": {
           "tokens": [
@@ -6701,10 +6693,10 @@
       {
         "id": "3",
         "session": "Item Order Plan",
-        "code": "cprrp0520m000",
         "lane": "Enterprise Planning",
         "stage": 2,
         "kind": "gate",
+        "code": "cprrp0520m000",
         "n": 3,
         "route": {
           "tokens": [
@@ -6767,10 +6759,10 @@
       {
         "id": "4",
         "session": "Generate Order Planning (Item)",
-        "code": "cprrp1220m000",
         "lane": "Enterprise Planning",
         "stage": 3,
         "kind": "step",
+        "code": "cprrp1220m000",
         "n": 4,
         "route": {
           "tokens": [
@@ -6874,10 +6866,10 @@
       {
         "id": "5",
         "session": "Planned Orders",
-        "code": "cprrp1100m000",
         "lane": "Enterprise Planning",
         "stage": 3,
         "kind": "planned",
+        "code": "cprrp1100m000",
         "n": 5,
         "route": {
           "tokens": [
@@ -6964,10 +6956,10 @@
       {
         "id": "6",
         "session": "Confirm Order Planning",
-        "code": "cprrp1200m000",
         "lane": "Enterprise Planning",
         "stage": 4,
         "kind": "transfer",
+        "code": "cprrp1200m000",
         "n": 6,
         "route": {
           "tokens": [
@@ -7038,10 +7030,10 @@
       {
         "id": "7",
         "session": "Transfer Order Planning",
-        "code": "cppat1210m000",
         "lane": "Enterprise Planning",
         "stage": 4,
         "kind": "transfer",
+        "code": "cppat1210m000",
         "n": 7,
         "route": {
           "tokens": [
@@ -7124,10 +7116,10 @@
       {
         "id": "8",
         "session": "Purchase Order",
-        "code": "tdpur4100m900",
         "lane": "Procurement",
         "stage": 5,
         "kind": "real",
+        "code": "tdpur4100m900",
         "n": 8,
         "route": {
           "tokens": [
@@ -7195,10 +7187,10 @@
       {
         "id": "12",
         "session": "Production Orders",
-        "code": "tisfc0501m000",
         "lane": "Manufacturing",
         "stage": 5,
         "kind": "real",
+        "code": "tisfc0501m000",
         "n": 12,
         "route": {
           "tokens": [
@@ -7269,10 +7261,10 @@
       {
         "id": "read-tisfc0100s000",
         "session": "Production Order Parameters",
-        "code": "tisfc0100s000",
         "lane": "Manufacturing",
         "stage": 6,
         "kind": "read",
+        "code": "tisfc0100s000",
         "route": {
           "tokens": [
             {
@@ -7366,10 +7358,10 @@
       {
         "id": "13",
         "session": "Release Production Orders",
-        "code": "tisfc0204m000",
         "lane": "Manufacturing",
         "stage": 6,
         "kind": "step",
+        "code": "tisfc0204m000",
         "n": 13,
         "route": {
           "tokens": [
@@ -7448,10 +7440,10 @@
       {
         "id": "14",
         "session": "Material to Issue for Production Orders",
-        "code": "ticst0101m100",
         "lane": "Manufacturing",
         "stage": 6,
         "kind": "step",
+        "code": "ticst0101m100",
         "n": 14,
         "route": {
           "tokens": [
@@ -7546,10 +7538,10 @@
       {
         "id": "15",
         "session": "Report Operations Completed",
-        "code": "tisfc0130m000",
         "lane": "Manufacturing",
         "stage": 6,
         "kind": "step",
+        "code": "tisfc0130m000",
         "n": 15,
         "route": {
           "tokens": [
@@ -7645,10 +7637,10 @@
       {
         "id": "read-whwmd4300m000",
         "session": "Inventory 360",
-        "code": "whwmd4300m000",
         "lane": "Warehousing",
         "stage": 1,
         "kind": "read",
+        "code": "whwmd4300m000",
         "route": {
           "tokens": [
             {
@@ -7706,10 +7698,10 @@
       {
         "id": "9",
         "session": "Warehousing Orders",
-        "code": "whinh2100m000",
         "lane": "Warehousing",
         "stage": 6,
         "kind": "step",
+        "code": "whinh2100m000",
         "n": 9,
         "route": {
           "tokens": [
@@ -7789,10 +7781,10 @@
       {
         "id": "10",
         "session": "Warehousing Order",
-        "code": "whinh2100m100",
         "lane": "Warehousing",
         "stage": 6,
         "kind": "step",
+        "code": "whinh2100m100",
         "n": 10,
         "route": {
           "tokens": [
@@ -7855,10 +7847,10 @@
       {
         "id": "11",
         "session": "Warehouse Receipt",
-        "code": "whinh3512m000",
         "lane": "Warehousing",
         "stage": 6,
         "kind": "step",
+        "code": "whinh3512m000",
         "n": 11,
         "route": {
           "tokens": [
@@ -7965,10 +7957,10 @@
       {
         "id": "read-whinh0110m000",
         "session": "Warehousing Order Types",
-        "code": "whinh0110m000",
         "lane": "Warehousing",
         "stage": 6,
         "kind": "read",
+        "code": "whinh0110m000",
         "route": {
           "tokens": [
             {
@@ -8030,10 +8022,10 @@
       {
         "id": "17",
         "session": "Warehouse Manager Dashboard",
-        "code": "whinh2300m000",
         "lane": "Warehousing",
         "stage": 7,
         "kind": "step",
+        "code": "whinh2300m000",
         "n": 17,
         "route": {
           "tokens": [
@@ -8113,10 +8105,10 @@
       {
         "id": "18",
         "session": "Warehousing Order",
-        "code": "whinh2100m100",
         "lane": "Warehousing",
         "stage": 7,
         "kind": "step",
+        "code": "whinh2100m100",
         "n": 18,
         "route": {
           "tokens": [
@@ -8211,10 +8203,10 @@
       {
         "id": "19",
         "session": "Picking List",
-        "code": "whinh4525m100",
         "lane": "Warehousing",
         "stage": 7,
         "kind": "step",
+        "code": "whinh4525m100",
         "n": 19,
         "route": {
           "tokens": [
@@ -8297,10 +8289,10 @@
       {
         "id": "20",
         "session": "Shipments",
-        "code": "whinh4130m000",
         "lane": "Warehousing",
         "stage": 7,
         "kind": "step",
+        "code": "whinh4130m000",
         "n": 20,
         "route": {
           "tokens": [
@@ -8356,10 +8348,10 @@
       {
         "id": "21",
         "session": "Shipment",
-        "code": "whinh4630m000",
         "lane": "Warehousing",
         "stage": 7,
         "kind": "terminal",
+        "code": "whinh4630m000",
         "n": 21,
         "route": {
           "tokens": [

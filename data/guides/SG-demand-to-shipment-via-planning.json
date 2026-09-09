@@ -1,5 +1,5 @@
 {
-  "contract": 6,
+  "contract": 7,
   "tier": "export",
   "id": "SG-demand-to-shipment-via-planning",
   "title": "Plan to shipment",
@@ -13,7 +13,7 @@
   ],
   "updated": "2026-09-02",
   "status": "draft",
-  "summary": "run the bamboo family down the long route of `order-to-shipment-flowchart.svg` — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down.",
+  "summary": "run the bamboo family down the long route of `order-to-shipment-overview.md` — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down.",
   "order": 6,
   "sources": [
     "cppat1210m000",
@@ -2881,7 +2881,7 @@
         },
         {
           "t": "literal",
-          "v": "order-to-shipment-flowchart.svg"
+          "v": "order-to-shipment-overview.md"
         },
         {
           "t": "text",
@@ -2896,7 +2896,7 @@
           "v": " — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it."
         }
       ],
-      "text": "Objective: run the bamboo family down the long route of order-to-shipment-flowchart.svg — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down. Spine guide — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it."
+      "text": "Objective: run the bamboo family down the long route of order-to-shipment-overview.md — a sales order that stock cannot cover, through MRP, across the transfer boundary, buying the components and building the finished item, to a confirmed shipment with on-hand verified down. Spine guide — it carries the sequence and the handovers. Each phase names the atomic guide that owns its detail and does not restate it."
     },
     {
       "kind": "glance",
@@ -3229,23 +3229,12 @@
       "kind": "prose",
       "tokens": [
         {
-          "t": "image",
-          "alt": "Order to shipment — the long route",
-          "src": "order-to-shipment-flowchart.svg"
-        }
-      ],
-      "text": "Order to shipment — the long route"
-    },
-    {
-      "kind": "prose",
-      "tokens": [
-        {
           "t": "strong",
-          "v": "The diagram is the level-1 view of this guide"
+          "v": "[The overview](order-to-shipment-overview.md) is the level-1 view of this guide"
         },
         {
           "t": "text",
-          "v": " — five phases across six module lanes, master data through confirmed shipment. The "
+          "v": " — five stages across six module lanes, master data through confirmed shipment. The "
         },
         {
           "t": "strong",
@@ -3256,7 +3245,7 @@
           "v": " rail along the top is a ship-from-stock order that never crosses the transfer boundary; everything below it is the route this guide walks. Its sessions and their routes are stated per phase below, not on the diagram."
         }
       ],
-      "text": "The diagram is the level-1 view of this guide — five phases across six module lanes, master data through confirmed shipment. The YES rail along the top is a ship-from-stock order that never crosses the transfer boundary; everything below it is the route this guide walks. Its sessions and their routes are stated per phase below, not on the diagram."
+      "text": "[The overview](order-to-shipment-overview.md) is the level-1 view of this guide — five stages across six module lanes, master data through confirmed shipment. The YES rail along the top is a ship-from-stock order that never crosses the transfer boundary; everything below it is the route this guide walks. Its sessions and their routes are stated per phase below, not on the diagram."
     },
     {
       "kind": "prose",

@@ -52,7 +52,29 @@ mkdir -p "$OUT"
 # Tests do not: --exercises reads exercises/ only, so scenario matrices and run
 # sheets remain internal. emit.py sweeps every emitted document with one
 # FORBIDDEN list, so nothing here can loosen what crosses.
-( cd "$ATLAS" && python3 tools/emit.py --all --reviews --exercises --references --out "$OUT" )
+#
+# EMITTED TO A STAGING DIRECTORY, THEN SWAPPED IN, so that a document atlas
+# STOPS emitting is removed rather than left behind. Writing in place could
+# only ever add and overwrite: when the image token retired, the SVG it had
+# copied sat in data/guides/ with nothing emitting it, and check-data.mjs
+# hashes whatever is present, so the stale file was inside the hash and the
+# gate called it correct. A sync that cannot prune cannot tell "atlas no
+# longer sends this" from "atlas sent it and I kept it".
+STAGE="$(mktemp -d)"
+trap 'rm -rf "$STAGE"' EXIT
+( cd "$ATLAS" && python3 tools/emit.py --all --reviews --exercises --references --out "$STAGE" )
+
+# REFUSE AN EMPTY RESULT RATHER THAN ACTING ON ONE. emit.py fails closed and
+# set -e catches a non-zero exit, but a run that succeeds and writes nothing
+# would otherwise empty data/guides/ and pass every gate after it. An empty
+# staging directory is "could not ask", not "the answer is none".
+if [ -z "$(find "$STAGE" -name '*.json' -print -quit)" ]; then
+  echo "sync: emit wrote no documents; $OUT is left as it was." >&2
+  exit 1
+fi
+
+find "$OUT" -mindepth 1 ! -name PIN -delete
+cp "$STAGE"/* "$OUT"/
 
 # CONTRACT CHECK. Every file carries a `contract` number -- 3 at the time of
 # writing -- and atlas bumps it when the shape changes. A renderer written

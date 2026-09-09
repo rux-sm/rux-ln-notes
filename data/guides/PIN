@@ -1,10 +1,10 @@
-commit   0e12983af797cac94cf8e8acc12f4122dd343bcf
-date     2026-09-06T17:54:43Z
-subject  docs(exercises): Attest the answer key
-contract 4 
+commit   e392017007be71b458e08a533b63f30f21b31280
+date     2026-09-09T20:55:05Z
+subject  fix(exercises): Put an id behind its marker
+contract 5 
 tier     export
-sha256   68536c43bd5e1e85db27181074ffd147610fc0b3aef78ac7ebcb504083b105e0
+sha256   5efcb43c6264d24613e62305e15c1f9078dd6328ff2cac941ebb8b527768b0b8
 
-Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises.
+Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises --references.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync
 overwrites them, and the real fix belongs in the guide in atlas.

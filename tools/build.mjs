@@ -401,6 +401,13 @@ function rblock(b) {
     case 'table':
       return table(b);
 
+    // CONTRACT 5. A reference is the first document class atlas emits with
+    // `###` in it, and it arrives as a block rather than as prose so this side
+    // never parses a marker. Only level 3 exists: `##` is already a topic, and
+    // atlas's prose.md allows no fourth level.
+    case 'heading':
+      return `<h3>${esc(b.n != null ? `${b.n} ${b.title}` : b.title)}</h3>`;
+
     default:
       throw new Error(`no rendering for review block kind "${b.kind}"`);
   }
@@ -561,6 +568,19 @@ function nav(site, activeId) {
   // renders only when the data carries them -- which is the private build.
   const concepts = (site.concepts ?? []).map(link).join('\n');
   const conceptsOpen = (site.concepts ?? []).some(d => d.id === activeId);
+  const references = (site.references ?? []).map(link).join('\n');
+  const referencesOpen = (site.references ?? []).some(d => d.id === activeId);
+  const referencesGroup = references ? `
+      <li class="rux--side-nav__item${referencesOpen ? ' rux--side-nav__item--active' : ''}">
+        <button class="rux--side-nav__submenu" type="button" aria-expanded="${referencesOpen}">
+          <span class="rux--side-nav__submenu-title">Reference</span>
+          <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
+        </button>
+        <ul class="rux--side-nav__menu"${referencesOpen ? '' : ' hidden'}>
+${references}
+        </ul>
+      </li>
+` : '';
   const conceptsGroup = concepts ? `
       <li class="rux--side-nav__item${conceptsOpen ? ' rux--side-nav__item--active' : ''}">
         <button class="rux--side-nav__submenu" type="button" aria-expanded="${conceptsOpen}">
@@ -629,7 +649,7 @@ ${practice}
 ${meetings}
         </ul>
       </li>
-${conceptsGroup}
+${referencesGroup}${conceptsGroup}
     </ul>
   </nav>`;
 }
@@ -1106,7 +1126,13 @@ ${exerciseCards}
           </div>
         </section>
 
-        ${(site.concepts ?? []).length ? `<section id="concepts" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-concepts">
+        ${(site.references ?? []).length ? `<section id="reference" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-reference">
+          <h2 id="h-reference">Reference</h2>
+          <ul class="rux--list--unordered">
+            ${site.references.map(r => `<li class="rux--list__item"><a class="rux--link" href="guides/${esc(r.id)}.html">${esc(r.title)}</a></li>`).join('\n            ')}
+          </ul>
+        </section>
+        ` : ''}${(site.concepts ?? []).length ? `<section id="concepts" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-concepts">
           <h2 id="h-concepts">Concepts</h2>
           <ul class="rux--list--unordered">
             ${site.concepts.map(c => `<li class="rux--list__item"><a class="rux--link" href="guides/${esc(c.id)}.html">${esc(c.title)}</a></li>`).join('\n            ')}
@@ -1374,6 +1400,31 @@ function conceptPage(c, site) {
   return page({ title: `${c.title} — Rux LN Notes`, site, activeId: c.id, body, depth: 1 });
 }
 
+function referencePage(r, site) {
+  // A CONCEPT'S SHAPE WITHOUT ITS TERMS. atlas serialises both from the same
+  // block vocabulary, so the only differences here are the badge and the
+  // absence of a term row -- a reference declares no terms.
+  const topics = (r.topics ?? []).map(t => {
+    const label = t.n != null ? `${t.n}. ${t.title}` : t.title;
+    const id = `t-${String(t.n ?? t.title).replace(/[^A-Za-z0-9.]+/g, '-').toLowerCase()}`;
+    return `<section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="${id}">
+          <h2 id="${id}">${esc(label)}</h2>
+          ${(t.blocks ?? []).map(rblock).join('\n          ')}
+        </section>`;
+  }).join('\n        ');
+  const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
+          <h1>${esc(r.title)}</h1>
+          <div class="ln-tag-row">
+            <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Reference</span></span>
+            ${statusTag(r.status)}
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(r.updated)}</span></span>
+          </div>
+          ${(r.intro ?? []).map(rblock).join('\n          ')}
+        </div>
+        ${topics}`;
+  return page({ title: `${r.title} — Rux LN Notes`, site, activeId: r.id, body, depth: 1 });
+}
+
 function guidePage(g, site) {
   const { front, back } = splitSections(g.sections);
   const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
@@ -1465,14 +1516,14 @@ const docs = readdirSync(DATA)
 // contract set and enforces nothing, so a renderer written for one shape could
 // silently consume the next. Bump this constant when this file is updated for
 // a new contract, and not before.
-const CONTRACT = 4;
+const CONTRACT = 5;
 for (const d of docs) if (Number(d.contract) !== CONTRACT)
   throw new Error(`${d.id ?? '?'}: contract ${d.contract}, this renderer reads ${CONTRACT} -- update build.mjs for it, then this constant`);
 
 for (const d of docs) {
   const kind = d.kind ?? 'guide';
-  if (!['guide', 'review', 'summary', 'exercise', 'concept'].includes(kind)) {
-    throw new Error(`${d.id}: unknown kind "${kind}" -- build.mjs renders guide, review, summary, exercise, concept`);
+  if (!['guide', 'review', 'summary', 'exercise', 'concept', 'reference'].includes(kind)) {
+    throw new Error(`${d.id}: unknown kind "${kind}" -- build.mjs renders guide, review, summary, exercise, concept, reference`);
   }
   if (kind === 'concept' && !PRIVATE) {
     throw new Error(`${d.id}: a concept has no published tier and cannot sit in data/guides/`);
@@ -1488,13 +1539,18 @@ const exercises = docs.filter(d => d.kind === 'exercise')
   .sort((a, b) => String(a.title).localeCompare(String(b.title)));
 const concepts = docs.filter(d => d.kind === 'concept')
   .sort((a, b) => String(a.title).localeCompare(String(b.title)));
+// A REFERENCE PUBLISHES IN BOTH TIERS, unlike a concept. atlas's
+// send-back-2-reply.md section 5 admits it: a person sits down and reads it,
+// and it is consulted while walking a page that does publish.
+const references = docs.filter(d => d.kind === 'reference')
+  .sort((a, b) => String(a.title).localeCompare(String(b.title)));
 
 if (!guides.length) throw new Error(`no guides in ${DATA} -- run tools/sync-guides.sh first`);
 
 for (const g of guides) GUIDE_IDS.add(g.id);
 // Reviews, summaries and exercises publish in both tiers, so a link between
 // them is linkable in both -- only a concept is PRIVATE-only (line ~1327).
-for (const d of [...reviews, ...summaries, ...exercises]) GUIDE_IDS.add(d.id);
+for (const d of [...reviews, ...summaries, ...exercises, ...references]) GUIDE_IDS.add(d.id);
 if (PRIVATE) for (const d of concepts) GUIDE_IDS.add(d.id);
 
 const reach = assertNoRawBlockquotes(guides);
@@ -1520,7 +1576,7 @@ mkdirSync(OUT_DIR, { recursive: true });
 const assets = readdirSync(DATA).filter(f => f !== 'PIN' && !f.endsWith('.json'));
 for (const a of assets) copyFileSync(join(DATA, a), join(OUT_DIR, a));
 
-const site = { guides, reviews, summaries, exercises, concepts };
+const site = { guides, reviews, summaries, exercises, concepts, references };
 
 const written = [INDEX];
 writeFileSync(written[0], indexPage(site));
@@ -1542,6 +1598,11 @@ for (const e of exercises) {
 for (const c of concepts) {
   const file = join(OUT_DIR, `${c.id}.html`);
   writeFileSync(file, conceptPage(c, site));
+  written.push(file);
+}
+for (const r of references) {
+  const file = join(OUT_DIR, `${r.id}.html`);
+  writeFileSync(file, referencePage(r, site));
   written.push(file);
 }
 

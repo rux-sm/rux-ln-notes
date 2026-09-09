@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Planning Scenarios — Summary — Rux LN Notes</title>
+<title>Order to Cash Run-through — Summary — Rux LN Notes</title>
 <!-- PLEX FIRST, THEN rux.css, WHICH IS THE ORDER rux-ds USES IN ITS OWN
      TEMPLATES. rux.css names IBM Plex Sans sixty-seven times and declares no
      @font-face; the faces live here. Linking the stylesheet without this one
@@ -409,8 +409,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="rux--side-nav__icon rux--side-nav__submenu-chevron"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><use href="#i-chevron--down"/></svg></div>
         </button>
         <ul class="rux--side-nav__menu">
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-to-cash-run-through_2026-09-08_summary.html"><span class="rux--side-nav__link-text">Order to Cash Run-through — Summary</span></a></li>
-          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planning-scenarios_2026-09-03_summary.html" aria-current="page"><span class="rux--side-nav__link-text">Planning Scenarios — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-to-cash-run-through_2026-09-08_summary.html" aria-current="page"><span class="rux--side-nav__link-text">Order to Cash Run-through — Summary</span></a></li>
+          <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planning-scenarios_2026-09-03_summary.html"><span class="rux--side-nav__link-text">Planning Scenarios — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="bamboo-production-order-walkthrough_2026-08-18_summary.html"><span class="rux--side-nav__link-text">Bamboo Production Order Walkthrough — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="order-planning-training_2026-08-20_summary.html"><span class="rux--side-nav__link-text">Order Planning Training — Summary</span></a></li>
           <li class="rux--side-nav__menu-item"><a class="rux--side-nav__link" href="planned-order-transfer-training_2026-08-25_summary.html"><span class="rux--side-nav__link-text">Turning Planned Orders Into Real Orders — Summary</span></a></li>
@@ -439,76 +439,87 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
         <div class="rux--stack-vertical rux--stack-scale-5">
-          <h1>Planning Scenarios — Summary</h1>
+          <h1>Order to Cash Run-through — Summary</h1>
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Summary</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-03</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-08</span></span>
           </div>
-          <p class="rux--type-body-01"><a class="rux--link" href="planning-scenarios_2026-09-03.html">Read the full review</a></p>
+          <p class="rux--type-body-01"><a class="rux--link" href="order-to-cash-run-through_2026-09-08.html">Read the full review</a></p>
         </div>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
           <h2 id="s-covered">What this covered</h2>
-          <p>An open-ended planning training session: a sales order becomes demand, MRP turns demand into planned orders, planned orders transfer into real purchase and production orders, and those get received through to put-away. Two extra wrinkles got explored along the way — a contract-based order type that behaves differently from a sales order, and a live puzzle about why a safety-stock top-up seemed to split into three orders instead of one.</p>
+          <p>A coaching session where the trainee drove a whole order-to-cash run himself: raise a sales order, let planning turn it into a planned order, turn that into a production order, issue the material, receive and inspect it, and ship it. Before any of that, the group spent twenty minutes changing one planning setting at a time and re-running the plan to watch what each change did — which turned out to be the most useful part of the recording.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Topics</h2>
-          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-demand-shows-up-before-you-plan-for-it">
-            <h3 id="t-demand-shows-up-before-you-plan-for-it">Demand shows up before you plan for it</h3>
-            <p>The moment a sales order line is saved, it&#39;s visible as demand — no planning run needed to see it. You do still need to run MRP (&quot;Generate Orders&quot;) to turn that demand into an actual planned production or purchase order.</p>
+          <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-why-an-order-comes-out-bigger-than-the-shortfall">
+            <h3 id="t-why-an-order-comes-out-bigger-than-the-shortfall">Why an order comes out bigger than the shortfall</h3>
+            <p>The item needed 45 more units. It got an order for 50. That is not a bug — it is the order increment doing its job.</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">Entering a sales order line, then finding it immediately on the planning screen.</li>
-          <li class="rux--list__item">Running MRP on a component by itself doesn&#39;t pick up its parent item&#39;s needs — you have to run it from the top-level item with &quot;include child items&quot; turned on, or nothing propagates down the bill of material.</li>
+          <li class="rux--list__item">Safety stock was 50 and there were 5 units on hand, so planning asked for 45.</li>
+          <li class="rux--list__item">The order increment was then changed from 1 to 25, meaning the item can only be ordered in blocks of 25.</li>
+          <li class="rux--list__item">Re-running the plan produced an order for 50 instead of 45 — the 5 units already in stock do not divide into a 25-unit block, so LN rounds the whole order up to the next clean multiple.</li>
         </ol>
           </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-turning-planned-orders-into-real-ones-and-receiving-them">
-            <h3 id="t-turning-planned-orders-into-real-ones-and-receiving-them">Turning planned orders into real ones, and receiving them</h3>
-            <p>Planned orders (MRP&#39;s suggestions) get transferred into real purchase/production orders in a batch. Several small receiving rules got worked out live:</p>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-safety-stock-is-a-kind-of-demand">
+            <h3 id="t-safety-stock-is-a-kind-of-demand">Safety stock is a kind of demand</h3>
+            <p>Safety stock is not just a floor that gets watched. Planning treats it as a demand in its own right, the same way it treats a sales order.</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">Multiple planned purchase orders combined into a single real purchase order automatically.</li>
-          <li class="rux--list__item">A brand-new purchase order can&#39;t be received until it&#39;s released — printing it is what releases it.</li>
-          <li class="rux--list__item">A moment of confusion — &quot;why are there two purchase orders with the same number?&quot; — turned out to be one purchase order with two order lines, just displayed as two rows on a summary screen. Not a bug, just a screen that shows lines, not orders.</li>
-          <li class="rux--list__item">Receiving happens in stages: receive → confirm → (if the warehouse uses locations) advise a location → put away. Confirming isn&#39;t the same as putting away.</li>
-          <li class="rux--list__item">If an item is flagged &quot;location controlled&quot; but you receive it into a warehouse that isn&#39;t set up for locations, LN just ignores the item&#39;s flag. The warehouse&#39;s setting wins.</li>
-          <li class="rux--list__item">Receiving something earlier than its planned date pops a specific warning, sourced from tolerance settings on the item&#39;s purchasing data.</li>
+          <li class="rux--list__item">Drop below your safety stock and planning raises an order to top you back up, with nothing else asking for the item.</li>
+          <li class="rux--list__item">Set safety stock to zero with no orders outstanding, and a planning run correctly produces nothing at all — there is simply nothing asking for the item.</li>
+          <li class="rux--list__item">The three things that can ask for an item, in the consultant&#39;s own list: safety stock, a production order that needs it as a component, and a sales order.</li>
         </ol>
           </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-a-second-kind-of-demand-contract-deliverables">
-            <h3 id="t-a-second-kind-of-demand-contract-deliverables">A second kind of demand: contract deliverables</h3>
-            <p>Sales orders aren&#39;t the only thing that can drive planning. A &quot;contract deliverable&quot; can too — but it behaves differently.</p>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-changing-a-setting-that-refuses-to-change">
+            <h3 id="t-changing-a-setting-that-refuses-to-change">Changing a setting that refuses to change</h3>
+            <p>Setting safety stock to zero on the item appeared to do nothing, twice, and the reason is worth knowing before it costs you an afternoon.</p>
             <p><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">Unlike a sales order (recognized by planning the instant it&#39;s created), a contract deliverable sits inactive until someone deliberately activates it. Left inactive, MRP ignores it completely, with no warning.</li>
-          <li class="rux--list__item">Once activated, it plans and ships the same way a sales order would, but it&#39;s tagged to a specific project the whole way through — the production order made for it is &quot;pegged&quot; to that one contract.</li>
+          <li class="rux--list__item">The item was set to use the <em>global</em> values, so editing the item&#39;s own copy changed nothing — the site record still said 50.</li>
+          <li class="rux--list__item">A related field was simply greyed out. That grey is the screen telling you this level does not own the value; go up a level and edit it there.</li>
         </ol>
           </section>
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-the-safety-stock-puzzle-see-the-dedicated-write-up-">
-            <h3 id="t-the-safety-stock-puzzle-see-the-dedicated-write-up-">The safety-stock puzzle (see the dedicated write-up)</h3>
-            <p>A safety-stock question from this same session — why setting safety stock to 50 for a test item seemed to generate three separate orders instead of one — is written up separately, since it got fully resolved afterward in a chat thread. Short version: it wasn&#39;t really a safety-stock problem at all. Only one of the three orders was actually tied to safety stock; the other two were ordinary orders for two unrelated sales orders that just happened to be sitting in the same list.</p>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-running-the-whole-chain-and-the-two-places-it-went-wrong">
+            <h3 id="t-running-the-whole-chain-and-the-two-places-it-went-wrong">Running the whole chain, and the two places it went wrong</h3>
+            <p>The trainee ran the full path start to finish. Two mistakes happened live and both are instructive.</p>
+            <p><strong>What was shown:</strong></p>
+            <ol class="rux--list--ordered">
+          <li class="rux--list__item">An operation was reported complete before any material had been sent to the shop floor — LN allowed it. The material has to be released to warehousing and issued first.</li>
+          <li class="rux--list__item">The shipment would not confirm until it was frozen, and the freeze control sits on the <em>lines</em> tab, not the header. Freezing is mandatory in this setup.</li>
+          <li class="rux--list__item">Cancelling a production order is done from Actions, under an Exception Handling entry — the trainee had failed to find it on a previous attempt too. The menu was captured, so this route is now written down.</li>
+          <li class="rux--list__item">No purchase orders appeared for the component items, which was correct: there was already stock on hand for both.</li>
+        </ol>
+          </section>
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-scenarios-sit-above-the-horizons">
+            <h3 id="t-scenarios-sit-above-the-horizons">Scenarios sit above the horizons</h3>
+            <p>A scenario has its own horizon, and the item horizons work inside it. Only one scenario is the live one that the business actually plans against; the others exist to try things out without touching it.</p>
           </section>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-decided">
           <h2 id="s-decided">What was decided</h2>
           <ol class="rux--list--ordered">
-          <li class="rux--list__item">Always run MRP from the top-level item, not a component, when you want the whole bill of material to plan.</li>
-          <li class="rux--list__item">A &quot;two orders with the same number&quot; reading on a summary screen almost certainly means one order with two lines — check line-level detail before assuming a bug.</li>
-          <li class="rux--list__item">Contract deliverables need their own documentation — they don&#39;t behave like sales orders and nothing in this library explained them before this session.</li>
+          <li class="rux--list__item">An order quantity is rounded up to the next whole increment — expect more than the shortfall whenever the increment is bigger than 1.</li>
+          <li class="rux--list__item">Safety stock counts as demand; no safety stock and no orders means no planning result, and that is the correct result rather than a failure.</li>
+          <li class="rux--list__item">Ordering values inherit from warehouse to site to global item, and this applies to safety stock, not only to the order interval.</li>
+          <li class="rux--list__item">Release and issue material before reporting an operation complete. Nothing stops you doing it the wrong way round.</li>
         </ol>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-takeaways">
           <h2 id="s-takeaways">Key takeaways</h2>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item">Demand appears on the planning screen the instant an order is saved; running MRP is a separate step that turns that demand into supply.</li>
-          <li class="rux--list__item">A warehouse&#39;s own settings can override an item&#39;s own flag — a location-controlled item in a non-location-controlled warehouse gets treated as if it isn&#39;t.</li>
-          <li class="rux--list__item">Not every demand source auto-plans. Sales orders do; contract deliverables have to be turned on first, silently, with nothing telling you why nothing happened if you forget.</li>
+          <li class="rux--list__item">If a planned quantity looks wrong, check the order increment before anything else — rounding explains most surprises of this shape.</li>
+          <li class="rux--list__item">A greyed-out field is information, not an obstacle: it tells you which level owns the value you are trying to change.</li>
+          <li class="rux--list__item">Planning producing nothing is sometimes the right answer. Before hunting for a fault, check whether anything is actually asking for the item.</li>
+          <li class="rux--list__item">The trainee&#39;s own answer to where he struggled was navigation, not concepts — finding the right session, and remembering that some controls live at line level rather than header level.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="planning-scenarios_2026-09-03.html">`planning-scenarios_2026-09-03.md`</a> — sourced, dated, and cross-checked against six frames pulled directly from the recording. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p><strong>Full record:</strong> <a class="rux--link" href="order-to-cash-run-through_2026-09-08.html">`order-to-cash-run-through_2026-09-08.md`</a> — five screenshots were pulled from the recording, and the increment result, the inheritance finding, the cancel route and the component stock levels all rest on them rather than on what was said. The rest is narration and is marked as such. Read the full record before relying on any of this for implementation work.</p>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas e392017 · contract 5</p>
       </div>

@@ -1,5 +1,5 @@
 {
-  "contract": 4,
+  "contract": 5,
   "tier": "export",
   "kind": "exercise",
   "id": "HOMEWORK-enterprise-planning-foundations",
@@ -16,7 +16,8 @@
     "cprrp1220m000",
     "tcibd2100m000",
     "tcibd2150m000",
-    "whinh2300m000"
+    "whinh2300m000",
+    "whwmd4101s000"
   ],
   "keyed": true,
   "intro": [
@@ -550,15 +551,39 @@
                   "col": 1,
                   "tokens": [
                     {
-                      "t": "text",
-                      "v": "Not settled in this library. The help says a specification check box is present on a demand line when demand pegging applies, and says nothing about what it shows. Open one demand row, capture the line with the box visible and the status bar readable, and hand the capture in with your report-back; it goes to the library's inbox and this sitting is updated from it. "
+                      "t": "chip",
+                      "v": "Settled 2026-09-06."
                     },
                     {
-                      "t": "strong",
-                      "v": "Not documented for this release."
+                      "t": "text",
+                      "v": " It is a green check on exactly the rows tied to a project — a "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "Project Contract"
+                    },
+                    {
+                      "t": "text",
+                      "v": " demand and the order that answers it — and cleared on every ordinary sales-order or safety-stock row. It marks "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "project-pegged"
+                    },
+                    {
+                      "t": "text",
+                      "v": " activity, not a property of the item or of demand pegging generally. See "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    },
+                    {
+                      "t": "text",
+                      "v": " §6 "
                     }
                   ],
-                  "text": "Not settled in this library. The help says a specification check box is present on a demand line when demand pegging applies, and says nothing about what it shows. Open one demand row, capture the line with the box visible and the status bar readable, and hand the capture in with your report-back; it goes to the library's inbox and this sitting is updated from it. Not documented for this release."
+                  "text": "Settled 2026-09-06. It is a green check on exactly the rows tied to a project — a Project Contract demand and the order that answers it — and cleared on every ordinary sales-order or safety-stock row. It marks project-pegged activity, not a property of the item or of demand pegging generally. See the source on file §6"
                 }
               ]
             },
@@ -987,34 +1012,62 @@
                     },
                     {
                       "t": "text",
-                      "v": " on the warehouse record. The library holds one capture of it, selected, and reads the chain as warehouse ➔ site ➔ global item; the box's own help is not filed, so its meaning is inferred from that one frame. Capture the form with the box and the status bar; this row is settled from it. "
+                      "v": " on the warehouse record. Selected, the chain reads warehouse ➔ site ➔ global item. A 2026-09-06 capture identifies this record as session "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "`whwmd2110s000`"
+                    },
+                    {
+                      "t": "text",
+                      "v": " — item "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "100200"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", warehouse "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "ADNA01"
+                    },
+                    {
+                      "t": "text",
+                      "v": " — though the box's own help is still not filed, so its meaning is still inferred rather than read. "
                     },
                     {
                       "t": "strong",
                       "v": "Not documented for this release."
                     }
                   ],
-                  "text": "Read Use Item Ordering Data by Site on the warehouse record. The library holds one capture of it, selected, and reads the chain as warehouse ➔ site ➔ global item; the box's own help is not filed, so its meaning is inferred from that one frame. Capture the form with the box and the status bar; this row is settled from it. Not documented for this release."
+                  "text": "Read Use Item Ordering Data by Site on the warehouse record. Selected, the chain reads warehouse ➔ site ➔ global item. A 2026-09-06 capture identifies this record as session `whwmd2110s000` — item 100200, warehouse ADNA01 — though the box's own help is still not filed, so its meaning is still inferred rather than read. Not documented for this release."
                 },
                 {
                   "col": 2,
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "The site record while the box is selected, on the reading above — unverified"
+                      "v": "The site record while the box is selected, on the reading above"
                     }
                   ],
-                  "text": "The site record while the box is selected, on the reading above — unverified"
+                  "text": "The site record while the box is selected, on the reading above"
                 },
                 {
                   "col": 3,
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "A capture of the warehouse record showing the check box, the item and warehouse codes, and the status bar"
+                      "v": "A capture of the warehouse record showing the check box, the item and warehouse codes, and the status bar — see "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
                     }
                   ],
-                  "text": "A capture of the warehouse record showing the check box, the item and warehouse codes, and the status bar"
+                  "text": "A capture of the warehouse record showing the check box, the item and warehouse codes, and the status bar — see the source on file"
                 }
               ]
             },

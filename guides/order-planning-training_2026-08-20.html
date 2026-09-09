@@ -163,6 +163,51 @@
 
 .ln-figure { max-inline-size: 100%; block-size: auto; }
 
+/* THE DIAGRAM. Lane and stage arrive as coordinates, so placement is a grid
+   lookup and nothing here measures or solves anything. Only grid-column and
+   grid-row are written inline, because they ARE the data; every dimension and
+   colour is a token below. Tiles are sized by kind, never by their text --
+   condition 3.1 of the diagram reply -- and the name is capped upstream. */
+.ln-dg { margin: 0; overflow-x: auto; padding-block-end: .5rem; }
+.ln-dg-grid { display: grid; grid-template-columns: max-content repeat(calc(var(--dg-cols) - 1), minmax(13rem, 1fr));
+  gap: .5rem; align-items: start; min-inline-size: max-content; }
+.ln-dg-stage { grid-row: 1; font: 600 .75rem/1.4 var(--rux-font-mono, ui-monospace, monospace);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
+  padding-block-end: .25rem; border-block-end: 1px solid var(--rux-border-subtle-01, #e0e0e0); }
+.ln-dg-stage--boundary { color: var(--rux-text-error, #da1e28); }
+.ln-dg-lane { grid-column: 1; font: 600 .75rem/1.4 var(--rux-font-mono, ui-monospace, monospace);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
+  padding-block-start: .6rem; padding-inline-end: .75rem; }
+.ln-dg-cell { display: flex; flex-direction: column; gap: .5rem; }
+
+/* A TILE IS <details>, so the disclosure needs no script and keyboard and
+   screen-reader behaviour are the platform's. */
+.ln-tile { border: 1px solid var(--rux-border-subtle-01, #e0e0e0);
+  border-inline-start: 3px solid var(--rux-border-strong-01, #8d8d8d);
+  background: var(--rux-layer-01, #f4f4f4); }
+.ln-tile > summary { cursor: pointer; padding: .5rem .75rem; display: grid;
+  grid-template-columns: 1.5rem 1fr; gap: 0 .5rem; align-items: baseline; }
+.ln-tile > summary::marker { content: ""; }
+.ln-tile-n { font: 600 .75rem/1.4 var(--rux-font-mono, ui-monospace, monospace);
+  color: var(--rux-text-secondary, #525252); }
+.ln-tile-name { font-weight: 600; }
+.ln-tile-code { grid-column: 2; font-size: .75rem; color: var(--rux-text-secondary, #525252); }
+.ln-tile[open] { background: var(--rux-layer-02, #ffffff); }
+.ln-dg-detail { padding: 0 .75rem .75rem 2.75rem; }
+.ln-dg-field { margin: .35rem 0 0; font-size: .8125rem; }
+.ln-dg-key { font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+  font-size: .6875rem; color: var(--rux-text-secondary, #525252); margin-inline-end: .35rem; }
+.ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
+.ln-dg-edge { white-space: nowrap; }
+
+/* Kind decides the tile's accent and nothing else decides it. */
+.ln-tile--gate     { border-inline-start-color: var(--rux-support-warning, #f1c21b); }
+.ln-tile--planned  { border-inline-start-color: var(--rux-support-info, #4589ff); }
+.ln-tile--transfer { border-inline-start-color: var(--rux-support-error, #da1e28); }
+.ln-tile--real     { border-inline-start-color: var(--rux-support-success, #24a148); }
+.ln-tile--terminal { border-inline-start-color: var(--rux-text-primary, #161616); }
+.ln-tile--read     { border-inline-start-style: dashed; background: transparent; }
+
 /* THE HEADER IS `position: fixed` AND 48px TALL, so every in-page anchor
    lands its target underneath it. Measured: jumping to a phase put the
    heading at viewport top 0, behind the header, with the first thing visible
@@ -677,7 +722,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <p></p>
           <p><strong>The split runs along module lines.</strong> Session help is filed for every Common, Sales and Warehousing session above — <span class="rux--tag rux--tag--cyan" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span>, <span class="rux--tag rux--tag--cyan" title="tcibd2100m000"><span class="rux--tag__label">tcibd2100m000</span></span>, <span class="rux--tag rux--tag--cyan" title="tcibd0102m000"><span class="rux--tag__label">tcibd0102m000</span></span>, <span class="rux--tag rux--tag--cyan" title="tdsls4100m900"><span class="rux--tag__label">tdsls4100m900</span></span>, <span class="rux--tag rux--tag--cyan" title="whwmd4300m000"><span class="rux--tag__label">whwmd4300m000</span></span> — and for three Enterprise Planning sessions: <span class="rux--tag rux--tag--cyan" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span>, <span class="rux--tag rux--tag--cyan" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span>, <span class="rux--tag rux--tag--cyan" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>. The other eight EP sessions have none, including every session under the <span class="rux--tag rux--tag--gray" title="cprpd"><span class="rux--tag__label">cprpd</span></span> and <span class="rux--tag rux--tag--gray" title="cprmp"><span class="rux--tag__label">cprmp</span></span> prefixes. Those eight are named here from the vendor guide or read off the status bar. </p>
         </section>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas ccbfb7c · contract 5</p>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas f49cba4 · contract 6</p>
       </div>
     </div>
   </div>

@@ -849,6 +849,51 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 
 .ln-figure { max-inline-size: 100%; block-size: auto; }
 
+/* THE DIAGRAM. Lane and stage arrive as coordinates, so placement is a grid
+   lookup and nothing here measures or solves anything. Only grid-column and
+   grid-row are written inline, because they ARE the data; every dimension and
+   colour is a token below. Tiles are sized by kind, never by their text --
+   condition 3.1 of the diagram reply -- and the name is capped upstream. */
+.ln-dg { margin: 0; overflow-x: auto; padding-block-end: .5rem; }
+.ln-dg-grid { display: grid; grid-template-columns: max-content repeat(calc(var(--dg-cols) - 1), minmax(13rem, 1fr));
+  gap: .5rem; align-items: start; min-inline-size: max-content; }
+.ln-dg-stage { grid-row: 1; font: 600 .75rem/1.4 var(--rux-font-mono, ui-monospace, monospace);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
+  padding-block-end: .25rem; border-block-end: 1px solid var(--rux-border-subtle-01, #e0e0e0); }
+.ln-dg-stage--boundary { color: var(--rux-text-error, #da1e28); }
+.ln-dg-lane { grid-column: 1; font: 600 .75rem/1.4 var(--rux-font-mono, ui-monospace, monospace);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
+  padding-block-start: .6rem; padding-inline-end: .75rem; }
+.ln-dg-cell { display: flex; flex-direction: column; gap: .5rem; }
+
+/* A TILE IS <details>, so the disclosure needs no script and keyboard and
+   screen-reader behaviour are the platform's. */
+.ln-tile { border: 1px solid var(--rux-border-subtle-01, #e0e0e0);
+  border-inline-start: 3px solid var(--rux-border-strong-01, #8d8d8d);
+  background: var(--rux-layer-01, #f4f4f4); }
+.ln-tile > summary { cursor: pointer; padding: .5rem .75rem; display: grid;
+  grid-template-columns: 1.5rem 1fr; gap: 0 .5rem; align-items: baseline; }
+.ln-tile > summary::marker { content: ""; }
+.ln-tile-n { font: 600 .75rem/1.4 var(--rux-font-mono, ui-monospace, monospace);
+  color: var(--rux-text-secondary, #525252); }
+.ln-tile-name { font-weight: 600; }
+.ln-tile-code { grid-column: 2; font-size: .75rem; color: var(--rux-text-secondary, #525252); }
+.ln-tile[open] { background: var(--rux-layer-02, #ffffff); }
+.ln-dg-detail { padding: 0 .75rem .75rem 2.75rem; }
+.ln-dg-field { margin: .35rem 0 0; font-size: .8125rem; }
+.ln-dg-key { font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+  font-size: .6875rem; color: var(--rux-text-secondary, #525252); margin-inline-end: .35rem; }
+.ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
+.ln-dg-edge { white-space: nowrap; }
+
+/* Kind decides the tile's accent and nothing else decides it. */
+.ln-tile--gate     { border-inline-start-color: var(--rux-support-warning, #f1c21b); }
+.ln-tile--planned  { border-inline-start-color: var(--rux-support-info, #4589ff); }
+.ln-tile--transfer { border-inline-start-color: var(--rux-support-error, #da1e28); }
+.ln-tile--real     { border-inline-start-color: var(--rux-support-success, #24a148); }
+.ln-tile--terminal { border-inline-start-color: var(--rux-text-primary, #161616); }
+.ln-tile--read     { border-inline-start-style: dashed; background: transparent; }
+
 /* THE HEADER IS \`position: fixed\` AND 48px TALL, so every in-page anchor
    lands its target underneath it. Measured: jumping to a phase put the
    heading at viewport top 0, behind the header, with the first thing visible
@@ -1400,6 +1445,80 @@ function conceptPage(c, site) {
   return page({ title: `${c.title} — Rux LN Notes`, site, activeId: c.id, body, depth: 1 });
 }
 
+
+// THE DIAGRAM, CONTRACT 6. atlas sends lanes, stages, nodes and edges and no
+// geometry at all -- exchange/diagram-as-data.md section 3 draws that line and
+// this side owns everything below it. Lane and stage are coordinates, so
+// placement is a lookup and there is no solver, no auto-layout and nothing
+// that can surprise us; section 2 of the reply is the argument for taking it.
+//
+// A TILE IS <details>, SO THE DISCLOSURE NEEDS NO SCRIPT. Clicking a tile
+// opens its route, what it does, how to do it and what it leaves. With
+// scripting off every tile still opens, which is this project's rule for
+// behaviour: a page with the script gone is still the whole document.
+//
+// SIZED BY KIND, NOT BY TEXT -- condition 3.1. The tile's width comes from the
+// grid and its name is capped upstream at diagram.budget.session, so nothing
+// here measures a string and nothing is clipped.
+//
+// CONNECTORS ARE NOT DRAWN, and that is a stated limit rather than an
+// oversight. The stages read left to right and the tiles carry their reading
+// order, so the sequence is legible; the edges that do NOT follow it -- the
+// branches and the one feed -- are named under the figure instead. Drawing
+// lines between grid cells needs absolute geometry this side would have to
+// invent, which is the auto-layout trap the reply warned about.
+function diagramFigure(dg) {
+  const stages = dg.stages ?? [], lanes = dg.lanes ?? [];
+  const col = new Map(stages.map((s, i) => [s.n, i + 2]));
+  const row = new Map(lanes.map((l, i) => [l.name, i + 2]));
+
+  const heads = stages.map(s =>
+    `<div class="ln-dg-stage${s.boundary ? ' ln-dg-stage--boundary' : ''}" style="grid-column:${col.get(s.n)}">${
+      esc(`${s.n} · ${s.name}`)}</div>`).join('\n          ');
+
+  const laneLabels = lanes.map(l =>
+    `<div class="ln-dg-lane" style="grid-row:${row.get(l.name)}">${esc(l.name)}</div>`).join('\n          ');
+
+  const field = (n, key, label) => n[key]
+    ? `<p class="ln-dg-field"><span class="ln-dg-key">${label}</span> ${tokens(n[key].tokens ?? [])}</p>` : '';
+
+  const cells = [];
+  for (const l of lanes) {
+    for (const s of stages) {
+      const here = (dg.nodes ?? []).filter(n => n.lane === l.name && n.stage === s.n);
+      if (!here.length) continue;
+      const tiles = here.map(n => `<details class="ln-tile ln-tile--${esc(n.kind)}">
+                <summary><span class="ln-tile-n">${esc(n.n != null ? String(n.n) : '·')}</span><span class="ln-tile-name">${
+                  esc(n.session)}</span><code class="ln-tile-code">${esc(n.code)}</code></summary>
+                <div class="ln-dg-detail">
+                  ${field(n, 'route', 'Route')}
+                  ${field(n, 'does', 'Does')}
+                  ${field(n, 'do', 'Do')}
+                  ${field(n, 'leaves', 'Leaves')}
+                  ${field(n, 'guide', 'Guide')}
+                </div>
+              </details>`).join('\n              ');
+      cells.push(`<div class="ln-dg-cell" style="grid-column:${col.get(s.n)};grid-row:${row.get(l.name)}">
+              ${tiles}
+            </div>`);
+    }
+  }
+
+  const off = (dg.edges ?? []).filter(e => e.kind !== 'flow');
+  const notes = off.length ? `
+        <p class="ln-dg-note">Reading order runs left to right and down the numbers. The edges that do not:
+          ${off.map(e => `<span class="ln-dg-edge">${esc(e.from)} → ${esc(e.to)}${
+            e.label ? `, ${tokens(e.label.tokens ?? [])}` : ''} <em>(${esc(e.kind)})</em></span>`).join(' · ')}</p>` : '';
+
+  return `<figure class="ln-dg" style="--dg-cols:${stages.length + 1}">
+          <div class="ln-dg-grid">
+            ${heads}
+            ${laneLabels}
+            ${cells.join('\n            ')}
+          </div>${notes}
+        </figure>`;
+}
+
 function referencePage(r, site) {
   // A CONCEPT'S SHAPE WITHOUT ITS TERMS. atlas serialises both from the same
   // block vocabulary, so the only differences here are the badge and the
@@ -1420,7 +1539,8 @@ function referencePage(r, site) {
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(r.updated)}</span></span>
           </div>
           ${(r.intro ?? []).map(rblock).join('\n          ')}
-        </div>
+        </div>${r.diagram ? `
+        ${diagramFigure(r.diagram)}` : ''}
         ${topics}`;
   return page({ title: `${r.title} — Rux LN Notes`, site, activeId: r.id, body, depth: 1 });
 }
@@ -1516,7 +1636,7 @@ const docs = readdirSync(DATA)
 // contract set and enforces nothing, so a renderer written for one shape could
 // silently consume the next. Bump this constant when this file is updated for
 // a new contract, and not before.
-const CONTRACT = 5;
+const CONTRACT = 6;
 for (const d of docs) if (Number(d.contract) !== CONTRACT)
   throw new Error(`${d.id ?? '?'}: contract ${d.contract}, this renderer reads ${CONTRACT} -- update build.mjs for it, then this constant`);
 

@@ -1,9 +1,9 @@
-commit   ccbfb7c78b0a66d746f2b4bb3b2482a82feaf21d
-date     2026-09-09T21:02:50Z
-subject  docs(guides): Link the session map from the spine
-contract 5 
+commit   f49cba41f3a5b4d0f598c83a8367df694bd5160d
+date     2026-09-09T21:41:05Z
+subject  fix(handoff): Tokenise the diagram edge label
+contract 6 
 tier     export
-sha256   d1527d3ed774f317cde19c61f12a957745ace91646fa99ba629009938584df3f
+sha256   3869ca7b7a3e775c33d1de326abe1daa63daacfc37a0e2de9f0fbea2243cac8d
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises --references.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

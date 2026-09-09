@@ -1,5 +1,5 @@
 {
-  "contract": 5,
+  "contract": 6,
   "tier": "export",
   "kind": "reference",
   "id": "demand-to-shipment-session-map",
@@ -1455,6 +1455,92 @@
           "kind": "prose",
           "tokens": [
             {
+              "t": "strong",
+              "v": "Each tile header carries its coordinates."
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "· stage N · kind"
+            },
+            {
+              "t": "text",
+              "v": " after the code is what places the tile when the map is drawn — the lane comes from the section it sits in. "
+            },
+            {
+              "t": "literal",
+              "v": "kind"
+            },
+            {
+              "t": "text",
+              "v": " is one of "
+            },
+            {
+              "t": "literal",
+              "v": "step"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "gate"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "planned"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "transfer"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "real"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "literal",
+              "v": "terminal"
+            },
+            {
+              "t": "text",
+              "v": " or "
+            },
+            {
+              "t": "literal",
+              "v": "read"
+            },
+            {
+              "t": "text",
+              "v": ", and it decides how a tile is drawn and nothing else."
+            }
+          ],
+          "text": "Each tile header carries its coordinates. · stage N · kind after the code is what places the tile when the map is drawn — the lane comes from the section it sits in. kind is one of step, gate, planned, transfer, real, terminal or read, and it decides how a tile is drawn and nothing else."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
               "t": "literal",
               "v": "#"
             },
@@ -1681,9 +1767,13 @@
               "t": "session",
               "code": "tdsls4601m200",
               "name": "1 · Sales Order Intake Workbench"
+            },
+            {
+              "t": "text",
+              "v": " · stage 1 · step"
             }
           ],
-          "text": "1 · Sales Order Intake Workbench (tdsls4601m200)"
+          "text": "1 · Sales Order Intake Workbench (tdsls4601m200) · stage 1 · step"
         },
         {
           "kind": "list",
@@ -1901,9 +1991,13 @@
               "t": "session",
               "code": "tdsls4501m140",
               "name": "16 · Release Sales Order Lines to Warehousing"
+            },
+            {
+              "t": "text",
+              "v": " · stage 7 · step"
             }
           ],
-          "text": "16 · Release Sales Order Lines to Warehousing (tdsls4501m140)"
+          "text": "16 · Release Sales Order Lines to Warehousing (tdsls4501m140) · stage 7 · step"
         },
         {
           "kind": "list",
@@ -2026,9 +2120,13 @@
               "t": "session",
               "code": "cprpd1100m000",
               "name": "2 · Items - Planning"
+            },
+            {
+              "t": "text",
+              "v": " · stage 2 · step"
             }
           ],
-          "text": "2 · Items - Planning (cprpd1100m000)"
+          "text": "2 · Items - Planning (cprpd1100m000) · stage 2 · step"
         },
         {
           "kind": "list",
@@ -2144,9 +2242,13 @@
               "t": "session",
               "code": "cprrp0520m000",
               "name": "3 · Item Order Plan"
+            },
+            {
+              "t": "text",
+              "v": " · stage 2 · gate"
             }
           ],
-          "text": "3 · Item Order Plan (cprrp0520m000)"
+          "text": "3 · Item Order Plan (cprrp0520m000) · stage 2 · gate"
         },
         {
           "kind": "list",
@@ -2242,9 +2344,13 @@
               "t": "session",
               "code": "cprrp1220m000",
               "name": "4 · Generate Order Planning (Item)"
+            },
+            {
+              "t": "text",
+              "v": " · stage 3 · step"
             }
           ],
-          "text": "4 · Generate Order Planning (Item) (cprrp1220m000)"
+          "text": "4 · Generate Order Planning (Item) (cprrp1220m000) · stage 3 · step"
         },
         {
           "kind": "list",
@@ -2377,9 +2483,13 @@
               "t": "session",
               "code": "cprrp1100m000",
               "name": "5 · Planned Orders"
+            },
+            {
+              "t": "text",
+              "v": " · stage 3 · planned"
             }
           ],
-          "text": "5 · Planned Orders (cprrp1100m000)"
+          "text": "5 · Planned Orders (cprrp1100m000) · stage 3 · planned"
         },
         {
           "kind": "list",
@@ -2499,9 +2609,13 @@
               "t": "session",
               "code": "cprrp1200m000",
               "name": "6 · Confirm Order Planning"
+            },
+            {
+              "t": "text",
+              "v": " · stage 4 · transfer"
             }
           ],
-          "text": "6 · Confirm Order Planning (cprrp1200m000)"
+          "text": "6 · Confirm Order Planning (cprrp1200m000) · stage 4 · transfer"
         },
         {
           "kind": "list",
@@ -2605,9 +2719,13 @@
               "t": "session",
               "code": "cppat1210m000",
               "name": "7 · Transfer Order Planning"
+            },
+            {
+              "t": "text",
+              "v": " · stage 4 · transfer"
             }
           ],
-          "text": "7 · Transfer Order Planning (cppat1210m000)"
+          "text": "7 · Transfer Order Planning (cppat1210m000) · stage 4 · transfer"
         },
         {
           "kind": "list",
@@ -2730,9 +2848,13 @@
               "t": "session",
               "code": "tdpur4100m900",
               "name": "8 · Purchase Order"
+            },
+            {
+              "t": "text",
+              "v": " · stage 5 · real"
             }
           ],
-          "text": "8 · Purchase Order (tdpur4100m900)"
+          "text": "8 · Purchase Order (tdpur4100m900) · stage 5 · real"
         },
         {
           "kind": "list",
@@ -2836,9 +2958,13 @@
               "t": "session",
               "code": "tisfc0501m000",
               "name": "12 · Production Orders"
+            },
+            {
+              "t": "text",
+              "v": " · stage 5 · real"
             }
           ],
-          "text": "12 · Production Orders (tisfc0501m000)"
+          "text": "12 · Production Orders (tisfc0501m000) · stage 5 · real"
         },
         {
           "kind": "list",
@@ -2949,10 +3075,10 @@
             },
             {
               "t": "text",
-              "v": " · a read, not a step"
+              "v": " · stage 6 · read"
             }
           ],
-          "text": "— · Production Order Parameters (tisfc0100s000) · a read, not a step"
+          "text": "— · Production Order Parameters (tisfc0100s000) · stage 6 · read"
         },
         {
           "kind": "list",
@@ -3076,9 +3202,13 @@
               "t": "session",
               "code": "tisfc0204m000",
               "name": "13 · Release Production Orders"
+            },
+            {
+              "t": "text",
+              "v": " · stage 6 · step"
             }
           ],
-          "text": "13 · Release Production Orders (tisfc0204m000)"
+          "text": "13 · Release Production Orders (tisfc0204m000) · stage 6 · step"
         },
         {
           "kind": "list",
@@ -3190,9 +3320,13 @@
               "t": "session",
               "code": "ticst0101m100",
               "name": "14 · Material to Issue for Production Orders"
+            },
+            {
+              "t": "text",
+              "v": " · stage 6 · step"
             }
           ],
-          "text": "14 · Material to Issue for Production Orders (ticst0101m100)"
+          "text": "14 · Material to Issue for Production Orders (ticst0101m100) · stage 6 · step"
         },
         {
           "kind": "list",
@@ -3320,9 +3454,13 @@
               "t": "session",
               "code": "tisfc0130m000",
               "name": "15 · Report Operations Completed"
+            },
+            {
+              "t": "text",
+              "v": " · stage 6 · step"
             }
           ],
-          "text": "15 · Report Operations Completed (tisfc0130m000)"
+          "text": "15 · Report Operations Completed (tisfc0130m000) · stage 6 · step"
         },
         {
           "kind": "list",
@@ -3465,10 +3603,10 @@
             },
             {
               "t": "text",
-              "v": " · a read, not a step"
+              "v": " · stage 1 · read"
             }
           ],
-          "text": "— · Inventory 360 (whwmd4300m000) · a read, not a step"
+          "text": "— · Inventory 360 (whwmd4300m000) · stage 1 · read"
         },
         {
           "kind": "list",
@@ -3560,9 +3698,13 @@
               "t": "session",
               "code": "whinh2100m000",
               "name": "9 · Warehousing Orders"
+            },
+            {
+              "t": "text",
+              "v": " · stage 6 · step"
             }
           ],
-          "text": "9 · Warehousing Orders (whinh2100m000)"
+          "text": "9 · Warehousing Orders (whinh2100m000) · stage 6 · step"
         },
         {
           "kind": "list",
@@ -3675,9 +3817,13 @@
               "t": "session",
               "code": "whinh2100m100",
               "name": "10 · Warehousing Order"
+            },
+            {
+              "t": "text",
+              "v": " · stage 6 · step"
             }
           ],
-          "text": "10 · Warehousing Order (whinh2100m100)"
+          "text": "10 · Warehousing Order (whinh2100m100) · stage 6 · step"
         },
         {
           "kind": "list",
@@ -3773,9 +3919,13 @@
               "t": "session",
               "code": "whinh3512m000",
               "name": "11 · Warehouse Receipt"
+            },
+            {
+              "t": "text",
+              "v": " · stage 6 · step"
             }
           ],
-          "text": "11 · Warehouse Receipt (whinh3512m000)"
+          "text": "11 · Warehouse Receipt (whinh3512m000) · stage 6 · step"
         },
         {
           "kind": "list",
@@ -3914,10 +4064,10 @@
             },
             {
               "t": "text",
-              "v": " · a read, not a step"
+              "v": " · stage 6 · read"
             }
           ],
-          "text": "— · Warehousing Order Types (whinh0110m000) · a read, not a step"
+          "text": "— · Warehousing Order Types (whinh0110m000) · stage 6 · read"
         },
         {
           "kind": "list",
@@ -4013,9 +4163,13 @@
               "t": "session",
               "code": "whinh2300m000",
               "name": "17 · Warehouse Manager Dashboard"
+            },
+            {
+              "t": "text",
+              "v": " · stage 7 · step"
             }
           ],
-          "text": "17 · Warehouse Manager Dashboard (whinh2300m000)"
+          "text": "17 · Warehouse Manager Dashboard (whinh2300m000) · stage 7 · step"
         },
         {
           "kind": "list",
@@ -4128,9 +4282,13 @@
               "t": "session",
               "code": "whinh2100m100",
               "name": "18 · Warehousing Order"
+            },
+            {
+              "t": "text",
+              "v": " · stage 7 · step"
             }
           ],
-          "text": "18 · Warehousing Order (whinh2100m100)"
+          "text": "18 · Warehousing Order (whinh2100m100) · stage 7 · step"
         },
         {
           "kind": "list",
@@ -4258,9 +4416,13 @@
               "t": "session",
               "code": "whinh4525m100",
               "name": "19 · Picking List"
+            },
+            {
+              "t": "text",
+              "v": " · stage 7 · step"
             }
           ],
-          "text": "19 · Picking List (whinh4525m100)"
+          "text": "19 · Picking List (whinh4525m100) · stage 7 · step"
         },
         {
           "kind": "list",
@@ -4376,9 +4538,13 @@
               "t": "session",
               "code": "whinh4130m000",
               "name": "20 · Shipments"
+            },
+            {
+              "t": "text",
+              "v": " · stage 7 · step"
             }
           ],
-          "text": "20 · Shipments (whinh4130m000)"
+          "text": "20 · Shipments (whinh4130m000) · stage 7 · step"
         },
         {
           "kind": "list",
@@ -4467,9 +4633,13 @@
               "t": "session",
               "code": "whinh4630m000",
               "name": "21 · Shipment"
+            },
+            {
+              "t": "text",
+              "v": " · stage 7 · terminal"
             }
           ],
-          "text": "21 · Shipment (whinh4630m000)"
+          "text": "21 · Shipment (whinh4630m000) · stage 7 · terminal"
         },
         {
           "kind": "list",
@@ -6109,5 +6279,2337 @@
       ]
     }
   ],
+  "diagram": {
+    "lanes": [
+      {
+        "n": 1,
+        "name": "Sales"
+      },
+      {
+        "n": 2,
+        "name": "Enterprise Planning"
+      },
+      {
+        "n": 3,
+        "name": "Procurement"
+      },
+      {
+        "n": 4,
+        "name": "Manufacturing"
+      },
+      {
+        "n": 5,
+        "name": "Warehousing"
+      }
+    ],
+    "stages": [
+      {
+        "n": 1,
+        "name": "Demand"
+      },
+      {
+        "n": 2,
+        "name": "Visibility"
+      },
+      {
+        "n": 3,
+        "name": "Plan"
+      },
+      {
+        "n": 4,
+        "name": "Transfer",
+        "boundary": true
+      },
+      {
+        "n": 5,
+        "name": "Real orders"
+      },
+      {
+        "n": 6,
+        "name": "Execute"
+      },
+      {
+        "n": 7,
+        "name": "Deliver"
+      },
+      {
+        "n": 8,
+        "name": "Cash"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "1",
+        "session": "Sales Order Intake Workbench",
+        "code": "tdsls4601m200",
+        "lane": "Sales",
+        "stage": 1,
+        "kind": "step",
+        "n": 1,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Orders ➔ Order Intake Workbench"
+            }
+          ],
+          "text": "Orders ➔ Order Intake Workbench"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "create the demand, and approve it"
+            }
+          ],
+          "text": "create the demand, and approve it"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "button",
+              "label": "New",
+              "location": "header"
+            },
+            {
+              "t": "text",
+              "v": ", then "
+            },
+            {
+              "t": "em",
+              "v": "Sold-to Business Partner"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "em",
+              "v": "Order Type"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "em",
+              "v": "Planned Delivery Date"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "em",
+              "v": "Sales Office"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "em",
+              "v": "Currency"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "em",
+              "v": "Site"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "Warehouse"
+            },
+            {
+              "t": "text",
+              "v": ", then "
+            },
+            {
+              "t": "button",
+              "label": "Save"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Free"
+            },
+            {
+              "t": "text",
+              "v": ". "
+            },
+            {
+              "t": "button",
+              "label": "New",
+              "location": "line"
+            },
+            {
+              "t": "text",
+              "v": ", then "
+            },
+            {
+              "t": "em",
+              "v": "Item"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "Ordered Quantity"
+            },
+            {
+              "t": "text",
+              "v": ", then "
+            },
+            {
+              "t": "button",
+              "label": "Save"
+            },
+            {
+              "t": "text",
+              "v": ". Then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Approve"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "In Process"
+            }
+          ],
+          "text": "New, then Sold-to Business Partner, Order Type, Planned Delivery Date, Sales Office, Currency, Site and Warehouse, then Save → Free. New, then Item and Ordered Quantity, then Save. Then Actions ➔ Approve → In Process"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it"
+            }
+          ],
+          "text": "an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "1.1–1.3 · order entry owned by "
+            },
+            {
+              "t": "literal",
+              "v": "SG-ship-from-stock.md"
+            },
+            {
+              "t": "text",
+              "v": " 1.1–1.12"
+            }
+          ],
+          "text": "1.1–1.3 · order entry owned by SG-ship-from-stock.md 1.1–1.12"
+        }
+      },
+      {
+        "id": "16",
+        "session": "Release Sales Order Lines to Warehousing",
+        "code": "tdsls4501m140",
+        "lane": "Sales",
+        "stage": 7,
+        "kind": "step",
+        "n": 16,
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry. It is the "
+            },
+            {
+              "t": "strong",
+              "v": "Release to Warehousing"
+            },
+            {
+              "t": "text",
+              "v": " tab of the sales order"
+            }
+          ],
+          "text": "no menu entry. It is the Release to Warehousing tab of the sales order"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "hand the approved lines to Warehousing"
+            }
+          ],
+          "text": "hand the approved lines to Warehousing"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "select the order, then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Release ➔ Release to Warehousing…"
+            },
+            {
+              "t": "text",
+              "v": ". Set "
+            },
+            {
+              "t": "em",
+              "v": "Upto Release Date"
+            },
+            {
+              "t": "text",
+              "v": " on or after the line's release date, leave the Options ticked, then "
+            },
+            {
+              "t": "button",
+              "label": "RELEASE"
+            }
+          ],
+          "text": "select the order, then Actions ➔ Release ➔ Release to Warehousing…. Set Upto Release Date on or after the line's release date, leave the Options ticked, then RELEASE"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order"
+            }
+          ],
+          "text": "a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.1 · owned by "
+            },
+            {
+              "t": "literal",
+              "v": "SG-ship-from-stock.md"
+            },
+            {
+              "t": "text",
+              "v": " 2.1–2.8"
+            }
+          ],
+          "text": "6.1 · owned by SG-ship-from-stock.md 2.1–2.8"
+        }
+      },
+      {
+        "id": "2",
+        "session": "Items - Planning",
+        "code": "cprpd1100m000",
+        "lane": "Enterprise Planning",
+        "stage": 2,
+        "kind": "step",
+        "n": 2,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Master Data ➔ Items ➔ Items - Planning"
+            }
+          ],
+          "text": "Master Data ➔ Items ➔ Items - Planning"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "put the delivery date inside the item's order horizon"
+            }
+          ],
+          "text": "put the delivery date inside the item's order horizon"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "open the item, "
+            },
+            {
+              "t": "strong",
+              "v": "Horizons"
+            },
+            {
+              "t": "text",
+              "v": " tab, read the "
+            },
+            {
+              "t": "em",
+              "v": "Order Horizon"
+            },
+            {
+              "t": "text",
+              "v": " date. If your delivery date is beyond it, raise the "
+            },
+            {
+              "t": "em",
+              "v": "Order Horizon"
+            },
+            {
+              "t": "text",
+              "v": " days until it is not"
+            }
+          ],
+          "text": "open the item, Horizons tab, read the Order Horizon date. If your delivery date is beyond it, raise the Order Horizon days until it is not"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse's calendar, so it is never today plus your number"
+            }
+          ],
+          "text": "a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse's calendar, so it is never today plus your number"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "1.4–1.5 · owned by "
+            },
+            {
+              "t": "literal",
+              "v": "SG-run-order-planning-for-one-item.md"
+            },
+            {
+              "t": "text",
+              "v": " phases 1–2"
+            }
+          ],
+          "text": "1.4–1.5 · owned by SG-run-order-planning-for-one-item.md phases 1–2"
+        }
+      },
+      {
+        "id": "3",
+        "session": "Item Order Plan",
+        "code": "cprrp0520m000",
+        "lane": "Enterprise Planning",
+        "stage": 2,
+        "kind": "gate",
+        "n": 3,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Order Planning ➔ Item Order Plan"
+            }
+          ],
+          "text": "Order Planning ➔ Item Order Plan"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "prove planning can actually see the demand"
+            }
+          ],
+          "text": "prove planning can actually see the demand"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "open the item and look for a "
+            },
+            {
+              "t": "strong",
+              "v": "Sales Order"
+            },
+            {
+              "t": "text",
+              "v": " row carrying your order number and quantity under "
+            },
+            {
+              "t": "em",
+              "v": "Demand"
+            }
+          ],
+          "text": "open the item and look for a Sales Order row carrying your order number and quantity under Demand"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "nothing; this is a read. But an absent row means tile 4 will run, report success and produce nothing"
+            }
+          ],
+          "text": "nothing; this is a read. But an absent row means tile 4 will run, report success and produce nothing"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "1.6"
+            }
+          ],
+          "text": "1.6"
+        }
+      },
+      {
+        "id": "4",
+        "session": "Generate Order Planning (Item)",
+        "code": "cprrp1220m000",
+        "lane": "Enterprise Planning",
+        "stage": 3,
+        "kind": "step",
+        "n": 4,
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; reached by drilling in. The range variant "
+            },
+            {
+              "t": "session",
+              "code": "cprrp1210m000",
+              "name": "Generate Order Planning"
+            },
+            {
+              "t": "text",
+              "v": " sits at "
+            },
+            {
+              "t": "path",
+              "route": "Order Planning ➔ Generate Order Planning"
+            },
+            {
+              "t": "text",
+              "v": ". "
+            },
+            {
+              "t": "strong",
+              "v": "Not documented for this release."
+            }
+          ],
+          "text": "no menu entry; reached by drilling in. The range variant Generate Order Planning (cprrp1210m000) sits at Order Planning ➔ Generate Order Planning. Not documented for this release."
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "run MRP for this item and everything beneath it"
+            }
+          ],
+          "text": "run MRP for this item and everything beneath it"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "open it for the item, confirm "
+            },
+            {
+              "t": "em",
+              "v": "Scenario"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "literal",
+              "v": "ACT"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "Plan Item"
+            },
+            {
+              "t": "text",
+              "v": ", select "
+            },
+            {
+              "t": "em",
+              "v": "Include Child Items"
+            },
+            {
+              "t": "text",
+              "v": ", then run"
+            }
+          ],
+          "text": "open it for the item, confirm Scenario ACT and Plan Item, select Include Child Items, then run"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "planned orders wherever there is a shortfall. Nothing is real yet, and nothing outside Planning can see any of it"
+            }
+          ],
+          "text": "planned orders wherever there is a shortfall. Nothing is real yet, and nothing outside Planning can see any of it"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "2.1–2.3"
+            }
+          ],
+          "text": "2.1–2.3"
+        }
+      },
+      {
+        "id": "5",
+        "session": "Planned Orders",
+        "code": "cprrp1100m000",
+        "lane": "Enterprise Planning",
+        "stage": 3,
+        "kind": "planned",
+        "n": 5,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Order Planning ➔ Planned Orders"
+            }
+          ],
+          "text": "Order Planning ➔ Planned Orders"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read what MRP proposed, and check that it adds up"
+            }
+          ],
+          "text": "read what MRP proposed, and check that it adds up"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "filter on the cluster and site; every row should read "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "status",
+              "v": "Planned"
+            },
+            {
+              "t": "text",
+              "v": ". Select the planned production order, then "
+            },
+            {
+              "t": "strong",
+              "v": "Pegging - Upstream"
+            }
+          ],
+          "text": "filter on the cluster and site; every row should read Order Status Planned. Select the planned production order, then Pegging - Upstream"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "proposals you have actually looked at. Each level's children must sum to its requirement; one planned order is "
+            },
+            {
+              "t": "em",
+              "v": "Supply"
+            },
+            {
+              "t": "text",
+              "v": " on one item's plan and "
+            },
+            {
+              "t": "em",
+              "v": "Demand"
+            },
+            {
+              "t": "text",
+              "v": " on another's"
+            }
+          ],
+          "text": "proposals you have actually looked at. Each level's children must sum to its requirement; one planned order is Supply on one item's plan and Demand on another's"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "2.5–2.6"
+            }
+          ],
+          "text": "2.5–2.6"
+        }
+      },
+      {
+        "id": "6",
+        "session": "Confirm Order Planning",
+        "code": "cprrp1200m000",
+        "lane": "Enterprise Planning",
+        "stage": 4,
+        "kind": "transfer",
+        "n": 6,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Order Planning ➔ Confirm Order Planning"
+            }
+          ],
+          "text": "Order Planning ➔ Confirm Order Planning"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "mark the proposals you intend to transfer"
+            }
+          ],
+          "text": "mark the proposals you intend to transfer"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "select the planned orders and confirm them. "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " moves "
+            },
+            {
+              "t": "status",
+              "v": "Planned"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Confirmed"
+            }
+          ],
+          "text": "select the planned orders and confirm them. Order Status moves Planned → Confirmed"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "orders the transfer will match. Skip this and tile 7 does nothing and says nothing — there is no message for \"nothing matched\""
+            }
+          ],
+          "text": "orders the transfer will match. Skip this and tile 7 does nothing and says nothing — there is no message for \"nothing matched\""
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "3.3"
+            }
+          ],
+          "text": "3.3"
+        }
+      },
+      {
+        "id": "7",
+        "session": "Transfer Order Planning",
+        "code": "cppat1210m000",
+        "lane": "Enterprise Planning",
+        "stage": 4,
+        "kind": "transfer",
+        "n": 7,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Plan Transfer ➔ Transfer Order Planning"
+            }
+          ],
+          "text": "Plan Transfer ➔ Transfer Order Planning"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "turn confirmed proposals into real orders in their owning modules"
+            }
+          ],
+          "text": "turn confirmed proposals into real orders in their owning modules"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "select "
+            },
+            {
+              "t": "em",
+              "v": "Purchase"
+            },
+            {
+              "t": "text",
+              "v": ", tick "
+            },
+            {
+              "t": "strong",
+              "v": "Error Report"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "strong",
+              "v": "Process Report"
+            },
+            {
+              "t": "text",
+              "v": ", run it, read the report. Then repeat with "
+            },
+            {
+              "t": "em",
+              "v": "Job Shop"
+            }
+          ],
+          "text": "select Purchase, tick Error Report and Process Report, run it, read the report. Then repeat with Job Shop"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a real purchase order and a real production order. Where each lands is decided by the item's supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order"
+            }
+          ],
+          "text": "a real purchase order and a real production order. Where each lands is decided by the item's supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "3.4–3.6 · owned by "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            }
+          ],
+          "text": "3.4–3.6 · owned by the source on file"
+        }
+      },
+      {
+        "id": "8",
+        "session": "Purchase Order",
+        "code": "tdpur4100m900",
+        "lane": "Procurement",
+        "stage": 5,
+        "kind": "real",
+        "n": 8,
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; drill in from the purchase order list, or from "
+            },
+            {
+              "t": "session",
+              "code": "tdpur4601m200",
+              "name": "Purchase Order Intake Workbench"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "path",
+              "route": "Procurement ➔ Orders ➔ Order Intake Workbench"
+            }
+          ],
+          "text": "no menu entry; drill in from the purchase order list, or from Purchase Order Intake Workbench (tdpur4601m200), Procurement ➔ Orders ➔ Order Intake Workbench"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "hold the order the transfer created"
+            }
+          ],
+          "text": "hold the order the transfer created"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
+            }
+          ],
+          "text": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a real purchase order, which raises its own inbound warehousing order. "
+            },
+            {
+              "t": "strong",
+              "v": "Not documented for this release."
+            }
+          ],
+          "text": "a real purchase order, which raises its own inbound warehousing order. Not documented for this release."
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "3.5"
+            }
+          ],
+          "text": "3.5"
+        }
+      },
+      {
+        "id": "12",
+        "session": "Production Orders",
+        "code": "tisfc0501m000",
+        "lane": "Manufacturing",
+        "stage": 5,
+        "kind": "real",
+        "n": 12,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Job Shop ➔ Production Orders"
+            }
+          ],
+          "text": "Job Shop ➔ Production Orders"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "hold the order the transfer created, and start it moving"
+            }
+          ],
+          "text": "hold the order the transfer created, and start it moving"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "open the order from tile 7 at "
+            },
+            {
+              "t": "status",
+              "v": "Created"
+            },
+            {
+              "t": "text",
+              "v": ", check its BOM, routing and estimated materials, then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Release Orders"
+            }
+          ],
+          "text": "open the order from tile 7 at Created, check its BOM, routing and estimated materials, then Actions ➔ Release Orders"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Release Production Orders"
+            },
+            {
+              "t": "text",
+              "v": " open. "
+            },
+            {
+              "t": "strong",
+              "v": "Not documented for this release."
+            }
+          ],
+          "text": "Release Production Orders open. Not documented for this release."
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "3.6, 5.1–5.2"
+            }
+          ],
+          "text": "3.6, 5.1–5.2"
+        }
+      },
+      {
+        "id": "read-tisfc0100s000",
+        "session": "Production Order Parameters",
+        "code": "tisfc0100s000",
+        "lane": "Manufacturing",
+        "stage": 6,
+        "kind": "read",
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; reached from the Job Shop Control parameters list"
+            }
+          ],
+          "text": "no menu entry; reached from the Job Shop Control parameters list"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "tell you in advance what tiles 13 and 15 will actually do"
+            }
+          ],
+          "text": "tell you in advance what tiles 13 and 15 will actually do"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read "
+            },
+            {
+              "t": "em",
+              "v": "Post to Inventory when Reporting on Last Operation"
+            },
+            {
+              "t": "text",
+              "v": ": "
+            },
+            {
+              "t": "strong",
+              "v": "Yes"
+            },
+            {
+              "t": "text",
+              "v": " posts the finished item silently, "
+            },
+            {
+              "t": "strong",
+              "v": "No"
+            },
+            {
+              "t": "text",
+              "v": " does not post it at all, "
+            },
+            {
+              "t": "strong",
+              "v": "Interactive"
+            },
+            {
+              "t": "text",
+              "v": " asks, and Interactive is the default. Read "
+            },
+            {
+              "t": "em",
+              "v": "Printing Production Order Documents Mandatory"
+            },
+            {
+              "t": "text",
+              "v": " in the same place"
+            }
+          ],
+          "text": "read Post to Inventory when Reporting on Last Operation: Yes posts the finished item silently, No does not post it at all, Interactive asks, and Interactive is the default. Read Printing Production Order Documents Mandatory in the same place"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "an explanation for tile 15's result before you have to explain it afterwards. A phase-5 run that has not read this cannot account for its own outcome. "
+            },
+            {
+              "t": "strong",
+              "v": "Not documented for this release."
+            }
+          ],
+          "text": "an explanation for tile 15's result before you have to explain it afterwards. A phase-5 run that has not read this cannot account for its own outcome. Not documented for this release."
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "5.3 and 5.5 notes"
+            }
+          ],
+          "text": "5.3 and 5.5 notes"
+        }
+      },
+      {
+        "id": "13",
+        "session": "Release Production Orders",
+        "code": "tisfc0204m000",
+        "lane": "Manufacturing",
+        "stage": 6,
+        "kind": "step",
+        "n": 13,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Job Shop ➔ Production Control"
+            }
+          ],
+          "text": "Job Shop ➔ Production Control"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "release the order so material can be issued and hours booked"
+            }
+          ],
+          "text": "release the order so material can be issued and hours booked"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "run the release for this order only. "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Released"
+            }
+          ],
+          "text": "run the release for this order only. Order Status → Released"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "warehousing issue and receipt orders now exist. If the release refuses, check whether "
+            },
+            {
+              "t": "em",
+              "v": "Printing Production Order Documents Mandatory"
+            },
+            {
+              "t": "text",
+              "v": " requires "
+            },
+            {
+              "t": "status",
+              "v": "Printed"
+            },
+            {
+              "t": "text",
+              "v": " first"
+            }
+          ],
+          "text": "warehousing issue and receipt orders now exist. If the release refuses, check whether Printing Production Order Documents Mandatory requires Printed first"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "5.3"
+            }
+          ],
+          "text": "5.3"
+        }
+      },
+      {
+        "id": "14",
+        "session": "Material to Issue for Production Orders",
+        "code": "ticst0101m100",
+        "lane": "Manufacturing",
+        "stage": 6,
+        "kind": "step",
+        "n": 14,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Job Shop ➔ Production Materials"
+            }
+          ],
+          "text": "Job Shop ➔ Production Materials"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "move the components from the warehouse to the work centre"
+            }
+          ],
+          "text": "move the components from the warehouse to the work centre"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "issue the materials for the order until "
+            },
+            {
+              "t": "em",
+              "v": "Actual Quantity"
+            },
+            {
+              "t": "text",
+              "v": " equals the estimated quantity. "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Active"
+            }
+          ],
+          "text": "issue the materials for the order until Actual Quantity equals the estimated quantity. Order Status → Active"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "materials issued. How much of this you do by hand is configuration — "
+            },
+            {
+              "t": "em",
+              "v": "Direct Initiate Inventory Issue"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "Direct Process Warehouse Order Line"
+            },
+            {
+              "t": "text",
+              "v": " can do the unblocking for you, so their absence is not an error"
+            }
+          ],
+          "text": "materials issued. How much of this you do by hand is configuration — Direct Initiate Inventory Issue and Direct Process Warehouse Order Line can do the unblocking for you, so their absence is not an error"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "5.4 · owned by "
+            },
+            {
+              "t": "literal",
+              "v": "SG-manual-production-order-existing-master-data.md"
+            },
+            {
+              "t": "text",
+              "v": " 4.2–4.7"
+            }
+          ],
+          "text": "5.4 · owned by SG-manual-production-order-existing-master-data.md 4.2–4.7"
+        }
+      },
+      {
+        "id": "15",
+        "session": "Report Operations Completed",
+        "code": "tisfc0130m000",
+        "lane": "Manufacturing",
+        "stage": 6,
+        "kind": "step",
+        "n": 15,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Job Shop ➔ Production Control ➔ Report Operations"
+            }
+          ],
+          "text": "Job Shop ➔ Production Control ➔ Report Operations"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "report the build, and post the finished item"
+            }
+          ],
+          "text": "report the build, and post the finished item"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "enter the built quantity in "
+            },
+            {
+              "t": "em",
+              "v": "Completed"
+            },
+            {
+              "t": "text",
+              "v": " and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " on tile 12"
+            }
+          ],
+          "text": "enter the built quantity in Completed and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read Order Status on tile 12"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "status",
+              "v": "Production Completed"
+            },
+            {
+              "t": "text",
+              "v": ", which becomes "
+            },
+            {
+              "t": "status",
+              "v": "Completed"
+            },
+            {
+              "t": "text",
+              "v": " once Warehousing finishes the inbound procedure. "
+            },
+            {
+              "t": "strong",
+              "v": "Production Completed is a handoff, not a failed Completed."
+            },
+            {
+              "t": "text",
+              "v": " Whether stock is posted at all is a parameter on "
+            },
+            {
+              "t": "session",
+              "code": "tisfc0100s000",
+              "name": "Production Order Parameters"
+            },
+            {
+              "t": "text",
+              "v": ", reached from the Job Shop Control parameters list"
+            }
+          ],
+          "text": "Production Completed, which becomes Completed once Warehousing finishes the inbound procedure. Production Completed is a handoff, not a failed Completed. Whether stock is posted at all is a parameter on Production Order Parameters (tisfc0100s000), reached from the Job Shop Control parameters list"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "5.5–5.6"
+            }
+          ],
+          "text": "5.5–5.6"
+        }
+      },
+      {
+        "id": "read-whwmd4300m000",
+        "session": "Inventory 360",
+        "code": "whwmd4300m000",
+        "lane": "Warehousing",
+        "stage": 1,
+        "kind": "read",
+        "route": {
+          "tokens": [
+            {
+              "t": "literal",
+              "v": "Inventory 360"
+            }
+          ],
+          "text": "Inventory 360"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "record on-hand before anything moves"
+            }
+          ],
+          "text": "record on-hand before anything moves"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
+            }
+          ],
+          "text": "read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the only baseline the last tile can be measured against. On-hand is not availability — "
+            },
+            {
+              "t": "em",
+              "v": "Allocated"
+            },
+            {
+              "t": "text",
+              "v": " may already commit most of it"
+            }
+          ],
+          "text": "the only baseline the last tile can be measured against. On-hand is not availability — Allocated may already commit most of it"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "0.2–0.3"
+            }
+          ],
+          "text": "0.2–0.3"
+        }
+      },
+      {
+        "id": "9",
+        "session": "Warehousing Orders",
+        "code": "whinh2100m000",
+        "lane": "Warehousing",
+        "stage": 6,
+        "kind": "step",
+        "n": 9,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Orders ➔ Orders"
+            }
+          ],
+          "text": "Orders ➔ Orders"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "find the inbound order the purchase order raised"
+            }
+          ],
+          "text": "find the inbound order the purchase order raised"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "filter for your order; it should read order type "
+            },
+            {
+              "t": "literal",
+              "v": "PUI"
+            },
+            {
+              "t": "text",
+              "v": " with the raw-material warehouse as ship-to. "
+            },
+            {
+              "t": "button",
+              "label": "Drill In",
+              "location": "line"
+            }
+          ],
+          "text": "filter for your order; it should read order type PUI with the raw-material warehouse as ship-to. Drill In"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the warehousing order open. "
+            },
+            {
+              "t": "strong",
+              "v": "You never create this one."
+            },
+            {
+              "t": "text",
+              "v": " If it is absent, read the purchase order's "
+            },
+            {
+              "t": "strong",
+              "v": "Release to Warehousing"
+            },
+            {
+              "t": "text",
+              "v": " tab before hunting in Warehousing"
+            }
+          ],
+          "text": "the warehousing order open. You never create this one. If it is absent, read the purchase order's Release to Warehousing tab before hunting in Warehousing"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "4.1"
+            }
+          ],
+          "text": "4.1"
+        }
+      },
+      {
+        "id": "10",
+        "session": "Warehousing Order",
+        "code": "whinh2100m100",
+        "lane": "Warehousing",
+        "stage": 6,
+        "kind": "step",
+        "n": 10,
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; drill in from tile 9, or from tile 17"
+            }
+          ],
+          "text": "no menu entry; drill in from tile 9, or from tile 17"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "start the receipt against the inbound lines"
+            }
+          ],
+          "text": "start the receipt against the inbound lines"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "select the inbound lines, then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Receive"
+            }
+          ],
+          "text": "select the inbound lines, then Actions ➔ Receive"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Warehouse Receipt"
+            },
+            {
+              "t": "text",
+              "v": " open. "
+            },
+            {
+              "t": "strong",
+              "v": "Not documented for this release."
+            }
+          ],
+          "text": "Warehouse Receipt open. Not documented for this release."
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "4.2"
+            }
+          ],
+          "text": "4.2"
+        }
+      },
+      {
+        "id": "11",
+        "session": "Warehouse Receipt",
+        "code": "whinh3512m000",
+        "lane": "Warehousing",
+        "stage": 6,
+        "kind": "step",
+        "n": 11,
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; opens from "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Receive"
+            }
+          ],
+          "text": "no menu entry; opens from Actions ➔ Receive"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "book the components into stock"
+            }
+          ],
+          "text": "book the components into stock"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "enter the packing-slip reference on each line, then confirm. "
+            },
+            {
+              "t": "em",
+              "v": "Status"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Confirmed"
+            },
+            {
+              "t": "text",
+              "v": ", with "
+            },
+            {
+              "t": "em",
+              "v": "All Lines Final"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "All Lines Complete"
+            },
+            {
+              "t": "text",
+              "v": " both set. Read "
+            },
+            {
+              "t": "em",
+              "v": "Errors Logged"
+            }
+          ],
+          "text": "enter the packing-slip reference on each line, then confirm. Status → Confirmed, with All Lines Final and All Lines Complete both set. Read Errors Logged"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "components on hand. "
+            },
+            {
+              "t": "strong",
+              "v": "The status is not the proof and the on-hand figure is"
+            },
+            {
+              "t": "text",
+              "v": " — see 5.7. "
+            },
+            {
+              "t": "em",
+              "v": "Confirmed"
+            },
+            {
+              "t": "text",
+              "v": " is also cleared when the receipt has no lines at all, which looks identical"
+            }
+          ],
+          "text": "components on hand. The status is not the proof and the on-hand figure is — see 5.7. Confirmed is also cleared when the receipt has no lines at all, which looks identical"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "4.3–4.4"
+            }
+          ],
+          "text": "4.3–4.4"
+        }
+      },
+      {
+        "id": "read-whinh0110m000",
+        "session": "Warehousing Order Types",
+        "code": "whinh0110m000",
+        "lane": "Warehousing",
+        "stage": 6,
+        "kind": "read",
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Master Data ➔ Order Procedures ➔ Order Types"
+            }
+          ],
+          "text": "Master Data ➔ Order Procedures ➔ Order Types"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "explain why the outbound tiles are shaped the way they are"
+            }
+          ],
+          "text": "explain why the outbound tiles are shaped the way they are"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read "
+            },
+            {
+              "t": "em",
+              "v": "Freeze Mandatory"
+            },
+            {
+              "t": "text",
+              "v": " on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
+            }
+          ],
+          "text": "read Freeze Mandatory on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the reason tile 19 exists and tile 21 cannot be skipped. Change an activity to Automatic and a tile disappears; change it back and one returns. "
+            },
+            {
+              "t": "strong",
+              "v": "Not documented for this release."
+            }
+          ],
+          "text": "the reason tile 19 exists and tile 21 cannot be skipped. Change an activity to Automatic and a tile disappears; change it back and one returns. Not documented for this release."
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.3, 6.4 and 6.5 notes"
+            }
+          ],
+          "text": "6.3, 6.4 and 6.5 notes"
+        }
+      },
+      {
+        "id": "17",
+        "session": "Warehouse Manager Dashboard",
+        "code": "whinh2300m000",
+        "lane": "Warehousing",
+        "stage": 7,
+        "kind": "step",
+        "n": 17,
+        "route": {
+          "tokens": [
+            {
+              "t": "literal",
+              "v": "Manager Dashboard"
+            }
+          ],
+          "text": "Manager Dashboard"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "find the outbound order the release created"
+            }
+          ],
+          "text": "find the outbound order the release created"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "filter on your sales order number, then "
+            },
+            {
+              "t": "button",
+              "label": "Drill In",
+              "location": "line"
+            },
+            {
+              "t": "text",
+              "v": ". It should read "
+            },
+            {
+              "t": "strong",
+              "v": "Origin Sales"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "strong",
+              "v": "Type 20- SO/SC Out"
+            }
+          ],
+          "text": "filter on your sales order number, then Drill In. It should read Origin Sales, Type 20- SO/SC Out"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the warehousing order open, on its "
+            },
+            {
+              "t": "strong",
+              "v": "Outbound Lines"
+            },
+            {
+              "t": "text",
+              "v": " tab"
+            }
+          ],
+          "text": "the warehousing order open, on its Outbound Lines tab"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.2"
+            }
+          ],
+          "text": "6.2"
+        }
+      },
+      {
+        "id": "18",
+        "session": "Warehousing Order",
+        "code": "whinh2100m100",
+        "lane": "Warehousing",
+        "stage": 7,
+        "kind": "step",
+        "n": 18,
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; drill in from tile 17"
+            }
+          ],
+          "text": "no menu entry; drill in from tile 17"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "advise the line, so there is something to pick"
+            }
+          ],
+          "text": "advise the line, so there is something to pick"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Outbound Lines"
+            },
+            {
+              "t": "text",
+              "v": " tab, tick the line, then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Advice ➔ Generate Advice"
+            },
+            {
+              "t": "text",
+              "v": ". "
+            },
+            {
+              "t": "status",
+              "v": "Advised"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "status",
+              "v": "Released"
+            },
+            {
+              "t": "text",
+              "v": " both fill"
+            }
+          ],
+          "text": "Outbound Lines tab, tick the line, then Actions ➔ Advice ➔ Generate Advice. Advised and Released both fill"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Picking List by Location prints. "
+            },
+            {
+              "t": "strong",
+              "v": "The advice actions are on the Outbound Lines toolbar, not the session toolbar"
+            },
+            {
+              "t": "text",
+              "v": " — on the wrong one "
+            },
+            {
+              "t": "strong",
+              "v": "Advice"
+            },
+            {
+              "t": "text",
+              "v": " is greyed and reads as unavailable rather than misplaced. You do not run Release Advice; it is Automatic here"
+            }
+          ],
+          "text": "Picking List by Location prints. The advice actions are on the Outbound Lines toolbar, not the session toolbar — on the wrong one Advice is greyed and reads as unavailable rather than misplaced. You do not run Release Advice; it is Automatic here"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.3"
+            }
+          ],
+          "text": "6.3"
+        }
+      },
+      {
+        "id": "19",
+        "session": "Picking List",
+        "code": "whinh4525m100",
+        "lane": "Warehousing",
+        "stage": 7,
+        "kind": "step",
+        "n": 19,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Outbound/Inspections ➔ Picking List"
+            }
+          ],
+          "text": "Outbound/Inspections ➔ Picking List"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "confirm the advised quantity as picked"
+            }
+          ],
+          "text": "confirm the advised quantity as picked"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "tick the line, "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Pick Run"
+            },
+            {
+              "t": "text",
+              "v": ", then read "
+            },
+            {
+              "t": "em",
+              "v": "Shipment"
+            },
+            {
+              "t": "text",
+              "v": " on the order's "
+            },
+            {
+              "t": "strong",
+              "v": "Shipment Lines"
+            },
+            {
+              "t": "text",
+              "v": " tab"
+            }
+          ],
+          "text": "tick the line, Actions ➔ Pick Run, then read Shipment on the order's Shipment Lines tab"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the line "
+            },
+            {
+              "t": "status",
+              "v": "Staged"
+            },
+            {
+              "t": "text",
+              "v": " and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step"
+            }
+          ],
+          "text": "the line Staged and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.4"
+            }
+          ],
+          "text": "6.4"
+        }
+      },
+      {
+        "id": "20",
+        "session": "Shipments",
+        "code": "whinh4130m000",
+        "lane": "Warehousing",
+        "stage": 7,
+        "kind": "step",
+        "n": 20,
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Shipments ➔ Shipments"
+            }
+          ],
+          "text": "Shipments ➔ Shipments"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "find the shipment tile 19 created"
+            }
+          ],
+          "text": "find the shipment tile 19 created"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "find it by the number from tile 19, then "
+            },
+            {
+              "t": "button",
+              "label": "Drill In",
+              "location": "line"
+            }
+          ],
+          "text": "find it by the number from tile 19, then Drill In"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the shipment open"
+            }
+          ],
+          "text": "the shipment open"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.5"
+            }
+          ],
+          "text": "6.5"
+        }
+      },
+      {
+        "id": "21",
+        "session": "Shipment",
+        "code": "whinh4630m000",
+        "lane": "Warehousing",
+        "stage": 7,
+        "kind": "terminal",
+        "n": 21,
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; drill in from tile 20"
+            }
+          ],
+          "text": "no menu entry; drill in from tile 20"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "freeze and confirm, which is where inventory actually leaves"
+            }
+          ],
+          "text": "freeze and confirm, which is where inventory actually leaves"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Actions ➔ Freeze"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "em",
+              "v": "Status"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "status",
+              "v": "Frozen"
+            },
+            {
+              "t": "text",
+              "v": ", and "
+            },
+            {
+              "t": "strong",
+              "v": "Confirm"
+            },
+            {
+              "t": "text",
+              "v": " becomes available. Then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Confirm"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Confirmed"
+            }
+          ],
+          "text": "Actions ➔ Freeze → Status Frozen, and Confirm becomes available. Then Actions ➔ Confirm → Confirmed"
+        },
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. "
+            },
+            {
+              "t": "strong",
+              "v": "Confirming is a one-way door"
+            },
+            {
+              "t": "text",
+              "v": " — a correction from here needs a return shipment"
+            }
+          ],
+          "text": "inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. Confirming is a one-way door — a correction from here needs a return shipment"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.5–6.6"
+            }
+          ],
+          "text": "6.5–6.6"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2",
+        "kind": "flow"
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "kind": "flow"
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "kind": "flow"
+      },
+      {
+        "from": "4",
+        "to": "5",
+        "kind": "flow"
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "kind": "flow"
+      },
+      {
+        "from": "6",
+        "to": "7",
+        "kind": "flow"
+      },
+      {
+        "from": "7",
+        "to": "8",
+        "kind": "branch",
+        "label": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "supply source "
+            },
+            {
+              "t": "literal",
+              "v": "Purchase"
+            }
+          ],
+          "text": "supply source Purchase"
+        }
+      },
+      {
+        "from": "7",
+        "to": "12",
+        "kind": "branch",
+        "label": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "supply source "
+            },
+            {
+              "t": "literal",
+              "v": "Job Shop"
+            }
+          ],
+          "text": "supply source Job Shop"
+        }
+      },
+      {
+        "from": "8",
+        "to": "9",
+        "kind": "flow",
+        "label": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the purchase order raises the inbound order"
+            }
+          ],
+          "text": "the purchase order raises the inbound order"
+        }
+      },
+      {
+        "from": "9",
+        "to": "10",
+        "kind": "flow"
+      },
+      {
+        "from": "10",
+        "to": "11",
+        "kind": "flow"
+      },
+      {
+        "from": "12",
+        "to": "13",
+        "kind": "flow"
+      },
+      {
+        "from": "13",
+        "to": "14",
+        "kind": "flow"
+      },
+      {
+        "from": "14",
+        "to": "15",
+        "kind": "flow"
+      },
+      {
+        "from": "11",
+        "to": "14",
+        "kind": "feed",
+        "label": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "components on hand first"
+            }
+          ],
+          "text": "components on hand first"
+        }
+      },
+      {
+        "from": "15",
+        "to": "16",
+        "kind": "flow"
+      },
+      {
+        "from": "16",
+        "to": "17",
+        "kind": "flow"
+      },
+      {
+        "from": "17",
+        "to": "18",
+        "kind": "flow"
+      },
+      {
+        "from": "18",
+        "to": "19",
+        "kind": "flow"
+      },
+      {
+        "from": "19",
+        "to": "20",
+        "kind": "flow"
+      },
+      {
+        "from": "20",
+        "to": "21",
+        "kind": "flow"
+      }
+    ],
+    "budget": {
+      "session": 44
+    }
+  },
   "openIssues": 10
 }

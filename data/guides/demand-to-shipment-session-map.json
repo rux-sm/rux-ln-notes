@@ -1,10 +1,10 @@
 {
-  "contract": 7,
+  "contract": 8,
   "tier": "export",
   "kind": "reference",
   "id": "demand-to-shipment-session-map",
   "title": "Demand to shipment — session map",
-  "updated": "2026-09-09",
+  "updated": "2026-09-10",
   "status": "draft",
   "sources": [
     "cppat1210m000",
@@ -1350,10 +1350,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "1–3 lines"
+                      "v": "1–3 steps, one sub-bullet each"
                     }
                   ],
-                  "text": "1–3 lines"
+                  "text": "1–3 steps, one sub-bullet each"
                 }
               ]
             },
@@ -1809,7 +1809,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — "
+                  "v": " - "
                 },
                 {
                   "t": "button",
@@ -1890,7 +1890,7 @@
                 },
                 {
                   "t": "text",
-                  "v": ". "
+                  "v": " - "
                 },
                 {
                   "t": "button",
@@ -1923,7 +1923,7 @@
                 },
                 {
                   "t": "text",
-                  "v": ". Then "
+                  "v": " - "
                 },
                 {
                   "t": "strong",
@@ -1938,7 +1938,7 @@
                   "v": "In Process"
                 }
               ],
-              "text": "Do — New, then Sold-to Business Partner, Order Type, Planned Delivery Date, Sales Office, Currency, Site and Warehouse, then Save → Free. New, then Item and Ordered Quantity, then Save. Then Actions ➔ Approve → In Process"
+              "text": "Do - New, then Sold-to Business Partner, Order Type, Planned Delivery Date, Sales Office, Currency, Site and Warehouse, then Save → Free - New, then Item and Ordered Quantity, then Save - Actions ➔ Approve → In Process"
             },
             {
               "tokens": [
@@ -2037,7 +2037,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — select the order, then "
+                  "v": " - select the order, then "
                 },
                 {
                   "t": "strong",
@@ -2045,7 +2045,7 @@
                 },
                 {
                   "t": "text",
-                  "v": ". Set "
+                  "v": " - Set "
                 },
                 {
                   "t": "em",
@@ -2060,7 +2060,7 @@
                   "label": "RELEASE"
                 }
               ],
-              "text": "Do — select the order, then Actions ➔ Release ➔ Release to Warehousing…. Set Upto Release Date on or after the line's release date, leave the Options ticked, then RELEASE"
+              "text": "Do - select the order, then Actions ➔ Release ➔ Release to Warehousing… - Set Upto Release Date on or after the line's release date, leave the Options ticked, then RELEASE"
             },
             {
               "tokens": [
@@ -2162,7 +2162,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — open the item, "
+                  "v": " - open the item, "
                 },
                 {
                   "t": "strong",
@@ -2178,7 +2178,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " date. If your delivery date is beyond it, raise the "
+                  "v": " date - If your delivery date is beyond it, raise the "
                 },
                 {
                   "t": "em",
@@ -2189,7 +2189,7 @@
                   "v": " days until it is not"
                 }
               ],
-              "text": "Do — open the item, Horizons tab, read the Order Horizon date. If your delivery date is beyond it, raise the Order Horizon days until it is not"
+              "text": "Do - open the item, Horizons tab, read the Order Horizon date - If your delivery date is beyond it, raise the Order Horizon days until it is not"
             },
             {
               "tokens": [
@@ -2284,7 +2284,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — open the item and look for a "
+                  "v": " - open the item and look for a "
                 },
                 {
                   "t": "strong",
@@ -2299,7 +2299,7 @@
                   "v": "Demand"
                 }
               ],
-              "text": "Do — open the item and look for a Sales Order row carrying your order number and quantity under Demand"
+              "text": "Do - open the item and look for a Sales Order row carrying your order number and quantity under Demand"
             },
             {
               "tokens": [
@@ -2403,7 +2403,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — open it for the item, confirm "
+                  "v": " - open it for the item, confirm "
                 },
                 {
                   "t": "em",
@@ -2438,7 +2438,7 @@
                   "v": ", then run"
                 }
               ],
-              "text": "Do — open it for the item, confirm Scenario ACT and Plan Item, select Include Child Items, then run"
+              "text": "Do - open it for the item, confirm Scenario ACT and Plan Item, select Include Child Items, then run"
             },
             {
               "tokens": [
@@ -2525,7 +2525,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — filter on the cluster and site; every row should read "
+                  "v": " - filter on the cluster and site; every row should read "
                 },
                 {
                   "t": "em",
@@ -2541,14 +2541,14 @@
                 },
                 {
                   "t": "text",
-                  "v": ". Select the planned production order, then "
+                  "v": " - Select the planned production order, then "
                 },
                 {
                   "t": "strong",
                   "v": "Pegging - Upstream"
                 }
               ],
-              "text": "Do — filter on the cluster and site; every row should read Order Status Planned. Select the planned production order, then Pegging - Upstream"
+              "text": "Do - filter on the cluster and site; every row should read Order Status Planned - Select the planned production order, then Pegging - Upstream"
             },
             {
               "tokens": [
@@ -2651,7 +2651,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — select the planned orders and confirm them. "
+                  "v": " - select the planned orders and confirm them. "
                 },
                 {
                   "t": "em",
@@ -2674,7 +2674,7 @@
                   "v": "Confirmed"
                 }
               ],
-              "text": "Do — select the planned orders and confirm them. Order Status moves Planned → Confirmed"
+              "text": "Do - select the planned orders and confirm them. Order Status moves Planned → Confirmed"
             },
             {
               "tokens": [
@@ -2761,7 +2761,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — select "
+                  "v": " - select "
                 },
                 {
                   "t": "em",
@@ -2785,14 +2785,14 @@
                 },
                 {
                   "t": "text",
-                  "v": ", run it, read the report. Then repeat with "
+                  "v": ", run it, read the report - repeat with "
                 },
                 {
                   "t": "em",
                   "v": "Job Shop"
                 }
               ],
-              "text": "Do — select Purchase, tick Error Report and Process Report, run it, read the report. Then repeat with Job Shop"
+              "text": "Do - select Purchase, tick Error Report and Process Report, run it, read the report - repeat with Job Shop"
             },
             {
               "tokens": [
@@ -2899,10 +2899,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — find the order named in tile 7's process report and check its lines against the proposals they replaced"
+                  "v": " - find the order named in tile 7's process report and check its lines against the proposals they replaced"
                 }
               ],
-              "text": "Do — find the order named in tile 7's process report and check its lines against the proposals they replaced"
+              "text": "Do - find the order named in tile 7's process report and check its lines against the proposals they replaced"
             },
             {
               "tokens": [
@@ -3000,7 +3000,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — open the order from tile 7 at "
+                  "v": " - open the order from tile 7 at "
                 },
                 {
                   "t": "status",
@@ -3015,7 +3015,7 @@
                   "v": "Actions ➔ Release Orders"
                 }
               ],
-              "text": "Do — open the order from tile 7 at Created, check its BOM, routing and estimated materials, then Actions ➔ Release Orders"
+              "text": "Do - open the order from tile 7 at Created, check its BOM, routing and estimated materials, then Actions ➔ Release Orders"
             },
             {
               "tokens": [
@@ -3110,7 +3110,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — read "
+                  "v": " - read "
                 },
                 {
                   "t": "em",
@@ -3142,7 +3142,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " asks, and Interactive is the default. Read "
+                  "v": " asks, and Interactive is the default - Read "
                 },
                 {
                   "t": "em",
@@ -3153,7 +3153,7 @@
                   "v": " in the same place"
                 }
               ],
-              "text": "Do — read Post to Inventory when Reporting on Last Operation: Yes posts the finished item silently, No does not post it at all, Interactive asks, and Interactive is the default. Read Printing Production Order Documents Mandatory in the same place"
+              "text": "Do - read Post to Inventory when Reporting on Last Operation: Yes posts the finished item silently, No does not post it at all, Interactive asks, and Interactive is the default - Read Printing Production Order Documents Mandatory in the same place"
             },
             {
               "tokens": [
@@ -3244,7 +3244,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — run the release for this order only. "
+                  "v": " - run the release for this order only. "
                 },
                 {
                   "t": "em",
@@ -3259,7 +3259,7 @@
                   "v": "Released"
                 }
               ],
-              "text": "Do — run the release for this order only. Order Status → Released"
+              "text": "Do - run the release for this order only. Order Status → Released"
             },
             {
               "tokens": [
@@ -3362,7 +3362,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — issue the materials for the order until "
+                  "v": " - issue the materials for the order until "
                 },
                 {
                   "t": "em",
@@ -3385,7 +3385,7 @@
                   "v": "Active"
                 }
               ],
-              "text": "Do — issue the materials for the order until Actual Quantity equals the estimated quantity. Order Status → Active"
+              "text": "Do - issue the materials for the order until Actual Quantity equals the estimated quantity. Order Status → Active"
             },
             {
               "tokens": [
@@ -3496,7 +3496,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — enter the built quantity in "
+                  "v": " - enter the built quantity in "
                 },
                 {
                   "t": "em",
@@ -3504,7 +3504,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read "
+                  "v": " and save - LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read "
                 },
                 {
                   "t": "em",
@@ -3515,7 +3515,7 @@
                   "v": " on tile 12"
                 }
               ],
-              "text": "Do — enter the built quantity in Completed and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read Order Status on tile 12"
+              "text": "Do - enter the built quantity in Completed and save - LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read Order Status on tile 12"
             },
             {
               "tokens": [
@@ -3642,10 +3642,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
+                  "v": " - read the finished item at the shipping warehouse and each component at the raw-material warehouse - Write the figures down"
                 }
               ],
-              "text": "Do — read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
+              "text": "Do - read the finished item at the shipping warehouse and each component at the raw-material warehouse - Write the figures down"
             },
             {
               "tokens": [
@@ -3740,7 +3740,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — filter for your order; it should read order type "
+                  "v": " - filter for your order; it should read order type "
                 },
                 {
                   "t": "literal",
@@ -3748,7 +3748,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " with the raw-material warehouse as ship-to. "
+                  "v": " with the raw-material warehouse as ship-to - "
                 },
                 {
                   "t": "button",
@@ -3756,7 +3756,7 @@
                   "location": "line"
                 }
               ],
-              "text": "Do — filter for your order; it should read order type PUI with the raw-material warehouse as ship-to. Drill In"
+              "text": "Do - filter for your order; it should read order type PUI with the raw-material warehouse as ship-to - Drill In"
             },
             {
               "tokens": [
@@ -3855,14 +3855,14 @@
                 },
                 {
                   "t": "text",
-                  "v": " — select the inbound lines, then "
+                  "v": " - select the inbound lines, then "
                 },
                 {
                   "t": "strong",
                   "v": "Actions ➔ Receive"
                 }
               ],
-              "text": "Do — select the inbound lines, then Actions ➔ Receive"
+              "text": "Do - select the inbound lines, then Actions ➔ Receive"
             },
             {
               "tokens": [
@@ -3961,7 +3961,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — enter the packing-slip reference on each line, then confirm. "
+                  "v": " - enter the packing-slip reference on each line, then confirm. "
                 },
                 {
                   "t": "em",
@@ -3993,14 +3993,14 @@
                 },
                 {
                   "t": "text",
-                  "v": " both set. Read "
+                  "v": " both set - Read "
                 },
                 {
                   "t": "em",
                   "v": "Errors Logged"
                 }
               ],
-              "text": "Do — enter the packing-slip reference on each line, then confirm. Status → Confirmed, with All Lines Final and All Lines Complete both set. Read Errors Logged"
+              "text": "Do - enter the packing-slip reference on each line, then confirm. Status → Confirmed, with All Lines Final and All Lines Complete both set - Read Errors Logged"
             },
             {
               "tokens": [
@@ -4103,7 +4103,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — read "
+                  "v": " - read "
                 },
                 {
                   "t": "em",
@@ -4114,7 +4114,7 @@
                   "v": " on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
                 }
               ],
-              "text": "Do — read Freeze Mandatory on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
+              "text": "Do - read Freeze Mandatory on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
             },
             {
               "tokens": [
@@ -4205,7 +4205,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — filter on your sales order number, then "
+                  "v": " - filter on your sales order number, then "
                 },
                 {
                   "t": "button",
@@ -4229,7 +4229,7 @@
                   "v": "Type 20- SO/SC Out"
                 }
               ],
-              "text": "Do — filter on your sales order number, then Drill In. It should read Origin Sales, Type 20- SO/SC Out"
+              "text": "Do - filter on your sales order number, then Drill In. It should read Origin Sales, Type 20- SO/SC Out"
             },
             {
               "tokens": [
@@ -4320,7 +4320,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — "
+                  "v": " - "
                 },
                 {
                   "t": "strong",
@@ -4355,7 +4355,7 @@
                   "v": " both fill"
                 }
               ],
-              "text": "Do — Outbound Lines tab, tick the line, then Actions ➔ Advice ➔ Generate Advice. Advised and Released both fill"
+              "text": "Do - Outbound Lines tab, tick the line, then Actions ➔ Advice ➔ Generate Advice. Advised and Released both fill"
             },
             {
               "tokens": [
@@ -4458,7 +4458,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — tick the line, "
+                  "v": " - tick the line, "
                 },
                 {
                   "t": "strong",
@@ -4485,7 +4485,7 @@
                   "v": " tab"
                 }
               ],
-              "text": "Do — tick the line, Actions ➔ Pick Run, then read Shipment on the order's Shipment Lines tab"
+              "text": "Do - tick the line, Actions ➔ Pick Run, then read Shipment on the order's Shipment Lines tab"
             },
             {
               "tokens": [
@@ -4580,7 +4580,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — find it by the number from tile 19, then "
+                  "v": " - find it by the number from tile 19, then "
                 },
                 {
                   "t": "button",
@@ -4588,7 +4588,7 @@
                   "location": "line"
                 }
               ],
-              "text": "Do — find it by the number from tile 19, then Drill In"
+              "text": "Do - find it by the number from tile 19, then Drill In"
             },
             {
               "tokens": [
@@ -4671,7 +4671,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — "
+                  "v": " - "
                 },
                 {
                   "t": "strong",
@@ -4703,7 +4703,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " becomes available. Then "
+                  "v": " becomes available - "
                 },
                 {
                   "t": "strong",
@@ -4718,7 +4718,7 @@
                   "v": "Confirmed"
                 }
               ],
-              "text": "Do — Actions ➔ Freeze → Status Frozen, and Confirm becomes available. Then Actions ➔ Confirm → Confirmed"
+              "text": "Do - Actions ➔ Freeze → Status Frozen, and Confirm becomes available - Actions ➔ Confirm → Confirmed"
             },
             {
               "tokens": [
@@ -4767,28 +4767,57 @@
           "kind": "prose",
           "tokens": [
             {
-              "t": "text",
-              "v": "Three reads of "
-            },
-            {
               "t": "session",
               "code": "whwmd4300m000",
               "name": "Inventory 360"
             },
             {
               "t": "text",
-              "v": ", "
+              "v": " · strip"
+            }
+          ],
+          "text": "Inventory 360 (whwmd4300m000) · strip"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "items": [
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Route"
+                },
+                {
+                  "t": "text",
+                  "v": " — "
+                },
+                {
+                  "t": "path",
+                  "route": "Warehousing ➔ Inventory 360"
+                }
+              ],
+              "text": "Route — Warehousing ➔ Inventory 360"
+            }
+          ]
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Three reads, and "
             },
             {
-              "t": "path",
-              "route": "Warehousing ➔ Inventory 360"
+              "t": "strong",
+              "v": "not tiles of their own"
             },
             {
               "t": "text",
-              "v": ". Not tiles of their own — each is a strip on the tile it proves, so the count of numbered tiles stays the count of things you do."
+              "v": " — each is a strip on the tile it proves, so the count of numbered tiles stays the count of things you do. A strip carries no coordinates because it has none: it inherits the tile it sits on."
             }
           ],
-          "text": "Three reads of Inventory 360 (whwmd4300m000), Warehousing ➔ Inventory 360. Not tiles of their own — each is a strip on the tile it proves, so the count of numbered tiles stays the count of things you do."
+          "text": "Three reads, and not tiles of their own — each is a strip on the tile it proves, so the count of numbered tiles stays the count of things you do. A strip carries no coordinates because it has none: it inherits the tile it sits on."
         },
         {
           "kind": "table",
@@ -6356,6 +6385,167 @@
           ],
           "text": "create the demand, and approve it"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "button",
+                "label": "New",
+                "location": "header"
+              },
+              {
+                "t": "text",
+                "v": ", then "
+              },
+              {
+                "t": "em",
+                "v": "Sold-to Business Partner"
+              },
+              {
+                "t": "text",
+                "v": ", "
+              },
+              {
+                "t": "em",
+                "v": "Order Type"
+              },
+              {
+                "t": "text",
+                "v": ", "
+              },
+              {
+                "t": "em",
+                "v": "Planned Delivery Date"
+              },
+              {
+                "t": "text",
+                "v": ", "
+              },
+              {
+                "t": "em",
+                "v": "Sales Office"
+              },
+              {
+                "t": "text",
+                "v": ", "
+              },
+              {
+                "t": "em",
+                "v": "Currency"
+              },
+              {
+                "t": "text",
+                "v": ", "
+              },
+              {
+                "t": "em",
+                "v": "Site"
+              },
+              {
+                "t": "text",
+                "v": " and "
+              },
+              {
+                "t": "em",
+                "v": "Warehouse"
+              },
+              {
+                "t": "text",
+                "v": ", then "
+              },
+              {
+                "t": "button",
+                "label": "Save"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "status",
+                "v": "Free"
+              }
+            ],
+            "text": "New, then Sold-to Business Partner, Order Type, Planned Delivery Date, Sales Office, Currency, Site and Warehouse, then Save → Free"
+          },
+          {
+            "tokens": [
+              {
+                "t": "button",
+                "label": "New",
+                "location": "line"
+              },
+              {
+                "t": "text",
+                "v": ", then "
+              },
+              {
+                "t": "em",
+                "v": "Item"
+              },
+              {
+                "t": "text",
+                "v": " and "
+              },
+              {
+                "t": "em",
+                "v": "Ordered Quantity"
+              },
+              {
+                "t": "text",
+                "v": ", then "
+              },
+              {
+                "t": "button",
+                "label": "Save"
+              }
+            ],
+            "text": "New, then Item and Ordered Quantity, then Save"
+          },
+          {
+            "tokens": [
+              {
+                "t": "strong",
+                "v": "Actions ➔ Approve"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "status",
+                "v": "In Process"
+              }
+            ],
+            "text": "Actions ➔ Approve → In Process"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it"
+            }
+          ],
+          "text": "an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "1.1–1.3 · order entry owned by "
+            },
+            {
+              "t": "literal",
+              "v": "SG-ship-from-stock.md"
+            },
+            {
+              "t": "text",
+              "v": " 1.1–1.12"
+            }
+          ],
+          "text": "1.1–1.3 · order entry owned by SG-ship-from-stock.md 1.1–1.12"
+        },
         "do": {
           "tokens": [
             {
@@ -6470,7 +6660,7 @@
             },
             {
               "t": "text",
-              "v": ". Then "
+              "v": ". "
             },
             {
               "t": "strong",
@@ -6485,33 +6675,7 @@
               "v": "In Process"
             }
           ],
-          "text": "New, then Sold-to Business Partner, Order Type, Planned Delivery Date, Sales Office, Currency, Site and Warehouse, then Save → Free. New, then Item and Ordered Quantity, then Save. Then Actions ➔ Approve → In Process"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it"
-            }
-          ],
-          "text": "an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "1.1–1.3 · order entry owned by "
-            },
-            {
-              "t": "literal",
-              "v": "SG-ship-from-stock.md"
-            },
-            {
-              "t": "text",
-              "v": " 1.1–1.12"
-            }
-          ],
-          "text": "1.1–1.3 · order entry owned by SG-ship-from-stock.md 1.1–1.12"
+          "text": "New, then Sold-to Business Partner, Order Type, Planned Delivery Date, Sales Office, Currency, Site and Warehouse, then Save → Free. New, then Item and Ordered Quantity, then Save. Actions ➔ Approve → In Process"
         }
       },
       {
@@ -6548,6 +6712,68 @@
           ],
           "text": "hand the approved lines to Warehousing"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "select the order, then "
+              },
+              {
+                "t": "strong",
+                "v": "Actions ➔ Release ➔ Release to Warehousing…"
+              }
+            ],
+            "text": "select the order, then Actions ➔ Release ➔ Release to Warehousing…"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "Set "
+              },
+              {
+                "t": "em",
+                "v": "Upto Release Date"
+              },
+              {
+                "t": "text",
+                "v": " on or after the line's release date, leave the Options ticked, then "
+              },
+              {
+                "t": "button",
+                "label": "RELEASE"
+              }
+            ],
+            "text": "Set Upto Release Date on or after the line's release date, leave the Options ticked, then RELEASE"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order"
+            }
+          ],
+          "text": "a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.1 · owned by "
+            },
+            {
+              "t": "literal",
+              "v": "SG-ship-from-stock.md"
+            },
+            {
+              "t": "text",
+              "v": " 2.1–2.8"
+            }
+          ],
+          "text": "6.1 · owned by SG-ship-from-stock.md 2.1–2.8"
+        },
         "do": {
           "tokens": [
             {
@@ -6576,32 +6802,6 @@
             }
           ],
           "text": "select the order, then Actions ➔ Release ➔ Release to Warehousing…. Set Upto Release Date on or after the line's release date, leave the Options ticked, then RELEASE"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order"
-            }
-          ],
-          "text": "a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "6.1 · owned by "
-            },
-            {
-              "t": "literal",
-              "v": "SG-ship-from-stock.md"
-            },
-            {
-              "t": "text",
-              "v": " 2.1–2.8"
-            }
-          ],
-          "text": "6.1 · owned by SG-ship-from-stock.md 2.1–2.8"
         }
       },
       {
@@ -6629,6 +6829,76 @@
             }
           ],
           "text": "put the delivery date inside the item's order horizon"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "open the item, "
+              },
+              {
+                "t": "strong",
+                "v": "Horizons"
+              },
+              {
+                "t": "text",
+                "v": " tab, read the "
+              },
+              {
+                "t": "em",
+                "v": "Order Horizon"
+              },
+              {
+                "t": "text",
+                "v": " date"
+              }
+            ],
+            "text": "open the item, Horizons tab, read the Order Horizon date"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "If your delivery date is beyond it, raise the "
+              },
+              {
+                "t": "em",
+                "v": "Order Horizon"
+              },
+              {
+                "t": "text",
+                "v": " days until it is not"
+              }
+            ],
+            "text": "If your delivery date is beyond it, raise the Order Horizon days until it is not"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse's calendar, so it is never today plus your number"
+            }
+          ],
+          "text": "a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse's calendar, so it is never today plus your number"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "1.4–1.5 · owned by "
+            },
+            {
+              "t": "literal",
+              "v": "SG-run-order-planning-for-one-item.md"
+            },
+            {
+              "t": "text",
+              "v": " phases 1–2"
+            }
+          ],
+          "text": "1.4–1.5 · owned by SG-run-order-planning-for-one-item.md phases 1–2"
         },
         "do": {
           "tokens": [
@@ -6662,32 +6932,6 @@
             }
           ],
           "text": "open the item, Horizons tab, read the Order Horizon date. If your delivery date is beyond it, raise the Order Horizon days until it is not"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse's calendar, so it is never today plus your number"
-            }
-          ],
-          "text": "a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse's calendar, so it is never today plus your number"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "1.4–1.5 · owned by "
-            },
-            {
-              "t": "literal",
-              "v": "SG-run-order-planning-for-one-item.md"
-            },
-            {
-              "t": "text",
-              "v": " phases 1–2"
-            }
-          ],
-          "text": "1.4–1.5 · owned by SG-run-order-planning-for-one-item.md phases 1–2"
         }
       },
       {
@@ -6716,6 +6960,47 @@
           ],
           "text": "prove planning can actually see the demand"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "open the item and look for a "
+              },
+              {
+                "t": "strong",
+                "v": "Sales Order"
+              },
+              {
+                "t": "text",
+                "v": " row carrying your order number and quantity under "
+              },
+              {
+                "t": "em",
+                "v": "Demand"
+              }
+            ],
+            "text": "open the item and look for a Sales Order row carrying your order number and quantity under Demand"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "nothing; this is a read. But an absent row means tile 4 will run, report success and produce nothing"
+            }
+          ],
+          "text": "nothing; this is a read. But an absent row means tile 4 will run, report success and produce nothing"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "1.6"
+            }
+          ],
+          "text": "1.6"
+        },
         "do": {
           "tokens": [
             {
@@ -6736,24 +7021,6 @@
             }
           ],
           "text": "open the item and look for a Sales Order row carrying your order number and quantity under Demand"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "nothing; this is a read. But an absent row means tile 4 will run, report success and produce nothing"
-            }
-          ],
-          "text": "nothing; this is a read. But an absent row means tile 4 will run, report success and produce nothing"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "1.6"
-            }
-          ],
-          "text": "1.6"
         }
       },
       {
@@ -6803,6 +7070,67 @@
           ],
           "text": "run MRP for this item and everything beneath it"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "open it for the item, confirm "
+              },
+              {
+                "t": "em",
+                "v": "Scenario"
+              },
+              {
+                "t": "text",
+                "v": " "
+              },
+              {
+                "t": "literal",
+                "v": "ACT"
+              },
+              {
+                "t": "text",
+                "v": " and "
+              },
+              {
+                "t": "em",
+                "v": "Plan Item"
+              },
+              {
+                "t": "text",
+                "v": ", select "
+              },
+              {
+                "t": "em",
+                "v": "Include Child Items"
+              },
+              {
+                "t": "text",
+                "v": ", then run"
+              }
+            ],
+            "text": "open it for the item, confirm Scenario ACT and Plan Item, select Include Child Items, then run"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "planned orders wherever there is a shortfall. Nothing is real yet, and nothing outside Planning can see any of it"
+            }
+          ],
+          "text": "planned orders wherever there is a shortfall. Nothing is real yet, and nothing outside Planning can see any of it"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "2.1–2.3"
+            }
+          ],
+          "text": "2.1–2.3"
+        },
         "do": {
           "tokens": [
             {
@@ -6843,24 +7171,6 @@
             }
           ],
           "text": "open it for the item, confirm Scenario ACT and Plan Item, select Include Child Items, then run"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "planned orders wherever there is a shortfall. Nothing is real yet, and nothing outside Planning can see any of it"
-            }
-          ],
-          "text": "planned orders wherever there is a shortfall. Nothing is real yet, and nothing outside Planning can see any of it"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "2.1–2.3"
-            }
-          ],
-          "text": "2.1–2.3"
         }
       },
       {
@@ -6889,35 +7199,42 @@
           ],
           "text": "read what MRP proposed, and check that it adds up"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "filter on the cluster and site; every row should read "
-            },
-            {
-              "t": "em",
-              "v": "Order Status"
-            },
-            {
-              "t": "text",
-              "v": " "
-            },
-            {
-              "t": "status",
-              "v": "Planned"
-            },
-            {
-              "t": "text",
-              "v": ". Select the planned production order, then "
-            },
-            {
-              "t": "strong",
-              "v": "Pegging - Upstream"
-            }
-          ],
-          "text": "filter on the cluster and site; every row should read Order Status Planned. Select the planned production order, then Pegging - Upstream"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "filter on the cluster and site; every row should read "
+              },
+              {
+                "t": "em",
+                "v": "Order Status"
+              },
+              {
+                "t": "text",
+                "v": " "
+              },
+              {
+                "t": "status",
+                "v": "Planned"
+              }
+            ],
+            "text": "filter on the cluster and site; every row should read Order Status Planned"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "Select the planned production order, then "
+              },
+              {
+                "t": "strong",
+                "v": "Pegging - Upstream"
+              }
+            ],
+            "text": "Select the planned production order, then Pegging - Upstream"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -6951,6 +7268,35 @@
             }
           ],
           "text": "2.5–2.6"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "filter on the cluster and site; every row should read "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " "
+            },
+            {
+              "t": "status",
+              "v": "Planned"
+            },
+            {
+              "t": "text",
+              "v": ". Select the planned production order, then "
+            },
+            {
+              "t": "strong",
+              "v": "Pegging - Upstream"
+            }
+          ],
+          "text": "filter on the cluster and site; every row should read Order Status Planned. Select the planned production order, then Pegging - Upstream"
         }
       },
       {
@@ -6978,6 +7324,55 @@
             }
           ],
           "text": "mark the proposals you intend to transfer"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "select the planned orders and confirm them. "
+              },
+              {
+                "t": "em",
+                "v": "Order Status"
+              },
+              {
+                "t": "text",
+                "v": " moves "
+              },
+              {
+                "t": "status",
+                "v": "Planned"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "status",
+                "v": "Confirmed"
+              }
+            ],
+            "text": "select the planned orders and confirm them. Order Status moves Planned → Confirmed"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "orders the transfer will match. Skip this and tile 7 does nothing and says nothing — there is no message for \"nothing matched\""
+            }
+          ],
+          "text": "orders the transfer will match. Skip this and tile 7 does nothing and says nothing — there is no message for \"nothing matched\""
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "3.3"
+            }
+          ],
+          "text": "3.3"
         },
         "do": {
           "tokens": [
@@ -7007,24 +7402,6 @@
             }
           ],
           "text": "select the planned orders and confirm them. Order Status moves Planned → Confirmed"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "orders the transfer will match. Skip this and tile 7 does nothing and says nothing — there is no message for \"nothing matched\""
-            }
-          ],
-          "text": "orders the transfer will match. Skip this and tile 7 does nothing and says nothing — there is no message for \"nothing matched\""
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "3.3"
-            }
-          ],
-          "text": "3.3"
         }
       },
       {
@@ -7052,6 +7429,76 @@
             }
           ],
           "text": "turn confirmed proposals into real orders in their owning modules"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "select "
+              },
+              {
+                "t": "em",
+                "v": "Purchase"
+              },
+              {
+                "t": "text",
+                "v": ", tick "
+              },
+              {
+                "t": "strong",
+                "v": "Error Report"
+              },
+              {
+                "t": "text",
+                "v": " and "
+              },
+              {
+                "t": "strong",
+                "v": "Process Report"
+              },
+              {
+                "t": "text",
+                "v": ", run it, read the report"
+              }
+            ],
+            "text": "select Purchase, tick Error Report and Process Report, run it, read the report"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "repeat with "
+              },
+              {
+                "t": "em",
+                "v": "Job Shop"
+              }
+            ],
+            "text": "repeat with Job Shop"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a real purchase order and a real production order. Where each lands is decided by the item's supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order"
+            }
+          ],
+          "text": "a real purchase order and a real production order. Where each lands is decided by the item's supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "3.4–3.6 · owned by "
+            },
+            {
+              "t": "literal",
+              "v": "the source on file"
+            }
+          ],
+          "text": "3.4–3.6 · owned by the source on file"
         },
         "do": {
           "tokens": [
@@ -7081,36 +7528,14 @@
             },
             {
               "t": "text",
-              "v": ", run it, read the report. Then repeat with "
+              "v": ", run it, read the report. repeat with "
             },
             {
               "t": "em",
               "v": "Job Shop"
             }
           ],
-          "text": "select Purchase, tick Error Report and Process Report, run it, read the report. Then repeat with Job Shop"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "a real purchase order and a real production order. Where each lands is decided by the item's supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order"
-            }
-          ],
-          "text": "a real purchase order and a real production order. Where each lands is decided by the item's supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "3.4–3.6 · owned by "
-            },
-            {
-              "t": "literal",
-              "v": "the source on file"
-            }
-          ],
-          "text": "3.4–3.6 · owned by the source on file"
+          "text": "select Purchase, tick Error Report and Process Report, run it, read the report. repeat with Job Shop"
         }
       },
       {
@@ -7152,15 +7577,17 @@
           ],
           "text": "hold the order the transfer created"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
-            }
-          ],
-          "text": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
+              }
+            ],
+            "text": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7182,6 +7609,15 @@
             }
           ],
           "text": "3.5"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
+            }
+          ],
+          "text": "find the order named in tile 7's process report and check its lines against the proposals they replaced"
         }
       },
       {
@@ -7210,27 +7646,29 @@
           ],
           "text": "hold the order the transfer created, and start it moving"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "open the order from tile 7 at "
-            },
-            {
-              "t": "status",
-              "v": "Created"
-            },
-            {
-              "t": "text",
-              "v": ", check its BOM, routing and estimated materials, then "
-            },
-            {
-              "t": "strong",
-              "v": "Actions ➔ Release Orders"
-            }
-          ],
-          "text": "open the order from tile 7 at Created, check its BOM, routing and estimated materials, then Actions ➔ Release Orders"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "open the order from tile 7 at "
+              },
+              {
+                "t": "status",
+                "v": "Created"
+              },
+              {
+                "t": "text",
+                "v": ", check its BOM, routing and estimated materials, then "
+              },
+              {
+                "t": "strong",
+                "v": "Actions ➔ Release Orders"
+              }
+            ],
+            "text": "open the order from tile 7 at Created, check its BOM, routing and estimated materials, then Actions ➔ Release Orders"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7256,6 +7694,27 @@
             }
           ],
           "text": "3.6, 5.1–5.2"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "open the order from tile 7 at "
+            },
+            {
+              "t": "status",
+              "v": "Created"
+            },
+            {
+              "t": "text",
+              "v": ", check its BOM, routing and estimated materials, then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Release Orders"
+            }
+          ],
+          "text": "open the order from tile 7 at Created, check its BOM, routing and estimated materials, then Actions ➔ Release Orders"
         }
       },
       {
@@ -7282,6 +7741,88 @@
             }
           ],
           "text": "tell you in advance what tiles 13 and 15 will actually do"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "read "
+              },
+              {
+                "t": "em",
+                "v": "Post to Inventory when Reporting on Last Operation"
+              },
+              {
+                "t": "text",
+                "v": ": "
+              },
+              {
+                "t": "strong",
+                "v": "Yes"
+              },
+              {
+                "t": "text",
+                "v": " posts the finished item silently, "
+              },
+              {
+                "t": "strong",
+                "v": "No"
+              },
+              {
+                "t": "text",
+                "v": " does not post it at all, "
+              },
+              {
+                "t": "strong",
+                "v": "Interactive"
+              },
+              {
+                "t": "text",
+                "v": " asks, and Interactive is the default"
+              }
+            ],
+            "text": "read Post to Inventory when Reporting on Last Operation: Yes posts the finished item silently, No does not post it at all, Interactive asks, and Interactive is the default"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "Read "
+              },
+              {
+                "t": "em",
+                "v": "Printing Production Order Documents Mandatory"
+              },
+              {
+                "t": "text",
+                "v": " in the same place"
+              }
+            ],
+            "text": "Read Printing Production Order Documents Mandatory in the same place"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "an explanation for tile 15's result before you have to explain it afterwards. A phase-5 run that has not read this cannot account for its own outcome. "
+            },
+            {
+              "t": "strong",
+              "v": "Not documented for this release."
+            }
+          ],
+          "text": "an explanation for tile 15's result before you have to explain it afterwards. A phase-5 run that has not read this cannot account for its own outcome. Not documented for this release."
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "5.3 and 5.5 notes"
+            }
+          ],
+          "text": "5.3 and 5.5 notes"
         },
         "do": {
           "tokens": [
@@ -7331,28 +7872,6 @@
             }
           ],
           "text": "read Post to Inventory when Reporting on Last Operation: Yes posts the finished item silently, No does not post it at all, Interactive asks, and Interactive is the default. Read Printing Production Order Documents Mandatory in the same place"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "an explanation for tile 15's result before you have to explain it afterwards. A phase-5 run that has not read this cannot account for its own outcome. "
-            },
-            {
-              "t": "strong",
-              "v": "Not documented for this release."
-            }
-          ],
-          "text": "an explanation for tile 15's result before you have to explain it afterwards. A phase-5 run that has not read this cannot account for its own outcome. Not documented for this release."
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "5.3 and 5.5 notes"
-            }
-          ],
-          "text": "5.3 and 5.5 notes"
         }
       },
       {
@@ -7381,27 +7900,29 @@
           ],
           "text": "release the order so material can be issued and hours booked"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "run the release for this order only. "
-            },
-            {
-              "t": "em",
-              "v": "Order Status"
-            },
-            {
-              "t": "text",
-              "v": " → "
-            },
-            {
-              "t": "status",
-              "v": "Released"
-            }
-          ],
-          "text": "run the release for this order only. Order Status → Released"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "run the release for this order only. "
+              },
+              {
+                "t": "em",
+                "v": "Order Status"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "status",
+                "v": "Released"
+              }
+            ],
+            "text": "run the release for this order only. Order Status → Released"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7435,6 +7956,27 @@
             }
           ],
           "text": "5.3"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "run the release for this order only. "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Released"
+            }
+          ],
+          "text": "run the release for this order only. Order Status → Released"
         }
       },
       {
@@ -7463,35 +8005,37 @@
           ],
           "text": "move the components from the warehouse to the work centre"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "issue the materials for the order until "
-            },
-            {
-              "t": "em",
-              "v": "Actual Quantity"
-            },
-            {
-              "t": "text",
-              "v": " equals the estimated quantity. "
-            },
-            {
-              "t": "em",
-              "v": "Order Status"
-            },
-            {
-              "t": "text",
-              "v": " → "
-            },
-            {
-              "t": "status",
-              "v": "Active"
-            }
-          ],
-          "text": "issue the materials for the order until Actual Quantity equals the estimated quantity. Order Status → Active"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "issue the materials for the order until "
+              },
+              {
+                "t": "em",
+                "v": "Actual Quantity"
+              },
+              {
+                "t": "text",
+                "v": " equals the estimated quantity. "
+              },
+              {
+                "t": "em",
+                "v": "Order Status"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "status",
+                "v": "Active"
+              }
+            ],
+            "text": "issue the materials for the order until Actual Quantity equals the estimated quantity. Order Status → Active"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7533,6 +8077,35 @@
             }
           ],
           "text": "5.4 · owned by SG-manual-production-order-existing-master-data.md 4.2–4.7"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "issue the materials for the order until "
+            },
+            {
+              "t": "em",
+              "v": "Actual Quantity"
+            },
+            {
+              "t": "text",
+              "v": " equals the estimated quantity. "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " → "
+            },
+            {
+              "t": "status",
+              "v": "Active"
+            }
+          ],
+          "text": "issue the materials for the order until Actual Quantity equals the estimated quantity. Order Status → Active"
         }
       },
       {
@@ -7561,31 +8134,42 @@
           ],
           "text": "report the build, and post the finished item"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "enter the built quantity in "
-            },
-            {
-              "t": "em",
-              "v": "Completed"
-            },
-            {
-              "t": "text",
-              "v": " and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read "
-            },
-            {
-              "t": "em",
-              "v": "Order Status"
-            },
-            {
-              "t": "text",
-              "v": " on tile 12"
-            }
-          ],
-          "text": "enter the built quantity in Completed and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read Order Status on tile 12"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "enter the built quantity in "
+              },
+              {
+                "t": "em",
+                "v": "Completed"
+              },
+              {
+                "t": "text",
+                "v": " and save"
+              }
+            ],
+            "text": "enter the built quantity in Completed and save"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read "
+              },
+              {
+                "t": "em",
+                "v": "Order Status"
+              },
+              {
+                "t": "text",
+                "v": " on tile 12"
+              }
+            ],
+            "text": "LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read Order Status on tile 12"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7632,7 +8216,65 @@
             }
           ],
           "text": "5.5–5.6"
-        }
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "enter the built quantity in "
+            },
+            {
+              "t": "em",
+              "v": "Completed"
+            },
+            {
+              "t": "text",
+              "v": " and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read "
+            },
+            {
+              "t": "em",
+              "v": "Order Status"
+            },
+            {
+              "t": "text",
+              "v": " on tile 12"
+            }
+          ],
+          "text": "enter the built quantity in Completed and save. LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read Order Status on tile 12"
+        },
+        "strips": [
+          {
+            "session": "Inventory 360",
+            "code": "whwmd4300m000",
+            "route": {
+              "tokens": [
+                {
+                  "t": "path",
+                  "route": "Warehousing ➔ Inventory 360"
+                }
+              ],
+              "text": "Warehousing ➔ Inventory 360"
+            },
+            "reads": {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "The finished item on hand, and now sellable"
+                }
+              ],
+              "text": "The finished item on hand, and now sellable"
+            },
+            "guide": {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "5.7"
+                }
+              ],
+              "text": "5.7"
+            }
+          }
+        ]
       },
       {
         "id": "read-whwmd4300m000",
@@ -7659,15 +8301,26 @@
           ],
           "text": "record on-hand before anything moves"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
-            }
-          ],
-          "text": "read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "read the finished item at the shipping warehouse and each component at the raw-material warehouse"
+              }
+            ],
+            "text": "read the finished item at the shipping warehouse and each component at the raw-material warehouse"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "Write the figures down"
+              }
+            ],
+            "text": "Write the figures down"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7693,6 +8346,15 @@
             }
           ],
           "text": "0.2–0.3"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
+            }
+          ],
+          "text": "read the finished item at the shipping warehouse and each component at the raw-material warehouse. Write the figures down"
         }
       },
       {
@@ -7721,28 +8383,35 @@
           ],
           "text": "find the inbound order the purchase order raised"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "filter for your order; it should read order type "
-            },
-            {
-              "t": "literal",
-              "v": "PUI"
-            },
-            {
-              "t": "text",
-              "v": " with the raw-material warehouse as ship-to. "
-            },
-            {
-              "t": "button",
-              "label": "Drill In",
-              "location": "line"
-            }
-          ],
-          "text": "filter for your order; it should read order type PUI with the raw-material warehouse as ship-to. Drill In"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "filter for your order; it should read order type "
+              },
+              {
+                "t": "literal",
+                "v": "PUI"
+              },
+              {
+                "t": "text",
+                "v": " with the raw-material warehouse as ship-to"
+              }
+            ],
+            "text": "filter for your order; it should read order type PUI with the raw-material warehouse as ship-to"
+          },
+          {
+            "tokens": [
+              {
+                "t": "button",
+                "label": "Drill In",
+                "location": "line"
+              }
+            ],
+            "text": "Drill In"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7776,6 +8445,28 @@
             }
           ],
           "text": "4.1"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "filter for your order; it should read order type "
+            },
+            {
+              "t": "literal",
+              "v": "PUI"
+            },
+            {
+              "t": "text",
+              "v": " with the raw-material warehouse as ship-to. "
+            },
+            {
+              "t": "button",
+              "label": "Drill In",
+              "location": "line"
+            }
+          ],
+          "text": "filter for your order; it should read order type PUI with the raw-material warehouse as ship-to. Drill In"
         }
       },
       {
@@ -7804,19 +8495,21 @@
           ],
           "text": "start the receipt against the inbound lines"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "select the inbound lines, then "
-            },
-            {
-              "t": "strong",
-              "v": "Actions ➔ Receive"
-            }
-          ],
-          "text": "select the inbound lines, then Actions ➔ Receive"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "select the inbound lines, then "
+              },
+              {
+                "t": "strong",
+                "v": "Actions ➔ Receive"
+              }
+            ],
+            "text": "select the inbound lines, then Actions ➔ Receive"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -7842,6 +8535,19 @@
             }
           ],
           "text": "4.2"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "select the inbound lines, then "
+            },
+            {
+              "t": "strong",
+              "v": "Actions ➔ Receive"
+            }
+          ],
+          "text": "select the inbound lines, then Actions ➔ Receive"
         }
       },
       {
@@ -7873,6 +8579,96 @@
             }
           ],
           "text": "book the components into stock"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "enter the packing-slip reference on each line, then confirm. "
+              },
+              {
+                "t": "em",
+                "v": "Status"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "status",
+                "v": "Confirmed"
+              },
+              {
+                "t": "text",
+                "v": ", with "
+              },
+              {
+                "t": "em",
+                "v": "All Lines Final"
+              },
+              {
+                "t": "text",
+                "v": " and "
+              },
+              {
+                "t": "em",
+                "v": "All Lines Complete"
+              },
+              {
+                "t": "text",
+                "v": " both set"
+              }
+            ],
+            "text": "enter the packing-slip reference on each line, then confirm. Status → Confirmed, with All Lines Final and All Lines Complete both set"
+          },
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "Read "
+              },
+              {
+                "t": "em",
+                "v": "Errors Logged"
+              }
+            ],
+            "text": "Read Errors Logged"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "components on hand. "
+            },
+            {
+              "t": "strong",
+              "v": "The status is not the proof and the on-hand figure is"
+            },
+            {
+              "t": "text",
+              "v": " — see 5.7. "
+            },
+            {
+              "t": "em",
+              "v": "Confirmed"
+            },
+            {
+              "t": "text",
+              "v": " is also cleared when the receipt has no lines at all, which looks identical"
+            }
+          ],
+          "text": "components on hand. The status is not the proof and the on-hand figure is — see 5.7. Confirmed is also cleared when the receipt has no lines at all, which looks identical"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "4.3–4.4"
+            }
+          ],
+          "text": "4.3–4.4"
         },
         "do": {
           "tokens": [
@@ -7919,40 +8715,39 @@
           ],
           "text": "enter the packing-slip reference on each line, then confirm. Status → Confirmed, with All Lines Final and All Lines Complete both set. Read Errors Logged"
         },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "components on hand. "
+        "strips": [
+          {
+            "session": "Inventory 360",
+            "code": "whwmd4300m000",
+            "route": {
+              "tokens": [
+                {
+                  "t": "path",
+                  "route": "Warehousing ➔ Inventory 360"
+                }
+              ],
+              "text": "Warehousing ➔ Inventory 360"
             },
-            {
-              "t": "strong",
-              "v": "The status is not the proof and the on-hand figure is"
+            "reads": {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "Component on-hand up by exactly the quantity received"
+                }
+              ],
+              "text": "Component on-hand up by exactly the quantity received"
             },
-            {
-              "t": "text",
-              "v": " — see 5.7. "
-            },
-            {
-              "t": "em",
-              "v": "Confirmed"
-            },
-            {
-              "t": "text",
-              "v": " is also cleared when the receipt has no lines at all, which looks identical"
+            "guide": {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "4.5"
+                }
+              ],
+              "text": "4.5"
             }
-          ],
-          "text": "components on hand. The status is not the proof and the on-hand figure is — see 5.7. Confirmed is also cleared when the receipt has no lines at all, which looks identical"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "4.3–4.4"
-            }
-          ],
-          "text": "4.3–4.4"
-        }
+          }
+        ]
       },
       {
         "id": "read-whinh0110m000",
@@ -7979,23 +8774,25 @@
           ],
           "text": "explain why the outbound tiles are shaped the way they are"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "read "
-            },
-            {
-              "t": "em",
-              "v": "Freeze Mandatory"
-            },
-            {
-              "t": "text",
-              "v": " on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
-            }
-          ],
-          "text": "read Freeze Mandatory on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "read "
+              },
+              {
+                "t": "em",
+                "v": "Freeze Mandatory"
+              },
+              {
+                "t": "text",
+                "v": " on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
+              }
+            ],
+            "text": "read Freeze Mandatory on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -8017,6 +8814,23 @@
             }
           ],
           "text": "6.3, 6.4 and 6.5 notes"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read "
+            },
+            {
+              "t": "em",
+              "v": "Freeze Mandatory"
+            },
+            {
+              "t": "text",
+              "v": " on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
+            }
+          ],
+          "text": "read Freeze Mandatory on the order type your shipment carries, and read the outbound procedure's activities and which of them are Automatic"
         }
       },
       {
@@ -8044,6 +8858,64 @@
             }
           ],
           "text": "find the outbound order the release created"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "filter on your sales order number, then "
+              },
+              {
+                "t": "button",
+                "label": "Drill In",
+                "location": "line"
+              },
+              {
+                "t": "text",
+                "v": ". It should read "
+              },
+              {
+                "t": "strong",
+                "v": "Origin Sales"
+              },
+              {
+                "t": "text",
+                "v": ", "
+              },
+              {
+                "t": "strong",
+                "v": "Type 20- SO/SC Out"
+              }
+            ],
+            "text": "filter on your sales order number, then Drill In. It should read Origin Sales, Type 20- SO/SC Out"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the warehousing order open, on its "
+            },
+            {
+              "t": "strong",
+              "v": "Outbound Lines"
+            },
+            {
+              "t": "text",
+              "v": " tab"
+            }
+          ],
+          "text": "the warehousing order open, on its Outbound Lines tab"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.2"
+            }
+          ],
+          "text": "6.2"
         },
         "do": {
           "tokens": [
@@ -8074,32 +8946,6 @@
             }
           ],
           "text": "filter on your sales order number, then Drill In. It should read Origin Sales, Type 20- SO/SC Out"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "the warehousing order open, on its "
-            },
-            {
-              "t": "strong",
-              "v": "Outbound Lines"
-            },
-            {
-              "t": "text",
-              "v": " tab"
-            }
-          ],
-          "text": "the warehousing order open, on its Outbound Lines tab"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "6.2"
-            }
-          ],
-          "text": "6.2"
         }
       },
       {
@@ -8127,6 +8973,79 @@
             }
           ],
           "text": "advise the line, so there is something to pick"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "strong",
+                "v": "Outbound Lines"
+              },
+              {
+                "t": "text",
+                "v": " tab, tick the line, then "
+              },
+              {
+                "t": "strong",
+                "v": "Actions ➔ Advice ➔ Generate Advice"
+              },
+              {
+                "t": "text",
+                "v": ". "
+              },
+              {
+                "t": "status",
+                "v": "Advised"
+              },
+              {
+                "t": "text",
+                "v": " and "
+              },
+              {
+                "t": "status",
+                "v": "Released"
+              },
+              {
+                "t": "text",
+                "v": " both fill"
+              }
+            ],
+            "text": "Outbound Lines tab, tick the line, then Actions ➔ Advice ➔ Generate Advice. Advised and Released both fill"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "Picking List by Location prints. "
+            },
+            {
+              "t": "strong",
+              "v": "The advice actions are on the Outbound Lines toolbar, not the session toolbar"
+            },
+            {
+              "t": "text",
+              "v": " — on the wrong one "
+            },
+            {
+              "t": "strong",
+              "v": "Advice"
+            },
+            {
+              "t": "text",
+              "v": " is greyed and reads as unavailable rather than misplaced. You do not run Release Advice; it is Automatic here"
+            }
+          ],
+          "text": "Picking List by Location prints. The advice actions are on the Outbound Lines toolbar, not the session toolbar — on the wrong one Advice is greyed and reads as unavailable rather than misplaced. You do not run Release Advice; it is Automatic here"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.3"
+            }
+          ],
+          "text": "6.3"
         },
         "do": {
           "tokens": [
@@ -8164,40 +9083,6 @@
             }
           ],
           "text": "Outbound Lines tab, tick the line, then Actions ➔ Advice ➔ Generate Advice. Advised and Released both fill"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "Picking List by Location prints. "
-            },
-            {
-              "t": "strong",
-              "v": "The advice actions are on the Outbound Lines toolbar, not the session toolbar"
-            },
-            {
-              "t": "text",
-              "v": " — on the wrong one "
-            },
-            {
-              "t": "strong",
-              "v": "Advice"
-            },
-            {
-              "t": "text",
-              "v": " is greyed and reads as unavailable rather than misplaced. You do not run Release Advice; it is Automatic here"
-            }
-          ],
-          "text": "Picking List by Location prints. The advice actions are on the Outbound Lines toolbar, not the session toolbar — on the wrong one Advice is greyed and reads as unavailable rather than misplaced. You do not run Release Advice; it is Automatic here"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "6.3"
-            }
-          ],
-          "text": "6.3"
         }
       },
       {
@@ -8225,6 +9110,67 @@
             }
           ],
           "text": "confirm the advised quantity as picked"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "tick the line, "
+              },
+              {
+                "t": "strong",
+                "v": "Actions ➔ Pick Run"
+              },
+              {
+                "t": "text",
+                "v": ", then read "
+              },
+              {
+                "t": "em",
+                "v": "Shipment"
+              },
+              {
+                "t": "text",
+                "v": " on the order's "
+              },
+              {
+                "t": "strong",
+                "v": "Shipment Lines"
+              },
+              {
+                "t": "text",
+                "v": " tab"
+              }
+            ],
+            "text": "tick the line, Actions ➔ Pick Run, then read Shipment on the order's Shipment Lines tab"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the line "
+            },
+            {
+              "t": "status",
+              "v": "Staged"
+            },
+            {
+              "t": "text",
+              "v": " and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step"
+            }
+          ],
+          "text": "the line Staged and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.4"
+            }
+          ],
+          "text": "6.4"
         },
         "do": {
           "tokens": [
@@ -8258,32 +9204,6 @@
             }
           ],
           "text": "tick the line, Actions ➔ Pick Run, then read Shipment on the order's Shipment Lines tab"
-        },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "the line "
-            },
-            {
-              "t": "status",
-              "v": "Staged"
-            },
-            {
-              "t": "text",
-              "v": " and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step"
-            }
-          ],
-          "text": "the line Staged and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "6.4"
-            }
-          ],
-          "text": "6.4"
         }
       },
       {
@@ -8312,20 +9232,22 @@
           ],
           "text": "find the shipment tile 19 created"
         },
-        "do": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "find it by the number from tile 19, then "
-            },
-            {
-              "t": "button",
-              "label": "Drill In",
-              "location": "line"
-            }
-          ],
-          "text": "find it by the number from tile 19, then Drill In"
-        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "find it by the number from tile 19, then "
+              },
+              {
+                "t": "button",
+                "label": "Drill In",
+                "location": "line"
+              }
+            ],
+            "text": "find it by the number from tile 19, then Drill In"
+          }
+        ],
         "leaves": {
           "tokens": [
             {
@@ -8343,6 +9265,20 @@
             }
           ],
           "text": "6.5"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "find it by the number from tile 19, then "
+            },
+            {
+              "t": "button",
+              "label": "Drill In",
+              "location": "line"
+            }
+          ],
+          "text": "find it by the number from tile 19, then Drill In"
         }
       },
       {
@@ -8370,6 +9306,88 @@
             }
           ],
           "text": "freeze and confirm, which is where inventory actually leaves"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "strong",
+                "v": "Actions ➔ Freeze"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "em",
+                "v": "Status"
+              },
+              {
+                "t": "text",
+                "v": " "
+              },
+              {
+                "t": "status",
+                "v": "Frozen"
+              },
+              {
+                "t": "text",
+                "v": ", and "
+              },
+              {
+                "t": "strong",
+                "v": "Confirm"
+              },
+              {
+                "t": "text",
+                "v": " becomes available"
+              }
+            ],
+            "text": "Actions ➔ Freeze → Status Frozen, and Confirm becomes available"
+          },
+          {
+            "tokens": [
+              {
+                "t": "strong",
+                "v": "Actions ➔ Confirm"
+              },
+              {
+                "t": "text",
+                "v": " → "
+              },
+              {
+                "t": "status",
+                "v": "Confirmed"
+              }
+            ],
+            "text": "Actions ➔ Confirm → Confirmed"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. "
+            },
+            {
+              "t": "strong",
+              "v": "Confirming is a one-way door"
+            },
+            {
+              "t": "text",
+              "v": " — a correction from here needs a return shipment"
+            }
+          ],
+          "text": "inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. Confirming is a one-way door — a correction from here needs a return shipment"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "6.5–6.6"
+            }
+          ],
+          "text": "6.5–6.6"
         },
         "do": {
           "tokens": [
@@ -8403,7 +9421,7 @@
             },
             {
               "t": "text",
-              "v": " becomes available. Then "
+              "v": " becomes available. "
             },
             {
               "t": "strong",
@@ -8418,34 +9436,45 @@
               "v": "Confirmed"
             }
           ],
-          "text": "Actions ➔ Freeze → Status Frozen, and Confirm becomes available. Then Actions ➔ Confirm → Confirmed"
+          "text": "Actions ➔ Freeze → Status Frozen, and Confirm becomes available. Actions ➔ Confirm → Confirmed"
         },
-        "leaves": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. "
+        "strips": [
+          {
+            "session": "Inventory 360",
+            "code": "whwmd4300m000",
+            "route": {
+              "tokens": [
+                {
+                  "t": "path",
+                  "route": "Warehousing ➔ Inventory 360"
+                }
+              ],
+              "text": "Warehousing ➔ Inventory 360"
             },
-            {
-              "t": "strong",
-              "v": "Confirming is a one-way door"
+            "reads": {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "On-hand down by exactly the shipped quantity — "
+                },
+                {
+                  "t": "strong",
+                  "v": "the completion test for the whole chain"
+                }
+              ],
+              "text": "On-hand down by exactly the shipped quantity — the completion test for the whole chain"
             },
-            {
-              "t": "text",
-              "v": " — a correction from here needs a return shipment"
+            "guide": {
+              "tokens": [
+                {
+                  "t": "text",
+                  "v": "6.7"
+                }
+              ],
+              "text": "6.7"
             }
-          ],
-          "text": "inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. Confirming is a one-way door — a correction from here needs a return shipment"
-        },
-        "guide": {
-          "tokens": [
-            {
-              "t": "text",
-              "v": "6.5–6.6"
-            }
-          ],
-          "text": "6.5–6.6"
-        }
+          }
+        ]
       }
     ],
     "edges": [

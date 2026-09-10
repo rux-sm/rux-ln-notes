@@ -1,9 +1,9 @@
-commit   bba52e09f202e9c9e9f792c2cbdd83ba34a08e7c
-date     2026-09-09T21:55:19Z
-subject  feat(handoff): Convert the flowchart, drop the SVG
-contract 7 
+commit   0bf14ec32487423f74858f9e708dd995078c828f
+date     2026-09-10T21:38:30Z
+subject  feat(handoff): Emit a node's Do as steps
+contract 8 
 tier     export
-sha256   c93cc21442f213010c2952897ef93db76ef40c9d58ddbdefe28fa98f2e761320
+sha256   6597d1af2762e5159c7f7ce50da78fd3745638aabcae4ac30bc3c48c9150b23a
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises --references.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

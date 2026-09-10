@@ -1,6 +1,6 @@
 # upstreams
-rux-ln-atlas.pin = bba52e0
-rux-ds.head = a2a2dfa
+rux-ln-atlas.pin = 0bf14ec
+rux-ds.head = 731005e
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.live = 11
@@ -8,7 +8,7 @@ rux-ds.gates.live = 24
 
 # guide data
 guides.count = 7
-guides.contract = 7
+guides.contract = 8
 guides.tier = export
 guides.draft = 6
 exported.reviews = 8
@@ -50,5 +50,5 @@ reviews.oi-ids.frontmatter = 55
 reviews.oi-ids.residual = 14
 
 # publishable (0 in every row is the condition for going public)
-publishable.pages = 34
+publishable.pages = 35
 publishable.pages-flagged = 0

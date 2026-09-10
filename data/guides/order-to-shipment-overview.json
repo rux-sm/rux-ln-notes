@@ -1,10 +1,10 @@
 {
-  "contract": 7,
+  "contract": 8,
   "tier": "export",
   "kind": "reference",
   "id": "order-to-shipment-overview",
   "title": "Order to shipment — the overview",
-  "updated": "2026-09-09",
+  "updated": "2026-09-10",
   "status": "draft",
   "sources": [
     "cppat1210m000",
@@ -569,10 +569,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — confirm the item exists with its group, defaults and unit"
+                  "v": " - confirm the item exists with its group, defaults and unit"
                 }
               ],
-              "text": "Do — confirm the item exists with its group, defaults and unit"
+              "text": "Do - confirm the item exists with its group, defaults and unit"
             }
           ]
         },
@@ -650,7 +650,7 @@
                 },
                 {
                   "t": "text",
-                  "v": " — check the "
+                  "v": " - check the "
                 },
                 {
                   "t": "strong",
@@ -661,7 +661,7 @@
                   "v": " tab has a row. Without one the transfer refuses to create a purchase order at all"
                 }
               ],
-              "text": "Do — check the Item - Business Partner tab has a row. Without one the transfer refuses to create a purchase order at all"
+              "text": "Do - check the Item - Business Partner tab has a row. Without one the transfer refuses to create a purchase order at all"
             }
           ]
         },
@@ -795,10 +795,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — enter the order and approve it"
+                  "v": " - enter the order and approve it"
                 }
               ],
-              "text": "Do — enter the order and approve it"
+              "text": "Do - enter the order and approve it"
             }
           ]
         },
@@ -965,14 +965,14 @@
                 },
                 {
                   "t": "text",
-                  "v": " — run it with "
+                  "v": " - run it with "
                 },
                 {
                   "t": "em",
                   "v": "Include Child Items"
                 }
               ],
-              "text": "Do — run it with Include Child Items"
+              "text": "Do - run it with Include Child Items"
             }
           ]
         },
@@ -1103,10 +1103,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — confirm the planned orders first, then run it once per supply source"
+                  "v": " - confirm the planned orders first, then run it once per supply source"
                 }
               ],
-              "text": "Do — confirm the planned orders first, then run it once per supply source"
+              "text": "Do - confirm the planned orders first, then run it once per supply source"
             }
           ]
         },
@@ -1170,10 +1170,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — read the order the transfer named in its process report"
+                  "v": " - read the order the transfer named in its process report"
                 }
               ],
-              "text": "Do — read the order the transfer named in its process report"
+              "text": "Do - read the order the transfer named in its process report"
             }
           ]
         },
@@ -1241,10 +1241,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — open the order the transfer created and release it"
+                  "v": " - open the order the transfer created and release it"
                 }
               ],
-              "text": "Do — open the order the transfer created and release it"
+              "text": "Do - open the order the transfer created and release it"
             }
           ]
         },
@@ -1316,10 +1316,10 @@
                 },
                 {
                   "t": "text",
-                  "v": " — enter the packing-slip reference per line and confirm"
+                  "v": " - enter the packing-slip reference per line and confirm"
                 }
               ],
-              "text": "Do — enter the packing-slip reference per line and confirm"
+              "text": "Do - enter the packing-slip reference per line and confirm"
             }
           ]
         },
@@ -2321,6 +2321,17 @@
           ],
           "text": "hold the item every other lane reads"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "confirm the item exists with its group, defaults and unit"
+              }
+            ],
+            "text": "confirm the item exists with its group, defaults and unit"
+          }
+        ],
         "do": {
           "tokens": [
             {
@@ -2377,6 +2388,25 @@
           ],
           "text": "carry the buy-from partner a purchased item needs"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "check the "
+              },
+              {
+                "t": "strong",
+                "v": "Item - Business Partner"
+              },
+              {
+                "t": "text",
+                "v": " tab has a row. Without one the transfer refuses to create a purchase order at all"
+              }
+            ],
+            "text": "check the Item - Business Partner tab has a row. Without one the transfer refuses to create a purchase order at all"
+          }
+        ],
         "do": {
           "tokens": [
             {
@@ -2452,6 +2482,17 @@
           ],
           "text": "create the demand the rest of the chain answers"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "enter the order and approve it"
+              }
+            ],
+            "text": "enter the order and approve it"
+          }
+        ],
         "do": {
           "tokens": [
             {
@@ -2539,6 +2580,21 @@
           ],
           "text": "net demand against stock and explode the bill of material"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "run it with "
+              },
+              {
+                "t": "em",
+                "v": "Include Child Items"
+              }
+            ],
+            "text": "run it with Include Child Items"
+          }
+        ],
         "do": {
           "tokens": [
             {
@@ -2614,6 +2670,17 @@
           ],
           "text": "translate a proposal into a real order in its owning module. Planning ends here"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "confirm the planned orders first, then run it once per supply source"
+              }
+            ],
+            "text": "confirm the planned orders first, then run it once per supply source"
+          }
+        ],
         "do": {
           "tokens": [
             {
@@ -2649,6 +2716,17 @@
           ],
           "text": "buy the components, and raise the inbound warehousing order on its own"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "read the order the transfer named in its process report"
+              }
+            ],
+            "text": "read the order the transfer named in its process report"
+          }
+        ],
         "do": {
           "tokens": [
             {
@@ -2684,6 +2762,17 @@
           ],
           "text": "build the item: release, issue the components, report complete"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "open the order the transfer created and release it"
+              }
+            ],
+            "text": "open the order the transfer created and release it"
+          }
+        ],
         "do": {
           "tokens": [
             {
@@ -2727,6 +2816,17 @@
           ],
           "text": "book the bought components into stock"
         },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "enter the packing-slip reference per line and confirm"
+              }
+            ],
+            "text": "enter the packing-slip reference per line and confirm"
+          }
+        ],
         "do": {
           "tokens": [
             {

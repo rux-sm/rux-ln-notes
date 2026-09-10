@@ -702,6 +702,14 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 <link rel="icon" href="${up}brand/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/rux-ds/assets/fonts/IBMPlexSans-Regular-Latin1.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/rux-ds/assets/fonts/IBMPlexSans-SemiBold-Latin1.woff2">
+<!-- MONO, UNCONDITIONALLY: a "code" content block and sessionCode both
+     render rux--type-code-01 (below), and both are guide DATA -- which
+     pages carry either is not fixed, so every page preloads the same way
+     it preloads Sans, rather than only the pages that happen to need it
+     today. Found missing entirely, 2026-09-10: 14 of 28 pages already
+     rendered code text in the browser's fallback monospace and could
+     never swap under font-display: optional. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/rux-ds/assets/fonts/IBMPlexMono-Regular-Latin1.woff2">
 <link rel="stylesheet" href="/rux-ds/assets/fonts/plex.css">
 <link rel="stylesheet" href="/rux-ds/css/rux.css">
 <link rel="stylesheet" href="/rux-ds/css/rux-theme.css">

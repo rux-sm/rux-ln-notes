@@ -1,7 +1,8 @@
-# NOTE what is NOT here. data/guides/ and vendor/rux-ds/ are both regenerable
-# and both TRACKED, deliberately: `git diff` after a sync is how this project
-# notices atlas gaining information or the design system changing under it.
-# Ignoring them would make both invisible. See README, "The two upstreams".
+# NOTE what is NOT here. data/guides/ is regenerable and TRACKED,
+# deliberately: `git diff` after a sync is how this project notices atlas
+# gaining information. Ignoring it would make that invisible. See README,
+# "Where it comes from". rux-ds is not vendored at all since 2026-09-10
+# (roadmap §8.4 step 5) -- there is no second regenerable tree to name here.
 
 .DS_Store
 node_modules/

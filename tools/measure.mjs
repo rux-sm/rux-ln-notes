@@ -49,7 +49,7 @@ const pinOf = (file) => {
   return m ? m[1] : null;
 };
 
-// --- upstream pins ----------------------------------------------------------
+// --- upstream, atlas -- pinned ----------------------------------------------
 // THE PIN ONLY. Until 2026-09-02 this file also recorded each sibling's HEAD,
 // how far past the pin it sat, and whether atlas's working tree was dirty. All
 // three describe the MACHINE the file was written on, not this repository: two
@@ -58,11 +58,14 @@ const pinOf = (file) => {
 // pull conflicted on it every time. Live state is printed by `--live` and by
 // the sync scripts, and never committed.
 head('upstreams');
-const PINS = [['rux-ln-atlas', 'data/guides/PIN'], ['rux-ds', 'vendor/rux-ds/PIN']];
-for (const [repo, pinFile] of PINS) {
-  const pin = pinOf(pinFile);
-  say(`${repo}.pin`, pin ? pin.slice(0, 7) : 'unreadable');
-}
+say('rux-ln-atlas.pin', pinOf('data/guides/PIN')?.slice(0, 7) ?? 'unreadable');
+// rux-ds IS NOT PINNED since 2026-09-10 (roadmap §8.4 step 5): this project
+// vendors nothing and reads whatever is live. "Live" locally means the
+// sibling checkout's own HEAD -- the same answer `git -C ../rux-ds
+// rev-parse HEAD` gives, not a claim this repository makes about a
+// released version.
+const dsHead = git('rux-ds', 'rev-parse', 'HEAD');
+say('rux-ds.head', dsHead ? dsHead.slice(0, 7) : 'unavailable');
 
 // --- the rux-ds surface SEND-DS.md counts -----------------------------------
 head('rux-ds surface (SEND-DS.md quotes these)');
@@ -71,9 +74,8 @@ const dsCount = (rev, path, filter) => {
   if (ls === null) return 'unavailable';
   return ls.split('\n').filter(Boolean).filter(filter).length;
 };
-const dsPin = pinOf('vendor/rux-ds/PIN');
-say('rux-ds.templates.at-pin', dsCount(dsPin, 'templates/', () => true));
-say('rux-ds.gates.at-pin', dsCount(dsPin, 'tools/', (n) => /\/check-/.test(n)));
+say('rux-ds.templates.live', dsHead ? dsCount(dsHead, 'templates/', () => true) : 'unavailable');
+say('rux-ds.gates.live', dsHead ? dsCount(dsHead, 'tools/', (n) => /\/check-/.test(n)) : 'unavailable');
 
 // --- the guide data ---------------------------------------------------------
 head('guide data');
@@ -212,13 +214,29 @@ head('publishable (0 in every row is the condition for going public)');
 }
 // --- live checkout state: printed by check.mjs and the syncs, never written --
 if (process.argv.includes('--live')) {
-  for (const [repo, pinFile] of PINS) {
-    const pin = pinOf(pinFile);
-    const headRev = git(repo, 'rev-parse', 'HEAD');
-    if (!headRev) { console.log(`  ${repo}: unavailable -- no checkout beside this one`); continue; }
-    const past = pin ? (git(repo, 'rev-list', '--count', `${pin}..HEAD`) ?? '?') : '?';
-    const dirty = git(repo, 'status', '--porcelain', '-uno') ? 'dirty' : 'clean';
-    console.log(`  ${repo}: head ${headRev.slice(0, 7)} · pin ${pin ? pin.slice(0, 7) : '?'} · ${past} commit(s) past the pin · tracked files ${dirty}`);
+  // atlas is still pulled by a script and pinned: how far its checkout sits
+  // past what was last synced is a real question with a real answer.
+  {
+    const pin = pinOf('data/guides/PIN');
+    const headRev = git('rux-ln-atlas', 'rev-parse', 'HEAD');
+    if (!headRev) console.log('  rux-ln-atlas: unavailable -- no checkout beside this one');
+    else {
+      const past = pin ? (git('rux-ln-atlas', 'rev-list', '--count', `${pin}..HEAD`) ?? '?') : '?';
+      const dirty = git('rux-ln-atlas', 'status', '--porcelain', '-uno') ? 'dirty' : 'clean';
+      console.log(`  rux-ln-atlas: head ${headRev.slice(0, 7)} · pin ${pin ? pin.slice(0, 7) : '?'} · ${past} commit(s) past the pin · tracked files ${dirty}`);
+    }
+  }
+  // rux-ds is not pinned since 2026-09-10 (roadmap §8.4 step 5): there is no
+  // "past the pin" to report, because there is no pin. Head and dirty state
+  // are still worth printing -- the same two facts every DS-reading tool
+  // here depends on being true.
+  {
+    const headRev = git('rux-ds', 'rev-parse', 'HEAD');
+    if (!headRev) console.log('  rux-ds: unavailable -- no checkout beside this one');
+    else {
+      const dirty = git('rux-ds', 'status', '--porcelain', '-uno') ? 'dirty' : 'clean';
+      console.log(`  rux-ds: head ${headRev.slice(0, 7)} · not pinned, read live · tracked files ${dirty}`);
+    }
   }
   process.exit(0);
 }

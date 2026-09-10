@@ -5,7 +5,7 @@
       "name": "rux-ln-notes",
       "runtimeExecutable": "node",
       "runtimeArgs": ["tools/serve.mjs"],
-      "port": 8643
+      "port": 8640
     }
   ]
 }

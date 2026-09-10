@@ -44,14 +44,18 @@ jobs:
         with:
           path: site
 
-      # check-ancestry needs rux-ds beside this repository, at the commit the
-      # vendored copy was taken from -- the PIN says which.
-      - id: pin
-        run: echo "sha=$(awk '/^commit/{print $2}' site/vendor/rux-ds/PIN)" >> "$GITHUB_OUTPUT"
+      # SINCE 2026-09-10 (rux-ds roadmap §8.4 step 5) THIS PROJECT VENDORS
+      # NOTHING. Pages link /rux-ds/… on the shared origin, so check-ancestry
+      # and the shared check both resolve rux-ds at the tag that is live
+      # there: the newest one. The ref column is cut before sort -V, because
+      # ls-remote prints the commit first and sorting whole lines orders by
+      # commit (rux-ds roadmap §8.4, diff C).
+      - id: tag
+        run: echo "tag=$(git ls-remote --tags --refs https://github.com/rux-sm/rux-ds.git 'v*' | awk -F/ '{print $NF}' | sort -V | tail -1)" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v7
         with:
           repository: rux-sm/rux-ds
-          ref: ${{ steps.pin.outputs.sha }}
+          ref: ${{ steps.tag.outputs.tag }}
           path: rux-ds
 
       - uses: actions/setup-node@v7
@@ -70,6 +74,8 @@ jobs:
             exit 1
           fi
         working-directory: site
+        env:
+          DS: ../rux-ds
 
       - run: node tools/check.mjs
         working-directory: site

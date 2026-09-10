@@ -48,16 +48,20 @@ design system with its own consumers, so nothing from this domain goes into a
 commit, template or issue there. Anything it needs is authored with invented,
 generic content.
 
-## Two upstreams, pulled by scripts and never by hand
+## One upstream pulled by a script, one read live
 
 | | from | by |
 |---|---|---|
 | `data/guides/` | `rux-ln-atlas`, export tier only — guides, reviews, summaries and exercises | `sh tools/sync-guides.sh` |
-| `vendor/rux-ds/` | `rux-ds`, pinned to one tag | `sh tools/new-project.sh ~/Developer/rux-ln-notes`, run from a rux-ds clone at a tag |
+| `/rux-ds/…` | `rux-ds`, live — no copy here | nothing to run; every page links it directly |
 
-Both are tracked so `git diff` after a sync shows what moved upstream. Both
-carry a `PIN`. Neither is ever hand-edited; the next sync overwrites it and
-the fix belongs upstream.
+`data/guides/` is tracked so `git diff` after a sync shows what moved
+upstream; it carries a `PIN` and is never hand-edited — the next sync
+overwrites it and the fix belongs upstream. Since 2026-09-10 (rux-ds roadmap
+§8.4 step 5) this project vendors no copy of rux-ds: pages link `/rux-ds/…`
+on the shared account-root origin, and what is live there is rux-ds's newest
+release tag. `rux-ds` cloned beside this repository is required to check,
+build or serve it locally.
 
 ## What is authored here, and what is not
 
@@ -70,9 +74,10 @@ the fix belongs upstream.
   nothing else, never the marker contract; and a page with the script gone is
   still the whole document. What a learner types stays in their browser: no
   server, no account, and the page says so beside the notepad.
-- **Every `rux--*` class comes from `vendor/rux-ds/`.** A class the design
-  system does not compile is a request to `rux-ds` with invented content,
-  never a local rule. `check-classes` catches the invented one.
+- **Every `rux--*` class comes from rux-ds's `css/rux.css`,** read from the
+  checkout beside this repository (or `DS=<dir>`). A class the design system
+  does not compile is a request to `rux-ds` with invented content, never a
+  local rule. `check-classes` catches the invented one.
 - **The marker contract is Atlas's.** `../rux-ln-atlas/_standards/guide-json.md`
   is normative; re-implementing any part of it here re-creates the drift that
   broke a renderer once already.
@@ -102,22 +107,23 @@ Runs every gate `tools/check.mjs` lists. **First it rebuilds** — `node
 tools/build.mjs`, then a diff against `guides/` and `index.html`, failing if
 rebuilding changed anything committed; this is the same check `pages.yml` runs
 before it deploys, so a stale build is caught here before a push rather than
-only after. **Then rux-ds's own shared check**, run from the vendored copy at
-the pin (`tools/check-app.mjs`): classes, tokens, file references and id
-references, over every page. Then this project's own: classes, structure,
-links, order, ancestry (needs a `rux-ds` checkout beside this one), data and
-publishable.
+only after. **Then rux-ds's own shared check** (`tools/check-app.mjs`), read
+from the checkout beside this repository or `DS=<dir>` — locally the sibling
+on `main`, in CI the checkout at rux-ds's newest tag: classes, tokens, file
+references and id references, over every page. Then this project's own:
+classes, structure, links, order, ancestry (needs a `rux-ds` checkout beside
+this one), data and publishable.
 
 **The rebuild gate was added 2026-09-09, after moving the pin to `v0.1.12`
 committed stale pages that only `pages.yml` caught, on push.** `build.mjs`
 inlines rux-ds's whole icon sprite into every page, and two icons had joined
 it since this project last built; the shared check could not see it, because
 it only verifies a page's inlined icons are somewhere in what rux-ds ships,
-never that the sprite is current. Neither `roll-out.sh` nor "Two upstreams" below, which names
-`new-project.sh` as the whole procedure for moving `vendor/rux-ds/`, said to
-rebuild first. Both gaps are the same fix: the rebuild is now inside the one
-check itself, so nothing that calls `node tools/check.mjs` — a person,
-`roll-out.sh`, the commit hook — can skip it.
+never that the sprite is current. Neither `roll-out.sh` nor the sync recipe
+that used to move `vendor/rux-ds/` said to rebuild first. Both gaps are the
+same fix: the rebuild is now inside the one check itself, so nothing that
+calls `node tools/check.mjs` — a person, `roll-out.sh`, the commit hook —
+can skip it.
 
 **The shared check was wired up on 2026-09-09, and it should have been from the
 start.** None of the seven gates below it reads a TOKEN, so

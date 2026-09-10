@@ -22,12 +22,16 @@ Markdown for the report-back. `js/exercise.js` is the whole of that.
 
 ## Where it comes from
 
-Two upstreams, both pulled by a script, both pinned, neither ever hand-edited:
+One upstream pulled by a script and pinned; one read live, no copy here:
 
 | | from | by | pin |
 |---|---|---|---|
 | `data/guides/` | `rux-ln-atlas`, **private**, export tier only | `sh tools/sync-guides.sh` | `data/guides/PIN` — atlas commit, contract, and a sha256 of the bytes |
-| `vendor/rux-ds/` | `rux-ds`, public, at one tag | rux-ds `tools/new-project.sh` from a clone at that tag | `vendor/rux-ds/PIN` |
+| `/rux-ds/…` | `rux-ds`, public, live | nothing to run; every page links it | none — whatever is live, checked against its newest release tag in CI |
+
+Since 2026-09-10 (rux-ds roadmap §8.4 step 5) this project vendors no copy of
+rux-ds; `../rux-ds` cloned beside this repository (or `DS=<dir>`) is required
+to build, check or serve it locally.
 
 Atlas holds the knowledge — evidence, session help, screenshots of a licensed
 environment — and none of it comes across. `emit.py` there writes the export
@@ -46,11 +50,11 @@ published.
 ```sh
 sh tools/sync-guides.sh          # pull the export tier from ../rux-ln-atlas
 node tools/build.mjs             # write index.html and guides/ from data/guides/
-node tools/serve.mjs             # http://localhost:8643
+node tools/serve.mjs             # rux-ds's workspace server on :8640, this app at /rux-ln-notes/
 node tools/check.mjs             # every gate, in order; what the commit hook runs
 
 sh tools/sync-internal.sh        # the private viewer, into build/ (never published)
-(cd build/internal/site && PORT=8644 node ../../../tools/serve.mjs)
+(cd build/internal/site && PORT=8644 node ../../../../rux-ds/tools/serve.mjs)
 ```
 
 Once per clone: `git config core.hooksPath tools/githooks`, and the sibling
@@ -79,13 +83,13 @@ has moved.
 
 ## Never edited by hand
 
-`data/guides/`, `vendor/rux-ds/`, `guides/`, `index.html` and `MEASURED` are
-all generated. The next sync or build overwrites them, and the real fix
-belongs upstream — in atlas for content, in rux-ds for a component, in
-`tools/build.mjs` for markup. `rux-theme.css` and `rux-overrides.css` at the
-root are this project's own override hooks, linked after the vendored ones and
-empty by design; a rule goes there only when this project, not rux-ds, has to
-change something.
+`data/guides/`, `guides/`, `index.html` and `MEASURED` are all generated. The
+next sync or build overwrites them, and the real fix belongs upstream — in
+atlas for content, in rux-ds for a component, in `tools/build.mjs` for
+markup. `rux-theme.css` and `rux-overrides.css` at the root are this
+project's own override hooks, linked after rux-ds's own and empty by design;
+a rule goes there only when this project, not rux-ds, has to change
+something.
 
 ## Where the rest went
 

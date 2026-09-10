@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 //
-// rux-ds's SHARED app check, run from the vendored copy so this project and CI
-// read the same bytes -- the same wiring rux-scheduler has had since it was
-// scaffolded, and which this project did not.
+// rux-ds's SHARED app check, imported from the rux-ds checkout beside this
+// repository (or DS=<dir>) -- the same wiring rux-scheduler has had since it
+// was scaffolded.
 //
 // WHY IT WAS ADDED, 2026-09-09. The seven gates beside it are this project's
 // own and none of them reads a TOKEN. So `var(--rux-font-mono)`, a name rux-ds
@@ -16,6 +16,19 @@
 // classes, which check-classes already does; the duplication is left rather
 // than removed, because deleting a gate to tidy up is not this change's job.
 //
-// It reads the PINNED bytes -- vendor/rux-ds at whatever tag PIN names -- so a
-// class or token added to rux-ds since that tag is correctly unknown here.
-await import('../vendor/rux-ds/tools/app-check.mjs');
+// SINCE 2026-09-10 (rux-ds roadmap §8.4 step 5) THIS PROJECT VENDORS NOTHING.
+// It reads whichever rux-ds it finds: locally the sibling on main, in CI the
+// checkout at the newest tag -- what is live at /rux-ds/. A class added on
+// main passes locally and fails in CI until it is tagged; that is the right
+// failure.
+import { existsSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+
+const ROOT = new URL('..', import.meta.url).pathname;
+const DS = resolve(ROOT, process.env.DS ?? '../rux-ds');
+if (!existsSync(join(DS, 'tools/app-check.mjs'))) {
+  console.log(`  FAIL  ds: no rux-ds at ${DS} -- clone it beside this repository, or set DS=<dir>`);
+  process.exit(1);
+}
+await import(pathToFileURL(join(DS, 'tools/app-check.mjs')).href);

@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 //
-// Splice the vendored icon sprite into every page between its SPRITE markers.
+// Splice rux-ds's icon sprite into every page between its SPRITE markers,
+// read from the checkout beside this repository (or DS=<dir>) since
+// 2026-09-10, when this project stopped vendoring a copy (rux-ds roadmap
+// §8.4 step 5).
 //
 // WHY A PAGE CANNOT JUST LINK THE SPRITE FILE. Referencing
 // `vendor/rux-ds/assets/icons.svg#i-name` from a <use> is broken in two
@@ -13,8 +16,8 @@
 // WHY THIS IS NOT rux-ds's tools/icons.mjs. That script regenerates the sprite
 // from @carbon/icons and then rewrites `templates/*.html` -- both wrong here.
 // This project has no @carbon/icons and no templates/ directory; it has an
-// already-built sprite delivered by rux-ds's new-project.sh. So this only ever COPIES, and
-// the sprite's content is rux-ds's business, pinned in vendor/rux-ds/PIN.
+// already-built sprite, rux-ds's own. So this only ever COPIES, and the
+// sprite's content is rux-ds's business entirely -- whatever is live.
 //
 //   node tools/inline-sprite.mjs <file.html> [more.html ...]
 //
@@ -24,10 +27,11 @@
 //
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SPRITE = join(ROOT, 'vendor/rux-ds/assets/icons.svg');
+const DS = resolve(ROOT, process.env.DS ?? '../rux-ds');
+const SPRITE = join(DS, 'assets/icons.svg');
 
 const BEGIN = '<!-- SPRITE:BEGIN -->';
 const END = '<!-- SPRITE:END -->';
@@ -38,7 +42,7 @@ if (!files.length) {
   process.exit(2);
 }
 
-// The vendored file is a complete <svg> document. It must be hidden, because it
+// The sprite file is a complete <svg> document. It must be hidden, because it
 // is a definitions block and not a picture: without display:none the browser
 // lays out every symbol at the top of the page.
 //

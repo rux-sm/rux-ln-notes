@@ -9,31 +9,18 @@ Nothing else here is checked by anything.
 
 ---
 
-## Now — the one next step, in order
+## Now — nothing
 
-**Rewritten three times on 2026-09-10 and this is the third. Twice it claimed
-work that was already done. Everything below was measured today, after the
-push of f2e6349; the measurement is named beside the claim so the next reader
-re-takes it instead of trusting it.**
+**Empty as of 2026-09-10, and that is a claim worth distrusting, so here is
+what it rests on.** This section was rewritten three times today and twice
+listed work already done. The three items it carried this morning are now
+answered, built or decided, each with its measurement recorded beside it below.
+Nothing in this repository is blocked on this repository.
 
-1. **Answer atlas's four questions.** The only item here with nothing blocking
-   it. `exchange/send-back-2-reply.md` in atlas asks all four and has been
-   waiting; nothing has been sent. *Verified:* no `SEND-ATLAS-2.md` exists.
-   One of the four is already satisfied in code and one needs a scope agreed
-   before any number is quoted — see "Owed to atlas" below, which carries the
-   re-measured figures.
-2. **A notepad on guide pages.** *Verified:* `js/exercise.js` is linked by
-   exactly 2 pages, both HOMEWORKs, and 0 guide pages carry `data-ln-notes`.
-   The ✎ marks say "worth writing down" and there is still nowhere to write.
-3. **Decide what is left of adopting `templates/document-page.html`.** This
-   was listed as a build task and most of it turned out to be already true:
-   our pages carry every structural element the template has, and the one real
-   gap — an uncapped reading measure — was closed in f2e6349 (38rem, 75
-   characters at any width). *Verified:* `build.mjs` still references
-   `document-page` 0 times. What remains is a decision, not a build: either
-   record the rux-ds commit the shell derives from, per `AGENTS.md`, or state
-   that this project's shell is its own and the template is a reference. It
-   should not sit on a list as though it were unbuilt work.
+**What would put something back here:** rux-ds answering the vocabulary
+question, atlas answering `SEND-ATLAS-2.md`, or a sync bringing documents that
+need something the renderer does not do yet. All three are other people's
+moves; none is a task sitting here undone.
 
 **Waiting on someone else, not on this repository:**
 
@@ -53,6 +40,22 @@ re-takes it instead of trusting it.**
   the pin and publish nothing visible.
 
 **Done on 2026-09-10, recorded so none of it is listed a fourth time:**
+
+- **The four answers owed to atlas are sent** — `SEND-ATLAS-2.md`, `25679e3`.
+  Its own instrument was the fault in one of them: `measure.mjs` named a
+  figure for step tables and walked the whole document.
+- **A guide page has somewhere to write** — `e3f7e86`, `js/guide.js`, 99
+  fields across the seven guides, one per row atlas marks `produces`, live.
+
+- **The document template is DECIDED: not adopted.** This project's shell is
+  its own and `templates/document-page.html` is a reference. The reasoning and
+  its measurements are in `AGENTS.md` — briefly: adopting would re-import the
+  seven tag colours and the breadcrumb this repository removed on evidence the
+  same week; the pin the adoption was designed around no longer exists; and the
+  one thing the template had that these pages lacked, a capped reading measure,
+  was taken on its merits. **This item also said "per `AGENTS.md`" and that was
+  wrong** — `AGENTS.md` never carried the adoption promise, `TODO.md` did. It
+  does now, as a decision rather than a plan.
 
 - **The seven tag colours are four registers**, shipped and live: 2761 pills
   to 265 site-wide, 166 to 22 on a guide page. Press, named, exact, state.

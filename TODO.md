@@ -9,25 +9,25 @@ Nothing else here is checked by anything.
 
 ---
 
-## Now — sync the two prerequisite tiles and look at them
+## Now — nothing
 
-**This section was empty as of 2026-09-10 23:48, and one of the three
-conditions it named for refilling itself has since fired.** Atlas answered the
-prerequisite ask on 2026-09-11 and drew the answer; a dry run the same day
-reports 2 changed documents and nothing blocking. So the item below is a task
-sitting here undone, not another line restating work already finished.
+**Emptied 2026-09-11 because the one item in it was published, not because it
+was re-read.** The item was to sync atlas's two prerequisite tiles and look at
+them. Done at `2ab6911`, atlas `ab9d6ca`, Pages green, and verified on
+`rux-sm.github.io` rather than in the local build: HTTP 200, 2 `Prerequisite`
+pills, revision stamp `ab9d6ca`, and the corrected edges reading
+`Item → 2` and `Item - Purchase → 7`. `Item → 2` is the point — atlas's
+correction was that the cluster prerequisite feeds where the horizon is set,
+not tile 3 where the absence finally shows.
 
-1. **Sync, rebuild, and look at the two prerequisite tiles.**
-   `node tools/publish.mjs --dry-run` is already clean at atlas `ab9d6ca`;
-   `--prepare` is the next command. The renderer needs no change — Prerequisite
-   ships since `63094e5` — so this is a sync and a person's eye, and the eye is
-   the part that matters: the last time these tiles changed, every collision
-   count read 0 while Prerequisite was drawn two ways, and only looking caught
-   it. Check the edge label atlas corrected, too — rows 1 and 2 of the §1 table
-   are one prerequisite and its aftermath, not two independent failures.
+**The eye the item asked for was used, in all eight themes, and found nothing
+to fix.** The measurement is under *Known losses* below, because what it found
+is about rux-ds's four brand themes generally and not about these tiles.
 
-**What else would put something here:** rux-ds answering the vocabulary
+**What would put something back here:** rux-ds answering the vocabulary
 question, or atlas answering `SEND-ATLAS-2.md`. Both are other people's moves.
+`SEND-ATLAS-2.md` §1 is the one that blocks work upstream — atlas's
+screen-reference emitter waits on it.
 
 **Waiting on someone else, not on this repository:**
 
@@ -56,14 +56,16 @@ question, or atlas answering `SEND-ATLAS-2.md`. Both are other people's moves.
   line ends with a hanging slash. Not ours to fix and no longer our problem —
   we render routes as text — but it is why R2 was worth raising even though it
   was withdrawn.
-- **Atlas sits 5 commits past the pin** (`9ab6a53` → `ab9d6ca`), and this
-  time it is not neutral. *Verified by dry run 2026-09-11:* 0 documents added,
-  0 removed, **2 changed** — `demand-to-shipment-session-map.json` and
-  `order-to-shipment-overview.json` — and nothing blocks a publish. The
-  previous reading of this line said 1 commit and 0 documents; both figures
-  moved when atlas answered the ask above. **A sync is outstanding work sitting
-  here**, which is one of the three conditions this section named for putting
-  something back in it.
+- **How far atlas sits past the pin is not written here any more, and this
+  line is where it kept going wrong.** It has now been wrong five times. The
+  last two were hours apart on 2026-09-11: it read "1 commit, 0 documents", was
+  corrected to "5 commits, 2 documents changed", and was stale again within the
+  hour because the sync it asked for was done — the pin is atlas `ab9d6ca` and
+  the distance is 0. The *Watched* section below already says this is live
+  state, printed by `node tools/check.mjs` and by the sync scripts and
+  deliberately never copied into this file. Writing it here anyway is what the
+  rule was written to stop, so the number is gone rather than corrected a
+  sixth time.
 
 **Done on 2026-09-10, recorded so none of it is listed a fourth time:**
 
@@ -164,6 +166,26 @@ and was wrong within a day of doing so.
   is 'Now' item 1", and there is no such item.
 
 ## Known losses, recorded so they are not rediscovered
+
+- **A container border on this site does not reach 3:1, and in the four brand
+  themes neither does the one that carries a category.** Measured 2026-09-11
+  on the rendered session map, prerequisite tile against the painted figure
+  background, all eight themes: the dashed Prerequisite border reads 3.02
+  (white), 3.32 (g10), 3.48 (g90), 3.01 (g100) — and 2.53 (geist), 2.11
+  (linear), 2.63 (ant-dark), 2.31 (spotify). The four Carbon themes clear 3:1
+  and the four brand themes do not.
+
+  **This is not the prerequisites' defect and nothing regressed.** A plain
+  Step's solid border reads 1.31 to 2.30 and fails in all eight, so the dashed
+  border is the *more* visible of the two everywhere — the distinction the
+  category depends on survives every theme, confirmed by looking at spotify
+  and linear, the two weakest. The names and codes inside carry 10.5 to 18.4.
+  So no information is only in a border.
+
+  **What is given up by recording it here rather than fixing it:** the fix is
+  a token question in rux-ds, not a rule here, and nothing measures border
+  contrast in either repository. A future theme could land below linear's 2.11
+  and nothing would say so.
 
 - **The pencils have no gate behind them.** Rule 9 in atlas checked that every
   ✎ was collected by a Run record row, which made a marked step provably

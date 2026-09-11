@@ -514,6 +514,33 @@
    a three-line `Do` had one edge under the label and two against the panel. */
 .ln-dg-detail .ln-dg-key { display: block; margin: 0 0 var(--rux-spacing-01, .125rem); }
 .ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
+
+/* THE LEGEND, 2026-09-11, AND IT REVERSES §4 OF THE PLAN. That section declined
+   a key outright -- "if three forms need one, they are the wrong three" -- and
+   the forms do measure out at four looks on the overview and five on the map
+   with nothing colliding. The reversal is rux's, asked for directly, and the
+   reason it is not simply a climbdown is §1's own finding: these five words
+   appear NOWHERE on the page except inside a tile's panel, one click away. A
+   reader who never opens a tile has four unlabelled looks and one unexplained
+   colour. The forms carry the distinctions; the legend supplies the nouns.
+
+   EVERY SWATCH IS A REAL TILE AND NOT A DRAWING OF ONE. It carries
+   `ln-dg-node` and the same `ln-dg-cat--*` class the canvas uses, so it takes
+   its border, its ground, its stripe and its italic from the rules above and
+   CANNOT drift from them. A hand-drawn key that says "dashed" while the tiles
+   turn solid is worse than no key, and it is the failure mode a legend invites.
+
+   ONE EXEMPTION, AND IT IS WHY `ln-dg-key-tile` EXISTS. A swatch carries no
+   session code, so the not-a-session rule would draw the Step swatch without
+   its stripe -- the single thing that swatch is there to show. The exemption is
+   a `:not()` on that rule rather than an override after it, so the specificity
+   trap §7 records cannot re-form: the rule is (0,3,0) and nothing competes. */
+.ln-dg-key { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem;
+  margin-block-start: .75rem; padding: 0; list-style: none;
+  font-size: .8125rem; color: var(--rux-text-secondary, #525252); }
+.ln-dg-key li { display: flex; align-items: center; gap: .5rem; }
+.ln-dg-key-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
+.ln-dg-key-tile .ln-dg-node-name { display: block; }
 /* AN EDGE WRAPS, ITS TWO ENDS DO NOT. `nowrap` on the whole span was free
    while an address was "7 → 8"; an address is a session name where a document
    numbers nothing, and “Bill of material and routing → Generate Order Planning
@@ -572,8 +599,8 @@
 .ln-dg-node.ln-dg-cat--info {
   border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
   background: transparent; padding-inline-start: 0; }
-.ln-dg-node.ln-dg-cat--config > summary .ln-dg-node-name { font-style: normal; }
-.ln-dg-node.ln-dg-cat--info > summary .ln-dg-node-name { font-style: italic; }
+.ln-dg-node.ln-dg-cat--config .ln-dg-node-name { font-style: normal; }
+.ln-dg-node.ln-dg-cat--info .ln-dg-node-name { font-style: italic; }
 
 /* 4 RESULT -- on the route, and what now exists because of the step before.
    Three departures from a Step, all saying one thing: there is nothing here to
@@ -583,7 +610,7 @@
    exactly like a step, so it read as something to go and perform. */
 .ln-dg-cat--result { border-inline-start: 0; padding-inline-start: 3px;
   background: var(--rux-layer-accent-01, #e0e0e0); }
-.ln-dg-cat--result > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+.ln-dg-cat--result .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
 /* 5 CHECKPOINT -- the only colour left in the figure. Italic because you do not
    perform a checkpoint; it passes or it quietly does not, and three of the four
@@ -592,7 +619,7 @@
    §2 of the session map is written around it. */
 .ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b);
   border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
-.ln-dg-cat--check > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+.ln-dg-cat--check .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
 /* NOT A SESSION, AND ONLY WHERE THE CATEGORY HAS NOT ALREADY DECIDED ITS OWN
    INLINE START. A tile with no code has nothing behind it to open, so it loses
@@ -615,7 +642,7 @@
    specificity. Measured in the browser before the fix: 0px none on all three.
    An exclusion list that has to grow is the wrong shape; naming the one
    category the rule is about cannot drift into another one's treatment. */
-.ln-dg-cat--step:not(:has(.ln-dg-node-code)) {
+.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-key-tile) {
   border-inline-start: 0; padding-inline-start: 3px; }
 
 /* THE HEADER IS `position: fixed` AND 48px TALL, so every in-page anchor
@@ -1249,8 +1276,16 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
           </div>
-        <p class="ln-dg-note">Reading order runs left to right and down the lanes. The edges that do not:
-          <span class="ln-dg-edge"><span class="ln-dg-ends">Items and groups → Sales Order Intake Workbench</span>, prerequisite for everything right of it <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Bill of material and routing → Generate Order Planning (Item)</span>, what MRP explodes <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Planning cluster row on the item → Planning data exists</span>, what the gate looks for <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Item - Purchase → Transfer Order Planning</span>, without it the purchase half refuses <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Advise, pick and ship</span>, YES, and no planned order is generated <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Planning data exists</span>, NO <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Purchase Order</span>, supply source Purchase <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Production Orders</span>, supply source Job Shop <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Warehouse Receipt → Production Orders</span>, components on hand first <em>(feed)</em></span></p>
+        <p class="ln-dg-note">Reading order runs left to right and down the lanes.</p>
+        <details class="ln-dg-note ln-dg-off"><summary>9 edges run against it</summary>
+          <p><span class="ln-dg-edge"><span class="ln-dg-ends">Items and groups → Sales Order Intake Workbench</span>, prerequisite for everything right of it <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Bill of material and routing → Generate Order Planning (Item)</span>, what MRP explodes <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Planning cluster row on the item → Planning data exists</span>, what the gate looks for <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Item - Purchase → Transfer Order Planning</span>, without it the purchase half refuses <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Advise, pick and ship</span>, YES, and no planned order is generated <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Planning data exists</span>, NO <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Purchase Order</span>, supply source Purchase <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Production Orders</span>, supply source Job Shop <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Warehouse Receipt → Production Orders</span>, components on hand first <em>(feed)</em></span></p>
+        </details>
+        <ul class="ln-dg-key">
+          <li><span class="ln-dg-node ln-dg-key-tile ln-dg-cat--step"><span class="ln-dg-node-name">Step</span></span> what you do here</li>
+          <li><span class="ln-dg-node ln-dg-key-tile ln-dg-cat--config"><span class="ln-dg-node-name">Prerequisite</span></span> true before the route runs</li>
+          <li><span class="ln-dg-node ln-dg-key-tile ln-dg-cat--result"><span class="ln-dg-node-name">Result</span></span> what now exists — nothing to perform</li>
+          <li><span class="ln-dg-node ln-dg-key-tile ln-dg-cat--check"><span class="ln-dg-node-name">Checkpoint</span></span> decides on its own, and can stop without saying so</li>
+        </ul>
         </figure>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-1">
           <h2 id="t-1">1. The branch that is the whole point</h2>

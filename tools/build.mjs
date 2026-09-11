@@ -1349,6 +1349,33 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    a three-line \`Do\` had one edge under the label and two against the panel. */
 .ln-dg-detail .ln-dg-key { display: block; margin: 0 0 var(--rux-spacing-01, .125rem); }
 .ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
+
+/* THE LEGEND, 2026-09-11, AND IT REVERSES §4 OF THE PLAN. That section declined
+   a key outright -- "if three forms need one, they are the wrong three" -- and
+   the forms do measure out at four looks on the overview and five on the map
+   with nothing colliding. The reversal is rux's, asked for directly, and the
+   reason it is not simply a climbdown is §1's own finding: these five words
+   appear NOWHERE on the page except inside a tile's panel, one click away. A
+   reader who never opens a tile has four unlabelled looks and one unexplained
+   colour. The forms carry the distinctions; the legend supplies the nouns.
+
+   EVERY SWATCH IS A REAL TILE AND NOT A DRAWING OF ONE. It carries
+   \`ln-dg-node\` and the same \`ln-dg-cat--*\` class the canvas uses, so it takes
+   its border, its ground, its stripe and its italic from the rules above and
+   CANNOT drift from them. A hand-drawn key that says "dashed" while the tiles
+   turn solid is worse than no key, and it is the failure mode a legend invites.
+
+   ONE EXEMPTION, AND IT IS WHY \`ln-dg-key-tile\` EXISTS. A swatch carries no
+   session code, so the not-a-session rule would draw the Step swatch without
+   its stripe -- the single thing that swatch is there to show. The exemption is
+   a \`:not()\` on that rule rather than an override after it, so the specificity
+   trap §7 records cannot re-form: the rule is (0,3,0) and nothing competes. */
+.ln-dg-key { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem;
+  margin-block-start: .75rem; padding: 0; list-style: none;
+  font-size: .8125rem; color: var(--rux-text-secondary, #525252); }
+.ln-dg-key li { display: flex; align-items: center; gap: .5rem; }
+.ln-dg-key-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
+.ln-dg-key-tile .ln-dg-node-name { display: block; }
 /* AN EDGE WRAPS, ITS TWO ENDS DO NOT. \`nowrap\` on the whole span was free
    while an address was "7 → 8"; an address is a session name where a document
    numbers nothing, and “Bill of material and routing → Generate Order Planning
@@ -1407,8 +1434,8 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 .ln-dg-node.ln-dg-cat--info {
   border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
   background: transparent; padding-inline-start: 0; }
-.ln-dg-node.ln-dg-cat--config > summary .ln-dg-node-name { font-style: normal; }
-.ln-dg-node.ln-dg-cat--info > summary .ln-dg-node-name { font-style: italic; }
+.ln-dg-node.ln-dg-cat--config .ln-dg-node-name { font-style: normal; }
+.ln-dg-node.ln-dg-cat--info .ln-dg-node-name { font-style: italic; }
 
 /* 4 RESULT -- on the route, and what now exists because of the step before.
    Three departures from a Step, all saying one thing: there is nothing here to
@@ -1418,7 +1445,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    exactly like a step, so it read as something to go and perform. */
 .ln-dg-cat--result { border-inline-start: 0; padding-inline-start: 3px;
   background: var(--rux-layer-accent-01, #e0e0e0); }
-.ln-dg-cat--result > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+.ln-dg-cat--result .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
 /* 5 CHECKPOINT -- the only colour left in the figure. Italic because you do not
    perform a checkpoint; it passes or it quietly does not, and three of the four
@@ -1427,7 +1454,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    §2 of the session map is written around it. */
 .ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b);
   border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
-.ln-dg-cat--check > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+.ln-dg-cat--check .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
 /* NOT A SESSION, AND ONLY WHERE THE CATEGORY HAS NOT ALREADY DECIDED ITS OWN
    INLINE START. A tile with no code has nothing behind it to open, so it loses
@@ -1450,7 +1477,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    specificity. Measured in the browser before the fix: 0px none on all three.
    An exclusion list that has to grow is the wrong shape; naming the one
    category the rule is about cannot drift into another one's treatment. */
-.ln-dg-cat--step:not(:has(.ln-dg-node-code)) {
+.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-key-tile) {
   border-inline-start: 0; padding-inline-start: 3px; }
 
 /* THE HEADER IS \`position: fixed\` AND 48px TALL, so every in-page anchor
@@ -2341,12 +2368,45 @@ function diagramFigure(dg) {
   // opened "down the numbers" unconditionally, which is true of this map and
   // false of the overview, where not one of the seventeen tiles carries one.
   const numbered = (dg.nodes ?? []).some(n => n.n != null);
+  // THE LEGEND NAMES WHAT THE FORMS DRAW, and it lists only the categories this
+  // document actually contains -- the overview has no Reading, so the overview's
+  // legend has four entries and not five. A key that teaches a look the reader
+  // will not meet is the beginning of the wall of text this replaced.
+  //
+  // THE SWATCH IS A TILE. Same `ln-dg-node`, same `ln-dg-cat--*`, so the border,
+  // the ground, the stripe and the italic all come from the canvas rules and the
+  // key cannot say "dashed" on a day the tiles went solid. `ln-dg-key-tile` is
+  // the one thing it adds, and the stylesheet says what it is for.
+  const GLOSS = {
+    step: 'what you do here',
+    config: 'true before the route runs',
+    info: 'opened to find out what is true now',
+    result: 'what now exists — nothing to perform',
+    check: 'decides on its own, and can stop without saying so',
+  };
+  const present = new Set(cat.values());
+  const key = `
+        <ul class="ln-dg-key">${['step', 'config', 'info', 'result', 'check']
+    .filter(c => present.has(c)).map(c => `
+          <li><span class="ln-dg-node ln-dg-key-tile ln-dg-cat--${c}"><span class="ln-dg-node-name">${
+      esc(CATEGORY_NAME[c])}</span></span> ${esc(GLOSS[c])}</li>`).join('')}
+        </ul>`;
+
+  // THE EDGES FOLD. Nine of them on the overview and five on the map, printed as
+  // one run-on paragraph, which is the wall of text the legend was asked to
+  // replace. Nothing is dropped: they are the only statement anywhere on the
+  // site of which edges run against the reading order, and their addresses exist
+  // in no other place. A `<details>` keeps the count visible and the list one
+  // click away, which is the same bargain the tiles themselves strike.
   const notes = offEdges.length ? `
         <p class="ln-dg-note">Reading order runs left to right and ${
-          numbered ? 'down the numbers' : 'down the lanes'}. The edges that do not:
-          ${offEdges.map(e => `<span class="ln-dg-edge"><span class="ln-dg-ends">${
+          numbered ? 'down the numbers' : 'down the lanes'}.</p>
+        <details class="ln-dg-note ln-dg-off"><summary>${offEdges.length} edge${
+          offEdges.length === 1 ? '' : 's'} run${offEdges.length === 1 ? 's' : ''} against it</summary>
+          <p>${offEdges.map(e => `<span class="ln-dg-edge"><span class="ln-dg-ends">${
             esc(addressOf(e.from))} → ${esc(addressOf(e.to))}</span>${
-            e.label ? `, ${tokens(e.label.tokens ?? [])}` : ''} <em>(${esc(e.kind)})</em></span>`).join(' · ')}</p>` : '';
+            e.label ? `, ${tokens(e.label.tokens ?? [])}` : ''} <em>(${esc(e.kind)})</em></span>`).join(' · ')}</p>
+        </details>` : '';
 
   return `<figure class="rux--tile ln-dg" style="--dg-cols:${stages.length + 1}">
           <div class="ln-dg-grid">
@@ -2355,7 +2415,7 @@ function diagramFigure(dg) {
             ${heads}
             ${laneLabels}
             ${cells.join('\n            ')}
-          </div>${notes}
+          </div>${notes}${key}
         </figure>`;
 }
 

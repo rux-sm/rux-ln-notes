@@ -514,6 +514,33 @@
    a three-line `Do` had one edge under the label and two against the panel. */
 .ln-dg-detail .ln-dg-key { display: block; margin: 0 0 var(--rux-spacing-01, .125rem); }
 .ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
+
+/* THE LEGEND, 2026-09-11, AND IT REVERSES §4 OF THE PLAN. That section declined
+   a key outright -- "if three forms need one, they are the wrong three" -- and
+   the forms do measure out at four looks on the overview and five on the map
+   with nothing colliding. The reversal is rux's, asked for directly, and the
+   reason it is not simply a climbdown is §1's own finding: these five words
+   appear NOWHERE on the page except inside a tile's panel, one click away. A
+   reader who never opens a tile has four unlabelled looks and one unexplained
+   colour. The forms carry the distinctions; the legend supplies the nouns.
+
+   EVERY SWATCH IS A REAL TILE AND NOT A DRAWING OF ONE. It carries
+   `ln-dg-node` and the same `ln-dg-cat--*` class the canvas uses, so it takes
+   its border, its ground, its stripe and its italic from the rules above and
+   CANNOT drift from them. A hand-drawn key that says "dashed" while the tiles
+   turn solid is worse than no key, and it is the failure mode a legend invites.
+
+   ONE EXEMPTION, AND IT IS WHY `ln-dg-key-tile` EXISTS. A swatch carries no
+   session code, so the not-a-session rule would draw the Step swatch without
+   its stripe -- the single thing that swatch is there to show. The exemption is
+   a `:not()` on that rule rather than an override after it, so the specificity
+   trap §7 records cannot re-form: the rule is (0,3,0) and nothing competes. */
+.ln-dg-key { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem;
+  margin-block-start: .75rem; padding: 0; list-style: none;
+  font-size: .8125rem; color: var(--rux-text-secondary, #525252); }
+.ln-dg-key li { display: flex; align-items: center; gap: .5rem; }
+.ln-dg-key-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
+.ln-dg-key-tile .ln-dg-node-name { display: block; }
 /* AN EDGE WRAPS, ITS TWO ENDS DO NOT. `nowrap` on the whole span was free
    while an address was "7 → 8"; an address is a session name where a document
    numbers nothing, and “Bill of material and routing → Generate Order Planning
@@ -572,8 +599,8 @@
 .ln-dg-node.ln-dg-cat--info {
   border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
   background: transparent; padding-inline-start: 0; }
-.ln-dg-node.ln-dg-cat--config > summary .ln-dg-node-name { font-style: normal; }
-.ln-dg-node.ln-dg-cat--info > summary .ln-dg-node-name { font-style: italic; }
+.ln-dg-node.ln-dg-cat--config .ln-dg-node-name { font-style: normal; }
+.ln-dg-node.ln-dg-cat--info .ln-dg-node-name { font-style: italic; }
 
 /* 4 RESULT -- on the route, and what now exists because of the step before.
    Three departures from a Step, all saying one thing: there is nothing here to
@@ -583,7 +610,7 @@
    exactly like a step, so it read as something to go and perform. */
 .ln-dg-cat--result { border-inline-start: 0; padding-inline-start: 3px;
   background: var(--rux-layer-accent-01, #e0e0e0); }
-.ln-dg-cat--result > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+.ln-dg-cat--result .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
 /* 5 CHECKPOINT -- the only colour left in the figure. Italic because you do not
    perform a checkpoint; it passes or it quietly does not, and three of the four
@@ -592,7 +619,7 @@
    §2 of the session map is written around it. */
 .ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b);
   border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
-.ln-dg-cat--check > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+.ln-dg-cat--check .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
 /* NOT A SESSION, AND ONLY WHERE THE CATEGORY HAS NOT ALREADY DECIDED ITS OWN
    INLINE START. A tile with no code has nothing behind it to open, so it loses
@@ -615,7 +642,7 @@
    specificity. Measured in the browser before the fix: 0px none on all three.
    An exclusion list that has to grow is the wrong shape; naming the one
    category the rule is about cannot drift into another one's treatment. */
-.ln-dg-cat--step:not(:has(.ln-dg-node-code)) {
+.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-key-tile) {
   border-inline-start: 0; padding-inline-start: 3px; }
 
 /* THE HEADER IS `position: fixed` AND 48px TALL, so every in-page anchor

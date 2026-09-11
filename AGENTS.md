@@ -63,6 +63,22 @@ on the shared account-root origin, and what is live there is rux-ds's newest
 release tag. `rux-ds` cloned beside this repository is required to check,
 build or serve it locally.
 
+## Where a document goes
+
+**The root holds what orients you and nothing else** — this file, `CLAUDE.md`,
+`README.md`, `TODO.md`. Adopted 2026-09-11, so every repository in the family
+reads the same way:
+
+| | |
+| :--- | :--- |
+| `exchange/` | cross-repository memos, one question each, the shape `rux-ln-atlas/exchange/` already used. `node ../rux-ds/tools/exchange.mjs` reads their frontmatter and lists what is open |
+| `docs/` | working documents — reasoning, designs, measurements |
+| root | the four above, plus what this project publishes |
+
+Nine documents sat at the root until today, against rux-scheduler's two. The
+counts were identical; only the placement differed, and one of them had to
+give.
+
 ## What is authored here, and what is not
 **The shared part of this is one document, not three.** `rux-ds/docs/consumer-policy.md`
 is what every project on rux-ds agrees to — how it is linked rather than

@@ -2021,9 +2021,10 @@ function conceptPage(c, site) {
 // lines between grid cells needs absolute geometry this side would have to
 // invent, which is the auto-layout trap the reply warned about.
 // WHICH OF THE FIVE A NODE IS, decided 2026-09-10 and derived rather than
-// declared. atlas sends nine `kind`s and no category; four of the five fall
-// out of what it already sends, and the fifth is asked for in
-// SEND-ATLAS-3.md §2 and folded into `config` until it arrives.
+// declared. atlas sends nine `kind`s and no category, and all five fall out of
+// what it already sends -- nothing is asked of it. (This paragraph said the
+// fifth was asked for and folded into `config` until it arrived; it shipped
+// that way for one commit, and the note on `read` below is why it was wrong.)
 //
 // BESIDE THE ROUTE IS AN EDGE FACT, NOT A KIND. A node with no `flow` edge, in
 // or out, is one the sequence never enters or leaves -- it has to be true for

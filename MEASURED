@@ -79,5 +79,5 @@ reviews.oi-ids.frontmatter = 55
 reviews.oi-ids.residual = 14
 
 # publishable (0 in every row is the condition for going public)
-publishable.pages = 38
+publishable.pages = 37
 publishable.pages-flagged = 0

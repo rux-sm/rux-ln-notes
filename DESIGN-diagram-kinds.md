@@ -351,7 +351,8 @@ themes:
 3. **Colliding by path** — tiles that do not say whether they are on the route
    or beside it. **A is 9 on the overview**, C and B are 14, **D is 0.** The
    map is 0 in every variant, because it has no prerequisites on it at all —
-   which is the subject of `SEND-ATLAS-3.md`, not a clean bill of health.
+   which is the subject of the ask now held in atlas as
+   `exchange/send-atlas-3.md`, not a clean bill of health.
 
 **And one figure here was overstated, corrected the same day.** §1 said 9 of
 the overview's tiles are indistinguishable, on a signature of border,

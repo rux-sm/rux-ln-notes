@@ -24,6 +24,15 @@ moves; none is a task sitting here undone.
 
 **Waiting on someone else, not on this repository:**
 
+- **Whether the session map draws what has to be set up first.** Sent
+  2026-09-10 and held in atlas as `exchange/send-atlas-3.md`, unanswered. The
+  map draws 24 tiles and not one is a prerequisite, while its own §7 names four
+  silent failures of which three are setup that was never done — so it names
+  the failure and has nowhere to point. **The rendering side is done and asks
+  for no contract change**: a Prerequisite is derived from the edge list, drawn
+  beside the path, unnumbered, and shipped. What is outstanding is atlas's
+  judgement about which prerequisites and at what grain.
+
 - **Whether an inline-reference vocabulary belongs in rux-ds.** Sent to the
   *Guide template review* session on 2026-09-10 with the measurements. **It has
   an answer ready — a written guide rather than new classes — and is waiting

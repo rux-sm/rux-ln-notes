@@ -93,7 +93,7 @@ const nodeOrder = (dg) => (dg.lanes ?? []).flatMap((l) =>
 //   reading `kind` is `read` -- opened to find out what is true now.
 //
 // THE FIFTH IS `read`, AND THIS FILE CLAIMED IT WAS NOT DERIVABLE. It carried a
-// named stand-in list and SEND-ATLAS-3.md §2 asked atlas for a signal, both on
+// named stand-in list and the ask to atlas requested a signal, both on
 // the grounds that nothing separated Inventory 360 from Production Order
 // Parameters. Both were wrong and both are withdrawn: the mistake was trying to
 // SPLIT the three `read` nodes, having taken D3's "the two configuration

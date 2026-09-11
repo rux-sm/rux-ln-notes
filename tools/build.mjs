@@ -87,66 +87,48 @@ const TAG = {
   value: 'warm-gray', status: 'teal', button: 'purple',
 };
 
-// `command` AND `path` ARE NOT TAGS, and this is not an oversight to fix in
-// passing. `.rux--tag` caps at 13rem and `.rux--tag__label` ellipsises, so a
-// menu route measured 324px against a 192px label and was silently cut -- and
-// a route is the single thing a reader most needs whole. They are plain text,
-// which loses the visual distinction the other seven have.
+// `command` AND `path` ARE PLAIN TEXT, and the route's own ` \u2794 ` is the
+// separator. Not a tag, and -- since 2026-09-10 -- not a breadcrumb either.
 //
-// THIS COMMENT SAID "SEND-DS.md §2 is the open question, and it is still
-// unsent". BOTH HALVES WERE WRONG BY 2026-09-10: it was sent 2026-09-06 and
-// ANSWERED 2026-09-08. Corrected here rather than quietly dropped, because the
-// answer is not the one this side proposed.
+// THE TAG WAS RULED OUT ON MEASUREMENT. `.rux--tag` caps at 13rem and
+// `.rux--tag__label` ellipsises, so a menu route measured 324px against a 192px
+// label and was silently cut, and a route is the single thing a reader most
+// needs whole. SEND-DS.md section 2 then guessed `.rux--tag-label-tooltip`,
+// Carbon's own answer, and rux-ds REJECTED that on evidence: every capture
+// pairs it with an *interactive* tag, so it would make a tab stop of every
+// route on a page carrying dozens, and the text would still be cut on paper and
+// on touch. A tooltip is a route's second copy, not its first.
 //
-// It guessed `.rux--tag-label-tooltip`, Carbon's own answer. rux-ds REJECTED
-// that on evidence: every capture pairs it with an *interactive* tag, so it
-// would make a tab stop of every route on a page carrying dozens, and the text
-// would still be cut on paper and on touch. A tooltip is a route's second copy,
-// not its first.
+// THE BREADCRUMB WAS BUILT AND THEN REVERTED, THE SAME DAY. rux-ds ruled that a
+// route is a breadcrumb, measured on running Carbon: `cds--breadcrumb` has no
+// cap and wraps where the tag clips. That is true, and it is not the whole
+// question. Three things the ruling could not see, found by rendering all 138
+// and then looking at them:
 //
-// THE RULING IS A BREADCRUMB, measured on running Carbon at 1280 with the same
-// four-segment route in each: `cds--tag` read-only caps at 208px and clipped
-// the label at 192 (scrollWidth 278 vs clientWidth 192, 86px lost), while
-// `cds--breadcrumb` has no cap, wraps, and every segment's scrollWidth equals
-// its clientWidth. rux-ds `docs/log.md` has the table and the segment markup:
-// the last segment takes the captured `span.cds--link[aria-current]`, the
-// earlier ones a bare `<span>` that is labelled there as an extrapolation.
+//   1. IT ANSWERS THE WRONG QUESTION FOR `command`. The contract calls a
+//      `command` "a menu route you run" -- an ACTION -- and a `path` "a
+//      navigation path" -- a LOCATION. A breadcrumb says "here is where you
+//      are". Rendering both alike made a sequence of presses wear a location's
+//      clothes, and put it in the same idiom as the page's own header
+//      breadcrumb while divorcing it from `button`, which is the same act.
+//   2. THE SEPARATOR IS A `::after`, SO IT CANNOT WRAP. Two routes wrapped and
+//      both left a dangling "/" welded to the end of the line above. A text
+//      separator travels with its segment; a pseudo-element does not.
+//   3. "/" COLLIDES WITH A SEGMENT NAME. One menu segment is itself named with
+//      a slash, so its route rendered with three visible separators of which
+//      two were separators.
 //
-// BUILT 2026-09-10. What follows is the ruling, in the element Carbon renders.
+// AND `template-candidate.html` HAD IT RIGHT ALL ALONG -- three routes, plain
+// text, the arrow kept, in `type-helper-text-01`. It was written before the
+// ruling existed and the generated pages had diverged away from it.
 //
-// A route arrives as one string with ` \u2794 ` between segments -- 97 of the 100
-// tokens carry that separator and the other three carry it too; the only other
-// slash in the data is INSIDE a segment name, "Outbound/Inspections", which is
-// why the split is on the arrow alone and never on "/".
-//
-// THE SEGMENTS ARE BARE SPANS, NOT ANCHORS, and that is the measured half of
-// the ruling rather than a preference: in a `breadcrumb-item` a bare <span>
-// computes rgb(22,22,22) with `cursor: auto` and already reads as text, while
-// `a.cds--link` there is rgb(15,98,254) with `cursor: pointer` and would tell a
-// reader a menu name is clickable when nothing here navigates anywhere. The
-// last segment takes the captured `--current` markup, `span.cds--link` with
-// `aria-current`, which is the one non-anchor segment Carbon does render --
-// three breadcrumb stories render exactly that, all with `aria-current=true`.
-//
-// NO <nav> WRAPPER AND NO aria-label="Breadcrumb". Carbon's breadcrumb is page
-// navigation and is wrapped in one; an LN menu route is a description of where
-// a control lives, inside a sentence, and announcing a navigation landmark
-// dozens of times in a document would be a lie told loudly. The <ol> is kept
-// because a route IS an ordered list of segments and announcing it as a list of
-// three is true and useful.
-//
-// `--no-trailing-slash` because a route ends at its destination, not at a
-// separator.
-const PLAIN = new Set();
-const ROUTE_SEP = ' \u2794 ';
-const route = raw => {
-  const seg = raw.split(ROUTE_SEP);
-  return `<ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route">${
-    seg.map((x, i) => i === seg.length - 1
-      ? `<li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">${esc(x)}</span></li>`
-      : `<li class="rux--breadcrumb-item"><span>${esc(x)}</span></li>`).join('')
-  }</ol>`;
-};
+// What is given up by staying plain is real and is the reason the question was
+// asked twice: a route has no visual distinction from the prose around it,
+// where the other seven types do. The answer to that is not a component around
+// the route -- it is that 27% of this document's tokens are pills and the
+// register a route needs does not exist yet. That is the open design question,
+// and it is not answered by wrapping this one type in something.
+const PLAIN = new Set(['command', 'path']);
 
 function token(t) {
   const key = PAYLOAD[t.t] ?? 'v';
@@ -243,7 +225,6 @@ function token(t) {
         throw new Error(`token type "${t.t}" has no payload under "${key}": ${JSON.stringify(t)}`);
       }
       if (PLAIN.has(t.t)) return esc(raw);
-      if (t.t === 'command' || t.t === 'path') return route(raw);
       if (!TAG[t.t]) throw new Error(`no rendering for token type "${t.t}": ${JSON.stringify(t)}`);
       const loc = t.location ? ` (${t.location})` : '';
       return tag(t.t, raw, raw + loc);
@@ -281,11 +262,7 @@ const tag = (type, text, title = text) =>
 // The space goes ONLY between two tag-rendered neighbours. Joining everything
 // on ' ' instead would insert spaces inside ordinary prose runs and before
 // punctuation, which is a worse bug and a silent one.
-// A ROUTE IS NOT A TAG FOR SPACING. It renders as its own <ol>, which carries
-// its own margins, so counting it as a tag would insert a space between it and
-// a neighbouring tag on top of them.
-const isRoute = t => t && (t.t === 'command' || t.t === 'path');
-const isTag = t => t && !PLAIN.has(t.t) && !isRoute(t) && !!TAG[t.t];
+const isTag = t => t && !PLAIN.has(t.t) && !!TAG[t.t];
 
 const tokens = ts => {
   const list = ts ?? [];
@@ -585,7 +562,7 @@ function phase(p) {
   // THE ROUTE IS THE THING A READER MOST NEEDS WHOLE, so it is a definition
   // list beside the heading rather than a tag: see the note on PLAIN above.
   const where = [
-    p.route ? `<div class="ln-meta-row"><dt>Route</dt><dd>${route(p.route)}</dd></div>` : '',
+    p.route ? `<div class="ln-meta-row"><dt>Route</dt><dd>${esc(p.route)}</dd></div>` : '',
     p.session ? `<div class="ln-meta-row"><dt>Session</dt><dd>${esc(p.session)}${
       p.sessionCode ? ` <span class="rux--type-code-01">${esc(p.sessionCode)}</span>` : ''}</dd></div>` : '',
     // The evidence stamp travels only in the internal tier; a client never
@@ -812,24 +789,6 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    children in a narrow column. Plain class, not a \`rux--\` one: check-classes
    ignores non-rux-- names, so an invented \`rux--\` one would be unpoliced. */
 .ln-tag-row { display: flex; flex-wrap: wrap; gap: .5rem; }
-
-/* A ROUTE SITS INSIDE A SENTENCE, so it is inline-flex and not the flex
-   rux-ds compiles. .rux--breadcrumb is display:flex, which is right for a
-   page header and wrong here: measured on this page before the rule, a cell
-   reading "On the Outbound Lines toolbar, <route>" put the text on one line
-   and the route on the next -- the sentence broke at the route every time,
-   in all 64 of the cell and list-item uses.
-
-   The rule is on ln-route, this project's own class, and never on
-   rux--breadcrumb itself. It changes ONE property of a rux-ds component to
-   fit a use rux-ds's own template does not have, which is a request to make
-   there -- whether an inline breadcrumb should ship as a modifier -- and is
-   recorded in SEND-DS.md rather than left as a silent local divergence.
-
-   vertical-align follows the precedent three rules above: the same .05em
-   nudge the small tag takes so a component sitting in prose rides the
-   baseline instead of the line box. */
-.ln-route { display: inline-flex; vertical-align: .05em; }
 
 /* EQUAL-HEIGHT CARDS WITH THEIR ACTIONS ON ONE LINE, and it takes both rules.
    Making the grid cell a flex parent is NOT enough on its own -- measured on
@@ -1842,12 +1801,8 @@ function diagramFigure(dg) {
   // field had two left edges and the block read as ragged. The key is a block
   // in the panel and stays inline in the at-rest strip, which is one line by
   // construction -- hence the `.ln-dg-detail` scope on that rule.
-  // A <div>, NOT A <p>. A route renders as an <ol> and an <ol> inside a <p>
-  // closes the paragraph -- the parser does it silently and the layout breaks
-  // downstream of the route, not at it. `ln-dg-field` is this project's own
-  // class, so the element is this project's to choose.
   const field = (n, key, label) => n[key]
-    ? `<div class="ln-dg-field"><span class="ln-dg-key">${label}</span>${tokens(n[key].tokens ?? [])}</div>` : '';
+    ? `<p class="ln-dg-field"><span class="ln-dg-key">${label}</span>${tokens(n[key].tokens ?? [])}</p>` : '';
 
   // `steps` AT CONTRACT 8, AND IT IS WHY THE ASK WAS MADE. Section 5 defines
   // `Do` as "the controls, in order, with the status each produces" -- a
@@ -1879,9 +1834,9 @@ function diagramFigure(dg) {
     ? n.strips.map(s => `<div class="ln-dg-strip">
                     <p class="ln-dg-strip-head"><span class="ln-dg-key">Verify</span>${esc(s.session)}${
                       s.code ? ` <code class="ln-dg-strip-code">${esc(s.code)}</code>` : ''}</p>
-                    ${s.route ? `<div class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span>${tokens(s.route.tokens ?? [])}</div>` : ''}
-                    ${s.reads ? `<div class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Reads</span>${tokens(s.reads.tokens ?? [])}</div>` : ''}
-                    ${s.guide ? `<div class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Guide</span>${tokens(s.guide.tokens ?? [])}</div>` : ''}
+                    ${s.route ? `<p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span>${tokens(s.route.tokens ?? [])}</p>` : ''}
+                    ${s.reads ? `<p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Reads</span>${tokens(s.reads.tokens ?? [])}</p>` : ''}
+                    ${s.guide ? `<p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Guide</span>${tokens(s.guide.tokens ?? [])}</p>` : ''}
                   </div>`).join('\n                  ')
     : '';
 

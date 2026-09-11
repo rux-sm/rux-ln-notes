@@ -50,24 +50,6 @@
    ignores non-rux-- names, so an invented `rux--` one would be unpoliced. */
 .ln-tag-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 
-/* A ROUTE SITS INSIDE A SENTENCE, so it is inline-flex and not the flex
-   rux-ds compiles. .rux--breadcrumb is display:flex, which is right for a
-   page header and wrong here: measured on this page before the rule, a cell
-   reading "On the Outbound Lines toolbar, <route>" put the text on one line
-   and the route on the next -- the sentence broke at the route every time,
-   in all 64 of the cell and list-item uses.
-
-   The rule is on ln-route, this project's own class, and never on
-   rux--breadcrumb itself. It changes ONE property of a rux-ds component to
-   fit a use rux-ds's own template does not have, which is a request to make
-   there -- whether an inline breadcrumb should ship as a modifier -- and is
-   recorded in SEND-DS.md rather than left as a silent local divergence.
-
-   vertical-align follows the precedent three rules above: the same .05em
-   nudge the small tag takes so a component sitting in prose rides the
-   baseline instead of the line box. */
-.ln-route { display: inline-flex; vertical-align: .05em; }
-
 /* EQUAL-HEIGHT CARDS WITH THEIR ACTIONS ON ONE LINE, and it takes both rules.
    Making the grid cell a flex parent is NOT enough on its own -- measured on
    the page: `.rux--card` computes `display: block`, so stretching the card
@@ -770,7 +752,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <h2 id="h-phases">Phases</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-0">
         <h3 id="p-0">Phase 0 — Read the baseline</h3>
-        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Warehousing</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Inventory 360</span></li></ol></dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
+        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Inventory 360</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
         <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast">
   <div class="rux--inline-notification__details">
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-information--filled"/></svg>
@@ -797,7 +779,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
       </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-1">
         <h3 id="p-1">Phase 1 — Create the purchase order</h3>
-        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Procurement</span></li><li class="rux--breadcrumb-item"><span>Orders</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Order Intake Workbench</span></li></ol></dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Purchase Order Intake Workbench <span class="rux--type-code-01">tdpur4601m200</span></dd></div></dl>
+        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Procurement ➔ Orders ➔ Order Intake Workbench</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Purchase Order Intake Workbench <span class="rux--type-code-01">tdpur4601m200</span></dd></div></dl>
         <p><strong>What LN is doing.</strong> The buy-from business partner decides most of the header: LN defaults the <em>Purchase Order Type</em>, <em>Purchase Office</em> and <em>Buyer</em> from the partner record, falling back to the user profile where the partner leaves a field empty. The workbench opens the Purchase Order session to carry the order; the lookup only selects a partner and never creates one.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
@@ -835,7 +817,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
       </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-3">
         <h3 id="p-3">Phase 3 — Receive against the order</h3>
-        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Warehousing</span></li><li class="rux--breadcrumb-item"><span>Orders</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Orders</span></li></ol></dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Warehousing Orders <span class="rux--type-code-01">whinh2100m000</span></dd></div></dl>
+        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Orders ➔ Orders</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Warehousing Orders <span class="rux--type-code-01">whinh2100m000</span></dd></div></dl>
         <p><strong>What LN is doing.</strong> You do not create this order; the purchase order generates a warehousing order whose origin, purchase, gives it inbound activities. That is the handoff from Procurement to Warehousing. The purchase order&#39;s own <strong>Release to Warehousing</strong> tab shows which lines are still waiting, and its line status session says which activity has to happen first.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
@@ -845,7 +827,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">3.1</th><td>Open <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehousing Orders"><span class="rux--tag__label">Warehousing Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m000"><span class="rux--tag__label">whinh2100m000</span></span>, find the order LN generated from the purchase order, and click <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Drill In (line)"><span class="rux--tag__label">Drill In</span></span></td><td>An inbound order exists that you did not create by hand</td></tr>
           <tr data-produces="true"><th scope="row" class="ln-step-id">3.2</th><td>Confirm its <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Order Type"><span class="rux--tag__label">Order Type</span></span> and ship-from</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="warehousing order number"><span class="rux--tag__label">warehousing order number</span></span> — the walked run showed order type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="PUI"><span class="rux--tag__label">PUI</span></span> &quot;Purchase Receipts&quot;, ship-from <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BP4000007"><span class="rux--tag__label">BP4000007</span></span>, ship-to <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ADNA02"><span class="rux--tag__label">ADNA02</span></span></td></tr>
           <tr><th scope="row" class="ln-step-id">3.3</th><td>Select the inbound lines</td><td>The lines correspond to the purchase order lines from phase 2</td></tr>
-          <tr><th scope="row" class="ln-step-id">3.4</th><td>Run <ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Actions</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Receive</span></li></ol> on the selected inbound lines</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse Receipt"><span class="rux--tag__label">Warehouse Receipt</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3512m000"><span class="rux--tag__label">whinh3512m000</span></span> opens</td></tr>
+          <tr><th scope="row" class="ln-step-id">3.4</th><td>Run Actions ➔ Receive on the selected inbound lines</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse Receipt"><span class="rux--tag__label">Warehouse Receipt</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3512m000"><span class="rux--tag__label">whinh3512m000</span></span> opens</td></tr>
             </tbody>
           </table>
         </div>
@@ -873,7 +855,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
       </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-5">
         <h3 id="p-5">Phase 5 — Verify the inventory increase</h3>
-        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Warehousing</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Inventory 360</span></li></ol></dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
+        <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Inventory 360</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Inventory 360 <span class="rux--type-code-01">whwmd4300m000</span></dd></div></dl>
         <p><strong>What LN is doing.</strong> Nothing new. This phase re-reads the figure from phase 0, because the receipt reaching <strong>Confirmed</strong> is not the proof; the number changing by exactly the received quantity is. A difference that is not the ordered quantity means something else moved stock in between, and adjusting it to match buries the evidence.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">

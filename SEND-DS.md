@@ -216,6 +216,31 @@ The breadcrumb is now built in `tools/build.mjs` — 138 routes across the
 site. Building it raised two things rux-ds could not have seen from its own
 template, both offered the way this memo was: read in place, nothing copied.
 
+## WITHDRAWN 2026-09-10, the same day both were raised
+
+**R1 and R2 below are withdrawn. Do not spend anything on them.** The
+breadcrumb they describe was built and reverted within hours, and the routes
+are plain text again, so neither question is live. They are kept rather than
+deleted because the measurements in them are real and a future reader should
+not re-take them.
+
+**Why the revert, in one line each.** A `command` is "a menu route you run" —
+an action — and a breadcrumb says "here is where you are"; the separator is a
+`::after` and so cannot wrap, leaving a dangling `/` at the end of a line; and
+that separator collides with a segment whose own name contains one. None of
+that was visible from rux-ds's side, and none of it contradicts the ruling's
+own measurement, which was about clipping and was correct.
+
+**What survives, and it is the only thing we are actually asking:** the
+question in the message sent to the *Guide template review* session — whether
+an inline-reference vocabulary belongs in the design system. That is the real
+problem. 27% of a page's tokens here are pills, seven meanings on one
+component, and a route has no register to live in because the register does
+not exist yet. Wrapping one token type in a component was the wrong shape of
+answer, which is what building it taught us.
+
+---
+
 ## R1 — an inline breadcrumb needs `inline-flex`, and rux-ds compiles only `flex`
 
 `.rux--breadcrumb` is `display: flex`. That is right for the page header

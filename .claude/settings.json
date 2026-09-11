@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "~/Developer/rux-ds",
+      "~/Developer/rux-ln-atlas"
+    ]
+  }
+}

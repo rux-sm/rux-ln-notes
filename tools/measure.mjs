@@ -29,6 +29,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { tileLooks, describeLook } from './tile-looks.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = [];
@@ -208,6 +209,66 @@ for (const d of dgDocs) {
   say(`${k}.edges-off-sequence`, off.length);
   say(`${k}.nodes-marked`, new Set(off.map((e) => e.kind === 'feed' ? e.to : e.from)).size);
   say(`${k}.edges-dangling`, edges.filter((e) => !ids.has(e.from) || !ids.has(e.to)).length);
+}
+
+// --- how a tile is DRAWN, which is a different question ----------------------
+// EVERY ROW ABOVE IS ABOUT THE DATA AND NONE OF THEM IS ABOUT THE DRAWING, and
+// `docs/status.md` has carried that gap as decided-and-not-built since
+// 2026-09-10: the figure that says whether each category is drawn exactly ONE
+// way lived only in `tools/specimen-kinds.mjs`, in a browser, on a page under
+// git-ignored `build/`. So it existed while a person was looking at it and not
+// otherwise. `tools/tile-looks.mjs` resolves it out of each page's own
+// stylesheet; the comment at the top of that file says what it can and cannot
+// see.
+//
+// THE FIGURE THAT WAS ASKED FOR IS NOT QUITE THE FIGURE HERE, and that is worth
+// saying rather than substituting quietly. `status.md` names `colliding by
+// register` and `colliding by kind`, both written before the five categories
+// were decided on 2026-09-10. By-kind was reported and never used to rank
+// because it was the question being decided, and it is decided; by-register was
+// the three groups the categories replaced. What ships is five categories, so
+// what is measured is by-category -- the same test, over the vocabulary that
+// won.
+//
+// `looks-per-category` IS THE ONE THAT EARNS ITS PLACE. Both collisions read 0
+// while a Prerequisite was drawn two ways, and read it correctly: a three-sided
+// box is nothing like a Step, so nothing collided. It read 2 then, and it would
+// have said so.
+//
+// AND THE LOOKS THEMSELVES ARE ROWS, not just their count. A category can keep
+// one look and have that look change -- which is how `63094e5` took the yellow
+// off every Checkpoint on the overview while `looks`, `looks-per-category` and
+// `colliding-by-category` all stayed at their good values. A stripe that
+// changes from `3px solid var(--rux-support-warning…)` to `none` is now a line
+// in a diff.
+head('diagram looks (tile-looks.mjs resolves these from each page\'s own CSS; the specimen paints them per theme)');
+const looksByCat = new Map();
+let tileRules = null, stateRules = null;
+for (const d of dgDocs) {
+  const page = `guides/${d.id}.html`;
+  const k = `diagram.${d.id}`;
+  if (!existsSync(join(ROOT, page))) {
+    for (const row of ['categories', 'looks', 'looks-per-category', 'colliding-by-category'])
+      say(`${k}.${row}`, 'unbuilt');
+    continue;
+  }
+  const r = tileLooks(readFileSync(join(ROOT, page), 'utf8'));
+  say(`${k}.categories`, r.perCategory.map((c) => `${c.cat} ${c.tiles}`).join(' · '));
+  say(`${k}.looks`, r.looks);
+  say(`${k}.looks-per-category`, r.perCategory.map((c) => `${c.cat} ${c.looks}`).join(' · '));
+  say(`${k}.colliding-by-category`, r.collidingByCategory);
+  for (const t of r.tiles) {
+    if (!looksByCat.has(t.cat)) looksByCat.set(t.cat, new Set());
+    looksByCat.get(t.cat).add(describeLook(t.look));
+  }
+  tileRules = r.rules.tile; stateRules = r.rules.state;
+}
+say('diagram-looks.rules-read', tileRules ?? 'unbuilt');
+say('diagram-looks.rules-state-skipped', stateRules ?? 'unbuilt');
+for (const [cat, set] of [...looksByCat].sort()) {
+  const looks = [...set].sort();
+  say(`diagram-looks.${cat}`, looks.length === 1 ? looks[0]
+    : `${looks.length} looks — ${looks.join(' ¦ ')}`);
 }
 
 // --- the reviews atlas _standards/review-shape.md describes ----------------------------------

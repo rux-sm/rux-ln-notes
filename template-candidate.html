@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en" data-theme="white">
+<html lang="en" data-theme="g100">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Register a Supplier and Place a First Order — Doc specimens</title>
 <link rel="stylesheet" href="/rux-ds/assets/fonts/plex.css">
 <link rel="stylesheet" href="/rux-ds/css/rux.css">
+<link rel="stylesheet" href="/rux-ds/css/rux-theme.css">
+<link rel="stylesheet" href="/rux-ds/css/rux-overrides.css">
 <style>
 /* TRAP 3.2, copied from rux-ds templates/detail-page.html and NOT optional.
    '.rux--content' is only indented by a SIBLING side nav; this nav lives
@@ -151,13 +153,24 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
              and a tag in one measured 208x48 in a 267px column. IBM's own
              page-header puts them in an unclassed box of siblings. -->
         <div>
-          <span class="rux--tag rux--tag--red rux--tag--sm" title="Draft (not yet verified end to end)"><span class="rux--tag__label">Draft</span></span>
-          <span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="Purchasing (module)"><span class="rux--tag__label">Purchasing</span></span>
-          <span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="Registry (module)"><span class="rux--tag__label">Registry</span></span>
-          <span class="rux--tag rux--tag--outline rux--tag--sm"><span class="rux--tag__label">Updated 2026-01-15</span></span>
+          <span class="rux--tag rux--tag--teal rux--tag--sm rux--layout--size-sm" title="Draft (status)"><span class="rux--tag__label">Draft</span></span>
+          <span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="Purchasing (module)"><span class="rux--tag__label">Purchasing</span></span>
+          <span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="Registry (module)"><span class="rux--tag__label">Registry</span></span>
+          <span class="rux--tag rux--tag--outline rux--tag--sm rux--layout--size-sm"><span class="rux--tag__label">Updated 2026-01-15</span></span>
         </div>
 
-        <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast rux--inline-notification--hide-close-button" role="status">
+        <!-- NO `role`, and that is deliberate. This file carried role="note"
+             three times and role="status" once. Both were wrong. Carbon
+             renders role="status" here, so "note" was invented -- rux-ds
+             adjudicated that exact question on its own document template and
+             recorded that reasoning about semantics lost to reading the
+             captures. And "status" is wrong too for a DOCUMENT callout:
+             tools/build.mjs drops the role from all fifteen it generates,
+             because a live region present at load makes a screen reader
+             announce every one of them for nothing. Corrected 2026-09-10 to
+             match the generated pages, which are what this specimen is a
+             specimen OF. -->
+        <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast rux--inline-notification--hide-close-button">
           <div class="rux--inline-notification__details">
             <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-warning--filled"/></svg>
             <div class="rux--inline-notification__text-wrapper">
@@ -167,13 +180,13 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
           </div>
         </div>
 
-      <p><strong>Objective</strong>: register a supplier, give it terms, and raise one order against it. The procedure ends when the order reaches <span class="rux--tag rux--tag--teal rux--tag--sm" title="Approved (status)"><span class="rux--tag__label">Approved</span></span>.</p>
-      <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast rux--inline-notification--hide-close-button" role="note">
+      <p><strong>Objective</strong>: register a supplier, give it terms, and raise one order against it. The procedure ends when the order reaches <span class="rux--tag rux--tag--teal rux--tag--sm rux--layout--size-sm" title="Approved (status)"><span class="rux--tag__label">Approved</span></span>.</p>
+      <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast rux--inline-notification--hide-close-button">
           <div class="rux--inline-notification__details">
             <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-information--filled"/></svg>
             <div class="rux--inline-notification__text-wrapper">
               <div class="rux--inline-notification__title">Prerequisite</div>
-              <div class="rux--inline-notification__subtitle">An account with the <span class="rux--tag rux--tag--blue rux--tag--sm" title="Registry Editor (chip)"><span class="rux--tag__label">Registry Editor</span></span> role, and at least one address already on file. Create one in <span class="rux--tag rux--tag--blue rux--tag--sm" title="Address Book (chip)"><span class="rux--tag__label">Address Book</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-1042 (LN session code)"><span class="rux--tag__label">REF-1042</span></span>) first.</div>
+              <div class="rux--inline-notification__subtitle">An account with the <span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="Registry Editor (chip)"><span class="rux--tag__label">Registry Editor</span></span> role, and at least one address already on file. Create one in <span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="Address Book (chip)"><span class="rux--tag__label">Address Book</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-1042 (LN session code)"><span class="rux--tag__label">REF-1042</span></span>) first.</div>
             </div>
           </div>
         </div>
@@ -183,27 +196,40 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
           <table class="rux--data-table rux--data-table--sm rux--data-table--static rux--data-table--top-aligned-body">
             <thead><tr><th scope="col"></th><th scope="col">Phase</th><th scope="col">Where</th><th scope="col">What it achieves</th></tr></thead>
             <tbody>
-            <tr><td class="rux--data-table--cell-secondary-text">☐</td><td><span class="rux--tag rux--tag--blue rux--tag--sm" title="0 (chip)"><span class="rux--tag__label">0</span></span> Create the supplier record</td><td>Supplier Registry</td><td>The supplier exists and can be found by name</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">☐</td><td><span class="rux--tag rux--tag--blue rux--tag--sm" title="1 (chip)"><span class="rux--tag__label">1</span></span> Give it terms</td><td>Supplier Terms</td><td>The supplier can be ordered from</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">☐</td><td><span class="rux--tag rux--tag--blue rux--tag--sm" title="2 (chip)"><span class="rux--tag__label">2</span></span> Raise the first order</td><td>Order Desk</td><td>An approved order exists against the supplier</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">☐</td><td><span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="0 (chip)"><span class="rux--tag__label">0</span></span> Create the supplier record</td><td>Supplier Registry</td><td>The supplier exists and can be found by name</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">☐</td><td><span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="1 (chip)"><span class="rux--tag__label">1</span></span> Give it terms</td><td>Supplier Terms</td><td>The supplier can be ordered from</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">☐</td><td><span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="2 (chip)"><span class="rux--tag__label">2</span></span> Raise the first order</td><td>Order Desk</td><td>An approved order exists against the supplier</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
 
+      <!-- THE PHASE NUMBER IS HEADING TEXT, NOT A TAG INSIDE THE HEADING.
+           Three of these opened with a tag in the <h2>. It was valid only
+           because the tag is a <span> here -- and Carbon renders `cds--tag` on
+           a <div> 54 times and a <button> 21, against a single <span> that is
+           the skeleton story. A <div> inside a heading is invalid, headings
+           taking phrasing content only, so those three would have broken the
+           day the element was corrected. rux-ds hit this on its own template
+           and was forced to hoist the tag out. tools/build.mjs already writes
+           "Phase 2 — Release to warehousing" as plain heading text; this now
+           matches it. Corrected 2026-09-10. -->
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="phase-0">
-        <h2 class="rux--type-productive-heading-03" id="phase-0">
-          <span class="rux--tag rux--tag--outline rux--tag--sm"><span class="rux--tag__label">Phase 0</span></span>
-          Create the supplier record
-        </h2>
-        <p class="rux--type-helper-text-01">Registry ➔ Suppliers ➔ Supplier Registry <span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-1100 (LN session code)"><span class="rux--tag__label">REF-1100</span></span></p>
-        <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast rux--inline-notification--hide-close-button" role="note">
+        <h2 class="rux--type-productive-heading-03" id="phase-0">Phase 0 — Create the supplier record</h2>
+        <!-- THE ROUTE IS PLAIN TEXT AND KEEPS ITS OWN ARROW, and this file
+             was right about that before there was a ruling. On 2026-09-10 the
+             generated pages briefly rendered routes as breadcrumbs and were
+             reverted the same day: a `command` is "a menu route you run", an
+             action, and a breadcrumb says "here is where you are". See the
+             note above PLAIN in tools/build.mjs for the three findings. -->
+        <p class="rux--type-helper-text-01">Registry ➔ Suppliers ➔ Supplier Registry <span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-1100 (LN session code)"><span class="rux--tag__label">REF-1100</span></span></p>
+        <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast rux--inline-notification--hide-close-button">
           <div class="rux--inline-notification__details">
             <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-information--filled"/></svg>
             <div class="rux--inline-notification__text-wrapper">
               <div class="rux--inline-notification__title">Note</div>
-              <div class="rux--inline-notification__subtitle">A <span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="supplier reference (field)"><span class="rux--tag__label">supplier reference</span></span> is generated on save and cannot be edited afterwards.</div>
+              <div class="rux--inline-notification__subtitle">A <span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="supplier reference (field)"><span class="rux--tag__label">supplier reference</span></span> is generated on save and cannot be edited afterwards.</div>
             </div>
           </div>
         </div>
@@ -211,9 +237,9 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
           <table class="rux--data-table rux--data-table--sm rux--data-table--static rux--data-table--top-aligned-body">
             <thead><tr><th scope="col">#</th><th scope="col">Do this</th><th scope="col">You should see</th></tr></thead>
             <tbody>
-            <tr><td class="rux--data-table--cell-secondary-text">0.1</td><td>Open <span class="rux--tag rux--tag--blue rux--tag--sm" title="Supplier Registry (chip)"><span class="rux--tag__label">Supplier Registry</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-1100 (LN session code)"><span class="rux--tag__label">REF-1100</span></span>)</td><td>An empty registry list</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">0.2</td><td>Choose <span class="rux--tag rux--tag--purple rux--tag--sm" title="New (button - toolbar)"><span class="rux--tag__label">New</span></span> and fill in <span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="Name (field)"><span class="rux--tag__label">Name</span></span> as <span class="rux--tag rux--tag--gray rux--tag--sm" title="Meridian Supplies Ltd (literal)"><span class="rux--tag__label">Meridian Supplies Ltd</span></span></td><td>The detail form opens</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">0.3</td><td>Save, then read the generated reference</td><td><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-edit"/></svg><span class="rux--visually-hidden">produces a run-record value</span>&nbsp;<span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="supplier reference (field)"><span class="rux--tag__label">supplier reference</span></span> — for example <span class="rux--tag rux--tag--warm-gray rux--tag--sm" title="SUP-00417 (value)"><span class="rux--tag__label">SUP-00417</span></span></td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">0.1</td><td>Open <span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="Supplier Registry (chip)"><span class="rux--tag__label">Supplier Registry</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-1100 (LN session code)"><span class="rux--tag__label">REF-1100</span></span>)</td><td>An empty registry list</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">0.2</td><td>Choose <span class="rux--tag rux--tag--purple rux--tag--sm rux--layout--size-sm" title="New (button - toolbar)"><span class="rux--tag__label">New</span></span> and fill in <span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="Name (field)"><span class="rux--tag__label">Name</span></span> as <span class="rux--tag rux--tag--gray rux--tag--sm rux--layout--size-sm" title="Meridian Supplies Ltd (literal)"><span class="rux--tag__label">Meridian Supplies Ltd</span></span></td><td>The detail form opens</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">0.3</td><td>Save, then read the generated reference</td><td><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-edit"/></svg><span class="rux--visually-hidden">produces a run-record value</span>&nbsp;<span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="supplier reference (field)"><span class="rux--tag__label">supplier reference</span></span> — for example <span class="rux--tag rux--tag--warm-gray rux--tag--sm rux--layout--size-sm" title="SUP-00417 (value)"><span class="rux--tag__label">SUP-00417</span></span></td></tr>
             <tr data-optional="true"><td class="rux--data-table--cell-secondary-text">0.4</td><td>Attach a second address via <strong class="rux--type-body-compact-01">Registry ➔ Suppliers ➔ Addresses ➔ Attach an Address</strong></td><td>Two addresses are listed</td></tr>
             </tbody>
           </table>
@@ -221,30 +247,24 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
       </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="phase-1">
-        <h2 class="rux--type-productive-heading-03" id="phase-1">
-          <span class="rux--tag rux--tag--outline rux--tag--sm"><span class="rux--tag__label">Phase 1</span></span>
-          Give it terms
-        </h2>
-        <p class="rux--type-helper-text-01">Registry ➔ Suppliers ➔ Supplier Terms <span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-1180 (LN session code)"><span class="rux--tag__label">REF-1180</span></span></p>
+        <h2 class="rux--type-productive-heading-03" id="phase-1">Phase 1 — Give it terms</h2>
+        <p class="rux--type-helper-text-01">Registry ➔ Suppliers ➔ Supplier Terms <span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-1180 (LN session code)"><span class="rux--tag__label">REF-1180</span></span></p>
         <div class="rux--data-table--max-width ">
           <table class="rux--data-table rux--data-table--sm rux--data-table--static rux--data-table--top-aligned-body">
             <thead><tr><th scope="col">#</th><th scope="col">Do this</th><th scope="col">You should see</th></tr></thead>
             <tbody>
-            <tr><td class="rux--data-table--cell-secondary-text">1.1</td><td>Open <span class="rux--tag rux--tag--blue rux--tag--sm" title="Supplier Terms (chip)"><span class="rux--tag__label">Supplier Terms</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-1180 (LN session code)"><span class="rux--tag__label">REF-1180</span></span>) and select the supplier</td><td>An empty terms row</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">1.2</td><td>Set <span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="Payment terms (field)"><span class="rux--tag__label">Payment terms</span></span> to <span class="rux--tag rux--tag--gray rux--tag--sm" title="NET30 (literal)"><span class="rux--tag__label">NET30</span></span> and <span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="Currency (field)"><span class="rux--tag__label">Currency</span></span> to <span class="rux--tag rux--tag--gray rux--tag--sm" title="EUR (literal)"><span class="rux--tag__label">EUR</span></span></td><td><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-edit"/></svg><span class="rux--visually-hidden">produces a run-record value</span>&nbsp;<span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="payment terms code (field)"><span class="rux--tag__label">payment terms code</span></span> is stored on the supplier</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">1.3</td><td>Save and reopen to confirm it held</td><td>The supplier now shows <span class="rux--tag rux--tag--teal rux--tag--sm" title="Orderable (status)"><span class="rux--tag__label">Orderable</span></span></td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">1.1</td><td>Open <span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="Supplier Terms (chip)"><span class="rux--tag__label">Supplier Terms</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-1180 (LN session code)"><span class="rux--tag__label">REF-1180</span></span>) and select the supplier</td><td>An empty terms row</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">1.2</td><td>Set <span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="Payment terms (field)"><span class="rux--tag__label">Payment terms</span></span> to <span class="rux--tag rux--tag--gray rux--tag--sm rux--layout--size-sm" title="NET30 (literal)"><span class="rux--tag__label">NET30</span></span> and <span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="Currency (field)"><span class="rux--tag__label">Currency</span></span> to <span class="rux--tag rux--tag--gray rux--tag--sm rux--layout--size-sm" title="EUR (literal)"><span class="rux--tag__label">EUR</span></span></td><td><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-edit"/></svg><span class="rux--visually-hidden">produces a run-record value</span>&nbsp;<span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="payment terms code (field)"><span class="rux--tag__label">payment terms code</span></span> is stored on the supplier</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">1.3</td><td>Save and reopen to confirm it held</td><td>The supplier now shows <span class="rux--tag rux--tag--teal rux--tag--sm rux--layout--size-sm" title="Orderable (status)"><span class="rux--tag__label">Orderable</span></span></td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="phase-2">
-        <h2 class="rux--type-productive-heading-03" id="phase-2">
-          <span class="rux--tag rux--tag--outline rux--tag--sm"><span class="rux--tag__label">Phase 2</span></span>
-          Raise the first order
-        </h2>
-        <p class="rux--type-helper-text-01">Purchasing ➔ Orders ➔ Order Desk <span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-3020 (LN session code)"><span class="rux--tag__label">REF-3020</span></span></p>
-        <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast rux--inline-notification--hide-close-button" role="note">
+        <h2 class="rux--type-productive-heading-03" id="phase-2">Phase 2 — Raise the first order</h2>
+        <p class="rux--type-helper-text-01">Purchasing ➔ Orders ➔ Order Desk <span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-3020 (LN session code)"><span class="rux--tag__label">REF-3020</span></span></p>
+        <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast rux--inline-notification--hide-close-button">
           <div class="rux--inline-notification__details">
             <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-warning--filled"/></svg>
             <div class="rux--inline-notification__text-wrapper">
@@ -257,9 +277,9 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
           <table class="rux--data-table rux--data-table--sm rux--data-table--static rux--data-table--top-aligned-body">
             <thead><tr><th scope="col">#</th><th scope="col">Do this</th><th scope="col">You should see</th></tr></thead>
             <tbody>
-            <tr><td class="rux--data-table--cell-secondary-text">2.1</td><td>Open <span class="rux--tag rux--tag--blue rux--tag--sm" title="Order Desk (chip)"><span class="rux--tag__label">Order Desk</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-3020 (LN session code)"><span class="rux--tag__label">REF-3020</span></span>)</td><td>The order list</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">2.2</td><td>Add a line for <span class="rux--tag rux--tag--gray rux--tag--sm" title="WIDGET-A (literal)"><span class="rux--tag__label">WIDGET-A</span></span>, quantity <span class="rux--tag rux--tag--warm-gray rux--tag--sm" title="5 (value)"><span class="rux--tag__label">5</span></span><span class="rux--tag rux--tag--warm-gray rux--tag--sm" title="ea (value)"><span class="rux--tag__label">ea</span></span></td><td>The line totals against the supplier's currency</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">2.3</td><td>Choose <span class="rux--tag rux--tag--purple rux--tag--sm" title="Approve (button)"><span class="rux--tag__label">Approve</span></span>, then follow <strong class="rux--type-body-compact-01">Purchasing ➔ Orders ➔ Approved</strong></td><td><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-edit"/></svg><span class="rux--visually-hidden">produces a run-record value</span>&nbsp;<span class="rux--tag rux--tag--cool-gray rux--tag--sm" title="first order number (field)"><span class="rux--tag__label">first order number</span></span> and the order reads <span class="rux--tag rux--tag--teal rux--tag--sm" title="Approved (status)"><span class="rux--tag__label">Approved</span></span></td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">2.1</td><td>Open <span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="Order Desk (chip)"><span class="rux--tag__label">Order Desk</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-3020 (LN session code)"><span class="rux--tag__label">REF-3020</span></span>)</td><td>The order list</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">2.2</td><td>Add a line for <span class="rux--tag rux--tag--gray rux--tag--sm rux--layout--size-sm" title="WIDGET-A (literal)"><span class="rux--tag__label">WIDGET-A</span></span>, quantity <span class="rux--tag rux--tag--warm-gray rux--tag--sm rux--layout--size-sm" title="5 (value)"><span class="rux--tag__label">5</span></span><span class="rux--tag rux--tag--warm-gray rux--tag--sm rux--layout--size-sm" title="ea (value)"><span class="rux--tag__label">ea</span></span></td><td>The line totals against the supplier's currency</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">2.3</td><td>Choose <span class="rux--tag rux--tag--purple rux--tag--sm rux--layout--size-sm" title="Approve (button)"><span class="rux--tag__label">Approve</span></span>, then follow <strong class="rux--type-body-compact-01">Purchasing ➔ Orders ➔ Approved</strong></td><td><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-edit"/></svg><span class="rux--visually-hidden">produces a run-record value</span>&nbsp;<span class="rux--tag rux--tag--cool-gray rux--tag--sm rux--layout--size-sm" title="first order number (field)"><span class="rux--tag__label">first order number</span></span> and the order reads <span class="rux--tag rux--tag--teal rux--tag--sm rux--layout--size-sm" title="Approved (status)"><span class="rux--tag__label">Approved</span></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -286,7 +306,7 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
             <thead><tr><th scope="col">Phase</th><th scope="col">Symptom</th><th scope="col">Cause</th></tr></thead>
             <tbody>
             <tr><td class="rux--data-table--cell-secondary-text">0</td><td>The supplier cannot be saved</td><td>No address is on file — the registry refuses a supplier without one</td></tr>
-            <tr><td class="rux--data-table--cell-secondary-text">2</td><td>The order stays in <span class="rux--tag rux--tag--teal rux--tag--sm" title="Draft (status)"><span class="rux--tag__label">Draft</span></span></td><td>Terms were never given, so nothing can approve it</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text">2</td><td>The order stays in <span class="rux--tag rux--tag--teal rux--tag--sm rux--layout--size-sm" title="Draft (status)"><span class="rux--tag__label">Draft</span></span></td><td>Terms were never given, so nothing can approve it</td></tr>
             </tbody>
           </table>
         </div>
@@ -297,7 +317,7 @@ tr[data-optional="true"] td:first-child::after { content: " (optional)"; opacity
           <table class="rux--data-table rux--data-table--sm rux--data-table--static rux--data-table--top-aligned-body">
             <thead><tr><th scope="col">Variant</th><th scope="col">What changes</th></tr></thead>
             <tbody>
-            <tr><td class="rux--data-table--cell-secondary-text"><span class="rux--tag rux--tag--blue rux--tag--sm" title="Register several at once (chip)"><span class="rux--tag__label">Register several at once</span></span></td><td>Use <span class="rux--tag rux--tag--blue rux--tag--sm" title="Bulk Import (chip)"><span class="rux--tag__label">Bulk Import</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm" title="REF-2280 (LN session code)"><span class="rux--tag__label">REF-2280</span></span>), which skips phase 0 entirely.</td></tr>
+            <tr><td class="rux--data-table--cell-secondary-text"><span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="Register several at once (chip)"><span class="rux--tag__label">Register several at once</span></span></td><td>Use <span class="rux--tag rux--tag--blue rux--tag--sm rux--layout--size-sm" title="Bulk Import (chip)"><span class="rux--tag__label">Bulk Import</span></span> (<span class="rux--tag rux--tag--cyan rux--tag--sm rux--layout--size-sm" title="REF-2280 (LN session code)"><span class="rux--tag__label">REF-2280</span></span>), which skips phase 0 entirely.</td></tr>
             </tbody>
           </table>
         </div>

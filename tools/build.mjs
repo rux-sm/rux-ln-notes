@@ -1326,6 +1326,21 @@ const statusTag = s => s === 'approved'
   ? `<span class="rux--tag rux--tag--green"><span class="rux--tag__label">Approved</span></span>`
   : `<span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>`;
 
+// OPEN ISSUES ARE A COUNT AND NEVER A LIST. Atlas emits `openIssues` as a bare
+// integer at the export tier -- the ids themselves were authored out upstream,
+// which is why the ask was for a count in the first place -- so there is
+// nothing here to link to and a reader is told how much is unresolved, not
+// what. Absent and zero both render nothing: a guide with no open issue says
+// nothing rather than claiming a clean bill, because `openIssues` counts what
+// atlas has recorded, not what exists.
+//
+// `magenta` rather than `red`: red is GAP, which marks a hole in the document
+// itself, and an open issue is a question against a guide that otherwise
+// stands. The title carries the long form, since the label is two words.
+const issuesTag = n => n > 0
+  ? `<span class="rux--tag rux--tag--magenta" title="${n} open issue${n === 1 ? '' : 's'} recorded against this document"><span class="rux--tag__label">${n} open</span></span>`
+  : '';
+
 function indexPage(site) {
   const { guides, exercises, summaries } = site;
   const cards = guides.map(g => `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
@@ -1346,6 +1361,7 @@ function indexPage(site) {
               <div class="ln-tag-row">
                 ${statusTag(g.status)}
                 <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${g.phases.length} phases</span></span>
+                ${issuesTag(g.openIssues ?? 0)}
               </div>
             </div>
             <div class="rux--card__footer">
@@ -1932,6 +1948,7 @@ function referencePage(r, site) {
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Reference</span></span>
             ${statusTag(r.status)}
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(r.updated)}</span></span>
+            ${issuesTag(r.openIssues ?? 0)}
           </div>
           ${(r.intro ?? []).map(rblock).join('\n          ')}
         </div>${r.diagram ? `
@@ -1952,6 +1969,7 @@ function guidePage(g, site) {
             ${statusTag(g.status)}
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${g.phases.length} phases</span></span>
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated ${esc(g.updated)}</span></span>
+            ${issuesTag(g.openIssues ?? 0)}
           </div>
           <p class="rux--type-body-02">${esc(g.module)}</p>
         </div>

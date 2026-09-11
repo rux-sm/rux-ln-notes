@@ -216,6 +216,50 @@ The breadcrumb is now built in `tools/build.mjs` — 138 routes across the
 site. Building it raised two things rux-ds could not have seen from its own
 template, both offered the way this memo was: read in place, nothing copied.
 
+## §1 ANSWERED AND DECLINED, 2026-09-10: the template is a reference, not a parent
+
+**`templates/document-page.html` is not adopted.** This project's page shell
+stays its own. Said plainly here, because a vague decline would leave rux-ds
+maintaining a template for a consumer that is not using it. Nothing is asked
+of rux-ds and nothing there needs undoing.
+
+**Three reasons, measured class by class across the two shells** — 70 shared,
+32 rux-ds's alone, 27 this project's alone:
+
+1. **Adopting would re-import two idioms retired here on evidence the same
+   week.** Six of rux-ds's 32 are the four `rux--breadcrumb*` classes and four
+   tag colour modifiers — the route-as-breadcrumb, built against the ruling and
+   reverted the same day on three findings, and the seven-colour inline tag
+   scheme replaced by four typographic registers.
+2. **The mechanism §6 of this memo designed no longer exists.** It proposed
+   recording the derivation the way `vendor/rux-ds/PIN` recorded the
+   stylesheet's commit. There is no vendored copy and no pin; rux-ds is read
+   live. A recorded commit would be a number nothing checks and nothing
+   updates, and this repository has been wrong about its own state four times
+   already.
+3. **The remaining difference is content-kind, not shell.** The 27 classes this
+   side has are a notepad, a step-table container and the registers — what a
+   procedure document has and a generic one does not. The header, side nav,
+   switcher, skip link, grid and content region are already shared.
+
+**What the template did, which is not nothing.** Its correction to its own
+first draft — that a reading measure must be capped rather than spanned,
+because a column span is proportional — was a real defect in these pages that
+nobody here had seen. It is fixed: prose holds 75 characters a line at any
+width. The habit mattered more than the markup: ruling by measuring the
+rendered thing is what produced the breadcrumb ruling, what let this side find
+the three things that ruling could not see, and what stopped `snippet--inline`
+being reached for when it would have been some 400 tab stops. And it was the
+forcing function for the token review that found 27% of a page's tokens were
+pills. The template did its job; its job turned out not to be parenthood.
+
+**Only one question is still live between the two repositories**: whether an
+inline-reference vocabulary belongs in rux-ds. See the message sent to the
+*Guide template review* session. A written guide rather than new classes
+sounds right from here and this side is not pressing for a different answer.
+
+---
+
 ## WITHDRAWN 2026-09-10, the same day both were raised
 
 **R1 and R2 below are withdrawn. Do not spend anything on them.** The

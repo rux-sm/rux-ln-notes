@@ -4,7 +4,7 @@
   "kind": "reference",
   "id": "order-to-shipment-overview",
   "title": "Order to shipment — the overview",
-  "updated": "2026-09-10",
+  "updated": "2026-09-11",
   "status": "draft",
   "sources": [
     "cppat1210m000",
@@ -624,10 +624,10 @@
                 },
                 {
                   "t": "path",
-                  "route": "Procurement ➔ Master Data ➔ Items - Purchase"
+                  "route": "Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
                 }
               ],
-              "text": "Route — no menu entry; Go to Details from Items - Purchase (tdipu0101m000), Procurement ➔ Master Data ➔ Items - Purchase"
+              "text": "Route — no menu entry; Go to Details from Items - Purchase (tdipu0101m000), Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
             },
             {
               "tokens": [
@@ -2374,10 +2374,10 @@
             },
             {
               "t": "path",
-              "route": "Procurement ➔ Master Data ➔ Items - Purchase"
+              "route": "Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
             }
           ],
-          "text": "no menu entry; Go to Details from Items - Purchase (tdipu0101m000), Procurement ➔ Master Data ➔ Items - Purchase"
+          "text": "no menu entry; Go to Details from Items - Purchase (tdipu0101m000), Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
         },
         "does": {
           "tokens": [

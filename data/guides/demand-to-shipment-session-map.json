@@ -4,7 +4,7 @@
   "kind": "reference",
   "id": "demand-to-shipment-session-map",
   "title": "Demand to shipment — session map",
-  "updated": "2026-09-10",
+  "updated": "2026-09-11",
   "status": "draft",
   "sources": [
     "cppat1210m000",
@@ -14,6 +14,8 @@
     "cprrp1200m000",
     "cprrp1210m000",
     "cprrp1220m000",
+    "tcibd0501m100",
+    "tdipu0601m000",
     "tdpur4100m900",
     "tdsls4501m140",
     "tdsls4601m200",
@@ -339,7 +341,7 @@
                   "tokens": [
                     {
                       "t": "chip",
-                      "v": "Settled."
+                      "v": "Settled, and half of it reversed on 2026-09-11."
                     },
                     {
                       "t": "text",
@@ -351,10 +353,42 @@
                     },
                     {
                       "t": "text",
-                      "v": " rather than numbered steps — the same class as Inventory 360, so the numbered count stays the count of things you change. Master data stays off; level 1 owns it"
+                      "v": " rather than numbered steps — the same class as Inventory 360, so the numbered count stays the count of things you change. The rest of this row read "
+                    },
+                    {
+                      "t": "text",
+                      "v": "Master data stays off; level 1 owns it"
+                    },
+                    {
+                      "t": "text",
+                      "v": ", and it excluded a class where the thing that earns a tile is narrower than the class: "
+                    },
+                    {
+                      "t": "chip",
+                      "v": "the test is not whether something is setup, it is whether section 7.1 already diagnoses its absence."
+                    },
+                    {
+                      "t": "text",
+                      "v": " Two members qualify and now have tiles in lane 1, unnumbered; the other eight groups of "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "the source on file"
+                    },
+                    {
+                      "t": "text",
+                      "v": " stay off. "
+                    },
+                    {
+                      "t": "literal",
+                      "v": "exchange/send-atlas-3-reply.md"
+                    },
+                    {
+                      "t": "text",
+                      "v": " carries the reasoning"
                     }
                   ],
-                  "text": "Settled. Both configuration sessions get tiles of their own, as reads rather than numbered steps — the same class as Inventory 360, so the numbered count stays the count of things you change. Master data stays off; level 1 owns it"
+                  "text": "Settled, and half of it reversed on 2026-09-11. Both configuration sessions get tiles of their own, as reads rather than numbered steps — the same class as Inventory 360, so the numbered count stays the count of things you change. The rest of this row read Master data stays off; level 1 owns it, and it excluded a class where the thing that earns a tile is narrower than the class: the test is not whether something is setup, it is whether section 7.1 already diagnoses its absence. Two members qualify and now have tiles in lane 1, unnumbered; the other eight groups of the source on file stay off. exchange/send-atlas-3-reply.md carries the reasoning"
                 }
               ]
             },
@@ -762,10 +796,26 @@
           "tokens": [
             {
               "t": "text",
-              "v": "Ordered top to bottom. The lane names the module, so a route in section 5 never repeats it."
+              "v": "Ordered top to bottom. "
+            },
+            {
+              "t": "strong",
+              "v": "Lanes 2 to 6 name the module"
+            },
+            {
+              "t": "text",
+              "v": ", so a route in section 5 never repeats it. "
+            },
+            {
+              "t": "strong",
+              "v": "Lane 1 is the exception and is declared as one:"
+            },
+            {
+              "t": "text",
+              "v": " a prerequisite is not owned by the module that suffers its absence — the planning cluster row is Common, the buy-from partner is Procurement — so the two are collected by what they are rather than by where they live, and their routes carry their own module."
             }
           ],
-          "text": "Ordered top to bottom. The lane names the module, so a route in section 5 never repeats it."
+          "text": "Ordered top to bottom. Lanes 2 to 6 name the module, so a route in section 5 never repeats it. Lane 1 is the exception and is declared as one: a prerequisite is not owned by the module that suffers its absence — the planning cluster row is Common, the buy-from partner is Procurement — so the two are collected by what they are rather than by where they live, and their routes carry their own module."
         },
         {
           "kind": "table",
@@ -785,6 +835,37 @@
                     }
                   ],
                   "text": "1"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Master Data"
+                    }
+                  ],
+                  "text": "Master Data"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "What has to be true before tile 1, and is not part of the chain. Two tiles, neither numbered"
+                    }
+                  ],
+                  "text": "What has to be true before tile 1, and is not part of the chain. Two tiles, neither numbered"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "2"
+                    }
+                  ],
+                  "text": "2"
                 },
                 {
                   "tokens": [
@@ -812,10 +893,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "2"
+                      "v": "3"
                     }
                   ],
-                  "text": "2"
+                  "text": "3"
                 },
                 {
                   "tokens": [
@@ -843,10 +924,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "3"
+                      "v": "4"
                     }
                   ],
-                  "text": "3"
+                  "text": "4"
                 },
                 {
                   "tokens": [
@@ -874,10 +955,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "4"
+                      "v": "5"
                     }
                   ],
-                  "text": "4"
+                  "text": "5"
                 },
                 {
                   "tokens": [
@@ -905,10 +986,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "5"
+                      "v": "6"
                     }
                   ],
-                  "text": "5"
+                  "text": "6"
                 },
                 {
                   "tokens": [
@@ -943,10 +1024,18 @@
           "tokens": [
             {
               "t": "text",
-              "v": "Ordered left to right. Stage 4 is flagged as the boundary; the renderer draws that, this file states it."
+              "v": "Ordered left to right. Stage 4 is flagged as the boundary; the renderer draws that, this file states it. "
+            },
+            {
+              "t": "strong",
+              "v": "Stage 0 holds no numbered tile"
+            },
+            {
+              "t": "text",
+              "v": " — nothing in it is walked, and it is there because a prerequisite is true before the chain rather than early in it."
             }
           ],
-          "text": "Ordered left to right. Stage 4 is flagged as the boundary; the renderer draws that, this file states it."
+          "text": "Ordered left to right. Stage 4 is flagged as the boundary; the renderer draws that, this file states it. Stage 0 holds no numbered tile — nothing in it is walked, and it is there because a prerequisite is true before the chain rather than early in it."
         },
         {
           "kind": "table",
@@ -956,6 +1045,37 @@
             "What changes in it"
           ],
           "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "0"
+                    }
+                  ],
+                  "text": "0"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Prepare"
+                    }
+                  ],
+                  "text": "Prepare"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "Nothing in the chain. What has to be true before any of it runs"
+                    }
+                  ],
+                  "text": "Nothing in the chain. What has to be true before any of it runs"
+                }
+              ]
+            },
             {
               "cells": [
                 {
@@ -1468,66 +1588,18 @@
             },
             {
               "t": "text",
-              "v": " is one of "
+              "v": " decides how a tile is drawn and nothing else, and "
             },
             {
-              "t": "literal",
-              "v": "step"
-            },
-            {
-              "t": "text",
-              "v": ", "
-            },
-            {
-              "t": "literal",
-              "v": "gate"
+              "t": "strong",
+              "v": "the kinds are enumerated in `_standards/guide-json.md` §7 rather than here"
             },
             {
               "t": "text",
-              "v": ", "
-            },
-            {
-              "t": "literal",
-              "v": "planned"
-            },
-            {
-              "t": "text",
-              "v": ", "
-            },
-            {
-              "t": "literal",
-              "v": "transfer"
-            },
-            {
-              "t": "text",
-              "v": ", "
-            },
-            {
-              "t": "literal",
-              "v": "real"
-            },
-            {
-              "t": "text",
-              "v": ", "
-            },
-            {
-              "t": "literal",
-              "v": "terminal"
-            },
-            {
-              "t": "text",
-              "v": " or "
-            },
-            {
-              "t": "literal",
-              "v": "read"
-            },
-            {
-              "t": "text",
-              "v": ", and it decides how a tile is drawn and nothing else."
+              "v": " — a contract restated in a document that uses it is the duplication rule 5 exists to stop, and this copy had drifted two behind before anyone noticed."
             }
           ],
-          "text": "Each tile header carries its coordinates. · stage N · kind after the code is what places the tile when the map is drawn — the lane comes from the section it sits in. kind is one of step, gate, planned, transfer, real, terminal or read, and it decides how a tile is drawn and nothing else."
+          "text": "Each tile header carries its coordinates. · stage N · kind after the code is what places the tile when the map is drawn — the lane comes from the section it sits in. kind decides how a tile is drawn and nothing else, and the kinds are enumerated in `_standards/guide-json.md` §7 rather than here — a contract restated in a document that uses it is the duplication rule 5 exists to stop, and this copy had drifted two behind before anyone noticed."
         },
         {
           "kind": "prose",
@@ -1546,10 +1618,360 @@
             },
             {
               "t": "text",
-              "v": "; they are drawn in parallel and numbered in the order the guide walks them."
+              "v": "; they are drawn in parallel and numbered in the order the guide walks them. "
+            },
+            {
+              "t": "strong",
+              "v": "A tile with no number is not on the path"
+            },
+            {
+              "t": "text",
+              "v": " — the two prerequisites in 5.0 and the three reads in 5.7 take none, so the numbered count stays the count of things you do."
             }
           ],
-          "text": "# is reading order across the whole map. 8–11 are the buy branch and 12–15 the make branch; they are drawn in parallel and numbered in the order the guide walks them."
+          "text": "# is reading order across the whole map. 8–11 are the buy branch and 12–15 the make branch; they are drawn in parallel and numbered in the order the guide walks them. A tile with no number is not on the path — the two prerequisites in 5.0 and the three reads in 5.7 take none, so the numbered count stays the count of things you do."
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "n": "5.0",
+          "title": "Master Data",
+          "text": "Master Data"
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Two tiles, and neither is a step."
+            },
+            {
+              "t": "text",
+              "v": " Each is a prerequisite — something that has to be true before tile 1 — and each is the fix for one of the four silent failures in section 7.1. Until 2026-09-11 this map named those failures in prose and the figure had nowhere to point; D3 says what changed and why the other eight groups of the setup guide did not come with them."
+            }
+          ],
+          "text": "Two tiles, and neither is a step. Each is a prerequisite — something that has to be true before tile 1 — and each is the fix for one of the four silent failures in section 7.1. Until 2026-09-11 this map named those failures in prose and the figure had nowhere to point; D3 says what changed and why the other eight groups of the setup guide did not come with them."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Both feed forward into the tile their absence breaks"
+            },
+            {
+              "t": "text",
+              "v": ", and neither is walked, so neither takes a number. Numbered 5.0 rather than inserted as 5.1 because "
+            },
+            {
+              "t": "literal",
+              "v": "5.x"
+            },
+            {
+              "t": "text",
+              "v": " in this document's "
+            },
+            {
+              "t": "strong",
+              "v": "Guide"
+            },
+            {
+              "t": "text",
+              "v": " fields is a guide step, not a section."
+            }
+          ],
+          "text": "Both feed forward into the tile their absence breaks, and neither is walked, so neither takes a number. Numbered 5.0 rather than inserted as 5.1 because 5.x in this document's Guide fields is a guide step, not a section."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "session",
+              "code": "tcibd0501m100",
+              "name": "cluster · Item"
+            },
+            {
+              "t": "text",
+              "v": " · stage 0 · step"
+            }
+          ],
+          "text": "cluster · Item (tcibd0501m100) · stage 0 · step"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "items": [
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Route"
+                },
+                {
+                  "t": "text",
+                  "v": " — no menu entry; tick a row in "
+                },
+                {
+                  "t": "session",
+                  "code": "tcibd0501m000",
+                  "name": "Items"
+                },
+                {
+                  "t": "text",
+                  "v": ", "
+                },
+                {
+                  "t": "path",
+                  "route": "Master Data ➔ Items ➔ Items"
+                },
+                {
+                  "t": "text",
+                  "v": ", and drill in"
+                }
+              ],
+              "text": "Route — no menu entry; tick a row in Items (tcibd0501m000), Master Data ➔ Items ➔ Items, and drill in"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Does"
+                },
+                {
+                  "t": "text",
+                  "v": " — make the item visible to order planning at all"
+                }
+              ],
+              "text": "Does — make the item visible to order planning at all"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Do"
+                },
+                {
+                  "t": "text",
+                  "v": " - on the "
+                },
+                {
+                  "t": "strong",
+                  "v": "Clusters"
+                },
+                {
+                  "t": "text",
+                  "v": " tab, add a row for the environment's planning cluster"
+                }
+              ],
+              "text": "Do - on the Clusters tab, add a row for the environment's planning cluster"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Leaves"
+                },
+                {
+                  "t": "text",
+                  "v": " — a planning record in "
+                },
+                {
+                  "t": "session",
+                  "code": "cprpd1100m000",
+                  "name": "Items - Planning"
+                },
+                {
+                  "t": "text",
+                  "v": ", "
+                },
+                {
+                  "t": "em",
+                  "v": "generated"
+                },
+                {
+                  "t": "text",
+                  "v": " and not finished: "
+                },
+                {
+                  "t": "em",
+                  "v": "Order Horizon"
+                },
+                {
+                  "t": "text",
+                  "v": " and "
+                },
+                {
+                  "t": "em",
+                  "v": "Plan Level"
+                },
+                {
+                  "t": "text",
+                  "v": " are still yours to set, and the horizon arrives at the current date. "
+                },
+                {
+                  "t": "strong",
+                  "v": "So the row is not the test."
+                },
+                {
+                  "t": "text",
+                  "v": " An item with a valid cluster row and an unset horizon is absent from the plan in exactly the way an item with no row is — which is why this feeds tile 2, where the horizon is set, rather than tile 3, where the absence is finally visible"
+                }
+              ],
+              "text": "Leaves — a planning record in Items - Planning (cprpd1100m000), generated and not finished: Order Horizon and Plan Level are still yours to set, and the horizon arrives at the current date. So the row is not the test. An item with a valid cluster row and an unset horizon is absent from the plan in exactly the way an item with no row is — which is why this feeds tile 2, where the horizon is set, rather than tile 3, where the absence is finally visible"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Guide"
+                },
+                {
+                  "t": "text",
+                  "v": " — 0.5 · the steps are "
+                },
+                {
+                  "t": "literal",
+                  "v": "SG-run-order-planning-for-one-item.md"
+                },
+                {
+                  "t": "text",
+                  "v": " 0.3–0.5"
+                }
+              ],
+              "text": "Guide — 0.5 · the steps are SG-run-order-planning-for-one-item.md 0.3–0.5"
+            }
+          ]
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "session",
+              "code": "tdipu0601m000",
+              "name": "buyfrom · Item - Purchase"
+            },
+            {
+              "t": "text",
+              "v": " · stage 0 · step"
+            }
+          ],
+          "text": "buyfrom · Item - Purchase (tdipu0601m000) · stage 0 · step"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "items": [
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Route"
+                },
+                {
+                  "t": "text",
+                  "v": " — no menu entry; "
+                },
+                {
+                  "t": "strong",
+                  "v": "Go to Details"
+                },
+                {
+                  "t": "text",
+                  "v": " on a record in "
+                },
+                {
+                  "t": "session",
+                  "code": "tdipu0101m000",
+                  "name": "Items - Purchase"
+                },
+                {
+                  "t": "text",
+                  "v": ", "
+                },
+                {
+                  "t": "path",
+                  "route": "Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
+                }
+              ],
+              "text": "Route — no menu entry; Go to Details on a record in Items - Purchase (tdipu0101m000), Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Does"
+                },
+                {
+                  "t": "text",
+                  "v": " — give a purchased item the buy-from partner the transfer needs"
+                }
+              ],
+              "text": "Does — give a purchased item the buy-from partner the transfer needs"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Do"
+                },
+                {
+                  "t": "text",
+                  "v": " - confirm the "
+                },
+                {
+                  "t": "strong",
+                  "v": "Item - Business Partner"
+                },
+                {
+                  "t": "text",
+                  "v": " tab carries a row"
+                }
+              ],
+              "text": "Do - confirm the Item - Business Partner tab carries a row"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Leaves"
+                },
+                {
+                  "t": "text",
+                  "v": " — a purchase half the transfer can complete. "
+                },
+                {
+                  "t": "strong",
+                  "v": "This is the one of the four that speaks:"
+                },
+                {
+                  "t": "text",
+                  "v": " without a row, tile 7 refuses that half and prints "
+                },
+                {
+                  "t": "em",
+                  "v": "\"Buy-from BP cannot be determined for item …\""
+                },
+                {
+                  "t": "text",
+                  "v": ". The failure is non-destructive — the proposal stays a planned order, so add the row and run the transfer again"
+                }
+              ],
+              "text": "Leaves — a purchase half the transfer can complete. This is the one of the four that speaks: without a row, tile 7 refuses that half and prints \"Buy-from BP cannot be determined for item …\". The failure is non-destructive — the proposal stays a planned order, so add the row and run the transfer again"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Guide"
+                },
+                {
+                  "t": "text",
+                  "v": " — 3.1–3.2"
+                }
+              ],
+              "text": "Guide — 3.1–3.2"
+            }
+          ]
         },
         {
           "kind": "heading",
@@ -4963,6 +5385,20 @@
           "text": "flow is the sequence. branch is the transfer splitting by supply source. feed is a dependency that is not a sequence — the thing must be true, but you do not walk it."
         },
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "A tile with no `flow` edge at either end is not on the path."
+            },
+            {
+              "t": "text",
+              "v": " That is the two prerequisites in 5.0 and the three reads in 5.7, and nothing else — every numbered tile from 1 to 21 carries at least one. Nothing has to declare it; the table below already says it."
+            }
+          ],
+          "text": "A tile with no `flow` edge at either end is not on the path. That is the two prerequisites in 5.0 and the three reads in 5.7, and nothing else — every numbered tile from 1 to 21 carries at least one. Nothing has to declare it; the table below already says it."
+        },
+        {
           "kind": "table",
           "columns": [
             "From",
@@ -4971,6 +5407,86 @@
             "Label"
           ],
           "rows": [
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "cluster"
+                    }
+                  ],
+                  "text": "cluster"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "2"
+                    }
+                  ],
+                  "text": "2"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "feed"
+                    }
+                  ],
+                  "text": "feed"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "the planning record it generates arrives with its horizon at the current date"
+                    }
+                  ],
+                  "text": "the planning record it generates arrives with its horizon at the current date"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "buyfrom"
+                    }
+                  ],
+                  "text": "buyfrom"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "7"
+                    }
+                  ],
+                  "text": "7"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "feed"
+                    }
+                  ],
+                  "text": "feed"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "without it the purchase half refuses"
+                    }
+                  ],
+                  "text": "without it the purchase half refuses"
+                }
+              ]
+            },
             {
               "cells": [
                 {
@@ -5875,10 +6391,26 @@
             },
             {
               "t": "text",
-              "v": " from the Item Order Plan — not refused, not flagged, with nothing to explain why. Node 3 searches for it before node 4 runs, because MRP has nothing to say about an item it cannot see."
+              "v": " from the Item Order Plan — not refused, not flagged, with nothing to explain why. Node 3 searches for it before node 4 runs, because MRP has nothing to say about an item it cannot see. "
+            },
+            {
+              "t": "strong",
+              "v": "The fix is the `cluster` tile in lane 1"
+            },
+            {
+              "t": "text",
+              "v": ", and doing it lands you in the next failure rather than past it — read that tile's "
+            },
+            {
+              "t": "strong",
+              "v": "Leaves"
+            },
+            {
+              "t": "text",
+              "v": " before believing the run is fixed."
             }
           ],
-          "text": "The item has no planning data. It is absent from the Item Order Plan — not refused, not flagged, with nothing to explain why. Node 3 searches for it before node 4 runs, because MRP has nothing to say about an item it cannot see."
+          "text": "The item has no planning data. It is absent from the Item Order Plan — not refused, not flagged, with nothing to explain why. Node 3 searches for it before node 4 runs, because MRP has nothing to say about an item it cannot see. The fix is the `cluster` tile in lane 1, and doing it lands you in the next failure rather than past it — read that tile's Leaves before believing the run is fixed."
         },
         {
           "kind": "prose",
@@ -5957,10 +6489,14 @@
             },
             {
               "t": "text",
-              "v": ". A failed transfer is non-destructive — the proposal stays a planned order, so fix the data and run it again."
+              "v": ". A failed transfer is non-destructive — the proposal stays a planned order, so fix the data and run it again. "
+            },
+            {
+              "t": "strong",
+              "v": "The row goes on the `buyfrom` tile in lane 1."
             }
           ],
-          "text": "A purchased item has no buy-from business partner. Here the transfer does speak, and this is the one of the four that names itself: \"Buy-from BP cannot be determined for item…\". A failed transfer is non-destructive — the proposal stays a planned order, so fix the data and run it again."
+          "text": "A purchased item has no buy-from business partner. Here the transfer does speak, and this is the one of the four that names itself: \"Buy-from BP cannot be determined for item…\". A failed transfer is non-destructive — the proposal stays a planned order, so fix the data and run it again. The row goes on the `buyfrom` tile in lane 1."
         },
         {
           "kind": "heading",
@@ -6062,10 +6598,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "Master data — items, BOM, routing, planning cluster, buy-from partner"
+                      "v": "Master data — item groups, item defaults, the items, BOM, routing, standard cost, component stock"
                     }
                   ],
-                  "text": "Master data — items, BOM, routing, planning cluster, buy-from partner"
+                  "text": "Master data — item groups, item defaults, the items, BOM, routing, standard cost, component stock"
                 },
                 {
                   "tokens": [
@@ -6157,6 +6693,20 @@
               ]
             }
           ]
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Two things left this table on 2026-09-11"
+            },
+            {
+              "t": "text",
+              "v": " — the planning cluster row and the buy-from partner. Both were covered by the master-data row above and are now tiles in lane 1, because section 7.1 already diagnoses their absence and the figure had nowhere to point. D3 carries the reasoning and the test that separates them from the rest of the row, which stays off unchanged."
+            }
+          ],
+          "text": "Two things left this table on 2026-09-11 — the planning cluster row and the buy-from partner. Both were covered by the master-data row above and are now tiles in lane 1, because section 7.1 already diagnoses their absence and the figure had nowhere to point. D3 carries the reasoning and the test that separates them from the rest of the row, which stays off unchanged."
         }
       ]
     },
@@ -6304,26 +6854,34 @@
     "lanes": [
       {
         "n": 1,
-        "name": "Sales"
+        "name": "Master Data"
       },
       {
         "n": 2,
-        "name": "Enterprise Planning"
+        "name": "Sales"
       },
       {
         "n": 3,
-        "name": "Procurement"
+        "name": "Enterprise Planning"
       },
       {
         "n": 4,
-        "name": "Manufacturing"
+        "name": "Procurement"
       },
       {
         "n": 5,
+        "name": "Manufacturing"
+      },
+      {
+        "n": 6,
         "name": "Warehousing"
       }
     ],
     "stages": [
+      {
+        "n": 0,
+        "name": "Prepare"
+      },
       {
         "n": 1,
         "name": "Demand"
@@ -6359,6 +6917,269 @@
       }
     ],
     "nodes": [
+      {
+        "id": "cluster",
+        "session": "Item",
+        "lane": "Master Data",
+        "stage": 0,
+        "kind": "step",
+        "code": "tcibd0501m100",
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; tick a row in "
+            },
+            {
+              "t": "session",
+              "code": "tcibd0501m000",
+              "name": "Items"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "path",
+              "route": "Master Data ➔ Items ➔ Items"
+            },
+            {
+              "t": "text",
+              "v": ", and drill in"
+            }
+          ],
+          "text": "no menu entry; tick a row in Items (tcibd0501m000), Master Data ➔ Items ➔ Items, and drill in"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "make the item visible to order planning at all"
+            }
+          ],
+          "text": "make the item visible to order planning at all"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "on the "
+              },
+              {
+                "t": "strong",
+                "v": "Clusters"
+              },
+              {
+                "t": "text",
+                "v": " tab, add a row for the environment's planning cluster"
+              }
+            ],
+            "text": "on the Clusters tab, add a row for the environment's planning cluster"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a planning record in "
+            },
+            {
+              "t": "session",
+              "code": "cprpd1100m000",
+              "name": "Items - Planning"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "em",
+              "v": "generated"
+            },
+            {
+              "t": "text",
+              "v": " and not finished: "
+            },
+            {
+              "t": "em",
+              "v": "Order Horizon"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "t": "em",
+              "v": "Plan Level"
+            },
+            {
+              "t": "text",
+              "v": " are still yours to set, and the horizon arrives at the current date. "
+            },
+            {
+              "t": "strong",
+              "v": "So the row is not the test."
+            },
+            {
+              "t": "text",
+              "v": " An item with a valid cluster row and an unset horizon is absent from the plan in exactly the way an item with no row is — which is why this feeds tile 2, where the horizon is set, rather than tile 3, where the absence is finally visible"
+            }
+          ],
+          "text": "a planning record in Items - Planning (cprpd1100m000), generated and not finished: Order Horizon and Plan Level are still yours to set, and the horizon arrives at the current date. So the row is not the test. An item with a valid cluster row and an unset horizon is absent from the plan in exactly the way an item with no row is — which is why this feeds tile 2, where the horizon is set, rather than tile 3, where the absence is finally visible"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "0.5 · the steps are "
+            },
+            {
+              "t": "literal",
+              "v": "SG-run-order-planning-for-one-item.md"
+            },
+            {
+              "t": "text",
+              "v": " 0.3–0.5"
+            }
+          ],
+          "text": "0.5 · the steps are SG-run-order-planning-for-one-item.md 0.3–0.5"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "on the "
+            },
+            {
+              "t": "strong",
+              "v": "Clusters"
+            },
+            {
+              "t": "text",
+              "v": " tab, add a row for the environment's planning cluster"
+            }
+          ],
+          "text": "on the Clusters tab, add a row for the environment's planning cluster"
+        }
+      },
+      {
+        "id": "buyfrom",
+        "session": "Item - Purchase",
+        "lane": "Master Data",
+        "stage": 0,
+        "kind": "step",
+        "code": "tdipu0601m000",
+        "route": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "no menu entry; "
+            },
+            {
+              "t": "strong",
+              "v": "Go to Details"
+            },
+            {
+              "t": "text",
+              "v": " on a record in "
+            },
+            {
+              "t": "session",
+              "code": "tdipu0101m000",
+              "name": "Items - Purchase"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "t": "path",
+              "route": "Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
+            }
+          ],
+          "text": "no menu entry; Go to Details on a record in Items - Purchase (tdipu0101m000), Procurement ➔ Master Data ➔ Items ➔ Items - Purchase"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "give a purchased item the buy-from partner the transfer needs"
+            }
+          ],
+          "text": "give a purchased item the buy-from partner the transfer needs"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "confirm the "
+              },
+              {
+                "t": "strong",
+                "v": "Item - Business Partner"
+              },
+              {
+                "t": "text",
+                "v": " tab carries a row"
+              }
+            ],
+            "text": "confirm the Item - Business Partner tab carries a row"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "a purchase half the transfer can complete. "
+            },
+            {
+              "t": "strong",
+              "v": "This is the one of the four that speaks:"
+            },
+            {
+              "t": "text",
+              "v": " without a row, tile 7 refuses that half and prints "
+            },
+            {
+              "t": "em",
+              "v": "\"Buy-from BP cannot be determined for item …\""
+            },
+            {
+              "t": "text",
+              "v": ". The failure is non-destructive — the proposal stays a planned order, so add the row and run the transfer again"
+            }
+          ],
+          "text": "a purchase half the transfer can complete. This is the one of the four that speaks: without a row, tile 7 refuses that half and prints \"Buy-from BP cannot be determined for item …\". The failure is non-destructive — the proposal stays a planned order, so add the row and run the transfer again"
+        },
+        "guide": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "3.1–3.2"
+            }
+          ],
+          "text": "3.1–3.2"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "confirm the "
+            },
+            {
+              "t": "strong",
+              "v": "Item - Business Partner"
+            },
+            {
+              "t": "text",
+              "v": " tab carries a row"
+            }
+          ],
+          "text": "confirm the Item - Business Partner tab carries a row"
+        }
+      },
       {
         "id": "1",
         "session": "Sales Order Intake Workbench",
@@ -9478,6 +10299,34 @@
       }
     ],
     "edges": [
+      {
+        "from": "cluster",
+        "to": "2",
+        "kind": "feed",
+        "label": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "the planning record it generates arrives with its horizon at the current date"
+            }
+          ],
+          "text": "the planning record it generates arrives with its horizon at the current date"
+        }
+      },
+      {
+        "from": "buyfrom",
+        "to": "7",
+        "kind": "feed",
+        "label": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "without it the purchase half refuses"
+            }
+          ],
+          "text": "without it the purchase half refuses"
+        }
+      },
       {
         "from": "1",
         "to": "2",

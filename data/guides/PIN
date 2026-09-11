@@ -1,9 +1,9 @@
-commit   9ab6a53f2b2c67175c48c4df92d0b2c8ff329c73
-date     2026-09-11T04:52:41Z
-subject  docs(exchange): Take the site's ask about setup
+commit   ab9d6cab29cd5b8c6f00607f9f4ca1fd77ef30b8
+date     2026-09-11T15:36:46Z
+subject  docs(exchange): Record how the map renders
 contract 8 
 tier     export
-sha256   6597d1af2762e5159c7f7ce50da78fd3745638aabcae4ac30bc3c48c9150b23a
+sha256   8691df1461c1ffec0340016188fe418f89207fc15ae00ab1c922395b57febac3
 
 Emitted by tools/sync-guides.sh via atlas tools/emit.py --all --reviews --exercises --references.
 These files are INPUTS, not source. Do not hand-edit them -- the next sync

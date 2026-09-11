@@ -211,6 +211,24 @@ if (DRY) {
   const b = inherit('node', ['tools/build.mjs'], ROOT);
   if (b.unreachable || !b.ok) stop('build', `build.mjs ${b.unreachable ? 'could not be started' : `exited ${b.status}`}`);
 
+  // STAGE BEFORE CHECKING, AND THAT ORDER IS LOAD-BEARING. check.mjs rebuilds
+  // and then asks `git diff` -- WORKTREE against INDEX -- whether the rebuild
+  // changed anything, which is the right question for a person and for the
+  // commit hook: it catches pages committed stale. In THIS flow the answer is
+  // yes by construction, because the two steps above have just synced and
+  // rebuilt on purpose, so the gate fired on its own tool doing its job and
+  // `publish --publish` could never move the pin at all. Found 2026-09-10, the
+  // first time the pin was moved since the rebuild gate landed on 2026-09-09.
+  //
+  // STAGING FIRST DOES NOT WEAKEN IT -- it asks the same question of the bytes
+  // that are actually about to be committed: rebuild once more and prove
+  // nothing moves. That is exactly what the commit hook will verify a moment
+  // later, on the same index.
+  heading('prepare: stage');
+  const staged = git(ROOT, 'add', '--', ...WRITES);
+  if (!staged.ok) stop('stage', `git add failed: ${staged.err}`);
+  say(`staged ${WRITES.join(', ')} -- check.mjs compares a fresh rebuild against these`);
+
   heading('prepare: check');
   const c = inherit('node', ['tools/check.mjs'], ROOT);
   if (c.unreachable || !c.ok) stop('check', `check.mjs ${c.unreachable ? 'could not be started' : `exited ${c.status}`}`);
@@ -260,18 +278,25 @@ if (nothingPublic) {
   // publication stays exact. Restore the PIN rather than commit a date bump.
   heading('nothing to publish');
   say(`no document or page differs from what is published; atlas moved ${short(previousPin)} -> ${short(atlasHead)} with no public effect`);
-  const r = git(ROOT, 'checkout', '--', 'data/guides/PIN');
-  say(r.ok ? 'PIN restored; the working tree is as it was' : `PIN could NOT be restored (${r.err}); run git checkout -- data/guides/PIN`);
+  // `checkout HEAD --`, not `checkout --`: the PIN is staged by the step above,
+  // and restoring from the index would restore the moved pin onto itself.
+  const r = git(ROOT, 'checkout', 'HEAD', '--', 'data/guides/PIN');
+  say(r.ok ? 'PIN restored in the index and the tree; both are as they were'
+    : `PIN could NOT be restored (${r.err}); run git checkout HEAD -- data/guides/PIN`);
   process.exit(r.ok ? 0 : 1);
 }
 
 if (MODE === 'prepare') {
   heading('prepared, not committed');
-  say('review the tree with git diff; then node tools/publish.mjs --publish, or git checkout -- . to discard');
+  say('the changes are STAGED, so review them with git diff --cached, not git diff');
+  say('then node tools/publish.mjs --publish, or git checkout HEAD -- . to discard both');
   process.exit(0);
 }
 
 heading('publish: commit');
+// Staged already, before the check -- see the note there. Repeated because a
+// re-run in --publish after a --prepare starts from whatever the tree holds,
+// and staging twice costs nothing while missing it would commit an empty diff.
 const add = git(ROOT, 'add', '--', ...WRITES);
 if (!add.ok) stop('stage', `git add failed: ${add.err}`);
 const subject = `chore(data): Publish atlas @ ${short(atlasHead)}`;

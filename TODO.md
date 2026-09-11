@@ -9,29 +9,41 @@ Nothing else here is checked by anything.
 
 ---
 
-## Now — nothing
+## Now — sync the two prerequisite tiles and look at them
 
-**Empty as of 2026-09-10, and that is a claim worth distrusting, so here is
-what it rests on.** This section was rewritten three times today and twice
-listed work already done. The three items it carried this morning are now
-answered, built or decided, each with its measurement recorded beside it below.
-Nothing in this repository is blocked on this repository.
+**This section was empty as of 2026-09-10 23:48, and one of the three
+conditions it named for refilling itself has since fired.** Atlas answered the
+prerequisite ask on 2026-09-11 and drew the answer; a dry run the same day
+reports 2 changed documents and nothing blocking. So the item below is a task
+sitting here undone, not another line restating work already finished.
 
-**What would put something back here:** rux-ds answering the vocabulary
-question, atlas answering `SEND-ATLAS-2.md`, or a sync bringing documents that
-need something the renderer does not do yet. All three are other people's
-moves; none is a task sitting here undone.
+1. **Sync, rebuild, and look at the two prerequisite tiles.**
+   `node tools/publish.mjs --dry-run` is already clean at atlas `ab9d6ca`;
+   `--prepare` is the next command. The renderer needs no change — Prerequisite
+   ships since `63094e5` — so this is a sync and a person's eye, and the eye is
+   the part that matters: the last time these tiles changed, every collision
+   count read 0 while Prerequisite was drawn two ways, and only looking caught
+   it. Check the edge label atlas corrected, too — rows 1 and 2 of the §1 table
+   are one prerequisite and its aftermath, not two independent failures.
+
+**What else would put something here:** rux-ds answering the vocabulary
+question, or atlas answering `SEND-ATLAS-2.md`. Both are other people's moves.
 
 **Waiting on someone else, not on this repository:**
 
-- **Whether the session map draws what has to be set up first.** Sent
-  2026-09-10 and held in atlas as `exchange/send-atlas-3.md`, unanswered. The
-  map draws 24 tiles and not one is a prerequisite, while its own §7 names four
-  silent failures of which three are setup that was never done — so it names
-  the failure and has nowhere to point. **The rendering side is done and asks
-  for no contract change**: a Prerequisite is derived from the edge list, drawn
-  beside the path, unnumbered, and shipped. What is outstanding is atlas's
-  judgement about which prerequisites and at what grain.
+- ~~**Whether the session map draws what has to be set up first.**~~
+  **ANSWERED 2026-09-11, and the answer is drawn upstream** —
+  `exchange/send-atlas-3-reply.md`, atlas `23d1483`. It overturns its own §8
+  exclusion by exactly two nodes: **two prerequisites in a Master Data lane**,
+  the count of numbered steps unchanged. It also **corrects this side's §1
+  table**, which drew the first two failures as independent with independent
+  prerequisites — adding the cluster row is what creates the wrong horizon, so
+  they are one prerequisite and its immediate aftermath. That changes an edge
+  label, not the conclusion. **The rendering side asks for no contract change**:
+  a Prerequisite is derived from the edge list, drawn beside the path,
+  unnumbered, and shipped since `63094e5`. **Nothing here has been synced or
+  looked at yet** — that is the pin bullet above, and it is not evidence the
+  tiles render until a person has seen them.
 
 - **Whether an inline-reference vocabulary belongs in rux-ds.** Sent to the
   *Guide template review* session on 2026-09-10 with the measurements. **It has
@@ -44,9 +56,14 @@ moves; none is a task sitting here undone.
   line ends with a hanging slash. Not ours to fix and no longer our problem —
   we render routes as text — but it is why R2 was worth raising even though it
   was withdrawn.
-- **Atlas sits 1 commit past the pin** (`0bf14ec` → `9e14ca6`). *Verified by
-  dry run:* 0 documents added, changed or removed. `publish.mjs` would move
-  the pin and publish nothing visible.
+- **Atlas sits 5 commits past the pin** (`9ab6a53` → `ab9d6ca`), and this
+  time it is not neutral. *Verified by dry run 2026-09-11:* 0 documents added,
+  0 removed, **2 changed** — `demand-to-shipment-session-map.json` and
+  `order-to-shipment-overview.json` — and nothing blocks a publish. The
+  previous reading of this line said 1 commit and 0 documents; both figures
+  moved when atlas answered the ask above. **A sync is outstanding work sitting
+  here**, which is one of the three conditions this section named for putting
+  something back in it.
 
 **Done on 2026-09-10, recorded so none of it is listed a fourth time:**
 
@@ -77,8 +94,10 @@ moves; none is a task sitting here undone.
 - **The switcher** — built and live before any of this; listed as outstanding
   twice today, both times wrongly.
 
-**`SEND-DS.md` and `SEND-ATLAS.md` are both fully answered and can retire**
-once item 3 is decided and item 1 is sent. `template-candidate.html` stays: it
+**`SEND-DS.md` and `SEND-ATLAS.md` are both fully answered and can retire.**
+This used to read "once item 3 is decided and item 1 is sent"; both happened on
+2026-09-10 — the template was declined in `5f5fa96` and recorded in `ad82173`,
+and the setup ask went in `91cfd6c`. `template-candidate.html` stays: it
 is the only page here with invented content, which makes it the one artifact
 that could cross to rux-ds, and `build.mjs` re-inlines the sprite into it by
 name.
@@ -93,11 +112,24 @@ and was wrong within a day of doing so.
 
 ## Decided, not built
 
-- **A notes surface on guide pages.** The ✎ marks (`tokens.pencil` in `MEASURED`) say "worth writing down" and there is
-  nowhere to write on a guide. **The exercise pages have it since 2026-09-06**
-  — `js/exercise.js`: answer spaces, ticks, a notepad, a revealable answer key
-  and a Markdown export, all in local storage with no server — and a guide
-  page's notepad is the same file bound to the pencil steps, not yet written.
+- ~~**A notes surface on guide pages.**~~ **BUILT 2026-09-10, `e3f7e86` — and
+  this bullet still said "not yet written" through the 23:48 rewrite two hours
+  after it shipped.** `js/guide.js`, 156 lines beside `js/exercise.js`, binds a
+  field to every row atlas marks `produces`: **99 across the seven guides**,
+  counted in the built pages, from 29 on `SG-create-basic-test-items-and-defaults`
+  to 7 on `SG-ship-from-stock`. Local storage, no server, Markdown export, same
+  as the exercise pages have had since 2026-09-06. The ✎ marks
+  (`tokens.pencil` = 125) are what it was for.
+- **The two collision figures belong in `measure.mjs`, and are not there.**
+  `DESIGN-diagram-kinds.md` §5.2 says so plainly — *"they belong there whether
+  or not this plan is taken"* — because `colliding by register` is a defect
+  count that nothing watches. Verified 2026-09-11: no `collid` anywhere in
+  `tools/measure.mjs`, and `MEASURED` carries 26 diagram rows without it. The
+  specimen measures both, but `build/` is git-ignored, so the figure exists
+  only while someone is looking at it. It read 9 when §5.2 was written, and the
+  headline the specimen gained — ONE CATEGORY, ONE LOOK — is the one that was
+  missing when Prerequisite shipped drawn two ways with every collision count
+  reading 0.
 - ~~**The answer key on the public site.**~~ **CLOSED — and it was already
   closed when this bullet still said otherwise; corrected 2026-09-10 by
   measuring rather than re-reading the line.** The mechanism is as described:
@@ -125,7 +157,11 @@ and was wrong within a day of doing so.
   tooltip is a route's second copy, not its first. **The ruling is that a route
   is a breadcrumb** — measured on running Carbon at 1280 with the same
   four-segment route in each: the tag lost 86px to ellipsis, the breadcrumb
-  wrapped and lost nothing. Building it is "Now" item 1, not an open question.
+  wrapped and lost nothing. **That ruling was built and reverted the same
+  evening** — `f649219` then `57857ad`, on three findings recorded above
+  `ROUTED` in `build.mjs`; it was right about clipping and wrong about the
+  rest. A route renders as plain text today. This line used to end "Building it
+  is 'Now' item 1", and there is no such item.
 
 ## Known losses, recorded so they are not rediscovered
 
@@ -167,8 +203,11 @@ the current PIN rather than restated.**
    Atlas asks this at `send-back-2-reply.md` line 96 and blocks its
    screen-reference emitter on the answer. Still unanswered; it is a decision,
    not a measurement.
-2. **An `openIssues` count in the contract. SATISFIED — atlas built it.** 9
-   documents carry a count. The work left is on this side and is "Now" item 3.
+2. **An `openIssues` count in the contract. SATISFIED — atlas built it, and
+   this side renders it.** 9 documents carry a count; `e51ed95` draws 16 badges
+   across those 9 documents and 7 index cards. This line used to end "the work
+   left is on this side and is 'Now' item 3"; there is no work left and no such
+   item.
 3. **The re-measure atlas asked for.** It was right that the figure had drifted:
    this repository reported 58 distinct in-step codes against `288bf72`, atlas
    got 46 or 106, and **at the current PIN the count is 91 distinct `session`

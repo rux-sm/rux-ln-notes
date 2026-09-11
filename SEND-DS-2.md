@@ -1,3 +1,7 @@
+---
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ds, sent: 2026-09-11, state: open}
+---
+
 # Send-back to rux-ds: `border-strong-01` does not keep 3:1 in the four brand themes
 
 **Sent 2026-09-11**, the way everything in this family is sent: read in place,

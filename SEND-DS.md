@@ -1,3 +1,7 @@
+---
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ds, sent: 2026-09-06, state: answered, answered_by: templates/document-page.html}
+---
+
 # Send-back to rux-ds: one more template
 
 **Sent 2026-09-06**, the way everything in this family is sent: read in place,

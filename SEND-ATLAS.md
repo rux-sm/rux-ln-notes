@@ -1,3 +1,7 @@
+---
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-10, state: answered, answered_by: do-as-steps-reply}
+---
+
 # Send-back to atlas: `do` as steps, and the strip the contract has no field for
 
 **Written 2026-09-10**, the way everything in this family is sent: read in

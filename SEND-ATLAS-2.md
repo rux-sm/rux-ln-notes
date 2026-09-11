@@ -1,3 +1,7 @@
+---
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-11, state: open}
+---
+
 # Send-back to atlas: the four answers owed since 2026-09-03
 
 **Read in place from the checkout beside this one. Nothing was copied across

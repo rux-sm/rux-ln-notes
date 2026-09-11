@@ -29,7 +29,14 @@ question, or atlas answering `SEND-ATLAS-2.md`. Both are other people's moves.
 `SEND-ATLAS-2.md` §1 is the one that blocks work upstream — atlas's
 screen-reference emitter waits on it.
 
-**Waiting on someone else, not on this repository:**
+**Waiting on someone else, not on this repository** — the list below is prose
+and can rot; the answer that cannot is:
+
+    node ../rux-ds/tools/exchange.mjs
+
+which reads every memo's own `exchange:` frontmatter across all six checkouts.
+Added 2026-09-11, for the reason this file names at the top.
+
 
 - **Whether `--rux-border-strong-01` is meant to keep 3:1 in every theme
   rux-ds ships, or only in the four it compiles.** Sent 2026-09-11 as

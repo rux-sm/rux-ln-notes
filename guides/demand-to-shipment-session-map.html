@@ -380,11 +380,18 @@
 .ln-dg-detail-name { font-weight: 600; }
 .ln-dg-detail-code { display: block; font-size: .75rem; color: var(--rux-text-secondary, #525252); }
 
-/* THE KIND, NAMED RATHER THAN ONLY COLOURED. It reads the same `--dg-accent`
-   the tile's edge does, so the badge beside the name and the bar in the map are
-   visibly one thing. `read` is the kind with no accent of its own -- it is the
-   dashed, unnumbered tile -- and it inherits the default grey, which is correct
-   rather than missing. */
+/* THE CATEGORY, NAMED RATHER THAN ONLY DRAWN. The canvas teaches the five with
+   form; the panel is where the word for it lives, and where a reader who has
+   not learned the form yet finds out what they are looking at. It reads the
+   same `--dg-accent` the tile's edge does, so the badge and the bar are
+   visibly one thing -- which is now only ever grey or, on a Checkpoint, the one
+   yellow.
+
+   THE KIND FOLLOWS IT, QUIETER. `planned`, `real`, `outcome` and `terminal` are
+   all Results and the difference between them is real -- a proposal is not an
+   order -- but it is a distinction for the one place with room to state it,
+   not a sixth thing to encode on a tile. Nine kinds in the panel, five
+   categories on the canvas, four of them drawn. */
 .ln-dg-kind { display: inline-block; vertical-align: middle;
   margin-inline-start: var(--rux-spacing-02, .25rem);
   padding: 0 var(--rux-spacing-02, .25rem);
@@ -392,6 +399,10 @@
   font: 600 .6875rem/1.5 var(--rux-code-01-font-family, ui-monospace, monospace);
   text-transform: uppercase; letter-spacing: .06em;
   color: var(--rux-text-secondary, #525252); background: var(--rux-layer-01, #f4f4f4); }
+.ln-dg-kind-fine { display: inline-block; vertical-align: middle;
+  margin-inline-start: var(--rux-spacing-02, .25rem);
+  font: .6875rem/1.5 var(--rux-code-01-font-family, ui-monospace, monospace);
+  color: var(--rux-text-secondary, #525252); }
 
 /* THREE ZONES, BECAUSE THE FIVE FIELDS ARE NOT FIVE EQUAL THINGS. Section 5
    gives each a different job and a different budget: Route is where to go, Does
@@ -480,13 +491,90 @@
 .ln-dg-edge { display: inline-block; }
 .ln-dg-ends { white-space: nowrap; }
 
-/* Kind decides the node's accent and nothing else decides it. */
-.ln-dg-node--gate     { --dg-accent: var(--rux-support-warning, #f1c21b); }
-.ln-dg-node--planned  { --dg-accent: var(--rux-support-info, #4589ff); }
-.ln-dg-node--transfer { --dg-accent: var(--rux-support-error, #da1e28); }
-.ln-dg-node--real     { --dg-accent: var(--rux-support-success, #24a148); }
-.ln-dg-node--terminal { --dg-accent: var(--rux-text-primary, #161616); }
-.ln-dg-node--read     { border-inline-start-style: dashed; background: transparent; }
+/* THE FIVE CATEGORIES, DECIDED 2026-09-10. Until then `kind` chose a HUE, five
+   of them, on a page with no legend -- and `decision` and `outcome` chose
+   nothing at all, so nine of the overview's seventeen tiles carried three
+   meanings in one appearance. atlas's own guide-json.md §5 rules the axis the
+   other way: colour says what to do with a thing, form says what kind of thing
+   it is. DESIGN-diagram-kinds.md is the reasoning; this is the result.
+
+   A reader at a screen with the map open asks five questions, so there are
+   five categories, and THREE INDEPENDENT SIGNALS carry them rather than five
+   colours:
+
+     container   on the route, or beside it   solid tile / dashed card, inset
+     name style  act on it, or take it in     upright / italic
+     stripe      what you can reach           grey / none / the one yellow
+
+   Each signal means ONE thing everywhere it appears -- italic is a state you
+   take in whether it sits on a Result, a Checkpoint or a Reading -- which is
+   what makes five categories learnable from four looks with no legend.
+
+   FOUR SHIP, NOT FIVE, and that is a stated limit. Prerequisite and Reading are
+   both `read` or `outcome` beside the route and NOTHING atlas sends separates
+   Inventory 360 from Production Order Parameters: same kind, same shape,
+   opposite purpose. Inferring it from a name or a `does` string is the
+   prose-parse the contract's first promise forbids, by a side door.
+   SEND-ATLAS-3.md §2 asks for the signal; `ln-dg-cat--info` is styled and
+   ready and nothing emits it yet. Reading is drawn as a Prerequisite until
+   then -- one node of distinction across both documents. */
+
+/* 1 STEP -- on the route, you do it. The default: a solid tile, grey stripe,
+   upright name. A run of these read left to right IS the route, so every other
+   category is defined by how it departs from this one. */
+
+/* 2 PREREQUISITE and 3 READING -- beside the route. A dashed card with no fill,
+   because it is not on the line. FULL WEIGHT, not
+   faint: the planning cluster row is the difference between an item planning
+   can see and one it silently cannot, and a treatment that whispered it would
+   be drawing the wrong conclusion. No stripe -- there is no sequence position
+   to mark. The doubled class is deliberate: the not-a-session rule below uses
+   `:has()`, which takes its argument's specificity, and a single class loses
+   to it -- measured, when the two setup items that are not sessions kept the
+   wrong treatment.
+
+   THE INDENT WAS DROPPED, AND THAT IS A MEASUREMENT RATHER THAN A CHANGE OF
+   MIND. The specimen set these cards in .75rem from the column edge, which
+   reads well and is what the design was described as. Built, it took the
+   overview's columns from 207px to 217px -- every column, because they are all
+   `1fr` and one wide tile widens all of them -- and a figure that fitted its
+   container at 1272 spilled to 1324 and grew a scrollbar. §5 item 3 of the plan
+   says neither may grow, and it was written before there was anything to break
+   it. The dashed border with no fill already says "off the line"; the indent
+   was saying it a second time, for 52px of horizontal scroll. */
+.ln-dg-node.ln-dg-cat--config,
+.ln-dg-node.ln-dg-cat--info {
+  border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
+  background: transparent; padding-inline-start: 0; }
+.ln-dg-node.ln-dg-cat--config > summary .ln-dg-node-name { font-style: normal; }
+.ln-dg-node.ln-dg-cat--info > summary .ln-dg-node-name { font-style: italic; }
+
+/* 4 RESULT -- on the route, and what now exists because of the step before.
+   Three departures from a Step, all saying one thing: there is nothing here to
+   open and nothing to do. The MISSING STRIPE is the loudest, because the stripe
+   is what says "a box you open". This is the category the diagram never had,
+   and it is 10 of the 41 nodes: a planned purchase order was drawn as a box
+   exactly like a step, so it read as something to go and perform. */
+.ln-dg-cat--result { border-inline-start: 0; padding-inline-start: 3px;
+  background: var(--rux-layer-accent-01, #e0e0e0); }
+.ln-dg-cat--result > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+
+/* 5 CHECKPOINT -- the only colour left in the figure. Italic because you do not
+   perform a checkpoint; it passes or it quietly does not, and three of the four
+   produce no message at all. It keeps the yellow WHEREVER IT STANDS, on the
+   route or beside it: a silent failure is the one thing no layout can show, and
+   §2 of the session map is written around it. */
+.ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b);
+  border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
+.ln-dg-cat--check > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+
+/* NOT A SESSION, WITHIN ANY CATEGORY. A tile with no code has nothing behind it
+   to open, so it loses the stripe. Result already has none and Checkpoint
+   overrides it back, which is the intended order: the category decides first
+   and this refines inside it. */
+.ln-dg-node:not(:has(.ln-dg-node-code)) { border-inline-start: 0; padding-inline-start: 3px; }
+.ln-dg-cat--check:not(:has(.ln-dg-node-code)) {
+  border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
 
 /* THE HEADER IS `position: fixed` AND 48px TALL, so every in-page anchor
    lands its target underneath it. Measured: jumping to a phase put the
@@ -820,11 +908,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-dg-lane" style="grid-row:5">Manufacturing</div>
           <div class="ln-dg-lane" style="grid-row:6">Warehousing</div>
             <div class="ln-dg-cell" style="grid-column:2;grid-row:2">
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">1</span><span class="ln-dg-node-name">Sales Order Intake Workbench</span><code class="ln-dg-node-code">tdsls4601m200</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">1</span><span class="ln-dg-detail-name">Sales Order Intake Workbench</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tdsls4601m200</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">tdsls4601m200</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></p>
                   </div>
@@ -847,11 +935,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:8;grid-row:2">
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">16</span><span class="ln-dg-node-name">Release Sales Order Lines to Warehousing</span><code class="ln-dg-node-code">tdsls4501m140</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">16</span><span class="ln-dg-detail-name">Release Sales Order Lines to Warehousing</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tdsls4501m140</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">tdsls4501m140</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry. It is the <strong>Release to Warehousing</strong> tab of the sales order</p>
                   </div>
@@ -873,11 +961,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:3;grid-row:3">
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">2</span><span class="ln-dg-node-name">Items - Planning</span><code class="ln-dg-node-code">cprpd1100m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">2</span><span class="ln-dg-detail-name">Items - Planning</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">cprpd1100m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">cprpd1100m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Master Data</span><span class="sep">➔</span><span>Items</span><span class="sep">➔</span><span class="dest">Items - Planning</span></span></p>
                   </div>
@@ -897,11 +985,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--gate" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--gate ln-dg-cat--check" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">3</span><span class="ln-dg-node-name">Item Order Plan</span><code class="ln-dg-node-code">cprrp0520m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">3</span><span class="ln-dg-detail-name">Item Order Plan</span>
-                    <span class="ln-dg-kind">gate</span><code class="ln-dg-detail-code">cprrp0520m000</code></p>
+                    <span class="ln-dg-kind">Checkpoint</span><span class="ln-dg-kind-fine">gate</span><code class="ln-dg-detail-code">cprrp0520m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Item Order Plan</span></span></p>
                   </div>
@@ -922,11 +1010,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:4;grid-row:3">
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">4</span><span class="ln-dg-node-name">Generate Order Planning (Item)</span><code class="ln-dg-node-code">cprrp1220m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">4</span><span class="ln-dg-detail-name">Generate Order Planning (Item)</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">cprrp1220m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">cprrp1220m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; reached by drilling in. The range variant <span class="ln-t-named">Generate Order Planning</span> <span class="ln-t-exact">cprrp1210m000</span> sits at <span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Generate Order Planning</span></span>. <strong>Not documented for this release.</strong></p>
                   </div>
@@ -945,11 +1033,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--planned" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--planned ln-dg-cat--result" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">5</span><span class="ln-dg-node-name">Planned Orders</span><code class="ln-dg-node-code">cprrp1100m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">5</span><span class="ln-dg-detail-name">Planned Orders</span>
-                    <span class="ln-dg-kind">planned</span><code class="ln-dg-detail-code">cprrp1100m000</code></p>
+                    <span class="ln-dg-kind">Result</span><span class="ln-dg-kind-fine">planned</span><code class="ln-dg-detail-code">cprrp1100m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Planned Orders</span></span></p>
                   </div>
@@ -971,11 +1059,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:5;grid-row:3">
-              <details class="ln-dg-node ln-dg-node--transfer" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--transfer ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">6</span><span class="ln-dg-node-name">Confirm Order Planning</span><code class="ln-dg-node-code">cprrp1200m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">6</span><span class="ln-dg-detail-name">Confirm Order Planning</span>
-                    <span class="ln-dg-kind">transfer</span><code class="ln-dg-detail-code">cprrp1200m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">transfer</span><code class="ln-dg-detail-code">cprrp1200m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Confirm Order Planning</span></span></p>
                   </div>
@@ -994,11 +1082,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--transfer" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--transfer ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">7</span><span class="ln-dg-node-name">Transfer Order Planning</span><code class="ln-dg-node-code">cppat1210m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span>8 · 12</span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">7</span><span class="ln-dg-detail-name">Transfer Order Planning</span>
-                    <span class="ln-dg-kind">transfer</span><code class="ln-dg-detail-code">cppat1210m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">transfer</span><code class="ln-dg-detail-code">cppat1210m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Plan Transfer</span><span class="sep">➔</span><span class="dest">Transfer Order Planning</span></span></p>
                   </div>
@@ -1020,11 +1108,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:6;grid-row:4">
-              <details class="ln-dg-node ln-dg-node--real" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--real ln-dg-cat--result" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">8</span><span class="ln-dg-node-name">Purchase Order</span><code class="ln-dg-node-code">tdpur4100m900</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">8</span><span class="ln-dg-detail-name">Purchase Order</span>
-                    <span class="ln-dg-kind">real</span><code class="ln-dg-detail-code">tdpur4100m900</code></p>
+                    <span class="ln-dg-kind">Result</span><span class="ln-dg-kind-fine">real</span><code class="ln-dg-detail-code">tdpur4100m900</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; drill in from the purchase order list, or from <span class="ln-t-named">Purchase Order Intake Workbench</span> <span class="ln-t-exact">tdpur4601m200</span>, <span class="ln-t-route"><span>Procurement</span><span class="sep">➔</span><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></p>
                   </div>
@@ -1045,11 +1133,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:6;grid-row:5">
-              <details class="ln-dg-node ln-dg-node--real" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--real ln-dg-cat--result" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">12</span><span class="ln-dg-node-name">Production Orders</span><code class="ln-dg-node-code">tisfc0501m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">12</span><span class="ln-dg-detail-name">Production Orders</span>
-                    <span class="ln-dg-kind">real</span><code class="ln-dg-detail-code">tisfc0501m000</code></p>
+                    <span class="ln-dg-kind">Result</span><span class="ln-dg-kind-fine">real</span><code class="ln-dg-detail-code">tisfc0501m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Orders</span></span></p>
                   </div>
@@ -1070,11 +1158,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:7;grid-row:5">
-              <details class="ln-dg-node ln-dg-node--read" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--read ln-dg-cat--config" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Production Order Parameters</span><code class="ln-dg-node-code">tisfc0100s000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Production Order Parameters</span>
-                    <span class="ln-dg-kind">read</span><code class="ln-dg-detail-code">tisfc0100s000</code></p>
+                    <span class="ln-dg-kind">Prerequisite</span><span class="ln-dg-kind-fine">read</span><code class="ln-dg-detail-code">tisfc0100s000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; reached from the Job Shop Control parameters list</p>
                   </div>
@@ -1094,11 +1182,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">13</span><span class="ln-dg-node-name">Release Production Orders</span><code class="ln-dg-node-code">tisfc0204m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">13</span><span class="ln-dg-detail-name">Release Production Orders</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tisfc0204m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">tisfc0204m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Control</span></span></p>
                   </div>
@@ -1117,11 +1205,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">14</span><span class="ln-dg-node-name">Material to Issue for Production Orders</span><code class="ln-dg-node-code">ticst0101m100</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span>11</span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">14</span><span class="ln-dg-detail-name">Material to Issue for Production Orders</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">ticst0101m100</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">ticst0101m100</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Materials</span></span></p>
                   </div>
@@ -1140,11 +1228,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">15</span><span class="ln-dg-node-name">Report Operations Completed</span><code class="ln-dg-node-code">tisfc0130m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">15</span><span class="ln-dg-detail-name">Report Operations Completed</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tisfc0130m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">tisfc0130m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span>Production Control</span><span class="sep">➔</span><span class="dest">Report Operations</span></span></p>
                   </div>
@@ -1171,11 +1259,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:2;grid-row:6">
-              <details class="ln-dg-node ln-dg-node--read" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--read ln-dg-cat--config" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Inventory 360</span><code class="ln-dg-node-code">whwmd4300m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Inventory 360</span>
-                    <span class="ln-dg-kind">read</span><code class="ln-dg-detail-code">whwmd4300m000</code></p>
+                    <span class="ln-dg-kind">Prerequisite</span><span class="ln-dg-kind-fine">read</span><code class="ln-dg-detail-code">whwmd4300m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-exact">Inventory 360</span></p>
                   </div>
@@ -1197,11 +1285,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:7;grid-row:6">
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">9</span><span class="ln-dg-node-name">Warehousing Orders</span><code class="ln-dg-node-code">whinh2100m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">9</span><span class="ln-dg-detail-name">Warehousing Orders</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh2100m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh2100m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Orders</span><span class="sep">➔</span><span class="dest">Orders</span></span></p>
                   </div>
@@ -1221,11 +1309,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">10</span><span class="ln-dg-node-name">Warehousing Order</span><code class="ln-dg-node-code">whinh2100m100</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">10</span><span class="ln-dg-detail-name">Warehousing Order</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh2100m100</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh2100m100</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; drill in from tile 9, or from tile 17</p>
                   </div>
@@ -1244,11 +1332,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">11</span><span class="ln-dg-node-name">Warehouse Receipt</span><code class="ln-dg-node-code">whinh3512m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">11</span><span class="ln-dg-detail-name">Warehouse Receipt</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh3512m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh3512m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; opens from <strong>Actions ➔ Receive</strong></p>
                   </div>
@@ -1273,11 +1361,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--read" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--read ln-dg-cat--config" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Warehousing Order Types</span><code class="ln-dg-node-code">whinh0110m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Warehousing Order Types</span>
-                    <span class="ln-dg-kind">read</span><code class="ln-dg-detail-code">whinh0110m000</code></p>
+                    <span class="ln-dg-kind">Prerequisite</span><span class="ln-dg-kind-fine">read</span><code class="ln-dg-detail-code">whinh0110m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Master Data</span><span class="sep">➔</span><span>Order Procedures</span><span class="sep">➔</span><span class="dest">Order Types</span></span></p>
                   </div>
@@ -1298,11 +1386,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
             <div class="ln-dg-cell" style="grid-column:8;grid-row:6">
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">17</span><span class="ln-dg-node-name">Warehouse Manager Dashboard</span><code class="ln-dg-node-code">whinh2300m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">17</span><span class="ln-dg-detail-name">Warehouse Manager Dashboard</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh2300m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh2300m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-exact">Manager Dashboard</span></p>
                   </div>
@@ -1321,11 +1409,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">18</span><span class="ln-dg-node-name">Warehousing Order</span><code class="ln-dg-node-code">whinh2100m100</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">18</span><span class="ln-dg-detail-name">Warehousing Order</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh2100m100</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh2100m100</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; drill in from tile 17</p>
                   </div>
@@ -1344,11 +1432,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">19</span><span class="ln-dg-node-name">Picking List</span><code class="ln-dg-node-code">whinh4525m100</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">19</span><span class="ln-dg-detail-name">Picking List</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh4525m100</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh4525m100</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Outbound/Inspections</span><span class="sep">➔</span><span class="dest">Picking List</span></span></p>
                   </div>
@@ -1367,11 +1455,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">20</span><span class="ln-dg-node-name">Shipments</span><code class="ln-dg-node-code">whinh4130m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">20</span><span class="ln-dg-detail-name">Shipments</span>
-                    <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh4130m000</code></p>
+                    <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh4130m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Shipments</span><span class="sep">➔</span><span class="dest">Shipments</span></span></p>
                   </div>
@@ -1390,11 +1478,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--terminal" name="ln-dg-node">
+              <details class="ln-dg-node ln-dg-node--terminal ln-dg-cat--result" name="ln-dg-node">
                 <summary><span class="ln-dg-node-n">21</span><span class="ln-dg-node-name">Shipment</span><code class="ln-dg-node-code">whinh4630m000</code></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">21</span><span class="ln-dg-detail-name">Shipment</span>
-                    <span class="ln-dg-kind">terminal</span><code class="ln-dg-detail-code">whinh4630m000</code></p>
+                    <span class="ln-dg-kind">Result</span><span class="ln-dg-kind-fine">terminal</span><code class="ln-dg-detail-code">whinh4630m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; drill in from tile 20</p>
                   </div>

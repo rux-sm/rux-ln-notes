@@ -60,6 +60,18 @@ category collisions on both documents** — 4 looks to learn on the overview and
 5 on the map, identical in all four themes. Today's design collides on 9 of the
 overview's 17 and, less obviously, on 3 of the session map's 24.
 
+**Shipped in `build.mjs` 2026-09-10, and one thing changed on the way in.** The
+specimen set the dashed cards in `.75rem` from the column edge. Built, that
+took the overview's columns from 207px to 217px — every column, because they
+are all `1fr` — and a figure that fitted its container at 1272 spilled to 1324
+and grew a scrollbar. §5 item 3 forbids exactly that, and the indent was the
+first thing ever to test it. **Dropped**: the dashed border with no fill
+already says *off the line*, and the indent was saying it a second time for
+52px of horizontal scroll. Measured after: columns back to 207px, figure
+1272 of 1272, grid height 1086 unchanged, all 17 tile heights identical, the
+session map unmoved at 2344 and 956 with all 24 heights identical, and 0
+category collisions in all four themes on both documents.
+
 ### The one part that is not derivable, and is an ask
 
 Four of the five fall out of what atlas already sends: `gate` or `decision` is

@@ -37,7 +37,8 @@ tokens.type.strong = 144
 tokens.type.text = 2424
 tokens.type.value = 125
 session-codes.in-sources = 108
-session-codes.in-steps = 58
+session-codes.in-step-tables = 46
+session-codes.in-guide-anywhere = 58
 
 # reviews (atlas _standards/review-shape.md quotes these)
 reviews.count = 8
@@ -50,5 +51,5 @@ reviews.oi-ids.frontmatter = 55
 reviews.oi-ids.residual = 14
 
 # publishable (0 in every row is the condition for going public)
-publishable.pages = 35
+publishable.pages = 36
 publishable.pages-flagged = 0

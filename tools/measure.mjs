@@ -129,17 +129,40 @@ for (const t of [...byType.keys()].sort()) say(`tokens.type.${t}`, byType.get(t)
 // a reader meets inside a step. Measuring one and printing it beside a claim
 // about the other is how a state file starts lying with true numbers.
 const inSources = new Set(guides.flatMap((g) => g.sources ?? []));
-const inSteps = new Set();
-const stepWalk = (x) => {
-  if (Array.isArray(x)) return x.forEach(stepWalk);
-  if (x && typeof x === 'object') {
-    if (x.t === 'session' && typeof x.code === 'string') inSteps.add(x.code);
-    Object.values(x).forEach(stepWalk);
-  }
+
+// `session-codes.in-steps` USED TO BE A LIE TOLD WITH A TRUE NUMBER, and it
+// cost two repositories a round trip. It was named for step tables and walked
+// the WHOLE document, so it counted a code in an intro, a troubleshooting row
+// or a variants table alike. Atlas checked our 58 against its own library on
+// 2026-09-03, got 46 counting step and alternatives tables and 106 counting
+// anywhere, and said plainly that neither was 58 and the figure should be
+// re-taken. It was right: 58 was the anywhere-count over the seven export-tier
+// guides, sitting under a name that promised steps.
+//
+// Both are emitted now, each doing what it says. Measured 2026-09-10: the
+// in-tables figure is 46 distinct, which reproduces atlas's 46 exactly, and
+// the whole-document figure is the old 58. Atlas's 106 is the same definition
+// over a larger library, not a disagreement.
+const collect = (nodes) => {
+  const out = new Set();
+  const walk = (x) => {
+    if (Array.isArray(x)) return x.forEach(walk);
+    if (x && typeof x === 'object') {
+      if (x.t === 'session' && typeof x.code === 'string') out.add(x.code);
+      Object.values(x).forEach(walk);
+    }
+  };
+  nodes.forEach(walk);
+  return out;
 };
-guides.forEach(stepWalk);
+const stepTables = guides.flatMap((g) => [
+  ...(g.phases ?? []).flatMap((p) => p.blocks ?? []),
+  ...(g.sections ?? []).flatMap((sec) => sec.blocks ?? []),
+].filter((b) => Array.isArray(b?.rows)));
+
 say('session-codes.in-sources', inSources.size);
-say('session-codes.in-steps', inSteps.size);
+say('session-codes.in-step-tables', collect(stepTables).size);
+say('session-codes.in-guide-anywhere', collect(guides).size);
 
 // --- the reviews atlas _standards/review-shape.md describes ----------------------------------
 head('reviews (atlas _standards/review-shape.md quotes these)');

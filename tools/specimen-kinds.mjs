@@ -17,6 +17,14 @@
 // treatments behave in a grid whose columns are `1fr` and size to their widest
 // tile, which is exactly what a mock-up gets wrong.
 //
+// SINCE 2026-09-11 IT IS HALF THE INSTRUMENT, AND THE HALF ONLY A BROWSER CAN
+// BE. `tools/tile-looks.mjs` resolves the same five properties out of the page's
+// own CSS in Node, so the figures reach `MEASURED` and survive a diff -- but it
+// compares TOKEN NAMES, and two tokens that paint the same value in one theme
+// are a collision it cannot see. That is this page: the painted colour, per
+// theme, switchable. Neither replaces the other, and the tile-looks header says
+// the same thing from its side.
+//
 //   node tools/specimen-kinds.mjs && open the URL it prints
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -187,6 +195,21 @@ const VARIANTS = [
       is being drawn two ways, which is how the open-sided prerequisite card shipped.`,
     css: '',
   },
+
+  // THE COLUMN VARIANTS ARE GONE FOR THE SAME REASON THE LANE ONES ARE. Drawn
+  // 2026-09-11 -- max-content per column against a 12rem and a 10rem cap -- and
+  // max-content shipped the same day, at which point variant A stopped being an
+  // alternative and became a second copy of the baseline. What they measured is
+  // in DESIGN-diagram-kinds.md §10; what stays live is the column and scroll
+  // figures in the readout, taken on the shipped page every run.
+  // THE THREE LANE VARIANTS ARE GONE, AND THAT IS THE SAME RULE §5.1 RECORDS.
+  // They were drawn on 2026-09-11 -- a rule per lane, a sticky lane name, and
+  // both -- and A shipped the same day. The moment it did, variant A stopped
+  // being an alternative to this page's baseline and became a second copy of it,
+  // which is exactly how B, C and D quietly stopped meaning anything while still
+  // printing numbers. So they are deleted rather than kept for reference: what
+  // they measured is in DESIGN-diagram-kinds.md §8, and what remains live is the
+  // lane readout below, taken on the shipped page every run.
 ];
 
 // WHAT THE READOUT COUNTS, AND THE ONE IT GOT WRONG FIRST. It began with a
@@ -262,8 +285,60 @@ function perCategory(nodes) {
   }
   return [...by.entries()].map(([c, looks]) => [c, looks.size]).sort();
 }
+// THE TWO LANE FIGURES, AND THEY ARE THE ONES THAT DECIDE THE LANE VARIANTS.
+// Both are measured on what is drawn, like everything else here.
+//
+//   gap within / across  the vertical distance between two stacked tiles inside
+//                        one lane, and between the last tile of one lane and the
+//                        first of the next in the same column. EQUAL IS THE
+//                        DEFECT: 8px currently means both, so the boundary is
+//                        unmarked. A variant fixes it by drawing a line, not by
+//                        adding space -- so watch 'ruled' alongside, because a
+//                        ruled boundary is legible at the same 8px.
+//   name held            how many lane names are still inside the figure when it
+//                        is scrolled to its far right. On the map that is 0 of 6
+//                        today; the overview never scrolls, so it is 6 of 6 there
+//                        in every variant and says nothing.
+function laneScore(scope) {
+  const fig = scope.querySelector('.ln-dg');
+  const lanes = [...scope.querySelectorAll('.ln-dg-lane')];
+  // A LANE IS RULED IF IT HAS A RULE ELEMENT. This counted \`::after\` content
+  // until the rule shipped, because the variant that proposed it drew a
+  // pseudo-element -- and the shipped rule is a grid item, so the detector read
+  // 0 on a page with six rules. A figure that reports the absence of something
+  // plainly there is worse than no figure.
+  const ruled = scope.querySelectorAll('.ln-dg-rule').length;
+  const was = fig.scrollLeft;
+  fig.scrollLeft = fig.scrollWidth - fig.clientWidth;
+  const edge = fig.getBoundingClientRect().left;
+  const held = lanes.filter(l => l.getBoundingClientRect().right > edge).length;
+  fig.scrollLeft = was;
+  const byCol = new Map();
+  for (const c of scope.querySelectorAll('.ln-dg-cell')) {
+    const col = c.style.gridColumn, row = c.style.gridRow;
+    if (!byCol.has(col)) byCol.set(col, []);
+    for (const n of c.querySelectorAll('.ln-dg-node'))
+      byCol.get(col).push({ row, r: n.getBoundingClientRect() });
+  }
+  let across = null, within = null;
+  for (const items of byCol.values()) {
+    items.sort((a, b) => a.r.top - b.r.top);
+    for (let i = 1; i < items.length; i++) {
+      const gap = Math.round(items[i].r.top - items[i - 1].r.bottom);
+      if (items[i].row === items[i - 1].row) within = within === null ? gap : Math.min(within, gap);
+      else across = across === null ? gap : Math.min(across, gap);
+    }
+  }
+  return { lanes: lanes.length, ruled, held, within, across };
+}
 function score(scope) {
-  const nodes = [...scope.querySelectorAll('.ln-dg-node')];
+  // GRID TILES ONLY. Since the legend shipped, a \`.ln-dg-node\` on the page is
+  // either a tile or a legend swatch -- the swatch carries the same classes on
+  // purpose, so it cannot drift from what it describes -- and a swatch has no
+  // kind class. Scoring it as a tile read \`undefined\` for its kind and took the
+  // whole readout down, which is the correct failure and is fixed here rather
+  // than by loosening what a tile is.
+  const nodes = [...scope.querySelectorAll('.ln-dg-grid .ln-dg-node')];
   const fig = scope.querySelector('.ln-dg');
   return { tiles: nodes.length,
     appearances: new Set(nodes.map(sig)).size,
@@ -274,6 +349,7 @@ function score(scope) {
     byCat: collisions(nodes, catOf),
     perCat: perCategory(nodes),
     scrolls: fig.scrollWidth > fig.clientWidth,
+    scrollW: fig.scrollWidth,
     col: Math.round(parseFloat(getComputedStyle(
       scope.querySelector('.ln-dg-grid')).gridTemplateColumns.split(' ')[1])) };
 }
@@ -285,7 +361,17 @@ function paint() {
       \`<b>\${r.tiles}</b> tiles · <b>\${r.appearances}</b> looks to learn · \` +
       r.perCat.map(([c, n]) => \`\${c} <b class="\${n === 1 ? 'ok' : 'bad'}">\${n}</b>\`).join(' · ') +
       \` look each · \${m(r.byCat)} colliding by category · \` +
-      \`column <b>\${r.col}px</b> · \${r.scrolls ? 'figure scrolls' : 'figure fits'}\`;
+      \`column <b>\${r.col}px</b> · \${r.scrolls ? 'scrolls <b>' + r.scrollW + 'px</b>' : 'fits'}\`
+      + (() => {
+        const l = laneScore(box);
+        const marked = l.across === null || l.within === null || l.across > l.within || l.ruled > 0;
+        const gap = (n) => n === null ? '—' : n + 'px';
+        return \`<br><b>\${l.lanes}</b> lanes · \${l.ruled} ruled · name held at far right \` +
+          \`<b class="\${l.held === l.lanes ? 'ok' : 'bad'}">\${l.held}</b>/\${l.lanes} · \` +
+          \`gap within a lane \${gap(l.within)} vs across lanes \` +
+          \`<b class="\${marked ? 'ok' : 'bad'}">\${gap(l.across)}</b>\` +
+          \`\${marked ? '' : ' — nothing marks the boundary'}\`;
+      })();
   }
 }
 paint();

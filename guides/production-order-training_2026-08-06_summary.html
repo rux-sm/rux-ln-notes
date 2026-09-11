@@ -268,7 +268,41 @@
    diagram the width back; the title shrinks to .75rem with them so a
    two-line name still reads as a title and not a wrapped sentence. */
 .ln-dg { margin: 0; overflow-x: auto; }
-.ln-dg-grid { display: grid; grid-template-columns: max-content repeat(calc(var(--dg-cols) - 1), minmax(7rem, 1fr));
+/* EACH COLUMN AS WIDE AS ITS OWN CONTENT, 2026-09-11. It was
+   `minmax(7rem, 1fr)` -- every column the same width, and every one of them
+   stretching to fill the figure. That made the width of the single widest tile
+   the width of every tile on the page: measured on the session map, ten tracks
+   of 275px each, because one tile somewhere needed 275. The map was 2750px of
+   figure in a 1312px frame.
+
+   `max-content` DOES NOT NARROW A SINGLE TILE BELOW ITS OWN CONTENT, which is
+   why this costs no height at all. The column that needed 275 still gets 275;
+   the others fall to 114, 203, 119, 210, 165, 129 and 256. Nothing wraps, no
+   tile grows, and the map scrolls 1807px instead of 2750. Tiles within a column
+   are still all one width -- a cell stretches its tiles to the track -- so what
+   changed is the SCOPE of "widest", from the whole grid to the column.
+
+   WHAT IS GIVEN UP IS THE EVEN LATTICE, and the empty stage column with it. The
+   figure reads as a compact table with columns of different widths rather than a
+   regular grid, and a stage carrying no tiles shrinks to the width of its own
+   heading -- the map's undrawn Cash column goes from 275px to about 60px. It is
+   still drawn and still labelled, which is what section 8 of that map argues
+   for, but it no longer holds a full column of space to make the point. Chosen
+   by rux on the specimen, against a 12rem and a 10rem cap that keep the lattice
+   and pay for it in wrapped names.
+
+   THE 7rem FLOOR IS GONE WITH THE `minmax`. It existed to stop a `1fr` column
+   collapsing; under `max-content` a column is never narrower than what it holds,
+   so the floor only ever applied to a column holding almost nothing. */
+/* THE TRAILING `1fr` IS NOT A COLUMN, it is the leftover. With every real
+   column sized to its content the tracks no longer add up to the figure: the
+   overview's come to 1114px inside a 1280px grid, and a lane rule spanning
+   `1 / -1` stopped 166px short of the right edge with the figure's ground
+   showing past it. An empty track at the end takes the slack, so the rules reach
+   the edge exactly as they did when every column stretched. It holds nothing,
+   and on a figure that overflows -- the session map -- there is no slack and it
+   computes to zero. */
+.ln-dg-grid { display: grid; grid-template-columns: repeat(var(--dg-cols), max-content) 1fr;
   gap: .5rem; align-items: start; min-inline-size: max-content; }
 .ln-dg-stage { grid-row: 1; font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);

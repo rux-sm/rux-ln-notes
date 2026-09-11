@@ -11,61 +11,65 @@ Nothing else here is checked by anything.
 
 ## Now — the one next step, in order
 
-**Rewritten 2026-09-10, then corrected the same day after verifying every line
-against the running systems instead of the notes. The first rewrite was itself
-wrong: it listed the switcher as outstanding when it was already built, live
-and working. Four of the six items this section has claimed today were stale.
-Every claim below was measured; the measurement is named beside it.**
+**Rewritten three times on 2026-09-10 and this is the third. Twice it claimed
+work that was already done. Everything below was measured today, after the
+push of f2e6349; the measurement is named beside the claim so the next reader
+re-takes it instead of trusting it.**
 
-1. **Render `command` and `path` as breadcrumbs.** rux-ds ruled on `SEND-DS.md`
-   §2 on 2026-09-08, and not the way this side proposed: **a route is a
-   breadcrumb, not a tag**, and `.rux--tag-label-tooltip` — the answer this
-   repository expected to be told to use — was **rejected on evidence**, because
-   every capture pairs it with an *interactive* tag and it would make a tab stop
-   of every route. Measured on running Carbon at 1280: the tag clipped at 192px
-   (scrollWidth 278, 86px lost), the breadcrumb wrapped and lost nothing.
-   *Verified here:* the six `rux--breadcrumb*` classes compile in rux-ds
-   `css/rux.css`; `tools/build.mjs` still has both token types in `PLAIN`;
-   the tokens are **39 `command` and 5 `path` across the 7 guides**, 97 across
-   all 27 documents. `template-candidate.html` already uses `rux--breadcrumb`
-   but for page navigation (Guides ▸ title), which is a different use — the
-   inline route needs the non-anchor segment markup the ruling specifies.
-2. **Adopt `templates/document-page.html`,** rux-ds `1edc3e4`, the answer to
-   `SEND-DS.md` §1 and the template that demonstrates the ruling in item 1.
-   Per `AGENTS.md`, `build.mjs` copies it and records the rux-ds commit it
-   derives from. *Verified:* the file exists (68 KB) and carries the breadcrumb
-   classes; nothing in `build.mjs` references it.
-3. **Render `openIssues`.** Atlas took the ask and **emits it now** — 9
-   documents carry a count, from 1 to 12. *Verified:* `grep openIssues
-   tools/build.mjs` returns **0**. Atlas answered and this side never consumed
-   it. No document listed this; it was found by measuring.
-4. **A notepad on guide pages.** *Verified:* `js/exercise.js` is linked by
-   exactly 2 pages, both HOMEWORKs; no guide page carries a notepad. See the
-   bullet under "Decided, not built".
-5. **Reply to atlas's four questions.** Still genuinely open — `exchange/
-   send-back-2-reply.md` asks them and nothing has answered. One is already
-   satisfied in code (`openIssues`, item 3) and one needs the re-measure atlas
-   asked for; see "Owed to atlas" below, which now carries the fresh figures.
+1. **Answer atlas's four questions.** The only item here with nothing blocking
+   it. `exchange/send-back-2-reply.md` in atlas asks all four and has been
+   waiting; nothing has been sent. *Verified:* no `SEND-ATLAS-2.md` exists.
+   One of the four is already satisfied in code and one needs a scope agreed
+   before any number is quoted — see "Owed to atlas" below, which carries the
+   re-measured figures.
+2. **A notepad on guide pages.** *Verified:* `js/exercise.js` is linked by
+   exactly 2 pages, both HOMEWORKs, and 0 guide pages carry `data-ln-notes`.
+   The ✎ marks say "worth writing down" and there is still nowhere to write.
+3. **Decide what is left of adopting `templates/document-page.html`.** This
+   was listed as a build task and most of it turned out to be already true:
+   our pages carry every structural element the template has, and the one real
+   gap — an uncapped reading measure — was closed in f2e6349 (38rem, 75
+   characters at any width). *Verified:* `build.mjs` still references
+   `document-page` 0 times. What remains is a decision, not a build: either
+   record the rux-ds commit the shell derives from, per `AGENTS.md`, or state
+   that this project's shell is its own and the template is a reference. It
+   should not sit on a list as though it were unbuilt work.
 
-**Done, recorded so it is not re-listed a third time:**
+**Waiting on someone else, not on this repository:**
 
-- **The switcher — BUILT AND LIVE.** Listed as outstanding twice today, both
-  times wrongly. *Verified in the browser on the live site:* the page ships
-  Home and LN Notes, `/switcher.js` (HTTP 200) replaces them from
-  `/switcher.json` (HTTP 200), and the panel renders **four** entries — Home,
-  LN Notes (marked `aria-current`), Scheduler, Design System.
-- **`SEND-ATLAS.md` — ANSWERED AND CONSUMED.** Atlas replied in
-  `exchange/do-as-steps-reply.md` and took **both** asks at contract 8. *Verified:*
-  9 documents carry `steps`, 1 carries `strips`, and `build.mjs` renders both.
-  The reply also corrects two claims the send-back made — token 0 of node `1`
-  is not payload-less, and "three steps where the sentence has four" does not
-  reproduce. It retires with the files below.
+- **Whether an inline-reference vocabulary belongs in rux-ds.** Sent to the
+  *Guide template review* session on 2026-09-10 with the measurements. **It has
+  an answer ready — a written guide rather than new classes — and is waiting
+  for rux's word before sending it back.** Until then the four registers live
+  in `build.mjs` as local CSS, which works and is shipped.
+- **The `::after` separator, now rux-ds's own finding.** They reproduced it on
+  Carbon's own site with Carbon's markup and confirmed it is live in their
+  document template: at 500px every route stacks one segment per line and each
+  line ends with a hanging slash. Not ours to fix and no longer our problem —
+  we render routes as text — but it is why R2 was worth raising even though it
+  was withdrawn.
+- **Atlas sits 1 commit past the pin** (`0bf14ec` → `9e14ca6`). *Verified by
+  dry run:* 0 documents added, changed or removed. `publish.mjs` would move
+  the pin and publish nothing visible.
 
-**`SEND-DS.md`, `SEND-ATLAS.md` and `template-candidate.html` stay until items
-1–3 land**, then all three go. Both send-backs are fully answered, but the
-candidate page is the reference the adoption is measured against and
-`build.mjs` re-inlines the sprite into it by name; deleting it early drops the
-only local copy of the thing being replaced and breaks that line.
+**Done on 2026-09-10, recorded so none of it is listed a fourth time:**
+
+- **The seven tag colours are four registers**, shipped and live: 2761 pills
+  to 265 site-wide, 166 to 22 on a guide page. Press, named, exact, state.
+- **`openIssues` renders** — 16 badges across 9 documents and 7 index cards.
+- **The route was built as a breadcrumb and reverted the same day.** The ruling
+  was right about clipping and wrong about the rest; three findings are in the
+  note above `ROUTED` in `build.mjs`.
+- **The reading measure, the step-table column rule, and the step key.**
+- **`template-candidate.html`'s four defects.**
+- **The switcher** — built and live before any of this; listed as outstanding
+  twice today, both times wrongly.
+
+**`SEND-DS.md` and `SEND-ATLAS.md` are both fully answered and can retire**
+once item 3 is decided and item 1 is sent. `template-candidate.html` stays: it
+is the only page here with invented content, which makes it the one artifact
+that could cross to rux-ds, and `build.mjs` re-inlines the sprite into it by
+name.
 
 ## Watched — `MEASURED` answers these; read them there
 

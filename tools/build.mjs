@@ -443,7 +443,21 @@ function table(block, { numbered = false } = {}) {
       // future table has four columns this still marks the answer column
       // rather than failing to find a heading it knows.
       const last = numbered && i === (row.cells ?? []).length - 1 && i > 1;
-      return `<td${last ? ' class="ln-see"' : ''}>${inner}</td>`;
+      // A STEP THAT YIELDS A VALUE GETS SOMEWHERE TO WRITE IT, IN PLACE.
+      // `produces` is the same fact the pencil carries inline, and 99 rows
+      // across the seven guides have it. The field goes in the answer column
+      // of that row rather than in a panel at the foot, because a reader is
+      // AT the step when the value appears and should not have to carry it
+      // down the page. The row id is the storage key; it is authored data,
+      // stable across a rebuild, and unique within a document.
+      const writeHere = last && row.produces && row.id
+        ? `<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-${esc(row.id)}">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-${esc(row.id)}" class="rux--text-area" rows="1" data-ln-note="${esc(row.id)}" placeholder="The value you saw"></textarea>
+              </div>
+            </div>` : '';
+      return `<td${last ? ' class="ln-see"' : ''}>${inner}${writeHere}</td>`;
     }).join('');
     // `produces` marks a step that yields a value worth noting. It is the same
     // fact the `pencil` token carries inline; the attribute lets the row be
@@ -960,6 +974,11 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 /* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
    the screen answers -- and nothing was saying so. */
 .rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-note { margin-block-start: .5rem; max-inline-size: 18rem; }
+.ln-note .rux--label { font-size: .6875rem; }
+.ln-notepad { margin-block-start: 3rem; max-inline-size: 38rem; }
+.ln-notepad-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-block-start: 1rem; }
 
 .ln-key { margin-block-start: 3rem; padding: 1.5rem;
   background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
@@ -2141,6 +2160,37 @@ const stepKey = () => `
         </dl>
       </section>`;
 
+// THE GUIDE'S OWN NOTEPAD. The pencil marks say "this step yields a value
+// worth writing down" 125 times across the seven guides and until now there
+// was nowhere on a guide page to write. Each producing row carries its own
+// field; this is the rest of it -- somewhere for what does not belong to one
+// step, and the way out.
+//
+// IT SAYS WHERE THE TYPING GOES, beside the box and not in a policy page.
+// There is no server behind this site and no account; what a reader writes is
+// in their browser and nowhere else, and the only way to keep it is to take
+// it with them.
+//
+// A GUIDE PAGE WITHOUT js/guide.js IS STILL THE WHOLE GUIDE. The fields are
+// inert, the export does nothing, and every step, table and phase reads as it
+// does now. That is the same contract js/exercise.js holds.
+const notepad = () => `
+      <section class="ln-notepad" aria-labelledby="h-notes">
+        <h2 id="h-notes" class="rux--type-productive-heading-03">Your notes</h2>
+        <div class="rux--form-item">
+          <label class="rux--label" for="ln-notes">Anything else worth keeping</label>
+          <div class="rux--text-area__wrapper">
+            <textarea id="ln-notes" class="rux--text-area" rows="5" data-ln-notes placeholder="What surprised you, what you would check next time"></textarea>
+          </div>
+          <div class="rux--form__helper-text">Saved in this browser only, with the values you noted beside the steps. There is no server and no account behind this page. Export to keep them.</div>
+        </div>
+        <div class="ln-notepad-actions">
+          <button type="button" class="rux--btn rux--btn--primary rux--btn--sm" data-ln-export>Export notes</button>
+          <button type="button" class="rux--btn rux--btn--tertiary rux--btn--sm" data-ln-copy>Copy</button>
+          <button type="button" class="rux--btn rux--btn--danger--ghost rux--btn--sm" data-ln-clear>Clear</button>
+        </div>
+      </section>`;
+
 function guidePage(g, site) {
   const { front, back } = splitSections(g.sections);
   const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
@@ -2168,9 +2218,13 @@ function guidePage(g, site) {
              every phase was performed against a live system and confirmed
              while the guide itself is status: draft. Both are shown. -->
         <p class="rux--type-body-01">${esc(g.verification)}</p>` : ''}
+      ${notepad()}
       ${stepKey()}`;
 
-  return page({ title: `${g.title} — Rux LN Notes`, site, activeId: g.id, body, depth: 1 });
+  return page({ title: `${g.title} — Rux LN Notes`, site, activeId: g.id,
+    body: `<div data-ln-doc="${esc(g.id)}">${body}
+      </div>`, depth: 1,
+    scripts: ['js/guide.js'] });
 }
 
 // ---------------------------------------------------------------- build

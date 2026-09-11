@@ -140,6 +140,11 @@
    the screen answers -- and nothing was saying so. */
 .rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
 
+.ln-note { margin-block-start: .5rem; max-inline-size: 18rem; }
+.ln-note .rux--label { font-size: .6875rem; }
+.ln-notepad { margin-block-start: 3rem; max-inline-size: 38rem; }
+.ln-notepad-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-block-start: 1rem; }
+
 .ln-key { margin-block-start: 3rem; padding: 1.5rem;
   background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
 .ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
@@ -775,7 +780,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
   <div class="rux--css-grid">
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
-        <div class="rux--stack-vertical rux--stack-scale-5">
+<div data-ln-doc="SG-create-basic-test-items-and-defaults">        <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>Create test items</h1>
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
@@ -827,15 +832,45 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.1</th><td>Confirm the approved training company</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">training company</span></td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.2</th><td>Select the site that will buy, store, make, and sell the test family</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">site</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.1</th><td>Confirm the approved training company</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">training company</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-0.1">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-0.1" class="rux--text-area" rows="1" data-ln-note="0.1" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.2</th><td>Select the site that will buy, store, make, and sell the test family</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">site</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-0.2">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-0.2" class="rux--text-area" rows="1" data-ln-note="0.2" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">0.3</th><td>Open <span class="ln-t-named">Warehouses</span> <span class="ln-t-exact">whwmd2500m000</span></td><td class="ln-see">The warehouse master list opens</td></tr>
           <tr><th scope="row" class="ln-step-id">0.4</th><td>Filter the warehouse list to the site from 0.2</td><td class="ln-see">Only candidate warehouses for that site remain</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.5</th><td>Record the approved Normal warehouse for purchased production materials</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased-item warehouse</span></td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.6</th><td>Record the approved Normal warehouse for finished products</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">finished-item warehouse</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.5</th><td>Record the approved Normal warehouse for purchased production materials</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased-item warehouse</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-0.5">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-0.5" class="rux--text-area" rows="1" data-ln-note="0.5" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.6</th><td>Record the approved Normal warehouse for finished products</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">finished-item warehouse</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-0.6">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-0.6" class="rux--text-area" rows="1" data-ln-note="0.6" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">0.7</th><td>Open one approved physical Product item that uses the same counting basis</td><td class="ln-see">Its global item data opens</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.8</th><td>Record its <span class="ln-t-named">Unit Set</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Unit Set</span></td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.9</th><td>Record its <span class="ln-t-named">Inventory Unit</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Inventory Unit</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.8</th><td>Record its <span class="ln-t-named">Unit Set</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Unit Set</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-0.8">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-0.8" class="rux--text-area" rows="1" data-ln-note="0.8" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.9</th><td>Record its <span class="ln-t-named">Inventory Unit</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Inventory Unit</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-0.9">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-0.9" class="rux--text-area" rows="1" data-ln-note="0.9" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">0.10</th><td>Search <span class="ln-t-named">Items</span> for each proposed example code</td><td class="ln-see">No existing item uses any proposed code</td></tr>
             </tbody>
           </table>
@@ -853,10 +888,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <tbody>
           <tr><th scope="row" class="ln-step-id">1.1</th><td>Search for the proposed purchased-group code</td><td class="ln-see">No existing row uses it</td></tr>
           <tr><th scope="row" class="ln-step-id">1.2</th><td>Select <span class="ln-t-press">New</span></td><td class="ln-see">A blank item-group row opens</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">1.3</th><td>Enter <span class="ln-t-named">Item Group</span> and <span class="ln-t-named">Description</span> for the purchased group</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased-supply item group</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">1.3</th><td>Enter <span class="ln-t-named">Item Group</span> and <span class="ln-t-named">Description</span> for the purchased group</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased-supply item group</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-1.3">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-1.3" class="rux--text-area" rows="1" data-ln-note="1.3" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">1.4</th><td>Set <span class="ln-t-named">Currency</span> to the approved company currency</td><td class="ln-see">The currency is populated</td></tr>
           <tr><th scope="row" class="ln-step-id">1.5</th><td>Save the purchased group</td><td class="ln-see">The purchased group is available for defaults</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">1.6</th><td>Repeat 1.1–1.5 for the made group</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">made-supply item group</span> — both dedicated groups are available for defaults</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">1.6</th><td>Repeat 1.1–1.5 for the made group</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">made-supply item group</span> — both dedicated groups are available for defaults<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-1.6">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-1.6" class="rux--text-area" rows="1" data-ln-note="1.6" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -874,7 +919,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">2.1</th><td>Open <span class="ln-t-named">Item Defaults</span> <span class="ln-t-exact">tcibd0102m000</span></td><td class="ln-see">The company-level default combinations open</td></tr>
           <tr><th scope="row" class="ln-step-id">2.2</th><td>Filter for <span class="ln-t-named">Item Type</span> = <span class="ln-t-exact">Product</span> and the purchased group from 1.3</td><td class="ln-see">The current test row appears if already saved; otherwise no row appears</td></tr>
           <tr><th scope="row" class="ln-step-id">2.3</th><td>If the test row is absent, select <span class="ln-t-press">New</span></td><td class="ln-see">A blank item-default record opens</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">2.4</th><td>Set <span class="ln-t-named">Item Type</span> to <span class="ln-t-exact">Product</span>, <span class="ln-t-named">Item Group</span> to the purchased group from 1.3, and <span class="ln-t-named">Default Supply Source</span> to <span class="ln-t-exact">Purchase</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased default supply source</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">2.4</th><td>Set <span class="ln-t-named">Item Type</span> to <span class="ln-t-exact">Product</span>, <span class="ln-t-named">Item Group</span> to the purchased group from 1.3, and <span class="ln-t-named">Default Supply Source</span> to <span class="ln-t-exact">Purchase</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased default supply source</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-2.4">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-2.4" class="rux--text-area" rows="1" data-ln-note="2.4" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">2.5</th><td>Set <span class="ln-t-named">Unit Set</span> and <span class="ln-t-named">Inventory Unit</span> to the values recorded at 0.8 and 0.9</td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">2.6</th><td>Leave special-purpose typology and traceability controls at their proposed values</td><td class="ln-see">No new configuration, lot, or serial behaviour is introduced</td></tr>
           <tr><th scope="row" class="ln-step-id">2.7</th><td>Save the global default</td><td class="ln-see">The Product/<span class="ln-t-exact">BAM-RM</span> combination exists</td></tr>
@@ -884,7 +934,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">2.11</th><td>Compare every tab with the purchased-group values in the family sheet §4, complete what the screen requires, and select <span class="ln-t-press">OK</span></td><td class="ln-see">The defaults close without an error</td></tr>
           <tr><th scope="row" class="ln-step-id">2.12</th><td>Confirm the subentity indicator beside the link is active, and select the Create check box beside it</td><td class="ln-see">Default data exists, and new items are marked to receive it</td></tr>
           <tr><th scope="row" class="ln-step-id">2.13</th><td>After the third subentity, save <span class="ln-t-named">Item Defaults</span> <span class="ln-t-exact">tcibd0502m000</span></td><td class="ln-see">The site row and Create controls remain stored</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">2.14</th><td>Close and reopen the Product/<span class="ln-t-exact">BAM-RM</span> default</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased global subentities</span> — three active indicators, three Create controls</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">2.14</th><td>Close and reopen the Product/<span class="ln-t-exact">BAM-RM</span> default</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">purchased global subentities</span> — three active indicators, three Create controls<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-2.14">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-2.14" class="rux--text-area" rows="1" data-ln-note="2.14" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -908,7 +963,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">3.1</th><td>Repeat 2.1–2.9 for the made group from 1.6, with <span class="ln-t-named">Default Supply Source</span> = <span class="ln-t-exact">Job Shop</span> and, on the site row, the finished warehouse from 0.6 and <span class="ln-t-named">Supply Source</span> = <span class="ln-t-exact">Job Shop</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">made default supply source</span> — the Product/<span class="ln-t-exact">BAM-FG</span> combination exists with its site row</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">3.1</th><td>Repeat 2.1–2.9 for the made group from 1.6, with <span class="ln-t-named">Default Supply Source</span> = <span class="ln-t-exact">Job Shop</span> and, on the site row, the finished warehouse from 0.6 and <span class="ln-t-named">Supply Source</span> = <span class="ln-t-exact">Job Shop</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">made default supply source</span> — the Product/<span class="ln-t-exact">BAM-FG</span> combination exists with its site row<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-3.1">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-3.1" class="rux--text-area" rows="1" data-ln-note="3.1" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">3.2</th><td>Repeat 2.10–2.12 for <span class="ln-t-named">Ordering</span> and <span class="ln-t-named">Warehousing</span>, comparing each with an approved finished Product/Job Shop reference</td><td class="ln-see">Both indicators active, both Create boxes selected, no unapproved planning value introduced</td></tr>
           <tr><th scope="row" class="ln-step-id">3.3</th><td>Open the blue <span class="ln-t-press">Production</span> link</td><td class="ln-see"><span class="ln-t-named">Item - Production Defaults</span> <span class="ln-t-exact">tiipd0102m100</span> opens</td></tr>
           <tr><th scope="row" class="ln-step-id">3.4</th><td>Compare every visible field with the made-group Production values in the family sheet §4 and select <span class="ln-t-press">OK</span></td><td class="ln-see">The Production defaults close without an error</td></tr>
@@ -917,7 +977,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">3.7</th><td>Complete the <span class="ln-t-named">Ordering</span>, <span class="ln-t-named">Price</span> and <span class="ln-t-named">Delivery</span> tabs from the made-group Sales values in the family sheet §4 and select <span class="ln-t-press">OK</span></td><td class="ln-see">The Sales defaults are saved</td></tr>
           <tr><th scope="row" class="ln-step-id">3.8</th><td>If asked <span class="ln-t-named">Perform Global Update of Sales Items with New Defaults?</span>, select <span class="ln-t-press">No</span>. If <span class="ln-t-named">Global Update of Item with Defaults</span> <span class="ln-t-exact">tdisa0202m000</span> opens, do not select <span class="ln-t-named">Update</span>; select <span class="ln-t-press">Close</span></td><td class="ln-see">Existing Sales items are not changed</td></tr>
           <tr><th scope="row" class="ln-step-id">3.9</th><td>Confirm the Sales indicator is active and select the Create check box beside <span class="ln-t-named">Sales</span></td><td class="ln-see">New items are marked to receive Sales data</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">3.10</th><td>Save <span class="ln-t-named">Item Defaults</span> <span class="ln-t-exact">tcibd0502m000</span>, close and reopen the Product/<span class="ln-t-exact">BAM-FG</span> default, and reopen Sales ➔ <span class="ln-t-named">Price</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">made global subentities</span> — four active indicators, and <span class="ln-t-exact">USD</span>, <span class="ln-t-exact">ea</span>, both <span class="ln-t-exact">S10.10</span> groups and <span class="ln-t-exact">NOTAX</span> return</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">3.10</th><td>Save <span class="ln-t-named">Item Defaults</span> <span class="ln-t-exact">tcibd0502m000</span>, close and reopen the Product/<span class="ln-t-exact">BAM-FG</span> default, and reopen Sales ➔ <span class="ln-t-named">Price</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">made global subentities</span> — four active indicators, and <span class="ln-t-exact">USD</span>, <span class="ln-t-exact">ea</span>, both <span class="ln-t-exact">S10.10</span> groups and <span class="ln-t-exact">NOTAX</span> return<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-3.10">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-3.10" class="rux--text-area" rows="1" data-ln-note="3.10" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -979,14 +1044,34 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <tbody>
           <tr><th scope="row" class="ln-step-id">5.1</th><td>Open <span class="ln-t-named">Items</span> <span class="ln-t-exact">tcibd0501m000</span></td><td class="ln-see">The global item overview opens</td></tr>
           <tr><th scope="row" class="ln-step-id">5.2</th><td>Select <span class="ln-t-press">New</span></td><td class="ln-see">A blank Item record opens</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">5.3</th><td>With <span class="ln-t-named">Project</span> blank, enter the item&#39;s code in the <span class="ln-t-named">Item</span> portion and its <span class="ln-t-named">Description</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">item code</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">5.3</th><td>With <span class="ln-t-named">Project</span> blank, enter the item&#39;s code in the <span class="ln-t-named">Item</span> portion and its <span class="ln-t-named">Description</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">item code</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-5.3">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-5.3" class="rux--text-area" rows="1" data-ln-note="5.3" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">5.4</th><td>Set <span class="ln-t-named">Item Type</span> to <span class="ln-t-exact">Product</span> and <span class="ln-t-named">Item Group</span> to the item&#39;s group from phase 1</td><td class="ln-see">Supply source, Unit Set, and Inventory Unit default from phase 2 or 3</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">5.5</th><td>Complete any remaining field the screen marks required, using the family values</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">item Grade, if the screen requires one</span> — the 2026-08-16 walk recorded <span class="ln-t-named">Grade</span> = <span class="ln-t-exact">FAS</span> for all three items</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">5.5</th><td>Complete any remaining field the screen marks required, using the family values</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">item Grade, if the screen requires one</span> — the 2026-08-16 walk recorded <span class="ln-t-named">Grade</span> = <span class="ln-t-exact">FAS</span> for all three items<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-5.5">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-5.5" class="rux--text-area" rows="1" data-ln-note="5.5" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">5.6</th><td>Save the item header before working in the <span class="ln-t-named">Sites</span> grid</td><td class="ln-see">The item header is saved</td></tr>
           <tr><th scope="row" class="ln-step-id">5.7</th><td>In the <span class="ln-t-named">Sites</span> grid, ignore the editable filter row marked with <span class="ln-t-exact">=</span>. If no saved row begins with the site from 0.2, run <span class="ln-t-named">Create Items by Site</span> from the tab&#39;s appropriate menu; if that produces nothing, select <span class="ln-t-press">New</span> on the <span class="ln-t-named">Sites</span> toolbar, select that site, and save the record</td><td class="ln-see">A saved site line beginning with the actual site code exists</td></tr>
           <tr><th scope="row" class="ln-step-id">5.8</th><td>Select the saved site line and open it with the row-arrow button</td><td class="ln-see"><span class="ln-t-named">Items by Site</span> opens for this item and site</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">5.9</th><td>Verify <span class="ln-t-named">Default Supply Source</span> matches the item&#39;s role — <span class="ln-t-exact">Purchase</span> for the rod and the sleeve, <span class="ln-t-exact">Job Shop</span> for the pair</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">site supply source</span></td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">5.10</th><td>Verify the site subentity indicators — Ordering, Purchase, and Warehousing for a purchased item; Ordering, Production, Warehousing, and Sales for the pair</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">site subentities</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">5.9</th><td>Verify <span class="ln-t-named">Default Supply Source</span> matches the item&#39;s role — <span class="ln-t-exact">Purchase</span> for the rod and the sleeve, <span class="ln-t-exact">Job Shop</span> for the pair</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">site supply source</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-5.9">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-5.9" class="rux--text-area" rows="1" data-ln-note="5.9" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">5.10</th><td>Verify the site subentity indicators — Ordering, Purchase, and Warehousing for a purchased item; Ordering, Production, Warehousing, and Sales for the pair</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">site subentities</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-5.10">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-5.10" class="rux--text-area" rows="1" data-ln-note="5.10" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">5.11</th><td>Repeat 5.2–5.10 for the remaining items, each with its own group</td><td class="ln-see">All three items and their site rows match the family sheet §1</td></tr>
             </tbody>
           </table>
@@ -1019,17 +1104,32 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">6.6</th><td>Set <span class="ln-t-named">BOM Quantity</span> to 1</td><td class="ln-see">The material quantities below are the quantities for one pair</td></tr>
           <tr><th scope="row" class="ln-step-id">6.7</th><td>Set <span class="ln-t-named">Effective Date</span> on or before the date of the production order you intend to run</td><td class="ln-see">The revision will be valid on that order&#39;s reference date</td></tr>
           <tr><th scope="row" class="ln-step-id">6.8</th><td>Leave <span class="ln-t-named">Routing</span> blank</td><td class="ln-see">The BOM stays usable with any routing</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">6.9</th><td>Save the header</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">BOM and revision</span>; <span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">New</span></span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">6.9</th><td>Save the header</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">BOM and revision</span>; <span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">New</span></span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-6.9">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-6.9" class="rux--text-area" rows="1" data-ln-note="6.9" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">6.10</th><td>Open the saved BOM and go to its material lines</td><td class="ln-see"><span class="ln-t-named">Job Shop List of Materials</span> <span class="ln-t-exact">tibom3110m000</span> opens for this BOM and revision</td></tr>
           <tr><th scope="row" class="ln-step-id">6.11</th><td>Add a line: <span class="ln-t-named">Item</span> = the bamboo rod, <span class="ln-t-named">Net Quantity</span> = 2</td><td class="ln-see">Two rods per pair</td></tr>
           <tr><th scope="row" class="ln-step-id">6.12</th><td>Add a line: <span class="ln-t-named">Item</span> = the paper sleeve, <span class="ln-t-named">Net Quantity</span> = 1</td><td class="ln-see">One sleeve per pair</td></tr>
           <tr><th scope="row" class="ln-step-id">6.13</th><td>On both lines, set <span class="ln-t-named">Warehouse</span> to the raw-material warehouse from 0.5</td><td class="ln-see">Each material will be issued from the warehouse phase 9 stocks</td></tr>
           <tr><th scope="row" class="ln-step-id">6.14</th><td>Leave <span class="ln-t-named">Scrap Percentage</span> and <span class="ln-t-named">Scrap Quantity</span> at zero</td><td class="ln-see">No material loss is modelled in this test</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">6.15</th><td>Save the material lines</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">BOM materials stored</span> — both lines belong to this BOM revision</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">6.15</th><td>Save the material lines</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">BOM materials stored</span> — both lines belong to this BOM revision<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-6.15">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-6.15" class="rux--text-area" rows="1" data-ln-note="6.15" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">6.16</th><td>Select the BOM row and run <span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Approve Revision</span></span></td><td class="ln-see"><span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Approved</span></span>; <span class="ln-t-named">Approved By</span> and <span class="ln-t-named">Approved On</span> are filled</td></tr>
           <tr><th scope="row" class="ln-step-id">6.17</th><td>With the same row selected, run <span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Use for Planning Indicator</span></span></td><td class="ln-see"><span class="ln-t-named">Use for Planning</span> is selected on the row</td></tr>
           <tr><th scope="row" class="ln-step-id">6.18</th><td>With the same row selected, run <span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Use for Costing Indicator</span></span></td><td class="ln-see"><span class="ln-t-named">Use for Costing</span> is selected on the row</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">6.19</th><td>Close and reopen the BOM</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">BOM approved and in use</span> — <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Approved</span></span>, both indicators set, both material lines present</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">6.19</th><td>Close and reopen the BOM</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">BOM approved and in use</span> — <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Approved</span></span>, both indicators set, both material lines present<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-6.19">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-6.19" class="rux--text-area" rows="1" data-ln-note="6.19" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -1065,13 +1165,23 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">7.10</th><td>Leave <span class="ln-t-named">Calculate</span> and the lead-time fields at their proposed values</td><td class="ln-see">No invented lead time enters the test data</td></tr>
           <tr><th scope="row" class="ln-step-id">7.11</th><td>On the <span class="ln-t-named">Operations</span> grid, select <span class="ln-t-press">New</span></td><td class="ln-see">A blank operation line opens</td></tr>
           <tr><th scope="row" class="ln-step-id">7.12</th><td>Enter <span class="ln-t-named">Operation</span> = <span class="ln-t-exact">10</span></td><td class="ln-see">The pair has a first operation</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">7.13</th><td>Set <span class="ln-t-named">Reference Operation</span> and <span class="ln-t-named">Work Center</span> to existing values from the prerequisite lookups</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">routing operation and work center</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">7.13</th><td>Set <span class="ln-t-named">Reference Operation</span> and <span class="ln-t-named">Work Center</span> to existing values from the prerequisite lookups</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">routing operation and work center</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-7.13">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-7.13" class="rux--text-area" rows="1" data-ln-note="7.13" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">7.14</th><td>Check what the reference operation brought with it, and enter <span class="ln-t-named">Cycle Time (min)</span> only if it is still blank. With <span class="ln-t-named">Use Production Rates</span> selected in the current parameter set, confirm <span class="ln-t-named">Production Rate</span> is filled, since that is the value LN uses for the operation time</td><td class="ln-see">A reference operation carries its own times; do not overwrite them with an invented value. The production rate is expressed per hour here</td></tr>
           <tr><th scope="row" class="ln-step-id">7.15</th><td>Save the operation line</td><td class="ln-see">The operation is stored against the routing revision</td></tr>
           <tr><th scope="row" class="ln-step-id">7.16</th><td>Select the routing and approve the revision from the <span class="ln-t-named">Actions</span> menu</td><td class="ln-see"><span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Approved</span></span>; <span class="ln-t-named">Approved By</span> and <span class="ln-t-named">Approved On</span> are filled</td></tr>
           <tr><th scope="row" class="ln-step-id">7.17</th><td>Set <span class="ln-t-named">Use for Planning</span> on the routing</td><td class="ln-see"><span class="ln-t-named">Use for Planning</span> is selected</td></tr>
           <tr><th scope="row" class="ln-step-id">7.18</th><td>Set <span class="ln-t-named">Use for Costing</span> on the routing</td><td class="ln-see"><span class="ln-t-named">Use for Costing</span> is selected</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">7.19</th><td>Close and reopen the routing</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">routing and revision</span> — <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Approved</span></span>, indicators set, operation present</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">7.19</th><td>Close and reopen the routing</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">routing and revision</span> — <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Approved</span></span>, indicators set, operation present<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-7.19">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-7.19" class="rux--text-area" rows="1" data-ln-note="7.19" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -1087,9 +1197,24 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
           <tr><th scope="row" class="ln-step-id">8.1</th><td>Open <span class="ln-t-named">Item - Costing</span> <span class="ln-t-exact">ticpr0107m000</span> for the bamboo rod</td><td class="ln-see">The item&#39;s costing record opens for an enterprise unit</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">8.2</th><td>Read <span class="ln-t-named">Standard Cost</span>, <span class="ln-t-named">Material Costs</span>, and <span class="ln-t-named">Costing Source</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component standard costs</span> — the rod&#39;s figures</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">8.3</th><td>Repeat for the paper sleeve</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component standard costs</span> — the sleeve&#39;s figures</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">8.4</th><td>Open the record for the finished item</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">finished-item standard cost</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">8.2</th><td>Read <span class="ln-t-named">Standard Cost</span>, <span class="ln-t-named">Material Costs</span>, and <span class="ln-t-named">Costing Source</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component standard costs</span> — the rod&#39;s figures<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-8.2">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-8.2" class="rux--text-area" rows="1" data-ln-note="8.2" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">8.3</th><td>Repeat for the paper sleeve</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component standard costs</span> — the sleeve&#39;s figures<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-8.3">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-8.3" class="rux--text-area" rows="1" data-ln-note="8.3" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">8.4</th><td>Open the record for the finished item</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">finished-item standard cost</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-8.4">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-8.4" class="rux--text-area" rows="1" data-ln-note="8.4" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">8.5</th><td>For any item whose standard cost is missing or unexpected, open <span class="ln-t-named">Item Standard Costs</span> <span class="ln-t-exact">ticpr3501m000</span> for that item and effective date</td><td class="ln-see">The actual and historical standard cost structure is shown, or confirms none exists</td></tr>
           <tr><th scope="row" class="ln-step-id">8.6</th><td>If any of the three still has no standard cost, stop and obtain the approved cost route before continuing</td><td class="ln-see">The estimate calculation is not left to run against missing material costs</td></tr>
             </tbody>
@@ -1107,15 +1232,35 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
           <tr><th scope="row" class="ln-step-id">9.1</th><td>Open <span class="ln-t-named">Inventory 360</span> and filter for the bamboo rod</td><td class="ln-see">The rod appears with inventory totals</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">9.2</th><td>Click <span class="ln-t-press">Warehouse Inventory</span> and read the raw-material warehouse from 0.5</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">rod on hand before</span>, expected to be <span class="ln-t-exact">0</span> for a new item</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">9.3</th><td>Repeat 9.1–9.2 for the paper sleeve</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">sleeve on hand before</span> — both baselines recorded before anything is booked</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">9.4</th><td>Create a purchase order in <span class="ln-t-named">Purchase Order Intake Workbench</span> <span class="ln-t-exact">tdpur4601m200</span></td><td class="ln-see"><span class="ln-t-named">Purchase Order</span> <span class="ln-t-exact">tdpur4100m900</span> opens — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component stocking route used</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">9.2</th><td>Click <span class="ln-t-press">Warehouse Inventory</span> and read the raw-material warehouse from 0.5</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">rod on hand before</span>, expected to be <span class="ln-t-exact">0</span> for a new item<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-9.2">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-9.2" class="rux--text-area" rows="1" data-ln-note="9.2" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">9.3</th><td>Repeat 9.1–9.2 for the paper sleeve</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">sleeve on hand before</span> — both baselines recorded before anything is booked<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-9.3">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-9.3" class="rux--text-area" rows="1" data-ln-note="9.3" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">9.4</th><td>Create a purchase order in <span class="ln-t-named">Purchase Order Intake Workbench</span> <span class="ln-t-exact">tdpur4601m200</span></td><td class="ln-see"><span class="ln-t-named">Purchase Order</span> <span class="ln-t-exact">tdpur4100m900</span> opens — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component stocking route used</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-9.4">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-9.4" class="rux--text-area" rows="1" data-ln-note="9.4" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">9.5</th><td>Select the <span class="ln-t-named">Buy-from Business Partner</span> through the <span class="ln-t-named">Buy-from Business Partners</span> lookup (<span class="ln-t-exact">tccom4520m000</span>)</td><td class="ln-see">The partner list opens. One run used <span class="ln-t-exact">BP4000007</span> <span class="ln-t-named">VISTA MACHINES INC.</span> from the standard test partners</td></tr>
           <tr><th scope="row" class="ln-step-id">9.6</th><td>Set <span class="ln-t-named">Order Type</span>, <span class="ln-t-named">Purchase Office</span> and <span class="ln-t-named">Ship-to</span></td><td class="ln-see">The order takes a number. One run produced <span class="ln-t-exact">100000677</span>, Order Type <span class="ln-t-exact">IPO</span> (Inventory Purchase Order), Purchase Office <span class="ln-t-exact">401P00</span>, ship-to <span class="ln-t-exact">CSADNA01</span></td></tr>
           <tr><th scope="row" class="ln-step-id">9.7</th><td>Book the order lines from the BOM, not from habit</td><td class="ln-see">One line per component. One run booked line 10 <span class="ln-t-exact">BAM-ROD</span> qty <span class="ln-t-exact">2.0000 ea</span> and line 20 <span class="ln-t-exact">BAM-SLEEVE</span> qty <span class="ln-t-exact">1.0000 ea</span>, both to <span class="ln-t-exact">ADNA02 RAW MATERIALS</span></td></tr>
           <tr><th scope="row" class="ln-step-id">9.8</th><td>On the generated <span class="ln-t-named">Warehousing Order</span> <span class="ln-t-exact">whinh2100m100</span>, run <span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Receive</span></span> on the inbound lines</td><td class="ln-see">Order Type <span class="ln-t-exact">PUI</span> &quot;Purchase Receipts&quot;, ship-from the business partner, ship-to <span class="ln-t-exact">ADNA02</span></td></tr>
           <tr><th scope="row" class="ln-step-id">9.9</th><td>Confirm the <span class="ln-t-named">Warehouse Receipt</span> <span class="ln-t-exact">whinh3512m000</span></td><td class="ln-see"><span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span>, <span class="ln-t-named">All Lines Final</span> and <span class="ln-t-named">All Lines Complete</span> both set. One run produced receipt <span class="ln-t-exact">100001505</span>, packing slips <span class="ln-t-exact">123</span> (rod) and <span class="ln-t-exact">124</span> (sleeve)</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">9.10</th><td>Re-read both items in <span class="ln-t-named">Inventory 360</span> at the raw-material warehouse</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">rod on hand after</span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">sleeve on hand after</span> — each increased by the booked quantity</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">9.10</th><td>Re-read both items in <span class="ln-t-named">Inventory 360</span> at the raw-material warehouse</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">rod on hand after</span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">sleeve on hand after</span> — each increased by the booked quantity<div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-9.10">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-9.10" class="rux--text-area" rows="1" data-ln-note="9.10" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -1137,7 +1282,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">10.4</th><td>Confirm both components are on hand at the raw-material warehouse from 9.10</td><td class="ln-see">There is material to issue</td></tr>
           <tr><th scope="row" class="ln-step-id">10.5</th><td>Confirm the finished-item warehouse from 0.6 is the one the produced pair should be received into</td><td class="ln-see">The receiving warehouse is a decision, not a discovery made mid-order</td></tr>
           <tr><th scope="row" class="ln-step-id">10.6</th><td>Confirm the costing figures from 8.2–8.4 are still present</td><td class="ln-see">The estimate calculation has what it reads</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">10.7</th><td>Carry every value in the handoff table below into the production-order guide, and run it there</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">training case qualified</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">10.7</th><td>Carry every value in the handoff table below into the production-order guide, and run it there</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">training case qualified</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-10.7">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-10.7" class="rux--text-area" rows="1" data-ln-note="10.7" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -1219,6 +1369,22 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
              while the guide itself is status: draft. Both are shown. -->
         <p class="rux--type-body-01">Warning Partly verified. Phases 0, 1, 3, 6, 7, 8 have been performed against a live system and confirmed. Phases 2, 4, 5, 9, 10 have not. Follow those as a plan, not as a record.</p>
       
+      <section class="ln-notepad" aria-labelledby="h-notes">
+        <h2 id="h-notes" class="rux--type-productive-heading-03">Your notes</h2>
+        <div class="rux--form-item">
+          <label class="rux--label" for="ln-notes">Anything else worth keeping</label>
+          <div class="rux--text-area__wrapper">
+            <textarea id="ln-notes" class="rux--text-area" rows="5" data-ln-notes placeholder="What surprised you, what you would check next time"></textarea>
+          </div>
+          <div class="rux--form__helper-text">Saved in this browser only, with the values you noted beside the steps. There is no server and no account behind this page. Export to keep them.</div>
+        </div>
+        <div class="ln-notepad-actions">
+          <button type="button" class="rux--btn rux--btn--primary rux--btn--sm" data-ln-export>Export notes</button>
+          <button type="button" class="rux--btn rux--btn--tertiary rux--btn--sm" data-ln-copy>Copy</button>
+          <button type="button" class="rux--btn rux--btn--danger--ghost rux--btn--sm" data-ln-clear>Clear</button>
+        </div>
+      </section>
+      
       <section class="ln-key" aria-labelledby="h-key">
         <h2 id="h-key" class="rux--type-productive-heading-03">How to read a step</h2>
         <dl class="ln-key-grid">
@@ -1234,6 +1400,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <dd>The step yields a value worth writing down.</dd>
         </dl>
       </section>
+      </div>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>
     </div>
@@ -1255,7 +1422,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <script src="/rux-ds/js/tile.js"></script>
 <script src="/rux-ds/js/modal.js"></script>
 <script src="/rux-ds/js/profile.js"></script>
-
+<script src="../js/guide.js"></script>
 <script src="/switcher.js"></script>
 </body>
 </html>

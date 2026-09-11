@@ -140,6 +140,11 @@
    the screen answers -- and nothing was saying so. */
 .rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
 
+.ln-note { margin-block-start: .5rem; max-inline-size: 18rem; }
+.ln-note .rux--label { font-size: .6875rem; }
+.ln-notepad { margin-block-start: 3rem; max-inline-size: 38rem; }
+.ln-notepad-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-block-start: 1rem; }
+
 .ln-key { margin-block-start: 3rem; padding: 1.5rem;
   background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
 .ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
@@ -775,7 +780,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
   <div class="rux--css-grid">
     <div class="rux--css-grid-column rux--col-span-100">
       <div class="rux--stack-vertical rux--stack-scale-7">
-        <div class="rux--stack-vertical rux--stack-scale-5">
+<div data-ln-doc="SG-ship-from-stock">        <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>Ship from stock</h1>
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--green"><span class="rux--tag__label">Approved</span></span>
@@ -831,7 +836,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">0.1</th><td>Enter the item in <span class="ln-t-named">Filter Items</span> and run it</td><td class="ln-see">Grid shows <span class="ln-t-named">On Hand</span> · <span class="ln-t-named">Blocked</span> · <span class="ln-t-named">On Order</span> · <span class="ln-t-named">Allocated</span></td></tr>
           <tr><th scope="row" class="ln-step-id">0.2</th><td>Tick the item row</td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">0.3</th><td>In the <span class="ln-t-named">Inventory</span> group of the header, click <span class="ln-t-press">Warehouse Inventory</span></td><td class="ln-see"><span class="ln-t-named">Warehouse - Item Inventory</span> <span class="ln-t-exact">whwmd2515m000</span> opens, item carried through</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.4</th><td>Read <span class="ln-t-named">Inventory on Hand</span> and <span class="ln-t-named">Inventory Allocated</span> per warehouse</td><td class="ln-see">Totals sit under the grid — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">item</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">warehouse</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">on-hand</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">allocated</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.4</th><td>Read <span class="ln-t-named">Inventory on Hand</span> and <span class="ln-t-named">Inventory Allocated</span> per warehouse</td><td class="ln-see">Totals sit under the grid — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">item</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">warehouse</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">on-hand</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">allocated</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-0.4">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-0.4" class="rux--text-area" rows="1" data-ln-note="0.4" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">0.5</th><td> if no warehouse holds enough to cover the order, replenish before continuing: <span class="ln-t-named">make it</span> with <a class="rux--link" href="SG-manual-production-order-existing-master-data.html">Production order</a>, <span class="ln-t-named">move it</span> with <a class="rux--link" href="SG-transfer-item-between-warehouses.html">Warehouse transfer</a>, or <span class="ln-t-named">buy it in</span> with <a class="rux--link" href="SG-purchase-order-to-warehouse-receipt.html">Purchase to receipt</a>. Return here at phase 1</td><td class="ln-see">This guide continues only once one warehouse can cover the quantity</td></tr>
             </tbody>
           </table>
@@ -853,10 +863,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">1.4</th><td>Set <span class="ln-t-named">Planned Delivery Date</span> and <span class="ln-t-named">Planned Receipt Date</span></td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">1.5</th><td>Confirm <span class="ln-t-named">Sales Office</span>, <span class="ln-t-named">Currency</span>, <span class="ln-t-named">Site</span></td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">1.6</th><td>Set <span class="ln-t-named">Warehouse</span> to the warehouse recorded at 0.4</td><td class="ln-see">—</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">1.7</th><td>Click <span class="ln-t-press">Save</span></td><td class="ln-see"><span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Free</span></span> — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">sales order number</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">1.7</th><td>Click <span class="ln-t-press">Save</span></td><td class="ln-see"><span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Free</span></span> — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">sales order number</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-1.7">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-1.7" class="rux--text-area" rows="1" data-ln-note="1.7" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">1.8</th><td>Click <span class="ln-t-press" title="New (line)">New</span></td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">1.9</th><td>Search for and select the <span class="ln-t-named">Item</span></td><td class="ln-see">—</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">1.10</th><td>Enter the <span class="ln-t-named">Ordered Quantity</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">ordered quantity</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">1.10</th><td>Enter the <span class="ln-t-named">Ordered Quantity</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">ordered quantity</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-1.10">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-1.10" class="rux--text-area" rows="1" data-ln-note="1.10" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">1.11</th><td>Click <span class="ln-t-press">Save</span></td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">1.12</th><td>In the header, <span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Approve</span></span></td><td class="ln-see"><span class="ln-t-named">Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">In Process</span></span>. Order Acknowledgement prints</td></tr>
             </tbody>
@@ -899,7 +919,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">3.2</th><td>Tick the row, then click <span class="ln-t-press" title="Drill In (line)">Drill In</span></td><td class="ln-see"><span class="ln-t-named">Warehousing Order</span> <span class="ln-t-exact">whinh2100m100</span> opens</td></tr>
           <tr><th scope="row" class="ln-step-id">3.3</th><td>Open the <span class="ln-t-named">Outbound Lines</span> tab</td><td class="ln-see"><span class="ln-t-named">Line Status</span> = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Open</span></span></td></tr>
           <tr><th scope="row" class="ln-step-id">3.4</th><td>Tick the outbound line</td><td class="ln-see">—</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">3.5</th><td>On the <span class="ln-t-named">Outbound Lines</span> toolbar, <span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span>Advice</span><span class="sep">➔</span><span class="dest">Generate Advice</span></span></td><td class="ln-see"><span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Advised</span></span> and <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Released</span></span> both fill — release is automatic here. Picking List by Location prints — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Run</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Mission</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">3.5</th><td>On the <span class="ln-t-named">Outbound Lines</span> toolbar, <span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span>Advice</span><span class="sep">➔</span><span class="dest">Generate Advice</span></span></td><td class="ln-see"><span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Advised</span></span> and <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Released</span></span> both fill — release is automatic here. Picking List by Location prints — <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Run</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">Mission</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-3.5">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-3.5" class="rux--text-area" rows="1" data-ln-note="3.5" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">3.6</th><td>Open the <span class="ln-t-named">Shipment Lines</span> tab and check for an early shipment</td><td class="ln-see">If projected shipments are enabled, a <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Projected</span></span> or <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Open</span></span> line may already show a value in <span class="ln-t-named">Shipment</span>. If the tab is empty, continue to phase 4 — that is expected in the standard flow</td></tr>
             </tbody>
           </table>
@@ -920,7 +945,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><th scope="row" class="ln-step-id">4.3</th><td>Read the grid line</td><td class="ln-see"><span class="ln-t-named">Picked</span> · <span class="ln-t-named">Sequence</span> · <span class="ln-t-named">Item</span> · <span class="ln-t-named">Serial Number</span> · <span class="ln-t-named">From Location</span>. <span class="ln-t-named">Picked</span> = grey dot</td></tr>
           <tr><th scope="row" class="ln-step-id">4.4</th><td>Tick the line</td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">4.5</th><td><span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Pick Run</span></span></td><td class="ln-see">Stock moves from <span class="ln-t-named">From Location</span> to <span class="ln-t-named">To Location</span>. <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Picked</span></span> fills on Outbound Lines. Line status = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Staged</span></span></td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">4.6</th><td>Return to the Warehousing Order and open <span class="ln-t-named">Shipment Lines</span></td><td class="ln-see">A shipment line now exists in the standard flow. Read the value in <span class="ln-t-named">Shipment</span> — not the shipment-line position — and record it: <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">shipment number</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">4.6</th><td>Return to the Warehousing Order and open <span class="ln-t-named">Shipment Lines</span></td><td class="ln-see">A shipment line now exists in the standard flow. Read the value in <span class="ln-t-named">Shipment</span> — not the shipment-line position — and record it: <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">shipment number</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-4.6">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-4.6" class="rux--text-area" rows="1" data-ln-note="4.6" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -936,7 +966,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
           <tr><th scope="row" class="ln-step-id">5.1</th><td>Find your shipment, then click <span class="ln-t-press" title="Drill In (line)">Drill In</span></td><td class="ln-see">Status = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Open</span></span>. <span class="ln-t-named">Freeze Mandatory</span> ticked; <span class="ln-t-named">Allow Changes to Shipment</span> ticked</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">5.2</th><td>Shipping less than picked? Change <span class="ln-t-named">Shipped Quantity</span> on <span class="ln-t-named">Shipment Lines</span> <span class="ln-t-exact">whinh4131m000</span>, not here</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">shipped quantity</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">5.2</th><td>Shipping less than picked? Change <span class="ln-t-named">Shipped Quantity</span> on <span class="ln-t-named">Shipment Lines</span> <span class="ln-t-exact">whinh4131m000</span>, not here</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">shipped quantity</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-5.2">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-5.2" class="rux--text-area" rows="1" data-ln-note="5.2" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
           <tr><th scope="row" class="ln-step-id">5.3</th><td><span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Freeze</span></span> (Shift+F)</td><td class="ln-see">Status = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Frozen</span></span>. <span class="ln-t-named">Confirm</span> becomes available</td></tr>
           <tr><th scope="row" class="ln-step-id">5.4</th><td>Review the packing slip</td><td class="ln-see">—</td></tr>
           <tr><th scope="row" class="ln-step-id">5.5</th><td><span class="ln-t-route"><span>Actions</span><span class="sep">➔</span><span class="dest">Confirm</span></span> (Shift+C)</td><td class="ln-see">Status = <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span>. Inventory relieved</td></tr>
@@ -954,7 +989,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">6.1</th><td>Read the on-hand quantity</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">on-hand after</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">difference</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">6.1</th><td>Read the on-hand quantity</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">on-hand after</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">difference</span><div class="rux--form-item ln-note">
+              <label class="rux--label" for="n-6.1">Write it down</label>
+              <div class="rux--text-area__wrapper">
+                <textarea id="n-6.1" class="rux--text-area" rows="1" data-ln-note="6.1" placeholder="The value you saw"></textarea>
+              </div>
+            </div></td></tr>
             </tbody>
           </table>
         </div>
@@ -1050,6 +1090,22 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
              while the guide itself is status: draft. Both are shown. -->
         <p class="rux--type-body-01">Note Every phase of this procedure has been performed against a live system and its result confirmed.</p>
       
+      <section class="ln-notepad" aria-labelledby="h-notes">
+        <h2 id="h-notes" class="rux--type-productive-heading-03">Your notes</h2>
+        <div class="rux--form-item">
+          <label class="rux--label" for="ln-notes">Anything else worth keeping</label>
+          <div class="rux--text-area__wrapper">
+            <textarea id="ln-notes" class="rux--text-area" rows="5" data-ln-notes placeholder="What surprised you, what you would check next time"></textarea>
+          </div>
+          <div class="rux--form__helper-text">Saved in this browser only, with the values you noted beside the steps. There is no server and no account behind this page. Export to keep them.</div>
+        </div>
+        <div class="ln-notepad-actions">
+          <button type="button" class="rux--btn rux--btn--primary rux--btn--sm" data-ln-export>Export notes</button>
+          <button type="button" class="rux--btn rux--btn--tertiary rux--btn--sm" data-ln-copy>Copy</button>
+          <button type="button" class="rux--btn rux--btn--danger--ghost rux--btn--sm" data-ln-clear>Clear</button>
+        </div>
+      </section>
+      
       <section class="ln-key" aria-labelledby="h-key">
         <h2 id="h-key" class="rux--type-productive-heading-03">How to read a step</h2>
         <dl class="ln-key-grid">
@@ -1065,6 +1121,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <dd>The step yields a value worth writing down.</dd>
         </dl>
       </section>
+      </div>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>
     </div>
@@ -1086,7 +1143,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 <script src="/rux-ds/js/tile.js"></script>
 <script src="/rux-ds/js/modal.js"></script>
 <script src="/rux-ds/js/profile.js"></script>
-
+<script src="../js/guide.js"></script>
 <script src="/switcher.js"></script>
 </body>
 </html>

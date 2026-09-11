@@ -24,6 +24,12 @@ not tile 3 where the absence finally shows.
 to fix.** The measurement is under *Known losses* below, because what it found
 is about rux-ds's four brand themes generally and not about these tiles.
 
+**True of the tiles it was looking at, and wrong as a clearance — corrected the
+same day.** The eye was on the session map's two new prerequisites and did not
+go to the overview, where all three Checkpoints were drawn with no stripe at all.
+Eight themes of looking at the right tiles did not find it; resolving the
+stylesheet found it in one run. *Decided, not built* below has the record.
+
 **What would put something back here:** rux-ds answering the vocabulary
 question, or atlas answering `SEND-ATLAS-2.md`. Both are other people's moves.
 `SEND-ATLAS-2.md` §1 is the one that blocks work upstream — atlas's
@@ -138,16 +144,28 @@ and was wrong within a day of doing so.
   to 7 on `SG-ship-from-stock`. Local storage, no server, Markdown export, same
   as the exercise pages have had since 2026-09-06. The ✎ marks
   (`tokens.pencil` = 125) are what it was for.
-- **The two collision figures belong in `measure.mjs`, and are not there.**
-  `DESIGN-diagram-kinds.md` §5.2 says so plainly — *"they belong there whether
-  or not this plan is taken"* — because `colliding by register` is a defect
-  count that nothing watches. Verified 2026-09-11: no `collid` anywhere in
-  `tools/measure.mjs`, and `MEASURED` carries 26 diagram rows without it. The
-  specimen measures both, but `build/` is git-ignored, so the figure exists
-  only while someone is looking at it. It read 9 when §5.2 was written, and the
-  headline the specimen gained — ONE CATEGORY, ONE LOOK — is the one that was
-  missing when Prerequisite shipped drawn two ways with every collision count
-  reading 0.
+- ~~**The two collision figures belong in `measure.mjs`, and are not there.**~~
+  **BUILT 2026-09-11 — `tools/tile-looks.mjs`, twelve rows in `MEASURED` — and
+  it found a live defect on its first run.** It resolves the diagram's own CSS
+  out of a built page, specificity included, rather than asking a browser, so
+  the figure survives in a diff; the trade is that it compares token names and
+  cannot see two tokens that paint the same value in one theme, which stays the
+  specimen's half. **What went in is not what the line asked for, and that is in
+  the tool's own header:** `colliding by register` and `colliding by kind` were
+  both written before the five categories were decided, so what is measured is
+  by category, plus `looks-per-category`, plus the resolved look of each
+  category as a row of its own.
+
+  **The defect: every Checkpoint on the overview had lost its yellow** —
+  `0px none`, confirmed in the browser before it was believed, on the document
+  whose content is mostly gates. `63094e5` closed the three-sided Prerequisite
+  card and, with the two `:not()`s that fix added, took the accent rule from
+  (0,2,0) to (0,4,0) and past the rule protecting it. Fixed by keying the
+  not-a-session refinement on Step, the one category it was ever about;
+  `DESIGN-diagram-kinds.md` §7 is the record, with the before-and-after
+  geometry. **None of the three figures that were green could ever have caught
+  it** — a missing colour is not a collision — which is why the look itself is
+  now a row.
 - ~~**The answer key on the public site.**~~ **CLOSED — and it was already
   closed when this bullet still said otherwise; corrected 2026-09-10 by
   measuring rather than re-reading the line.** The mechanism is as described:
@@ -182,6 +200,25 @@ and was wrong within a day of doing so.
   is 'Now' item 1", and there is no such item.
 
 ## Known losses, recorded so they are not rediscovered
+
+- **The lane name leaves the session map when it is scrolled.** `.ln-dg-lane`
+  sits in column 1 of a grid that scrolls, and the map is 2612px of figure in a
+  1312px frame at 1440: scrolled to the far right, the label is 1053px off the
+  left edge and **0 of 6 lane names are readable for the right-hand half of the
+  document.** The overview does not scroll and is unaffected.
+
+  **A fix was built and measured and is not taken.** `position: sticky` on the
+  lane column holds all 6, drawn as variant B in the specimen on 2026-09-11. It
+  was declined on the day the lane rule shipped: a rule holds your row while your
+  eye travels right, which was the question being asked, and a sticky label is an
+  opaque block painting over every tile that passes under it — a second thing to
+  judge, not a free addition. `DESIGN-diagram-kinds.md` §8 carries the
+  measurements.
+
+  **What that gives up:** a reader working the right-hand half of the map has the
+  rules to keep their row and no name for it, and must scroll back to learn which
+  lane they are in. The specimen reports `name held at far right 0/6` on every
+  run, so the figure is live rather than a memory.
 
 - **A container border on this site does not reach 3:1, and in the four brand
   themes neither does the one that carries a category.** Measured 2026-09-11

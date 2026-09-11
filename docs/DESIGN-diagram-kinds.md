@@ -19,17 +19,28 @@ useful part and two of them record where this plan was wrong; what is decided
 is here.
 
 A reader at a screen with the map open asks five questions, so there are five
-categories. Measured over all 41 nodes of the two diagrams:
+categories. Measured over all 43 nodes of the two diagrams:
 
 | | | the question it answers | nodes |
 |---|---|---|---|
 | 1 | **Step** | what do I do here | 20 |
-| 2 | **Prerequisite** | what has to be true before any of this runs | 4 |
+| 2 | **Prerequisite** | what has to be true before any of this runs | 6 |
 | 3 | **Reading** | what is the state right now | 3 |
 | 4 | **Result** | what do I now have | 10 |
 | 5 | **Checkpoint** | what decides silently, and how would I know | 4 |
 
-**Result is the one today's design has never had, and it is 10 of 41.** A
+**Re-measured 2026-09-11 and one row moved: 43 nodes, Prerequisite 6.** Atlas
+added two prerequisites to the session map at `23d1483`, its own answer to the
+ask this side raised. Both arrive as `kind: step` carrying a session code and no
+number, so Step's *numbered* count is untouched and every other row here is
+unchanged. **The 6 has nothing to do with the 6 corrected below** under *All
+five are derivable*, where 6 was this file's own miscount of the same category:
+one is two real nodes arriving, the other was an error. Two figures reading 6
+for opposite reasons is a coincidence, said out loud here so it is not read as a
+reversal. From now on the counts are `diagram.*.categories` in `MEASURED`, so
+the next move upstream lands in a diff rather than in this paragraph.
+
+**Result is the one today's design has never had, and it is 10 of 43.** A
 planned purchase order is drawn as a box exactly like a step, so it reads as
 something to go and perform. There is nothing to perform — MRP made it. This
 is also where the map's second takeaway lives: a proposal is not an order, and
@@ -103,7 +114,9 @@ cluster row. So:
 | Step | everything else |
 
 `read` has carried it the whole time. **Nothing is asked of atlas**, and the
-counts move: Reading is 3, not 1, and Prerequisite is 4, not 6.
+counts move: Reading is 3, not 1, and Prerequisite is 4, not 6. *(Prerequisite
+is 6 as of 2026-09-11, because atlas sent two more of them — see the note under
+the table above. The 4 here was correct on the day.)*
 
 `read` is tested **before** the path, because a Reading need not sit beside the
 route — checking stock mid-sequence is still a Reading. It would then take the
@@ -115,11 +128,13 @@ in*, which is the signals staying independent rather than an exception.
 ## 1. What is actually there
 
 Nine kinds arrive from atlas across the two documents that carry a diagram.
-Counted over all 41 nodes:
+Counted over all 43 nodes, re-measured 2026-09-11 — `step` was 19/19/19/14 and
+took atlas's two new prerequisites, both of them coded and neither numbered;
+nothing else in the table moved:
 
 | kind | nodes | has `code` | has `route` | numbered |
 |---|---|---|---|---|
-| `step` | 19 | 19 | 19 | 14 |
+| `step` | 21 | 21 | 21 | 14 |
 | `real` | 4 | 4 | 4 | 2 |
 | `read` | 3 | 3 | 3 | 0 |
 | `gate` | 3 | 1 | 1 | 1 |
@@ -128,6 +143,13 @@ Counted over all 41 nodes:
 | `outcome` | 3 | 0 | 0 | 0 |
 | `terminal` | 2 | 1 | 1 | 1 |
 | `decision` | 1 | 0 | 0 | 0 |
+
+**Everything from here to the end of §1 describes the design of 2026-09-09 and
+is kept as the record of what was wrong with it.** §0 replaced it: `build.mjs`
+keys on the five categories now and styles no `ln-dg-node--<kind>` class at all,
+so "six of the nine get a treatment" is a sentence about the old renderer. The
+kind table above is current; these appearance figures are not, by design — §5.1
+says why a reconstruction of them was thrown away rather than kept alive.
 
 Six of the nine get a treatment in `build.mjs`; `read` gets a dashed border
 and a transparent ground, the other five get a hue. `step` is the default
@@ -239,7 +261,9 @@ both documents it lands on exactly the right nodes:
 | | beside the path | what they are |
 |---|---|---|
 | overview | 4 of 17 | the whole `Master Data` lane |
-| session map | 3 of 24 | the parameter and inventory checks |
+| session map | 5 of 26 | the parameter and inventory checks, and since `23d1483` two prerequisites in a `Master Data` lane |
+
+*(The map read 3 of 24 when this was written. Re-measured 2026-09-11.)*
 
 **And it cuts across `kind`, which is why `kind` could never have shown it.**
 `Items and groups` is a `step` and sits beside the path; `Bill of material and
@@ -309,7 +333,13 @@ the only copy of that word has always been.
 
 ## 4. What this does not propose
 
-- **A legend for the diagram.** If three forms need one, they are the wrong
+- ~~**A legend for the diagram.**~~ **REVERSED 2026-09-11 by rux, and §9 is
+  the record.** The argument below still holds for the *forms* — they measure
+  out at four looks and five with nothing colliding, and the legend does not
+  exist to tell them apart. It exists because §1's other finding was never
+  answered: these five words appear nowhere on the page except inside a tile's
+  own panel. The forms carry the distinctions; the legend supplies the nouns.
+  If three forms need one, they are the wrong
   three. That was the finding behind the four registers — *"a key for them
   would have been an apology"* — and it applies here unchanged.
 - **A new field from atlas.** `code` is already there and already exact.
@@ -353,6 +383,12 @@ themes:
    map is 0 in every variant, because it has no prerequisites on it at all —
    which is the subject of the ask now held in atlas as
    `exchange/send-atlas-3.md`, not a clean bill of health.
+
+   **That ask was answered and the last sentence is no longer true.** Atlas
+   replied at `23d1483` and added two prerequisites to the map in a `Master
+   Data` lane, synced here at `2ab6911`: the map has 5 of 26 tiles beside the
+   path now, and its 0 is a real 0 under the shipped design rather than an
+   empty set. Corrected 2026-09-11 by re-measuring, not by re-reading.
 
 **And one figure here was overstated, corrected the same day.** §1 said 9 of
 the overview's tiles are indistinguishable, on a signature of border,
@@ -421,6 +457,31 @@ grey tile nobody notices. Figures 1 and 2 are now measured in the specimen but
 taken: `colliding by register` is a defect count that nothing watches, and it
 is 9 today.
 
+**They are there now — `tools/tile-looks.mjs`, 2026-09-11 — and what went in is
+not quite what was asked for.** `colliding by register` and `colliding by kind`
+were both written before §0 decided five categories: by-kind was the question
+being decided and it is decided, and by-register was the three groups the
+categories replaced. So what is measured is **by category**, the same test over
+the vocabulary that won, plus `looks-per-category`, plus the resolved look of
+each category as a row of its own. Twelve rows per run across the two documents.
+
+**It resolves the CSS instead of asking a browser, which buys a diff and costs a
+theme.** It reads the diagram's rules out of the page it is given, works out
+which land on which tile — specificity included, which the shipped stylesheet
+turns on — and resolves the same five properties the specimen's `sig()` reads.
+So it compares *token names*: if two tokens paint the same value in one theme,
+two tiles collide on screen and not in the figure. **That half stays the
+specimen's**, and it is why the specimen is not retired. It also refuses rather
+than guesses: an attribute selector, a sibling combinator, an `:nth-child`, a
+rule keyed above the tile, or a `:has()` of anything but a bare class all throw.
+Tested by injecting each one.
+
+**It was checked against three things it did not author before being trusted:**
+the browser's own computed values on both documents, and both figures
+`63094e5`'s commit message quotes from the day of the defect — 5 looks with
+Prerequisite at 2 before, 4 with Prerequisite at 1 after. It reproduces all
+three. Then it found §7.
+
 ---
 
 ## 6. Owed to atlas, and not blocking
@@ -431,3 +492,218 @@ is 9 today.
 in the emitted data. **The enumeration is stale by two.** It is the sentence
 a renderer reads to learn what it must handle, which is exactly how this
 project came to have no treatment for either.
+
+---
+
+## 7. The one hue went missing a second time, and the figure that found it
+
+**Found 2026-09-11 by the tool in §5.2, on its first run, and confirmed in the
+browser before it was believed.** Every Checkpoint on the overview — all three,
+and the overview is the document whose content is mostly gates — was drawn with
+`border-inline-start: 0px none`. No yellow. The one colour the design kept was
+invisible on the page §3.2 was written about, for a day.
+
+**It is the same defect as §3.2 and a different mechanism, which is why nothing
+caught it.** §3.2's version was a rule that took the stripe from every
+non-session; this one is specificity. `63094e5` fixed the three-sided
+Prerequisite card by excluding the two categories drawn beside the route:
+
+    .ln-dg-node:not(:has(.ln-dg-node-code)):not(.ln-dg-cat--config):not(.ln-dg-cat--info)
+
+Those two `:not()`s took that rule from (0,2,0) to (0,4,0), past
+`.ln-dg-cat--check:not(:has(.ln-dg-node-code))` at (0,2,0) — the rule whose only
+job was to give a codeless Checkpoint its accent back. Before the fix the two
+were equal and the later one won. **One commit closed the card and opened this,
+and its own message is careful about everything it measured.** What it measured
+could not see this: a stripeless italic tile on `layer-01` still collides with
+nothing, so `looks`, `looks-per-category` and `colliding-by-category` all read
+their good values throughout. Three green figures and a missing colour.
+
+**The fix is to name the one category the rule is about**, rather than to add a
+third `:not()` and leave the trap armed:
+
+    .ln-dg-cat--step:not(:has(.ln-dg-node-code))
+
+Step is the only category whose stripe is the plain grey default; the other four
+have each said what their inline start is, so the not-a-session refinement has
+nothing left to refine in them. The `.ln-dg-cat--check:not(:has(…))` rule is
+deleted, not reordered — it existed only to undo the over-reach. **What this
+gives up:** a sixth category added later with no inline-start rule of its own
+keeps the grey stripe when it has no code, where the old rule would have removed
+it. That is a local decision arriving with its own CSS, not something atlas can
+send: a new `kind` lands in one of the five categories.
+
+**Measured after, both documents, all eight themes:** one look per category, 4
+looks on the overview and 5 on the map, 0 colliding, the Prerequisite card
+dashed on all four sides, and the accent back at `3px solid
+var(--rux-support-warning…)` — 241,194,27 in the four Carbon themes and the
+four brand yellows elsewhere. And measured before and after at a fixed 1440
+viewport, to show the geometry did not move: column 215px either way, figure
+1312 of 1312 either way, all 17 tile heights identical. The stripe costs 3px of
+border where the missing stripe cost 3px of padding.
+
+**The instrument is the point of this section.** An accent that disappears is
+not a collision and not an inconsistency, so no figure that counts either could
+ever have reported it. What reports it is the look itself being a row —
+`diagram-looks.check` — so the colour has to survive a diff rather than a
+person's memory of what the page used to look like.
+
+---
+
+## 8. The lanes get a rule, and what that did not fix
+
+**Asked, drawn, measured and shipped 2026-09-11.** Six lanes run down both
+diagrams and nothing separated them. The case for a line is one figure, taken on
+the rendered pages at 1440:
+
+| | |
+| :--- | :--- |
+| two tiles stacked **inside** one lane | 8px apart, every pair, both documents |
+| two tiles in **different lanes**, same column | **8px apart** — overview column 6 twice, session map columns 7 and 8 |
+| the same lane boundary elsewhere | **543px** — map columns 3 and 9, where the lanes between are empty |
+
+So 8px meant both things at once, and where it did not, the same boundary was
+543px of nothing. A reader had no way to tell the rest of a lane from the start
+of the next one, and no amount of looking at the gap would have told them.
+
+**What shipped is a rule at the top of every lane, spanning every column, and
+the stage headings gave up their own underline to it.** That underline was drawn
+per stage, so it broke at every column gap; the first lane's rule sits in the
+same place, runs unbroken, and does the same job. Two lines 10px apart became
+one.
+
+**A tile used to sit flush on that line**, because `align-items: start` puts a
+tile at its row's top and the rule is at the row's top. The cells took `.5rem`
+and the lane labels took the same, so every tile now clears the rule by 8px and
+the label text still lines up with the first tile's title exactly as before —
+measured on the text rather than the boxes, because a box top does not move when
+you add padding to it: **−14.1px before and −14.1px after, all six lanes.**
+Column 215px and figure 1312 of 1312 either way; the grid is 47px taller, which
+is the padding and nothing else.
+
+### It is an element, and the pseudo-element that failed is the reason
+
+The rule could have been an `::after` on the lane label with no new markup, and
+in the specimen it was. **It works only while the label is unpositioned.** The
+third variant made the lane name sticky so it survives scrolling, and
+`position: sticky` makes the label a containing block — the rule stopped
+resolving against the grid and collapsed from 1280px to the width of the label.
+Nothing about the rule was wrong; the label underneath it had changed what "the
+full width" meant. A grid item spanning `1 / -1` cannot do that, so that is what
+ships.
+
+### The lane name still leaves, and that is declined rather than unnoticed
+
+The second variant was the other half: `.ln-dg-lane` sits in column 1 of a grid
+that scrolls, so on the session map — 2612px of figure in 1312px of frame —
+scrolling to the far right puts the label 1053px off the left edge. **0 of 6
+lane names are readable for the right-hand half of that document.** Sticky fixed
+it, measured at 6 of 6, and it is **not taken**: a rule holds your row while your
+eye travels, which was the question asked, and an opaque label painting over
+tiles as they pass under it is a second thing to judge. Recorded in
+`docs/status.md` under *Known losses* so it is a decision rather than an
+oversight.
+
+**The specimen's own figures are the regression view now**: `ruled` reads 6 of 6
+and `name held at far right` reads 0 of 6 on the shipped page, every run. The
+first is what was fixed; the second is what was not.
+
+
+---
+
+## 9. The legend, which §4 said not to build
+
+**Asked for directly on 2026-09-11, after the lane rules went in, and the
+request was for a legend *instead of* the wall of text at the foot of the
+figure.** Both halves shipped.
+
+**Why it is not simply a climbdown.** §4 declined a key on the grounds that
+forms needing one are the wrong forms, and that still stands: the five
+categories measure 4 looks on the overview and 5 on the map with 0 colliding,
+and nobody has to be taught a dashed card to see it is not a solid tile. What
+§4 never answered is the finding sitting two sections above it in §1 — *"the
+panel names the kind in full, one click away, and that is the only place any of
+these nine words appears on the site."* A reader who never opens a tile has
+four unlabelled looks and one unexplained colour. **A form can carry a
+distinction without carrying a name**, and the legend supplies only the names.
+
+**Every swatch is a real tile.** It carries `ln-dg-node` and the same
+`ln-dg-cat--*` class the canvas uses, so its border, ground, stripe and italic
+all come from the rules that draw the figure. Verified in the browser rather
+than asserted: the computed stripe, ground, name style and name colour of every
+swatch are **identical to the tiles of its category — 4 of 4 on the overview, 5
+of 5 on the map**. A hand-drawn key that says *dashed* on the day the tiles go
+solid is the failure a legend invites, and this one cannot do it.
+
+**It lists only what the document contains.** The overview has no Reading, so
+its legend has four entries. A key that teaches a look the reader will not meet
+is the beginning of the wall of text it replaced.
+
+**One exemption, and it is named.** A swatch carries no session code, so the
+not-a-session rule would draw the Step swatch stripeless — the single thing that
+swatch exists to show. The exemption is a `:not(.ln-dg-key-tile)` *on that
+rule*, not an override placed after it, because an override at equal specificity
+is exactly the trap §7 records. The rule is (0,3,0) and nothing competes.
+
+**The wall of text folded rather than went.** The off-sequence edges — 9 on the
+overview, 5 on the map — are the only statement anywhere on the site of which
+edges run against the reading order, and their addresses exist in no other
+place. The reading-order sentence stays visible; the list moves into a
+`<details>` whose summary carries the count. Same bargain the tiles strike.
+
+**And it broke the specimen, which is the useful part.** `score()` selected
+`.ln-dg-node` and a swatch is now one of those — with no kind class, so the
+readout died on `undefined`. That is the right failure: the class means "a tile
+or a specimen of one" now, and the fix is to scope the census to
+`.ln-dg-grid .ln-dg-node` rather than to loosen what a tile is. `tile-looks.mjs`
+was never affected — it looks for `<details class="ln-dg-node`, and a swatch is
+a `<span>` — and `js/diagram.js` skips any node with no detail panel, which a
+swatch has not. Both were checked rather than assumed. Every
+`diagram-looks.*` row in `MEASURED` is byte-identical before and after the
+legend.
+
+---
+
+## 10. Each column as wide as its own content
+
+**Asked for as "reduce the tile width further" on 2026-09-11, drawn three ways
+in the specimen, and `max-content` chosen.** The figure was
+`minmax(7rem, 1fr)`: every column the same width and every one of them
+stretching to fill. That made the widest tile anywhere the width of every tile
+everywhere — measured on the session map, **ten tracks of 275px, because one
+tile needed 275.**
+
+| session map | column | scrolls |
+| :--- | :--- | :--- |
+| `minmax(7rem, 1fr)` | 275px, all of them | 2612px in a 1312px frame |
+| **`max-content`** | 110 · 195 · 115 · 200 · 156 · 122 · 243 · **260** | **1738px** |
+| 12rem cap | 192px, all | 2004px |
+| 10rem cap | 160px, all | 1716px, and 94px taller |
+
+**It costs nothing, and that was checked rather than assumed.** `max-content`
+never takes a column below what it holds, so no name wraps and no tile grows.
+Measured by flipping the live page between the two rules: **grid height 1230px
+and tallest tile 138px under both, 0 wrapped names under both** — the only
+figure that moved was the scroll. The column that needed 260 still has 260; the
+saving is entirely the other seven falling to what they actually hold. Tiles
+within a column are still all one width, because a cell stretches them to the
+track. What changed is the scope of *widest*, from the grid to the column.
+
+**What is given up is the even lattice.** The figure reads as a compact table
+with columns of different widths rather than a regular grid, and the two capped
+variants are what that would have cost: they keep the lattice and pay for it in
+wrapped names and height. **And the empty stage column goes with it** — the
+map's undrawn Cash column falls from 275px to 65px, the width of its own
+heading. It is still drawn and still labelled, which is what §8 of that map
+argues for, but it no longer holds a column of space to make the point. That
+consequence was put before rux with the choice.
+
+**One thing was added that nobody asked for, and it is reversible in a line.**
+With the columns sized to content the tracks stop short of the figure — the
+overview's come to 1114px inside a 1280px grid — and a lane rule spanning
+`1 / -1` stopped 166px from the right edge with the figure's ground showing
+past it. A trailing `1fr` track takes the slack, so the rules reach the edge as
+they did when every column stretched. It holds nothing and computes to zero on
+a figure that overflows; on the map it costs one 8px grid gap, 1738px to 1746px.
+Delete the ` 1fr` from `.ln-dg-grid` to have the rules end with the content
+instead.

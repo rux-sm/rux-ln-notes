@@ -50,6 +50,24 @@
    ignores non-rux-- names, so an invented `rux--` one would be unpoliced. */
 .ln-tag-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 
+/* A ROUTE SITS INSIDE A SENTENCE, so it is inline-flex and not the flex
+   rux-ds compiles. .rux--breadcrumb is display:flex, which is right for a
+   page header and wrong here: measured on this page before the rule, a cell
+   reading "On the Outbound Lines toolbar, <route>" put the text on one line
+   and the route on the next -- the sentence broke at the route every time,
+   in all 64 of the cell and list-item uses.
+
+   The rule is on ln-route, this project's own class, and never on
+   rux--breadcrumb itself. It changes ONE property of a rux-ds component to
+   fit a use rux-ds's own template does not have, which is a request to make
+   there -- whether an inline breadcrumb should ship as a modifier -- and is
+   recorded in SEND-DS.md rather than left as a silent local divergence.
+
+   vertical-align follows the precedent three rules above: the same .05em
+   nudge the small tag takes so a component sitting in prose rides the
+   baseline instead of the line box. */
+.ln-route { display: inline-flex; vertical-align: .05em; }
+
 /* EQUAL-HEIGHT CARDS WITH THEIR ACTIONS ON ONE LINE, and it takes both rules.
    Making the grid cell a flex parent is NOT enough on its own -- measured on
    the page: `.rux--card` computes `display: block`, so stretching the card
@@ -744,7 +762,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <div class="rux--tile ln-q" data-ln-row="1:4hk81j">
           <div class="ln-q-head">
             <p class="ln-q-label" id="l-1a0wjmy"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span></p>
-            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Order Planning ➔ Item Order Plan</dd></div></dl>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Planning</span></li><li class="rux--breadcrumb-item"><span>Order Planning</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Item Order Plan</span></li></ol></dd></div></dl>
           </div>
           <div class="ln-q-fields" data-cols="1">
             <div class="rux--form-item ln-q-field">
@@ -761,7 +779,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <div class="rux--tile ln-q" data-ln-row="1:qbyzcd">
           <div class="ln-q-head">
             <p class="ln-q-label" id="l-ed7l19"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span></p>
-            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Order Planning ➔ Planned Orders</dd></div></dl>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Planning</span></li><li class="rux--breadcrumb-item"><span>Order Planning</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Planned Orders</span></li></ol></dd></div></dl>
           </div>
           <div class="ln-q-fields" data-cols="1">
             <div class="rux--form-item ln-q-field">
@@ -778,7 +796,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <div class="rux--tile ln-q" data-ln-row="1:9l1wgk">
           <div class="ln-q-head">
             <p class="ln-q-label" id="l-1db137z"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span></p>
-            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Master Data ➔ Items ➔ Items - Planning</dd></div></dl>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Planning</span></li><li class="rux--breadcrumb-item"><span>Master Data</span></li><li class="rux--breadcrumb-item"><span>Items</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Items - Planning</span></li></ol></dd></div></dl>
           </div>
           <div class="ln-q-fields" data-cols="1">
             <div class="rux--form-item ln-q-field">
@@ -795,7 +813,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <div class="rux--tile ln-q" data-ln-row="1:rgwxw8">
           <div class="ln-q-head">
             <p class="ln-q-label" id="l-f3zwqv"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Scenarios"><span class="rux--tag__label">Scenarios</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd4100m000"><span class="rux--tag__label">cprpd4100m000</span></span></p>
-            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Master Data ➔ Scenarios ➔ Scenarios</dd></div></dl>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Planning</span></li><li class="rux--breadcrumb-item"><span>Master Data</span></li><li class="rux--breadcrumb-item"><span>Scenarios</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Scenarios</span></li></ol></dd></div></dl>
           </div>
           <div class="ln-q-fields" data-cols="1">
             <div class="rux--form-item ln-q-field">
@@ -812,7 +830,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <div class="rux--tile ln-q" data-ln-row="1:3fhpol">
           <div class="ln-q-head">
             <p class="ln-q-label" id="l-19c5xwc"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Ordering"><span class="rux--tag__label">Items - Ordering</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd2100m000"><span class="rux--tag__label">tcibd2100m000</span></span></p>
-            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Master Data ➔ Items ➔ Miscellaneous ➔ Items - Ordering</dd></div></dl>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Master Data</span></li><li class="rux--breadcrumb-item"><span>Items</span></li><li class="rux--breadcrumb-item"><span>Miscellaneous</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Items - Ordering</span></li></ol></dd></div></dl>
           </div>
           <div class="ln-q-fields" data-cols="1">
             <div class="rux--form-item ln-q-field">
@@ -829,7 +847,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <div class="rux--tile ln-q" data-ln-row="1:7a6jqk">
           <div class="ln-q-head">
             <p class="ln-q-label" id="l-1bsrfdw"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse Manager Dashboard"><span class="rux--tag__label">Warehouse Manager Dashboard</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2300m000"><span class="rux--tag__label">whinh2300m000</span></span></p>
-            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Warehousing ➔ Dashboard ➔ Warehouse Manager Dashboard</dd></div></dl>
+            <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd><ol class="rux--breadcrumb rux--breadcrumb--no-trailing-slash ln-route"><li class="rux--breadcrumb-item"><span>Warehousing</span></li><li class="rux--breadcrumb-item"><span>Dashboard</span></li><li class="rux--breadcrumb-item rux--breadcrumb-item--current"><span class="rux--link" aria-current="true">Warehouse Manager Dashboard</span></li></ol></dd></div></dl>
           </div>
           <div class="ln-q-fields" data-cols="1">
             <div class="rux--form-item ln-q-field">

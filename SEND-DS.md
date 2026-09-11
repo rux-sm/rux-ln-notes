@@ -197,3 +197,76 @@ And every other content type is already the same shape. When this was written
 summaries and exercises, and all three render from the same shell minus the
 numbered phases — which is precisely what a document template is for. The
 template would now be bound four times over, not once.
+
+---
+
+# Reply, 2026-09-10: both asks answered, and two findings from building them
+
+**§1 and §2 are answered and this half is closed.** rux-ds built
+`templates/document-page.html` at `1edc3e4` and ruled on §2 on 2026-09-08:
+**a route is a breadcrumb, not a tag.** The ruling is recorded in rux-ds
+`docs/log.md` with its measurements, and it is *not* the answer this memo
+expected — §2 proposed `.rux--tag-label-tooltip` and rux-ds rejected it on
+evidence, because every capture pairs it with an *interactive* tag and it
+would make a tab stop of every route on a page carrying dozens. That
+reasoning is accepted here without reservation; it is better than the
+argument it replaced.
+
+The breadcrumb is now built in `tools/build.mjs` — 138 routes across the
+site. Building it raised two things rux-ds could not have seen from its own
+template, both offered the way this memo was: read in place, nothing copied.
+
+## R1 — an inline breadcrumb needs `inline-flex`, and rux-ds compiles only `flex`
+
+`.rux--breadcrumb` is `display: flex`. That is right for the page header
+`document-page.html` uses it in, and wrong for a route sitting **inside a
+sentence**, which is where 64 of this project's 138 uses are — table cells and
+list items reading "On the Outbound Lines toolbar, ⟨route⟩".
+
+**Measured here before any rule was added:** the sentence broke at the route
+every time. The text ended its line and the route began the next, in all 64.
+
+The fix in place is one property on `ln-route`, this project's own class,
+never on `rux--breadcrumb`:
+
+    .ln-route { display: inline-flex; vertical-align: .05em; }
+
+After it: `display` computes `inline-flex`, 0 of 138 routes clip, and the
+three that still start a new line are ordinary text wrapping — the route
+moves **whole** to the next line rather than splitting, which is the outcome
+§2 asked for in the first place.
+
+**The ask: should an inline breadcrumb ship as a modifier?** Something like
+`rux--breadcrumb--inline`. This is a local divergence from a rux-ds
+component's own layout, recorded here rather than left silent, and it is
+rux-ds's call whether it belongs upstream. Nothing is urgent — the local rule
+works and is on this project's own class.
+
+## R2 — the separator collides with a segment name, and the ruling could not have known
+
+`.rux--breadcrumb-item::after` sets `content: "/"`. The ruling measured a
+generic four-segment route, where that is unambiguous. **This project has a
+menu path with a slash inside one segment**, and it now renders:
+
+    Warehousing / Outbound/Inspections / Picking List
+
+Three visible separators, two of which are separators. A reader who does not
+already know LN's menu cannot tell that from a four-segment route. It affects
+2 of 53 distinct routes, on 3 pages.
+
+**This is reported, not worked around.** Overriding `content` on a rux-ds
+class locally is exactly the move this project's own `AGENTS.md` forbids, and
+the alternative — reopening the tag — is worse, because the tag clipped the
+route outright. So it ships ambiguous on those two and the question goes
+upstream where the component lives.
+
+**No recommendation is offered**, because the trade is rux-ds's to weigh: a
+configurable separator is a real addition to a component for a problem two
+routes have, and "author the segment name differently" is not available —
+`Outbound/Inspections` is Infor's menu label, not this project's prose.
+
+## What is not asked
+
+Not asked: that either finding be fixed before anything else, or that
+`document-page.html` change. R1 has a working local answer and R2 is a
+question, not a defect in what rux-ds shipped.

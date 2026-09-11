@@ -1152,8 +1152,13 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 .ln-dg-node-code { font-size: .6875rem; color: var(--rux-text-secondary, #525252); }
 
 /* WHERE THE READING ORDER BREAKS, on the face of the node it breaks at. Only
-   the three nodes carrying an off-sequence edge get one, so this is a mark on
-   an exception rather than a third line on every tile. Its key reuses
+   a node carrying an off-sequence edge gets one -- two of the twenty-four here,
+   six of the overview's seventeen -- so this is a mark on an exception rather
+   than a third line on every tile. (It read "the three nodes" until 2026-09-10;
+   three is the count of EDGES, and the two branches share one source. The
+   replacement first said "seven of the overview's" and made the same mistake
+   the other way: seven SPANS on six nodes, because one node both splits and
+   needs. Both counts are \`diagram.*.nodes-marked\` in MEASURED now.) Its key reuses
    \`ln-dg-key\`, so "SPLITS" here and "SPLITS" in the open detail are one
    typographic thing. */
 .ln-dg-node-link { display: block; font-size: .6875rem;
@@ -1302,7 +1307,13 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    a three-line \`Do\` had one edge under the label and two against the panel. */
 .ln-dg-detail .ln-dg-key { display: block; margin: 0 0 var(--rux-spacing-01, .125rem); }
 .ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
-.ln-dg-edge { white-space: nowrap; }
+/* AN EDGE WRAPS, ITS TWO ENDS DO NOT. \`nowrap\` on the whole span was free
+   while an address was "7 → 8"; an address is a session name where a document
+   numbers nothing, and “Bill of material and routing → Generate Order Planning
+   (Item), what MRP explodes” held on one line overflows the figure. Only the
+   arrow and the two names it joins must stay together. */
+.ln-dg-edge { display: inline-block; }
+.ln-dg-ends { white-space: nowrap; }
 
 /* Kind decides the node's accent and nothing else decides it. */
 .ln-dg-node--gate     { --dg-accent: var(--rux-support-warning, #f1c21b); }
@@ -2025,9 +2036,25 @@ function diagramFigure(dg) {
   // reader chooses; a `feed` is "the thing must be true, but you do not walk
   // it", which is advice to whoever is standing on the TARGET.
   const offEdges = (dg.edges ?? []).filter(e => e.kind !== 'flow');
-  const numberOf = id => {
+
+  // AN ADDRESS IS SOMETHING THE READER CAN LOOK UP, and until 2026-09-10 it was
+  // sometimes an id. Where a document numbers its nodes the number IS the
+  // address -- it is printed on the face of the tile it points at, and nothing
+  // shorter can be. Where it does not, this printed `n.id` instead, which is
+  // atlas's key and not a name: the level-1 overview numbers NONE of its
+  // seventeen nodes, so seven of its tiles read `Needs buyfrom` and
+  // `Splits ship · gate-data`, and `buyfrom`, `gate-data` and `covered` appear
+  // NOWHERE ELSE on that page. An address that cannot be looked up is worse
+  // than no address, because it reads as one.
+  //
+  // THE SESSION NAME IS THE ADDRESS THERE, for the same reason the number is
+  // the address here: it is the line on the face of the target tile. The id
+  // survives only for an edge naming a node that is not in `nodes` at all,
+  // where there is nothing else to say and silence would hide the edge.
+  const addressOf = id => {
     const t = (dg.nodes ?? []).find(x => x.id === id);
-    return t?.n != null ? String(t.n) : id;
+    if (!t) return id;
+    return t.n != null ? String(t.n) : t.session;
   };
   const splits = new Map(), needs = new Map();
   for (const e of offEdges) {
@@ -2036,15 +2063,37 @@ function diagramFigure(dg) {
     map.get(key).push(e);
   }
 
-  // AT REST IT IS THE NUMBERS ONLY. Section 5 holds a tile to its name and its
-  // code, and a label like "supply source Job Shop" on the face of one would be
-  // the detail competing with the shape that D1 settled against. The label is
-  // one click away with everything else.
+  // AT REST IT IS THE NUMBERS, OR NOTHING BUT THE WORD. Section 5 holds a tile
+  // to its name and its code, and a label like "supply source Job Shop" on the
+  // face of one would be the detail competing with the shape that D1 settled
+  // against. The label is one click away with everything else.
+  //
+  // A NUMBER IS FREE ON THE FACE AND A NAME IS NOT, AND THAT IS MEASURED. The
+  // face had the id, which is meaningless; putting `addressOf` here instead --
+  // the obvious fix -- made the overview's widest face "SPLITS Advise, pick and
+  // ship · Planning data exists", and every column is `1fr`, so ONE wide face
+  // widens all five: 221px to 283px, and a figure that fitted its column at
+  // 1272 became 1653 and grew a scrollbar. The tile heights did not move, so
+  // this is the canvas D1 settled, quietly spent on text that is already on the
+  // face of the tile it points at. Dropping the ids took the columns to 207px
+  // and the figure back inside 1272, narrower than it ever was.
+  //
+  // SO THE FACE FLAGS THE EXCEPTION AND THE PANEL ADDRESSES IT. Where the ends
+  // are numbered the numbers go on the face, because they cost nothing and are
+  // the shortest address there is. Where they are not, the word alone says the
+  // reading order breaks here -- which is the whole job of a mark on an
+  // exception -- and the names are one click away in the panel, where prose
+  // wraps and no column is sized by them.
   const strip = n => {
     const s = splits.get(n.id) ?? [], f = needs.get(n.id) ?? [];
-    const one = (word, list, end) =>
-      `<span class="ln-dg-node-link"><span class="ln-dg-key">${word}</span>${
-        list.map(e => esc(numberOf(end(e)))).join(' · ')}</span>`;
+    const numberedEnds = (list, end) => list
+      .map(e => (dg.nodes ?? []).find(x => x.id === end(e)))
+      .filter(t => t?.n != null).map(t => String(t.n));
+    const one = (word, list, end) => {
+      const ns = numberedEnds(list, end);
+      return `<span class="ln-dg-node-link"><span class="ln-dg-key">${word}</span>${
+        ns.map(esc).join(' · ')}</span>`;
+    };
     return (s.length ? one('Splits', s, e => e.to) : '')
       + (f.length ? one('Needs', f, e => e.from) : '');
   };
@@ -2052,7 +2101,7 @@ function diagramFigure(dg) {
     const s = splits.get(n.id) ?? [], f = needs.get(n.id) ?? [];
     const one = (word, list, end) => list.length
       ? `<p class="ln-dg-field"><span class="ln-dg-key">${word}</span>${
-        list.map(e => `${esc(numberOf(end(e)))}${
+        list.map(e => `${esc(addressOf(end(e)))}${
           e.label ? ` — ${tokens(e.label.tokens ?? [])}` : ''}`).join(' · ')}</p>` : '';
     return one('Splits', s, e => e.to) + one('Needs', f, e => e.from);
   };
@@ -2088,9 +2137,21 @@ function diagramFigure(dg) {
     }
   }
 
+  // THE NOTE NAMES THE SAME ENDS THE TILES DO. It used to print `e.from` and
+  // `e.to` raw while the tiles went through the lookup, which agreed by luck on
+  // this map -- every id here IS its number -- and disagreed on the overview,
+  // where the tiles said one thing and the note said `covered → gate-data`.
+  // One function now answers both, so they cannot drift apart again.
+  //
+  // AND THE SENTENCE NO LONGER PROMISES NUMBERS A DOCUMENT MAY NOT HAVE. It
+  // opened "down the numbers" unconditionally, which is true of this map and
+  // false of the overview, where not one of the seventeen tiles carries one.
+  const numbered = (dg.nodes ?? []).some(n => n.n != null);
   const notes = offEdges.length ? `
-        <p class="ln-dg-note">Reading order runs left to right and down the numbers. The edges that do not:
-          ${offEdges.map(e => `<span class="ln-dg-edge">${esc(e.from)} → ${esc(e.to)}${
+        <p class="ln-dg-note">Reading order runs left to right and ${
+          numbered ? 'down the numbers' : 'down the lanes'}. The edges that do not:
+          ${offEdges.map(e => `<span class="ln-dg-edge"><span class="ln-dg-ends">${
+            esc(addressOf(e.from))} → ${esc(addressOf(e.to))}</span>${
             e.label ? `, ${tokens(e.label.tokens ?? [])}` : ''} <em>(${esc(e.kind)})</em></span>`).join(' · ')}</p>` : '';
 
   return `<figure class="rux--tile ln-dg" style="--dg-cols:${stages.length + 1}">

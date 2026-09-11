@@ -164,6 +164,52 @@ say('session-codes.in-sources', inSources.size);
 say('session-codes.in-step-tables', collect(stepTables).size);
 say('session-codes.in-guide-anywhere', collect(guides).size);
 
+// --- the diagrams -----------------------------------------------------------
+// NOTHING ELSE WATCHES THEM, and that is why these rows exist. The diagram is
+// the largest renderer here -- lanes, stages, nodes, edges, strips, a boundary
+// band and a side panel -- and on 2026-09-10 it had no row in this file and no
+// gate of its own. Its figures live only in prose: `build.mjs` said "the three
+// nodes carrying an off-sequence edge", which is three EDGES on TWO nodes here
+// and seven on the overview, and nothing could have said so.
+//
+// THE ROW THAT WOULD HAVE CAUGHT THE ADDRESS BUG IS `nodes-numbered`. An
+// off-sequence edge is addressed on the tile face by the number of the node it
+// points at; the overview numbers NONE of its seventeen, so every address there
+// fell back to atlas's id -- `buyfrom`, `gate-data` -- printed to a reader who
+// can find them nowhere on the page. A document whose `nodes-numbered` is 0 is
+// a document where the face can carry no address, which is a fact about the
+// data and belongs here rather than in a sentence.
+//
+// `edges-dangling` IS EXPECTED TO BE 0 AND IS MEASURED ANYWAY. It counts an
+// edge naming an id that is in no node, which is the one case `addressOf` still
+// has nothing better to print than the id. Zero says that path is unreached;
+// a non-zero says atlas sent an edge into a node it did not send.
+head('diagrams (build.mjs draws these; nothing but these rows watches them)');
+const dgDocs = docs.filter((d) => d.diagram);
+say('diagrams.count', dgDocs.length);
+say('diagrams.kinds', [...new Set(dgDocs.flatMap((d) =>
+  (d.diagram.nodes ?? []).map((n) => n.kind)))].sort().join('/'));
+for (const d of dgDocs) {
+  const dg = d.diagram, k = `diagram.${d.id}`;
+  const nodes = dg.nodes ?? [], edges = dg.edges ?? [], stages = dg.stages ?? [];
+  const ids = new Set(nodes.map((n) => n.id));
+  const off = edges.filter((e) => e.kind !== 'flow');
+  say(`${k}.lanes`, (dg.lanes ?? []).length);
+  say(`${k}.stages`, stages.length);
+  say(`${k}.stages-boundary`, stages.filter((s) => s.boundary).length);
+  // An empty stage is drawn, not dropped: section 8 of the session map argues
+  // the undrawn Cash column is the honest answer rather than an omission.
+  say(`${k}.stages-empty`, stages.filter((s) => !nodes.some((n) => n.stage === s.n)).length);
+  say(`${k}.nodes`, nodes.length);
+  say(`${k}.nodes-numbered`, nodes.filter((n) => n.n != null).length);
+  say(`${k}.nodes-with-steps`, nodes.filter((n) => (n.steps ?? []).length).length);
+  say(`${k}.strips`, nodes.reduce((a, n) => a + (n.strips ?? []).length, 0));
+  say(`${k}.edges`, edges.length);
+  say(`${k}.edges-off-sequence`, off.length);
+  say(`${k}.nodes-marked`, new Set(off.map((e) => e.kind === 'feed' ? e.to : e.from)).size);
+  say(`${k}.edges-dangling`, edges.filter((e) => !ids.has(e.from) || !ids.has(e.to)).length);
+}
+
 // --- the reviews atlas _standards/review-shape.md describes ----------------------------------
 head('reviews (atlas _standards/review-shape.md quotes these)');
 // Read the sibling AT THE PINNED COMMIT, never its HEAD or its working tree.

@@ -1,9 +1,9 @@
 # upstreams
 rux-ln-atlas.pin = 0bf14ec
-rux-ds.head = 7f8cf7e
+rux-ds.head = 6f97777
 
 # rux-ds surface (SEND-DS.md quotes these)
-rux-ds.templates.live = 11
+rux-ds.templates.live = 12
 rux-ds.gates.live = 24
 
 # guide data
@@ -39,6 +39,34 @@ tokens.type.value = 125
 session-codes.in-sources = 108
 session-codes.in-step-tables = 46
 session-codes.in-guide-anywhere = 58
+
+# diagrams (build.mjs draws these; nothing but these rows watches them)
+diagrams.count = 2
+diagrams.kinds = decision/gate/outcome/planned/read/real/step/terminal/transfer
+diagram.demand-to-shipment-session-map.lanes = 5
+diagram.demand-to-shipment-session-map.stages = 8
+diagram.demand-to-shipment-session-map.stages-boundary = 1
+diagram.demand-to-shipment-session-map.stages-empty = 1
+diagram.demand-to-shipment-session-map.nodes = 24
+diagram.demand-to-shipment-session-map.nodes-numbered = 21
+diagram.demand-to-shipment-session-map.nodes-with-steps = 24
+diagram.demand-to-shipment-session-map.strips = 3
+diagram.demand-to-shipment-session-map.edges = 21
+diagram.demand-to-shipment-session-map.edges-off-sequence = 3
+diagram.demand-to-shipment-session-map.nodes-marked = 2
+diagram.demand-to-shipment-session-map.edges-dangling = 0
+diagram.order-to-shipment-overview.lanes = 6
+diagram.order-to-shipment-overview.stages = 5
+diagram.order-to-shipment-overview.stages-boundary = 1
+diagram.order-to-shipment-overview.stages-empty = 0
+diagram.order-to-shipment-overview.nodes = 17
+diagram.order-to-shipment-overview.nodes-numbered = 0
+diagram.order-to-shipment-overview.nodes-with-steps = 8
+diagram.order-to-shipment-overview.strips = 0
+diagram.order-to-shipment-overview.edges = 19
+diagram.order-to-shipment-overview.edges-off-sequence = 9
+diagram.order-to-shipment-overview.nodes-marked = 6
+diagram.order-to-shipment-overview.edges-dangling = 0
 
 # reviews (atlas _standards/review-shape.md quotes these)
 reviews.count = 8

@@ -317,8 +317,13 @@
 .ln-dg-node-code { font-size: .6875rem; color: var(--rux-text-secondary, #525252); }
 
 /* WHERE THE READING ORDER BREAKS, on the face of the node it breaks at. Only
-   the three nodes carrying an off-sequence edge get one, so this is a mark on
-   an exception rather than a third line on every tile. Its key reuses
+   a node carrying an off-sequence edge gets one -- two of the twenty-four here,
+   six of the overview's seventeen -- so this is a mark on an exception rather
+   than a third line on every tile. (It read "the three nodes" until 2026-09-10;
+   three is the count of EDGES, and the two branches share one source. The
+   replacement first said "seven of the overview's" and made the same mistake
+   the other way: seven SPANS on six nodes, because one node both splits and
+   needs. Both counts are `diagram.*.nodes-marked` in MEASURED now.) Its key reuses
    `ln-dg-key`, so "SPLITS" here and "SPLITS" in the open detail are one
    typographic thing. */
 .ln-dg-node-link { display: block; font-size: .6875rem;
@@ -467,7 +472,13 @@
    a three-line `Do` had one edge under the label and two against the panel. */
 .ln-dg-detail .ln-dg-key { display: block; margin: 0 0 var(--rux-spacing-01, .125rem); }
 .ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
-.ln-dg-edge { white-space: nowrap; }
+/* AN EDGE WRAPS, ITS TWO ENDS DO NOT. `nowrap` on the whole span was free
+   while an address was "7 → 8"; an address is a session name where a document
+   numbers nothing, and “Bill of material and routing → Generate Order Planning
+   (Item), what MRP explodes” held on one line overflows the figure. Only the
+   arrow and the two names it joins must stay together. */
+.ln-dg-edge { display: inline-block; }
+.ln-dg-ends { white-space: nowrap; }
 
 /* Kind decides the node's accent and nothing else decides it. */
 .ln-dg-node--gate     { --dg-accent: var(--rux-support-warning, #f1c21b); }
@@ -874,7 +885,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:3;grid-row:3">
               <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Sales Order Intake Workbench</span><code class="ln-dg-node-code">tdsls4601m200</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span>items</span></summary>
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Sales Order Intake Workbench</span><code class="ln-dg-node-code">tdsls4601m200</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Sales Order Intake Workbench</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tdsls4601m200</code></p>
@@ -889,13 +900,13 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>items — prerequisite for everything right of it</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Items and groups — prerequisite for everything right of it</p>
                   </div>
                   
                 </div>
               </details>
               <details class="ln-dg-node ln-dg-node--decision" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Does on-hand cover it?</span><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span>ship · gate-data</span></summary>
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Does on-hand cover it?</span><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span></span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Does on-hand cover it?</span>
                     <span class="ln-dg-kind">decision</span></p>
@@ -904,7 +915,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>decide the whole route. On-hand plus on-order against the demand, and nothing announces the answer</p>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>ship — YES, and no planned order is generated · gate-data — NO</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>Advise, pick and ship — YES, and no planned order is generated · Planning data exists — NO</p>
                   </div>
                   
                 </div>
@@ -912,7 +923,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:4;grid-row:4">
               <details class="ln-dg-node ln-dg-node--gate" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Planning data exists</span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span>cluster</span></summary>
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Planning data exists</span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Planning data exists</span>
                     <span class="ln-dg-kind">gate</span></p>
@@ -921,7 +932,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>decide silently whether planning can see the item and every component beneath it</p>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>cluster — what the gate looks for</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Planning cluster row on the item — what the gate looks for</p>
                   </div>
                   
                 </div>
@@ -940,7 +951,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                 </div>
               </details>
               <details class="ln-dg-node ln-dg-node--step" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Generate Order Planning (Item)</span><code class="ln-dg-node-code">cprrp1220m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span>bom</span></summary>
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Generate Order Planning (Item)</span><code class="ln-dg-node-code">cprrp1220m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Generate Order Planning (Item)</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">cprrp1220m000</code></p>
@@ -955,7 +966,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>bom — what MRP explodes</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Bill of material and routing — what MRP explodes</p>
                   </div>
                   
                 </div>
@@ -989,7 +1000,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:5;grid-row:4">
               <details class="ln-dg-node ln-dg-node--transfer" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Transfer Order Planning</span><code class="ln-dg-node-code">cppat1210m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span>po · prod</span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span>buyfrom</span></summary>
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Transfer Order Planning</span><code class="ln-dg-node-code">cppat1210m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span></span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Transfer Order Planning</span>
                     <span class="ln-dg-kind">transfer</span><code class="ln-dg-detail-code">cppat1210m000</code></p>
@@ -1004,7 +1015,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>po — supply source Purchase · prod — supply source Job Shop</p><p class="ln-dg-field"><span class="ln-dg-key">Needs</span>buyfrom — without it the purchase half refuses</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>Purchase Order — supply source Purchase · Production Orders — supply source Job Shop</p><p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Item - Purchase — without it the purchase half refuses</p>
                   </div>
                   
                 </div>
@@ -1033,7 +1044,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:6;grid-row:6">
               <details class="ln-dg-node ln-dg-node--real" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Production Orders</span><code class="ln-dg-node-code">tisfc0501m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span>receive</span></summary>
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Production Orders</span><code class="ln-dg-node-code">tisfc0501m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Production Orders</span>
                     <span class="ln-dg-kind">real</span><code class="ln-dg-detail-code">tisfc0501m000</code></p>
@@ -1048,7 +1059,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>receive — components on hand first</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Warehouse Receipt — components on hand first</p>
                   </div>
                   
                 </div>
@@ -1102,8 +1113,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
           </div>
-        <p class="ln-dg-note">Reading order runs left to right and down the numbers. The edges that do not:
-          <span class="ln-dg-edge">items → order, prerequisite for everything right of it <em>(feed)</em></span> · <span class="ln-dg-edge">bom → mrp, what MRP explodes <em>(feed)</em></span> · <span class="ln-dg-edge">cluster → gate-data, what the gate looks for <em>(feed)</em></span> · <span class="ln-dg-edge">buyfrom → transfer, without it the purchase half refuses <em>(feed)</em></span> · <span class="ln-dg-edge">covered → ship, YES, and no planned order is generated <em>(branch)</em></span> · <span class="ln-dg-edge">covered → gate-data, NO <em>(branch)</em></span> · <span class="ln-dg-edge">transfer → po, supply source Purchase <em>(branch)</em></span> · <span class="ln-dg-edge">transfer → prod, supply source Job Shop <em>(branch)</em></span> · <span class="ln-dg-edge">receive → prod, components on hand first <em>(feed)</em></span></p>
+        <p class="ln-dg-note">Reading order runs left to right and down the lanes. The edges that do not:
+          <span class="ln-dg-edge"><span class="ln-dg-ends">Items and groups → Sales Order Intake Workbench</span>, prerequisite for everything right of it <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Bill of material and routing → Generate Order Planning (Item)</span>, what MRP explodes <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Planning cluster row on the item → Planning data exists</span>, what the gate looks for <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Item - Purchase → Transfer Order Planning</span>, without it the purchase half refuses <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Advise, pick and ship</span>, YES, and no planned order is generated <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Planning data exists</span>, NO <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Purchase Order</span>, supply source Purchase <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Production Orders</span>, supply source Job Shop <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Warehouse Receipt → Production Orders</span>, components on hand first <em>(feed)</em></span></p>
         </figure>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-1">
           <h2 id="t-1">1. The branch that is the whole point</h2>

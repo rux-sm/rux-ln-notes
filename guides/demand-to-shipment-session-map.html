@@ -317,8 +317,13 @@
 .ln-dg-node-code { font-size: .6875rem; color: var(--rux-text-secondary, #525252); }
 
 /* WHERE THE READING ORDER BREAKS, on the face of the node it breaks at. Only
-   the three nodes carrying an off-sequence edge get one, so this is a mark on
-   an exception rather than a third line on every tile. Its key reuses
+   a node carrying an off-sequence edge gets one -- two of the twenty-four here,
+   six of the overview's seventeen -- so this is a mark on an exception rather
+   than a third line on every tile. (It read "the three nodes" until 2026-09-10;
+   three is the count of EDGES, and the two branches share one source. The
+   replacement first said "seven of the overview's" and made the same mistake
+   the other way: seven SPANS on six nodes, because one node both splits and
+   needs. Both counts are `diagram.*.nodes-marked` in MEASURED now.) Its key reuses
    `ln-dg-key`, so "SPLITS" here and "SPLITS" in the open detail are one
    typographic thing. */
 .ln-dg-node-link { display: block; font-size: .6875rem;
@@ -467,7 +472,13 @@
    a three-line `Do` had one edge under the label and two against the panel. */
 .ln-dg-detail .ln-dg-key { display: block; margin: 0 0 var(--rux-spacing-01, .125rem); }
 .ln-dg-note { font-size: .8125rem; color: var(--rux-text-secondary, #525252); margin-block-start: .75rem; }
-.ln-dg-edge { white-space: nowrap; }
+/* AN EDGE WRAPS, ITS TWO ENDS DO NOT. `nowrap` on the whole span was free
+   while an address was "7 → 8"; an address is a session name where a document
+   numbers nothing, and “Bill of material and routing → Generate Order Planning
+   (Item), what MRP explodes” held on one line overflows the figure. Only the
+   arrow and the two names it joins must stay together. */
+.ln-dg-edge { display: inline-block; }
+.ln-dg-ends { white-space: nowrap; }
 
 /* Kind decides the node's accent and nothing else decides it. */
 .ln-dg-node--gate     { --dg-accent: var(--rux-support-warning, #f1c21b); }
@@ -1411,7 +1422,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
           </div>
         <p class="ln-dg-note">Reading order runs left to right and down the numbers. The edges that do not:
-          <span class="ln-dg-edge">7 → 8, supply source <span class="ln-t-exact">Purchase</span> <em>(branch)</em></span> · <span class="ln-dg-edge">7 → 12, supply source <span class="ln-t-exact">Job Shop</span> <em>(branch)</em></span> · <span class="ln-dg-edge">11 → 14, components on hand first <em>(feed)</em></span></p>
+          <span class="ln-dg-edge"><span class="ln-dg-ends">7 → 8</span>, supply source <span class="ln-t-exact">Purchase</span> <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">7 → 12</span>, supply source <span class="ln-t-exact">Job Shop</span> <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">11 → 14</span>, components on hand first <em>(feed)</em></span></p>
         </figure>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-1">
           <h2 id="t-1">1. Decisions to settle before it is drawn again</h2>

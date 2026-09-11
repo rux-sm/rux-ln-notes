@@ -64,6 +64,12 @@ release tag. `rux-ds` cloned beside this repository is required to check,
 build or serve it locally.
 
 ## What is authored here, and what is not
+**The shared part of this is one document, not three.** `rux-ds/docs/consumer-policy.md`
+is what every project on rux-ds agrees to — how it is linked rather than
+vendored, what is yours and what is rux-ds's, where a colour and a component
+rule go, the one check, and how to serve the family locally. Read it first;
+what follows is only what is this repository's own. Added 2026-09-11.
+
 
 - **Markup lives in `tools/build.mjs` and nowhere else.** Every page is
   generated from it; editing a generated page is the same mistake as editing

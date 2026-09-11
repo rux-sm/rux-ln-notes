@@ -116,6 +116,48 @@ from atlas, and it is not what `kind` answers.
 **Encode openability as form. Reduce colour to one thing. Leave the nine
 names to the panel, which already carries them.**
 
+### 3.0 Two axes, not one — and the second one is the reader's first question
+
+**Added 2026-09-10, from rux, and it corrects the section below rather than
+extending it.** The version of §3.1 that follows was written around one axis,
+*can I open this*, and it put the master-data prerequisites in the same faint
+bucket as a mid-flow state like *planned production order*. That is wrong in
+the direction that matters: the planning cluster row is the difference between
+an item planning can see and one it silently cannot, and drawing it as
+background draws the wrong conclusion about it.
+
+The axis that comes first is **on the path, or beside it**. Following the
+sales-to-order route is what the map is for, and a prerequisite is not on that
+route — it has to be true before the route runs, and you go and make it true
+somewhere else.
+
+**It is already in the data and needs no new field.** A node with no `flow`
+edge, in or out, is one the sequence never enters or leaves. Measured over
+both documents it lands on exactly the right nodes:
+
+| | beside the path | what they are |
+|---|---|---|
+| overview | 4 of 17 | the whole `Master Data` lane |
+| session map | 3 of 24 | the parameter and inventory checks |
+
+**And it cuts across `kind`, which is why `kind` could never have shown it.**
+`Items and groups` is a `step` and sits beside the path; `Bill of material and
+routing` is an `outcome` and sits beside it; `Finished item into stock` is also
+an `outcome` and sits **on** it. Same category, opposite roles.
+
+So the canvas carries two independent axes and one hue:
+
+| | | |
+|---|---|---|
+| **beside the path** | a dashed card, inset, full weight | setup and checks |
+| **on the path** | a solid tile | the route, read left to right |
+| *within either* | a code line and a stripe | a screen you open |
+| *within either* | no stripe, tinted, italic | a state or a question |
+| *over both* | the one hue | a checkpoint that fails silently |
+
+This is variant **D** in the specimen, and it is the only one that takes
+`colliding by path` to 0 on the overview — 9 today.
+
 ### 3.1 Three forms on the canvas
 
 | form | means | data test | map | overview |
@@ -138,6 +180,14 @@ decides silently. §2 of the session map says the third thing a reader must
 take from it is *"the chain fails silently in four places"*, and unlike the
 proposal/order distinction there is no geometry that shows it. Four nodes of
 41, so it stays a mark on an exception.
+
+**Form and hue are independent axes, and the specimen is what proved it.** The
+first draft of this section took the stripe away from every non-session,
+which quietly took the accent with it — and on the overview **every `gate` is
+codeless**, so the one hue the plan kept was invisible on the page whose
+content is mostly gates. The takeaway being hidden was the one this section
+exists to protect. A checkpoint that is not a session is *both*: it takes the
+tinted ground and the italic name from its form, and keeps its stripe.
 
 Drop the hue from `planned`, `real` and `transfer` per §2.2. `terminal`'s
 near-white is worth keeping or dropping on its own merits; it is one node per
@@ -179,21 +229,70 @@ the only copy of that word has always been.
 Not an argument — these, measured before and after, both documents, all four
 themes:
 
-1. **Tiles whose appearance collides with a tile of a different kind.** Today
-   9 on the overview, 0 on the map. The plan's target is 0 on both.
-2. **Distinct appearances a reader must learn.** Today 5 hues + 1 dashed +
-   1 default, unkeyed. The plan's target is 3 forms + 1 hue.
+1. ~~**Tiles whose appearance collides with a tile of a different kind.**~~
+   **Wrong as written, corrected 2026-09-10 by running it.** It scored B at 17
+   of 17 colliding, worse than today's 9 — nonsense, because B deliberately
+   merges nine kinds into three forms, so measuring by kind assumes the very
+   thing A and C assert and B denies. A figure that can only rank one option
+   is the conclusion wearing a number. It is two figures:
+
+   - **Colliding by register** — tiles that cannot be told from one in another
+     of the three groups §3.1 defines. Scored the same way for every variant,
+     so it ranks all three. Today: **9 on the overview, 0 on the map.** Both
+     C and B take it to 0.
+   - **Colliding by kind** — the stricter test, that all nine be
+     distinguishable at rest. It is the question being decided, so it is
+     reported and not used to rank: today 9 on the overview, 0 on the map.
+2. **Looks a reader must learn, with no legend.** Measured on the specimen,
+   identical in all four themes: **A is 6 on the overview and 7 on the map;
+   C is 4 and 7; D is 4 and 3; B is 3 and 3.**
+
+3. **Colliding by path** — tiles that do not say whether they are on the route
+   or beside it. **A is 9 on the overview**, C and B are 14, **D is 0.** The
+   map is 0 in every variant, because it has no prerequisites on it at all —
+   which is the subject of `SEND-ATLAS-3.md`, not a clean bill of health.
+
+**And one figure here was overstated, corrected the same day.** §1 said 9 of
+the overview's tiles are indistinguishable, on a signature of border,
+background and font style. A session also renders its code under the name and
+a non-session renders nothing, and counting that line the figure is **0, in
+every variant including today's.** The code line is a real cue. Whether a
+second line of small grey text reads as a *category* is the thing in dispute —
+it is information, not a form, and a box shaped like a box you open, in a grid
+of boxes you open, reads as one. The specimen reports it both ways so neither
+version of the argument gets to pick its own number.
 3. **Column width and figure scroll width.** Today 207px and 1272 on the
    overview, 260px and 2344 on the map. Neither may grow; the tinted ground
    in §3.1 is the risk.
 4. **Contrast of every accent against its ground, in all four themes**, the
    way the named register was measured at 13.76 to 18.1 in f2e6349.
 
+### 5.1 The specimen
+
+`tools/specimen-kinds.mjs` writes `build/specimen-kinds.html` — the two real
+figures, three times each, differing by CSS alone, with the figures above
+computed live in whichever of the four themes is on. It lifts the markup and
+the whole stylesheet out of the built pages, so **variant A is the live site
+byte for byte** and no mock-up is being judged. `build/` is git-ignored and
+skipped by `check-publishable`, so this is a decision aid and never a page.
+
+It has already earned itself twice: it caught the hidden accent in §3.2 and
+the bad metric in §5.1 above, both within a minute of first running, and
+neither was visible from reading the plan.
+
+**The third variant, C, is the conservative option and is not a straw man.**
+It adds the missing form and changes no hue, so it fixes finding 2.1's
+collision and declines 2.2 and 2.3. On the session map it is *identical to
+today* — 7 looks, 0 collisions — which is the honest case for it: the map is
+all sessions, so the only page C leaves untouched is the one this whole plan
+was written about.
+
 `MEASURED` gained 26 diagram rows today and `diagrams.kinds` is one of them,
 so a tenth kind arriving from atlas will show up in a diff rather than in a
-grey tile nobody notices. **None of the four figures above is measured yet**,
-and 1 and 2 should be added to `measure.mjs` whether or not this plan is
-taken — they describe the renderer, and today's state is the argument for it.
+grey tile nobody notices. Figures 1 and 2 are now measured in the specimen but
+**not in `measure.mjs`**, and they belong there whether or not this plan is
+taken: `colliding by register` is a defect count that nothing watches, and it
+is 9 today.
 
 ---
 

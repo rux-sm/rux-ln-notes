@@ -147,141 +147,45 @@ const figures = DOCS.map(([name, path, note, json]) => {
 // making the markup provably identical across all three.
 const NOT_A_SESSION = '.ln-dg-node:not(:has(.ln-dg-node-code))';
 
+// ONE VARIANT NOW, AND THAT IS A REPOINT RATHER THAN AN EDIT. This file was
+// built to compare five ways of drawing the tile against the live site, with
+// variant A as "today" -- and it lifts its CSS out of the BUILT PAGES, so the
+// day E shipped, A became E. Measured on the first run after: A and E scored
+// identically, 0 colliding and 4 looks, while B, C and D scored WORSE than
+// before, because they were no longer alternatives to the old design but
+// partial overrides on top of the new one. The comparison had quietly stopped
+// meaning anything while still printing numbers, which is the failure this
+// page exists to catch in other things.
+//
+// A `before` VARIANT WAS WRITTEN AND THROWN AWAY, and that is worth recording.
+// It undid the shipped rules and restored the five hues keyed by `kind`, so
+// the page could still show what the decision bought. It did not reproduce the
+// old design: overriding the new CSS merges categories the old one kept apart,
+// and it scored the overview at 4 looks and 14 colliding where the real
+// measurement on 2026-09-09 was 6 and 9. A reconstruction that misreports the
+// thing it reconstructs is worse than no reconstruction. The before-and-after
+// figures are in DESIGN-diagram-kinds.md, taken when both designs existed,
+// which is the only time they could be taken honestly.
+//
+// SO WHAT IS LEFT IS A REGRESSION VIEW. One variant, no overrides, the built
+// page with its figures computed live in whichever theme is on. It answers one
+// question -- is every category still drawn as exactly one thing, and does the
+// figure still fit -- which is the question that caught the three-sided
+// prerequisite card on the live site, after every collision figure had read 0
+// throughout and read it correctly.
 const VARIANTS = [
   {
-    id: 'a', name: 'A — today',
-    blurb: `Five hues, one dashed form, one default. No legend on either page.
-      <b>decision</b> and <b>outcome</b> have no rule at all, so they render exactly as
-      <b>step</b>. This is the live site.`,
+    id: 'shipped', name: 'Shipped — the five categories',
+    blurb: `What the live site draws, with no override at all: this is the built page,
+      lifted whole. Three signals carry five categories. <b>Container</b> — a solid tile
+      on the route, a closed dashed card beside it. <b>Name style</b> — upright for a
+      thing you do or make true, italic for a state you take in. <b>Stripe</b> — grey for
+      an ordinary screen, none where there is nothing to open, and the one yellow for a
+      checkpoint that decides silently.
+      Step · Prerequisite · Reading · Result · Checkpoint.
+      <b>Every category should show exactly one look</b>; more than one means a category
+      is being drawn two ways, which is how the open-sided prerequisite card shipped.`,
     css: '',
-  },
-  {
-    id: 'c', name: 'C — fix only the collision',
-    blurb: `The conservative option. Keep every hue exactly as it is and add the missing
-      third form, so a thing that is not a session stops looking like one. Fixes finding 1
-      of the plan and declines findings 2 and 3 — five hues still have to be learned,
-      and blue-vs-green still restates the column.`,
-    css: `
-      .v-c ${NOT_A_SESSION} { border-inline-start: 0; padding-inline-start: 3px;
-        background: var(--rux-layer-accent-01, #e0e0e0); }
-      .v-c ${NOT_A_SESSION} > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }`,
-  },
-  {
-    id: 'e', name: 'E — the five categories',
-    blurb: `<b>Decided 2026-09-10.</b> Five categories, and still one hue, because they
-      are drawn by three independent signals rather than five colours.
-      <b>Container</b> says on the route or beside it — a solid tile against a dashed card
-      set in from the edge. <b>Name style</b> says act or read — upright for a thing you
-      do or make true, italic for a state you take in. <b>Stripe</b> says what you can
-      reach — grey for an ordinary screen, none where there is nothing to open, and the
-      one yellow for a checkpoint that decides silently.
-      Step · Prerequisite · Reading · Result · Checkpoint.`,
-    css: `
-      .v-e .ln-dg-node { --dg-accent: var(--rux-border-strong-01, #8d8d8d); }
-      /* 1 STEP -- on the route, you do it. The default, and the spine. */
-      /* 4 RESULT -- on the route, what now exists. No stripe, because there is
-         nothing to go and do; tinted and italic, because it is a state. This is
-         the category today's design has never had, and it is 10 of 41. */
-      .v-e .ln-dg-cat--result { border-inline-start: 0; padding-inline-start: 3px;
-        background: var(--rux-layer-accent-01, #e0e0e0); }
-      .v-e .ln-dg-cat--result > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
-      /* 5 CHECKPOINT -- the one hue, wherever it stands. Three of the four
-         decide with no message at all, which no layout can show. */
-      .v-e .ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b);
-        border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
-      .v-e .ln-dg-cat--check > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
-      /* 2 PREREQUISITE and 3 READING -- beside the route, so a dashed card set in
-         from the column edge. Full weight: the planning cluster row is the
-         difference between an item planning can see and one it silently cannot.
-         Specificity is doubled deliberately -- see the note in D. */
-      .v-e .ln-dg-node.ln-dg-cat--config,
-      .v-e .ln-dg-node.ln-dg-cat--info {
-        border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
-        background: transparent; margin-inline-start: .75rem; padding-inline-start: 0; }
-      .v-e .ln-dg-node.ln-dg-cat--config > summary .ln-dg-node-name {
-        font-style: normal; font-weight: 600; }
-      /* READING is the same card with the italic name -- it is a state you take
-         in, the same thing the italic says on a Result. One signal, one meaning,
-         wherever it appears. */
-      .v-e .ln-dg-node.ln-dg-cat--info > summary .ln-dg-node-name {
-        font-style: italic; font-weight: 600; }`,
-  },
-  {
-    id: 'd', name: 'D — two axes (superseded by E)',
-    blurb: `Two axes, both already in the data and neither needing a new field.
-      <b>On the path or beside it</b> is the primary split, because following the
-      sales-to-order route is the first thing the map is for: a node the sequence never
-      enters or leaves is setup or a check — it has to be true, and you go and make it
-      true somewhere else. Beside-the-path tiles get a full dashed card, set in from the
-      column edge, at <i>full</i> weight — they are prerequisites, not background.
-      <b>Can I open it</b> is the second: a code means a screen, and a tile without one
-      is a state or a question, so it loses the stripe that says "a box you open".
-      The one hue stays on the silent checkpoints.`,
-    css: `
-      .v-d .ln-dg-node { --dg-accent: var(--rux-border-strong-01, #8d8d8d); }
-      .v-d .ln-dg-node--gate, .v-d .ln-dg-node--decision {
-        --dg-accent: var(--rux-support-warning, #f1c21b); }
-      /* Axis 2, on the path: a thing that is not a session loses the stripe. */
-      .v-d ${NOT_A_SESSION} { border-inline-start: 0; padding-inline-start: 3px;
-        background: var(--rux-layer-accent-01, #e0e0e0); }
-      .v-d ${NOT_A_SESSION}.ln-dg-node--gate,
-      .v-d ${NOT_A_SESSION}.ln-dg-node--decision {
-        border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
-      .v-d ${NOT_A_SESSION} > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
-      /* Axis 1, and it WINS where they meet: a dashed card, inset, full weight.
-         Inset rather than tinted, because the run of solid tiles left to right IS
-         the path and a card that sits off that line reads as beside it. Weight is
-         deliberately not reduced -- the planning cluster row is the difference
-         between an item planning can see and one it silently cannot. */
-      /* SPECIFICITY IS LOAD-BEARING HERE AND THE FIRST DRAFT LOST IT. The
-         not-a-session selector uses :has(), which takes the specificity of its argument, so the not-a-session selector is
-         three classes and beat a two-class off-path selector: the BOM and
-         the planning cluster row -- the two setup items that are not sessions,
-         and the two this variant most needs to get right -- kept the faint
-         treatment. Measured, not spotted: six tiles colliding by path where
-         the design says zero. Doubling the class matches it and the later
-         declaration wins. */
-      .v-d .ln-dg-node.ln-dg-node--off-path {
-        border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
-        background: transparent;
-        margin-inline-start: .75rem; padding-inline-start: 0; }
-      .v-d .ln-dg-node.ln-dg-node--off-path > summary .ln-dg-node-name {
-        font-style: normal; font-weight: 600; }
-      /* A silent checkpoint keeps its hue wherever it stands. */
-      .v-d .ln-dg-node.ln-dg-node--off-path.ln-dg-node--gate,
-      .v-d .ln-dg-node.ln-dg-node--off-path.ln-dg-node--decision {
-        border-color: var(--dg-accent); }`,
-  },
-  {
-    id: 'b', name: 'B — one axis only (can I open it)',
-    blurb: `Three forms carry <i>can I open this</i> and nothing else: a solid tile is a
-      session you change, a dashed tile is one you only read, a tinted patch is not a session
-      at all. One hue is kept, for the checkpoints where the chain fails silently.
-      <b>Its weakness is what D fixes:</b> it puts the master-data prerequisites in the same
-      faint bucket as a mid-flow state like <i>planned production order</i>, so setup reads as
-      background when it is the thing the rest of the chain depends on.`,
-    css: `
-      /* Every tile back to the default; then the three forms and the one accent. */
-      .v-b .ln-dg-node { --dg-accent: var(--rux-border-strong-01, #8d8d8d); }
-      .v-b .ln-dg-node--gate, .v-b .ln-dg-node--decision {
-        --dg-accent: var(--rux-support-warning, #f1c21b); }
-      /* "read" keeps the treatment it already had -- it is the one kind that
-         was on the contract's axis all along, and the plan is built on it. */
-      .v-b .ln-dg-node--read { border-inline-start-style: dashed; background: transparent; }
-      /* Not a session: a tinted ground and an italic name, and no stripe -- a
-         stripe is what says "a box you open". THE STRIPE COMES BACK FOR A
-         CHECKPOINT, and that is the specimen's own correction: the first draft
-         removed it from every non-session, and on the overview EVERY gate is
-         codeless, so the one hue the plan kept was invisible on the page whose
-         content is mostly gates. Section 2's third takeaway -- the chain fails
-         silently in four places -- was the thing being hidden. Form and hue are
-         independent axes; a checkpoint that is not a session is both. */
-      .v-b ${NOT_A_SESSION} { border-inline-start: 0; padding-inline-start: 3px;
-        background: var(--rux-layer-accent-01, #e0e0e0); }
-      .v-b ${NOT_A_SESSION}.ln-dg-node--gate,
-      .v-b ${NOT_A_SESSION}.ln-dg-node--decision {
-        border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
-      .v-b ${NOT_A_SESSION} > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }`,
   },
 ];
 
@@ -344,6 +248,20 @@ function collisionsBy(nodes, label, signature) {
   }
   return nodes.filter(n => by.get(signature(n)).size > 1).length;
 }
+// ONE CATEGORY, ONE LOOK. The figure that would have caught the three-sided
+// card: every collision count read 0 while Prerequisite was being drawn two
+// ways, because a three-sided box is still nothing like a Step. Collisions ask
+// whether two categories can be told apart; this asks whether ONE is drawn
+// consistently, and nothing asked that until a person looked at the page.
+function perCategory(nodes) {
+  const by = new Map();
+  for (const n of nodes) {
+    const c = catOf(n);
+    if (!by.has(c)) by.set(c, new Set());
+    by.get(c).add(sig(n));
+  }
+  return [...by.entries()].map(([c, looks]) => [c, looks.size]).sort();
+}
 function score(scope) {
   const nodes = [...scope.querySelectorAll('.ln-dg-node')];
   const fig = scope.querySelector('.ln-dg');
@@ -354,6 +272,7 @@ function score(scope) {
     byRegisterCode: collisionsBy(nodes, registerOf, sigWithCode),
     byPath: collisions(nodes, pathOf),
     byCat: collisions(nodes, catOf),
+    perCat: perCategory(nodes),
     scrolls: fig.scrollWidth > fig.clientWidth,
     col: Math.round(parseFloat(getComputedStyle(
       scope.querySelector('.ln-dg-grid')).gridTemplateColumns.split(' ')[1])) };
@@ -364,8 +283,8 @@ function paint() {
     const m = (n) => \`<b class="\${n ? 'bad' : 'ok'}">\${n}</b>\`;
     box.querySelector('[data-out]').innerHTML =
       \`<b>\${r.tiles}</b> tiles · <b>\${r.appearances}</b> looks to learn · \` +
-      \`colliding: \${m(r.byCat)} <b>by category</b> · \${m(r.byPath)} by path · \` +
-      \`\${m(r.byRegister)} by register (\${m(r.byRegisterCode)} with the code line) · \` +
+      r.perCat.map(([c, n]) => \`\${c} <b class="\${n === 1 ? 'ok' : 'bad'}">\${n}</b>\`).join(' · ') +
+      \` look each · \${m(r.byCat)} colliding by category · \` +
       \`column <b>\${r.col}px</b> · \${r.scrolls ? 'figure scrolls' : 'figure fits'}\`;
   }
 }
@@ -391,7 +310,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Diagram categories — five, four ways</title>
+<title>Diagram categories — as shipped</title>
 <link rel="stylesheet" href="/rux-ds/assets/fonts/plex.css">
 <link rel="stylesheet" href="/rux-ds/css/rux.css">
 <link rel="stylesheet" href="/rux-ds/css/rux-theme.css">
@@ -429,16 +348,17 @@ ${VARIANTS.map(v => v.css).join('\n')}
 </style>
 </head>
 <body>
-<h1>Diagram categories — five ways of drawing them</h1>
-<p class="lede">The same markup three times; only the CSS differs. Variant A is the live
-site byte for byte. <b>Looks to learn</b> is how many distinct appearances a reader must
-pick up with no legend on the page — lower is better for every variant.
-<b>Colliding by register</b> is tiles that cannot be told apart from one in another of the
-three groups that matter: a session you change, a session you only read, a thing that is
-not a session at all. <b>By kind</b> is the stricter test, that all nine kinds be
-distinguishable at rest — which is the question being decided, so it ranks A and C and is
-unfair to B by construction. Everything is measured on what is drawn, in the theme you are
-in: switch themes and watch the numbers hold or move.</p>
+<h1>Diagram categories — as shipped</h1>
+<p class="lede">The built pages, lifted whole — markup and stylesheet — so this is the
+live site and not a mock-up. <b>Every category should read <span class="ok">1</span></b>:
+that is one category drawn exactly one way, and it is the figure that was missing when a
+prerequisite shipped as a three-sided card while every collision count read 0 and read it
+correctly. <b>Colliding by category</b> is tiles that cannot be told from a tile of another
+category. Both are measured on what is drawn, in the theme you are in — switch themes and
+watch them hold.</p>
+<p class="note"><b>Column width and “figure scrolls” are this page's, not the site's.</b>
+The specimen's container is narrower than a guide page's, so the figure scrolls here where
+it fits there. Compare the column figure between runs, never against the live page.</p>
 <div class="themes"><span>Theme</span>
   ${['white', 'g10', 'g90', 'g100'].map(t =>
     `<button type="button" data-theme-set="${t}" aria-pressed="${t === 'white'}">${t}</button>`).join('')}

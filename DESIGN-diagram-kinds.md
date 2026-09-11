@@ -369,7 +369,32 @@ version of the argument gets to pick its own number.
 4. **Contrast of every accent against its ground, in all four themes**, the
    way the named register was measured at 13.76 to 18.1 in f2e6349.
 
-### 5.1 The specimen
+### 5.1 The specimen, and what it became
+
+**Repointed 2026-09-11, once E shipped.** It lifts its CSS out of the built
+pages, so the day the categories landed, variant A — "today" — became variant
+E. Measured on the first run after: A and E scored identically at 0 colliding
+and 4 looks, while B, C and D scored *worse* than they had, because they were
+no longer alternatives to the old design but partial overrides on top of the
+new one. **It had quietly stopped meaning anything while still printing
+numbers** — the failure it exists to catch in other things.
+
+A `before` variant was written to keep the comparison alive by undoing the
+shipped rules, and **thrown away**: overriding the new CSS merges categories
+the old design kept apart, and it scored the overview at 4 looks and 14
+colliding where the real 2026-09-09 measurement was 6 and 9. A reconstruction
+that misreports what it reconstructs is worse than none. The before-and-after
+figures below were taken while both designs existed, which is the only time
+they could be taken honestly.
+
+**What it is now is a regression view**: one variant, no overrides, and a new
+headline figure — **one category, one look**. That is the figure that was
+missing. Every collision count read 0 while Prerequisite was being drawn two
+ways, and read it correctly: a three-sided box is still nothing like a Step.
+Collisions ask whether two categories can be told apart; nothing asked whether
+*one* was drawn consistently until a person looked at the page.
+
+### 5.2 What it was
 
 `tools/specimen-kinds.mjs` writes `build/specimen-kinds.html` — the two real
 figures, three times each, differing by CSS alone, with the figures above

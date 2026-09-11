@@ -31,6 +31,15 @@ screen-reference emitter waits on it.
 
 **Waiting on someone else, not on this repository:**
 
+- **Whether `--rux-border-strong-01` is meant to keep 3:1 in every theme
+  rux-ds ships, or only in the four it compiles.** Sent 2026-09-11 as
+  `SEND-DS-2.md`, with every figure taken on rux-ds's own `kitchen-sink.html`
+  so it reproduces from their checkout with this one closed. Five of the twelve
+  brand theme-and-rung combinations sit below 3:1, all but one of them `-01`.
+  **Nothing here is blocked on the answer** — the measurement is recorded under
+  *Known losses* and no local override was written, because this project's
+  `rux-theme.css` holds no token values by policy.
+
 - ~~**Whether the session map draws what has to be set up first.**~~
   **ANSWERED 2026-09-11, and the answer is drawn upstream** —
   `exchange/send-atlas-3-reply.md`, atlas `23d1483`. It overturns its own §8

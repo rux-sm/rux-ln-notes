@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = 0bf14ec
+rux-ln-atlas.pin = 9ab6a53
 rux-ds.head = 6f97777
 
 # rux-ds surface (SEND-DS.md quotes these)

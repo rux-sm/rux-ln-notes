@@ -1,6 +1,6 @@
-commit   0bf14ec32487423f74858f9e708dd995078c828f
-date     2026-09-10T21:38:30Z
-subject  feat(handoff): Emit a node's Do as steps
+commit   9ab6a53f2b2c67175c48c4df92d0b2c8ff329c73
+date     2026-09-11T04:52:41Z
+subject  docs(exchange): Take the site's ask about setup
 contract 8 
 tier     export
 sha256   6597d1af2762e5159c7f7ce50da78fd3745638aabcae4ac30bc3c48c9150b23a

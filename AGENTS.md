@@ -107,35 +107,9 @@ what follows is only what is this repository's own. Added 2026-09-11.
   local rule. `check-classes` catches the invented one.
 - **This project's page shell is its own, and `templates/document-page.html`
   is a reference, not a parent. Decided 2026-09-10, measured not argued.**
-  rux-ds built that template on 2026-09-08 in answer to `SEND-DS.md`, and the
-  open question was whether `build.mjs` should derive its shell from it and
-  record the commit. It should not, for three reasons.
-
-  **Adopting it would re-import what this repository removed on evidence the
-  same week.** Of the 32 classes the template carries and these pages do not,
-  six are `rux--tag--blue`, `--cool-gray`, `--purple`, `--red` and the four
-  `rux--breadcrumb*` — the seven-colour token scheme replaced by four
-  registers, and the route-as-breadcrumb built and reverted on three findings.
-  A shell that pulls those back in is not a parent worth having.
-
-  **The mechanism the adoption was designed around no longer exists.**
-  `SEND-DS.md` §6 proposed recording the derivation the way `vendor/rux-ds/PIN`
-  recorded the stylesheet's commit. There is no `vendor/` and no rux-ds pin —
-  since 2026-09-10 rux-ds is read live. A recorded derivation commit would be
-  a number nothing checks and nothing updates, which is precisely the kind of
-  line this repository has been wrong about four times.
-
-  **The overlap is already high and the remainder is content-kind, not shell.**
-  70 classes are shared. The 27 these pages have and the template does not are
-  what a guide has and a generic document does not: the notepad, the step-table
-  container, the registers. The template's extras are largely its own demo
-  content. The one thing it had that these pages lacked — a reading measure
-  capped rather than spanned — was taken on its merits and is in `build.mjs`.
-
-  **What is taken from it is the habit, not the markup**: rule by measuring the
-  rendered thing. That is what produced the breadcrumb ruling, the correction
-  to it, and the reading-measure cap.
-
+  `build.mjs` does not derive its shell from that template and records no
+  commit for it. Three reasons, each measured:
+  `docs/page-shell-decision.md`.
 - **The marker contract is Atlas's.** `../rux-ln-atlas/_standards/guide-json.md`
   is normative; re-implementing any part of it here re-creates the drift that
   broke a renderer once already.

@@ -87,15 +87,33 @@ const TAG = {
   value: 'warm-gray', status: 'teal', button: 'purple',
 };
 
-// `command` AND `path` ARE DELIBERATELY NOT TAGS, and this is not an oversight
-// to fix in passing. `.rux--tag` caps at 13rem and `.rux--tag__label`
-// ellipsises, so a menu route measured 324px against a 192px label and was
-// silently cut -- and a route is the single thing a reader most needs whole.
-// They are plain text, which loses the visual distinction the other seven have.
+// `command` AND `path` ARE NOT TAGS, and this is not an oversight to fix in
+// passing. `.rux--tag` caps at 13rem and `.rux--tag__label` ellipsises, so a
+// menu route measured 324px against a 192px label and was silently cut -- and
+// a route is the single thing a reader most needs whole. They are plain text,
+// which loses the visual distinction the other seven have.
 //
-// SEND-DS.md §2 is the open question, and it is still unsent. Carbon's own
-// answer is `.rux--tag-label-tooltip`; until that is decided this stays as
-// README recorded it, rather than being reopened here.
+// THIS COMMENT SAID "SEND-DS.md §2 is the open question, and it is still
+// unsent". BOTH HALVES WERE WRONG BY 2026-09-10: it was sent 2026-09-06 and
+// ANSWERED 2026-09-08. Corrected here rather than quietly dropped, because the
+// answer is not the one this side proposed.
+//
+// It guessed `.rux--tag-label-tooltip`, Carbon's own answer. rux-ds REJECTED
+// that on evidence: every capture pairs it with an *interactive* tag, so it
+// would make a tab stop of every route on a page carrying dozens, and the text
+// would still be cut on paper and on touch. A tooltip is a route's second copy,
+// not its first.
+//
+// THE RULING IS A BREADCRUMB, measured on running Carbon at 1280 with the same
+// four-segment route in each: `cds--tag` read-only caps at 208px and clipped
+// the label at 192 (scrollWidth 278 vs clientWidth 192, 86px lost), while
+// `cds--breadcrumb` has no cap, wraps, and every segment's scrollWidth equals
+// its clientWidth. rux-ds `docs/log.md` has the table and the segment markup:
+// the last segment takes the captured `span.cds--link[aria-current]`, the
+// earlier ones a bare `<span>` that is labelled there as an extrapolation.
+//
+// PLAIN is what is still shipping, not what was decided. Building the
+// breadcrumb is TODO.md "Now" item 1.
 const PLAIN = new Set(['command', 'path']);
 
 function token(t) {

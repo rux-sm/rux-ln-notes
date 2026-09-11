@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -727,7 +786,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <p class="rux--type-body-02">Enterprise Planning · Sales</p>
         </div>
 
-      <p><strong>Objective:</strong> make one finished item visible to planning, give it a demand it cannot cover from stock, run MRP, and read the result — a planned supply chain covering the shortfall — in the Item Order Plan, in Planned Orders, and in the pegging tree. <strong>Base guide</strong> — the first Enterprise Planning guide in the library. Everything before this created supply by hand; this is where the system proposes it.</p>
+      <p class="ln-prose-measure"><strong>Objective:</strong> make one finished item visible to planning, give it a demand it cannot cover from stock, run MRP, and read the result — a planned supply chain covering the shortfall — in the Item Order Plan, in Planned Orders, and in the pegging tree. <strong>Base guide</strong> — the first Enterprise Planning guide in the library. Everything before this created supply by hand; this is where the system proposes it.</p>
       <div class="rux--inline-notification rux--inline-notification--warning rux--inline-notification--low-contrast">
   <div class="rux--inline-notification__details">
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-warning--filled"/></svg>
@@ -744,17 +803,17 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label"></div></th><th scope="col"><div class="rux--table-header-label">Phase</div></th><th scope="col"><div class="rux--table-header-label">Where</div></th><th scope="col"><div class="rux--table-header-label">What it achieves</div></th></tr></thead>
             <tbody>
-          <tr><td>☐</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span> Make the item visible to planning</td><td>Item Order Plan; Item</td><td>The finished item and every BOM component have planning data</td></tr>
-          <tr><td>☐</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="1"><span class="rux--tag__label">1</span></span> Create demand</td><td>Inventory 360; SO Intake Workbench</td><td>A sales order exists for more than is on hand</td></tr>
-          <tr><td>☐</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="2"><span class="rux--tag__label">2</span></span> Put the demand inside the horizon</td><td>Items - Planning; Item Order Plan</td><td>Planning can see the demand</td></tr>
-          <tr><td>☐</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="3"><span class="rux--tag__label">3</span></span> Run MRP</td><td>Generate Order Planning (Item)</td><td>Planned orders exist covering the shortfall, with pegging relations</td></tr>
-          <tr><td>☐</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="4"><span class="rux--tag__label">4</span></span> Review the result</td><td>Item Order Plan; Planned Orders</td><td>The planned supply is read on both the parent and the component</td></tr>
-          <tr><td>☐</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="5"><span class="rux--tag__label">5</span></span> Read the pegging tree</td><td>Planned Orders ➔ Order Pegging</td><td>The whole chain reconciles: demand, stock, planned make, planned buy</td></tr>
+          <tr><td>☐</td><td><span class="ln-t-named">0</span> Make the item visible to planning</td><td>Item Order Plan; Item</td><td>The finished item and every BOM component have planning data</td></tr>
+          <tr><td>☐</td><td><span class="ln-t-named">1</span> Create demand</td><td>Inventory 360; SO Intake Workbench</td><td>A sales order exists for more than is on hand</td></tr>
+          <tr><td>☐</td><td><span class="ln-t-named">2</span> Put the demand inside the horizon</td><td>Items - Planning; Item Order Plan</td><td>Planning can see the demand</td></tr>
+          <tr><td>☐</td><td><span class="ln-t-named">3</span> Run MRP</td><td>Generate Order Planning (Item)</td><td>Planned orders exist covering the shortfall, with pegging relations</td></tr>
+          <tr><td>☐</td><td><span class="ln-t-named">4</span> Review the result</td><td>Item Order Plan; Planned Orders</td><td>The planned supply is read on both the parent and the component</td></tr>
+          <tr><td>☐</td><td><span class="ln-t-named">5</span> Read the pegging tree</td><td>Planned Orders ➔ Order Pegging</td><td>The whole chain reconciles: demand, stock, planned make, planned buy</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-      <p><strong>The Item Order Plan is the progress indicator.</strong> Phase 0 ends when the item appears in it at all; phase 2 ends when the demand row appears; phase 3 ends when a planned supply row appears beside it. If a phase did not change what that session shows, the phase did not work.</p>
+      <p class="ln-prose-measure"><strong>The Item Order Plan is the progress indicator.</strong> Phase 0 ends when the item appears in it at all; phase 2 ends when the demand row appears; phase 3 ends when a planned supply row appears beside it. If a phase did not change what that session shows, the phase did not work.</p>
       </section>
 
         <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-phases">
@@ -767,22 +826,22 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-information--filled"/></svg>
     <div class="rux--inline-notification__text-wrapper">
       <div class="rux--inline-notification__title">Prerequisite</div>
-      <div class="rux--inline-notification__subtitle">A finished item with an <strong>Approved</strong> BOM and routing, components, and stock data — the qualified training case from <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-create-basic-test-items-and-defaults.md"><span class="rux--tag__label">SG-create-basic-test-items-and-defaults.md</span></span>. The 2026-08-20 session used <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> with components <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> and <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span>.</div>
+      <div class="rux--inline-notification__subtitle">A finished item with an <strong>Approved</strong> BOM and routing, components, and stock data — the qualified training case from <span class="ln-t-exact">SG-create-basic-test-items-and-defaults.md</span>. The 2026-08-20 session used <span class="ln-t-exact">BAM-CHOP-PAIR</span> with components <span class="ln-t-exact">BAM-ROD</span> and <span class="ln-t-exact">BAM-SLEEVE</span>.</div>
     </div>
   </div>
 </div>
-        <p><strong>What LN is doing.</strong> The planning screens read an item&#39;s planning data, and an item that has none is not refused; it is absent, with nothing to explain why. The link is a row for the planning cluster on the item, and MRP plans a BOM component only if the component has planning data of its own, so this phase checks every item in the structure, not just the parent.</p>
+        <p class="ln-prose-measure"><strong>What LN is doing.</strong> The planning screens read an item&#39;s planning data, and an item that has none is not refused; it is absent, with nothing to explain why. The link is a row for the planning cluster on the item, and MRP plans a BOM component only if the component has planning data of its own, so this phase checks every item in the structure, not just the parent.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr><th scope="row" class="ln-step-id">0.1</th><td>Open <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span></td><td>The plan selection screen</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.2</th><td>Search for the finished item</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="finished item"><span class="rux--tag__label">finished item</span></span> — if it appears, planning data exists: go to 0.6. If it does not, the item is invisible to planning: continue</td></tr>
-          <tr><th scope="row" class="ln-step-id">0.3</th><td>Open <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items"><span class="rux--tag__label">Items</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m000"><span class="rux--tag__label">tcibd0501m000</span></span> via Master Data ➔ Items ➔ Items and drill into the finished item</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span> opens</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.4</th><td>On the <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Clusters"><span class="rux--tag__label">Clusters</span></span> tab, add a row with the environment&#39;s planning cluster</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="planning cluster"><span class="rux--tag__label">planning cluster</span></span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="site"><span class="rux--tag__label">site</span></span> — the observed environment uses <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="NA1"><span class="rux--tag__label">NA1</span></span> and <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="CSADNA01"><span class="rux--tag__label">CSADNA01</span></span></td></tr>
-          <tr><th scope="row" class="ln-step-id">0.5</th><td>Save, then reopen <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> and search again</td><td>The item now appears — an empty plan, but a plan</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">0.6</th><td>Repeat 0.2–0.5 for <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="every component in the BOM"><span class="rux--tag__label">every component in the BOM</span></span></td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="components given plan data"><span class="rux--tag__label">components given plan data</span></span> — each appears in its own Item Order Plan</td></tr>
+          <tr><th scope="row" class="ln-step-id">0.1</th><td>Open <span class="ln-t-named">Item Order Plan</span> <span class="ln-t-exact">cprrp0520m000</span></td><td class="ln-see">The plan selection screen</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.2</th><td>Search for the finished item</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">finished item</span> — if it appears, planning data exists: go to 0.6. If it does not, the item is invisible to planning: continue</td></tr>
+          <tr><th scope="row" class="ln-step-id">0.3</th><td>Open <span class="ln-t-named">Items</span> <span class="ln-t-exact">tcibd0501m000</span> via <span class="ln-t-route"><span>Master Data</span><span class="sep">➔</span><span>Items</span><span class="sep">➔</span><span class="dest">Items</span></span> and drill into the finished item</td><td class="ln-see"><span class="ln-t-named">Item</span> <span class="ln-t-exact">tcibd0501m100</span> opens</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.4</th><td>On the <span class="ln-t-named">Clusters</span> tab, add a row with the environment&#39;s planning cluster</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">planning cluster</span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">site</span> — the observed environment uses <span class="ln-t-exact">NA1</span> and <span class="ln-t-exact">CSADNA01</span></td></tr>
+          <tr><th scope="row" class="ln-step-id">0.5</th><td>Save, then reopen <span class="ln-t-named">Item Order Plan</span> and search again</td><td class="ln-see">The item now appears — an empty plan, but a plan</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">0.6</th><td>Repeat 0.2–0.5 for <span class="ln-t-named">every component in the BOM</span></td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">components given plan data</span> — each appears in its own Item Order Plan</td></tr>
             </tbody>
           </table>
         </div>
@@ -791,15 +850,15 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-1">
         <h3 id="p-1">Phase 1 — Create demand</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Sales ➔ Orders ➔ Order Intake Workbench</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Sales Order Intake Workbench <span class="rux--type-code-01">tdsls4601m200</span></dd></div></dl>
-        <p><strong>What LN is doing.</strong> Planning acts on uncovered demand. A sales order for more than is on hand creates a shortfall, and that shortfall is exactly the quantity MRP should propose, which is what makes the run checkable. Planning sees the demand without the order being approved.</p>
+        <p class="ln-prose-measure"><strong>What LN is doing.</strong> Planning acts on uncovered demand. A sales order for more than is on hand creates a shortfall, and that shortfall is exactly the quantity MRP should propose, which is what makes the run checkable. Planning sees the demand without the order being approved.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">1.1</th><td>In <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Inventory 360"><span class="rux--tag__label">Inventory 360</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whwmd4300m000"><span class="rux--tag__label">whwmd4300m000</span></span>, read the finished item&#39;s on-hand at its warehouse</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="finished item on-hand before"><span class="rux--tag__label">finished item on-hand before</span></span> — the demand must exceed this</td></tr>
-          <tr><th scope="row" class="ln-step-id">1.2</th><td>Create a sales order for the finished item, following <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-ship-from-stock.md"><span class="rux--tag__label">SG-ship-from-stock.md</span></span> phase 1 steps 1.1–1.11</td><td>An order exists at <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Free"><span class="rux--tag__label">Free</span></span></td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">1.3</th><td>Set <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Ordered Quantity"><span class="rux--tag__label">Ordered Quantity</span></span> above the on-hand from 1.1, and the <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Planned Delivery Date"><span class="rux--tag__label">Planned Delivery Date</span></span> no more than a few days out</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="sales order number"><span class="rux--tag__label">sales order number</span></span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="ordered quantity"><span class="rux--tag__label">ordered quantity</span></span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="planned delivery date"><span class="rux--tag__label">planned delivery date</span></span> — the observed run booked <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="5"><span class="rux--tag__label">5</span></span> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ea"><span class="rux--tag__label">ea</span></span> against <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="1"><span class="rux--tag__label">1</span></span> on hand</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">1.1</th><td>In <span class="ln-t-named">Inventory 360</span> <span class="ln-t-exact">whwmd4300m000</span>, read the finished item&#39;s on-hand at its warehouse</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">finished item on-hand before</span> — the demand must exceed this</td></tr>
+          <tr><th scope="row" class="ln-step-id">1.2</th><td>Create a sales order for the finished item, following <span class="ln-t-exact">SG-ship-from-stock.md</span> phase 1 steps 1.1–1.11</td><td class="ln-see">An order exists at <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Free</span></span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">1.3</th><td>Set <span class="ln-t-named">Ordered Quantity</span> above the on-hand from 1.1, and the <span class="ln-t-named">Planned Delivery Date</span> no more than a few days out</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">sales order number</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">ordered quantity</span>, <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">planned delivery date</span> — the observed run booked <span class="ln-t-exact">5</span> <span class="ln-t-exact">ea</span> against <span class="ln-t-exact">1</span> on hand</td></tr>
             </tbody>
           </table>
         </div>
@@ -808,16 +867,16 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-2">
         <h3 id="p-2">Phase 2 — Put the demand inside the horizon</h3>
         <dl class="ln-meta"><div class="ln-meta-row"><dt>Route</dt><dd>Planning ➔ Master Data ➔ Items ➔ Items - Planning</dd></div><div class="ln-meta-row"><dt>Session</dt><dd>Items - Planning <span class="rux--type-code-01">cprpd1100m000</span></dd></div></dl>
-        <p><strong>What LN is doing.</strong> The order horizon decides which demand planning sees at all: demand beyond it is not late or flagged, it does not exist to planning. LN turns the number of days you enter into a date by counting workdays on the calendar of the item&#39;s warehouse, so the date it shows is the one to trust.</p>
+        <p class="ln-prose-measure"><strong>What LN is doing.</strong> The order horizon decides which demand planning sees at all: demand beyond it is not late or flagged, it does not exist to planning. LN turns the number of days you enter into a date by counting workdays on the calendar of the item&#39;s warehouse, so the date it shows is the one to trust.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr><th scope="row" class="ln-step-id">2.1</th><td>Open <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span> for the finished item, <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Horizons"><span class="rux--tag__label">Horizons</span></span> tab</td><td><span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Order Horizon"><span class="rux--tag__label">Order Horizon</span></span> as a number of days, with the resulting date beside it</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">2.2</th><td>If the delivery date from 1.3 falls beyond the horizon date, raise the <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Order Horizon"><span class="rux--tag__label">Order Horizon</span></span> days until it falls inside</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="order horizon"><span class="rux--tag__label">order horizon</span></span> — record both the days entered and the date displayed</td></tr>
-          <tr><th scope="row" class="ln-step-id">2.3</th><td>Save, and reopen <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span> for the item</td><td>The <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Horizons"><span class="rux--tag__label">Horizons</span></span> block shows the new <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Order Horizon"><span class="rux--tag__label">Order Horizon</span></span> date</td></tr>
-          <tr><th scope="row" class="ln-step-id">2.4</th><td>Find the demand in the grid</td><td>A <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Sales Order"><span class="rux--tag__label">Sales Order</span></span> row with your order number and quantity as <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Demand"><span class="rux--tag__label">Demand</span></span></td></tr>
+          <tr><th scope="row" class="ln-step-id">2.1</th><td>Open <span class="ln-t-named">Items - Planning</span> <span class="ln-t-exact">cprpd1100m000</span> for the finished item, <span class="ln-t-named">Horizons</span> tab</td><td class="ln-see"><span class="ln-t-named">Order Horizon</span> as a number of days, with the resulting date beside it</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">2.2</th><td>If the delivery date from 1.3 falls beyond the horizon date, raise the <span class="ln-t-named">Order Horizon</span> days until it falls inside</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">order horizon</span> — record both the days entered and the date displayed</td></tr>
+          <tr><th scope="row" class="ln-step-id">2.3</th><td>Save, and reopen <span class="ln-t-named">Item Order Plan</span> <span class="ln-t-exact">cprrp0520m000</span> for the item</td><td class="ln-see">The <span class="ln-t-named">Horizons</span> block shows the new <span class="ln-t-named">Order Horizon</span> date</td></tr>
+          <tr><th scope="row" class="ln-step-id">2.4</th><td>Find the demand in the grid</td><td class="ln-see">A <span class="ln-t-named">Sales Order</span> row with your order number and quantity as <span class="ln-t-named">Demand</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -826,16 +885,16 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-3">
         <h3 id="p-3">Phase 3 — Run MRP</h3>
         
-        <p><strong>What LN is doing.</strong> The run reads every demand inside the horizon, nets it against stock and existing supply, and generates planned orders for the shortfall, multi-level through the BOM when child items are included. With pegging relations updated it also records which demand each planned order exists to serve, which is what phase 5 reads.</p>
+        <p class="ln-prose-measure"><strong>What LN is doing.</strong> The run reads every demand inside the horizon, nets it against stock and existing supply, and generates planned orders for the shortfall, multi-level through the BOM when child items are included. With pegging relations updated it also records which demand each planned order exists to serve, which is what phase 5 reads.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr><th scope="row" class="ln-step-id">3.1</th><td>Open <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Generate Order Planning (Item)"><span class="rux--tag__label">Generate Order Planning (Item)</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span> for the finished item</td><td><span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Scenario"><span class="rux--tag__label">Scenario</span></span> and <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Plan Item"><span class="rux--tag__label">Plan Item</span></span> are set</td></tr>
-          <tr><th scope="row" class="ln-step-id">3.2</th><td>Select <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Include Child Items"><span class="rux--tag__label">Include Child Items</span></span></td><td>The run will also plan the BOM components — multi-level, top-down</td></tr>
-          <tr><th scope="row" class="ln-step-id">3.3</th><td>Confirm <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Update Pegging Relations"><span class="rux--tag__label">Update Pegging Relations</span></span> is selected, where the field is open</td><td>Phase 5 depends on it — see the notes</td></tr>
-          <tr><th scope="row" class="ln-step-id">3.4</th><td>Run the generation</td><td>The run completes; exception messages print or store if selected</td></tr>
+          <tr><th scope="row" class="ln-step-id">3.1</th><td>Open <span class="ln-t-named">Generate Order Planning (Item)</span> <span class="ln-t-exact">cprrp1220m000</span> for the finished item</td><td class="ln-see"><span class="ln-t-named">Scenario</span> and <span class="ln-t-named">Plan Item</span> are set</td></tr>
+          <tr><th scope="row" class="ln-step-id">3.2</th><td>Select <span class="ln-t-named">Include Child Items</span></td><td class="ln-see">The run will also plan the BOM components — multi-level, top-down</td></tr>
+          <tr><th scope="row" class="ln-step-id">3.3</th><td>Confirm <span class="ln-t-named">Update Pegging Relations</span> is selected, where the field is open</td><td class="ln-see">Phase 5 depends on it — see the notes</td></tr>
+          <tr><th scope="row" class="ln-step-id">3.4</th><td>Run the generation</td><td class="ln-see">The run completes; exception messages print or store if selected</td></tr>
             </tbody>
           </table>
         </div>
@@ -844,17 +903,17 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-4">
         <h3 id="p-4">Phase 4 — Review the result</h3>
         
-        <p><strong>What LN is doing.</strong> One planned order plays two roles: it is supply on the parent&#39;s plan and demand on the component&#39;s, and the component&#39;s own plan has already answered it. Planned quantities equal the raw shortfall only when the item&#39;s ordering data imposes no lot-size rule; a minimum or a multiple changes the number before you see it.</p>
+        <p class="ln-prose-measure"><strong>What LN is doing.</strong> One planned order plays two roles: it is supply on the parent&#39;s plan and demand on the component&#39;s, and the component&#39;s own plan has already answered it. Planned quantities equal the raw shortfall only when the item&#39;s ordering data imposes no lot-size rule; a minimum or a multiple changes the number before you see it.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr><th scope="row" class="ln-step-id">4.1</th><td>Reopen the finished item&#39;s <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span></td><td>The sales order row now has a companion</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">4.2</th><td>Read the planned supply row</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="planned production order number"><span class="rux--tag__label">planned production order number</span></span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="planned production quantity"><span class="rux--tag__label">planned production quantity</span></span> — a <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Planned Production Order"><span class="rux--tag__label">Planned Production Order</span></span> whose <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Supply"><span class="rux--tag__label">Supply</span></span> equals ordered quantity minus on-hand</td></tr>
-          <tr><th scope="row" class="ln-step-id">4.3</th><td>Open the <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="component&#39;s"><span class="rux--tag__label">component&#39;s</span></span> Item Order Plan</td><td>The same planned production order appears — as <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Demand"><span class="rux--tag__label">Demand</span></span></td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">4.4</th><td>Read the component&#39;s planned supply row</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="component planned purchase order"><span class="rux--tag__label">component planned purchase order</span></span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="component planned quantity"><span class="rux--tag__label">component planned quantity</span></span> — a <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Planned Purchase Order"><span class="rux--tag__label">Planned Purchase Order</span></span> covering what stock does not</td></tr>
-          <tr><th scope="row" class="ln-step-id">4.5</th><td>Open <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span> for the cluster and site from 0.4</td><td>Both planned orders listed, <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Order Status"><span class="rux--tag__label">Order Status</span></span> <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Planned"><span class="rux--tag__label">Planned</span></span></td></tr>
+          <tr><th scope="row" class="ln-step-id">4.1</th><td>Reopen the finished item&#39;s <span class="ln-t-named">Item Order Plan</span></td><td class="ln-see">The sales order row now has a companion</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">4.2</th><td>Read the planned supply row</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">planned production order number</span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">planned production quantity</span> — a <span class="ln-t-named">Planned Production Order</span> whose <span class="ln-t-named">Supply</span> equals ordered quantity minus on-hand</td></tr>
+          <tr><th scope="row" class="ln-step-id">4.3</th><td>Open the <span class="ln-t-named">component&#39;s</span> Item Order Plan</td><td class="ln-see">The same planned production order appears — as <span class="ln-t-named">Demand</span></td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">4.4</th><td>Read the component&#39;s planned supply row</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component planned purchase order</span> and <svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">component planned quantity</span> — a <span class="ln-t-named">Planned Purchase Order</span> covering what stock does not</td></tr>
+          <tr><th scope="row" class="ln-step-id">4.5</th><td>Open <span class="ln-t-named">Planned Orders</span> <span class="ln-t-exact">cprrp1100m000</span> for the cluster and site from 0.4</td><td class="ln-see">Both planned orders listed, <span class="ln-t-named">Order Status</span> <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Planned</span></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -863,16 +922,16 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="p-5">
         <h3 id="p-5">Phase 5 — Read the pegging tree</h3>
         
-        <p><strong>What LN is doing.</strong> The pegging tree walks the relations the run recorded: upstream, what will supply this demand; downstream, what demand caused this order. The tree exists only if pegging relations were generated, which in this environment happens on every run because the option is locked on.</p>
+        <p class="ln-prose-measure"><strong>What LN is doing.</strong> The pegging tree walks the relations the run recorded: upstream, what will supply this demand; downstream, what demand caused this order. The tree exists only if pegging relations were generated, which in this environment happens on every run because the option is locked on.</p>
         <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Do this</div></th><th scope="col"><div class="rux--table-header-label">You should see</div></th></tr></thead>
             <tbody>
-          <tr><th scope="row" class="ln-step-id">5.1</th><td>In <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span>, select the planned production order from 4.5</td><td>—</td></tr>
-          <tr><th scope="row" class="ln-step-id">5.2</th><td>Run <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Pegging - Upstream"><span class="rux--tag__label">Pegging - Upstream</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Order Pegging"><span class="rux--tag__label">Order Pegging</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0740m200"><span class="rux--tag__label">cprrp0740m200</span></span> opens as a tree</td></tr>
-          <tr><th scope="row" class="ln-step-id">5.3</th><td>Read the tree from the top</td><td>The sales order, then each level of stock and planned supply beneath it</td></tr>
-          <tr data-produces="true"><th scope="row" class="ln-step-id">5.4</th><td>Check the arithmetic at every level against the BOM and the stock figures</td><td><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="rux--tag rux--tag--warm-gray rux--layout--size-sm" title="pegging arithmetic check"><span class="rux--tag__label">pegging arithmetic check</span></span> — each level&#39;s children sum to its requirement</td></tr>
+          <tr><th scope="row" class="ln-step-id">5.1</th><td>In <span class="ln-t-named">Planned Orders</span>, select the planned production order from 4.5</td><td class="ln-see">—</td></tr>
+          <tr><th scope="row" class="ln-step-id">5.2</th><td>Run <span class="ln-t-named">Pegging - Upstream</span></td><td class="ln-see"><span class="ln-t-named">Order Pegging</span> <span class="ln-t-exact">cprrp0740m200</span> opens as a tree</td></tr>
+          <tr><th scope="row" class="ln-step-id">5.3</th><td>Read the tree from the top</td><td class="ln-see">The sales order, then each level of stock and planned supply beneath it</td></tr>
+          <tr data-produces="true"><th scope="row" class="ln-step-id">5.4</th><td>Check the arithmetic at every level against the BOM and the stock figures</td><td class="ln-see"><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg> <span class="ln-t-exact">pegging arithmetic check</span> — each level&#39;s children sum to its requirement</td></tr>
             </tbody>
           </table>
         </div>
@@ -888,15 +947,15 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <thead><tr><th scope="col"><div class="rux--table-header-label">Phase</div></th><th scope="col"><div class="rux--table-header-label">Symptom</div></th><th scope="col"><div class="rux--table-header-label">What to check or do</div></th></tr></thead>
             <tbody>
           <tr><td>0</td><td>The item is not in the Item Order Plan</td><td>It has no planning data — no cluster row, no plan. Steps 0.3–0.5. Not an error state; nothing will tell you</td></tr>
-          <tr><td>1</td><td>LN refuses the item on the sales order — &quot;item sales by sales office not present&quot;</td><td>The item has no row for the order&#39;s sales office. Add it on the <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Sales Offices"><span class="rux--tag__label">Sales Offices</span></span> tab of <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span>, then close and reopen the order session</td></tr>
+          <tr><td>1</td><td>LN refuses the item on the sales order — &quot;item sales by sales office not present&quot;</td><td>The item has no row for the order&#39;s sales office. Add it on the <span class="ln-t-named">Sales Offices</span> tab of <span class="ln-t-named">Item</span> <span class="ln-t-exact">tcibd0501m100</span>, then close and reopen the order session</td></tr>
           <tr><td>1</td><td>A master-data fix appears to have no effect</td><td>The session was already open when the data changed. Close it and reopen — observed twice on 2026-08-20</td></tr>
-          <tr><td>2</td><td>The demand does not appear in the Item Order Plan</td><td>The delivery date is beyond the <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Order Horizon"><span class="rux--tag__label">Order Horizon</span></span> date. Step 2.2 — and remember the date is not today plus your days </td></tr>
+          <tr><td>2</td><td>The demand does not appear in the Item Order Plan</td><td>The delivery date is beyond the <span class="ln-t-named">Order Horizon</span> date. Step 2.2 — and remember the date is not today plus your days </td></tr>
           <tr><td>3</td><td>The run plans the parent but not a component</td><td>The component has no planning data of its own. Step 0.6 — MRP skips it silently</td></tr>
           <tr><td>3</td><td>The run produces nothing at all, or nothing propagates to the parent</td><td>Check which item you launched the generation on. Running it from a component does not traverse upward — re-run from the top-level (finished) item, per step 3.1</td></tr>
-          <tr><td>4</td><td>A planned quantity does not equal the raw shortfall</td><td>Order-quantity rules in <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Ordering"><span class="rux--tag__label">Items - Ordering</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd2100m000"><span class="rux--tag__label">tcibd2100m000</span></span> round it — &quot;Lot sizing&quot;, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="cpordplanug"><span class="rux--tag__label">cpordplanug</span></span> p. 21</td></tr>
-          <tr><td>4</td><td>An expected planned purchase order is missing entirely</td><td>If the item is a purchase schedule item, supply transfers straight to Purchase Control and no planned purchase order is created — <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span> help</td></tr>
-          <tr><td>5</td><td>The pegging tree is empty</td><td>Pegging relations were not generated, or the demand lies beyond the <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Pegging Horizon"><span class="rux--tag__label">Pegging Horizon</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd0100m000"><span class="rux--tag__label">cprpd0100m000</span></span>. See the phase 5 Prerequisite</td></tr>
-          <tr><td>3</td><td>A component was given planning data and still does not appear</td><td>It may be correctly absent — planning proposes supply only for what stock does not cover. Read the component&#39;s own <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> and its on-hand before assuming the fix failed. Observed unexplained on 2026-08-25 </td></tr>
+          <tr><td>4</td><td>A planned quantity does not equal the raw shortfall</td><td>Order-quantity rules in <span class="ln-t-named">Items - Ordering</span> <span class="ln-t-exact">tcibd2100m000</span> round it — &quot;Lot sizing&quot;, <span class="ln-t-exact">cpordplanug</span> p. 21</td></tr>
+          <tr><td>4</td><td>An expected planned purchase order is missing entirely</td><td>If the item is a purchase schedule item, supply transfers straight to Purchase Control and no planned purchase order is created — <span class="ln-t-exact">cprrp1100m000</span> help</td></tr>
+          <tr><td>5</td><td>The pegging tree is empty</td><td>Pegging relations were not generated, or the demand lies beyond the <span class="ln-t-named">Pegging Horizon</span> <span class="ln-t-exact">cprpd0100m000</span>. See the phase 5 Prerequisite</td></tr>
+          <tr><td>3</td><td>A component was given planning data and still does not appear</td><td>It may be correctly absent — planning proposes supply only for what stock does not cover. Read the component&#39;s own <span class="ln-t-named">Item Order Plan</span> and its on-hand before assuming the fix failed. Observed unexplained on 2026-08-25 </td></tr>
             </tbody>
           </table>
         </div>
@@ -909,9 +968,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">Variant</div></th><th scope="col"><div class="rux--table-header-label">What changes</div></th></tr></thead>
             <tbody>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Run planning for all items"><span class="rux--tag__label">Run planning for all items</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Generate Order Planning"><span class="rux--tag__label">Generate Order Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1210m000"><span class="rux--tag__label">cprrp1210m000</span></span>, Planning ➔ Order Planning ➔ Generate Order Planning, runs ranges instead of one item — the production habit. No help is filed for it, so its options are not assumed to match <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>&#39;s </td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Net change instead of regenerative"><span class="rux--tag__label">Net change instead of regenerative</span></span></td><td><span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Run a Net Change Planning"><span class="rux--tag__label">Run a Net Change Planning</span></span> in the generate session — simulates only from the first net-change date. A value change inside one step, not a phase change</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Master planning"><span class="rux--tag__label">Master planning</span></span></td><td>A different mechanism, not a value change: enabling <span class="rux--tag rux--tag--cool-gray rux--layout--size-sm" title="Master Plan"><span class="rux--tag__label">Master Plan</span></span> on <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span> splits the horizons, and the item master plan must be initialized before it exists. <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Own guide when written"><span class="rux--tag__label">Own guide when written</span></span> — it needs <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="cprpd"><span class="rux--tag__label">cprpd</span></span>/<span class="rux--tag rux--tag--gray rux--layout--size-sm" title="cprmp"><span class="rux--tag__label">cprmp</span></span> session help first </td></tr>
+          <tr><td><span class="ln-t-named">Run planning for all items</span></td><td><span class="ln-t-named">Generate Order Planning</span> <span class="ln-t-exact">cprrp1210m000</span>, <span class="ln-t-route"><span>Planning</span><span class="sep">➔</span><span>Order Planning</span><span class="sep">➔</span><span class="dest">Generate Order Planning</span></span>, runs ranges instead of one item — the production habit. No help is filed for it, so its options are not assumed to match <span class="ln-t-exact">cprrp1220m000</span>&#39;s </td></tr>
+          <tr><td><span class="ln-t-named">Net change instead of regenerative</span></td><td><span class="ln-t-named">Run a Net Change Planning</span> in the generate session — simulates only from the first net-change date. A value change inside one step, not a phase change</td></tr>
+          <tr><td><span class="ln-t-named">Master planning</span></td><td>A different mechanism, not a value change: enabling <span class="ln-t-named">Master Plan</span> on <span class="ln-t-exact">cprpd1100m000</span> splits the horizons, and the item master plan must be initialized before it exists. <span class="ln-t-named">Own guide when written</span> — it needs <span class="ln-t-exact">cprpd</span>/<span class="ln-t-exact">cprmp</span> session help first </td></tr>
             </tbody>
           </table>
         </div>
@@ -925,13 +984,13 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <thead><tr><th scope="col"><div class="rux--table-header-label">Now that…</div></th><th scope="col"><div class="rux--table-header-label">Next guide</div></th><th scope="col"><div class="rux--table-header-label">Start at</div></th></tr></thead>
             <tbody>
           <tr><td>Planned orders cover the shortfall and reconcile in the pegging tree</td><td><strong>Not documented for this release.</strong></td><td>—</td></tr>
-          <tr><td>The planned quantities look wrong against supplier reality</td><td>Adjust order-quantity rules in <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Ordering"><span class="rux--tag__label">Items - Ordering</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd2100m000"><span class="rux--tag__label">tcibd2100m000</span></span> and rerun phase 3</td><td>Phase 3</td></tr>
+          <tr><td>The planned quantities look wrong against supplier reality</td><td>Adjust order-quantity rules in <span class="ln-t-named">Items - Ordering</span> <span class="ln-t-exact">tcibd2100m000</span> and rerun phase 3</td><td>Phase 3</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-      <p><strong>What is known about the step after this guide</strong>, so the boundary is a handover rather than a cliff. <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Transfer Order Planning"><span class="rux--tag__label">Transfer Order Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cppat1210m000"><span class="rux--tag__label">cppat1210m000</span></span> turns a planned order into a real one — production orders into Job Shop Control, purchase orders into Procurement — and the <strong>purchase</strong> half was walked on 2026-08-25: two planned purchase orders for <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> became purchase order <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100000682"><span class="rux--tag__label">100000682</span></span>. Full reference in <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span>. Three things from that walk matter to anyone leaving this guide:</p>
-      <p>- <strong>A purchased component will not transfer without buy-from business partner data.</strong> The transfer fails and prints <em>&quot;Buy-from BP cannot be determined for item … ; neither valid Item - BP data is present, nor a BP is linked to Item Purchase Data.&quot;</em> The fix is a row on the <strong>Item - Business Partner</strong> tab of the item&#39;s purchase data. <strong>Nothing in this guide&#39;s phases surfaces this</strong>, because a planned purchase order is generated happily without it — the gap only appears at transfer. <strong>Not documented for this release.</strong></p>
+      <p class="ln-prose-measure"><strong>What is known about the step after this guide</strong>, so the boundary is a handover rather than a cliff. <span class="ln-t-named">Transfer Order Planning</span> <span class="ln-t-exact">cppat1210m000</span> turns a planned order into a real one — production orders into Job Shop Control, purchase orders into Procurement — and the <strong>purchase</strong> half was walked on 2026-08-25: two planned purchase orders for <span class="ln-t-exact">BAM-ROD</span> became purchase order <span class="ln-t-exact">100000682</span>. Full reference in <span class="ln-t-exact">the source on file</span>. Three things from that walk matter to anyone leaving this guide:</p>
+      <p class="ln-prose-measure">- <strong>A purchased component will not transfer without buy-from business partner data.</strong> The transfer fails and prints <em>&quot;Buy-from BP cannot be determined for item … ; neither valid Item - BP data is present, nor a BP is linked to Item Purchase Data.&quot;</em> The fix is a row on the <strong>Item - Business Partner</strong> tab of the item&#39;s purchase data. <strong>Nothing in this guide&#39;s phases surfaces this</strong>, because a planned purchase order is generated happily without it — the gap only appears at transfer. <strong>Not documented for this release.</strong></p>
       </section>
 
         <!-- The generated verification sentence. It is NOT a substitute for
@@ -939,6 +998,22 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
              every phase was performed against a live system and confirmed
              while the guide itself is status: draft. Both are shown. -->
         <p class="rux--type-body-01">Warning No phase of this procedure has yet been performed end to end against a live system. Follow it as a plan, not as a record.</p>
+      
+      <section class="ln-key" aria-labelledby="h-key">
+        <h2 id="h-key" class="rux--type-productive-heading-03">How to read a step</h2>
+        <dl class="ln-key-grid">
+          <dt><span class="ln-t-press">Press it</span></dt>
+          <dd>A control you act on.</dd>
+          <dt><span class="ln-t-named">Named on screen</span></dt>
+          <dd>A tab, panel, field or column label &mdash; something you look for.</dd>
+          <dt><span class="ln-t-exact">Exact string</span></dt>
+          <dd>Type or match it character for character.</dd>
+          <dt><span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">A state</span></span></dt>
+          <dd>Confirm you see it before moving on.</dd>
+          <dt><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg></dt>
+          <dd>The step yields a value worth writing down.</dd>
+        </dl>
+      </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>
     </div>

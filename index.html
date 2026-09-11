@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than

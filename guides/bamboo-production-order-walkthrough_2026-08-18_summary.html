@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -728,29 +787,29 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
           <h2 id="s-covered">What this covered</h2>
-          <p>Taking the bamboo training items (a rod, a sleeve, and a finished chopstick pair) all the way from bare item records to a produced, received finished good — building the bill of material, the routing, the cost, and the stock the production order needed, then running that order to completion.</p>
+          <p class="ln-prose-measure">Taking the bamboo training items (a rod, a sleeve, and a finished chopstick pair) all the way from bare item records to a produced, received finished good — building the bill of material, the routing, the cost, and the stock the production order needed, then running that order to completion.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Topics</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-building-the-recipe-bill-of-material-and-routing">
             <h3 id="t-building-the-recipe-bill-of-material-and-routing">Building the recipe: bill of material and routing</h3>
-            <p>The chopstick pair needs a bill of material (what goes into it) and a routing (the steps to make it). Both were built from scratch.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">The chopstick pair needs a bill of material (what goes into it) and a routing (the steps to make it). Both were built from scratch.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">Job Shop Bill of Material — created BOM <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="JB0000242"><span class="rux--tag__label">JB0000242</span></span> for the chopstick pair: 2 rods, 1 sleeve.</li>
-          <li class="rux--list__item">Job Shop Routing — one cutting operation, at work center <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="A1000"><span class="rux--tag__label">A1000</span></span>.</li>
+          <li class="rux--list__item">Job Shop Bill of Material — created BOM <span class="ln-t-exact">JB0000242</span> for the chopstick pair: 2 rods, 1 sleeve.</li>
+          <li class="rux--list__item">Job Shop Routing — one cutting operation, at work center <span class="ln-t-exact">A1000</span>.</li>
           <li class="rux--list__item">Later, a second BOM revision was created on purpose, just to show how revisions work: create the new one, approve it, then mark the old one &quot;expired&quot; so the system switches over automatically.</li>
         </ol>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-costing-the-item">
             <h3 id="t-costing-the-item">Costing the item</h3>
-            <p>Before you can produce something, LN needs to know what it costs. This turned out to be simpler than expected — it&#39;s a button right on the item&#39;s own screen (<strong>Calculate and Actualize Standard Costs</strong>), not a separate session.</p>
+            <p class="ln-prose-measure">Before you can produce something, LN needs to know what it costs. This turned out to be simpler than expected — it&#39;s a button right on the item&#39;s own screen (<strong>Calculate and Actualize Standard Costs</strong>), not a separate session.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-getting-materials-on-hand-the-purchasing-route">
             <h3 id="t-getting-materials-on-hand-the-purchasing-route">Getting materials on hand — the purchasing route</h3>
-            <p>The rod and sleeve had to physically be in the warehouse before production could use them. The team bought them from an existing test supplier (Vista Machines Inc.) rather than just adjusting inventory by hand — a real purchase order, all the way through to a warehouse receipt.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">The rod and sleeve had to physically be in the warehouse before production could use them. The team bought them from an existing test supplier (Vista Machines Inc.) rather than just adjusting inventory by hand — a real purchase order, all the way through to a warehouse receipt.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">Created a purchase order for 2 rods and 1 sleeve.</li>
           <li class="rux--list__item">Hit a real system error on receiving (&quot;Stock Point Details not found&quot;) — worked through it and the receipt still closed out successfully.</li>
@@ -758,8 +817,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-running-the-production-order">
             <h3 id="t-running-the-production-order">Running the production order</h3>
-            <p>With the recipe, cost, and materials all in place, the order ran start to finish: created, released, materials issued, operation completed, and the finished pair received into the warehouse — with an inspection step in between.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">With the recipe, cost, and materials all in place, the order ran start to finish: created, released, materials issued, operation completed, and the finished pair received into the warehouse — with an inspection step in between.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">Production order created and released.</li>
           <li class="rux--list__item">Materials issued to the shop floor.</li>
@@ -785,7 +844,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item">Closing a production order needs everything finished on both sides: materials fully issued out, and the finished item fully put away, not just received.</li>
           <li class="rux--list__item">Real errors happen even on a &quot;known good&quot; path (the stock-point error on receipt) — and the system can still recover and complete normally.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="bamboo-production-order-walkthrough_2026-08-18.html">`bamboo-production-order-walkthrough_2026-08-18.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p class="ln-prose-measure"><strong>Full record:</strong> <a class="rux--link" href="bamboo-production-order-walkthrough_2026-08-18.html">`bamboo-production-order-walkthrough_2026-08-18.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>

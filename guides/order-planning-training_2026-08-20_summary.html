@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -728,93 +787,93 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
           <h2 id="s-covered">What this covered</h2>
-          <p>An introduction to <strong>order planning</strong> — MRP — in Infor LN, using the bamboo training items (<span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span>) built in earlier sessions. It works forward from what an item needs before LN will plan it at all, through where demand comes from, to the single setting that decides which demand planning is willing to act on. It closes with a short look at master planning.</p>
-          <p>Everything before this session created supply by hand — sales orders, production orders, purchase orders. This is the first session where the system proposes supply for you.</p>
+          <p class="ln-prose-measure">An introduction to <strong>order planning</strong> — MRP — in Infor LN, using the bamboo training items (<span class="ln-t-exact">BAM-CHOP-PAIR</span>, <span class="ln-t-exact">BAM-ROD</span>, <span class="ln-t-exact">BAM-SLEEVE</span>) built in earlier sessions. It works forward from what an item needs before LN will plan it at all, through where demand comes from, to the single setting that decides which demand planning is willing to act on. It closes with a short look at master planning.</p>
+          <p class="ln-prose-measure">Everything before this session created supply by hand — sales orders, production orders, purchase orders. This is the first session where the system proposes supply for you.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Topics</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-an-item-needs-planning-data-before-it-can-be-planned">
             <h3 id="t-an-item-needs-planning-data-before-it-can-be-planned">An item needs planning data before it can be planned</h3>
-            <p>Planning runs off a separate set of item data. If an item has no record there, it simply does not appear on the planning screens — there is nothing to plan and no error explaining why.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">Planning runs off a separate set of item data. If an item has no record there, it simply does not appear on the planning screens — there is nothing to plan and no error explaining why.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span> — searched for <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> and found nothing. <em>&quot;It&#39;s not set up for planning yet.&quot;</em></li>
-          <li class="rux--list__item">The link between an item and its planning data is the <strong>cluster</strong>, maintained on the <strong>Clusters</strong> tab of <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span>. Because <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> was created under a brand-new item group, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-FG"><span class="rux--tag__label">BAM-FG</span></span>, the item-defaults template carried no cluster and no planning record was generated.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Item Order Plan</span> <span class="ln-t-exact">cprrp0520m000</span> — searched for <span class="ln-t-exact">BAM-CHOP-PAIR</span> and found nothing. <em>&quot;It&#39;s not set up for planning yet.&quot;</em></li>
+          <li class="rux--list__item">The link between an item and its planning data is the <strong>cluster</strong>, maintained on the <strong>Clusters</strong> tab of <span class="ln-t-named">Item</span> <span class="ln-t-exact">tcibd0501m100</span>. Because <span class="ln-t-exact">BAM-CHOP-PAIR</span> was created under a brand-new item group, <span class="ln-t-exact">BAM-FG</span>, the item-defaults template carried no cluster and no planning record was generated.</li>
           <li class="rux--list__item">The planning record was created manually. The item then appeared in the Item Order Plan.</li>
         </ol>
-            <p>This environment&#39;s planning cluster is <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="NA1"><span class="rux--tag__label">NA1</span></span> and its site is <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="CSADNA01"><span class="rux--tag__label">CSADNA01</span></span>.</p>
+            <p class="ln-prose-measure">This environment&#39;s planning cluster is <span class="ln-t-exact">NA1</span> and its site is <span class="ln-t-exact">CSADNA01</span>.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-demand-comes-from-orders-and-the-item-has-to-be-sellable-first">
             <h3 id="t-demand-comes-from-orders-and-the-item-has-to-be-sellable-first">Demand comes from orders — and the item has to be sellable first</h3>
-            <p>No demand means nothing to plan. Neither does demand that is already covered by supply.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">No demand means nothing to plan. Neither does demand that is already covered by supply.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">A sales order was duplicated to create demand, and LN refused the item: <em>&quot;item sales by sales office not present.&quot;</em></li>
-          <li class="rux--list__item">Fixed by adding a row on the <strong>Sales Offices</strong> tab of <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span>, using the sales office from the order header.</li>
+          <li class="rux--list__item">Fixed by adding a row on the <strong>Sales Offices</strong> tab of <span class="ln-t-named">Item</span> <span class="ln-t-exact">tcibd0501m100</span>, using the sales office from the order header.</li>
           <li class="rux--list__item"><strong>After a master-data change, close the session and reopen it.</strong> LN will not pick the change up otherwise.</li>
           <li class="rux--list__item">The order was booked for <strong>5 ea</strong> against <strong>1 ea</strong> on hand — four short.</li>
         </ol>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-the-order-horizon-decides-which-demand-planning-sees">
             <h3 id="t-the-order-horizon-decides-which-demand-planning-sees">The order horizon decides which demand planning sees</h3>
-            <p>This is the heart of the session, and it was shown as an experiment rather than explained.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">This is the heart of the session, and it was shown as an experiment rather than explained.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">With the sales order&#39;s delivery date set to <strong>today</strong>, the demand appeared in the Item Order Plan.</li>
-          <li class="rux--list__item">Moved out to <strong>a week from now</strong> and refreshed — the demand <strong>disappeared</strong>. The Horizons block explains it: <strong>Order Horizon</strong> was <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="8/20/2026"><span class="rux--tag__label">8/20/2026</span></span>, the day of the session. Anything beyond that date is invisible to planning.</li>
-          <li class="rux--list__item">The order horizon was extended in <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span>. The demand came back, and MRP added a <strong>planned production order</strong> for <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="4"><span class="rux--tag__label">4</span></span> — five demanded, one on hand.</li>
+          <li class="rux--list__item">Moved out to <strong>a week from now</strong> and refreshed — the demand <strong>disappeared</strong>. The Horizons block explains it: <strong>Order Horizon</strong> was <span class="ln-t-exact">8/20/2026</span>, the day of the session. Anything beyond that date is invisible to planning.</li>
+          <li class="rux--list__item">The order horizon was extended in <span class="ln-t-named">Items - Planning</span> <span class="ln-t-exact">cprpd1100m000</span>. The demand came back, and MRP added a <strong>planned production order</strong> for <span class="ln-t-exact">4</span> — five demanded, one on hand.</li>
         </ol>
-            <p>The definition worth keeping: <strong>the order horizon is how far out you want planning to consider demand.</strong> One trainee&#39;s summary was accepted as correct — <em>&quot;it&#39;s like a window where they ignore everything outside of it.&quot;</em></p>
-            <p>Why it exists: with an unlimited horizon, planning would tell you to start supplying demand a year or two out. A business often does not want that — the demand may still change, and the capacity may not be there.</p>
+            <p class="ln-prose-measure">The definition worth keeping: <strong>the order horizon is how far out you want planning to consider demand.</strong> One trainee&#39;s summary was accepted as correct — <em>&quot;it&#39;s like a window where they ignore everything outside of it.&quot;</em></p>
+            <p class="ln-prose-measure">Why it exists: with an unlimited horizon, planning would tell you to start supplying demand a year or two out. A business often does not want that — the demand may still change, and the capacity may not be there.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-horizons-are-entered-in-days">
             <h3 id="t-horizons-are-entered-in-days">Horizons are entered in days</h3>
-            <p>On the <strong>Horizons</strong> tab of <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span> you type a <strong>number of days</strong> and LN shows the resulting date beside it. The values captured for <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>: Order Horizon <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="10"><span class="rux--tag__label">10</span></span> days, Planning Horizon <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="365"><span class="rux--tag__label">365</span></span> days, Operations Horizon <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="9999"><span class="rux--tag__label">9999</span></span> days.</p>
-            <p>The dates the plan displays are also shaped by the <strong>scenario&#39;s</strong> period settings — the session used scenario <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ACT"><span class="rux--tag__label">ACT</span></span>, &quot;Actual Plan (Day, Weekly basis)&quot;. After changing period settings, run <strong>Initialize, Roll, and Update Scenario</strong> or the change will not take effect.</p>
+            <p class="ln-prose-measure">On the <strong>Horizons</strong> tab of <span class="ln-t-named">Items - Planning</span> <span class="ln-t-exact">cprpd1100m000</span> you type a <strong>number of days</strong> and LN shows the resulting date beside it. The values captured for <span class="ln-t-exact">BAM-CHOP-PAIR</span>: Order Horizon <span class="ln-t-exact">10</span> days, Planning Horizon <span class="ln-t-exact">365</span> days, Operations Horizon <span class="ln-t-exact">9999</span> days.</p>
+            <p class="ln-prose-measure">The dates the plan displays are also shaped by the <strong>scenario&#39;s</strong> period settings — the session used scenario <span class="ln-t-exact">ACT</span>, &quot;Actual Plan (Day, Weekly basis)&quot;. After changing period settings, run <strong>Initialize, Roll, and Update Scenario</strong> or the change will not take effect.</p>
             <blockquote class="ln-quote">One caution from the session: the date LN produced from an eight-day horizon did not match a simple count on the calendar. Horizons are counted in <strong>workdays</strong>, and the display is also bounded by the scenario&#39;s periods, so do not expect the date to be today plus your number.</blockquote>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-running-mrp-and-why-components-get-missed">
             <h3 id="t-running-mrp-and-why-components-get-missed">Running MRP, and why components get missed</h3>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">MRP was run for the item and produced a planned order covering the shortfall.</li>
-          <li class="rux--list__item">MRP also plans the <strong>components from the BOM</strong> — but only components that have planning data of their own. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> had none and was skipped.</li>
-          <li class="rux--list__item">Plan data was created for <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> and planning rerun. It then planned <strong>two</strong> items instead of one.</li>
+          <li class="rux--list__item">MRP also plans the <strong>components from the BOM</strong> — but only components that have planning data of their own. <span class="ln-t-exact">BAM-ROD</span> had none and was skipped.</li>
+          <li class="rux--list__item">Plan data was created for <span class="ln-t-exact">BAM-ROD</span> and planning rerun. It then planned <strong>two</strong> items instead of one.</li>
           <li class="rux--list__item">On the parent&#39;s plan the planned production order is <strong>supply</strong>. Open the component&#39;s own Item Order Plan and the same order is <strong>demand</strong>, covered by a planned purchase order.</li>
         </ol>
-            <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Planned Orders"><span class="rux--tag__label">Planned Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span> is where results are actually reviewed, because you would normally run MRP for every plannable item, not one.</p>
-            <p>Two things to remember about what comes out:</p>
+            <p class="ln-prose-measure"><span class="ln-t-named">Planned Orders</span> <span class="ln-t-exact">cprrp1100m000</span> is where results are actually reviewed, because you would normally run MRP for every plannable item, not one.</p>
+            <p class="ln-prose-measure">Two things to remember about what comes out:</p>
             <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Planned orders are suggestions.</strong> A planner who knows the supplier will override them — a suggestion to buy 101 makes no sense when the supplier ships in batches of 100, so you buy 200. LN can enforce that as an order-quantity rule on <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Ordering"><span class="rux--tag__label">Items - Ordering</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd2100m000"><span class="rux--tag__label">tcibd2100m000</span></span>.</li>
+          <li class="rux--list__item"><strong>Planned orders are suggestions.</strong> A planner who knows the supplier will override them — a suggestion to buy 101 makes no sense when the supplier ships in batches of 100, so you buy 200. LN can enforce that as an order-quantity rule on <span class="ln-t-named">Items - Ordering</span> <span class="ln-t-exact">tcibd2100m000</span>.</li>
           <li class="rux--list__item"><strong>A planned order becomes real when you transfer it</strong>, which passes it to Job Shop Control or Purchase Control as an actual order.</li>
         </ul>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-order-pegging-following-the-chain">
             <h3 id="t-order-pegging-following-the-chain">Order pegging — following the chain</h3>
-            <p>Pegging traces a requirement back to what caused it, which is what makes a deep BOM manageable after an MRP run.</p>
-            <p><strong>What was shown</strong> — the <strong>Pegging - Upstream</strong> tree from <strong>Planned Orders</strong>, opening <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Order Pegging"><span class="rux--tag__label">Order Pegging</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0740m200"><span class="rux--tag__label">cprrp0740m200</span></span>:</p>
+            <p class="ln-prose-measure">Pegging traces a requirement back to what caused it, which is what makes a deep BOM manageable after an MRP run.</p>
+            <p class="ln-prose-measure"><strong>What was shown</strong> — the <strong>Pegging - Upstream</strong> tree from <strong>Planned Orders</strong>, opening <span class="ln-t-named">Order Pegging</span> <span class="ln-t-exact">cprrp0740m200</span>:</p>
             <div class="ln-code-scroll"><pre class="rux--type-code-01"><code>Sales Order 100000667 | BAM-CHOP-PAIR | 5 ea | 08-27-2026
 ├─ Stock at ADNA01 | BAM-CHOP-PAIR | 1 ea
 └─ Planned Production Order 000000061 | BAM-CHOP-PAIR | 4 ea
    └─ Planned Production Order 000000061-1 | BAM-ROD | 8 ea
       ├─ Stock at ADNA02 | BAM-ROD | 2 ea
       └─ Planned Purchase Order 000000346 | BAM-ROD | 6 ea</code></pre></div>
-            <p>Read it as: five needed, one in stock, four to be made; making four pairs takes eight rods, two are in stock, six must be bought.</p>
-            <p><strong>Upstream</strong> shows what will supply a demand. <strong>Downstream</strong> goes the other way — the demand that drove an order. In the tree, red marks demand and green marks supply.</p>
+            <p class="ln-prose-measure">Read it as: five needed, one in stock, four to be made; making four pairs takes eight rods, two are in stock, six must be bought.</p>
+            <p class="ln-prose-measure"><strong>Upstream</strong> shows what will supply a demand. <strong>Downstream</strong> goes the other way — the demand that drove an order. In the tree, red marks demand and green marks supply.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-master-planning">
             <h3 id="t-master-planning">Master planning</h3>
-            <p>Covered briefly and explicitly as secondary — <strong>learn MRP first.</strong></p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">Covered briefly and explicitly as secondary — <strong>learn MRP first.</strong></p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><strong>Master Plan</strong> is a check box on <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Items - Planning"><span class="rux--tag__label">Items - Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span>. Until it is selected, the <strong>Planning Horizon</strong> field is disabled.</li>
-          <li class="rux--list__item">Selected, the planning horizon becomes separately maintainable — <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="365"><span class="rux--tag__label">365</span></span> days against the order horizon&#39;s <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="10"><span class="rux--tag__label">10</span></span>. That is the point: planning further out than MRP looks.</li>
-          <li class="rux--list__item">The item master plan has to be <strong>initialized</strong> before it exists, using <strong>Initialize, Roll, and Update Scenario</strong> on <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Master Plan"><span class="rux--tag__label">Item Master Plan</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprmp2101m000"><span class="rux--tag__label">cprmp2101m000</span></span>.</li>
+          <li class="rux--list__item"><strong>Master Plan</strong> is a check box on <span class="ln-t-named">Items - Planning</span> <span class="ln-t-exact">cprpd1100m000</span>. Until it is selected, the <strong>Planning Horizon</strong> field is disabled.</li>
+          <li class="rux--list__item">Selected, the planning horizon becomes separately maintainable — <span class="ln-t-exact">365</span> days against the order horizon&#39;s <span class="ln-t-exact">10</span>. That is the point: planning further out than MRP looks.</li>
+          <li class="rux--list__item">The item master plan has to be <strong>initialized</strong> before it exists, using <strong>Initialize, Roll, and Update Scenario</strong> on <span class="ln-t-named">Item Master Plan</span> <span class="ln-t-exact">cprmp2101m000</span>.</li>
           <li class="rux--list__item">Generating then produces a <strong>production plan</strong> inside the item master plan, laid out in the scenario&#39;s <strong>time buckets</strong>.</li>
         </ol>
-            <p>A production plan is not a planned order and is not transferred the same way.</p>
-            <p>What it is for: long-range capacity and materials planning — whether the factory could handle demand that far out, whether lead times and storage allow it, and whether sales can safely promise those delivery dates.</p>
+            <p class="ln-prose-measure">A production plan is not a planned order and is not transferred the same way.</p>
+            <p class="ln-prose-measure">What it is for: long-range capacity and materials planning — whether the factory could handle demand that far out, whether lead times and storage allow it, and whether sales can safely promise those delivery dates.</p>
           </section>
         </section>
 
@@ -837,7 +896,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>Pegging is how you make sense of a multi-level result</strong> — upstream for what will supply a demand, downstream for what caused an order.</li>
           <li class="rux--list__item"><strong>After any master-data change, close and reopen the session</strong> before expecting LN to see it.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="order-planning-training_2026-08-20.html">`order-planning-training_2026-08-20.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p class="ln-prose-measure"><strong>Full record:</strong> <a class="rux--link" href="order-planning-training_2026-08-20.html">`order-planning-training_2026-08-20.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>

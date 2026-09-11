@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -728,15 +787,15 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
           <h2 id="s-covered">What this covered</h2>
-          <p>An open-ended planning training session: a sales order becomes demand, MRP turns demand into planned orders, planned orders transfer into real purchase and production orders, and those get received through to put-away. Two extra wrinkles got explored along the way — a contract-based order type that behaves differently from a sales order, and a live puzzle about why a safety-stock top-up seemed to split into three orders instead of one.</p>
+          <p class="ln-prose-measure">An open-ended planning training session: a sales order becomes demand, MRP turns demand into planned orders, planned orders transfer into real purchase and production orders, and those get received through to put-away. Two extra wrinkles got explored along the way — a contract-based order type that behaves differently from a sales order, and a live puzzle about why a safety-stock top-up seemed to split into three orders instead of one.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Topics</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-demand-shows-up-before-you-plan-for-it">
             <h3 id="t-demand-shows-up-before-you-plan-for-it">Demand shows up before you plan for it</h3>
-            <p>The moment a sales order line is saved, it&#39;s visible as demand — no planning run needed to see it. You do still need to run MRP (&quot;Generate Orders&quot;) to turn that demand into an actual planned production or purchase order.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">The moment a sales order line is saved, it&#39;s visible as demand — no planning run needed to see it. You do still need to run MRP (&quot;Generate Orders&quot;) to turn that demand into an actual planned production or purchase order.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">Entering a sales order line, then finding it immediately on the planning screen.</li>
           <li class="rux--list__item">Running MRP on a component by itself doesn&#39;t pick up its parent item&#39;s needs — you have to run it from the top-level item with &quot;include child items&quot; turned on, or nothing propagates down the bill of material.</li>
@@ -744,8 +803,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-turning-planned-orders-into-real-ones-and-receiving-them">
             <h3 id="t-turning-planned-orders-into-real-ones-and-receiving-them">Turning planned orders into real ones, and receiving them</h3>
-            <p>Planned orders (MRP&#39;s suggestions) get transferred into real purchase/production orders in a batch. Several small receiving rules got worked out live:</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">Planned orders (MRP&#39;s suggestions) get transferred into real purchase/production orders in a batch. Several small receiving rules got worked out live:</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">Multiple planned purchase orders combined into a single real purchase order automatically.</li>
           <li class="rux--list__item">A brand-new purchase order can&#39;t be received until it&#39;s released — printing it is what releases it.</li>
@@ -757,8 +816,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-a-second-kind-of-demand-contract-deliverables">
             <h3 id="t-a-second-kind-of-demand-contract-deliverables">A second kind of demand: contract deliverables</h3>
-            <p>Sales orders aren&#39;t the only thing that can drive planning. A &quot;contract deliverable&quot; can too — but it behaves differently.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">Sales orders aren&#39;t the only thing that can drive planning. A &quot;contract deliverable&quot; can too — but it behaves differently.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
           <li class="rux--list__item">Unlike a sales order (recognized by planning the instant it&#39;s created), a contract deliverable sits inactive until someone deliberately activates it. Left inactive, MRP ignores it completely, with no warning.</li>
           <li class="rux--list__item">Once activated, it plans and ships the same way a sales order would, but it&#39;s tagged to a specific project the whole way through — the production order made for it is &quot;pegged&quot; to that one contract.</li>
@@ -766,7 +825,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-the-safety-stock-puzzle-see-the-dedicated-write-up-">
             <h3 id="t-the-safety-stock-puzzle-see-the-dedicated-write-up-">The safety-stock puzzle (see the dedicated write-up)</h3>
-            <p>A safety-stock question from this same session — why setting safety stock to 50 for a test item seemed to generate three separate orders instead of one — is written up separately, since it got fully resolved afterward in a chat thread. Short version: it wasn&#39;t really a safety-stock problem at all. Only one of the three orders was actually tied to safety stock; the other two were ordinary orders for two unrelated sales orders that just happened to be sitting in the same list.</p>
+            <p class="ln-prose-measure">A safety-stock question from this same session — why setting safety stock to 50 for a test item seemed to generate three separate orders instead of one — is written up separately, since it got fully resolved afterward in a chat thread. Short version: it wasn&#39;t really a safety-stock problem at all. Only one of the three orders was actually tied to safety stock; the other two were ordinary orders for two unrelated sales orders that just happened to be sitting in the same list.</p>
           </section>
         </section>
 
@@ -786,7 +845,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item">A warehouse&#39;s own settings can override an item&#39;s own flag — a location-controlled item in a non-location-controlled warehouse gets treated as if it isn&#39;t.</li>
           <li class="rux--list__item">Not every demand source auto-plans. Sales orders do; contract deliverables have to be turned on first, silently, with nothing telling you why nothing happened if you forget.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="planning-scenarios_2026-09-03.html">`planning-scenarios_2026-09-03.md`</a> — sourced, dated, and cross-checked against six frames pulled directly from the recording. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p class="ln-prose-measure"><strong>Full record:</strong> <a class="rux--link" href="planning-scenarios_2026-09-03.html">`planning-scenarios_2026-09-03.md`</a> — sourced, dated, and cross-checked against six frames pulled directly from the recording. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>

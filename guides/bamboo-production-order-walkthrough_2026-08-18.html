@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -728,7 +787,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-objective">
           <h2 id="s-objective">Objective</h2>
-          <p>Continue the bamboo test-item training case (<span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>) past master-data creation: build a job shop bill of material and routing, calculate a standard cost, source component stock by purchasing and receiving, and run the resulting production order through to a finished-goods receipt. This is the walk <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-create-basic-test-items-and-defaults.md"><span class="rux--tag__label">SG-create-basic-test-items-and-defaults.md</span></span> phases 6–10 and <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-manual-production-order-existing-master-data.md"><span class="rux--tag__label">SG-manual-production-order-existing-master-data.md</span></span> phases 3–5 had been waiting on.</p>
+          <p class="ln-prose-measure">Continue the bamboo test-item training case (<span class="ln-t-exact">BAM-ROD</span>, <span class="ln-t-exact">BAM-SLEEVE</span>, <span class="ln-t-exact">BAM-CHOP-PAIR</span>) past master-data creation: build a job shop bill of material and routing, calculate a standard cost, source component stock by purchasing and receiving, and run the resulting production order through to a finished-goods receipt. This is the walk <span class="ln-t-exact">SG-create-basic-test-items-and-defaults.md</span> phases 6–10 and <span class="ln-t-exact">SG-manual-production-order-existing-master-data.md</span> phases 3–5 had been waiting on.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-attendees">
@@ -745,53 +804,53 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </table>
         </div>
       </div>
-          <p>Roles beyond the consultant (identified by authorship and coaching language throughout) and the trainee (the one operating the screen and being asked &quot;you got that?&quot;) are not independently confirmed on screen or in narration.</p>
+          <p class="ln-prose-measure">Roles beyond the consultant (identified by authorship and coaching language throughout) and the trainee (the one operating the screen and being asked &quot;you got that?&quot;) are not independently confirmed on screen or in narration.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Key topics discussed</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.1">
             <h3 id="t-3.1">3.1 Job shop bill of material</h3>
-            <p>The trainee built <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Job Shop Bill of Material"><span class="rux--tag__label">Job Shop Bill of Material</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tibom3600m000"><span class="rux--tag__label">tibom3600m000</span></span> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="JB0000242"><span class="rux--tag__label">JB0000242</span></span> revision <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span> for <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> — BOM Quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="1 ea"><span class="rux--tag__label">1 ea</span></span>, source Manual — with two material lines from <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Job Shop List of Materials"><span class="rux--tag__label">Job Shop List of Materials</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tibom3110m000"><span class="rux--tag__label">tibom3110m000</span></span>: <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> and <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span>, warehouse <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ADNA02"><span class="rux--tag__label">ADNA02</span></span>.</p>
+            <p class="ln-prose-measure">The trainee built <span class="ln-t-named">Job Shop Bill of Material</span> <span class="ln-t-exact">tibom3600m000</span> <span class="ln-t-exact">JB0000242</span> revision <span class="ln-t-exact">000001</span> for <span class="ln-t-exact">BAM-CHOP-PAIR</span> — BOM Quantity <span class="ln-t-exact">1 ea</span>, source Manual — with two material lines from <span class="ln-t-named">Job Shop List of Materials</span> <span class="ln-t-exact">tibom3110m000</span>: <span class="ln-t-exact">BAM-ROD</span> and <span class="ln-t-exact">BAM-SLEEVE</span>, warehouse <span class="ln-t-exact">ADNA02</span>.</p>
             <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast">
   <div class="rux--inline-notification__details">
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-information--filled"/></svg>
     <div class="rux--inline-notification__text-wrapper">
       <div class="rux--inline-notification__title">Note</div>
-      <div class="rux--inline-notification__subtitle"><p>Later in the session a <strong>second revision, `000002`</strong>, was created as a deliberate teaching demonstration of the revision mechanism — see section 3.6.</p></div>
+      <div class="rux--inline-notification__subtitle"><p class="ln-prose-measure">Later in the session a <strong>second revision, `000002`</strong>, was created as a deliberate teaching demonstration of the revision mechanism — see section 3.6.</p></div>
     </div>
   </div>
 </div>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.2">
             <h3 id="t-3.2">3.2 Job shop routing</h3>
-            <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Job Shop Routing"><span class="rux--tag__label">Job Shop Routing</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tirou4600m000"><span class="rux--tag__label">tirou4600m000</span></span> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span> revision <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span>, Routing Quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="1 ea"><span class="rux--tag__label">1 ea</span></span>, one operation: Operation <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="10"><span class="rux--tag__label">10</span></span>, Reference Operation <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="A1004"><span class="rux--tag__label">A1004</span></span> (&quot;Cutting - shear&quot;), Work Center <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="A1000"><span class="rux--tag__label">A1000</span></span>, Machine Type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="AA1005"><span class="rux--tag__label">AA1005</span></span>. This is an independent, unambiguous capture of the operation grid&#39;s column order (Operation → Reference Operation → Work Center → Machine Type). It settles a long-open question about whether an earlier (2026-08-06) frame had work center and reference operation transposed. </p>
+            <p class="ln-prose-measure"><span class="ln-t-named">Job Shop Routing</span> <span class="ln-t-exact">tirou4600m000</span> <span class="ln-t-exact">0</span> revision <span class="ln-t-exact">000001</span>, Routing Quantity <span class="ln-t-exact">1 ea</span>, one operation: Operation <span class="ln-t-exact">10</span>, Reference Operation <span class="ln-t-exact">A1004</span> (&quot;Cutting - shear&quot;), Work Center <span class="ln-t-exact">A1000</span>, Machine Type <span class="ln-t-exact">AA1005</span>. This is an independent, unambiguous capture of the operation grid&#39;s column order (Operation → Reference Operation → Work Center → Machine Type). It settles a long-open question about whether an earlier (2026-08-06) frame had work center and reference operation transposed. </p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.3">
             <h3 id="t-3.3">3.3 Standard cost calculation</h3>
-            <p>The consultant located the standard-cost calculation route the library had been missing: it is not a separate session but an <strong>Actions</strong> command on <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item"><span class="rux--tag__label">Item</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span> itself — <strong>Calculate and Actualize Standard Costs...</strong> — run against <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span>&#39;s Enterprise Unit row (<span class="rux--tag rux--tag--gray rux--layout--size-sm" title="4201AA"><span class="rux--tag__label">4201AA</span></span>, Legal Entity US - A). Narration confirms this is run at the line level after the item exists, and that an item without an actualization date is not yet costed. </p>
+            <p class="ln-prose-measure">The consultant located the standard-cost calculation route the library had been missing: it is not a separate session but an <strong>Actions</strong> command on <span class="ln-t-named">Item</span> <span class="ln-t-exact">tcibd0501m100</span> itself — <strong>Calculate and Actualize Standard Costs...</strong> — run against <span class="ln-t-exact">BAM-CHOP-PAIR</span>&#39;s Enterprise Unit row (<span class="ln-t-exact">4201AA</span>, Legal Entity US - A). Narration confirms this is run at the line level after the item exists, and that an item without an actualization date is not yet costed. </p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.4">
             <h3 id="t-3.4">3.4 Component stock via purchase and receipt</h3>
-            <p></p>
-            <p>Route A (purchase) was walked in full, not just proposed:</p>
+            <p class="ln-prose-measure"></p>
+            <p class="ln-prose-measure">Route A (purchase) was walked in full, not just proposed:</p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Purchase Order Intake Workbench"><span class="rux--tag__label">Purchase Order Intake Workbench</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4601m200"><span class="rux--tag__label">tdpur4601m200</span></span> → <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Purchase Order"><span class="rux--tag__label">Purchase Order</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4100m900"><span class="rux--tag__label">tdpur4100m900</span></span>, order <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100000677"><span class="rux--tag__label">100000677</span></span>.</li>
-          <li class="rux--list__item">Buy-from business partner <strong>`BP4000007` VISTA MACHINES INC.</strong>, selected from the standard test-partner list via the <strong>Buy-from Business Partners</strong> lookup (<span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tccom4520m000"><span class="rux--tag__label">tccom4520m000</span></span>). Order Type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="IPO"><span class="rux--tag__label">IPO</span></span>, Purchase Office <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="401P00"><span class="rux--tag__label">401P00</span></span>.</li>
-          <li class="rux--list__item">Order lines booked exactly from the BOM: <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-ROD"><span class="rux--tag__label">BAM-ROD</span></span> qty <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="2.0000 ea"><span class="rux--tag__label">2.0000 ea</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-SLEEVE"><span class="rux--tag__label">BAM-SLEEVE</span></span> qty <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="1.0000 ea"><span class="rux--tag__label">1.0000 ea</span></span>, both to <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ADNA02 RAW MATERIALS"><span class="rux--tag__label">ADNA02 RAW MATERIALS</span></span>.</li>
-          <li class="rux--list__item">The order generated a <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehousing Order"><span class="rux--tag__label">Warehousing Order</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m100"><span class="rux--tag__label">whinh2100m100</span></span>, type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="PUI"><span class="rux--tag__label">PUI</span></span> &quot;Purchase Receipts&quot;. <strong>Actions ➔ Receive...</strong> opened <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse Receipt"><span class="rux--tag__label">Warehouse Receipt</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3512m000"><span class="rux--tag__label">whinh3512m000</span></span>, receipt <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100001505"><span class="rux--tag__label">100001505</span></span>.</li>
-          <li class="rux--list__item">Receiving hit a real error, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="whinh0032"><span class="rux--tag__label">whinh0032</span></span> — &quot;Advise and put away receipt line: 100001505 - 10 Receipt Line Stock Point Details not found,&quot; plus 3 more messages. The receipt nonetheless reached <strong>Confirmed</strong>, All Lines Final and Complete, packing slips <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="123"><span class="rux--tag__label">123</span></span>/<span class="rux--tag rux--tag--gray rux--layout--size-sm" title="124"><span class="rux--tag__label">124</span></span>. How the error was cleared was not captured. </li>
+          <li class="rux--list__item"><span class="ln-t-named">Purchase Order Intake Workbench</span> <span class="ln-t-exact">tdpur4601m200</span> → <span class="ln-t-named">Purchase Order</span> <span class="ln-t-exact">tdpur4100m900</span>, order <span class="ln-t-exact">100000677</span>.</li>
+          <li class="rux--list__item">Buy-from business partner <strong>`BP4000007` VISTA MACHINES INC.</strong>, selected from the standard test-partner list via the <strong>Buy-from Business Partners</strong> lookup (<span class="ln-t-exact">tccom4520m000</span>). Order Type <span class="ln-t-exact">IPO</span>, Purchase Office <span class="ln-t-exact">401P00</span>.</li>
+          <li class="rux--list__item">Order lines booked exactly from the BOM: <span class="ln-t-exact">BAM-ROD</span> qty <span class="ln-t-exact">2.0000 ea</span>, <span class="ln-t-exact">BAM-SLEEVE</span> qty <span class="ln-t-exact">1.0000 ea</span>, both to <span class="ln-t-exact">ADNA02 RAW MATERIALS</span>.</li>
+          <li class="rux--list__item">The order generated a <span class="ln-t-named">Warehousing Order</span> <span class="ln-t-exact">whinh2100m100</span>, type <span class="ln-t-exact">PUI</span> &quot;Purchase Receipts&quot;. <strong>Actions ➔ Receive...</strong> opened <span class="ln-t-named">Warehouse Receipt</span> <span class="ln-t-exact">whinh3512m000</span>, receipt <span class="ln-t-exact">100001505</span>.</li>
+          <li class="rux--list__item">Receiving hit a real error, <span class="ln-t-exact">whinh0032</span> — &quot;Advise and put away receipt line: 100001505 - 10 Receipt Line Stock Point Details not found,&quot; plus 3 more messages. The receipt nonetheless reached <strong>Confirmed</strong>, All Lines Final and Complete, packing slips <span class="ln-t-exact">123</span>/<span class="ln-t-exact">124</span>. How the error was cleared was not captured. </li>
         </ol>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.5">
             <h3 id="t-3.5">3.5 Production order — release through finished-goods receipt</h3>
-            <p>Production order <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="010000749"><span class="rux--tag__label">010000749</span></span> for <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> (BOM <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="JB0000242"><span class="rux--tag__label">JB0000242</span></span> rev <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span>, routing <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span> rev <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span>) ran <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Created"><span class="rux--tag__label">Created</span></span> → <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Released"><span class="rux--tag__label">Released</span></span> → material issue → <strong>Production Completed</strong> as one continuous session — the first time those phases have been walked end to end on one order. Several step-level values (the exact <em>Completed</em> quantity, whether <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0120s000"><span class="rux--tag__label">tisfc0120s000</span></span> opened, the finished-item on-hand read) were not captured cleanly. </p>
+            <p class="ln-prose-measure">Production order <span class="ln-t-exact">010000749</span> for <span class="ln-t-exact">BAM-CHOP-PAIR</span> (BOM <span class="ln-t-exact">JB0000242</span> rev <span class="ln-t-exact">000001</span>, routing <span class="ln-t-exact">0</span> rev <span class="ln-t-exact">000001</span>) ran <span class="ln-t-exact">Created</span> → <span class="ln-t-exact">Released</span> → material issue → <strong>Production Completed</strong> as one continuous session — the first time those phases have been walked end to end on one order. Several step-level values (the exact <em>Completed</em> quantity, whether <span class="ln-t-exact">tisfc0120s000</span> opened, the finished-item on-hand read) were not captured cleanly. </p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3.6">
             <h3 id="t-3.6">3.6 Warehouse inspection, order closure, and the revision demonstration</h3>
-            <p>A <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse Inspection"><span class="rux--tag__label">Warehouse Inspection</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3122m000"><span class="rux--tag__label">whinh3122m000</span></span> ran against the finished <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BAM-CHOP-PAIR"><span class="rux--tag__label">BAM-CHOP-PAIR</span></span> at <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ADNA01"><span class="rux--tag__label">ADNA01</span></span>, Inspection Status <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Open"><span class="rux--tag__label">Open</span></span> at the point captured. Narration states plainly that <strong>Close Order</strong> was blocked until this inspection&#39;s put-away step finished — &quot;if your status on that order isn&#39;t set to put away, and all of your materials are not issued, it&#39;s not going to let you close out that order&quot; — and that closing requires <strong>both</strong> materials issued <strong>and</strong> the end item not just received but <strong>put away</strong>. This is narration (TR-grade), not yet confirmed against <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="ticst0201m000"><span class="rux--tag__label">ticst0201m000</span></span>&#39;s own help, which was previously read as silent on any precondition. </p>
-            <p><strong>Close Production Orders was actually run</strong> in this session, despite being explicitly out of scope for both Scenario Guides. Recorded here as observed environment behavior; it does not change either guide&#39;s documented scope boundary.</p>
-            <p>Separately, the consultant walked the trainee through a <strong>BOM revision demonstration</strong>: created <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="JB0000242"><span class="rux--tag__label">JB0000242</span></span> revision <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000002"><span class="rux--tag__label">000002</span></span> (quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="2"><span class="rux--tag__label">2</span></span>), approved it, flagged it Use for Planning and Use for Costing, then selected the original revision <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span> and ran <strong>Actions ➔ Expire Revision</strong> — explaining that LN will now select <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000002"><span class="rux--tag__label">000002</span></span> because <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span> is no longer valid. </p>
+            <p class="ln-prose-measure">A <span class="ln-t-named">Warehouse Inspection</span> <span class="ln-t-exact">whinh3122m000</span> ran against the finished <span class="ln-t-exact">BAM-CHOP-PAIR</span> at <span class="ln-t-exact">ADNA01</span>, Inspection Status <span class="ln-t-exact">Open</span> at the point captured. Narration states plainly that <strong>Close Order</strong> was blocked until this inspection&#39;s put-away step finished — &quot;if your status on that order isn&#39;t set to put away, and all of your materials are not issued, it&#39;s not going to let you close out that order&quot; — and that closing requires <strong>both</strong> materials issued <strong>and</strong> the end item not just received but <strong>put away</strong>. This is narration (TR-grade), not yet confirmed against <span class="ln-t-exact">ticst0201m000</span>&#39;s own help, which was previously read as silent on any precondition. </p>
+            <p class="ln-prose-measure"><strong>Close Production Orders was actually run</strong> in this session, despite being explicitly out of scope for both Scenario Guides. Recorded here as observed environment behavior; it does not change either guide&#39;s documented scope boundary.</p>
+            <p class="ln-prose-measure">Separately, the consultant walked the trainee through a <strong>BOM revision demonstration</strong>: created <span class="ln-t-exact">JB0000242</span> revision <span class="ln-t-exact">000002</span> (quantity <span class="ln-t-exact">2</span>), approved it, flagged it Use for Planning and Use for Costing, then selected the original revision <span class="ln-t-exact">000001</span> and ran <strong>Actions ➔ Expire Revision</strong> — explaining that LN will now select <span class="ln-t-exact">000002</span> because <span class="ln-t-exact">000001</span> is no longer valid. </p>
           </section>
         </section>
 
@@ -812,7 +871,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <thead><tr><th scope="col"><div class="rux--table-header-label">#</div></th><th scope="col"><div class="rux--table-header-label">Action</div></th><th scope="col"><div class="rux--table-header-label">Owner</div></th><th scope="col"><div class="rux--table-header-label">Due</div></th><th scope="col"><div class="rux--table-header-label">Status</div></th></tr></thead>
             <tbody>
           <tr><td>1</td><td>Rerun the purchasing and item-creation steps independently to build familiarity</td><td>Trainee</td><td>—</td><td>Open (stated intent, no date given)</td></tr>
-          <tr><td>2</td><td>Capture the <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="whinh0032"><span class="rux--tag__label">whinh0032</span></span> error&#39;s LOG detail and resolution on a future receipt</td><td>Consultant</td><td>—</td><td>Open </td></tr>
+          <tr><td>2</td><td>Capture the <span class="ln-t-exact">whinh0032</span> error&#39;s LOG detail and resolution on a future receipt</td><td>Consultant</td><td>—</td><td>Open </td></tr>
           <tr><td>3</td><td>Re-walk phase 5 with closer per-step screenshotting</td><td>Consultant</td><td>—</td><td>Open </td></tr>
             </tbody>
           </table>
@@ -823,19 +882,19 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-questions">
           <h2 id="s-questions">Open questions</h2>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item">How was the <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="whinh0032"><span class="rux--tag__label">whinh0032</span></span> &quot;Stock Point Details not found&quot; error actually cleared? — needs an answer from a future walk </li>
-          <li class="rux--list__item">Does <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="ticst0201m000"><span class="rux--tag__label">ticst0201m000</span></span>&#39;s official help actually document the issued-and-put-away precondition for Close Order, or does it remain narration-only? — needs an answer from a closer re-read of the session help </li>
-          <li class="rux--list__item">What are the exact phase-5 step values (completed quantity, <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0120s000"><span class="rux--tag__label">tisfc0120s000</span></span>, finished-item on-hand)? — needs an answer from a future walk </li>
+          <li class="rux--list__item">How was the <span class="ln-t-exact">whinh0032</span> &quot;Stock Point Details not found&quot; error actually cleared? — needs an answer from a future walk </li>
+          <li class="rux--list__item">Does <span class="ln-t-exact">ticst0201m000</span>&#39;s official help actually document the issued-and-put-away precondition for Close Order, or does it remain narration-only? — needs an answer from a closer re-read of the session help </li>
+          <li class="rux--list__item">What are the exact phase-5 step values (completed quantity, <span class="ln-t-exact">tisfc0120s000</span>, finished-item on-hand)? — needs an answer from a future walk </li>
         </ul>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-methodology">
           <h2 id="s-methodology">Methodology and process notes</h2>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>A grid&#39;s column order is a session property, not a per-record one.</strong> Once one unambiguous capture of <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tirou4600m000"><span class="rux--tag__label">tirou4600m000</span></span>&#39;s operation grid confirmed Operation → Reference Operation → Work Center → Machine Type, that column order could be safely applied to re-read an earlier, differently-worded capture of the same session (the 2026-08-06 frame) — this is how that question closed from a second, unrelated recording rather than needing the original frame re-shot. </li>
+          <li class="rux--list__item"><strong>A grid&#39;s column order is a session property, not a per-record one.</strong> Once one unambiguous capture of <span class="ln-t-exact">tirou4600m000</span>&#39;s operation grid confirmed Operation → Reference Operation → Work Center → Machine Type, that column order could be safely applied to re-read an earlier, differently-worded capture of the same session (the 2026-08-06 frame) — this is how that question closed from a second, unrelated recording rather than needing the original frame re-shot. </li>
           <li class="rux--list__item"><strong>Narration can answer a question official help left silent on, but it stays TR-grade until sourced.</strong> The Close Order put-away precondition is a specific, mechanistically plausible claim, not a vague impression — but it was still logged as a narrowing lead, not written into a guide as a confirmed rule. </li>
           <li class="rux--list__item"><strong>Deliberately running a &quot;wrong&quot; or out-of-scope action during training is itself worth recording.</strong> Running Close Production Orders here, and creating-then-expiring a second BOM revision, were both teaching choices, not procedure — the review records them as what happened without pulling them into either Scenario Guide&#39;s scope.</li>
-          <li class="rux--list__item"><strong>Recording:</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives.</li>
+          <li class="rux--list__item"><strong>Recording:</strong> <span class="ln-t-exact">the source on file</span> — the raw video stays local and never commits; the manifest carries its checksum and lists the transcript derivatives.</li>
         </ul>
         </section>
 
@@ -846,27 +905,27 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">Session name</div></th><th scope="col"><div class="rux--table-header-label">Code</div></th><th scope="col"><div class="rux--table-header-label">Reference doc</div></th></tr></thead>
             <tbody>
-          <tr><td>Job Shop Bill of Material</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tibom3600m000"><span class="rux--tag__label">tibom3600m000</span></span></td><td>—</td></tr>
-          <tr><td>Job Shop List of Materials</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tibom3110m000"><span class="rux--tag__label">tibom3110m000</span></span></td><td>—</td></tr>
-          <tr><td>Job Shop Bills of Material (overview)</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tibom3100m000"><span class="rux--tag__label">tibom3100m000</span></span></td><td>—</td></tr>
-          <tr><td>Job Shop Routing</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tirou4600m000"><span class="rux--tag__label">tirou4600m000</span></span></td><td>—</td></tr>
-          <tr><td>Item</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span></td><td>—</td></tr>
-          <tr><td>Purchase Order Intake Workbench</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4601m200"><span class="rux--tag__label">tdpur4601m200</span></span></td><td>—</td></tr>
-          <tr><td>Purchase Order</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4100m900"><span class="rux--tag__label">tdpur4100m900</span></span></td><td>—</td></tr>
-          <tr><td>Buy-from Business Partners (lookup)</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tccom4520m000"><span class="rux--tag__label">tccom4520m000</span></span></td><td>—</td></tr>
-          <tr><td>Items - Purchase</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdipu0101m000"><span class="rux--tag__label">tdipu0101m000</span></span></td><td>—</td></tr>
-          <tr><td>Warehousing Order</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m100"><span class="rux--tag__label">whinh2100m100</span></span></td><td>—</td></tr>
-          <tr><td>Warehouse Receipt</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3512m000"><span class="rux--tag__label">whinh3512m000</span></span></td><td>—</td></tr>
-          <tr><td>Warehouse Inspection</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3122m000"><span class="rux--tag__label">whinh3122m000</span></span></td><td>—</td></tr>
-          <tr><td>Item - Warehousing</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whwmd4600m000"><span class="rux--tag__label">whwmd4600m000</span></span></td><td>—</td></tr>
-          <tr><td>Items - Ordering by Site</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd2150m000"><span class="rux--tag__label">tcibd2150m000</span></span></td><td>—</td></tr>
-          <tr><td>Production Order</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0101m100"><span class="rux--tag__label">tisfc0101m100</span></span></td><td>—</td></tr>
-          <tr><td>Production Orders (overview)</td><td><span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0501m000"><span class="rux--tag__label">tisfc0501m000</span></span></td><td>—</td></tr>
+          <tr><td>Job Shop Bill of Material</td><td><span class="ln-t-exact">tibom3600m000</span></td><td>—</td></tr>
+          <tr><td>Job Shop List of Materials</td><td><span class="ln-t-exact">tibom3110m000</span></td><td>—</td></tr>
+          <tr><td>Job Shop Bills of Material (overview)</td><td><span class="ln-t-exact">tibom3100m000</span></td><td>—</td></tr>
+          <tr><td>Job Shop Routing</td><td><span class="ln-t-exact">tirou4600m000</span></td><td>—</td></tr>
+          <tr><td>Item</td><td><span class="ln-t-exact">tcibd0501m100</span></td><td>—</td></tr>
+          <tr><td>Purchase Order Intake Workbench</td><td><span class="ln-t-exact">tdpur4601m200</span></td><td>—</td></tr>
+          <tr><td>Purchase Order</td><td><span class="ln-t-exact">tdpur4100m900</span></td><td>—</td></tr>
+          <tr><td>Buy-from Business Partners (lookup)</td><td><span class="ln-t-exact">tccom4520m000</span></td><td>—</td></tr>
+          <tr><td>Items - Purchase</td><td><span class="ln-t-exact">tdipu0101m000</span></td><td>—</td></tr>
+          <tr><td>Warehousing Order</td><td><span class="ln-t-exact">whinh2100m100</span></td><td>—</td></tr>
+          <tr><td>Warehouse Receipt</td><td><span class="ln-t-exact">whinh3512m000</span></td><td>—</td></tr>
+          <tr><td>Warehouse Inspection</td><td><span class="ln-t-exact">whinh3122m000</span></td><td>—</td></tr>
+          <tr><td>Item - Warehousing</td><td><span class="ln-t-exact">whwmd4600m000</span></td><td>—</td></tr>
+          <tr><td>Items - Ordering by Site</td><td><span class="ln-t-exact">tcibd2150m000</span></td><td>—</td></tr>
+          <tr><td>Production Order</td><td><span class="ln-t-exact">tisfc0101m100</span></td><td>—</td></tr>
+          <tr><td>Production Orders (overview)</td><td><span class="ln-t-exact">tisfc0501m000</span></td><td>—</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-          <p></p>
+          <p class="ln-prose-measure"></p>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>

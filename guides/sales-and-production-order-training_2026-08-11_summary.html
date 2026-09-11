@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -728,61 +787,61 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
           <h2 id="s-covered">What this covered</h2>
-          <p>Review of a trainee&#39;s earlier Ship from stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next.</p>
+          <p class="ln-prose-measure">Review of a trainee&#39;s earlier Ship from stock exercise, an explanation of why some warehousing steps are manual and others automatic, and a fresh production-order exercise — item, BOM, routing, order creation, release, and material issue — followed by a discussion of what to study next.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Topics</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-ship-from-stock-confirmed-working">
             <h3 id="t-ship-from-stock-confirmed-working">Ship from stock, confirmed working</h3>
-            <p>The trainee&#39;s earlier shipment of item <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="9010-2010"><span class="rux--tag__label">9010-2010</span></span> was checked against inventory and confirmed correct.</p>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure">The trainee&#39;s earlier shipment of item <span class="ln-t-exact">9010-2010</span> was checked against inventory and confirmed correct.</p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse - Item Inventory"><span class="rux--tag__label">Warehouse - Item Inventory</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whwmd2515m000"><span class="rux--tag__label">whwmd2515m000</span></span> — starting position: <strong>On Hand</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="966"><span class="rux--tag__label">966</span></span>, <strong>On Order</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="60"><span class="rux--tag__label">60</span></span>, <strong>Allocated</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="210"><span class="rux--tag__label">210</span></span>, <strong>Blocked</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span>, <strong>Economic Stock</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="816"><span class="rux--tag__label">816</span></span>.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Inventory Transactions"><span class="rux--tag__label">Inventory Transactions</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinr1510m000"><span class="rux--tag__label">whinr1510m000</span></span> — after the shipment, an <strong>Issue</strong> transaction of <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="5.000"><span class="rux--tag__label">5.000</span></span> and <strong>Inventory After Transaction</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="961.000"><span class="rux--tag__label">961.000</span></span>.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--gray rux--layout--size-sm" title="966 − 961 = 5"><span class="rux--tag__label">966 − 961 = 5</span></span> — exactly the shipped quantity. The shipment worked as it should.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Warehouse - Item Inventory</span> <span class="ln-t-exact">whwmd2515m000</span> — starting position: <strong>On Hand</strong> <span class="ln-t-exact">966</span>, <strong>On Order</strong> <span class="ln-t-exact">60</span>, <strong>Allocated</strong> <span class="ln-t-exact">210</span>, <strong>Blocked</strong> <span class="ln-t-exact">0</span>, <strong>Economic Stock</strong> <span class="ln-t-exact">816</span>.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Inventory Transactions</span> <span class="ln-t-exact">whinr1510m000</span> — after the shipment, an <strong>Issue</strong> transaction of <span class="ln-t-exact">5.000</span> and <strong>Inventory After Transaction</strong> <span class="ln-t-exact">961.000</span>.</li>
+          <li class="rux--list__item"><span class="ln-t-exact">966 − 961 = 5</span> — exactly the shipped quantity. The shipment worked as it should.</li>
         </ol>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-why-some-warehousing-steps-are-manual-and-others-aren-t">
             <h3 id="t-why-some-warehousing-steps-are-manual-and-others-aren-t">Why some warehousing steps are manual and others aren&#39;t</h3>
-            <p>Whether a step (generating advice, picking, confirming a shipment) runs by itself or needs someone to click it comes from the <strong>procedure</strong> attached to the order&#39;s type, configured in <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Activities by Procedure"><span class="rux--tag__label">Activities by Procedure</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh0106m000"><span class="rux--tag__label">whinh0106m000</span></span> — an <strong>Automatic</strong> setting per activity. It&#39;s a configuration choice, not a fixed rule of the software; different order types can behave completely differently.</p>
+            <p class="ln-prose-measure">Whether a step (generating advice, picking, confirming a shipment) runs by itself or needs someone to click it comes from the <strong>procedure</strong> attached to the order&#39;s type, configured in <span class="ln-t-named">Activities by Procedure</span> <span class="ln-t-exact">whinh0106m000</span> — an <strong>Automatic</strong> setting per activity. It&#39;s a configuration choice, not a fixed rule of the software; different order types can behave completely differently.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-the-learning-method-trace-don-t-memorize">
             <h3 id="t-the-learning-method-trace-don-t-memorize">The learning method: trace, don&#39;t memorize</h3>
-            <p>When a field defaults to a value you didn&#39;t expect, the trainer&#39;s advice was to trace it back to where it actually comes from — the item master, business-partner data, order type, sales user profile — using the session&#39;s own <strong>Help</strong> control, rather than guessing or memorizing &quot;it&#39;s always X.&quot; No single default source was actually pinned down in this session; these were framed as questions to go investigate, not answers.</p>
-            <p>One of them now has an answer: a sales order&#39;s <strong>order type</strong> defaults from the customer record, and if the customer has none set, falls back to the current user&#39;s sales profile.</p>
+            <p class="ln-prose-measure">When a field defaults to a value you didn&#39;t expect, the trainer&#39;s advice was to trace it back to where it actually comes from — the item master, business-partner data, order type, sales user profile — using the session&#39;s own <strong>Help</strong> control, rather than guessing or memorizing &quot;it&#39;s always X.&quot; No single default source was actually pinned down in this session; these were framed as questions to go investigate, not answers.</p>
+            <p class="ln-prose-measure">One of them now has an answer: a sales order&#39;s <strong>order type</strong> defaults from the customer record, and if the customer has none set, falls back to the current user&#39;s sales profile.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-a-real-bom-validation-failure">
             <h3 id="t-a-real-bom-validation-failure">A real BOM validation failure</h3>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">Built or reviewed item <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="9010-2010"><span class="rux--tag__label">9010-2010</span></span>, its job-shop BOM, and its routing.</li>
-          <li class="rux--list__item">Ran <strong>Validate Job Shop Routing</strong> from <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Job Shop Routings"><span class="rux--tag__label">Job Shop Routings</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tirou4100m000"><span class="rux--tag__label">tirou4100m000</span></span> for routing <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span>, revision <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span>.</li>
+          <li class="rux--list__item">Built or reviewed item <span class="ln-t-exact">9010-2010</span>, its job-shop BOM, and its routing.</li>
+          <li class="rux--list__item">Ran <strong>Validate Job Shop Routing</strong> from <span class="ln-t-named">Job Shop Routings</span> <span class="ln-t-exact">tirou4100m000</span> for routing <span class="ln-t-exact">0</span>, revision <span class="ln-t-exact">000001</span>.</li>
           <li class="rux--list__item">The report came back <strong>&quot;Loop found in Multilevel BOM&quot;</strong>, with the loop path shown.</li>
         </ol>
-            <p>This is a genuine, learnable validation failure — worth recognizing if you hit it again, though exactly what LN checks to produce it isn&#39;t documented anywhere available yet.</p>
-            <p>The recording also showed <strong>Approve Revision</strong>, <strong>Use for Planning</strong>, and <strong>Use for Costing</strong> actions on the BOM/routing records. These are real: only one BOM (and one routing) per item and site can be &quot;used for planning&quot; at a time, and only one per product can be &quot;used for costing&quot; — the check box picks the winner when more than one candidate exists.</p>
+            <p class="ln-prose-measure">This is a genuine, learnable validation failure — worth recognizing if you hit it again, though exactly what LN checks to produce it isn&#39;t documented anywhere available yet.</p>
+            <p class="ln-prose-measure">The recording also showed <strong>Approve Revision</strong>, <strong>Use for Planning</strong>, and <strong>Use for Costing</strong> actions on the BOM/routing records. These are real: only one BOM (and one routing) per item and site can be &quot;used for planning&quot; at a time, and only one per product can be &quot;used for costing&quot; — the check box picks the winner when more than one candidate exists.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-a-clean-complete-material-issue-run">
             <h3 id="t-a-clean-complete-material-issue-run">A clean, complete material-issue run</h3>
-            <p>Unlike the earlier (2026-08-06) session&#39;s mistaken attempt, this run went cleanly end to end:</p>
+            <p class="ln-prose-measure">Unlike the earlier (2026-08-06) session&#39;s mistaken attempt, this run went cleanly end to end:</p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Production Order"><span class="rux--tag__label">Production Order</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0101m100"><span class="rux--tag__label">tisfc0101m100</span></span> — order <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="010000744"><span class="rux--tag__label">010000744</span></span> for item <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="9010-2010"><span class="rux--tag__label">9010-2010</span></span>, quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="1"><span class="rux--tag__label">1</span></span>; BOM <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="JB0000238"><span class="rux--tag__label">JB0000238</span></span> rev <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000002"><span class="rux--tag__label">000002</span></span>, routing <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span> rev <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="000001"><span class="rux--tag__label">000001</span></span>, warehouse <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ADNA02 RAW MATERIALS"><span class="rux--tag__label">ADNA02 RAW MATERIALS</span></span>, two operations; status <strong>Created</strong>.</li>
-          <li class="rux--list__item"><strong>Release Orders</strong> run from <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Production Orders"><span class="rux--tag__label">Production Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0501m000"><span class="rux--tag__label">tisfc0501m000</span></span> — this is literally what &quot;release to the job shop&quot; means; it&#39;s also what changes the order&#39;s status to Released.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Material to Issue for Production Orders"><span class="rux--tag__label">Material to Issue for Production Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="ticst0101m100"><span class="rux--tag__label">ticst0101m100</span></span> — material <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100400"><span class="rux--tag__label">100400</span></span> showed <strong>Estimated</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="2.000"><span class="rux--tag__label">2.000</span></span>, <strong>Actual Qty</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0.000"><span class="rux--tag__label">0.000</span></span>, <strong>To Issue by Warehouse</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="2.000"><span class="rux--tag__label">2.000</span></span> after release.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehousing Orders"><span class="rux--tag__label">Warehousing Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m000"><span class="rux--tag__label">whinh2100m000</span></span> showed a planned production receipt and an open production issue for the order. The issue&#39;s detail (<span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m100"><span class="rux--tag__label">whinh2100m100</span></span>) showed order type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="30 — Production (Out)"><span class="rux--tag__label">30 — Production (Out)</span></span>, source <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ADNA02 RAW MATERIALS"><span class="rux--tag__label">ADNA02 RAW MATERIALS</span></span>, destination work center <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="A1000"><span class="rux--tag__label">A1000</span></span>.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Outbound Line Status Overview"><span class="rux--tag__label">Outbound Line Status Overview</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2129m000"><span class="rux--tag__label">whinh2129m000</span></span> — ordered quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="2"><span class="rux--tag__label">2</span></span>, with <strong>Generate Outbound Advice</strong> and <strong>Release Outbound Advice</strong> both unfinished and non-automatic. Both were then run manually. (This is controlled by settings on the material line that decide whether the warehouse side kicks off automatically on release or needs a manual push — consistent with what was seen here, though which exact setting this environment uses wasn&#39;t pinned down.)</li>
-          <li class="rux--list__item">The issue order reached <strong>Shipped</strong>, ordered/advised quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="2"><span class="rux--tag__label">2</span></span>. Back in <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="ticst0101m100"><span class="rux--tag__label">ticst0101m100</span></span>: production order <strong>Active</strong>, <strong>Actual Qty</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="2.000"><span class="rux--tag__label">2.000</span></span>, <strong>To Issue by Warehouse</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span>. (Active specifically means a real transaction — like this material issue — has happened against the order.)</li>
+          <li class="rux--list__item"><span class="ln-t-named">Production Order</span> <span class="ln-t-exact">tisfc0101m100</span> — order <span class="ln-t-exact">010000744</span> for item <span class="ln-t-exact">9010-2010</span>, quantity <span class="ln-t-exact">1</span>; BOM <span class="ln-t-exact">JB0000238</span> rev <span class="ln-t-exact">000002</span>, routing <span class="ln-t-exact">0</span> rev <span class="ln-t-exact">000001</span>, warehouse <span class="ln-t-exact">ADNA02 RAW MATERIALS</span>, two operations; status <strong>Created</strong>.</li>
+          <li class="rux--list__item"><strong>Release Orders</strong> run from <span class="ln-t-named">Production Orders</span> <span class="ln-t-exact">tisfc0501m000</span> — this is literally what &quot;release to the job shop&quot; means; it&#39;s also what changes the order&#39;s status to Released.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Material to Issue for Production Orders</span> <span class="ln-t-exact">ticst0101m100</span> — material <span class="ln-t-exact">100400</span> showed <strong>Estimated</strong> <span class="ln-t-exact">2.000</span>, <strong>Actual Qty</strong> <span class="ln-t-exact">0.000</span>, <strong>To Issue by Warehouse</strong> <span class="ln-t-exact">2.000</span> after release.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Warehousing Orders</span> <span class="ln-t-exact">whinh2100m000</span> showed a planned production receipt and an open production issue for the order. The issue&#39;s detail (<span class="ln-t-exact">whinh2100m100</span>) showed order type <span class="ln-t-exact">30 — Production (Out)</span>, source <span class="ln-t-exact">ADNA02 RAW MATERIALS</span>, destination work center <span class="ln-t-exact">A1000</span>.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Outbound Line Status Overview</span> <span class="ln-t-exact">whinh2129m000</span> — ordered quantity <span class="ln-t-exact">2</span>, with <strong>Generate Outbound Advice</strong> and <strong>Release Outbound Advice</strong> both unfinished and non-automatic. Both were then run manually. (This is controlled by settings on the material line that decide whether the warehouse side kicks off automatically on release or needs a manual push — consistent with what was seen here, though which exact setting this environment uses wasn&#39;t pinned down.)</li>
+          <li class="rux--list__item">The issue order reached <strong>Shipped</strong>, ordered/advised quantity <span class="ln-t-exact">2</span>. Back in <span class="ln-t-exact">ticst0101m100</span>: production order <strong>Active</strong>, <strong>Actual Qty</strong> <span class="ln-t-exact">2.000</span>, <strong>To Issue by Warehouse</strong> <span class="ln-t-exact">0</span>. (Active specifically means a real transaction — like this material issue — has happened against the order.)</li>
         </ol>
-            <p>This is the version to learn the material-issue flow from — the earlier session&#39;s version is not.</p>
+            <p class="ln-prose-measure">This is the version to learn the material-issue flow from — the earlier session&#39;s version is not.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-completion-left-for-later">
             <h3 id="t-completion-left-for-later">Completion left for later</h3>
-            <p>The remaining steps — completing the operations, receiving the finished item through the receipt warehousing order, and reporting the production order complete — were assigned as follow-up, not demonstrated live. <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Report Operations Completed"><span class="rux--tag__label">Report Operations Completed</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0130m000"><span class="rux--tag__label">tisfc0130m000</span></span> records production progress, and its <strong>Quantity Delivered</strong> field is the finished-goods quantity posted to inventory, same as seen in the 2026-08-06 session.</p>
+            <p class="ln-prose-measure">The remaining steps — completing the operations, receiving the finished item through the receipt warehousing order, and reporting the production order complete — were assigned as follow-up, not demonstrated live. <span class="ln-t-named">Report Operations Completed</span> <span class="ln-t-exact">tisfc0130m000</span> records production progress, and its <strong>Quantity Delivered</strong> field is the finished-goods quantity posted to inventory, same as seen in the 2026-08-06 session.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-what-s-next-planning-before-subcontracting">
             <h3 id="t-what-s-next-planning-before-subcontracting">What&#39;s next: planning before subcontracting</h3>
-            <p>The group chose to walk through <strong>planning</strong> next, before touching <strong>subcontracting</strong> — subcontracting needs more setup and the available trainer had less recent experience with it. The <strong>Default Supply Source</strong> field on the item record (<span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tcibd0501m100"><span class="rux--tag__label">tcibd0501m100</span></span>) determines an item&#39;s default supply method when on-hand is insufficient, which is where the planning discussion picked up.</p>
+            <p class="ln-prose-measure">The group chose to walk through <strong>planning</strong> next, before touching <strong>subcontracting</strong> — subcontracting needs more setup and the available trainer had less recent experience with it. The <strong>Default Supply Source</strong> field on the item record (<span class="ln-t-exact">tcibd0501m100</span>) determines an item&#39;s default supply method when on-hand is insufficient, which is where the planning discussion picked up.</p>
           </section>
         </section>
 
@@ -803,10 +862,10 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item">Only one BOM (and one routing) per item/site can be &quot;used for planning&quot; or &quot;used for costing&quot; at a time.</li>
           <li class="rux--list__item">&quot;Loop found in Multilevel BOM&quot; is a real, learnable validation error — not a bug.</li>
           <li class="rux--list__item">A production order becomes <strong>Active</strong> the moment a real transaction (like a material issue) happens against it, not just from being released.</li>
-          <li class="rux--list__item">The material-issue run in <em>this</em> session (order <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="010000744"><span class="rux--tag__label">010000744</span></span>) is the clean example to learn from; the 2026-08-06 session&#39;s version is not.</li>
+          <li class="rux--list__item">The material-issue run in <em>this</em> session (order <span class="ln-t-exact">010000744</span>) is the clean example to learn from; the 2026-08-06 session&#39;s version is not.</li>
           <li class="rux--list__item">Planning is the next topic to study; subcontracting is deferred.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="sales-and-production-order-training_2026-08-11.html">`sales-and-production-order-training_2026-08-11.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p class="ln-prose-measure"><strong>Full record:</strong> <a class="rux--link" href="sales-and-production-order-training_2026-08-11.html">`sales-and-production-order-training_2026-08-11.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>

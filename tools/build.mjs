@@ -79,15 +79,52 @@ const PAYLOAD = {
 // which ids are real so it can tell a cross-reference from a dead one.
 const GUIDE_IDS = new Set();
 
-// THE TAG COLOURS ARE README's "Decided", NOT A CHOICE MADE HERE. Seven of the
-// nine "named thing in the LN UI" types map onto compiled Carbon tag variants
-// with no `guide-*` namespace invented. 117 tags did not widen the page.
-const TAG = {
-  chip: 'blue', session: 'cyan', field: 'cool-gray', literal: 'gray',
-  value: 'warm-gray', status: 'teal', button: 'purple',
+// FOUR REGISTERS, NOT SEVEN TAG COLOURS. Replaces the colour map on
+// 2026-09-10, and the reason is density rather than taste.
+//
+// SEVEN TYPES USED TO RENDER AS `rux--tag`, differing only in hue: chip blue,
+// session cyan, field cool-gray, literal gray, value warm-gray, status teal,
+// button purple. Counted over the seven guides that is 1003 of 3775 tokens --
+// 27% of everything on a page was a coloured pill. Three of the seven hues are
+// near-identical greys, there was no legend anywhere, and a reader was being
+// asked to learn seven colours to read a sentence. Every gate stayed green
+// throughout: the classes resolve, the compounds are intact, and DENSITY is
+// not a rule any check here expresses.
+//
+// And it asked the tag to mean seven things. In Carbon a tag means a state or
+// a category; it was carrying "press this", "a field label", "type this
+// exactly", "a code" and "a panel name" as well.
+//
+// THE READER ASKS FOUR QUESTIONS, so there are four registers, and SHAPE and
+// FONT FAMILY carry the meaning instead of hue:
+//
+//   press  what do I click            button                    37 tokens
+//   named  what is it called          chip, field              481
+//   exact  what do I type exactly     literal, value, session  413
+//   state  what should I see          status                    72
+//
+// 72 pills instead of 1003. The tag survives only where it means what Carbon
+// means by a tag.
+//
+// `named` IS THE BULK, SO IT IS THE QUIETEST. It does its work with COLOUR
+// rather than weight alone -- body copy is secondary, a named thing is primary
+// -- because three semibold phrases in a row shout, and cells carrying three
+// are common.
+//
+// `exact` IS NOT `rux--snippet--inline`, WHICH WAS THE OBVIOUS CANDIDATE.
+// Carbon renders that on a <button> in 14 of 14 captures with `cursor:
+// pointer`: ~400 tab stops in one document. That is the same trap rux-ds
+// rejected `tag-label-tooltip` for, and checking the captures first is the
+// habit that ruling taught. `rux--type-code-01`'s family, with no interaction
+// attached, is the clean instrument.
+const REGISTER = {
+  button: 'press',
+  chip: 'named', field: 'named',
+  literal: 'exact', value: 'exact', session: 'exact',
+  status: 'state',
 };
 
-// `command` AND `path` ARE PLAIN TEXT, and the route's own ` \u2794 ` is the
+// `command` AND `path` ARE A ROUTE, and the route's own ` \u2794 ` is the
 // separator. Not a tag, and -- since 2026-09-10 -- not a breadcrumb either.
 //
 // THE TAG WAS RULED OUT ON MEASUREMENT. `.rux--tag` caps at 13rem and
@@ -128,7 +165,7 @@ const TAG = {
 // the route -- it is that 27% of this document's tokens are pills and the
 // register a route needs does not exist yet. That is the open design question,
 // and it is not answered by wrapping this one type in something.
-const PLAIN = new Set(['command', 'path']);
+const ROUTED = new Set(['command', 'path']);
 
 function token(t) {
   const key = PAYLOAD[t.t] ?? 'v';
@@ -202,7 +239,7 @@ function token(t) {
     // code and the brackets are gone: how the two are presented is this side's
     // decision (guide-json.md). A session with no `name` is the code alone.
     case 'session':
-      return t.name ? `${tag('chip', t.name)} ${tag('session', t.code)}` : tag('session', t.code);
+      return t.name ? `${reg('chip', t.name)} ${reg('session', t.code)}` : reg('session', t.code);
 
     // INTERNAL TIER MARKERS, payload-less by design: the marker is the whole
     // token and the sentence that follows it is separate text. The export tier
@@ -224,10 +261,9 @@ function token(t) {
         // than rendering an empty span nobody notices.
         throw new Error(`token type "${t.t}" has no payload under "${key}": ${JSON.stringify(t)}`);
       }
-      if (PLAIN.has(t.t)) return esc(raw);
-      if (!TAG[t.t]) throw new Error(`no rendering for token type "${t.t}": ${JSON.stringify(t)}`);
-      const loc = t.location ? ` (${t.location})` : '';
-      return tag(t.t, raw, raw + loc);
+      if (ROUTED.has(t.t)) return route(raw);
+      if (!REGISTER[t.t]) throw new Error(`no rendering for token type "${t.t}": ${JSON.stringify(t)}`);
+      return reg(t.t, raw, t.location ? `${raw} (${t.location})` : undefined);
     }
   }
 }
@@ -251,8 +287,45 @@ function token(t) {
 // panel -- one token with two appearances, which is worse than either size.
 // The standalone badge rows (a page's status, "7 phases", "Updated ...") are
 // NOT changed: they are not inside a sentence and have no line box to fit.
-const tag = (type, text, title = text) =>
-  `<span class="rux--tag rux--tag--${TAG[type]} rux--layout--size-sm" title="${esc(title)}"><span class="rux--tag__label">${esc(text)}</span></span>`;
+// `state` KEEPS THE TAG, AND KEEPS `rux--layout--size-sm` WITH IT. That class
+// is a line-box fix: a tag inside a sentence is 24px tall in a 20px line box,
+// and every line carrying one was forced taller than the pure-text lines
+// around it. 18px fits. The three registers that are no longer tags do not
+// need it -- they ARE text and sit in the line box already, which is most of
+// the point.
+//
+// THE `title` ATTRIBUTE IS GONE EXCEPT WHERE IT SAYS SOMETHING NEW. It used to
+// ride every tag because `.rux--tag__label` ellipsises and four long field
+// names truncated, so the full string had to survive somewhere. Nothing
+// truncates now: `named` and `exact` are text and wrap like text. A title
+// repeating text already fully visible is noise to a screen reader, which
+// announces both. `button` keeps one, because `location` -- header, line or
+// dialog -- is information the label does not carry.
+const REG = {
+  press: (text, title) =>
+    `<span class="ln-t-press"${title ? ` title="${esc(title)}"` : ''}>${esc(text)}</span>`,
+  named: text => `<span class="ln-t-named">${esc(text)}</span>`,
+  exact: text => `<span class="ln-t-exact">${esc(text)}</span>`,
+  state: text =>
+    `<span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">${esc(text)}</span></span>`,
+};
+
+const reg = (type, text, title) => REG[REGISTER[type]](text, title);
+
+// A ROUTE IS PLAIN TEXT WITH ITS OWN ARROW, and the last segment is weighted
+// because that segment is the thing you press. The separator is a real
+// character in a real span, not a `::after`: a pseudo-element cannot wrap, and
+// when a route broke across lines it left the separator welded to the end of
+// the line above. Split on the arrow alone, never on "/", because the only
+// other slash in the data is inside a segment's own name.
+const ROUTE_SEP = ' \u2794 ';
+const route = raw => {
+  const seg = raw.split(ROUTE_SEP);
+  return `<span class="ln-t-route">${seg.map((x, i) => (i ? `<span class="sep">\u2794</span>` : '')
+    + (i === seg.length - 1
+      ? `<span class="dest">${esc(x)}</span>`
+      : `<span>${esc(x)}</span>`)).join('')}</span>`;
+};
 
 // TWO ADJACENT TAGS NEED A SEPARATOR AND THE DATA DOES NOT CARRY ONE. Cells
 // like `ADNA02` `RAW MATERIALS` are two tokens with no `text` between them, so
@@ -262,7 +335,7 @@ const tag = (type, text, title = text) =>
 // The space goes ONLY between two tag-rendered neighbours. Joining everything
 // on ' ' instead would insert spaces inside ordinary prose runs and before
 // punctuation, which is a worse bug and a silent one.
-const isTag = t => t && !PLAIN.has(t.t) && !!TAG[t.t];
+const isTag = t => t && !ROUTED.has(t.t) && !!REGISTER[t.t];
 
 const tokens = ts => {
   const list = ts ?? [];
@@ -362,7 +435,15 @@ function table(block, { numbered = false } = {}) {
       // The step id is the first column and is a row header, not data: it
       // labels the row for anyone navigating the table by cell.
       if (numbered && i === 0) return `<th scope="row" class="ln-step-id">${inner}</th>`;
-      return `<td>${inner}</td>`;
+      // THE LAST COLUMN OF A NUMBERED TABLE IS WHAT THE SCREEN ANSWERS, and it
+      // gets a rule so the two halves of a step read as two halves. Structural
+      // and not a name match: all 50 numbered tables across the seven guides
+      // are exactly ('#', 'Do this', 'You should see'), so "the last column of
+      // a numbered table" and "You should see" are the same set -- and if a
+      // future table has four columns this still marks the answer column
+      // rather than failing to find a heading it knows.
+      const last = numbered && i === (row.cells ?? []).length - 1 && i > 1;
+      return `<td${last ? ' class="ln-see"' : ''}>${inner}</td>`;
     }).join('');
     // `produces` marks a step that yields a value worth noting. It is the same
     // fact the `pencil` token carries inline; the attribute lets the row be
@@ -400,7 +481,7 @@ function rblock(b) {
       // speech, and the framing is the point of them.
       return b.quoted
         ? `<blockquote class="ln-quote">${tokens(b.tokens)}</blockquote>`
-        : `<p>${tokens(b.tokens)}</p>`;
+        : `<p class="ln-prose-measure">${tokens(b.tokens)}</p>`;
 
     case 'list': {
       // NO BARE `rux--list`. Carbon compiles the modifier and the item and
@@ -475,7 +556,7 @@ function block(b, opts) {
   if (isRows(b)) return table(b, opts);
   const c = asCallout(b);
   if (c) return callout(c);
-  return `<p>${tokens(b.tokens)}</p>`;
+  return `<p class="ln-prose-measure">${tokens(b.tokens)}</p>`;
 }
 
 // ---------------------------------------------------------------- sections
@@ -560,7 +641,7 @@ function sections(list) {
 
 function phase(p) {
   // THE ROUTE IS THE THING A READER MOST NEEDS WHOLE, so it is a definition
-  // list beside the heading rather than a tag: see the note on PLAIN above.
+  // list beside the heading rather than a tag: see the note on ROUTED above.
   const where = [
     p.route ? `<div class="ln-meta-row"><dt>Route</dt><dd>${esc(p.route)}</dd></div>` : '',
     p.session ? `<div class="ln-meta-row"><dt>Session</dt><dd>${esc(p.session)}${
@@ -828,6 +909,65 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -1975,6 +2115,32 @@ function referencePage(r, site) {
     scripts: r.diagram ? ['js/diagram.js'] : [] });
 }
 
+// HOW TO READ A STEP -- the legend the seven tag colours never had, and could
+// not have had. Seven hues with three near-identical greys are not learnable
+// and a key for them would have been an apology. Four registers are, so the
+// page says once what they mean.
+//
+// It sits at the FOOT, not the head: a reader who already knows the
+// convention should not step over it to reach the guide, and a reader who
+// does not will look for it after the first step confuses them. Guide pages
+// only -- a summary or a review carries prose, not steps.
+const stepKey = () => `
+      <section class="ln-key" aria-labelledby="h-key">
+        <h2 id="h-key" class="rux--type-productive-heading-03">How to read a step</h2>
+        <dl class="ln-key-grid">
+          <dt><span class="ln-t-press">Press it</span></dt>
+          <dd>A control you act on.</dd>
+          <dt><span class="ln-t-named">Named on screen</span></dt>
+          <dd>A tab, panel, field or column label &mdash; something you look for.</dd>
+          <dt><span class="ln-t-exact">Exact string</span></dt>
+          <dd>Type or match it character for character.</dd>
+          <dt><span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">A state</span></span></dt>
+          <dd>Confirm you see it before moving on.</dd>
+          <dt><svg class="ln-pencil" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" role="img" aria-label="worth noting down"><use href="#i-edit"/></svg></dt>
+          <dd>The step yields a value worth writing down.</dd>
+        </dl>
+      </section>`;
+
 function guidePage(g, site) {
   const { front, back } = splitSections(g.sections);
   const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
@@ -2001,7 +2167,8 @@ function guidePage(g, site) {
              the status badge and README says why: one guide's sentence claims
              every phase was performed against a live system and confirmed
              while the guide itself is status: draft. Both are shown. -->
-        <p class="rux--type-body-01">${esc(g.verification)}</p>` : ''}`;
+        <p class="rux--type-body-01">${esc(g.verification)}</p>` : ''}
+      ${stepKey()}`;
 
   return page({ title: `${g.title} — Rux LN Notes`, site, activeId: g.id, body, depth: 1 });
 }

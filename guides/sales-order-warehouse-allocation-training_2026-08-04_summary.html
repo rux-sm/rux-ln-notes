@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -728,45 +787,45 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-covered">
           <h2 id="s-covered">What this covered</h2>
-          <p>An exploratory session: entering a sales order, looking into how pricing and standard cost work, releasing an order to the warehouse, comparing two different &quot;how much stock is there&quot; views, and a shortage that came up during outbound processing and was never fully explained.</p>
-          <p>This was an exploration, not a controlled end-to-end run — it stopped partway through, without reaching a confirmed shipment.</p>
+          <p class="ln-prose-measure">An exploratory session: entering a sales order, looking into how pricing and standard cost work, releasing an order to the warehouse, comparing two different &quot;how much stock is there&quot; views, and a shortage that came up during outbound processing and was never fully explained.</p>
+          <p class="ln-prose-measure">This was an exploration, not a controlled end-to-end run — it stopped partway through, without reaching a confirmed shipment.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-7" aria-labelledby="h-topics">
           <h2 id="h-topics">Topics</h2>
           <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-entering-and-approving-a-sales-order">
             <h3 id="t-entering-and-approving-a-sales-order">Entering and approving a sales order</h3>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><strong>Sales ➔ Orders ➔ Order Intake Workbench</strong>, opening the <strong>Sales Order</strong> screen (<span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdsls4100m900"><span class="rux--tag__label">tdsls4100m900</span></span>).</li>
-          <li class="rux--list__item">Entered: business partner <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="BP4000040"><span class="rux--tag__label">BP4000040</span></span> (FedEx Chino), order type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="N10"><span class="rux--tag__label">N10</span></span>, sales office <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SL1001"><span class="rux--tag__label">SL1001</span></span>, site <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="CSADNA01"><span class="rux--tag__label">CSADNA01</span></span>, warehouse <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ADNA02"><span class="rux--tag__label">ADNA02</span></span>, item <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100200"><span class="rux--tag__label">100200</span></span>, quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="20"><span class="rux--tag__label">20</span></span>, price <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="200 USD"><span class="rux--tag__label">200 USD</span></span> per unit.</li>
+          <li class="rux--list__item"><strong>Sales ➔ Orders ➔ Order Intake Workbench</strong>, opening the <strong>Sales Order</strong> screen (<span class="ln-t-exact">tdsls4100m900</span>).</li>
+          <li class="rux--list__item">Entered: business partner <span class="ln-t-exact">BP4000040</span> (FedEx Chino), order type <span class="ln-t-exact">N10</span>, sales office <span class="ln-t-exact">SL1001</span>, site <span class="ln-t-exact">CSADNA01</span>, warehouse <span class="ln-t-exact">ADNA02</span>, item <span class="ln-t-exact">100200</span>, quantity <span class="ln-t-exact">20</span>, price <span class="ln-t-exact">200 USD</span> per unit.</li>
           <li class="rux--list__item">Order status moved from <strong>Free</strong> to <strong>In Process</strong>.</li>
         </ol>
-            <p>These are demonstration values from this session, not defaults to reuse elsewhere. Where the <strong>order type</strong> itself defaults from, in general: the customer record first, and if the customer has none set, the current user&#39;s sales profile.</p>
+            <p class="ln-prose-measure">These are demonstration values from this session, not defaults to reuse elsewhere. Where the <strong>order type</strong> itself defaults from, in general: the customer record first, and if the customer has none set, the current user&#39;s sales profile.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-pricing-and-cost-two-different-things">
             <h3 id="t-pricing-and-cost-two-different-things">Pricing and cost — two different things</h3>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">Personalization on Sales Orders Intake, exposing hidden fields (status bar named <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdsls4100m100"><span class="rux--tag__label">tdsls4100m100</span></span>).</li>
-          <li class="rux--list__item"><strong>Common ➔ Pricing ➔ Prices ➔ Price Books</strong> — <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Price Book"><span class="rux--tag__label">Price Book</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpcg0611m000"><span class="rux--tag__label">tdpcg0611m000</span></span> with effective/expiry-dated records.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Standard Costs"><span class="rux--tag__label">Item Standard Costs</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="ticpr3501m000"><span class="rux--tag__label">ticpr3501m000</span></span> — effective-dated cost records for the item.</li>
+          <li class="rux--list__item">Personalization on Sales Orders Intake, exposing hidden fields (status bar named <span class="ln-t-exact">tdsls4100m100</span>).</li>
+          <li class="rux--list__item"><strong>Common ➔ Pricing ➔ Prices ➔ Price Books</strong> — <span class="ln-t-named">Price Book</span> <span class="ln-t-exact">tdpcg0611m000</span> with effective/expiry-dated records.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Item Standard Costs</span> <span class="ln-t-exact">ticpr3501m000</span> — effective-dated cost records for the item.</li>
         </ol>
-            <p>The discussion connected a sales-order line&#39;s price to <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Price Book Lines"><span class="rux--tag__label">Price Book Lines</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpcg0131m000"><span class="rux--tag__label">tdpcg0131m000</span></span> and distinguished sales price from standard cost — related but separate figures. The exact rule for which price-book record wins at a given order timestamp wasn&#39;t pinned down in this session.</p>
+            <p class="ln-prose-measure">The discussion connected a sales-order line&#39;s price to <span class="ln-t-named">Price Book Lines</span> <span class="ln-t-exact">tdpcg0131m000</span> and distinguished sales price from standard cost — related but separate figures. The exact rule for which price-book record wins at a given order timestamp wasn&#39;t pinned down in this session.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-planning-availability-vs.-actual-warehouse-stock">
             <h3 id="t-planning-availability-vs.-actual-warehouse-stock">Planning availability vs. actual warehouse stock</h3>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Item Order Plan"><span class="rux--tag__label">Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span> — item <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100200"><span class="rux--tag__label">100200</span></span>: inventory on hand, demand/supply transactions, <strong>Planned Available</strong>, and <strong>ATP</strong>.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse - Item Inventory"><span class="rux--tag__label">Warehouse - Item Inventory</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whwmd2515m000"><span class="rux--tag__label">whwmd2515m000</span></span> — the same item broken out by warehouse row, each with its own on-hand, on-order, allocated, blocked, and economic-stock figures.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Item Order Plan</span> <span class="ln-t-exact">cprrp0520m000</span> — item <span class="ln-t-exact">100200</span>: inventory on hand, demand/supply transactions, <strong>Planned Available</strong>, and <strong>ATP</strong>.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Warehouse - Item Inventory</span> <span class="ln-t-exact">whwmd2515m000</span> — the same item broken out by warehouse row, each with its own on-hand, on-order, allocated, blocked, and economic-stock figures.</li>
         </ol>
-            <p>The point: a healthy <strong>planning-level</strong> number does <strong>not</strong> guarantee the <em>specific</em> ship-from warehouse on the order actually has the stock. Always check both — planning tells you the forecast picture, the warehouse screen tells you what&#39;s physically there.</p>
-            <p>What <strong>ATP</strong> actually is, precisely: for any given period, it&#39;s the smaller of two numbers — Planned Available, and total demand — looked at across that period <em>and every period after it</em>. A shortage three months out can pull today&#39;s ATP down. It&#39;s also worth knowing that this planning-screen ATP figure is explicitly not guaranteed to match the number a real sales order gets checked against at entry — that&#39;s a different, separate calculation.</p>
+            <p class="ln-prose-measure">The point: a healthy <strong>planning-level</strong> number does <strong>not</strong> guarantee the <em>specific</em> ship-from warehouse on the order actually has the stock. Always check both — planning tells you the forecast picture, the warehouse screen tells you what&#39;s physically there.</p>
+            <p class="ln-prose-measure">What <strong>ATP</strong> actually is, precisely: for any given period, it&#39;s the smaller of two numbers — Planned Available, and total demand — looked at across that period <em>and every period after it</em>. A shortage three months out can pull today&#39;s ATP down. It&#39;s also worth knowing that this planning-screen ATP figure is explicitly not guaranteed to match the number a real sales order gets checked against at entry — that&#39;s a different, separate calculation.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-which-warehousing-steps-are-automatic-recap-">
             <h3 id="t-which-warehousing-steps-are-automatic-recap-">Which warehousing steps are automatic (recap)</h3>
-            <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Outbound Line Status Overview"><span class="rux--tag__label">Outbound Line Status Overview</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2129m000"><span class="rux--tag__label">whinh2129m000</span></span> — order type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="20-"><span class="rux--tag__label">20-</span></span>, line status <strong>Open</strong>, ordered quantity <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="20"><span class="rux--tag__label">20</span></span>. Activity configuration confirmed:</p>
+            <p class="ln-prose-measure"><span class="ln-t-named">Outbound Line Status Overview</span> <span class="ln-t-exact">whinh2129m000</span> — order type <span class="ln-t-exact">20-</span>, line status <strong>Open</strong>, ordered quantity <span class="ln-t-exact">20</span>. Activity configuration confirmed:</p>
             <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -784,23 +843,23 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-an-unresolved-shortage">
             <h3 id="t-an-unresolved-shortage">An unresolved shortage</h3>
-            <p><strong>What was shown:</strong></p>
+            <p class="ln-prose-measure"><strong>What was shown:</strong></p>
             <ol class="rux--list--ordered">
-          <li class="rux--list__item">A purchase receipt&#39;s inbound line displayed <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Warehouse Inspections"><span class="rux--tag__label">Warehouse Inspections</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3122m000"><span class="rux--tag__label">whinh3122m000</span></span> as its required activity.</li>
-          <li class="rux--list__item"><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Inbound Advice"><span class="rux--tag__label">Inbound Advice</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3525m000"><span class="rux--tag__label">whinh3525m000</span></span> and the expanded <strong>Warehousing ➔ Inbound</strong> submenu.</li>
-          <li class="rux--list__item">Sales warehouse order <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100000636"><span class="rux--tag__label">100000636</span></span>, item <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100200"><span class="rux--tag__label">100200</span></span>: <strong>ordered</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="20"><span class="rux--tag__label">20</span></span>, <strong>advised</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="5"><span class="rux--tag__label">5</span></span>, <strong>released</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span>, <strong>picked</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="0"><span class="rux--tag__label">0</span></span>.</li>
+          <li class="rux--list__item">A purchase receipt&#39;s inbound line displayed <span class="ln-t-named">Warehouse Inspections</span> <span class="ln-t-exact">whinh3122m000</span> as its required activity.</li>
+          <li class="rux--list__item"><span class="ln-t-named">Inbound Advice</span> <span class="ln-t-exact">whinh3525m000</span> and the expanded <strong>Warehousing ➔ Inbound</strong> submenu.</li>
+          <li class="rux--list__item">Sales warehouse order <span class="ln-t-exact">100000636</span>, item <span class="ln-t-exact">100200</span>: <strong>ordered</strong> <span class="ln-t-exact">20</span>, <strong>advised</strong> <span class="ln-t-exact">5</span>, <strong>released</strong> <span class="ln-t-exact">0</span>, <strong>picked</strong> <span class="ln-t-exact">0</span>.</li>
         </ol>
-            <p>The screen proves these numbers existed, but <strong>why</strong> advice stopped at 5 of 20 was never determined — the session ended there, before picking, shipping, or an explanation.</p>
+            <p class="ln-prose-measure">The screen proves these numbers existed, but <strong>why</strong> advice stopped at 5 of 20 was never determined — the session ended there, before picking, shipping, or an explanation.</p>
           </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-an-existing-draft-write-up-isn-t-reliable-as-is">
             <h3 id="t-an-existing-draft-write-up-isn-t-reliable-as-is">An existing draft write-up isn&#39;t reliable as-is</h3>
-            <p>A previously drafted guide covering this same scenario was reviewed and judged not safe to follow directly — it treats spoken claims as established fact, references images that don&#39;t exist, includes steps outside the current scope, and describes shipping steps that never actually happened in this recording.</p>
+            <p class="ln-prose-measure">A previously drafted guide covering this same scenario was reviewed and judged not safe to follow directly — it treats spoken claims as established fact, references images that don&#39;t exist, includes steps outside the current scope, and describes shipping steps that never actually happened in this recording.</p>
           </section>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-decided">
           <h2 id="s-decided">What was decided</h2>
-          <p>Nothing was formally decided about configuration. The one real outcome: keep this recording as background material for a future &quot;what happens when there&#39;s a shortage&quot; scenario — it is not a substitute for the standard, verified Ship from stock procedure.</p>
+          <p class="ln-prose-measure">Nothing was formally decided about configuration. The one real outcome: keep this recording as background material for a future &quot;what happens when there&#39;s a shortage&quot; scenario — it is not a substitute for the standard, verified Ship from stock procedure.</p>
         </section>
 
       <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="s-takeaways">
@@ -809,12 +868,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>Planning availability and warehouse stock are different questions.</strong> Check the item&#39;s actual on-hand at the specific ship-from warehouse, not just its planning balance.</li>
           <li class="rux--list__item"><strong>ATP looks forward, not just at today.</strong> It&#39;s the minimum available quantity across the current period and every future one — a future shortage can drag it down now.</li>
           <li class="rux--list__item"><strong>Order type on a sales order defaults from the customer, then the user&#39;s sales profile</strong> — trace it there if a default looks wrong.</li>
-          <li class="rux--list__item">The 5-of-20 partial-advice shortage on order <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="100000636"><span class="rux--tag__label">100000636</span></span> was <strong>never explained</strong> — treat it as an open question, not a demonstrated cause, until it&#39;s rerun properly.</li>
+          <li class="rux--list__item">The 5-of-20 partial-advice shortage on order <span class="ln-t-exact">100000636</span> was <strong>never explained</strong> — treat it as an open question, not a demonstrated cause, until it&#39;s rerun properly.</li>
           <li class="rux--list__item">This order type&#39;s manual steps are <strong>Generate Outbound Advice</strong>, <strong>Picking List</strong>, and <strong>Freeze/Confirm</strong>; the rest run automatically.</li>
           <li class="rux--list__item">Don&#39;t trust an existing draft guide just because it exists — this one mixed fact with narration and described steps that never happened.</li>
           <li class="rux--list__item">Closing advice from the presenter: <strong>start broad, then rerun and refine</strong> once you understand the process — don&#39;t try to nail every detail on the first pass.</li>
         </ul>
-          <p><strong>Full record:</strong> <a class="rux--link" href="sales-order-warehouse-allocation-training_2026-08-04.html">`sales-order-warehouse-allocation-training_2026-08-04.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
+          <p class="ln-prose-measure"><strong>Full record:</strong> <a class="rux--link" href="sales-order-warehouse-allocation-training_2026-08-04.html">`sales-order-warehouse-allocation-training_2026-08-04.md`</a> — sourced, dated, and cross-checked against official documentation. Read that version before relying on anything here for implementation work; this page is for orientation only.</p>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>
       </div>

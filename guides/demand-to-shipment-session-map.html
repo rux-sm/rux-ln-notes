@@ -88,6 +88,65 @@
 
 /* A step that yields a value worth writing down. The pencil token says the same
    thing inline; this is the row-level view of it. */
+/* ---- THE FOUR REGISTERS -------------------------------------------------
+   Replaced seven tag colours on 2026-09-10. Shape and font family carry the
+   meaning; hue is spent only where it means a state. See the note above
+   REGISTER for the counts and the reasoning. */
+
+/* PRESS IT -- a control you act on. Bordered, because it IS a button, and at
+   37 tokens site-wide it is rare enough to afford the strongest treatment. */
+.ln-t-press { font-weight: 600; color: var(--rux-text-primary, #161616);
+  border: 1px solid var(--rux-border-strong, #8d8d8d); border-radius: 2px;
+  padding: .05em .4em; white-space: nowrap; }
+
+/* NAMED ON SCREEN -- a tab, panel, field or column label. 481 tokens, the
+   bulk, so this is the quietest treatment that still reads as a proper noun.
+   It leans on COLOUR, not weight alone: body copy is secondary and a named
+   thing is primary. Three semibold phrases in a row shout, and cells carrying
+   three of them are common. */
+.ln-t-named { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* EXACT STRING -- type or match it character for character. The mono family
+   says that on its own, with no colour and no box. Carbon pairs size and
+   line-height as one style, so this takes code-01's family and leaves the
+   line box to the prose around it. */
+.ln-t-exact { font-family: var(--rux-code-01-font-family, 'IBM Plex Mono', ui-monospace, monospace);
+  font-size: .8125rem; color: var(--rux-text-primary, #161616); white-space: nowrap; }
+
+/* A ROUTE -- plain text, its own arrow, the destination weighted because that
+   segment is the thing you press. white-space: normal is deliberate: a long
+   route SHOULD wrap, and it wraps whole because every segment is inline. */
+.ln-t-route { white-space: normal; }
+.ln-t-route .sep { color: var(--rux-text-placeholder, #a8a8a8); padding: 0 .3em; }
+.ln-t-route .dest { font-weight: 600; color: var(--rux-text-primary, #161616); }
+
+/* THE READING MEASURE IS CAPPED, NOT SPANNED. A column span is proportional,
+   so the same layout gives 81 characters a line at this width and grows
+   without limit on a wide display -- the error rux-ds caught in its own
+   document template and corrected. A cap holds 75 characters at any width.
+   Tables, diagrams and code keep the column's full width; only prose is
+   capped, because only prose is read a line at a time. */
+.ln-prose-measure { max-inline-size: 38rem; color: var(--rux-text-secondary, #525252); }
+
+/* PROSE IS SECONDARY SO THAT A NAMED THING CAN BE PRIMARY. This is the half of
+   the named register that does the work, and it was missing when the registers
+   first landed: measured on the built page, body copy and .ln-t-named were the
+   SAME colour, leaving weight alone to carry the distinction -- the thing the
+   whole change set out to avoid, since cells carrying three named phrases in a
+   row are common. Table cells were already secondary, so only paragraphs
+   needed it. 10.6:1 against the page, well clear of AA. */
+
+/* THE TWO STEP COLUMNS DO DIFFERENT JOBS -- left is what you do, right is what
+   the screen answers -- and nothing was saying so. */
+.rux--data-table td.ln-see { border-inline-start: 1px solid var(--rux-border-subtle, #e0e0e0); }
+
+.ln-key { margin-block-start: 3rem; padding: 1.5rem;
+  background: var(--rux-layer, #f4f4f4); border-radius: 4px; }
+.ln-key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem; margin: 1rem 0 0; }
+.ln-key-grid dt { margin-block-end: .2rem; }
+.ln-key-grid dd { margin: 0; color: var(--rux-text-secondary, #525252); font-size: .875rem; }
+
 .ln-pencil { vertical-align: text-bottom; opacity: .65; margin-inline-start: .25rem; }
 
 /* Route and session, above a phase's steps. A definition list rather than
@@ -724,9 +783,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-10</span></span>
             <span class="rux--tag rux--tag--magenta" title="10 open issues recorded against this document"><span class="rux--tag__label">10 open</span></span>
           </div>
-          <p><strong>This file is the source. The picture is generated from it.</strong> Sections 3 to 6 are the drawing: lanes, stages, nodes, edges. Editing a cell here and regenerating is the whole loop, and no coordinate, colour or pixel appears anywhere in this document — that split is the one <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="exchange/diagram-as-data.md"><span class="rux--tag__label">exchange/diagram-as-data.md</span></span> §3 draws, applied to a second diagram before it becomes a second hand-placed artefact.</p>
-          <p><strong>It is a level-2 companion, not a replacement.</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> is level 1 — six lanes, five stages, master data through shipment — and <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="START-HERE.md"><span class="rux--tag__label">START-HERE.md</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> and the spine guide all point at it. This one starts where that one&#39;s stage 2 starts, at sales demand, and answers a different question: <strong>which session, reached how, and what do I actually do in it.</strong></p>
-          <p><strong>It composes and owns nothing.</strong> Every route, action and status below is already carried by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> or by the <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> file for that code. Section 5&#39;s <strong>Guide step</strong> column is the link back, so a step that moves in the guide is findable here rather than silently stale. If this map and its guide disagree, the guide is right and this is the bug.</p>
+          <p class="ln-prose-measure"><strong>This file is the source. The picture is generated from it.</strong> Sections 3 to 6 are the drawing: lanes, stages, nodes, edges. Editing a cell here and regenerating is the whole loop, and no coordinate, colour or pixel appears anywhere in this document — that split is the one <span class="ln-t-exact">exchange/diagram-as-data.md</span> §3 draws, applied to a second diagram before it becomes a second hand-placed artefact.</p>
+          <p class="ln-prose-measure"><strong>It is a level-2 companion, not a replacement.</strong> <span class="ln-t-exact">the source on file</span> is level 1 — six lanes, five stages, master data through shipment — and <span class="ln-t-exact">START-HERE.md</span>, <span class="ln-t-exact">the source on file</span> and the spine guide all point at it. This one starts where that one&#39;s stage 2 starts, at sales demand, and answers a different question: <strong>which session, reached how, and what do I actually do in it.</strong></p>
+          <p class="ln-prose-measure"><strong>It composes and owns nothing.</strong> Every route, action and status below is already carried by <span class="ln-t-exact">the source on file</span> or by the <span class="ln-t-exact">the source on file</span> file for that code. Section 5&#39;s <strong>Guide step</strong> column is the link back, so a step that moves in the guide is findable here rather than silently stale. If this map and its guide disagree, the guide is right and this is the bug.</p>
         </div>
         <figure class="rux--tile ln-dg" style="--dg-cols:9">
           <div class="ln-dg-grid">
@@ -751,14 +810,14 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">1</span><span class="ln-dg-detail-name">Sales Order Intake Workbench</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tdsls4601m200</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Orders ➔ Order Intake Workbench</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>create the demand, and approve it</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item"><span class="rux--tag rux--tag--purple rux--layout--size-sm" title="New (header)"><span class="rux--tag__label">New</span></span>, then <em>Sold-to Business Partner</em>, <em>Order Type</em>, <em>Planned Delivery Date</em>, <em>Sales Office</em>, <em>Currency</em>, <em>Site</em> and <em>Warehouse</em>, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Save"><span class="rux--tag__label">Save</span></span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Free"><span class="rux--tag__label">Free</span></span></li>
-                      <li class="rux--list__item"><span class="rux--tag rux--tag--purple rux--layout--size-sm" title="New (line)"><span class="rux--tag__label">New</span></span>, then <em>Item</em> and <em>Ordered Quantity</em>, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Save"><span class="rux--tag__label">Save</span></span></li>
-                      <li class="rux--list__item"><strong>Actions ➔ Approve</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="In Process"><span class="rux--tag__label">In Process</span></span></li>
+                      <li class="rux--list__item"><span class="ln-t-press" title="New (header)">New</span>, then <em>Sold-to Business Partner</em>, <em>Order Type</em>, <em>Planned Delivery Date</em>, <em>Sales Office</em>, <em>Currency</em>, <em>Site</em> and <em>Warehouse</em>, then <span class="ln-t-press">Save</span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Free</span></span></li>
+                      <li class="rux--list__item"><span class="ln-t-press" title="New (line)">New</span>, then <em>Item</em> and <em>Ordered Quantity</em>, then <span class="ln-t-press">Save</span></li>
+                      <li class="rux--list__item"><strong>Actions ➔ Approve</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">In Process</span></span></li>
                     </ol>
                   </div>
                   </div>
@@ -766,7 +825,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it</p>
                   </div>
                   <div class="ln-dg-foot">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>1.1–1.3 · order entry owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-ship-from-stock.md"><span class="rux--tag__label">SG-ship-from-stock.md</span></span> 1.1–1.12</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>1.1–1.3 · order entry owned by <span class="ln-t-exact">SG-ship-from-stock.md</span> 1.1–1.12</p>
                   </div>
                 </div>
               </details>
@@ -784,7 +843,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>hand the approved lines to Warehousing</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
                       <li class="rux--list__item">select the order, then <strong>Actions ➔ Release ➔ Release to Warehousing…</strong></li>
-                      <li class="rux--list__item">Set <em>Upto Release Date</em> on or after the line&#39;s release date, leave the Options ticked, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="RELEASE"><span class="rux--tag__label">RELEASE</span></span></li>
+                      <li class="rux--list__item">Set <em>Upto Release Date</em> on or after the line&#39;s release date, leave the Options ticked, then <span class="ln-t-press">RELEASE</span></li>
                     </ol>
                   </div>
                   </div>
@@ -792,7 +851,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order</p>
                   </div>
                   <div class="ln-dg-foot">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>6.1 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-ship-from-stock.md"><span class="rux--tag__label">SG-ship-from-stock.md</span></span> 2.1–2.8</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>6.1 · owned by <span class="ln-t-exact">SG-ship-from-stock.md</span> 2.1–2.8</p>
                   </div>
                 </div>
               </details>
@@ -804,7 +863,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">2</span><span class="ln-dg-detail-name">Items - Planning</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">cprpd1100m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Master Data ➔ Items ➔ Items - Planning</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Master Data</span><span class="sep">➔</span><span>Items</span><span class="sep">➔</span><span class="dest">Items - Planning</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>put the delivery date inside the item&#39;s order horizon</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -818,7 +877,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse&#39;s calendar, so it is never today plus your number</p>
                   </div>
                   <div class="ln-dg-foot">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>1.4–1.5 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-run-order-planning-for-one-item.md"><span class="rux--tag__label">SG-run-order-planning-for-one-item.md</span></span> phases 1–2</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>1.4–1.5 · owned by <span class="ln-t-exact">SG-run-order-planning-for-one-item.md</span> phases 1–2</p>
                   </div>
                 </div>
               </details>
@@ -828,7 +887,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">3</span><span class="ln-dg-detail-name">Item Order Plan</span>
                     <span class="ln-dg-kind">gate</span><code class="ln-dg-detail-code">cprrp0520m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Order Planning ➔ Item Order Plan</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Item Order Plan</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>prove planning can actually see the demand</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -853,12 +912,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">4</span><span class="ln-dg-detail-name">Generate Order Planning (Item)</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">cprrp1220m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; reached by drilling in. The range variant <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Generate Order Planning"><span class="rux--tag__label">Generate Order Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1210m000"><span class="rux--tag__label">cprrp1210m000</span></span> sits at Order Planning ➔ Generate Order Planning. <strong>Not documented for this release.</strong></p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; reached by drilling in. The range variant <span class="ln-t-named">Generate Order Planning</span> <span class="ln-t-exact">cprrp1210m000</span> sits at <span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Generate Order Planning</span></span>. <strong>Not documented for this release.</strong></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>run MRP for this item and everything beneath it</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">open it for the item, confirm <em>Scenario</em> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ACT"><span class="rux--tag__label">ACT</span></span> and <em>Plan Item</em>, select <em>Include Child Items</em>, then run</li>
+                      <li class="rux--list__item">open it for the item, confirm <em>Scenario</em> <span class="ln-t-exact">ACT</span> and <em>Plan Item</em>, select <em>Include Child Items</em>, then run</li>
                     </ol>
                   </div>
                   </div>
@@ -876,12 +935,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">5</span><span class="ln-dg-detail-name">Planned Orders</span>
                     <span class="ln-dg-kind">planned</span><code class="ln-dg-detail-code">cprrp1100m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Order Planning ➔ Planned Orders</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Planned Orders</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>read what MRP proposed, and check that it adds up</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">filter on the cluster and site; every row should read <em>Order Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Planned"><span class="rux--tag__label">Planned</span></span></li>
+                      <li class="rux--list__item">filter on the cluster and site; every row should read <em>Order Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Planned</span></span></li>
                       <li class="rux--list__item">Select the planned production order, then <strong>Pegging - Upstream</strong></li>
                     </ol>
                   </div>
@@ -902,12 +961,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">6</span><span class="ln-dg-detail-name">Confirm Order Planning</span>
                     <span class="ln-dg-kind">transfer</span><code class="ln-dg-detail-code">cprrp1200m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Order Planning ➔ Confirm Order Planning</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Confirm Order Planning</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>mark the proposals you intend to transfer</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">select the planned orders and confirm them. <em>Order Status</em> moves <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Planned"><span class="rux--tag__label">Planned</span></span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Confirmed"><span class="rux--tag__label">Confirmed</span></span></li>
+                      <li class="rux--list__item">select the planned orders and confirm them. <em>Order Status</em> moves <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Planned</span></span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span></li>
                     </ol>
                   </div>
                   </div>
@@ -925,7 +984,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">7</span><span class="ln-dg-detail-name">Transfer Order Planning</span>
                     <span class="ln-dg-kind">transfer</span><code class="ln-dg-detail-code">cppat1210m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Plan Transfer ➔ Transfer Order Planning</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Plan Transfer</span><span class="sep">➔</span><span class="dest">Transfer Order Planning</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>turn confirmed proposals into real orders in their owning modules</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -936,10 +995,10 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>a real purchase order and a real production order. Where each lands is decided by the item&#39;s supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order</p><p class="ln-dg-field"><span class="ln-dg-key">Splits</span>8 — supply source <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Purchase"><span class="rux--tag__label">Purchase</span></span> · 12 — supply source <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Job Shop"><span class="rux--tag__label">Job Shop</span></span></p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>a real purchase order and a real production order. Where each lands is decided by the item&#39;s supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order</p><p class="ln-dg-field"><span class="ln-dg-key">Splits</span>8 — supply source <span class="ln-t-exact">Purchase</span> · 12 — supply source <span class="ln-t-exact">Job Shop</span></p>
                   </div>
                   <div class="ln-dg-foot">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>3.4–3.6 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span></p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>3.4–3.6 · owned by <span class="ln-t-exact">the source on file</span></p>
                   </div>
                 </div>
               </details>
@@ -951,7 +1010,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">8</span><span class="ln-dg-detail-name">Purchase Order</span>
                     <span class="ln-dg-kind">real</span><code class="ln-dg-detail-code">tdpur4100m900</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; drill in from the purchase order list, or from <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Purchase Order Intake Workbench"><span class="rux--tag__label">Purchase Order Intake Workbench</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4601m200"><span class="rux--tag__label">tdpur4601m200</span></span>, Procurement ➔ Orders ➔ Order Intake Workbench</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; drill in from the purchase order list, or from <span class="ln-t-named">Purchase Order Intake Workbench</span> <span class="ln-t-exact">tdpur4601m200</span>, <span class="ln-t-route"><span>Procurement</span><span class="sep">➔</span><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>hold the order the transfer created</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -976,12 +1035,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">12</span><span class="ln-dg-detail-name">Production Orders</span>
                     <span class="ln-dg-kind">real</span><code class="ln-dg-detail-code">tisfc0501m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Job Shop ➔ Production Orders</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Orders</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>hold the order the transfer created, and start it moving</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">open the order from tile 7 at <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Created"><span class="rux--tag__label">Created</span></span>, check its BOM, routing and estimated materials, then <strong>Actions ➔ Release Orders</strong></li>
+                      <li class="rux--list__item">open the order from tile 7 at <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Created</span></span>, check its BOM, routing and estimated materials, then <strong>Actions ➔ Release Orders</strong></li>
                     </ol>
                   </div>
                   </div>
@@ -1025,17 +1084,17 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">13</span><span class="ln-dg-detail-name">Release Production Orders</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tisfc0204m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Job Shop ➔ Production Control</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Control</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>release the order so material can be issued and hours booked</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">run the release for this order only. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Released"><span class="rux--tag__label">Released</span></span></li>
+                      <li class="rux--list__item">run the release for this order only. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Released</span></span></li>
                     </ol>
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>warehousing issue and receipt orders now exist. If the release refuses, check whether <em>Printing Production Order Documents Mandatory</em> requires <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Printed"><span class="rux--tag__label">Printed</span></span> first</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>warehousing issue and receipt orders now exist. If the release refuses, check whether <em>Printing Production Order Documents Mandatory</em> requires <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Printed</span></span> first</p>
                   </div>
                   <div class="ln-dg-foot">
                   <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>5.3</p>
@@ -1048,12 +1107,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">14</span><span class="ln-dg-detail-name">Material to Issue for Production Orders</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">ticst0101m100</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Job Shop ➔ Production Materials</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Materials</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>move the components from the warehouse to the work centre</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">issue the materials for the order until <em>Actual Quantity</em> equals the estimated quantity. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Active"><span class="rux--tag__label">Active</span></span></li>
+                      <li class="rux--list__item">issue the materials for the order until <em>Actual Quantity</em> equals the estimated quantity. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Active</span></span></li>
                     </ol>
                   </div>
                   </div>
@@ -1061,7 +1120,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>materials issued. How much of this you do by hand is configuration — <em>Direct Initiate Inventory Issue</em> and <em>Direct Process Warehouse Order Line</em> can do the unblocking for you, so their absence is not an error</p><p class="ln-dg-field"><span class="ln-dg-key">Needs</span>11 — components on hand first</p>
                   </div>
                   <div class="ln-dg-foot">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>5.4 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-manual-production-order-existing-master-data.md"><span class="rux--tag__label">SG-manual-production-order-existing-master-data.md</span></span> 4.2–4.7</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>5.4 · owned by <span class="ln-t-exact">SG-manual-production-order-existing-master-data.md</span> 4.2–4.7</p>
                   </div>
                 </div>
               </details>
@@ -1071,7 +1130,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">15</span><span class="ln-dg-detail-name">Report Operations Completed</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">tisfc0130m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Job Shop ➔ Production Control ➔ Report Operations</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span>Production Control</span><span class="sep">➔</span><span class="dest">Report Operations</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>report the build, and post the finished item</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -1082,9 +1141,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span><span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Production Completed"><span class="rux--tag__label">Production Completed</span></span>, which becomes <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Completed"><span class="rux--tag__label">Completed</span></span> once Warehousing finishes the inbound procedure. <strong>Production Completed is a handoff, not a failed Completed.</strong> Whether stock is posted at all is a parameter on <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Production Order Parameters"><span class="rux--tag__label">Production Order Parameters</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0100s000"><span class="rux--tag__label">tisfc0100s000</span></span>, reached from the Job Shop Control parameters list</p><div class="ln-dg-strip">
+                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span><span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Production Completed</span></span>, which becomes <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Completed</span></span> once Warehousing finishes the inbound procedure. <strong>Production Completed is a handoff, not a failed Completed.</strong> Whether stock is posted at all is a parameter on <span class="ln-t-named">Production Order Parameters</span> <span class="ln-t-exact">tisfc0100s000</span>, reached from the Job Shop Control parameters list</p><div class="ln-dg-strip">
                     <p class="ln-dg-strip-head"><span class="ln-dg-key">Verify</span>Inventory 360 <code class="ln-dg-strip-code">whwmd4300m000</code></p>
-                    <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span>Warehousing ➔ Inventory 360</p>
+                    <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Warehousing</span><span class="sep">➔</span><span class="dest">Inventory 360</span></span></p>
                     <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Reads</span>The finished item on hand, and now sellable</p>
                     <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Guide</span>5.7</p>
                   </div>
@@ -1102,7 +1161,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Inventory 360</span>
                     <span class="ln-dg-kind">read</span><code class="ln-dg-detail-code">whwmd4300m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Inventory 360"><span class="rux--tag__label">Inventory 360</span></span></p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-exact">Inventory 360</span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>record on-hand before anything moves</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -1128,13 +1187,13 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">9</span><span class="ln-dg-detail-name">Warehousing Orders</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh2100m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Orders ➔ Orders</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Orders</span><span class="sep">➔</span><span class="dest">Orders</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>find the inbound order the purchase order raised</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">filter for your order; it should read order type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="PUI"><span class="rux--tag__label">PUI</span></span> with the raw-material warehouse as ship-to</li>
-                      <li class="rux--list__item"><span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Drill In (line)"><span class="rux--tag__label">Drill In</span></span></li>
+                      <li class="rux--list__item">filter for your order; it should read order type <span class="ln-t-exact">PUI</span> with the raw-material warehouse as ship-to</li>
+                      <li class="rux--list__item"><span class="ln-t-press" title="Drill In (line)">Drill In</span></li>
                     </ol>
                   </div>
                   </div>
@@ -1180,7 +1239,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>book the components into stock</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">enter the packing-slip reference on each line, then confirm. <em>Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Confirmed"><span class="rux--tag__label">Confirmed</span></span>, with <em>All Lines Final</em> and <em>All Lines Complete</em> both set</li>
+                      <li class="rux--list__item">enter the packing-slip reference on each line, then confirm. <em>Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span>, with <em>All Lines Final</em> and <em>All Lines Complete</em> both set</li>
                       <li class="rux--list__item">Read <em>Errors Logged</em></li>
                     </ol>
                   </div>
@@ -1188,7 +1247,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <div class="ln-dg-zone ln-dg-zone--leaves">
                   <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>components on hand. <strong>The status is not the proof and the on-hand figure is</strong> — see 5.7. <em>Confirmed</em> is also cleared when the receipt has no lines at all, which looks identical</p><div class="ln-dg-strip">
                     <p class="ln-dg-strip-head"><span class="ln-dg-key">Verify</span>Inventory 360 <code class="ln-dg-strip-code">whwmd4300m000</code></p>
-                    <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span>Warehousing ➔ Inventory 360</p>
+                    <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Warehousing</span><span class="sep">➔</span><span class="dest">Inventory 360</span></span></p>
                     <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Reads</span>Component on-hand up by exactly the quantity received</p>
                     <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Guide</span>4.5</p>
                   </div>
@@ -1204,7 +1263,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Warehousing Order Types</span>
                     <span class="ln-dg-kind">read</span><code class="ln-dg-detail-code">whinh0110m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Master Data ➔ Order Procedures ➔ Order Types</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Master Data</span><span class="sep">➔</span><span>Order Procedures</span><span class="sep">➔</span><span class="dest">Order Types</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>explain why the outbound tiles are shaped the way they are</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -1229,12 +1288,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">17</span><span class="ln-dg-detail-name">Warehouse Manager Dashboard</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh2300m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Manager Dashboard"><span class="rux--tag__label">Manager Dashboard</span></span></p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-exact">Manager Dashboard</span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>find the outbound order the release created</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">filter on your sales order number, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Drill In (line)"><span class="rux--tag__label">Drill In</span></span>. It should read <strong>Origin Sales</strong>, <strong>Type 20- SO/SC Out</strong></li>
+                      <li class="rux--list__item">filter on your sales order number, then <span class="ln-t-press" title="Drill In (line)">Drill In</span>. It should read <strong>Origin Sales</strong>, <strong>Type 20- SO/SC Out</strong></li>
                     </ol>
                   </div>
                   </div>
@@ -1257,7 +1316,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>advise the line, so there is something to pick</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item"><strong>Outbound Lines</strong> tab, tick the line, then <strong>Actions ➔ Advice ➔ Generate Advice</strong>. <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Advised"><span class="rux--tag__label">Advised</span></span> and <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Released"><span class="rux--tag__label">Released</span></span> both fill</li>
+                      <li class="rux--list__item"><strong>Outbound Lines</strong> tab, tick the line, then <strong>Actions ➔ Advice ➔ Generate Advice</strong>. <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Advised</span></span> and <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Released</span></span> both fill</li>
                     </ol>
                   </div>
                   </div>
@@ -1275,7 +1334,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">19</span><span class="ln-dg-detail-name">Picking List</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh4525m100</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Outbound/Inspections ➔ Picking List</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Outbound/Inspections</span><span class="sep">➔</span><span class="dest">Picking List</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>confirm the advised quantity as picked</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
@@ -1285,7 +1344,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>the line <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Staged"><span class="rux--tag__label">Staged</span></span> and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>the line <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Staged</span></span> and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step</p>
                   </div>
                   <div class="ln-dg-foot">
                   <p class="ln-dg-field"><span class="ln-dg-key">Guide</span>6.4</p>
@@ -1298,12 +1357,12 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">20</span><span class="ln-dg-detail-name">Shipments</span>
                     <span class="ln-dg-kind">step</span><code class="ln-dg-detail-code">whinh4130m000</code></p>
                   <div class="ln-dg-zone">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span>Shipments ➔ Shipments</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Shipments</span><span class="sep">➔</span><span class="dest">Shipments</span></span></p>
                   </div>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>find the shipment tile 19 created</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item">find it by the number from tile 19, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Drill In (line)"><span class="rux--tag__label">Drill In</span></span></li>
+                      <li class="rux--list__item">find it by the number from tile 19, then <span class="ln-t-press" title="Drill In (line)">Drill In</span></li>
                     </ol>
                   </div>
                   </div>
@@ -1326,15 +1385,15 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>freeze and confirm, which is where inventory actually leaves</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
                     <ol class="rux--list--ordered ln-dg-steps">
-                      <li class="rux--list__item"><strong>Actions ➔ Freeze</strong> → <em>Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Frozen"><span class="rux--tag__label">Frozen</span></span>, and <strong>Confirm</strong> becomes available</li>
-                      <li class="rux--list__item"><strong>Actions ➔ Confirm</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Confirmed"><span class="rux--tag__label">Confirmed</span></span></li>
+                      <li class="rux--list__item"><strong>Actions ➔ Freeze</strong> → <em>Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Frozen</span></span>, and <strong>Confirm</strong> becomes available</li>
+                      <li class="rux--list__item"><strong>Actions ➔ Confirm</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span></li>
                     </ol>
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
                   <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. <strong>Confirming is a one-way door</strong> — a correction from here needs a return shipment</p><div class="ln-dg-strip">
                     <p class="ln-dg-strip-head"><span class="ln-dg-key">Verify</span>Inventory 360 <code class="ln-dg-strip-code">whwmd4300m000</code></p>
-                    <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span>Warehousing ➔ Inventory 360</p>
+                    <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Warehousing</span><span class="sep">➔</span><span class="dest">Inventory 360</span></span></p>
                     <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Reads</span>On-hand down by exactly the shipped quantity — <strong>the completion test for the whole chain</strong></p>
                     <p class="ln-dg-field ln-dg-strip-line"><span class="ln-dg-key">Guide</span>6.7</p>
                   </div>
@@ -1347,22 +1406,22 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
           </div>
         <p class="ln-dg-note">Reading order runs left to right and down the numbers. The edges that do not:
-          <span class="ln-dg-edge">7 → 8, supply source <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Purchase"><span class="rux--tag__label">Purchase</span></span> <em>(branch)</em></span> · <span class="ln-dg-edge">7 → 12, supply source <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Job Shop"><span class="rux--tag__label">Job Shop</span></span> <em>(branch)</em></span> · <span class="ln-dg-edge">11 → 14, components on hand first <em>(feed)</em></span></p>
+          <span class="ln-dg-edge">7 → 8, supply source <span class="ln-t-exact">Purchase</span> <em>(branch)</em></span> · <span class="ln-dg-edge">7 → 12, supply source <span class="ln-t-exact">Job Shop</span> <em>(branch)</em></span> · <span class="ln-dg-edge">11 → 14, components on hand first <em>(feed)</em></span></p>
         </figure>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-1">
           <h2 id="t-1">1. Decisions to settle before it is drawn again</h2>
-          <p>Six. Two are settled by the tile design in section 5 and are recorded here rather than removed, because the reasoning is the useful part.</p>
+          <p class="ln-prose-measure">Six. Two are settled by the tile design in section 5 and are recorded here rather than removed, because the reasoning is the useful part.</p>
           <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label"></div></th><th scope="col"><div class="rux--table-header-label">Decision</div></th><th scope="col"><div class="rux--table-header-label">Options</div></th><th scope="col"><div class="rux--table-header-label">Recommended</div></th></tr></thead>
             <tbody>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="D1"><span class="rux--tag__label">D1</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Canvas"><span class="rux--tag__label">Canvas</span></span></td><td>(a) wall chart with every field on the face of each box · (b) a tile of session name and code only, with the rest behind a click</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Settled — (b)."><span class="rux--tag__label">Settled — (b).</span></span> A two-line tile collapses the canvas and stops the detail competing with the shape. Nothing is lost: the route was the reason to keep the map open beside the screen, and it is one click away rather than absent</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="D2"><span class="rux--tag__label">D2</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Where it lives, and how it publishes"><span class="rux--tag__label">Where it lives, and how it publishes</span></span></td><td>(a) a section of the spine guide · (b) its own <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="reference"><span class="rux--tag__label">reference</span></span> document</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Settled — (b), and it publishes."><span class="rux--tag__label">Settled — (b), and it publishes.</span></span> It spans seven guides&#39; worth of sessions, so hanging it off one understates it. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="exchange/send-back-2-reply.md"><span class="rux--tag__label">exchange/send-back-2-reply.md</span></span> §5&#39;s test admits it twice over: a person sits down and reads it, and it is consulted while walking a page that publishes. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="emit.py --references"><span class="rux--tag__label">emit.py --references</span></span> emits it as <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="kind: reference"><span class="rux--tag__label">kind: reference</span></span> at contract 5. It stays in <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> because the emitter dispatches on <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="type:"><span class="rux--tag__label">type:</span></span> and not on directory; a second reference document would earn a folder</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="D3"><span class="rux--tag__label">D3</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Scope"><span class="rux--tag__label">Scope</span></span></td><td>Whether the two configuration sessions and the master-data prerequisites get tiles</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Settled."><span class="rux--tag__label">Settled.</span></span> Both configuration sessions get tiles of their own, as <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="reads"><span class="rux--tag__label">reads</span></span> rather than numbered steps — the same class as Inventory 360, so the numbered count stays the count of things you change. Master data stays off; level 1 owns it</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="D4"><span class="rux--tag__label">D4</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Prose"><span class="rux--tag__label">Prose</span></span></td><td>(a) inside the figure as SVG text · (b) beside it as HTML</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Settled — (b)"><span class="rux--tag__label">Settled — (b)</span></span>, for the panels in section 7 and for every tile&#39;s detail. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="exchange/diagram-reply.md"><span class="rux--tag__label">exchange/diagram-reply.md</span></span> §3.2 asks for exactly this, and it is right: prose inside markup is invisible to every gate in both repositories</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="D5"><span class="rux--tag__label">D5</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Issue ids in the figure"><span class="rux--tag__label">Issue ids in the figure</span></span></td><td>(a) keep them in box text · (b) keep them here only, and let the figure carry an unnumbered mark</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="(b)"><span class="rux--tag__label">(b)</span></span>, and this is measured rather than argued — see below</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="D6"><span class="rux--tag__label">D6</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Format"><span class="rux--tag__label">Format</span></span></td><td>(a) an SVG now and the <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="diagram"><span class="rux--tag__label">diagram</span></span> block later · (b) the block only</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Settled — (b)."><span class="rux--tag__label">Settled — (b).</span></span> No SVG is drawn for this map at any point. The requirement is an interactive tile, an <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="&lt;img&gt;"><span class="rux--tag__label">&lt;img&gt;</span></span> cannot be one, and a static stand-in would be a third artefact to maintain for a worse result. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="PLAN.md"><span class="rux--tag__label">PLAN.md</span></span> §8.6 carries the consequences</td></tr>
+          <tr><td><span class="ln-t-named">D1</span></td><td><span class="ln-t-named">Canvas</span></td><td>(a) wall chart with every field on the face of each box · (b) a tile of session name and code only, with the rest behind a click</td><td><span class="ln-t-named">Settled — (b).</span> A two-line tile collapses the canvas and stops the detail competing with the shape. Nothing is lost: the route was the reason to keep the map open beside the screen, and it is one click away rather than absent</td></tr>
+          <tr><td><span class="ln-t-named">D2</span></td><td><span class="ln-t-named">Where it lives, and how it publishes</span></td><td>(a) a section of the spine guide · (b) its own <span class="ln-t-exact">reference</span> document</td><td><span class="ln-t-named">Settled — (b), and it publishes.</span> It spans seven guides&#39; worth of sessions, so hanging it off one understates it. <span class="ln-t-exact">exchange/send-back-2-reply.md</span> §5&#39;s test admits it twice over: a person sits down and reads it, and it is consulted while walking a page that publishes. <span class="ln-t-exact">emit.py --references</span> emits it as <span class="ln-t-exact">kind: reference</span> at contract 5. It stays in <span class="ln-t-exact">the source on file</span> because the emitter dispatches on <span class="ln-t-exact">type:</span> and not on directory; a second reference document would earn a folder</td></tr>
+          <tr><td><span class="ln-t-named">D3</span></td><td><span class="ln-t-named">Scope</span></td><td>Whether the two configuration sessions and the master-data prerequisites get tiles</td><td><span class="ln-t-named">Settled.</span> Both configuration sessions get tiles of their own, as <span class="ln-t-named">reads</span> rather than numbered steps — the same class as Inventory 360, so the numbered count stays the count of things you change. Master data stays off; level 1 owns it</td></tr>
+          <tr><td><span class="ln-t-named">D4</span></td><td><span class="ln-t-named">Prose</span></td><td>(a) inside the figure as SVG text · (b) beside it as HTML</td><td><span class="ln-t-named">Settled — (b)</span>, for the panels in section 7 and for every tile&#39;s detail. <span class="ln-t-exact">exchange/diagram-reply.md</span> §3.2 asks for exactly this, and it is right: prose inside markup is invisible to every gate in both repositories</td></tr>
+          <tr><td><span class="ln-t-named">D5</span></td><td><span class="ln-t-named">Issue ids in the figure</span></td><td>(a) keep them in box text · (b) keep them here only, and let the figure carry an unnumbered mark</td><td><span class="ln-t-named">(b)</span>, and this is measured rather than argued — see below</td></tr>
+          <tr><td><span class="ln-t-named">D6</span></td><td><span class="ln-t-named">Format</span></td><td>(a) an SVG now and the <span class="ln-t-exact">diagram</span> block later · (b) the block only</td><td><span class="ln-t-named">Settled — (b).</span> No SVG is drawn for this map at any point. The requirement is an interactive tile, an <span class="ln-t-exact">&lt;img&gt;</span> cannot be one, and a static stand-in would be a third artefact to maintain for a worse result. <span class="ln-t-exact">PLAN.md</span> §8.6 carries the consequences</td></tr>
             </tbody>
           </table>
         </div>
@@ -1372,24 +1431,24 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-warning--filled"/></svg>
     <div class="rux--inline-notification__text-wrapper">
       <div class="rux--inline-notification__title">Warning</div>
-      <div class="rux--inline-notification__subtitle"><p><strong>This map is never drawn as an SVG.</strong> The site renders a diagram as <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="&lt;img class=&quot;ln-figure&quot;&gt;"><span class="rux--tag__label">&lt;img class=&quot;ln-figure&quot;&gt;</span></span>, which is inert — no click target and no disclosure — so a static figure cannot be the tile in section 5, only a worse imitation of it. The target is the <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="diagram"><span class="rux--tag__label">diagram</span></span> block of <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="PLAN.md"><span class="rux--tag__label">PLAN.md</span></span> §8.6, rendered as HTML and CSS from <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="rux-ds"><span class="rux--tag__label">rux-ds</span></span>. <strong>Until that exists this file is the deliverable</strong>, and it is written to be read as one rather than as a caption.</p></div>
+      <div class="rux--inline-notification__subtitle"><p class="ln-prose-measure"><strong>This map is never drawn as an SVG.</strong> The site renders a diagram as <span class="ln-t-exact">&lt;img class=&quot;ln-figure&quot;&gt;</span>, which is inert — no click target and no disclosure — so a static figure cannot be the tile in section 5, only a worse imitation of it. The target is the <span class="ln-t-exact">diagram</span> block of <span class="ln-t-exact">PLAN.md</span> §8.6, rendered as HTML and CSS from <span class="ln-t-exact">rux-ds</span>. <strong>Until that exists this file is the deliverable</strong>, and it is written to be read as one rather than as a caption.</p></div>
     </div>
   </div>
 </div>
-          <p><strong>D5 is settled by a run, not by a preference.</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="tools/export.py"><span class="rux--tag__label">tools/export.py</span></span>&#39;s <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="sweep"><span class="rux--tag__label">sweep</span></span> — the same function <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="tools/emit.py"><span class="rux--tag__label">tools/emit.py</span></span> runs over a copied SVG&#39;s bytes before writing it — returns <strong>five hits</strong> against the drafted figure and <strong>zero</strong> against the SVG it then replaced. D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep. </p>
+          <p class="ln-prose-measure"><strong>D5 is settled by a run, not by a preference.</strong> <span class="ln-t-exact">tools/export.py</span>&#39;s <span class="ln-t-exact">sweep</span> — the same function <span class="ln-t-exact">tools/emit.py</span> runs over a copied SVG&#39;s bytes before writing it — returns <strong>five hits</strong> against the drafted figure and <strong>zero</strong> against the SVG it then replaced. D6 has since removed the figure entirely, so the question is moot — but the measurement is kept, because it is the argument for §8.6 rather than a preference about it. Ids belong in a document, where rule 20 can shape them and both exporters can drop them structurally; inside markup they are invisible to every gate in both repositories and refused by the sweep. </p>
           <div class="rux--inline-notification rux--inline-notification--info rux--inline-notification--low-contrast">
   <div class="rux--inline-notification__details">
     <svg class="rux--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#i-information--filled"/></svg>
     <div class="rux--inline-notification__text-wrapper">
       <div class="rux--inline-notification__title">Note</div>
-      <div class="rux--inline-notification__subtitle"><p><strong>One of those ids is cited for two different things, and only one of them is the issue.</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="issues.md"><span class="rux--tag__label">issues.md</span></span> records <em>two different sessions are both called &quot;Report Orders Completed&quot;</em>, which is <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span>&#39;s subject. Both production guides cite the same id for something else — that the <strong>Production Order Parameters</strong> values for Company 4100 are unread. That wants a second issue or a reworded one; this map inherits the citation because rule 24 makes frontmatter an index of the body, not a judgement about it. </p></div>
+      <div class="rux--inline-notification__subtitle"><p class="ln-prose-measure"><strong>One of those ids is cited for two different things, and only one of them is the issue.</strong> <span class="ln-t-exact">issues.md</span> records <em>two different sessions are both called &quot;Report Orders Completed&quot;</em>, which is <span class="ln-t-exact">the source on file</span>&#39;s subject. Both production guides cite the same id for something else — that the <strong>Production Order Parameters</strong> values for Company 4100 are unread. That wants a second issue or a reworded one; this map inherits the citation because rule 24 makes frontmatter an index of the body, not a judgement about it. </p></div>
     </div>
   </div>
 </div>
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-2">
           <h2 id="t-2">2. What the reader is meant to take from it</h2>
-          <p>Three things, in this order. If a change to the map makes one of them harder to see, the change is wrong.</p>
+          <p class="ln-prose-measure">Three things, in this order. If a change to the map makes one of them harder to see, the change is wrong.</p>
           <ol class="rux--list--ordered">
           <li class="rux--list__item"><strong>The chain crosses four modules and nobody hands you a receipt.</strong> Sales creates demand, Planning proposes, the transfer makes it real, Procurement and Manufacturing supply, Warehousing ships. The handovers are where a run stalls, and every one of them is a different session.</li>
           <li class="rux--list__item"><strong>A proposal is not an order.</strong> Stages 3 and 4 exist to make the transfer boundary a place rather than a step. Everything left of it can be re-run at no cost; everything right of it is a real document.</li>
@@ -1398,7 +1457,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-3">
           <h2 id="t-3">3. Lanes</h2>
-          <p>Ordered top to bottom. The lane names the module, so a route in section 5 never repeats it.</p>
+          <p class="ln-prose-measure">Ordered top to bottom. The lane names the module, so a route in section 5 never repeats it.</p>
           <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -1416,7 +1475,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-4">
           <h2 id="t-4">4. Stages</h2>
-          <p>Ordered left to right. Stage 4 is flagged as the boundary; the renderer draws that, this file states it.</p>
+          <p class="ln-prose-measure">Ordered left to right. Stage 4 is flagged as the boundary; the renderer draws that, this file states it.</p>
           <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -1425,7 +1484,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><td>1</td><td>Demand</td><td>A sales order exists and is approved. On-hand is written down before anything moves</td></tr>
           <tr><td>2</td><td>Visibility</td><td>The demand becomes visible to planning, or silently does not</td></tr>
           <tr><td>3</td><td>Plan</td><td>MRP nets and explodes; proposals appear</td></tr>
-          <tr><td>4</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Transfer"><span class="rux--tag__label">Transfer</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="The boundary."><span class="rux--tag__label">The boundary.</span></span> Proposals are confirmed and translated into real orders. Planning ends here</td></tr>
+          <tr><td>4</td><td><span class="ln-t-named">Transfer</span></td><td><span class="ln-t-named">The boundary.</span> Proposals are confirmed and translated into real orders. Planning ends here</td></tr>
           <tr><td>5</td><td>Real orders</td><td>A purchase order and a production order now exist, owned by their own modules</td></tr>
           <tr><td>6</td><td>Execute</td><td>Components are received; the finished item is built and posted</td></tr>
           <tr><td>7</td><td>Deliver</td><td>The sales order is released, advised, picked, frozen, confirmed</td></tr>
@@ -1437,127 +1496,127 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-5">
           <h2 id="t-5">5. Nodes</h2>
-          <p><strong>A tile carries the session and nothing else.</strong> Name on the first line, code on the second — that is the whole of what the map shows at rest:</p>
+          <p class="ln-prose-measure"><strong>A tile carries the session and nothing else.</strong> Name on the first line, code on the second — that is the whole of what the map shows at rest:</p>
           <div class="ln-code-scroll"><pre class="rux--type-code-01"><code>Sales Order Intake Workbench
 (tdsls4601m200)</code></pre></div>
-          <p><strong>Everything below the tile opens on click.</strong> Five fields, and the discipline is that they are <em>minimal but sufficient</em>: someone who opens one tile should be able to complete that step without opening the guide.</p>
+          <p class="ln-prose-measure"><strong>Everything below the tile opens on click.</strong> Five fields, and the discipline is that they are <em>minimal but sufficient</em>: someone who opens one tile should be able to complete that step without opening the guide.</p>
           <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">Field</div></th><th scope="col"><div class="rux--table-header-label">Holds</div></th><th scope="col"><div class="rux--table-header-label">Budget</div></th></tr></thead>
             <tbody>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Route"><span class="rux--tag__label">Route</span></span></td><td>the full menu path, or how it is reached when there is none</td><td>one line</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Does"><span class="rux--tag__label">Does</span></span></td><td>why you are in this session, in one imperative clause</td><td>~8 words</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Do"><span class="rux--tag__label">Do</span></span></td><td>the controls, in order, with the status each produces</td><td>1–3 steps, one sub-bullet each</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Leaves"><span class="rux--tag__label">Leaves</span></span></td><td>what the next tile depends on, and the trap if it is missing</td><td>1–2 lines</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Guide"><span class="rux--tag__label">Guide</span></span></td><td>the step in <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> that owns the detail</td><td>—</td></tr>
+          <tr><td><span class="ln-t-named">Route</span></td><td>the full menu path, or how it is reached when there is none</td><td>one line</td></tr>
+          <tr><td><span class="ln-t-named">Does</span></td><td>why you are in this session, in one imperative clause</td><td>~8 words</td></tr>
+          <tr><td><span class="ln-t-named">Do</span></td><td>the controls, in order, with the status each produces</td><td>1–3 steps, one sub-bullet each</td></tr>
+          <tr><td><span class="ln-t-named">Leaves</span></td><td>what the next tile depends on, and the trap if it is missing</td><td>1–2 lines</td></tr>
+          <tr><td><span class="ln-t-named">Guide</span></td><td>the step in <span class="ln-t-exact">the source on file</span> that owns the detail</td><td>—</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-          <p><strong>`Leaves` is the field that earns the map.</strong> Every stall in this chain is a handover, not a step, and a diagram that draws only the steps hides exactly the thing that goes wrong.</p>
-          <p><strong>Each tile header carries its coordinates.</strong> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="· stage N · kind"><span class="rux--tag__label">· stage N · kind</span></span> after the code is what places the tile when the map is drawn — the lane comes from the section it sits in. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="kind"><span class="rux--tag__label">kind</span></span> is one of <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="step"><span class="rux--tag__label">step</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="gate"><span class="rux--tag__label">gate</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="planned"><span class="rux--tag__label">planned</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="transfer"><span class="rux--tag__label">transfer</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="real"><span class="rux--tag__label">real</span></span>, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="terminal"><span class="rux--tag__label">terminal</span></span> or <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="read"><span class="rux--tag__label">read</span></span>, and it decides how a tile is drawn and nothing else.</p>
-          <p><span class="rux--tag rux--tag--gray rux--layout--size-sm" title="#"><span class="rux--tag__label">#</span></span> is reading order across the whole map. <strong>8–11 are the buy branch and 12–15 the make branch</strong>; they are drawn in parallel and numbered in the order the guide walks them.</p>
+          <p class="ln-prose-measure"><strong>`Leaves` is the field that earns the map.</strong> Every stall in this chain is a handover, not a step, and a diagram that draws only the steps hides exactly the thing that goes wrong.</p>
+          <p class="ln-prose-measure"><strong>Each tile header carries its coordinates.</strong> <span class="ln-t-exact">· stage N · kind</span> after the code is what places the tile when the map is drawn — the lane comes from the section it sits in. <span class="ln-t-exact">kind</span> is one of <span class="ln-t-exact">step</span>, <span class="ln-t-exact">gate</span>, <span class="ln-t-exact">planned</span>, <span class="ln-t-exact">transfer</span>, <span class="ln-t-exact">real</span>, <span class="ln-t-exact">terminal</span> or <span class="ln-t-exact">read</span>, and it decides how a tile is drawn and nothing else.</p>
+          <p class="ln-prose-measure"><span class="ln-t-exact">#</span> is reading order across the whole map. <strong>8–11 are the buy branch and 12–15 the make branch</strong>; they are drawn in parallel and numbered in the order the guide walks them.</p>
           <h3>5.1 Where demand comes from</h3>
-          <p><strong>Stage 1 has three doors and this map walks one of them.</strong> The other two are named here rather than drawn, because naming them is what stops a reader assuming the sales order is the only way an item acquires demand — which is the assumption behind most <em>&quot;MRP isn&#39;t seeing my order&quot;</em> calls.</p>
+          <p class="ln-prose-measure"><strong>Stage 1 has three doors and this map walks one of them.</strong> The other two are named here rather than drawn, because naming them is what stops a reader assuming the sales order is the only way an item acquires demand — which is the assumption behind most <em>&quot;MRP isn&#39;t seeing my order&quot;</em> calls.</p>
           <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">Source</div></th><th scope="col"><div class="rux--table-header-label">How planning sees it</div></th><th scope="col"><div class="rux--table-header-label">State here</div></th></tr></thead>
             <tbody>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Sales order"><span class="rux--tag__label">Sales order</span></span></td><td>Recognized as soon as the line is saved</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="This map."><span class="rux--tag__label">This map.</span></span> Tiles 1 to 21 are this route</td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Contract deliverable"><span class="rux--tag__label">Contract deliverable</span></span></td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Not"><span class="rux--tag__label">Not</span></span> recognized while it is <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Free"><span class="rux--tag__label">Free</span></span>. Someone must activate it, and there is no message explaining the absence until they do. Its supply is then pegged to the project through distribution lines rather than pooled, and it reaches Warehousing as order type <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Project Contract"><span class="rux--tag__label">Project Contract</span></span></td><td>Documented as a concept, not walked — <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span>. <strong>Not documented for this release.</strong></td></tr>
-          <tr><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Safety stock"><span class="rux--tag__label">Safety stock</span></span></td><td>The environment behaves as though order planning treats it as a demand source of its own</td><td><strong>Not documented for this release.</strong></td></tr>
+          <tr><td><span class="ln-t-named">Sales order</span></td><td>Recognized as soon as the line is saved</td><td><span class="ln-t-named">This map.</span> Tiles 1 to 21 are this route</td></tr>
+          <tr><td><span class="ln-t-named">Contract deliverable</span></td><td><span class="ln-t-named">Not</span> recognized while it is <span class="ln-t-named">Free</span>. Someone must activate it, and there is no message explaining the absence until they do. Its supply is then pegged to the project through distribution lines rather than pooled, and it reaches Warehousing as order type <span class="ln-t-named">Project Contract</span></td><td>Documented as a concept, not walked — <span class="ln-t-exact">the source on file</span>. <strong>Not documented for this release.</strong></td></tr>
+          <tr><td><span class="ln-t-named">Safety stock</span></td><td>The environment behaves as though order planning treats it as a demand source of its own</td><td><strong>Not documented for this release.</strong></td></tr>
             </tbody>
           </table>
         </div>
       </div>
-          <p><strong>All three would enter the map at tile 3</strong>, because Item Order Plan is where any of them becomes visible or fails to. A contract deliverable shows there with a <em>Specification</em> indicator that a sales-order row does not carry. When either of the other two is walked, it becomes a second and third tile in the Sales lane feeding the same gate — the shape of stage 1 does not have to change to hold them.</p>
+          <p class="ln-prose-measure"><strong>All three would enter the map at tile 3</strong>, because Item Order Plan is where any of them becomes visible or fails to. A contract deliverable shows there with a <em>Specification</em> indicator that a sales-order row does not carry. When either of the other two is walked, it becomes a second and third tile in the Sales lane feeding the same gate — the shape of stage 1 does not have to change to hold them.</p>
           <h3>5.2 Sales</h3>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="1 · Sales Order Intake Workbench"><span class="rux--tag__label">1 · Sales Order Intake Workbench</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdsls4601m200"><span class="rux--tag__label">tdsls4601m200</span></span> · stage 1 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">1 · Sales Order Intake Workbench</span> <span class="ln-t-exact">tdsls4601m200</span> · stage 1 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Orders ➔ Order Intake Workbench</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — create the demand, and approve it</li>
-          <li class="rux--list__item"><strong>Do</strong> - <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="New (header)"><span class="rux--tag__label">New</span></span>, then <em>Sold-to Business Partner</em>, <em>Order Type</em>, <em>Planned Delivery Date</em>, <em>Sales Office</em>, <em>Currency</em>, <em>Site</em> and <em>Warehouse</em>, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Save"><span class="rux--tag__label">Save</span></span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Free"><span class="rux--tag__label">Free</span></span> - <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="New (line)"><span class="rux--tag__label">New</span></span>, then <em>Item</em> and <em>Ordered Quantity</em>, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Save"><span class="rux--tag__label">Save</span></span> - <strong>Actions ➔ Approve</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="In Process"><span class="rux--tag__label">In Process</span></span></li>
+          <li class="rux--list__item"><strong>Do</strong> - <span class="ln-t-press" title="New (header)">New</span>, then <em>Sold-to Business Partner</em>, <em>Order Type</em>, <em>Planned Delivery Date</em>, <em>Sales Office</em>, <em>Currency</em>, <em>Site</em> and <em>Warehouse</em>, then <span class="ln-t-press">Save</span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Free</span></span> - <span class="ln-t-press" title="New (line)">New</span>, then <em>Item</em> and <em>Ordered Quantity</em>, then <span class="ln-t-press">Save</span> - <strong>Actions ➔ Approve</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">In Process</span></span></li>
           <li class="rux--list__item"><strong>Leaves</strong> — an approved order. Approval is not what makes planning see it — tile 3 is — but tile 16 will not release without it</li>
-          <li class="rux--list__item"><strong>Guide</strong> — 1.1–1.3 · order entry owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-ship-from-stock.md"><span class="rux--tag__label">SG-ship-from-stock.md</span></span> 1.1–1.12</li>
+          <li class="rux--list__item"><strong>Guide</strong> — 1.1–1.3 · order entry owned by <span class="ln-t-exact">SG-ship-from-stock.md</span> 1.1–1.12</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="16 · Release Sales Order Lines to Warehousing"><span class="rux--tag__label">16 · Release Sales Order Lines to Warehousing</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdsls4501m140"><span class="rux--tag__label">tdsls4501m140</span></span> · stage 7 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">16 · Release Sales Order Lines to Warehousing</span> <span class="ln-t-exact">tdsls4501m140</span> · stage 7 · step</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry. It is the <strong>Release to Warehousing</strong> tab of the sales order</li>
           <li class="rux--list__item"><strong>Does</strong> — hand the approved lines to Warehousing</li>
-          <li class="rux--list__item"><strong>Do</strong> - select the order, then <strong>Actions ➔ Release ➔ Release to Warehousing…</strong> - Set <em>Upto Release Date</em> on or after the line&#39;s release date, leave the Options ticked, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="RELEASE"><span class="rux--tag__label">RELEASE</span></span></li>
+          <li class="rux--list__item"><strong>Do</strong> - select the order, then <strong>Actions ➔ Release ➔ Release to Warehousing…</strong> - Set <em>Upto Release Date</em> on or after the line&#39;s release date, leave the Options ticked, then <span class="ln-t-press">RELEASE</span></li>
           <li class="rux--list__item"><strong>Leaves</strong> — a warehousing order carrying your sales order number. From here the activities of the warehousing procedure decide what happens, not the sales order</li>
-          <li class="rux--list__item"><strong>Guide</strong> — 6.1 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-ship-from-stock.md"><span class="rux--tag__label">SG-ship-from-stock.md</span></span> 2.1–2.8</li>
+          <li class="rux--list__item"><strong>Guide</strong> — 6.1 · owned by <span class="ln-t-exact">SG-ship-from-stock.md</span> 2.1–2.8</li>
         </ul>
           <h3>5.3 Enterprise Planning</h3>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="2 · Items - Planning"><span class="rux--tag__label">2 · Items - Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprpd1100m000"><span class="rux--tag__label">cprpd1100m000</span></span> · stage 2 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">2 · Items - Planning</span> <span class="ln-t-exact">cprpd1100m000</span> · stage 2 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Master Data ➔ Items ➔ Items - Planning</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Master Data</span><span class="sep">➔</span><span>Items</span><span class="sep">➔</span><span class="dest">Items - Planning</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — put the delivery date inside the item&#39;s order horizon</li>
           <li class="rux--list__item"><strong>Do</strong> - open the item, <strong>Horizons</strong> tab, read the <em>Order Horizon</em> date - If your delivery date is beyond it, raise the <em>Order Horizon</em> days until it is not</li>
           <li class="rux--list__item"><strong>Leaves</strong> — a horizon that covers your date. Enter days, then trust the date LN shows — it counts workdays on the warehouse&#39;s calendar, so it is never today plus your number</li>
-          <li class="rux--list__item"><strong>Guide</strong> — 1.4–1.5 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-run-order-planning-for-one-item.md"><span class="rux--tag__label">SG-run-order-planning-for-one-item.md</span></span> phases 1–2</li>
+          <li class="rux--list__item"><strong>Guide</strong> — 1.4–1.5 · owned by <span class="ln-t-exact">SG-run-order-planning-for-one-item.md</span> phases 1–2</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="3 · Item Order Plan"><span class="rux--tag__label">3 · Item Order Plan</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp0520m000"><span class="rux--tag__label">cprrp0520m000</span></span> · stage 2 · gate</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">3 · Item Order Plan</span> <span class="ln-t-exact">cprrp0520m000</span> · stage 2 · gate</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Order Planning ➔ Item Order Plan</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Item Order Plan</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — prove planning can actually see the demand</li>
           <li class="rux--list__item"><strong>Do</strong> - open the item and look for a <strong>Sales Order</strong> row carrying your order number and quantity under <em>Demand</em></li>
           <li class="rux--list__item"><strong>Leaves</strong> — nothing; this is a read. But an absent row means tile 4 will run, report success and produce nothing</li>
           <li class="rux--list__item"><strong>Guide</strong> — 1.6</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="4 · Generate Order Planning (Item)"><span class="rux--tag__label">4 · Generate Order Planning (Item)</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span> · stage 3 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">4 · Generate Order Planning (Item)</span> <span class="ln-t-exact">cprrp1220m000</span> · stage 3 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — no menu entry; reached by drilling in. The range variant <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Generate Order Planning"><span class="rux--tag__label">Generate Order Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1210m000"><span class="rux--tag__label">cprrp1210m000</span></span> sits at Order Planning ➔ Generate Order Planning. <strong>Not documented for this release.</strong></li>
+          <li class="rux--list__item"><strong>Route</strong> — no menu entry; reached by drilling in. The range variant <span class="ln-t-named">Generate Order Planning</span> <span class="ln-t-exact">cprrp1210m000</span> sits at <span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Generate Order Planning</span></span>. <strong>Not documented for this release.</strong></li>
           <li class="rux--list__item"><strong>Does</strong> — run MRP for this item and everything beneath it</li>
-          <li class="rux--list__item"><strong>Do</strong> - open it for the item, confirm <em>Scenario</em> <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="ACT"><span class="rux--tag__label">ACT</span></span> and <em>Plan Item</em>, select <em>Include Child Items</em>, then run</li>
+          <li class="rux--list__item"><strong>Do</strong> - open it for the item, confirm <em>Scenario</em> <span class="ln-t-exact">ACT</span> and <em>Plan Item</em>, select <em>Include Child Items</em>, then run</li>
           <li class="rux--list__item"><strong>Leaves</strong> — planned orders wherever there is a shortfall. Nothing is real yet, and nothing outside Planning can see any of it</li>
           <li class="rux--list__item"><strong>Guide</strong> — 2.1–2.3</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="5 · Planned Orders"><span class="rux--tag__label">5 · Planned Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1100m000"><span class="rux--tag__label">cprrp1100m000</span></span> · stage 3 · planned</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">5 · Planned Orders</span> <span class="ln-t-exact">cprrp1100m000</span> · stage 3 · planned</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Order Planning ➔ Planned Orders</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Planned Orders</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — read what MRP proposed, and check that it adds up</li>
-          <li class="rux--list__item"><strong>Do</strong> - filter on the cluster and site; every row should read <em>Order Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Planned"><span class="rux--tag__label">Planned</span></span> - Select the planned production order, then <strong>Pegging - Upstream</strong></li>
+          <li class="rux--list__item"><strong>Do</strong> - filter on the cluster and site; every row should read <em>Order Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Planned</span></span> - Select the planned production order, then <strong>Pegging - Upstream</strong></li>
           <li class="rux--list__item"><strong>Leaves</strong> — proposals you have actually looked at. Each level&#39;s children must sum to its requirement; one planned order is <em>Supply</em> on one item&#39;s plan and <em>Demand</em> on another&#39;s</li>
           <li class="rux--list__item"><strong>Guide</strong> — 2.5–2.6</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="6 · Confirm Order Planning"><span class="rux--tag__label">6 · Confirm Order Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1200m000"><span class="rux--tag__label">cprrp1200m000</span></span> · stage 4 · transfer</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">6 · Confirm Order Planning</span> <span class="ln-t-exact">cprrp1200m000</span> · stage 4 · transfer</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Order Planning ➔ Confirm Order Planning</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Order Planning</span><span class="sep">➔</span><span class="dest">Confirm Order Planning</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — mark the proposals you intend to transfer</li>
-          <li class="rux--list__item"><strong>Do</strong> - select the planned orders and confirm them. <em>Order Status</em> moves <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Planned"><span class="rux--tag__label">Planned</span></span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Confirmed"><span class="rux--tag__label">Confirmed</span></span></li>
+          <li class="rux--list__item"><strong>Do</strong> - select the planned orders and confirm them. <em>Order Status</em> moves <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Planned</span></span> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span></li>
           <li class="rux--list__item"><strong>Leaves</strong> — orders the transfer will match. Skip this and tile 7 does nothing and says nothing — there is no message for &quot;nothing matched&quot;</li>
           <li class="rux--list__item"><strong>Guide</strong> — 3.3</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="7 · Transfer Order Planning"><span class="rux--tag__label">7 · Transfer Order Planning</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cppat1210m000"><span class="rux--tag__label">cppat1210m000</span></span> · stage 4 · transfer</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">7 · Transfer Order Planning</span> <span class="ln-t-exact">cppat1210m000</span> · stage 4 · transfer</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Plan Transfer ➔ Transfer Order Planning</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Plan Transfer</span><span class="sep">➔</span><span class="dest">Transfer Order Planning</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — turn confirmed proposals into real orders in their owning modules</li>
           <li class="rux--list__item"><strong>Do</strong> - select <em>Purchase</em>, tick <strong>Error Report</strong> and <strong>Process Report</strong>, run it, read the report - repeat with <em>Job Shop</em></li>
           <li class="rux--list__item"><strong>Leaves</strong> — a real purchase order and a real production order. Where each lands is decided by the item&#39;s supply source, not by you. A failed transfer is non-destructive: the proposal stays a planned order</li>
-          <li class="rux--list__item"><strong>Guide</strong> — 3.4–3.6 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span></li>
+          <li class="rux--list__item"><strong>Guide</strong> — 3.4–3.6 · owned by <span class="ln-t-exact">the source on file</span></li>
         </ul>
           <h3>5.4 Procurement</h3>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="8 · Purchase Order"><span class="rux--tag__label">8 · Purchase Order</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4100m900"><span class="rux--tag__label">tdpur4100m900</span></span> · stage 5 · real</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">8 · Purchase Order</span> <span class="ln-t-exact">tdpur4100m900</span> · stage 5 · real</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — no menu entry; drill in from the purchase order list, or from <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Purchase Order Intake Workbench"><span class="rux--tag__label">Purchase Order Intake Workbench</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4601m200"><span class="rux--tag__label">tdpur4601m200</span></span>, Procurement ➔ Orders ➔ Order Intake Workbench</li>
+          <li class="rux--list__item"><strong>Route</strong> — no menu entry; drill in from the purchase order list, or from <span class="ln-t-named">Purchase Order Intake Workbench</span> <span class="ln-t-exact">tdpur4601m200</span>, <span class="ln-t-route"><span>Procurement</span><span class="sep">➔</span><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — hold the order the transfer created</li>
           <li class="rux--list__item"><strong>Do</strong> - find the order named in tile 7&#39;s process report and check its lines against the proposals they replaced</li>
           <li class="rux--list__item"><strong>Leaves</strong> — a real purchase order, which raises its own inbound warehousing order. <strong>Not documented for this release.</strong></li>
           <li class="rux--list__item"><strong>Guide</strong> — 3.5</li>
         </ul>
           <h3>5.5 Manufacturing</h3>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="12 · Production Orders"><span class="rux--tag__label">12 · Production Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0501m000"><span class="rux--tag__label">tisfc0501m000</span></span> · stage 5 · real</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">12 · Production Orders</span> <span class="ln-t-exact">tisfc0501m000</span> · stage 5 · real</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Job Shop ➔ Production Orders</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Orders</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — hold the order the transfer created, and start it moving</li>
-          <li class="rux--list__item"><strong>Do</strong> - open the order from tile 7 at <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Created"><span class="rux--tag__label">Created</span></span>, check its BOM, routing and estimated materials, then <strong>Actions ➔ Release Orders</strong></li>
+          <li class="rux--list__item"><strong>Do</strong> - open the order from tile 7 at <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Created</span></span>, check its BOM, routing and estimated materials, then <strong>Actions ➔ Release Orders</strong></li>
           <li class="rux--list__item"><strong>Leaves</strong> — <strong>Release Production Orders</strong> open. <strong>Not documented for this release.</strong></li>
           <li class="rux--list__item"><strong>Guide</strong> — 3.6, 5.1–5.2</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="— · Production Order Parameters"><span class="rux--tag__label">— · Production Order Parameters</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0100s000"><span class="rux--tag__label">tisfc0100s000</span></span> · stage 6 · read</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">— · Production Order Parameters</span> <span class="ln-t-exact">tisfc0100s000</span> · stage 6 · read</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; reached from the Job Shop Control parameters list</li>
           <li class="rux--list__item"><strong>Does</strong> — tell you in advance what tiles 13 and 15 will actually do</li>
@@ -1565,48 +1624,48 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>Leaves</strong> — an explanation for tile 15&#39;s result before you have to explain it afterwards. A phase-5 run that has not read this cannot account for its own outcome. <strong>Not documented for this release.</strong></li>
           <li class="rux--list__item"><strong>Guide</strong> — 5.3 and 5.5 notes</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="13 · Release Production Orders"><span class="rux--tag__label">13 · Release Production Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0204m000"><span class="rux--tag__label">tisfc0204m000</span></span> · stage 6 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">13 · Release Production Orders</span> <span class="ln-t-exact">tisfc0204m000</span> · stage 6 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Job Shop ➔ Production Control</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Control</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — release the order so material can be issued and hours booked</li>
-          <li class="rux--list__item"><strong>Do</strong> - run the release for this order only. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Released"><span class="rux--tag__label">Released</span></span></li>
-          <li class="rux--list__item"><strong>Leaves</strong> — warehousing issue and receipt orders now exist. If the release refuses, check whether <em>Printing Production Order Documents Mandatory</em> requires <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Printed"><span class="rux--tag__label">Printed</span></span> first</li>
+          <li class="rux--list__item"><strong>Do</strong> - run the release for this order only. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Released</span></span></li>
+          <li class="rux--list__item"><strong>Leaves</strong> — warehousing issue and receipt orders now exist. If the release refuses, check whether <em>Printing Production Order Documents Mandatory</em> requires <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Printed</span></span> first</li>
           <li class="rux--list__item"><strong>Guide</strong> — 5.3</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="14 · Material to Issue for Production Orders"><span class="rux--tag__label">14 · Material to Issue for Production Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="ticst0101m100"><span class="rux--tag__label">ticst0101m100</span></span> · stage 6 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">14 · Material to Issue for Production Orders</span> <span class="ln-t-exact">ticst0101m100</span> · stage 6 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Job Shop ➔ Production Materials</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Materials</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — move the components from the warehouse to the work centre</li>
-          <li class="rux--list__item"><strong>Do</strong> - issue the materials for the order until <em>Actual Quantity</em> equals the estimated quantity. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Active"><span class="rux--tag__label">Active</span></span></li>
+          <li class="rux--list__item"><strong>Do</strong> - issue the materials for the order until <em>Actual Quantity</em> equals the estimated quantity. <em>Order Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Active</span></span></li>
           <li class="rux--list__item"><strong>Leaves</strong> — materials issued. How much of this you do by hand is configuration — <em>Direct Initiate Inventory Issue</em> and <em>Direct Process Warehouse Order Line</em> can do the unblocking for you, so their absence is not an error</li>
-          <li class="rux--list__item"><strong>Guide</strong> — 5.4 · owned by <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="SG-manual-production-order-existing-master-data.md"><span class="rux--tag__label">SG-manual-production-order-existing-master-data.md</span></span> 4.2–4.7</li>
+          <li class="rux--list__item"><strong>Guide</strong> — 5.4 · owned by <span class="ln-t-exact">SG-manual-production-order-existing-master-data.md</span> 4.2–4.7</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="15 · Report Operations Completed"><span class="rux--tag__label">15 · Report Operations Completed</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0130m000"><span class="rux--tag__label">tisfc0130m000</span></span> · stage 6 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">15 · Report Operations Completed</span> <span class="ln-t-exact">tisfc0130m000</span> · stage 6 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Job Shop ➔ Production Control ➔ Report Operations</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Job Shop</span><span class="sep">➔</span><span>Production Control</span><span class="sep">➔</span><span class="dest">Report Operations</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — report the build, and post the finished item</li>
           <li class="rux--list__item"><strong>Do</strong> - enter the built quantity in <em>Completed</em> and save - LN may ask whether to confirm the receipt automatically; record which way you answer, then re-read <em>Order Status</em> on tile 12</li>
-          <li class="rux--list__item"><strong>Leaves</strong> — <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Production Completed"><span class="rux--tag__label">Production Completed</span></span>, which becomes <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Completed"><span class="rux--tag__label">Completed</span></span> once Warehousing finishes the inbound procedure. <strong>Production Completed is a handoff, not a failed Completed.</strong> Whether stock is posted at all is a parameter on <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Production Order Parameters"><span class="rux--tag__label">Production Order Parameters</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0100s000"><span class="rux--tag__label">tisfc0100s000</span></span>, reached from the Job Shop Control parameters list</li>
+          <li class="rux--list__item"><strong>Leaves</strong> — <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Production Completed</span></span>, which becomes <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Completed</span></span> once Warehousing finishes the inbound procedure. <strong>Production Completed is a handoff, not a failed Completed.</strong> Whether stock is posted at all is a parameter on <span class="ln-t-named">Production Order Parameters</span> <span class="ln-t-exact">tisfc0100s000</span>, reached from the Job Shop Control parameters list</li>
           <li class="rux--list__item"><strong>Guide</strong> — 5.5–5.6</li>
         </ul>
           <h3>5.6 Warehousing</h3>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="— · Inventory 360"><span class="rux--tag__label">— · Inventory 360</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whwmd4300m000"><span class="rux--tag__label">whwmd4300m000</span></span> · stage 1 · read</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">— · Inventory 360</span> <span class="ln-t-exact">whwmd4300m000</span> · stage 1 · read</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Inventory 360"><span class="rux--tag__label">Inventory 360</span></span></li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-exact">Inventory 360</span></li>
           <li class="rux--list__item"><strong>Does</strong> — record on-hand before anything moves</li>
           <li class="rux--list__item"><strong>Do</strong> - read the finished item at the shipping warehouse and each component at the raw-material warehouse - Write the figures down</li>
           <li class="rux--list__item"><strong>Leaves</strong> — the only baseline the last tile can be measured against. On-hand is not availability — <em>Allocated</em> may already commit most of it</li>
           <li class="rux--list__item"><strong>Guide</strong> — 0.2–0.3</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="9 · Warehousing Orders"><span class="rux--tag__label">9 · Warehousing Orders</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m000"><span class="rux--tag__label">whinh2100m000</span></span> · stage 6 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">9 · Warehousing Orders</span> <span class="ln-t-exact">whinh2100m000</span> · stage 6 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Orders ➔ Orders</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Orders</span><span class="sep">➔</span><span class="dest">Orders</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — find the inbound order the purchase order raised</li>
-          <li class="rux--list__item"><strong>Do</strong> - filter for your order; it should read order type <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="PUI"><span class="rux--tag__label">PUI</span></span> with the raw-material warehouse as ship-to - <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Drill In (line)"><span class="rux--tag__label">Drill In</span></span></li>
+          <li class="rux--list__item"><strong>Do</strong> - filter for your order; it should read order type <span class="ln-t-exact">PUI</span> with the raw-material warehouse as ship-to - <span class="ln-t-press" title="Drill In (line)">Drill In</span></li>
           <li class="rux--list__item"><strong>Leaves</strong> — the warehousing order open. <strong>You never create this one.</strong> If it is absent, read the purchase order&#39;s <strong>Release to Warehousing</strong> tab before hunting in Warehousing</li>
           <li class="rux--list__item"><strong>Guide</strong> — 4.1</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="10 · Warehousing Order"><span class="rux--tag__label">10 · Warehousing Order</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m100"><span class="rux--tag__label">whinh2100m100</span></span> · stage 6 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">10 · Warehousing Order</span> <span class="ln-t-exact">whinh2100m100</span> · stage 6 · step</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; drill in from tile 9, or from tile 17</li>
           <li class="rux--list__item"><strong>Does</strong> — start the receipt against the inbound lines</li>
@@ -1614,68 +1673,68 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>Leaves</strong> — <strong>Warehouse Receipt</strong> open. <strong>Not documented for this release.</strong></li>
           <li class="rux--list__item"><strong>Guide</strong> — 4.2</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="11 · Warehouse Receipt"><span class="rux--tag__label">11 · Warehouse Receipt</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3512m000"><span class="rux--tag__label">whinh3512m000</span></span> · stage 6 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">11 · Warehouse Receipt</span> <span class="ln-t-exact">whinh3512m000</span> · stage 6 · step</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; opens from <strong>Actions ➔ Receive</strong></li>
           <li class="rux--list__item"><strong>Does</strong> — book the components into stock</li>
-          <li class="rux--list__item"><strong>Do</strong> - enter the packing-slip reference on each line, then confirm. <em>Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Confirmed"><span class="rux--tag__label">Confirmed</span></span>, with <em>All Lines Final</em> and <em>All Lines Complete</em> both set - Read <em>Errors Logged</em></li>
+          <li class="rux--list__item"><strong>Do</strong> - enter the packing-slip reference on each line, then confirm. <em>Status</em> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span>, with <em>All Lines Final</em> and <em>All Lines Complete</em> both set - Read <em>Errors Logged</em></li>
           <li class="rux--list__item"><strong>Leaves</strong> — components on hand. <strong>The status is not the proof and the on-hand figure is</strong> — see 5.7. <em>Confirmed</em> is also cleared when the receipt has no lines at all, which looks identical</li>
           <li class="rux--list__item"><strong>Guide</strong> — 4.3–4.4</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="— · Warehousing Order Types"><span class="rux--tag__label">— · Warehousing Order Types</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh0110m000"><span class="rux--tag__label">whinh0110m000</span></span> · stage 6 · read</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">— · Warehousing Order Types</span> <span class="ln-t-exact">whinh0110m000</span> · stage 6 · read</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Master Data ➔ Order Procedures ➔ Order Types</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Master Data</span><span class="sep">➔</span><span>Order Procedures</span><span class="sep">➔</span><span class="dest">Order Types</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — explain why the outbound tiles are shaped the way they are</li>
           <li class="rux--list__item"><strong>Do</strong> - read <em>Freeze Mandatory</em> on the order type your shipment carries, and read the outbound procedure&#39;s activities and which of them are Automatic</li>
           <li class="rux--list__item"><strong>Leaves</strong> — the reason tile 19 exists and tile 21 cannot be skipped. Change an activity to Automatic and a tile disappears; change it back and one returns. <strong>Not documented for this release.</strong></li>
           <li class="rux--list__item"><strong>Guide</strong> — 6.3, 6.4 and 6.5 notes</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="17 · Warehouse Manager Dashboard"><span class="rux--tag__label">17 · Warehouse Manager Dashboard</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2300m000"><span class="rux--tag__label">whinh2300m000</span></span> · stage 7 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">17 · Warehouse Manager Dashboard</span> <span class="ln-t-exact">whinh2300m000</span> · stage 7 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Manager Dashboard"><span class="rux--tag__label">Manager Dashboard</span></span></li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-exact">Manager Dashboard</span></li>
           <li class="rux--list__item"><strong>Does</strong> — find the outbound order the release created</li>
-          <li class="rux--list__item"><strong>Do</strong> - filter on your sales order number, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Drill In (line)"><span class="rux--tag__label">Drill In</span></span>. It should read <strong>Origin Sales</strong>, <strong>Type 20- SO/SC Out</strong></li>
+          <li class="rux--list__item"><strong>Do</strong> - filter on your sales order number, then <span class="ln-t-press" title="Drill In (line)">Drill In</span>. It should read <strong>Origin Sales</strong>, <strong>Type 20- SO/SC Out</strong></li>
           <li class="rux--list__item"><strong>Leaves</strong> — the warehousing order open, on its <strong>Outbound Lines</strong> tab</li>
           <li class="rux--list__item"><strong>Guide</strong> — 6.2</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="18 · Warehousing Order"><span class="rux--tag__label">18 · Warehousing Order</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m100"><span class="rux--tag__label">whinh2100m100</span></span> · stage 7 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">18 · Warehousing Order</span> <span class="ln-t-exact">whinh2100m100</span> · stage 7 · step</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; drill in from tile 17</li>
           <li class="rux--list__item"><strong>Does</strong> — advise the line, so there is something to pick</li>
-          <li class="rux--list__item"><strong>Do</strong> - <strong>Outbound Lines</strong> tab, tick the line, then <strong>Actions ➔ Advice ➔ Generate Advice</strong>. <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Advised"><span class="rux--tag__label">Advised</span></span> and <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Released"><span class="rux--tag__label">Released</span></span> both fill</li>
+          <li class="rux--list__item"><strong>Do</strong> - <strong>Outbound Lines</strong> tab, tick the line, then <strong>Actions ➔ Advice ➔ Generate Advice</strong>. <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Advised</span></span> and <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Released</span></span> both fill</li>
           <li class="rux--list__item"><strong>Leaves</strong> — Picking List by Location prints. <strong>The advice actions are on the Outbound Lines toolbar, not the session toolbar</strong> — on the wrong one <strong>Advice</strong> is greyed and reads as unavailable rather than misplaced. You do not run Release Advice; it is Automatic here</li>
           <li class="rux--list__item"><strong>Guide</strong> — 6.3</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="19 · Picking List"><span class="rux--tag__label">19 · Picking List</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh4525m100"><span class="rux--tag__label">whinh4525m100</span></span> · stage 7 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">19 · Picking List</span> <span class="ln-t-exact">whinh4525m100</span> · stage 7 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Outbound/Inspections ➔ Picking List</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Outbound/Inspections</span><span class="sep">➔</span><span class="dest">Picking List</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — confirm the advised quantity as picked</li>
           <li class="rux--list__item"><strong>Do</strong> - tick the line, <strong>Actions ➔ Pick Run</strong>, then read <em>Shipment</em> on the order&#39;s <strong>Shipment Lines</strong> tab</li>
-          <li class="rux--list__item"><strong>Leaves</strong> — the line <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Staged"><span class="rux--tag__label">Staged</span></span> and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step</li>
+          <li class="rux--list__item"><strong>Leaves</strong> — the line <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Staged</span></span> and a shipment number. This tile is mandatory here because the picking activity is not Automatic and the warehouse is location-controlled; change either and the chain loses a step</li>
           <li class="rux--list__item"><strong>Guide</strong> — 6.4</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="20 · Shipments"><span class="rux--tag__label">20 · Shipments</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh4130m000"><span class="rux--tag__label">whinh4130m000</span></span> · stage 7 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">20 · Shipments</span> <span class="ln-t-exact">whinh4130m000</span> · stage 7 · step</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Shipments ➔ Shipments</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Shipments</span><span class="sep">➔</span><span class="dest">Shipments</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — find the shipment tile 19 created</li>
-          <li class="rux--list__item"><strong>Do</strong> - find it by the number from tile 19, then <span class="rux--tag rux--tag--purple rux--layout--size-sm" title="Drill In (line)"><span class="rux--tag__label">Drill In</span></span></li>
+          <li class="rux--list__item"><strong>Do</strong> - find it by the number from tile 19, then <span class="ln-t-press" title="Drill In (line)">Drill In</span></li>
           <li class="rux--list__item"><strong>Leaves</strong> — the shipment open</li>
           <li class="rux--list__item"><strong>Guide</strong> — 6.5</li>
         </ul>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="21 · Shipment"><span class="rux--tag__label">21 · Shipment</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh4630m000"><span class="rux--tag__label">whinh4630m000</span></span> · stage 7 · terminal</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">21 · Shipment</span> <span class="ln-t-exact">whinh4630m000</span> · stage 7 · terminal</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; drill in from tile 20</li>
           <li class="rux--list__item"><strong>Does</strong> — freeze and confirm, which is where inventory actually leaves</li>
-          <li class="rux--list__item"><strong>Do</strong> - <strong>Actions ➔ Freeze</strong> → <em>Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Frozen"><span class="rux--tag__label">Frozen</span></span>, and <strong>Confirm</strong> becomes available - <strong>Actions ➔ Confirm</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Confirmed"><span class="rux--tag__label">Confirmed</span></span></li>
+          <li class="rux--list__item"><strong>Do</strong> - <strong>Actions ➔ Freeze</strong> → <em>Status</em> <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Frozen</span></span>, and <strong>Confirm</strong> becomes available - <strong>Actions ➔ Confirm</strong> → <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span></li>
           <li class="rux--list__item"><strong>Leaves</strong> — inventory relieved. Freezing is mandatory here, carried from the warehousing order type, so it cannot be skipped. <strong>Confirming is a one-way door</strong> — a correction from here needs a return shipment</li>
           <li class="rux--list__item"><strong>Guide</strong> — 6.5–6.6</li>
         </ul>
           <h3>5.7 Verifications</h3>
-          <p><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="Inventory 360"><span class="rux--tag__label">Inventory 360</span></span> <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whwmd4300m000"><span class="rux--tag__label">whwmd4300m000</span></span> · strip</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">Inventory 360</span> <span class="ln-t-exact">whwmd4300m000</span> · strip</p>
           <ul class="rux--list--unordered">
-          <li class="rux--list__item"><strong>Route</strong> — Warehousing ➔ Inventory 360</li>
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Warehousing</span><span class="sep">➔</span><span class="dest">Inventory 360</span></span></li>
         </ul>
-          <p>Three reads, and <strong>not tiles of their own</strong> — each is a strip on the tile it proves, so the count of numbered tiles stays the count of things you do. A strip carries no coordinates because it has none: it inherits the tile it sits on.</p>
+          <p class="ln-prose-measure">Three reads, and <strong>not tiles of their own</strong> — each is a strip on the tile it proves, so the count of numbered tiles stays the count of things you do. A strip carries no coordinates because it has none: it inherits the tile it sits on.</p>
           <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -1683,7 +1742,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <tbody>
           <tr><td>11 · Warehouse Receipt</td><td>Component on-hand up by exactly the quantity received</td><td>4.5</td></tr>
           <tr><td>15 · Report Operations Completed</td><td>The finished item on hand, and now sellable</td><td>5.7</td></tr>
-          <tr><td>21 · Shipment</td><td>On-hand down by exactly the shipped quantity — <span class="rux--tag rux--tag--blue rux--layout--size-sm" title="the completion test for the whole chain"><span class="rux--tag__label">the completion test for the whole chain</span></span></td><td>6.7</td></tr>
+          <tr><td>21 · Shipment</td><td>On-hand down by exactly the shipped quantity — <span class="ln-t-named">the completion test for the whole chain</span></td><td>6.7</td></tr>
             </tbody>
           </table>
         </div>
@@ -1691,7 +1750,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-6">
           <h2 id="t-6">6. Edges</h2>
-          <p><span class="rux--tag rux--tag--gray rux--layout--size-sm" title="flow"><span class="rux--tag__label">flow</span></span> is the sequence. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="branch"><span class="rux--tag__label">branch</span></span> is the transfer splitting by supply source. <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="feed"><span class="rux--tag__label">feed</span></span> is a dependency that is not a sequence — the thing must be true, but you do not walk it.</p>
+          <p class="ln-prose-measure"><span class="ln-t-exact">flow</span> is the sequence. <span class="ln-t-exact">branch</span> is the transfer splitting by supply source. <span class="ln-t-exact">feed</span> is a dependency that is not a sequence — the thing must be true, but you do not walk it.</p>
           <div class="rux--data-table-container">
         <div class="rux--data-table-content">
           <table class="rux--data-table rux--data-table--md">
@@ -1703,8 +1762,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <tr><td>4</td><td>5</td><td>flow</td><td>—</td></tr>
           <tr><td>5</td><td>6</td><td>flow</td><td>—</td></tr>
           <tr><td>6</td><td>7</td><td>flow</td><td>—</td></tr>
-          <tr><td>7</td><td>8</td><td>branch</td><td>supply source <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Purchase"><span class="rux--tag__label">Purchase</span></span></td></tr>
-          <tr><td>7</td><td>12</td><td>branch</td><td>supply source <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="Job Shop"><span class="rux--tag__label">Job Shop</span></span></td></tr>
+          <tr><td>7</td><td>8</td><td>branch</td><td>supply source <span class="ln-t-exact">Purchase</span></td></tr>
+          <tr><td>7</td><td>12</td><td>branch</td><td>supply source <span class="ln-t-exact">Job Shop</span></td></tr>
           <tr><td>8</td><td>9</td><td>flow</td><td>the purchase order raises the inbound order</td></tr>
           <tr><td>9</td><td>10</td><td>flow</td><td>—</td></tr>
           <tr><td>10</td><td>11</td><td>flow</td><td>—</td></tr>
@@ -1722,20 +1781,20 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           </table>
         </div>
       </div>
-          <p><strong>One branch is skippable and that is the point.</strong> An item whose stock already covers the requirement gets no planned order, so its branch does not happen. Section 7 says what that looks like from the inside.</p>
+          <p class="ln-prose-measure"><strong>One branch is skippable and that is the point.</strong> An item whose stock already covers the requirement gets no planned order, so its branch does not happen. Section 7 says what that looks like from the inside.</p>
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-7">
           <h2 id="t-7">7. Prose beside the figure</h2>
-          <p>Per D4 this is printed next to the drawing, not inside it.</p>
+          <p class="ln-prose-measure">Per D4 this is printed next to the drawing, not inside it.</p>
           <h3>7.1 Four ways this chain fails with no message</h3>
-          <p><strong>The item has no planning data.</strong> It is <strong>absent</strong> from the Item Order Plan — not refused, not flagged, with nothing to explain why. Node 3 searches for it before node 4 runs, because MRP has nothing to say about an item it cannot see.</p>
-          <p><strong>The delivery date falls outside the order horizon.</strong> Demand beyond it is not late; it <strong>does not exist</strong> to planning. MRP runs, produces nothing and reports success. LN counts the horizon in workdays on a calendar, so read the date it shows rather than the days you entered.</p>
-          <p><strong>The planned orders were never confirmed.</strong> The transfer normally moves only <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Confirmed"><span class="rux--tag__label">Confirmed</span></span> orders, and there is <strong>no message for &quot;nothing matched&quot;</strong> — a run over fresh <span class="rux--tag rux--tag--teal rux--layout--size-sm" title="Planned"><span class="rux--tag__label">Planned</span></span> orders looks exactly like a run with nothing to do.</p>
-          <p><strong>A purchased item has no buy-from business partner.</strong> Here the transfer does speak, and this is the one of the four that names itself: <em>&quot;Buy-from BP cannot be determined for item…&quot;</em>. A failed transfer is non-destructive — the proposal stays a planned order, so fix the data and run it again.</p>
+          <p class="ln-prose-measure"><strong>The item has no planning data.</strong> It is <strong>absent</strong> from the Item Order Plan — not refused, not flagged, with nothing to explain why. Node 3 searches for it before node 4 runs, because MRP has nothing to say about an item it cannot see.</p>
+          <p class="ln-prose-measure"><strong>The delivery date falls outside the order horizon.</strong> Demand beyond it is not late; it <strong>does not exist</strong> to planning. MRP runs, produces nothing and reports success. LN counts the horizon in workdays on a calendar, so read the date it shows rather than the days you entered.</p>
+          <p class="ln-prose-measure"><strong>The planned orders were never confirmed.</strong> The transfer normally moves only <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Confirmed</span></span> orders, and there is <strong>no message for &quot;nothing matched&quot;</strong> — a run over fresh <span class="rux--tag rux--tag--teal rux--layout--size-sm"><span class="rux--tag__label">Planned</span></span> orders looks exactly like a run with nothing to do.</p>
+          <p class="ln-prose-measure"><strong>A purchased item has no buy-from business partner.</strong> Here the transfer does speak, and this is the one of the four that names itself: <em>&quot;Buy-from BP cannot be determined for item…&quot;</em>. A failed transfer is non-destructive — the proposal stays a planned order, so fix the data and run it again.</p>
           <h3>7.2 What has actually been walked</h3>
-          <p><strong>Nobody has run this chain end to end.</strong> Every date the guide carries records a run of the <em>atomic</em> guide behind that phase, on its own date and usually with different data. This map draws the route; it does not claim the route has been driven.</p>
-          <p><strong>Node 7 to node 12 has never been made.</strong> Transferring a planned <strong>purchase</strong> order is walked and evidenced — two proposals became one purchase order on 2026-08-25. Transferring a planned <strong>production</strong> order has never been done in this environment, so the real production order at node 12 has always been created by hand instead. <strong>Not documented for this release.</strong></p>
-          <p><strong>An item already covered by stock skips its branch.</strong> MRP correctly proposes nothing for it and the branch below simply does not happen. An absence in the pegging tree is a reading, not a fault — check that item&#39;s own on-hand before hunting for one. <strong>Not documented for this release.</strong></p>
+          <p class="ln-prose-measure"><strong>Nobody has run this chain end to end.</strong> Every date the guide carries records a run of the <em>atomic</em> guide behind that phase, on its own date and usually with different data. This map draws the route; it does not claim the route has been driven.</p>
+          <p class="ln-prose-measure"><strong>Node 7 to node 12 has never been made.</strong> Transferring a planned <strong>purchase</strong> order is walked and evidenced — two proposals became one purchase order on 2026-08-25. Transferring a planned <strong>production</strong> order has never been done in this environment, so the real production order at node 12 has always been created by hand instead. <strong>Not documented for this release.</strong></p>
+          <p class="ln-prose-measure"><strong>An item already covered by stock skips its branch.</strong> MRP correctly proposes nothing for it and the branch below simply does not happen. An absence in the pegging tree is a reading, not a fault — check that item&#39;s own on-hand before hunting for one. <strong>Not documented for this release.</strong></p>
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-8">
           <h2 id="t-8">8. Deliberately not on the map</h2>
@@ -1744,8 +1803,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">Left off</div></th><th scope="col"><div class="rux--table-header-label">Why</div></th></tr></thead>
             <tbody>
-          <tr><td>Master data — items, BOM, routing, planning cluster, buy-from partner</td><td>Level 1 owns it, and <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="the source on file"><span class="rux--tag__label">the source on file</span></span> builds it. Drawing it twice is the duplication rule 5 exists to stop</td></tr>
-          <tr><td>Invoicing and Financials</td><td><span class="rux--tag rux--tag--blue rux--layout--size-sm" title="No session in either has evidence filed here"><span class="rux--tag__label">No session in either has evidence filed here</span></span>, and the spine guide puts them out of scope by decision. The cash half of order-to-cash is left undrawn rather than guessed — this is the one place where an empty stage is the honest answer</td></tr>
+          <tr><td>Master data — items, BOM, routing, planning cluster, buy-from partner</td><td>Level 1 owns it, and <span class="ln-t-exact">the source on file</span> builds it. Drawing it twice is the duplication rule 5 exists to stop</td></tr>
+          <tr><td>Invoicing and Financials</td><td><span class="ln-t-named">No session in either has evidence filed here</span>, and the spine guide puts them out of scope by decision. The cash half of order-to-cash is left undrawn rather than guessed — this is the one place where an empty stage is the honest answer</td></tr>
           <tr><td>Cost closure</td><td><strong>Not documented for this release.</strong></td></tr>
           <tr><td>Every other parameter read</td><td>Two now have tiles of their own under D3; the rest belong to the sessions that own them</td></tr>
             </tbody>
@@ -1757,8 +1816,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <h2 id="t-9">9. Sources</h2>
           <ol class="rux--list--ordered">
           <li class="rux--list__item"><strong>`the source on file`</strong> — the spine. Every route, action, status and figure above is carried by one of its phases, named in section 5&#39;s <strong>Guide step</strong> column. It adds nothing of its own.</li>
-          <li class="rux--list__item"><strong>The `the source on file` file for each code in `sources:`</strong> — session names, <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="reached:"><span class="rux--tag__label">reached:</span></span> for the drill-ins, and the routes checked against the navigation extract by rule 12.</li>
-          <li class="rux--list__item"><strong>`the source on file` and `the source on file`</strong> — measured 2026-09-09, and all 23 codes in <span class="rux--tag rux--tag--gray rux--layout--size-sm" title="sources:"><span class="rux--tag__label">sources:</span></span> settle against principle 3&#39;s test. Sixteen appear in one or both extracts. The seven that do not — <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="cprrp1220m000"><span class="rux--tag__label">cprrp1220m000</span></span>, <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdpur4100m900"><span class="rux--tag__label">tdpur4100m900</span></span>, <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tdsls4501m140"><span class="rux--tag__label">tdsls4501m140</span></span>, <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="tisfc0100s000"><span class="rux--tag__label">tisfc0100s000</span></span>, <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh2100m100"><span class="rux--tag__label">whinh2100m100</span></span>, <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh3512m000"><span class="rux--tag__label">whinh3512m000</span></span>, <span class="rux--tag rux--tag--cyan rux--layout--size-sm" title="whinh4630m000"><span class="rux--tag__label">whinh4630m000</span></span> — each have help exported from this environment, and each is written above as no-menu-entry or drill-in, which is what their absence means. One runs the other way: <strong>`cprrp1200m000` is in the extracts and has no help filed here</strong>, so its route is evidenced and its meaning rests on the guide alone.</li>
+          <li class="rux--list__item"><strong>The `the source on file` file for each code in `sources:`</strong> — session names, <span class="ln-t-exact">reached:</span> for the drill-ins, and the routes checked against the navigation extract by rule 12.</li>
+          <li class="rux--list__item"><strong>`the source on file` and `the source on file`</strong> — measured 2026-09-09, and all 23 codes in <span class="ln-t-exact">sources:</span> settle against principle 3&#39;s test. Sixteen appear in one or both extracts. The seven that do not — <span class="ln-t-exact">cprrp1220m000</span>, <span class="ln-t-exact">tdpur4100m900</span>, <span class="ln-t-exact">tdsls4501m140</span>, <span class="ln-t-exact">tisfc0100s000</span>, <span class="ln-t-exact">whinh2100m100</span>, <span class="ln-t-exact">whinh3512m000</span>, <span class="ln-t-exact">whinh4630m000</span> — each have help exported from this environment, and each is written above as no-menu-entry or drill-in, which is what their absence means. One runs the other way: <strong>`cprrp1200m000` is in the extracts and has no help filed here</strong>, so its route is evidenced and its meaning rests on the guide alone.</li>
         </ol>
         </section>
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 0bf14ec · contract 8</p>

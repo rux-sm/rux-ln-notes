@@ -272,8 +272,39 @@
   gap: .5rem; align-items: start; min-inline-size: max-content; }
 .ln-dg-stage { grid-row: 1; font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
-  padding-block-end: .25rem; border-block-end: 1px solid var(--rux-border-subtle-01, #e0e0e0); }
+  padding-block-end: .25rem; }
 .ln-dg-stage--boundary { color: var(--rux-text-error, #da1e28); }
+
+/* THE LANE RULE, 2026-09-11 -- a line across the whole grid at the top of every
+   lane. It is not decoration: measured on both documents at 1440, two tiles
+   stacked INSIDE a lane sit 8px apart, and where two lanes each have a tile in
+   the same column they sit 8px apart too -- overview column 6 twice, session map
+   columns 7 and 8. Nothing said whether the next tile down was the rest of this
+   lane or the start of the next one. The same boundary reads as 543px in the
+   map's columns 3 and 9, where the lanes between are empty, so the gap could not
+   be read as a signal even by someone counting pixels.
+
+   IT REPLACES THE UNDERLINE THE STAGE HEADINGS CARRIED, which is why
+   `.ln-dg-stage` lost its `border-block-end` above. That line was drawn per
+   column, so it broke at every gap; the first lane's rule is continuous, sits in
+   the same place, and does the same job better. One line under the headings, not
+   two 10px apart.
+
+   IT IS A REAL ELEMENT AND NOT A `::after` ON THE LABEL, and that is a
+   measurement rather than a preference. The specimen drew it both ways: the
+   pseudo-element works only while the lane label is unpositioned, because
+   `position: sticky` on the label makes it a containing block and the rule
+   collapses from the width of the grid to the width of the label. A variant that
+   holds the lane name in place while the map is scrolled would do exactly that.
+   A grid item spanning `1 / -1` cannot collapse.
+
+   THE CELLS GAINED THE GAP AND THE LABELS KEPT THEIR ALIGNMENT. A tile sat flush
+   on the rule before this, because `align-items: start` puts it at the row's top
+   and so is the line. Both the cell and the lane label take the same .5rem, so
+   the label text still lines up with the first tile's title exactly as it did --
+   the pair moved together rather than one of them moving. */
+.ln-dg-rule { grid-column: 1 / -1; align-self: start; block-size: 1px;
+  background: var(--rux-border-subtle-01, #e0e0e0); }
 
 /* THE TRANSFER BOUNDARY, drawn from the stage's own `boundary` flag. The band
    gives it width, so it reads as a place the chain passes THROUGH; the rule on
@@ -291,8 +322,8 @@
   margin-block: -.25rem; margin-inline: -.25rem; }
 .ln-dg-lane { grid-column: 1; font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
-  padding-block-start: .6rem; padding-inline-end: .75rem; }
-.ln-dg-cell { display: flex; flex-direction: column; gap: .5rem; }
+  padding-block-start: 1.1rem; padding-inline-end: .75rem; }
+.ln-dg-cell { display: flex; flex-direction: column; gap: .5rem; padding-block-start: .5rem; }
 
 /* A NODE IS <details>, so the disclosure needs no script and keyboard and
    screen-reader behaviour are the platform's. */

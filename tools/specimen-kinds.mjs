@@ -88,22 +88,27 @@ const nodeOrder = (dg) => (dg.lanes ?? []).flatMap((l) =>
 //   result  `planned`, `real`, `outcome` or `terminal`, ON the route -- what
 //           now exists because of the step before. Not something you do.
 //   step    everything else on the route.
-//   beside  no `flow` edge -- Configuration or Information.
+//   config  no `flow` edge -- set up once, then ready.
 //
-// THE FIFTH BOUNDARY IS NOT IN THE DATA, and pretending otherwise would be the
-// kind of inference this project has been wrong about before. Configuration
-// ("go and make this true") and Information ("what is the state right now")
-// are both `read` or `outcome` sitting beside the route, and nothing atlas
-// sends separates them: Inventory 360 and Production Order Parameters are the
-// same kind with the same shape. The list below stands in for a signal that
-// does not exist yet, and SEND-ATLAS-3.md asks for it. It is a stand-in, not a
-// rule -- three entries, named, rather than a heuristic that would look
-// derived and would not be.
-const INFORMATION = new Set(['read-whwmd4300m000']);   // Inventory 360
-
+//   reading `kind` is `read` -- opened to find out what is true now.
+//
+// THE FIFTH IS `read`, AND THIS FILE CLAIMED IT WAS NOT DERIVABLE. It carried a
+// named stand-in list and SEND-ATLAS-3.md §2 asked atlas for a signal, both on
+// the grounds that nothing separated Inventory 360 from Production Order
+// Parameters. Both were wrong and both are withdrawn: the mistake was trying to
+// SPLIT the three `read` nodes, having taken D3's "the two configuration
+// sessions" to mean two of them were configuration. They are sessions about
+// configuration, which you open and read. A Prerequisite is set up once and is
+// then ready; a Reading is opened to find out what is true now -- and all three
+// are Readings. The Prerequisites are the other four, none of them `read`.
+//
+// `read` IS TESTED BEFORE THE PATH, because a Reading need not be beside the
+// route: checking stock mid-sequence is still a Reading, and it would take the
+// solid container the path gives it and keep the italic name.
 const categoryOf = (n, off) => {
   if (n.kind === 'gate' || n.kind === 'decision') return 'check';
-  if (off) return INFORMATION.has(n.id) ? 'info' : 'config';
+  if (n.kind === 'read') return 'info';
+  if (off) return 'config';
   if (['planned', 'real', 'outcome', 'terminal'].includes(n.kind)) return 'result';
   return 'step';
 };
@@ -111,13 +116,15 @@ const categoryOf = (n, off) => {
 const markOffPath = (fig, dg) => {
   const order = nodeOrder(dg), off = offPathIds(dg);
   let i = 0;
-  const out = fig.replace(/class="ln-dg-node ln-dg-node--([a-z]+)"/g, (m, kind) => {
+  // The page now ships its own `ln-dg-cat--*`; match past it and replace it, so
+  // the specimen stays in charge of what every variant is labelled with.
+  const out = fig.replace(/class="ln-dg-node ln-dg-node--([a-z]+)(?: ln-dg-cat--[a-z]+)?"/g, (m, kind) => {
     const node = order[i++];
     if (!node) throw new Error('more tiles in the figure than nodes in the data');
     if (node.kind !== kind) throw new Error(`tile ${i} is ${kind}, node ${node.id} is ${node.kind}`);
     const extra = (off.has(node.id) ? ' ln-dg-node--off-path' : '')
       + ` ln-dg-cat--${categoryOf(node, off.has(node.id))}`;
-    return `${m.slice(0, -1)}${extra}"`;
+    return `class="ln-dg-node ln-dg-node--${kind}${extra}"`;
   });
   if (i !== order.length) throw new Error(`${i} tiles, ${order.length} nodes`);
   return out;

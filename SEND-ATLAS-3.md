@@ -1,9 +1,9 @@
-# Send-back to atlas: the map's missing setup, and one signal owed
+# Send-back to atlas: the map's missing setup
 
 **Read in place from the checkout beside this one. Nothing was copied across
 and nothing under `rux-ln-atlas` was touched.**
 
-Two asks and one finding. The ask overturns a decision this side recorded, so
+One ask, one finding, and one ask withdrawn the day it was written. The ask overturns a decision this side recorded, so
 it is put with the evidence that changed it rather than as a preference.
 
 Every figure below was measured at the current `data/guides/PIN` (`0bf14ec`,
@@ -107,47 +107,22 @@ The reasoning, the alternatives and the measurements are in
 
 ---
 
-## 2. The second ask: nothing separates a prerequisite from a reading
+## 2. WITHDRAWN — a second ask, retracted the day it was written
 
-This side has settled its categories — five, decided 2026-09-10, and the
-reasoning with its measurements is in `DESIGN-diagram-kinds.md`. Four of the
-five are derivable from what you already send and need nothing from you:
+This section asked atlas for a signal to separate a *Prerequisite* from a
+*Reading*, on the grounds that nothing sent could tell `Inventory 360` from
+`Production Order Parameters`. **It is withdrawn. The signal is `read`, and it
+was there all along.**
 
-| category | derived from | nodes |
-|---|---|---|
-| Checkpoint | `kind` is `gate` or `decision` | 4 |
-| Result | `planned`, `real`, `outcome` or `terminal`, on the route | 10 |
-| beside the route | no `flow` edge, in or out | 7 |
-| Step | everything else | 20 |
+The mistake was this side's and worth stating: it tried to divide the three
+`read` nodes, having read `D3` of the map — *"the two configuration
+sessions"* — as meaning two of them were configuration. They are sessions
+*about* configuration, opened and read. A Prerequisite is set up once and is
+then ready; a Reading is opened to find out what is true now. All three `read`
+nodes are Readings, and the four Prerequisites — the items, the purchase item,
+the bill of material, the cluster row — are not `read`.
 
-**The fifth is not there.** *Prerequisite* — go and make this true — and
-*Reading* — what is the state right now — are both `read` or `outcome` sitting
-beside the route, and nothing distinguishes them:
-
-| node | kind | what it actually is |
-|---|---|---|
-| `Inventory 360` | `read` | a reading: on-hand before anything moves |
-| `Production Order Parameters` | `read` | configuration: what the later tiles will do |
-| `Warehousing Order Types` | `read` | configuration: why the outbound tiles are shaped so |
-| `Bill of material and routing` | `outcome` | configuration: Approved, used for planning |
-| `Planning cluster row on the item` | `outcome` | configuration: the item is visible to planning |
-
-Same kinds, same shape, opposite purpose. **This side is not going to infer
-it.** The difference is what the node is *for*, which is domain knowledge, and
-guessing it from a name or a `does` string is the prose-parse the contract's
-first promise forbids — by a side door.
-
-**What would settle it is yours to choose**, and this side has no preference
-between:
-
-- a tenth `kind`, say `config`, for a node that is configuration; or
-- a boolean on the node; or
-- a ruling that the distinction is not real, and the two are one category.
-
-The last is a perfectly good answer. Until one of the three lands, this side
-ships four categories with Reading folded into Prerequisite — which costs one
-node of distinction across both documents, and is honest, where a guess would
-not be.
+Nothing is asked of you here. The ask in §1 stands unchanged.
 
 ---
 

@@ -24,8 +24,8 @@ categories. Measured over all 41 nodes of the two diagrams:
 | | | the question it answers | nodes |
 |---|---|---|---|
 | 1 | **Step** | what do I do here | 20 |
-| 2 | **Prerequisite** | what has to be true before any of this runs | 6 |
-| 3 | **Reading** | what is the state right now | 1 |
+| 2 | **Prerequisite** | what has to be true before any of this runs | 4 |
+| 3 | **Reading** | what is the state right now | 3 |
 | 4 | **Result** | what do I now have | 10 |
 | 5 | **Checkpoint** | what decides silently, and how would I know | 4 |
 
@@ -72,20 +72,43 @@ already says *off the line*, and the indent was saying it a second time for
 session map unmoved at 2344 and 956 with all 24 heights identical, and 0
 category collisions in all four themes on both documents.
 
-### The one part that is not derivable, and is an ask
+### All five are derivable, and the claim that one was not was wrong
 
-Four of the five fall out of what atlas already sends: `gate` or `decision` is
-a Checkpoint; `planned`, `real`, `outcome` or `terminal` on the route is a
-Result; no `flow` edge is beside the route; everything else is a Step.
+**Corrected 2026-09-10, same day, by rux.** This section said Prerequisite and
+Reading could not be told apart, that nothing atlas sends separates
+*Inventory 360* from *Production Order Parameters*, and that four categories
+would ship until atlas answered an ask. All of that was wrong, and the ask has
+been withdrawn.
 
-**Prerequisite and Reading cannot be told apart.** Both are `read` or `outcome`
-sitting beside the route, and nothing atlas sends separates *Inventory 360*
-from *Production Order Parameters* — same kind, same shape, opposite purpose.
-The specimen carries a three-entry stand-in list, named as a stand-in rather
-than dressed up as a rule, and `SEND-ATLAS-3.md` asks atlas for the signal.
-**Until it exists the split is not shippable**, and the honest fallback is four
-categories with Reading folded into Prerequisite — which costs one node of
-distinction today and is the weakest of the five boundaries.
+**The error was splitting the wrong set.** It took the three `read` nodes and
+tried to divide them, having classed two of them as configuration on the
+strength of `D3` of the map calling them *"the two configuration sessions"*.
+They are sessions *about* configuration, which you open and read — not
+configuration you perform. Under the distinction that actually matters — **a
+Prerequisite is set up once and is then ready; a Reading is opened to find out
+what is true now** — all three are Readings. `Production Order Parameters` is
+read to learn what the later tiles will do exactly as `Inventory 360` is read
+to learn the on-hand.
+
+**And the Prerequisites are the other four**, none of which is `read`: the
+items, the purchase item, the bill of material and routing, the planning
+cluster row. So:
+
+| category | derived from |
+|---|---|
+| Checkpoint | `kind` is `gate` or `decision` |
+| **Reading** | **`kind` is `read`** |
+| Prerequisite | no `flow` edge, in or out |
+| Result | `planned`, `real`, `outcome` or `terminal`, on the route |
+| Step | everything else |
+
+`read` has carried it the whole time. **Nothing is asked of atlas**, and the
+counts move: Reading is 3, not 1, and Prerequisite is 4, not 6.
+
+`read` is tested **before** the path, because a Reading need not sit beside the
+route — checking stock mid-sequence is still a Reading. It would then take the
+solid container the path gives it and keep the italic name that says *take this
+in*, which is the signals staying independent rather than an exception.
 
 ---
 

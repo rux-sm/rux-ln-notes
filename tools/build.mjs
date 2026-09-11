@@ -1345,14 +1345,9 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    take in whether it sits on a Result, a Checkpoint or a Reading -- which is
    what makes five categories learnable from four looks with no legend.
 
-   FOUR SHIP, NOT FIVE, and that is a stated limit. Prerequisite and Reading are
-   both \`read\` or \`outcome\` beside the route and NOTHING atlas sends separates
-   Inventory 360 from Production Order Parameters: same kind, same shape,
-   opposite purpose. Inferring it from a name or a \`does\` string is the
-   prose-parse the contract's first promise forbids, by a side door.
-   SEND-ATLAS-3.md §2 asks for the signal; \`ln-dg-cat--info\` is styled and
-   ready and nothing emits it yet. Reading is drawn as a Prerequisite until
-   then -- one node of distinction across both documents. */
+   ALL FIVE SHIP. The first cut of this shipped four and claimed the fifth was
+   not derivable -- see the note on \`read\` in \`categories()\` for why that was
+   wrong and what the signal is. Nothing is asked of atlas. */
 
 /* 1 STEP -- on the route, you do it. The default: a solid tile, grey stripe,
    upright name. A run of these read left to right IS the route, so every other
@@ -2047,9 +2042,23 @@ function categories(dg) {
   for (const e of dg.edges ?? []) if (e.kind === 'flow') { walked.add(e.from); walked.add(e.to); }
   return new Map((dg.nodes ?? []).map(n => [n.id,
     (n.kind === 'gate' || n.kind === 'decision') ? 'check'
-      // `info` is the fifth and nothing emits it yet -- see the CSS note and
-      // SEND-ATLAS-3.md §2. A Reading is drawn as a Prerequisite until atlas
-      // says which is which; this is the one line that changes when it does.
+      // READING IS `read`, AND SAYING OTHERWISE WAS THIS SIDE'S MISTAKE. The
+      // first cut of this shipped four categories and told atlas nothing
+      // separated a Prerequisite from a Reading -- because it was trying to
+      // split the three `read` nodes, having classed two of them as
+      // configuration. They are not. A Prerequisite is set up once and is then
+      // ready; a Reading is opened to find out what is true now, and
+      // `Production Order Parameters` is read to learn what the later tiles
+      // will do, exactly as `Inventory 360` is read to learn the on-hand. All
+      // three are Readings, and the Prerequisites are the other four -- the
+      // items, the purchase item, the bill of material and the cluster row,
+      // none of them `read`. The kind has answered it all along.
+      //
+      // IT IS TESTED BEFORE THE PATH, because a Reading need not sit beside the
+      // route: checking stock mid-sequence is still a Reading, and it would
+      // then take the solid container the path gives it and keep the italic
+      // name that says "take this in". The signals stay independent.
+      : n.kind === 'read' ? 'info'
       : !walked.has(n.id) ? 'config'
       : RESULT_KINDS.includes(n.kind) ? 'result'
       : 'step']));

@@ -1398,11 +1398,21 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
   border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
 .ln-dg-cat--check > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
-/* NOT A SESSION, WITHIN ANY CATEGORY. A tile with no code has nothing behind it
-   to open, so it loses the stripe. Result already has none and Checkpoint
-   overrides it back, which is the intended order: the category decides first
-   and this refines inside it. */
-.ln-dg-node:not(:has(.ln-dg-node-code)) { border-inline-start: 0; padding-inline-start: 3px; }
+/* NOT A SESSION, WITHIN A CATEGORY DRAWN ON THE ROUTE. A tile with no code has
+   nothing behind it to open, so it loses the stripe. Result already has none
+   and Checkpoint overrides it back, which is the intended order: the category
+   decides first and this refines inside it.
+
+   BESIDE THE ROUTE IS EXCLUDED, AND THAT IS A DEFECT FOUND ON THE LIVE SITE.
+   This rule said "within ANY category", and what it removes is a 3px solid
+   stripe -- but a Prerequisite has no stripe, it has a dashed card, and
+   \`border-inline-start: 0\` ate one SIDE of it. The bill of material and the
+   planning cluster row, the two prerequisites that are not screens, shipped as
+   three-sided boxes open on the left, ragged beside the two complete cards
+   above them. A card is closed or it is not a card; whether it is a screen is
+   already said by the code line it carries or does not. */
+.ln-dg-node:not(:has(.ln-dg-node-code)):not(.ln-dg-cat--config):not(.ln-dg-cat--info) {
+  border-inline-start: 0; padding-inline-start: 3px; }
 .ln-dg-cat--check:not(:has(.ln-dg-node-code)) {
   border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
 

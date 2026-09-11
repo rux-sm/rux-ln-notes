@@ -1,4 +1,4 @@
-# TODO
+# Status — where this project stands
 
 What is outstanding, and — because this project has been wrong about its own
 state four times — **which lines a generator watches and which are prose that
@@ -98,7 +98,7 @@ Added 2026-09-11, for the reason this file names at the top.
   same week; the pin the adoption was designed around no longer exists; and the
   one thing the template had that these pages lacked, a capped reading measure,
   was taken on its merits. **This item also said "per `AGENTS.md`" and that was
-  wrong** — `AGENTS.md` never carried the adoption promise, `TODO.md` did. It
+  wrong** — `AGENTS.md` never carried the adoption promise, `docs/status.md` did. It
   does now, as a decision rather than a plan.
 
 - **The seven tag colours are four registers**, shipped and live: 2761 pills

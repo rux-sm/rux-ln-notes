@@ -1,9 +1,13 @@
+---
+type: app
+---
+
 # AGENTS.md — the policy
 
 This is the one instruction file. `CLAUDE.md` imports it, Codex reads it
 directly, and nothing here is repeated anywhere else. `README.md` says what
 is published, where it comes from, how to preview and deploy it, and what is
-never hand-edited; `TODO.md` is what is outstanding.
+never hand-edited; `docs/status.md` is what is outstanding.
 
 ## What this repository is
 
@@ -65,19 +69,20 @@ build or serve it locally.
 
 ## Where a document goes
 
-**The root holds what orients you and nothing else** — this file, `CLAUDE.md`,
-`README.md`, `TODO.md`. Adopted 2026-09-11, so every repository in the family
-reads the same way:
+**Three files at the root, and the same three everywhere.** Adopted 2026-09-11
+across the family; `rux-ds/docs/consumer-policy.md` carries the rule.
 
 | | |
 | :--- | :--- |
-| `exchange/` | cross-repository memos, one question each, the shape `rux-ln-atlas/exchange/` already used. `node ../rux-ds/tools/exchange.mjs` reads their frontmatter and lists what is open |
+| root | `AGENTS.md` the policy, `CLAUDE.md` importing it, `README.md` the front door — plus what this project publishes |
+| `docs/status.md` | where this stands and what is outstanding. One name, one place, in every repository that has state to record |
 | `docs/` | working documents — reasoning, designs, measurements |
-| root | the four above, plus what this project publishes |
+| `exchange/` | cross-repository memos, one question each, the shape `rux-ln-atlas/exchange/` already used. `node ../rux-ds/tools/exchange.mjs` reads their frontmatter and lists what is open |
 
-Nine documents sat at the root until today, against rux-scheduler's two. The
-counts were identical; only the placement differed, and one of them had to
-give.
+**Nine documents sat at the root until today, against rux-scheduler's two.**
+The counts were identical — nine each — and only the placement differed.
+`TODO.md` is `docs/status.md` now, renamed rather than merged into `README.md`:
+they change at different rates and half of what was in it is record, not task.
 
 ## What is authored here, and what is not
 **The shared part of this is one document, not three.** `rux-ds/docs/consumer-policy.md`

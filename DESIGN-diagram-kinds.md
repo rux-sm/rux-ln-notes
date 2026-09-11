@@ -11,6 +11,72 @@ say that is the wrong question.
 
 ---
 
+## 0. DECIDED — five categories, 2026-09-10
+
+**Taken by rux, and it supersedes §3 below rather than being one more option
+in it.** The sections after this one are kept because the reasoning is the
+useful part and two of them record where this plan was wrong; what is decided
+is here.
+
+A reader at a screen with the map open asks five questions, so there are five
+categories. Measured over all 41 nodes of the two diagrams:
+
+| | | the question it answers | nodes |
+|---|---|---|---|
+| 1 | **Step** | what do I do here | 20 |
+| 2 | **Prerequisite** | what has to be true before any of this runs | 6 |
+| 3 | **Reading** | what is the state right now | 1 |
+| 4 | **Result** | what do I now have | 10 |
+| 5 | **Checkpoint** | what decides silently, and how would I know | 4 |
+
+**Result is the one today's design has never had, and it is 10 of 41.** A
+planned purchase order is drawn as a box exactly like a step, so it reads as
+something to go and perform. There is nothing to perform — MRP made it. This
+is also where the map's second takeaway lives: a proposal is not an order, and
+both halves of that are Results.
+
+**Checkpoint is a category and not a shade of Reading.** A Reading is something
+you consult; a Checkpoint is where the run dies quietly. Three of the four
+produce no message at all.
+
+### Five categories, still one hue
+
+They are drawn by three independent signals, not five colours:
+
+| signal | says | values |
+|---|---|---|
+| **container** | on the route or beside it | solid tile · dashed card, set in from the edge |
+| **name style** | act on it, or take it in | upright · italic |
+| **stripe** | what you can reach | grey, an ordinary screen · none, nothing to open · **the one yellow**, it decides silently |
+
+So Step is a solid tile with a grey stripe; Result is tinted and italic with no
+stripe; Checkpoint carries the yellow wherever it stands; Prerequisite and
+Reading are the same dashed card, upright and italic. Italic means the same
+thing in all three places it appears — a state you take in rather than an
+action you perform.
+
+This is variant **E** in the specimen, and it is **the only one with zero
+category collisions on both documents** — 4 looks to learn on the overview and
+5 on the map, identical in all four themes. Today's design collides on 9 of the
+overview's 17 and, less obviously, on 3 of the session map's 24.
+
+### The one part that is not derivable, and is an ask
+
+Four of the five fall out of what atlas already sends: `gate` or `decision` is
+a Checkpoint; `planned`, `real`, `outcome` or `terminal` on the route is a
+Result; no `flow` edge is beside the route; everything else is a Step.
+
+**Prerequisite and Reading cannot be told apart.** Both are `read` or `outcome`
+sitting beside the route, and nothing atlas sends separates *Inventory 360*
+from *Production Order Parameters* — same kind, same shape, opposite purpose.
+The specimen carries a three-entry stand-in list, named as a stand-in rather
+than dressed up as a rule, and `SEND-ATLAS-3.md` asks atlas for the signal.
+**Until it exists the split is not shippable**, and the honest fallback is four
+categories with Reading folded into Prerequisite — which costs one node of
+distinction today and is the weakest of the five boundaries.
+
+---
+
 ## 1. What is actually there
 
 Nine kinds arrive from atlas across the two documents that carry a diagram.

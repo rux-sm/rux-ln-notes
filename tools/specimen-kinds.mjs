@@ -78,6 +78,36 @@ const nodeOrder = (dg) => (dg.lanes ?? []).flatMap((l) =>
   (dg.stages ?? []).flatMap((st) =>
     (dg.nodes ?? []).filter((n) => n.lane === l.name && n.stage === st.n)));
 
+// THE FIVE CATEGORIES, DECIDED BY RUX 2026-09-10, AND WHAT EACH IS DERIVED
+// FROM. Four of the five fall straight out of what atlas already sends:
+//
+//   check   `gate` or `decision` -- a condition that decides, three of the four
+//           silently. It is a category and not a shade of Information because
+//           Information is something you consult and a Check is where the run
+//           dies quietly. Section 2 of the map exists for these.
+//   result  `planned`, `real`, `outcome` or `terminal`, ON the route -- what
+//           now exists because of the step before. Not something you do.
+//   step    everything else on the route.
+//   beside  no `flow` edge -- Configuration or Information.
+//
+// THE FIFTH BOUNDARY IS NOT IN THE DATA, and pretending otherwise would be the
+// kind of inference this project has been wrong about before. Configuration
+// ("go and make this true") and Information ("what is the state right now")
+// are both `read` or `outcome` sitting beside the route, and nothing atlas
+// sends separates them: Inventory 360 and Production Order Parameters are the
+// same kind with the same shape. The list below stands in for a signal that
+// does not exist yet, and SEND-ATLAS-3.md asks for it. It is a stand-in, not a
+// rule -- three entries, named, rather than a heuristic that would look
+// derived and would not be.
+const INFORMATION = new Set(['read-whwmd4300m000']);   // Inventory 360
+
+const categoryOf = (n, off) => {
+  if (n.kind === 'gate' || n.kind === 'decision') return 'check';
+  if (off) return INFORMATION.has(n.id) ? 'info' : 'config';
+  if (['planned', 'real', 'outcome', 'terminal'].includes(n.kind)) return 'result';
+  return 'step';
+};
+
 const markOffPath = (fig, dg) => {
   const order = nodeOrder(dg), off = offPathIds(dg);
   let i = 0;
@@ -85,7 +115,9 @@ const markOffPath = (fig, dg) => {
     const node = order[i++];
     if (!node) throw new Error('more tiles in the figure than nodes in the data');
     if (node.kind !== kind) throw new Error(`tile ${i} is ${kind}, node ${node.id} is ${node.kind}`);
-    return off.has(node.id) ? `${m.slice(0, -1)} ln-dg-node--off-path"` : m;
+    const extra = (off.has(node.id) ? ' ln-dg-node--off-path' : '')
+      + ` ln-dg-cat--${categoryOf(node, off.has(node.id))}`;
+    return `${m.slice(0, -1)}${extra}"`;
   });
   if (i !== order.length) throw new Error(`${i} tiles, ${order.length} nodes`);
   return out;
@@ -128,7 +160,47 @@ const VARIANTS = [
       .v-c ${NOT_A_SESSION} > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }`,
   },
   {
-    id: 'd', name: 'D — the path, and what has to be set up first',
+    id: 'e', name: 'E — the five categories',
+    blurb: `<b>Decided 2026-09-10.</b> Five categories, and still one hue, because they
+      are drawn by three independent signals rather than five colours.
+      <b>Container</b> says on the route or beside it — a solid tile against a dashed card
+      set in from the edge. <b>Name style</b> says act or read — upright for a thing you
+      do or make true, italic for a state you take in. <b>Stripe</b> says what you can
+      reach — grey for an ordinary screen, none where there is nothing to open, and the
+      one yellow for a checkpoint that decides silently.
+      Step · Prerequisite · Reading · Result · Checkpoint.`,
+    css: `
+      .v-e .ln-dg-node { --dg-accent: var(--rux-border-strong-01, #8d8d8d); }
+      /* 1 STEP -- on the route, you do it. The default, and the spine. */
+      /* 4 RESULT -- on the route, what now exists. No stripe, because there is
+         nothing to go and do; tinted and italic, because it is a state. This is
+         the category today's design has never had, and it is 10 of 41. */
+      .v-e .ln-dg-cat--result { border-inline-start: 0; padding-inline-start: 3px;
+        background: var(--rux-layer-accent-01, #e0e0e0); }
+      .v-e .ln-dg-cat--result > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+      /* 5 CHECKPOINT -- the one hue, wherever it stands. Three of the four
+         decide with no message at all, which no layout can show. */
+      .v-e .ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b);
+        border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
+      .v-e .ln-dg-cat--check > summary .ln-dg-node-name { font-style: italic; font-weight: 500; }
+      /* 2 PREREQUISITE and 3 READING -- beside the route, so a dashed card set in
+         from the column edge. Full weight: the planning cluster row is the
+         difference between an item planning can see and one it silently cannot.
+         Specificity is doubled deliberately -- see the note in D. */
+      .v-e .ln-dg-node.ln-dg-cat--config,
+      .v-e .ln-dg-node.ln-dg-cat--info {
+        border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
+        background: transparent; margin-inline-start: .75rem; padding-inline-start: 0; }
+      .v-e .ln-dg-node.ln-dg-cat--config > summary .ln-dg-node-name {
+        font-style: normal; font-weight: 600; }
+      /* READING is the same card with the italic name -- it is a state you take
+         in, the same thing the italic says on a Result. One signal, one meaning,
+         wherever it appears. */
+      .v-e .ln-dg-node.ln-dg-cat--info > summary .ln-dg-node-name {
+        font-style: italic; font-weight: 600; }`,
+  },
+  {
+    id: 'd', name: 'D — two axes (superseded by E)',
     blurb: `Two axes, both already in the data and neither needing a new field.
       <b>On the path or beside it</b> is the primary split, because following the
       sales-to-order route is the first thing the map is for: a node the sequence never
@@ -236,6 +308,8 @@ const registerOf = n => !n.querySelector('.ln-dg-node-code') ? 'state'
   : kindOf(n) === 'read' ? 'look' : 'act';
 // Beside the path or on it -- the split D makes primary.
 const pathOf = n => n.classList.contains('ln-dg-node--off-path') ? 'beside' : 'on';
+// The five decided on 2026-09-10. This is the figure that ranks the variants now.
+const catOf = n => ([...n.classList].find(c => c.startsWith('ln-dg-cat--')) || '--?').slice(11);
 function collisions(nodes, label) {
   const by = new Map();
   for (const n of nodes) {
@@ -272,6 +346,7 @@ function score(scope) {
     byRegister: collisions(nodes, registerOf),
     byRegisterCode: collisionsBy(nodes, registerOf, sigWithCode),
     byPath: collisions(nodes, pathOf),
+    byCat: collisions(nodes, catOf),
     scrolls: fig.scrollWidth > fig.clientWidth,
     col: Math.round(parseFloat(getComputedStyle(
       scope.querySelector('.ln-dg-grid')).gridTemplateColumns.split(' ')[1])) };
@@ -282,8 +357,8 @@ function paint() {
     const m = (n) => \`<b class="\${n ? 'bad' : 'ok'}">\${n}</b>\`;
     box.querySelector('[data-out]').innerHTML =
       \`<b>\${r.tiles}</b> tiles · <b>\${r.appearances}</b> looks to learn · \` +
-      \`colliding: \${m(r.byPath)} by path · \${m(r.byRegister)} by register \` +
-      \`(\${m(r.byRegisterCode)} counting the code line) · \${m(r.byKind)} by kind · \` +
+      \`colliding: \${m(r.byCat)} <b>by category</b> · \${m(r.byPath)} by path · \` +
+      \`\${m(r.byRegister)} by register (\${m(r.byRegisterCode)} with the code line) · \` +
       \`column <b>\${r.col}px</b> · \${r.scrolls ? 'figure scrolls' : 'figure fits'}\`;
   }
 }
@@ -309,7 +384,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Diagram kinds — three ways</title>
+<title>Diagram categories — five, four ways</title>
 <link rel="stylesheet" href="/rux-ds/assets/fonts/plex.css">
 <link rel="stylesheet" href="/rux-ds/css/rux.css">
 <link rel="stylesheet" href="/rux-ds/css/rux-theme.css">
@@ -347,7 +422,7 @@ ${VARIANTS.map(v => v.css).join('\n')}
 </style>
 </head>
 <body>
-<h1>Diagram kinds — three ways</h1>
+<h1>Diagram categories — five ways of drawing them</h1>
 <p class="lede">The same markup three times; only the CSS differs. Variant A is the live
 site byte for byte. <b>Looks to learn</b> is how many distinct appearances a reader must
 pick up with no legend on the page — lower is better for every variant.

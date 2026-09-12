@@ -9,10 +9,42 @@ Nothing else here is checked by anything.
 
 ---
 
-## Now — nothing
+## Now — the diagram draws a fifth of what it is for
 
-**Emptied 2026-09-11 because the one item in it was published, not because it
-was re-read.** The item was to sync atlas's two prerequisite tiles and look at
+**The goal was stated on 2026-09-11 and it is wider than anything this
+repository had written down: an interactive visual of everything done in LN.**
+The step to take, the setup and configuration behind it, the results the system
+produces on its own, and the path that changes with status or inventory —
+every screen needed to do something in LN carrying a tile, in the right place,
+with a brief description, and its guide or SOP hanging off it.
+`docs/DESIGN-diagram-kinds.md` now opens with it.
+
+**The distance is measured, not estimated.** Atlas holds 124 session
+documents; the library cites 127 distinct session codes; **25 are drawn and
+102 are drawn nowhere.** Two diagrams exist and both trace one route. Twelve
+concepts, nine guides and sixteen reviews are also undrawn.
+
+**What the renderer can and cannot do about that is also measured.** 124 tiles
+went through `build.mjs` and the canvas held — 1.1 screens wide at five
+stages, lane rules and legend intact, nothing overflowing. **Geometry is not
+the obstacle.** What fails is the axis: `Common` holds 47 of the 124 sessions
+and master data has no honest answer to "which point in the run", so ten tiles
+stack in one cell under a heading reading `PREPARE`. §11 of the design
+document has the figures.
+
+**So the one item here is a memo to atlas, and it is this side's to write**
+because this side is the renderer that measured the constraint. It asks what a
+map of every screen needs: a placement for 124 sessions when `module` exists
+and `stage` does not; whether a stage is honest for reference data or whether
+those screens want a different axis; and whether the answer is one map or a
+set. Until it is answered, authoring placements would be authoring them into a
+layout nobody has shown can carry them.
+
+**Not blocked on that, and this repository's own:** nothing helps a reader find
+one tile among 124 — no search, no filter, no zoom. At 26 tiles it was not a
+question.
+
+**The item that used to be here was published, not re-read.** The item was to sync atlas's two prerequisite tiles and look at
 them. Done at `2ab6911`, atlas `ab9d6ca`, Pages green, and verified on
 `rux-sm.github.io` rather than in the local build: HTTP 200, 2 `Prerequisite`
 pills, revision stamp `ab9d6ca`, and the corrected edges reading
@@ -30,10 +62,9 @@ go to the overview, where all three Checkpoints were drawn with no stripe at all
 Eight themes of looking at the right tiles did not find it; resolving the
 stylesheet found it in one run. *Decided, not built* below has the record.
 
-**What would put something back here:** rux-ds answering the vocabulary
-question, or atlas answering `SEND-ATLAS-2.md`. Both are other people's moves.
-`SEND-ATLAS-2.md` §1 is the one that blocks work upstream — atlas's
-screen-reference emitter waits on it.
+**Two other things are still other people's moves:** rux-ds answering the
+vocabulary question, and atlas answering `SEND-ATLAS-2.md`, whose §1 blocks
+atlas's screen-reference emitter. Neither blocks the memo above.
 
 **Waiting on someone else, not on this repository** — the list below is prose
 and can rot; the answer that cannot is:

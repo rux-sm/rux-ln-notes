@@ -1,13 +1,94 @@
-# The diagram's kind vocabulary
+# The diagram
 
-A design plan, not a decision. It says what the nine node kinds should look
-like on a canvas and why, and it is written to be argued with. Every figure
-in it was measured on the rendered page or derived from the synced data at
+**What it is for, what it covers, and how a tile is drawn.** Every figure in
+it was measured on the rendered page or derived from the synced data at
 `data/guides/PIN`; nothing here is counted by hand.
 
-The question it answers is **not** the one it started as. It began as "two
-kinds have no accent rule, what colour should they be", and the measurements
-say that is the wrong question.
+**The section numbers are load-bearing and do not move.** `build.mjs`,
+`specimen-kinds.mjs`, `tile-looks.mjs`, `docs/status.md` and two memos in
+`rux-ln-atlas` all cite §-numbers in this file. Anything new is added at the
+front without a number, or at the back with the next one.
+
+---
+
+## Purpose
+
+**An interactive visual of everything done in LN.** The step to take, the
+setup and configuration standing behind it, the results the system produces on
+its own, and the path that changes with status or inventory. Everything needed
+to do something in LN has a tile, in the right place, carrying a brief
+description — and the guide or SOP for that section hangs off it.
+
+**Stated by rux on 2026-09-11, and it is wider than what this file was written
+for.** Everything from §1 to §5 was reasoned on a canvas of 17 to 26 tiles
+meant to be read in ten minutes, and several of those decisions are only
+correct at that size. They are marked where that matters. Nothing below is
+retracted on the strength of the new goal; what the goal changes is which
+questions are still open.
+
+**The categories already say what the purpose says.** This is the one part of
+the old design that transfers whole, because the five were derived from the
+five questions a reader at a screen asks:
+
+| the purpose | the category |
+| :--- | :--- |
+| the step to take | **Step** |
+| setup and configuration | **Prerequisite** |
+| what the system produced on its own | **Result** |
+| the path that changes with status or inventory | **Checkpoint**, and **Reading** for what is true now |
+
+**And the SOP link is not future work.** `guide` is a node field today, it
+renders in the panel, and it is present on 26 of the 43 nodes. What is missing
+is coverage, not a mechanism.
+
+## Scope — what is drawn, and what is not
+
+Measured 2026-09-11 against the synced data and the atlas checkout at the pin:
+
+| | |
+| :--- | ---: |
+| session documents atlas holds | **124** |
+| distinct session codes the library cites | **127** |
+| session codes drawn on a diagram | **25** |
+| cited, drawn nowhere | **102** |
+| diagrams that exist | **2** |
+| drawn but not cited | **0** |
+
+Also upstream and undrawn: 12 concepts, 9 guides, 16 reviews, 3 tests, 3
+config documents.
+
+**So the map covers about a fifth of the screens, and both diagrams are of one
+route** — sales demand to shipment. That is not an oversight. The two documents
+describe themselves as levels of one process atlas: the overview is *"the shape
+of the whole chain… every guide in this library is one route across it"* and
+the session map is *"a level-2 companion… which session, reached how, and what
+do I actually do in it."* Coverage grew by route, because the unit was the
+guide.
+
+**The purpose above changes the unit from the route to the screen**, and that
+is the real distance between where this is and where it is going. §11 measures
+what that costs.
+
+## Where it stands
+
+**Decided and shipped:** five categories drawn by three signals (§0), one
+accent (§7), a rule between the lanes (§8), a legend (§9), columns sized to
+their own content (§10). Every category figure is watched by `MEASURED` and
+resolved by `tools/tile-looks.mjs`.
+
+**Open, and none of it is this repository's alone:**
+
+- **Placement for 124 screens.** A session document carries `module` — a lane
+  — but no stage. The contract is explicit that both are atlas's: *"`lane` and
+  `stage` are coordinates… domain knowledge only atlas holds."* A whole-system
+  map needs a placement authored for every screen, and §11 shows that for
+  reference data there may be no honest one.
+- **A second axis, or a second kind of diagram.** Lane × stage answers *who
+  does it, and when in the run*. It does not answer *what must I understand
+  first*, and nothing in the data carries that today.
+- **Finding a tile among 124.** There is no search, no filter and no zoom at
+  any size. A reader opens a tile or scrolls.
+- **The enumeration owed to atlas** (§6), still unsent.
 
 ---
 
@@ -82,6 +163,13 @@ already says *off the line*, and the indent was saying it a second time for
 1272 of 1272, grid height 1086 unchanged, all 17 tile heights identical, the
 session map unmoved at 2344 and 956 with all 24 heights identical, and 0
 category collisions in all four themes on both documents.
+
+**Every column figure in this paragraph is superseded by §10 and kept as the
+record of why the indent was dropped.** They were taken under
+`minmax(7rem, 1fr)`, where one wide tile set the width of every column; since
+2026-09-11 a column is sized to its own content and the overview reads 203 to
+215px with the figure fitting at 1312. The rule the indent broke still stands,
+and §10 re-states it against the new baseline.
 
 ### All five are derivable, and the claim that one was not was wrong
 
@@ -206,15 +294,27 @@ fact, since the band is already red and the tile sits inside it.
 in the only two documents that exist. If a third document broke it, the
 panel would still name the kind and nothing would be lost but the shortcut.
 
+**Re-verified 2026-09-11: still 10 of 10** — planned 3 left, transfer 3 on,
+real 4 right, against the boundary at stage 4 in both documents.
+
+**AND IT IS SCOPED TO A ROUTE MAP, which the Purpose above is not.** This
+argument works because both documents trace one run past one boundary, so a
+column states a fact about an order's reality. A map of every screen has no
+single run and no single boundary column, so nothing would be restating
+anything and the hues would not be redundant — they would simply be absent.
+Dropping them was right for these two documents; it is not a ruling about a
+map that does not exist yet.
+
 ### 2.3 `kind` is two facts wearing one name, and the useful one is not it
 
-`code` and `route` are present or absent together on all 41 nodes — no node
-has one without the other. They split the vocabulary in a way `kind` does
+`code` and `route` are present or absent together on all 43 nodes — no node
+has one without the other. **Re-verified 2026-09-11: 34 carry both, 9 carry
+neither, 0 carry one without the other.** The figure was 41 when written. They split the vocabulary in a way `kind` does
 not:
 
 | | nodes | kinds present |
 |---|---|---|
-| **session map** | 24 of 24 openable | every kind it uses |
+| **session map** | 26 of 26 openable | every kind it uses |
 | **overview** | 8 of 17 openable | `step`, `real`, `transfer` |
 | **overview** | 9 of 17 **not a session** | `decision`, `outcome`, `gate`, `planned`, `terminal` |
 
@@ -402,6 +502,12 @@ version of the argument gets to pick its own number.
 3. **Column width and figure scroll width.** Today 207px and 1272 on the
    overview, 260px and 2344 on the map. Neither may grow; the tinted ground
    in §3.1 is the risk.
+
+   **Re-baselined 2026-09-11 by §10.** Columns are sized to their own content
+   now, so there is no single column figure: the overview runs 152 to 203px and
+   fits at 1312 of 1312, the map runs 110 to 260px and scrolls 1746. The rule
+   is unchanged and is still what stopped the indent — neither figure may grow
+   for a change that is not about width.
 4. **Contrast of every accent against its ground, in all four themes**, the
    way the named register was measured at 13.76 to 18.1 in f2e6349.
 
@@ -707,3 +813,53 @@ they did when every column stretched. It holds nothing and computes to zero on
 a figure that overflows; on the map it costs one 8px grid gap, 1738px to 1746px.
 Delete the ` 1fr` from `.ln-dg-grid` to have the rules end with the content
 instead.
+
+---
+
+## 11. What 124 tiles does to the canvas
+
+**Run 2026-09-11, because the Purpose changes the unit from the route to the
+screen and nobody had measured what that costs.** 124 synthetic nodes — the
+real session names and modules from the atlas checkout at the pin, generic
+descriptions so no private prose reached a generated page — put through
+`build.mjs` itself and measured in the browser at 1440. Three shapes, differing
+only in how many stages the run is divided into:
+
+| shape | stages | scroll width | screens wide | grid height | tallest cell |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| A | 5 | 1466px | **1.1** | 2018px | 10 tiles |
+| B | 9 | 2373px | 1.8 | 1241px | 6 tiles |
+| C | 14 | 3426px | 2.6 | 978px | 4 tiles |
+| *the map today* | *9* | *1746px* | *1.3* | *1230px* | *5 tiles (26 nodes)* |
+
+**The prediction going in was that the canvas would not hold it, and that was
+wrong.** At five stages 124 tiles is 1.1 screens wide and 2.2 screens tall —
+an ordinary long page. Stages trade height for width and nothing else: the
+grid does not break, the lane rules hold, the legend renders, and no tile
+overflows. **Geometry is not the obstacle and should stop being cited as one.**
+
+**What breaks is the axis.** `Common` holds 47 of the 124 sessions, and a lane
+× stage grid asks each of them which point in a run it belongs to. Master data
+has no answer: a screen for item defaults is not early or late, it is
+underneath. So they pile into whichever cell the stage assignment invents — ten
+tiles stacked in one cell, in an order carrying no meaning, under a heading
+that says `PREPARE`. Seen on the rendered page, not inferred: the figure stops
+being a diagram and becomes a list in columns with a process heading over it.
+
+**Three things follow, and none of them is a rendering change:**
+
+- **A stage is only honest inside a run.** For the ~47 reference-data screens
+  the coordinate the contract asks atlas for does not exist. Either they are
+  not on this map, or the map needs an axis that is not "when".
+- **A cell is a set, not a sequence.** The renderer stacks a cell's tiles in
+  emission order and nothing says what that order means. At 2 tiles nobody
+  asks; at 10 it is the first question.
+- **Nothing helps a reader find one tile in 124.** No search, no filter, no
+  zoom, no "show me only the Prerequisites". At 26 tiles that was a
+  non-question.
+
+**What was not measured:** whether a reader can use any of these shapes. The
+figures above are geometry, and the 124 placements were invented by the test
+rather than authored — so the test says the canvas survives, and says nothing
+about whether the map would be worth reading. That is the next thing to find
+out, and it needs real placements, which is a question for atlas.

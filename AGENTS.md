@@ -79,6 +79,24 @@ across the family; `rux-ds/docs/consumer-policy.md` carries the rule.
 | `docs/` | working documents — reasoning, designs, measurements |
 | `exchange/` | cross-repository memos, one question each, the shape `rux-ln-atlas/exchange/` already used. `node ../rux-ds/tools/exchange.mjs` reads their frontmatter and lists what is open |
 
+**A memo stays in the repository that wrote it.** This one's asks live here and
+are read in place from the checkout beside; atlas's replies live in
+`../rux-ln-atlas/exchange/` and are never copied in. **The reason is this
+repository's one rule, not tidiness.** A memo may only live somewhere it would
+pass that repository's gate, and an atlas reply structurally cannot pass this
+one: measured 2026-09-11, two of three named the evidence extract they answer
+from, which `check-publishable` refuses and which atlas requires them to do. So
+a conversation between a public repository and a private one is split by
+construction, and `exchange.mjs` is what reads it whole. Every memo carries a
+`title:` inside its `exchange:` map, holding no comma — the map is parsed by
+splitting on them — so the listing reads as questions rather than as file paths.
+
+**Four asks written here were moved into atlas before 2026-09-11** under *the
+site keeps only what it publishes*, which the `.md` extension to
+`check-publishable` had already answered — all four pass this gate today. They
+stay there: re-adding a deleted file to a public repository is a fresh
+publication decision and buys nothing the listing does not already give.
+
 **Nine documents sat at the root until today, against rux-scheduler's two.**
 The counts were identical — nine each — and only the placement differed.
 `TODO.md` is `docs/status.md` now, renamed rather than merged into `README.md`:

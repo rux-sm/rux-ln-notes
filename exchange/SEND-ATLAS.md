@@ -1,5 +1,5 @@
 ---
-exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-10, state: answered, answered_by: do-as-steps-reply}
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-10, state: answered, answered_by: do-as-steps-reply, title: do as steps and the strip the contract has no field for}
 ---
 
 # Send-back to atlas: `do` as steps, and the strip the contract has no field for

@@ -1,5 +1,5 @@
 ---
-exchange: {kind: ask, from: rux-ln-notes, to: rux-ds, sent: 2026-09-11, state: open}
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ds, sent: 2026-09-11, state: open, title: border-strong-01 does not keep 3:1 in the four brand themes}
 ---
 
 # Send-back to rux-ds: `border-strong-01` does not keep 3:1 in the four brand themes

@@ -1,5 +1,5 @@
 ---
-exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-11, state: answered, answered_by: send-atlas-5-reply}
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-11, state: answered, answered_by: send-atlas-5-reply, title: what the overview is missing now that it is the only diagram}
 ---
 
 # What the overview is missing, now that it is the only diagram

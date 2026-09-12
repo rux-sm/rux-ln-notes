@@ -1,5 +1,5 @@
 ---
-exchange: {kind: ask, from: rux-ln-notes, to: rux-ds, sent: 2026-09-06, state: answered, answered_by: templates/document-page.html}
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ds, sent: 2026-09-06, state: answered, answered_by: templates/document-page.html, title: one more template}
 ---
 
 # Send-back to rux-ds: one more template

@@ -2177,7 +2177,20 @@ function categories(dg) {
 // form on the canvas teaches the category; the panel names it, and keeps the
 // finer kind after it -- `planned`, `real` and `terminal` are all Results and
 // the difference is worth a word in the one place there is room for it.
-const CATEGORY_NAME = { step: 'Step', config: 'Prerequisite', info: 'Reading',
+// THE READER-FACING NAME OF A CATEGORY, settled with rux 2026-09-11 and changed
+// from Prerequisite and Reading. `Setup` and `Inquiry` are rux's own words for
+// what those two are; the other three were already right. `Checkpoint` is
+// PROVISIONAL -- it folds atlas's `gate` and `decision` into one reader-facing
+// word and whether the domain has a name for "a condition LN evaluates on its
+// own" is a question for atlas, asked in exchange/SEND-ATLAS-4.md.
+//
+// A NAME HERE IS PRESENTATION AND NOT CONTRACT. `kind` is atlas's; how a
+// category is worded is this side's, and this object is the only place it is
+// worded -- the legend and the panel badge both read it, so they cannot drift.
+// `Inquiry` appears nowhere in atlas, which is recorded in that memo rather
+// than hidden: until it answers, a tile and its source document use different
+// words for the same thing.
+const CATEGORY_NAME = { step: 'Step', config: 'Setup', info: 'Inquiry',
   result: 'Result', check: 'Checkpoint' };
 
 function diagramFigure(dg) {

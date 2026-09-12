@@ -1735,117 +1735,28 @@ const issuesTag = n => n > 0
 const HOME_DIAGRAM = 'order-to-shipment-overview';
 
 function indexPage(site) {
-  const { guides, exercises, summaries, references } = site;
+  const { references } = site;
   const home = (references ?? []).find(r => r.id === HOME_DIAGRAM && r.diagram);
-  const cards = guides.map(g => `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
-          <!-- NOT \`card--clickable\`. The captured clickable card is
-               role="button" with tabindex 0, which is right for a card that
-               fires an action and wrong for one that navigates, and there is
-               no card module in js/ to give it behaviour. The footer carries a
-               real <a>, so the browser does the navigation. -->
-          <div class="rux--card rux--card--productive">
-            <div class="rux--card__header">
-              <div class="rux--card__title">
-                <div class="rux--card__label">${esc(g.module)}</div>
-                <span class="rux--card__title-text-row" id="t-${esc(g.id)}">${esc(g.title)}</span>
-                <div class="rux--card__description">${esc(g.summary)}</div>
-              </div>
-            </div>
-            <div class="rux--card__body">
-              <div class="ln-tag-row">
-                ${statusTag(g.status)}
-                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${g.phases.length} phases</span></span>
-                ${issuesTag(g.openIssues ?? 0)}
-              </div>
-            </div>
-            <div class="rux--card__footer">
-              <!-- TWO IDS IN aria-labelledby, in reading order, so this reads
-                   "Open guide, <title>". Seven links all reading "Open guide"
-                   is a real defect for anyone listing the page's links, and
-                   Carbon's card title is a <span> rather than a heading, so
-                   there is no heading to land on instead. -->
-              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/${esc(g.id)}.html" id="o-${esc(g.id)}" aria-labelledby="o-${esc(g.id)} t-${esc(g.id)}">Open guide</a>
-            </div>
-          </div>
-        </div>`).join('\n');
 
-  // A SUMMARY'S CARD COUNTS TOPICS, not phases. It is the same card component
-  // and deliberately not the same facts: a summary has no phases, and showing
-  // a zero there would read as a guide with nothing in it.
-  const summaryCards = summaries.map(r => {
-    const first = (r.covered ?? []).find(b => b.kind === 'prose');
-    const blurb = first ? first.text : '';
-    return `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
-          <div class="rux--card rux--card--productive">
-            <div class="rux--card__header">
-              <div class="rux--card__title">
-                <div class="rux--card__label">Meeting summary</div>
-                <span class="rux--card__title-text-row" id="t-${esc(r.id)}">${esc(r.title)}</span>
-                <div class="rux--card__description">${esc(blurb)}</div>
-              </div>
-            </div>
-            <div class="rux--card__body">
-              <div class="ln-tag-row">
-                ${statusTag(r.status)}
-                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${(r.topics ?? []).length} topics</span></span>
-                <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">${esc(r.updated)}</span></span>
-              </div>
-            </div>
-            <div class="rux--card__footer">
-              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/${esc(r.id)}.html" id="o-${esc(r.id)}" aria-labelledby="o-${esc(r.id)} t-${esc(r.id)}">Open summary</a>
-            </div>
-          </div>
-        </div>`;
-  }).join('\n');
-
-  const exerciseCards = exercises.map(e => `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
-          <div class="rux--card rux--card--productive">
-            <div class="rux--card__header">
-              <div class="rux--card__title">
-                <div class="rux--card__label">Practice exercise</div>
-                <span class="rux--card__title-text-row" id="t-${esc(e.id)}">${esc(e.title)}</span>
-                <div class="rux--card__description">${esc(e.summary)}</div>
-              </div>
-            </div>
-            <div class="rux--card__body">
-              <div class="ln-tag-row">
-                ${statusTag(e.status)}
-                <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">${e.assignments.length} assignments</span></span>
-              </div>
-            </div>
-            <div class="rux--card__footer">
-              <a class="rux--btn rux--btn--md rux--layout--size-md rux--btn--tertiary" href="guides/${esc(e.id)}.html" id="o-${esc(e.id)}" aria-labelledby="o-${esc(e.id)} t-${esc(e.id)}">Open exercise</a>
-            </div>
-          </div>
-        </div>`).join('\n');
-
-  // THE MAP IS THE PAGE, so it carries the h1 and nothing stands above it. The
-  // site name is in the shell header two lines up and the library sections are
-  // below; a heading and a paragraph repeating the app's own description between
-  // them was furniture between a reader and the thing they came for.
+  // THE HOME PAGE IS THE MAP AND NOTHING ELSE, at rux's direction 2026-09-11.
   //
-  // THE HEADING IS THE ROUTE AND NOTHING ELSE. It is authored here rather than
-  // taken from `home.title`, and the qualifier that title carries is dropped
-  // rather than trimmed out of atlas's data -- cutting a word from authored
-  // content is the filtering this project refuses everywhere, and it would have
-  // been the invisible kind, a page disagreeing with its own source where no
-  // gate could see it.
+  // WHAT WAS REMOVED AND WHY IT COST NOTHING. Four sections stood under the
+  // figure -- scenario guides and practice as cards, reference and summaries as
+  // lists -- and every one of them was a second route to a document the side nav
+  // already reaches. Measured before cutting rather than assumed: the nav links
+  // 19 documents, the sections linked the same 19, and the two sets differ by
+  // nothing in either direction. No document lost its only way in.
   //
-  // DROPPING IT RATHER THAN RE-WORDING IT IS WHAT MAKES THE DISAGREEMENT GO
-  // AWAY. "Overview" names the altitude to a reader who is looking at the thing,
-  // and the altitude is about to change: atlas renames the document to "— the
-  // map" when the depth lands, `exchange/SEND-ATLAS-5.md` §6. A heading that is
-  // only the route survives that rename, so there is nothing here to revisit and
-  // no word for the two sides to differ over.
+  // THE CARD BUILDERS WENT WITH THEM. Roughly 120 lines that built guide cards,
+  // exercise cards and summary cards are deleted rather than left unreferenced:
+  // a generator carrying markup nothing emits is markup no gate checks and no
+  // reader sees, and `check-classes` would have gone on validating it forever.
+  // `git show` has them if a future index wants them back.
   //
-  // Sentence case, because every document title on this site is. ALL CAPS is
-  // spoken for -- it is the grid's own register for lane and stage labels, and
-  // an all-caps heading over the figure would read as one of them.
-  //
-  // THE LINK SURVIVED THE PARAGRAPH THAT CARRIED IT. Everything above the figure
-  // is gone at rux's direction, and the only route from here to the document
-  // went with it; it is below the figure now, where the reading-order note and
-  // the legend already live.
+  // WHAT IS LEFT IS ONE SECTION. The route as the heading, the figure, and the
+  // one line linking the document it is drawn from -- which is the only thing
+  // here the nav also reaches, and it stays because it is the caption explaining
+  // what a tile holds rather than a list entry.
   const lead = home ? `
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-map">
           <h1 id="h-map">Order to shipment</h1>
@@ -1854,55 +1765,15 @@ function indexPage(site) {
              document</a> — every tile with its route, what it does, and the guide that
              walks it.</p>
         </section>
-` : '';
+` : `
+        <div class="rux--stack-vertical rux--stack-scale-5">
+          <h1>LN Notes</h1>
+          <p class="rux--type-body-02">The map is not in this build. Every document is
+             in the navigation.</p>
+        </div>
+`;
 
-  const body = `${lead}
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-guides">
-          <h2 id="h-guides">Scenario guides</h2>
-          <!-- THE SPANS ARE PER-BREAKPOINT AND ALL THREE ARE REQUIRED: a bare
-               col-span plus an \`lg:\` override does nothing, because both are
-               one class of specificity and col-span-100 is emitted later in
-               the stylesheet. \`subgrid\` rather than a nested \`css-grid\`,
-               because this sits inside a column carrying margin-inline: 16px
-               and a fresh grid would start its tracks 16px in. -->
-          <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
-${cards}
-          </div>
-        </section>
-
-        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-practice">
-          <h2 id="h-practice">Practice</h2>
-          <p class="rux--type-body-02">Guided assignments for predicting an LN
-             result, following the relevant guide, explaining what happened and
-             reporting the evidence.</p>
-          <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
-${exerciseCards}
-          </div>
-        </section>
-
-        ${(site.references ?? []).length ? `<section id="reference" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-reference">
-          <h2 id="h-reference">Reference</h2>
-          <ul class="rux--list--unordered">
-            ${site.references.map(r => `<li class="rux--list__item"><a class="rux--link" href="guides/${esc(r.id)}.html">${esc(r.title)}</a></li>`).join('\n            ')}
-          </ul>
-        </section>
-        ` : ''}${(site.concepts ?? []).length ? `<section id="concepts" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-concepts">
-          <h2 id="h-concepts">Concepts</h2>
-          <ul class="rux--list--unordered">
-            ${site.concepts.map(c => `<li class="rux--list__item"><a class="rux--link" href="guides/${esc(c.id)}.html">${esc(c.title)}</a></li>`).join('\n            ')}
-          </ul>
-        </section>
-        ` : ''}<section id="summaries" class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-summaries">
-          <h2 id="h-summaries">Meeting summaries</h2>
-          <p class="rux--type-body-02">Six training sessions, each summarised in
-             four parts — what it covered, the topics, what was decided, and the
-             key takeaways. Every summary links to the full review it came from.</p>
-          <div class="rux--subgrid rux--subgrid--wide rux--subgrid--with-row-gap">
-${summaryCards}
-          </div>
-        </section>`;
-
-  return page({ title: 'LN Notes', site, activeId: null, body, depth: 0,
+  return page({ title: 'LN Notes', site, activeId: null, body: lead, depth: 0,
     scripts: home ? ['js/diagram.js'] : [] });
 }
 

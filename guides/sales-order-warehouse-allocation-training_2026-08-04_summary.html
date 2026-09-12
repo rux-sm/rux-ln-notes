@@ -634,7 +634,15 @@
    full when a tile is opened. One line instead of two. */
 .ln-dg-legend { display: flex; flex-wrap: wrap; gap: .25rem 1rem;
   margin-block-start: .75rem; padding: 0; list-style: none; }
-.ln-dg-legend-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
+/* `inline-block`, AND ITS ABSENCE IS WHY THE FIRST CUT OF THIS BROKE. A swatch
+   is a `<span>` wearing `ln-dg-node`, which is a tile's class and expects a
+   block box; the name inside is `display: block`. While the `li` was a flex
+   container the swatch was blockified as a flex item and none of that mattered.
+   Dropping the glosses dropped the `li` rule with them, the span went back to
+   inline, the block name broke out of it, and every swatch collapsed to a sliver
+   with its label sitting outside the box it was meant to be in. */
+.ln-dg-legend-tile { display: inline-block; padding: .15rem .4rem;
+  color: var(--rux-text-primary, #161616); }
 .ln-dg-legend-tile .ln-dg-node-name { display: block; }
 /* AN EDGE WRAPS, ITS TWO ENDS DO NOT. `nowrap` on the whole span was free
    while an address was "7 → 8"; an address is a session name where a document

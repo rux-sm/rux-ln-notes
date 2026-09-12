@@ -1819,9 +1819,22 @@ function indexPage(site) {
           </div>
         </div>`).join('\n');
 
+  // THE MAP IS THE PAGE, so it carries the h1 and nothing stands above it. The
+  // site name is in the shell header two lines up and the library sections are
+  // below; a heading and a paragraph repeating the app's own description between
+  // them was furniture between a reader and the thing they came for.
+  //
+  // THE HEADING IS AUTHORED HERE AND IS NOT `home.title`, which is a departure
+  // worth naming. The document is called "Order to shipment — the overview"
+  // upstream and this reads "Order to shipment — overview" -- rux's edit, and
+  // atlas's field is not string-surgeried to get it, because cutting a word out
+  // of authored data is the filtering this project refuses everywhere else. So
+  // the two disagree by one word until atlas changes its own title, which it
+  // has already agreed to do when the depth lands: `exchange/SEND-ATLAS-5.md` §6
+  // settles on "— the map". This heading is revisited then.
   const lead = home ? `
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-map">
-          <h2 id="h-map">${esc(home.title)}</h2>
+          <h1 id="h-map">Order to shipment — overview</h1>
           <p class="rux--type-body-02">Every path to a shipment and the planning that
              decides which one runs. Open a tile for its route, what it does and the
              guide that walks it. <a href="guides/${esc(home.id)}.html">Read the whole
@@ -1830,15 +1843,7 @@ function indexPage(site) {
         </section>
 ` : '';
 
-  const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
-          <h1>LN Notes</h1>
-          <p class="rux--type-body-02">Procedures walked against a live Infor LN
-             environment, focused practice for explaining their results, and
-             the record of the sessions they came out of. Each scenario guide
-             keeps the procedure; each exercise asks you to predict, observe
-             and report back.</p>
-        </div>
-${lead}
+  const body = `${lead}
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-guides">
           <h2 id="h-guides">Scenario guides</h2>
           <!-- THE SPANS ARE PER-BREAKPOINT AND ALL THREE ARE REQUIRED: a bare

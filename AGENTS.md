@@ -97,6 +97,28 @@ site keeps only what it publishes*, which the `.md` extension to
 stay there: re-adding a deleted file to a public repository is a fresh
 publication decision and buys nothing the listing does not already give.
 
+**The two checkouts are one workspace for ordinary work, and two publication
+tiers always.** Adopted 2026-09-12. A routine change — a guide's content in
+atlas, what it renders as here, how a tile looks — is made in one session that
+edits both folders and reads the private preview, and **no memo is written to
+ask for it**: both sides have the same owner, and a question you can answer
+yourself in the same session is not a cross-repository ask. What does not
+relax, and is the reason the repositories stay two: the one rule above is held
+here and its fix is always upstream in atlas, never a filter here; LN content
+originates in atlas from its evidence and is never authored from this side;
+`data/guides/` stays generated and hand-editing it is still the mistake it
+was. The everyday loop is in `../rux-ln-atlas/HANDOFF.md`; the preview recipe
+is in `README.md` and is the only copy.
+
+**What a memo is for, then.** A contract change, a refusal, or a measurement
+someone will need in six months — a record written after a decision, not a
+question asked before one. The location rule above is unchanged and is the
+half that carries the disclosure argument.
+
+**A change to a control is still judged from a session that did not author
+it** — a gate, a check, a baseline, an instruction file, this one included.
+Same-session editing is a permission for implementation, not for self-review.
+
 **Nine documents sat at the root until today, against rux-scheduler's two.**
 The counts were identical — nine each — and only the placement differed.
 `TODO.md` is `docs/status.md` now, renamed rather than merged into `README.md`:

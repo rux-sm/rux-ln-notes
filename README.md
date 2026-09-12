@@ -47,14 +47,33 @@ published.
 
 ## Preview locally
 
+**Start here. This is the everyday loop**, and it reads atlas's working tree
+rather than a commit — edit a Markdown file there, re-run, see it. It writes
+only into the git-ignored `build/`, so nothing tracked moves and nothing is
+published:
+
+```sh
+sh tools/sync-internal.sh        # the private viewer, into build/ (never published)
+(cd build/internal/site && PORT=8644 node ../../../../rux-ds/tools/serve.mjs)
+```
+
+**Four levels up, and it is rux-ds's server, not this project's.**
+`tools/serve.mjs` below force-appends `--workspace` and serves the whole
+family; rux-ds's own server in plain mode takes its working directory as the
+root, which is what makes the `rux-ds` symlink inside the private site
+resolve. **Stop the server before re-syncing** — `sync-internal.sh` opens with
+`rm -rf` on that directory and the server captures its root once, so a re-sync
+underneath a running one 404s everything with nothing in any log to say why.
+
+**The public preview is the other one**, and it needs a committed, pushed
+atlas because `sync-guides.sh` writes a `PIN` that another machine has to be
+able to reproduce:
+
 ```sh
 sh tools/sync-guides.sh          # pull the export tier from ../rux-ln-atlas
 node tools/build.mjs             # write index.html and guides/ from data/guides/
 node tools/serve.mjs             # rux-ds's workspace server on :8640, this app at /rux-ln-notes/
 node tools/check.mjs             # every gate, in order; what the commit hook runs
-
-sh tools/sync-internal.sh        # the private viewer, into build/ (never published)
-(cd build/internal/site && PORT=8644 node ../../../../rux-ds/tools/serve.mjs)
 ```
 
 Once per clone: `git config core.hooksPath tools/githooks`, and the sibling

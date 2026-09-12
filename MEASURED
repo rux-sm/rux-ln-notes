@@ -1,5 +1,5 @@
 # upstreams
-rux-ln-atlas.pin = ab9d6ca
+rux-ln-atlas.pin = 63d9d53
 rux-ds.head = f4b204e
 
 # rux-ds surface (SEND-DS.md quotes these)
@@ -59,9 +59,9 @@ diagram.order-to-shipment-overview.lanes = 6
 diagram.order-to-shipment-overview.stages = 5
 diagram.order-to-shipment-overview.stages-boundary = 1
 diagram.order-to-shipment-overview.stages-empty = 0
-diagram.order-to-shipment-overview.nodes = 17
-diagram.order-to-shipment-overview.nodes-numbered = 0
-diagram.order-to-shipment-overview.nodes-with-steps = 8
+diagram.order-to-shipment-overview.nodes = 19
+diagram.order-to-shipment-overview.nodes-numbered = 10
+diagram.order-to-shipment-overview.nodes-with-steps = 10
 diagram.order-to-shipment-overview.strips = 0
 diagram.order-to-shipment-overview.edges = 19
 diagram.order-to-shipment-overview.edges-off-sequence = 9
@@ -73,9 +73,9 @@ diagram.demand-to-shipment-session-map.categories = check screen 1 · config scr
 diagram.demand-to-shipment-session-map.looks = 5
 diagram.demand-to-shipment-session-map.looks-per-category-state = check screen 1 · config screen 1 · info screen 1 · result screen 1 · step screen 1
 diagram.demand-to-shipment-session-map.colliding-by-category = 0
-diagram.order-to-shipment-overview.categories = check no-screen 3 · config no-screen 2 · config screen 2 · result no-screen 4 · result screen 2 · step screen 4
-diagram.order-to-shipment-overview.looks = 6
-diagram.order-to-shipment-overview.looks-per-category-state = check no-screen 1 · config no-screen 1 · config screen 1 · result no-screen 1 · result screen 1 · step screen 1
+diagram.order-to-shipment-overview.categories = check no-screen 3 · config no-screen 2 · config screen 2 · info screen 2 · result no-screen 4 · result screen 2 · step screen 4
+diagram.order-to-shipment-overview.looks = 7
+diagram.order-to-shipment-overview.looks-per-category-state = check no-screen 1 · config no-screen 1 · config screen 1 · info screen 1 · result no-screen 1 · result screen 1 · step screen 1
 diagram.order-to-shipment-overview.colliding-by-category = 0
 diagram-looks.rules-read = 16
 diagram-looks.rules-state-skipped = 1

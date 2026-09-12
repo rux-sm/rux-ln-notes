@@ -4,17 +4,19 @@
   "kind": "reference",
   "id": "order-to-shipment-overview",
   "title": "Order to shipment — the overview",
-  "updated": "2026-09-11",
+  "updated": "2026-09-12",
   "status": "draft",
   "sources": [
     "cppat1210m000",
+    "cprrp0520m000",
     "cprrp1220m000",
     "tcibd0501m100",
     "tdipu0601m000",
     "tdpur4100m900",
     "tdsls4601m200",
     "tisfc0501m000",
-    "whinh3512m000"
+    "whinh3512m000",
+    "whwmd4300m000"
   ],
   "intro": [
     {
@@ -40,7 +42,7 @@
         },
         {
           "t": "text",
-          "v": " It carries the same six lanes, five stages and seventeen nodes, and it is now data rather than markup — so the session codes in it are citations the gate verifies, which is what "
+          "v": " It carries the same six lanes and five stages, and the seventeen nodes it was drawn with are now nineteen — the two inquiries the SVG had no way to draw are tiles like any other. It is data rather than markup — so the session codes in it are citations the gate verifies, which is what "
         },
         {
           "t": "literal",
@@ -51,7 +53,7 @@
           "v": " §1.2 asked for. The picture the reader sees is the renderer's; nothing here says where anything lands."
         }
       ],
-      "text": "This replaces the SVG it was drawn as. It carries the same six lanes, five stages and seventeen nodes, and it is now data rather than markup — so the session codes in it are citations the gate verifies, which is what exchange/diagram-as-data.md §1.2 asked for. The picture the reader sees is the renderer's; nothing here says where anything lands."
+      "text": "This replaces the SVG it was drawn as. It carries the same six lanes and five stages, and the seventeen nodes it was drawn with are now nineteen — the two inquiries the SVG had no way to draw are tiles like any other. It is data rather than markup — so the session codes in it are citations the gate verifies, which is what exchange/diagram-as-data.md §1.2 asked for. The picture the reader sees is the renderer's; nothing here says where anything lands."
     },
     {
       "kind": "prose",
@@ -493,6 +495,82 @@
       "title": "Nodes",
       "blocks": [
         {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "A number is a position on the walk."
+            },
+            {
+              "t": "text",
+              "v": " The ten numbered tiles are what a reader passes through in order — the steps they take, the checkpoints the route turns on, and the shipment that ends it — numbered in the order they are walked rather than the order the lanes are printed, so "
+            },
+            {
+              "t": "literal",
+              "v": "8 · Warehouse Receipt"
+            },
+            {
+              "t": "text",
+              "v": " comes before "
+            },
+            {
+              "t": "literal",
+              "v": "9 · Production Orders"
+            },
+            {
+              "t": "text",
+              "v": " because the components have to be on hand before the order can consume them."
+            }
+          ],
+          "text": "A number is a position on the walk. The ten numbered tiles are what a reader passes through in order — the steps they take, the checkpoints the route turns on, and the shipment that ends it — numbered in the order they are walked rather than the order the lanes are printed, so 8 · Warehouse Receipt comes before 9 · Production Orders because the components have to be on hand before the order can consume them."
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "strong",
+              "v": "Seven tiles carry no number, for three different reasons."
+            },
+            {
+              "t": "text",
+              "v": " Four are setup: what must already be true before the walk starts, and they reach the walk by "
+            },
+            {
+              "t": "literal",
+              "v": "feed"
+            },
+            {
+              "t": "text",
+              "v": " rather than by "
+            },
+            {
+              "t": "literal",
+              "v": "flow"
+            },
+            {
+              "t": "text",
+              "v": ". Three are results the system produced on its own — the two proposals MRP wrote, and the finished item in stock. Two are inquiries, and an inquiry carries no edge at all: it is a detour taken for information, and the walk is the same whether or not you take it. "
+            },
+            {
+              "t": "literal",
+              "v": "exchange/send-atlas-5-reply.md"
+            },
+            {
+              "t": "text",
+              "v": " §5 settled that a reading is not a step, and "
+            },
+            {
+              "t": "literal",
+              "v": "exchange/send-atlas-4-reply.md"
+            },
+            {
+              "t": "text",
+              "v": " §1 records the five categories these tiles fall into."
+            }
+          ],
+          "text": "Seven tiles carry no number, for three different reasons. Four are setup: what must already be true before the walk starts, and they reach the walk by feed rather than by flow. Three are results the system produced on its own — the two proposals MRP wrote, and the finished item in stock. Two are inquiries, and an inquiry carries no edge at all: it is a detour taken for information, and the walk is the same whether or not you take it. exchange/send-atlas-5-reply.md §5 settled that a reading is not a step, and exchange/send-atlas-4-reply.md §1 records the five categories these tiles fall into."
+        },
+        {
           "kind": "heading",
           "level": 3,
           "n": "4.1",
@@ -744,14 +822,14 @@
             {
               "t": "session",
               "code": "tdsls4601m200",
-              "name": "order · Sales Order Intake Workbench"
+              "name": "1 · Sales Order Intake Workbench"
             },
             {
               "t": "text",
               "v": " · stage 2 · step"
             }
           ],
-          "text": "order · Sales Order Intake Workbench (tdsls4601m200) · stage 2 · step"
+          "text": "1 · Sales Order Intake Workbench (tdsls4601m200) · stage 2 · step"
         },
         {
           "kind": "list",
@@ -807,14 +885,14 @@
           "tokens": [
             {
               "t": "strong",
-              "v": "covered · Does on-hand cover it?"
+              "v": "2 · Does on-hand cover it?"
             },
             {
               "t": "text",
               "v": " · stage 2 · decision"
             }
           ],
-          "text": "covered · Does on-hand cover it? · stage 2 · decision"
+          "text": "2 · Does on-hand cover it? · stage 2 · decision"
         },
         {
           "kind": "list",
@@ -847,14 +925,14 @@
           "tokens": [
             {
               "t": "strong",
-              "v": "gate-data · Planning data exists"
+              "v": "3 · Planning data exists"
             },
             {
               "t": "text",
               "v": " · stage 3 · gate"
             }
           ],
-          "text": "gate-data · Planning data exists · stage 3 · gate"
+          "text": "3 · Planning data exists · stage 3 · gate"
         },
         {
           "kind": "list",
@@ -880,14 +958,14 @@
           "tokens": [
             {
               "t": "strong",
-              "v": "gate-horizon · Inside the order horizon"
+              "v": "4 · Inside the order horizon"
             },
             {
               "t": "text",
               "v": " · stage 3 · gate"
             }
           ],
-          "text": "gate-horizon · Inside the order horizon · stage 3 · gate"
+          "text": "4 · Inside the order horizon · stage 3 · gate"
         },
         {
           "kind": "list",
@@ -913,15 +991,92 @@
           "tokens": [
             {
               "t": "session",
+              "code": "cprrp0520m000",
+              "name": "— · Item Order Plan"
+            },
+            {
+              "t": "text",
+              "v": " · stage 3 · read"
+            }
+          ],
+          "text": "— · Item Order Plan (cprrp0520m000) · stage 3 · read"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "items": [
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Route"
+                },
+                {
+                  "t": "text",
+                  "v": " — "
+                },
+                {
+                  "t": "path",
+                  "route": "Planning ➔ Order Planning ➔ Item Order Plan"
+                }
+              ],
+              "text": "Route — Planning ➔ Order Planning ➔ Item Order Plan"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Does"
+                },
+                {
+                  "t": "text",
+                  "v": " — show what planning holds for one item: demand and forecast against scheduled receipts and planned supply. The two gates beside it are conditions LN evaluates and mostly never announces; this is the screen where a reader sees what they decided"
+                }
+              ],
+              "text": "Does — show what planning holds for one item: demand and forecast against scheduled receipts and planned supply. The two gates beside it are conditions LN evaluates and mostly never announces; this is the screen where a reader sees what they decided"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Do"
+                },
+                {
+                  "t": "text",
+                  "v": " - read the item's plan before the run and again after it, and compare"
+                }
+              ],
+              "text": "Do - read the item's plan before the run and again after it, and compare"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Leaves"
+                },
+                {
+                  "t": "text",
+                  "v": " — nothing. It is a detour for information and the walk is the same whether or not you take it"
+                }
+              ],
+              "text": "Leaves — nothing. It is a detour for information and the walk is the same whether or not you take it"
+            }
+          ]
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
+              "t": "session",
               "code": "cprrp1220m000",
-              "name": "mrp · Generate Order Planning (Item)"
+              "name": "5 · Generate Order Planning (Item)"
             },
             {
               "t": "text",
               "v": " · stage 3 · step"
             }
           ],
-          "text": "mrp · Generate Order Planning (Item) (cprrp1220m000) · stage 3 · step"
+          "text": "5 · Generate Order Planning (Item) (cprrp1220m000) · stage 3 · step"
         },
         {
           "kind": "list",
@@ -1048,14 +1203,14 @@
             {
               "t": "session",
               "code": "cppat1210m000",
-              "name": "transfer · Transfer Order Planning"
+              "name": "6 · Transfer Order Planning"
             },
             {
               "t": "text",
               "v": " · stage 4 · transfer"
             }
           ],
-          "text": "transfer · Transfer Order Planning (cppat1210m000) · stage 4 · transfer"
+          "text": "6 · Transfer Order Planning (cppat1210m000) · stage 4 · transfer"
         },
         {
           "kind": "list",
@@ -1123,14 +1278,14 @@
             {
               "t": "session",
               "code": "tdpur4100m900",
-              "name": "po · Purchase Order"
+              "name": "7 · Purchase Order"
             },
             {
               "t": "text",
               "v": " · stage 5 · real"
             }
           ],
-          "text": "po · Purchase Order (tdpur4100m900) · stage 5 · real"
+          "text": "7 · Purchase Order (tdpur4100m900) · stage 5 · real"
         },
         {
           "kind": "list",
@@ -1190,14 +1345,14 @@
             {
               "t": "session",
               "code": "tisfc0501m000",
-              "name": "prod · Production Orders"
+              "name": "9 · Production Orders"
             },
             {
               "t": "text",
               "v": " · stage 5 · real"
             }
           ],
-          "text": "prod · Production Orders (tisfc0501m000) · stage 5 · real"
+          "text": "9 · Production Orders (tisfc0501m000) · stage 5 · real"
         },
         {
           "kind": "list",
@@ -1261,14 +1416,14 @@
             {
               "t": "session",
               "code": "whinh3512m000",
-              "name": "receive · Warehouse Receipt"
+              "name": "8 · Warehouse Receipt"
             },
             {
               "t": "text",
               "v": " · stage 5 · step"
             }
           ],
-          "text": "receive · Warehouse Receipt (whinh3512m000) · stage 5 · step"
+          "text": "8 · Warehouse Receipt (whinh3512m000) · stage 5 · step"
         },
         {
           "kind": "list",
@@ -1327,6 +1482,83 @@
           "kind": "prose",
           "tokens": [
             {
+              "t": "session",
+              "code": "whwmd4300m000",
+              "name": "— · Inventory 360"
+            },
+            {
+              "t": "text",
+              "v": " · stage 2 · read"
+            }
+          ],
+          "text": "— · Inventory 360 (whwmd4300m000) · stage 2 · read"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "items": [
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Route"
+                },
+                {
+                  "t": "text",
+                  "v": " — "
+                },
+                {
+                  "t": "path",
+                  "route": "Warehousing ➔ Inventory 360"
+                }
+              ],
+              "text": "Route — Warehousing ➔ Inventory 360"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Does"
+                },
+                {
+                  "t": "text",
+                  "v": " — answer the question the decision beside it asks. On-hand plus on-order for the item, which nothing in the sales order announces"
+                }
+              ],
+              "text": "Does — answer the question the decision beside it asks. On-hand plus on-order for the item, which nothing in the sales order announces"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Do"
+                },
+                {
+                  "t": "text",
+                  "v": " - read on-hand at the shipping warehouse before the order is entered, and write the figure down"
+                }
+              ],
+              "text": "Do - read on-hand at the shipping warehouse before the order is entered, and write the figure down"
+            },
+            {
+              "tokens": [
+                {
+                  "t": "strong",
+                  "v": "Leaves"
+                },
+                {
+                  "t": "text",
+                  "v": " — nothing. It is a detour for information, and the only way to know which branch the route will take before it takes it"
+                }
+              ],
+              "text": "Leaves — nothing. It is a detour for information, and the only way to know which branch the route will take before it takes it"
+            }
+          ]
+        },
+        {
+          "kind": "prose",
+          "tokens": [
+            {
               "t": "strong",
               "v": "stock · Finished item into stock"
             },
@@ -1361,14 +1593,14 @@
           "tokens": [
             {
               "t": "strong",
-              "v": "ship · Advise, pick and ship"
+              "v": "10 · Advise, pick and ship"
             },
             {
               "t": "text",
               "v": " · stage 5 · terminal"
             }
           ],
-          "text": "ship · Advise, pick and ship · stage 5 · terminal"
+          "text": "10 · Advise, pick and ship · stage 5 · terminal"
         },
         {
           "kind": "list",
@@ -1419,10 +1651,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "order"
+                      "v": "1"
                     }
                   ],
-                  "text": "order"
+                  "text": "1"
                 },
                 {
                   "tokens": [
@@ -1459,10 +1691,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "mrp"
+                      "v": "5"
                     }
                   ],
-                  "text": "mrp"
+                  "text": "5"
                 },
                 {
                   "tokens": [
@@ -1499,10 +1731,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "gate-data"
+                      "v": "3"
                     }
                   ],
-                  "text": "gate-data"
+                  "text": "3"
                 },
                 {
                   "tokens": [
@@ -1539,10 +1771,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "transfer"
+                      "v": "6"
                     }
                   ],
-                  "text": "transfer"
+                  "text": "6"
                 },
                 {
                   "tokens": [
@@ -1570,19 +1802,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "order"
+                      "v": "1"
                     }
                   ],
-                  "text": "order"
+                  "text": "1"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "covered"
+                      "v": "2"
                     }
                   ],
-                  "text": "covered"
+                  "text": "2"
                 },
                 {
                   "tokens": [
@@ -1610,19 +1842,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "covered"
+                      "v": "2"
                     }
                   ],
-                  "text": "covered"
+                  "text": "2"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "ship"
+                      "v": "10"
                     }
                   ],
-                  "text": "ship"
+                  "text": "10"
                 },
                 {
                   "tokens": [
@@ -1650,19 +1882,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "covered"
+                      "v": "2"
                     }
                   ],
-                  "text": "covered"
+                  "text": "2"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "gate-data"
+                      "v": "3"
                     }
                   ],
-                  "text": "gate-data"
+                  "text": "3"
                 },
                 {
                   "tokens": [
@@ -1690,59 +1922,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "gate-data"
+                      "v": "3"
                     }
                   ],
-                  "text": "gate-data"
+                  "text": "3"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "gate-horizon"
+                      "v": "4"
                     }
                   ],
-                  "text": "gate-horizon"
-                },
-                {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "flow"
-                    }
-                  ],
-                  "text": "flow"
-                },
-                {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "—"
-                    }
-                  ],
-                  "text": "—"
-                }
-              ]
-            },
-            {
-              "cells": [
-                {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "gate-horizon"
-                    }
-                  ],
-                  "text": "gate-horizon"
-                },
-                {
-                  "tokens": [
-                    {
-                      "t": "text",
-                      "v": "mrp"
-                    }
-                  ],
-                  "text": "mrp"
+                  "text": "4"
                 },
                 {
                   "tokens": [
@@ -1770,10 +1962,50 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "mrp"
+                      "v": "4"
                     }
                   ],
-                  "text": "mrp"
+                  "text": "4"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "5"
+                    }
+                  ],
+                  "text": "5"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "flow"
+                    }
+                  ],
+                  "text": "flow"
+                },
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "—"
+                    }
+                  ],
+                  "text": "—"
+                }
+              ]
+            },
+            {
+              "cells": [
+                {
+                  "tokens": [
+                    {
+                      "t": "text",
+                      "v": "5"
+                    }
+                  ],
+                  "text": "5"
                 },
                 {
                   "tokens": [
@@ -1810,10 +2042,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "mrp"
+                      "v": "5"
                     }
                   ],
-                  "text": "mrp"
+                  "text": "5"
                 },
                 {
                   "tokens": [
@@ -1859,10 +2091,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "transfer"
+                      "v": "6"
                     }
                   ],
-                  "text": "transfer"
+                  "text": "6"
                 },
                 {
                   "tokens": [
@@ -1899,10 +2131,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "transfer"
+                      "v": "6"
                     }
                   ],
-                  "text": "transfer"
+                  "text": "6"
                 },
                 {
                   "tokens": [
@@ -1930,19 +2162,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "transfer"
+                      "v": "6"
                     }
                   ],
-                  "text": "transfer"
+                  "text": "6"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "po"
+                      "v": "7"
                     }
                   ],
-                  "text": "po"
+                  "text": "7"
                 },
                 {
                   "tokens": [
@@ -1970,19 +2202,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "transfer"
+                      "v": "6"
                     }
                   ],
-                  "text": "transfer"
+                  "text": "6"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "prod"
+                      "v": "9"
                     }
                   ],
-                  "text": "prod"
+                  "text": "9"
                 },
                 {
                   "tokens": [
@@ -2010,19 +2242,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "po"
+                      "v": "7"
                     }
                   ],
-                  "text": "po"
+                  "text": "7"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "receive"
+                      "v": "8"
                     }
                   ],
-                  "text": "receive"
+                  "text": "8"
                 },
                 {
                   "tokens": [
@@ -2050,19 +2282,19 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "receive"
+                      "v": "8"
                     }
                   ],
-                  "text": "receive"
+                  "text": "8"
                 },
                 {
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "prod"
+                      "v": "9"
                     }
                   ],
-                  "text": "prod"
+                  "text": "9"
                 },
                 {
                   "tokens": [
@@ -2090,10 +2322,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "prod"
+                      "v": "9"
                     }
                   ],
-                  "text": "prod"
+                  "text": "9"
                 },
                 {
                   "tokens": [
@@ -2139,10 +2371,10 @@
                   "tokens": [
                     {
                       "t": "text",
-                      "v": "ship"
+                      "v": "10"
                     }
                   ],
-                  "text": "ship"
+                  "text": "10"
                 },
                 {
                   "tokens": [
@@ -2458,12 +2690,13 @@
         }
       },
       {
-        "id": "order",
+        "id": "1",
         "session": "Sales Order Intake Workbench",
         "lane": "Sales",
         "stage": 2,
         "kind": "step",
         "code": "tdsls4601m200",
+        "n": 1,
         "route": {
           "tokens": [
             {
@@ -2504,11 +2737,12 @@
         }
       },
       {
-        "id": "covered",
+        "id": "2",
         "session": "Does on-hand cover it?",
         "lane": "Sales",
         "stage": 2,
         "kind": "decision",
+        "n": 2,
         "does": {
           "tokens": [
             {
@@ -2520,11 +2754,12 @@
         }
       },
       {
-        "id": "gate-data",
+        "id": "3",
         "session": "Planning data exists",
         "lane": "Enterprise Planning",
         "stage": 3,
         "kind": "gate",
+        "n": 3,
         "does": {
           "tokens": [
             {
@@ -2536,11 +2771,12 @@
         }
       },
       {
-        "id": "gate-horizon",
+        "id": "4",
         "session": "Inside the order horizon",
         "lane": "Enterprise Planning",
         "stage": 3,
         "kind": "gate",
+        "n": 4,
         "does": {
           "tokens": [
             {
@@ -2552,12 +2788,68 @@
         }
       },
       {
-        "id": "mrp",
+        "id": "read-cprrp0520m000",
+        "session": "Item Order Plan",
+        "lane": "Enterprise Planning",
+        "stage": 3,
+        "kind": "read",
+        "code": "cprrp0520m000",
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Planning ➔ Order Planning ➔ Item Order Plan"
+            }
+          ],
+          "text": "Planning ➔ Order Planning ➔ Item Order Plan"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "show what planning holds for one item: demand and forecast against scheduled receipts and planned supply. The two gates beside it are conditions LN evaluates and mostly never announces; this is the screen where a reader sees what they decided"
+            }
+          ],
+          "text": "show what planning holds for one item: demand and forecast against scheduled receipts and planned supply. The two gates beside it are conditions LN evaluates and mostly never announces; this is the screen where a reader sees what they decided"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "read the item's plan before the run and again after it, and compare"
+              }
+            ],
+            "text": "read the item's plan before the run and again after it, and compare"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "nothing. It is a detour for information and the walk is the same whether or not you take it"
+            }
+          ],
+          "text": "nothing. It is a detour for information and the walk is the same whether or not you take it"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read the item's plan before the run and again after it, and compare"
+            }
+          ],
+          "text": "read the item's plan before the run and again after it, and compare"
+        }
+      },
+      {
+        "id": "5",
         "session": "Generate Order Planning (Item)",
         "lane": "Enterprise Planning",
         "stage": 3,
         "kind": "step",
         "code": "cprrp1220m000",
+        "n": 5,
         "route": {
           "tokens": [
             {
@@ -2642,12 +2934,13 @@
         }
       },
       {
-        "id": "transfer",
+        "id": "6",
         "session": "Transfer Order Planning",
         "lane": "Enterprise Planning",
         "stage": 4,
         "kind": "transfer",
         "code": "cppat1210m000",
+        "n": 6,
         "route": {
           "tokens": [
             {
@@ -2692,12 +2985,13 @@
         }
       },
       {
-        "id": "po",
+        "id": "7",
         "session": "Purchase Order",
         "lane": "Procurement",
         "stage": 5,
         "kind": "real",
         "code": "tdpur4100m900",
+        "n": 7,
         "route": {
           "tokens": [
             {
@@ -2738,12 +3032,13 @@
         }
       },
       {
-        "id": "prod",
+        "id": "9",
         "session": "Production Orders",
         "lane": "Manufacturing",
         "stage": 5,
         "kind": "real",
         "code": "tisfc0501m000",
+        "n": 9,
         "route": {
           "tokens": [
             {
@@ -2784,12 +3079,13 @@
         }
       },
       {
-        "id": "receive",
+        "id": "8",
         "session": "Warehouse Receipt",
         "lane": "Warehousing",
         "stage": 5,
         "kind": "step",
         "code": "whinh3512m000",
+        "n": 8,
         "route": {
           "tokens": [
             {
@@ -2838,6 +3134,61 @@
         }
       },
       {
+        "id": "read-whwmd4300m000",
+        "session": "Inventory 360",
+        "lane": "Warehousing",
+        "stage": 2,
+        "kind": "read",
+        "code": "whwmd4300m000",
+        "route": {
+          "tokens": [
+            {
+              "t": "path",
+              "route": "Warehousing ➔ Inventory 360"
+            }
+          ],
+          "text": "Warehousing ➔ Inventory 360"
+        },
+        "does": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "answer the question the decision beside it asks. On-hand plus on-order for the item, which nothing in the sales order announces"
+            }
+          ],
+          "text": "answer the question the decision beside it asks. On-hand plus on-order for the item, which nothing in the sales order announces"
+        },
+        "steps": [
+          {
+            "tokens": [
+              {
+                "t": "text",
+                "v": "read on-hand at the shipping warehouse before the order is entered, and write the figure down"
+              }
+            ],
+            "text": "read on-hand at the shipping warehouse before the order is entered, and write the figure down"
+          }
+        ],
+        "leaves": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "nothing. It is a detour for information, and the only way to know which branch the route will take before it takes it"
+            }
+          ],
+          "text": "nothing. It is a detour for information, and the only way to know which branch the route will take before it takes it"
+        },
+        "do": {
+          "tokens": [
+            {
+              "t": "text",
+              "v": "read on-hand at the shipping warehouse before the order is entered, and write the figure down"
+            }
+          ],
+          "text": "read on-hand at the shipping warehouse before the order is entered, and write the figure down"
+        }
+      },
+      {
         "id": "stock",
         "session": "Finished item into stock",
         "lane": "Warehousing",
@@ -2854,11 +3205,12 @@
         }
       },
       {
-        "id": "ship",
+        "id": "10",
         "session": "Advise, pick and ship",
         "lane": "Warehousing",
         "stage": 5,
         "kind": "terminal",
+        "n": 10,
         "does": {
           "tokens": [
             {
@@ -2873,7 +3225,7 @@
     "edges": [
       {
         "from": "items",
-        "to": "order",
+        "to": "1",
         "kind": "feed",
         "label": {
           "tokens": [
@@ -2887,7 +3239,7 @@
       },
       {
         "from": "bom",
-        "to": "mrp",
+        "to": "5",
         "kind": "feed",
         "label": {
           "tokens": [
@@ -2901,7 +3253,7 @@
       },
       {
         "from": "cluster",
-        "to": "gate-data",
+        "to": "3",
         "kind": "feed",
         "label": {
           "tokens": [
@@ -2915,7 +3267,7 @@
       },
       {
         "from": "buyfrom",
-        "to": "transfer",
+        "to": "6",
         "kind": "feed",
         "label": {
           "tokens": [
@@ -2928,13 +3280,13 @@
         }
       },
       {
-        "from": "order",
-        "to": "covered",
+        "from": "1",
+        "to": "2",
         "kind": "flow"
       },
       {
-        "from": "covered",
-        "to": "ship",
+        "from": "2",
+        "to": "10",
         "kind": "branch",
         "skips": [
           3,
@@ -2951,8 +3303,8 @@
         }
       },
       {
-        "from": "covered",
-        "to": "gate-data",
+        "from": "2",
+        "to": "3",
         "kind": "branch",
         "label": {
           "tokens": [
@@ -2965,38 +3317,38 @@
         }
       },
       {
-        "from": "gate-data",
-        "to": "gate-horizon",
+        "from": "3",
+        "to": "4",
         "kind": "flow"
       },
       {
-        "from": "gate-horizon",
-        "to": "mrp",
+        "from": "4",
+        "to": "5",
         "kind": "flow"
       },
       {
-        "from": "mrp",
+        "from": "5",
         "to": "planned-prod",
         "kind": "flow"
       },
       {
-        "from": "mrp",
+        "from": "5",
         "to": "planned-purch",
         "kind": "flow"
       },
       {
         "from": "planned-prod",
-        "to": "transfer",
+        "to": "6",
         "kind": "flow"
       },
       {
         "from": "planned-purch",
-        "to": "transfer",
+        "to": "6",
         "kind": "flow"
       },
       {
-        "from": "transfer",
-        "to": "po",
+        "from": "6",
+        "to": "7",
         "kind": "branch",
         "label": {
           "tokens": [
@@ -3009,8 +3361,8 @@
         }
       },
       {
-        "from": "transfer",
-        "to": "prod",
+        "from": "6",
+        "to": "9",
         "kind": "branch",
         "label": {
           "tokens": [
@@ -3023,8 +3375,8 @@
         }
       },
       {
-        "from": "po",
-        "to": "receive",
+        "from": "7",
+        "to": "8",
         "kind": "flow",
         "label": {
           "tokens": [
@@ -3037,8 +3389,8 @@
         }
       },
       {
-        "from": "receive",
-        "to": "prod",
+        "from": "8",
+        "to": "9",
         "kind": "feed",
         "label": {
           "tokens": [
@@ -3051,13 +3403,13 @@
         }
       },
       {
-        "from": "prod",
+        "from": "9",
         "to": "stock",
         "kind": "flow"
       },
       {
         "from": "stock",
-        "to": "ship",
+        "to": "10",
         "kind": "flow"
       }
     ],

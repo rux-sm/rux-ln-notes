@@ -1205,11 +1205,11 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <div class="ln-tag-row">
             <span class="rux--tag rux--tag--gray"><span class="rux--tag__label">Reference</span></span>
             <span class="rux--tag rux--tag--teal"><span class="rux--tag__label">Draft</span></span>
-            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-11</span></span>
+            <span class="rux--tag rux--tag--outline"><span class="rux--tag__label">Updated 2026-09-12</span></span>
             <span class="rux--tag rux--tag--magenta" title="1 open issue recorded against this document"><span class="rux--tag__label">1 open</span></span>
           </div>
           <p class="ln-prose-measure"><strong>The shape of the whole chain, in one screen.</strong> Six module lanes, five stages, master data to a confirmed shipment. Ten minutes, and it is the first thing to read: every guide in this library is one route across it.</p>
-          <p class="ln-prose-measure"><strong>This replaces the SVG it was drawn as.</strong> It carries the same six lanes, five stages and seventeen nodes, and it is now data rather than markup — so the session codes in it are citations the gate verifies, which is what <span class="ln-t-exact">exchange/diagram-as-data.md</span> §1.2 asked for. The picture the reader sees is the renderer&#39;s; nothing here says where anything lands.</p>
+          <p class="ln-prose-measure"><strong>This replaces the SVG it was drawn as.</strong> It carries the same six lanes and five stages, and the seventeen nodes it was drawn with are now nineteen — the two inquiries the SVG had no way to draw are tiles like any other. It is data rather than markup — so the session codes in it are citations the gate verifies, which is what <span class="ln-t-exact">exchange/diagram-as-data.md</span> §1.2 asked for. The picture the reader sees is the renderer&#39;s; nothing here says where anything lands.</p>
           <p class="ln-prose-measure"><strong>Level 2 is `demand-to-shipment-session-map.md`</strong>, which starts at sales demand and names every session with its route and action. This one is the shape; that one is the detail.</p>
         </div>
         <figure class="rux--tile ln-dg" style="--dg-cols:6">
@@ -1300,9 +1300,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:3;grid-row:3">
               <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Sales Order Intake Workbench</span><code class="ln-dg-node-code">tdsls4601m200</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
+                <summary><span class="ln-dg-node-n">1</span><span class="ln-dg-node-name">Sales Order Intake Workbench</span><code class="ln-dg-node-code">tdsls4601m200</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Sales Order Intake Workbench</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">1</span><span class="ln-dg-detail-name">Sales Order Intake Workbench</span>
                     <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">tdsls4601m200</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Sales</span><span class="sep">➔</span><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></p>
@@ -1321,16 +1321,16 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                 </div>
               </details>
               <details class="ln-dg-node ln-dg-node--decision ln-dg-cat--check" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Does on-hand cover it?</span><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span></span></summary>
+                <summary><span class="ln-dg-node-n">2</span><span class="ln-dg-node-name">Does on-hand cover it?</span><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span>10 · 3</span></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Does on-hand cover it?</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">2</span><span class="ln-dg-detail-name">Does on-hand cover it?</span>
                     <span class="ln-dg-kind">Checkpoint</span><span class="ln-dg-kind-fine">decision</span></p>
                   
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Does</span>decide the whole route. On-hand plus on-order against the demand, and nothing announces the answer</p>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>Advise, pick and ship — YES, and no planned order is generated · Planning data exists — NO</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>10 — YES, and no planned order is generated · 3 — NO</p>
                   </div>
                   
                 </div>
@@ -1338,9 +1338,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:4;grid-row:4">
               <details class="ln-dg-node ln-dg-node--gate ln-dg-cat--check" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Planning data exists</span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
+                <summary><span class="ln-dg-node-n">3</span><span class="ln-dg-node-name">Planning data exists</span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Planning data exists</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">3</span><span class="ln-dg-detail-name">Planning data exists</span>
                     <span class="ln-dg-kind">Checkpoint</span><span class="ln-dg-kind-fine">gate</span></p>
                   
                   <div class="ln-dg-zone">
@@ -1353,9 +1353,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                 </div>
               </details>
               <details class="ln-dg-node ln-dg-node--gate ln-dg-cat--check" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Inside the order horizon</span></summary>
+                <summary><span class="ln-dg-node-n">4</span><span class="ln-dg-node-name">Inside the order horizon</span></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Inside the order horizon</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">4</span><span class="ln-dg-detail-name">Inside the order horizon</span>
                     <span class="ln-dg-kind">Checkpoint</span><span class="ln-dg-kind-fine">gate</span></p>
                   
                   <div class="ln-dg-zone">
@@ -1365,10 +1365,31 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   
                 </div>
               </details>
-              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Generate Order Planning (Item)</span><code class="ln-dg-node-code">cprrp1220m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
+              <details class="ln-dg-node ln-dg-node--read ln-dg-cat--info" name="ln-dg-node">
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Item Order Plan</span><code class="ln-dg-node-code">cprrp0520m000</code></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Generate Order Planning (Item)</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Item Order Plan</span>
+                    <span class="ln-dg-kind">Inquiry</span><span class="ln-dg-kind-fine">read</span><code class="ln-dg-detail-code">cprrp0520m000</code></p>
+                  <div class="ln-dg-zone">
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Planning</span><span class="sep">➔</span><span>Order Planning</span><span class="sep">➔</span><span class="dest">Item Order Plan</span></span></p>
+                  </div>
+                  <div class="ln-dg-zone">
+                  <p class="ln-dg-field"><span class="ln-dg-key">Does</span>show what planning holds for one item: demand and forecast against scheduled receipts and planned supply. The two gates beside it are conditions LN evaluates and mostly never announces; this is the screen where a reader sees what they decided</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
+                    <ol class="rux--list--ordered ln-dg-steps">
+                      <li class="rux--list__item">read the item&#39;s plan before the run and again after it, and compare</li>
+                    </ol>
+                  </div>
+                  </div>
+                  <div class="ln-dg-zone ln-dg-zone--leaves">
+                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>nothing. It is a detour for information and the walk is the same whether or not you take it</p>
+                  </div>
+                  
+                </div>
+              </details>
+              <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
+                <summary><span class="ln-dg-node-n">5</span><span class="ln-dg-node-name">Generate Order Planning (Item)</span><code class="ln-dg-node-code">cprrp1220m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
+                <div class="ln-dg-detail">
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">5</span><span class="ln-dg-detail-name">Generate Order Planning (Item)</span>
                     <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">cprrp1220m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; reached by drilling in. <strong>Not documented for this release.</strong></p>
@@ -1415,9 +1436,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:5;grid-row:4">
               <details class="ln-dg-node ln-dg-node--transfer ln-dg-cat--step" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Transfer Order Planning</span><code class="ln-dg-node-code">cppat1210m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span></span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
+                <summary><span class="ln-dg-node-n">6</span><span class="ln-dg-node-name">Transfer Order Planning</span><code class="ln-dg-node-code">cppat1210m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Splits</span>7 · 9</span><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Transfer Order Planning</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">6</span><span class="ln-dg-detail-name">Transfer Order Planning</span>
                     <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">transfer</span><code class="ln-dg-detail-code">cppat1210m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Planning</span><span class="sep">➔</span><span>Plan Transfer</span><span class="sep">➔</span><span class="dest">Transfer Order Planning</span></span></p>
@@ -1430,7 +1451,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>Purchase Order — supply source Purchase · Production Orders — supply source Job Shop</p><p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Item - Purchase — without it the purchase half refuses</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Splits</span>7 — supply source Purchase · 9 — supply source Job Shop</p><p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Item - Purchase — without it the purchase half refuses</p>
                   </div>
                   
                 </div>
@@ -1438,9 +1459,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:6;grid-row:5">
               <details class="ln-dg-node ln-dg-node--real ln-dg-cat--result" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Purchase Order</span><code class="ln-dg-node-code">tdpur4100m900</code></summary>
+                <summary><span class="ln-dg-node-n">7</span><span class="ln-dg-node-name">Purchase Order</span><code class="ln-dg-node-code">tdpur4100m900</code></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Purchase Order</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">7</span><span class="ln-dg-detail-name">Purchase Order</span>
                     <span class="ln-dg-kind">Result</span><span class="ln-dg-kind-fine">real</span><code class="ln-dg-detail-code">tdpur4100m900</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; drill in from the purchase order list</p>
@@ -1459,9 +1480,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:6;grid-row:6">
               <details class="ln-dg-node ln-dg-node--real ln-dg-cat--result" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Production Orders</span><code class="ln-dg-node-code">tisfc0501m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span></span></summary>
+                <summary><span class="ln-dg-node-n">9</span><span class="ln-dg-node-name">Production Orders</span><code class="ln-dg-node-code">tisfc0501m000</code><span class="ln-dg-node-link"><span class="ln-dg-key">Needs</span>8</span></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Production Orders</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">9</span><span class="ln-dg-detail-name">Production Orders</span>
                     <span class="ln-dg-kind">Result</span><span class="ln-dg-kind-fine">real</span><code class="ln-dg-detail-code">tisfc0501m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Manufacturing</span><span class="sep">➔</span><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Orders</span></span></p>
@@ -1474,7 +1495,30 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                   </div>
                   </div>
                   <div class="ln-dg-zone ln-dg-zone--leaves">
-                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>Warehouse Receipt — components on hand first</p>
+                  <p class="ln-dg-field"><span class="ln-dg-key">Needs</span>8 — components on hand first</p>
+                  </div>
+                  
+                </div>
+              </details>
+            </div>
+            <div class="ln-dg-cell" style="grid-column:3;grid-row:7">
+              <details class="ln-dg-node ln-dg-node--read ln-dg-cat--info" name="ln-dg-node">
+                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Inventory 360</span><code class="ln-dg-node-code">whwmd4300m000</code></summary>
+                <div class="ln-dg-detail">
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Inventory 360</span>
+                    <span class="ln-dg-kind">Inquiry</span><span class="ln-dg-kind-fine">read</span><code class="ln-dg-detail-code">whwmd4300m000</code></p>
+                  <div class="ln-dg-zone">
+                  <p class="ln-dg-field"><span class="ln-dg-key">Route</span><span class="ln-t-route"><span>Warehousing</span><span class="sep">➔</span><span class="dest">Inventory 360</span></span></p>
+                  </div>
+                  <div class="ln-dg-zone">
+                  <p class="ln-dg-field"><span class="ln-dg-key">Does</span>answer the question the decision beside it asks. On-hand plus on-order for the item, which nothing in the sales order announces</p><div class="ln-dg-field"><span class="ln-dg-key">Do</span>
+                    <ol class="rux--list--ordered ln-dg-steps">
+                      <li class="rux--list__item">read on-hand at the shipping warehouse before the order is entered, and write the figure down</li>
+                    </ol>
+                  </div>
+                  </div>
+                  <div class="ln-dg-zone ln-dg-zone--leaves">
+                  <p class="ln-dg-field"><span class="ln-dg-key">Leaves</span>nothing. It is a detour for information, and the only way to know which branch the route will take before it takes it</p>
                   </div>
                   
                 </div>
@@ -1482,9 +1526,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             </div>
             <div class="ln-dg-cell" style="grid-column:6;grid-row:7">
               <details class="ln-dg-node ln-dg-node--step ln-dg-cat--step" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Warehouse Receipt</span><code class="ln-dg-node-code">whinh3512m000</code></summary>
+                <summary><span class="ln-dg-node-n">8</span><span class="ln-dg-node-name">Warehouse Receipt</span><code class="ln-dg-node-code">whinh3512m000</code></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Warehouse Receipt</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">8</span><span class="ln-dg-detail-name">Warehouse Receipt</span>
                     <span class="ln-dg-kind">Step</span><span class="ln-dg-kind-fine">step</span><code class="ln-dg-detail-code">whinh3512m000</code></p>
                   <div class="ln-dg-zone">
                   <p class="ln-dg-field"><span class="ln-dg-key">Route</span>no menu entry; opens from <strong>Actions ➔ Receive</strong> on the inbound order</p>
@@ -1514,9 +1558,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
                 </div>
               </details>
               <details class="ln-dg-node ln-dg-node--terminal ln-dg-cat--result" name="ln-dg-node">
-                <summary><span class="ln-dg-node-n">·</span><span class="ln-dg-node-name">Advise, pick and ship</span></summary>
+                <summary><span class="ln-dg-node-n">10</span><span class="ln-dg-node-name">Advise, pick and ship</span></summary>
                 <div class="ln-dg-detail">
-                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">·</span><span class="ln-dg-detail-name">Advise, pick and ship</span>
+                  <p class="ln-dg-detail-head"><span class="ln-dg-detail-n">10</span><span class="ln-dg-detail-name">Advise, pick and ship</span>
                     <span class="ln-dg-kind">Result</span><span class="ln-dg-kind-fine">terminal</span></p>
                   
                   <div class="ln-dg-zone">
@@ -1528,15 +1572,16 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
               </details>
             </div>
           </div>
-        <p class="ln-dg-note">Reading order runs left to right and down the lanes.</p>
+        <p class="ln-dg-note">Reading order runs left to right and down the numbers.</p>
         <details class="ln-dg-note ln-dg-off"><summary>9 edges run against it</summary>
-          <p><span class="ln-dg-edge"><span class="ln-dg-ends">Items and groups → Sales Order Intake Workbench</span>, prerequisite for everything right of it <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Bill of material and routing → Generate Order Planning (Item)</span>, what MRP explodes <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Planning cluster row on the item → Planning data exists</span>, what the gate looks for <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Item - Purchase → Transfer Order Planning</span>, without it the purchase half refuses <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Advise, pick and ship</span>, YES, and no planned order is generated <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Does on-hand cover it? → Planning data exists</span>, NO <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Purchase Order</span>, supply source Purchase <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Transfer Order Planning → Production Orders</span>, supply source Job Shop <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Warehouse Receipt → Production Orders</span>, components on hand first <em>(feed)</em></span></p>
+          <p><span class="ln-dg-edge"><span class="ln-dg-ends">Items and groups → 1</span>, prerequisite for everything right of it <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Bill of material and routing → 5</span>, what MRP explodes <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Planning cluster row on the item → 3</span>, what the gate looks for <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">Item - Purchase → 6</span>, without it the purchase half refuses <em>(feed)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">2 → 10</span>, YES, and no planned order is generated <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">2 → 3</span>, NO <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">6 → 7</span>, supply source Purchase <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">6 → 9</span>, supply source Job Shop <em>(branch)</em></span> · <span class="ln-dg-edge"><span class="ln-dg-ends">8 → 9</span>, components on hand first <em>(feed)</em></span></p>
         </details>
         <figcaption class="ln-dg-legend">
           <span class="ln-dg-legend-label">Key</span>
           <ul class="ln-dg-legend-list">
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--step"><span class="ln-dg-node-name">Step</span></span></li>
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--config"><span class="ln-dg-node-name">Setup</span></span></li>
+            <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--info"><span class="ln-dg-node-name">Inquiry</span></span></li>
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--result"><span class="ln-dg-node-name">Result</span></span></li>
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--check"><span class="ln-dg-node-name">Checkpoint</span></span><span class="ln-dg-legend-gloss">decides on its own, and can stop without saying so</span></li>
           </ul>
@@ -1585,6 +1630,8 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
         </section>
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="t-4">
           <h2 id="t-4">4. Nodes</h2>
+          <p class="ln-prose-measure"><strong>A number is a position on the walk.</strong> The ten numbered tiles are what a reader passes through in order — the steps they take, the checkpoints the route turns on, and the shipment that ends it — numbered in the order they are walked rather than the order the lanes are printed, so <span class="ln-t-exact">8 · Warehouse Receipt</span> comes before <span class="ln-t-exact">9 · Production Orders</span> because the components have to be on hand before the order can consume them.</p>
+          <p class="ln-prose-measure"><strong>Seven tiles carry no number, for three different reasons.</strong> Four are setup: what must already be true before the walk starts, and they reach the walk by <span class="ln-t-exact">feed</span> rather than by <span class="ln-t-exact">flow</span>. Three are results the system produced on its own — the two proposals MRP wrote, and the finished item in stock. Two are inquiries, and an inquiry carries no edge at all: it is a detour taken for information, and the walk is the same whether or not you take it. <span class="ln-t-exact">exchange/send-atlas-5-reply.md</span> §5 settled that a reading is not a step, and <span class="ln-t-exact">exchange/send-atlas-4-reply.md</span> §1 records the five categories these tiles fall into.</p>
           <h3>4.1 Master Data</h3>
           <p class="ln-prose-measure"><span class="ln-t-named">items · Items and groups</span> <span class="ln-t-exact">tcibd0501m100</span> · stage 1 · step</p>
           <ul class="rux--list--unordered">
@@ -1607,26 +1654,33 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>Does</strong> — make the item visible to order planning. Without it the item is absent from the plan rather than refused</li>
         </ul>
           <h3>4.2 Sales</h3>
-          <p class="ln-prose-measure"><span class="ln-t-named">order · Sales Order Intake Workbench</span> <span class="ln-t-exact">tdsls4601m200</span> · stage 2 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">1 · Sales Order Intake Workbench</span> <span class="ln-t-exact">tdsls4601m200</span> · stage 2 · step</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Sales</span><span class="sep">➔</span><span>Orders</span><span class="sep">➔</span><span class="dest">Order Intake Workbench</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — create the demand the rest of the chain answers</li>
           <li class="rux--list__item"><strong>Do</strong> - enter the order and approve it</li>
         </ul>
-          <p class="ln-prose-measure"><strong>covered · Does on-hand cover it?</strong> · stage 2 · decision</p>
+          <p class="ln-prose-measure"><strong>2 · Does on-hand cover it?</strong> · stage 2 · decision</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Does</strong> — decide the whole route. On-hand plus on-order against the demand, and nothing announces the answer</li>
         </ul>
           <h3>4.3 Enterprise Planning</h3>
-          <p class="ln-prose-measure"><strong>gate-data · Planning data exists</strong> · stage 3 · gate</p>
+          <p class="ln-prose-measure"><strong>3 · Planning data exists</strong> · stage 3 · gate</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Does</strong> — decide silently whether planning can see the item and every component beneath it</li>
         </ul>
-          <p class="ln-prose-measure"><strong>gate-horizon · Inside the order horizon</strong> · stage 3 · gate</p>
+          <p class="ln-prose-measure"><strong>4 · Inside the order horizon</strong> · stage 3 · gate</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Does</strong> — decide silently whether the delivery date is near enough to plan. Counted in workdays</li>
         </ul>
-          <p class="ln-prose-measure"><span class="ln-t-named">mrp · Generate Order Planning (Item)</span> <span class="ln-t-exact">cprrp1220m000</span> · stage 3 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">— · Item Order Plan</span> <span class="ln-t-exact">cprrp0520m000</span> · stage 3 · read</p>
+          <ul class="rux--list--unordered">
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Planning</span><span class="sep">➔</span><span>Order Planning</span><span class="sep">➔</span><span class="dest">Item Order Plan</span></span></li>
+          <li class="rux--list__item"><strong>Does</strong> — show what planning holds for one item: demand and forecast against scheduled receipts and planned supply. The two gates beside it are conditions LN evaluates and mostly never announces; this is the screen where a reader sees what they decided</li>
+          <li class="rux--list__item"><strong>Do</strong> - read the item&#39;s plan before the run and again after it, and compare</li>
+          <li class="rux--list__item"><strong>Leaves</strong> — nothing. It is a detour for information and the walk is the same whether or not you take it</li>
+        </ul>
+          <p class="ln-prose-measure"><span class="ln-t-named">5 · Generate Order Planning (Item)</span> <span class="ln-t-exact">cprrp1220m000</span> · stage 3 · step</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; reached by drilling in. <strong>Not documented for this release.</strong></li>
           <li class="rux--list__item"><strong>Does</strong> — net demand against stock and explode the bill of material</li>
@@ -1640,38 +1694,45 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Does</strong> — propose buying the shortfall. Real to nothing outside planning</li>
         </ul>
-          <p class="ln-prose-measure"><span class="ln-t-named">transfer · Transfer Order Planning</span> <span class="ln-t-exact">cppat1210m000</span> · stage 4 · transfer</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">6 · Transfer Order Planning</span> <span class="ln-t-exact">cppat1210m000</span> · stage 4 · transfer</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Planning</span><span class="sep">➔</span><span>Plan Transfer</span><span class="sep">➔</span><span class="dest">Transfer Order Planning</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — translate a proposal into a real order in its owning module. <strong>Planning ends here</strong></li>
           <li class="rux--list__item"><strong>Do</strong> - confirm the planned orders first, then run it once per supply source</li>
         </ul>
           <h3>4.4 Procurement</h3>
-          <p class="ln-prose-measure"><span class="ln-t-named">po · Purchase Order</span> <span class="ln-t-exact">tdpur4100m900</span> · stage 5 · real</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">7 · Purchase Order</span> <span class="ln-t-exact">tdpur4100m900</span> · stage 5 · real</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; drill in from the purchase order list</li>
           <li class="rux--list__item"><strong>Does</strong> — buy the components, and raise the inbound warehousing order on its own</li>
           <li class="rux--list__item"><strong>Do</strong> - read the order the transfer named in its process report</li>
         </ul>
           <h3>4.5 Manufacturing</h3>
-          <p class="ln-prose-measure"><span class="ln-t-named">prod · Production Orders</span> <span class="ln-t-exact">tisfc0501m000</span> · stage 5 · real</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">9 · Production Orders</span> <span class="ln-t-exact">tisfc0501m000</span> · stage 5 · real</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Manufacturing</span><span class="sep">➔</span><span>Job Shop</span><span class="sep">➔</span><span class="dest">Production Orders</span></span></li>
           <li class="rux--list__item"><strong>Does</strong> — build the item: release, issue the components, report complete</li>
           <li class="rux--list__item"><strong>Do</strong> - open the order the transfer created and release it</li>
         </ul>
           <h3>4.6 Warehousing</h3>
-          <p class="ln-prose-measure"><span class="ln-t-named">receive · Warehouse Receipt</span> <span class="ln-t-exact">whinh3512m000</span> · stage 5 · step</p>
+          <p class="ln-prose-measure"><span class="ln-t-named">8 · Warehouse Receipt</span> <span class="ln-t-exact">whinh3512m000</span> · stage 5 · step</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Route</strong> — no menu entry; opens from <strong>Actions ➔ Receive</strong> on the inbound order</li>
           <li class="rux--list__item"><strong>Does</strong> — book the bought components into stock</li>
           <li class="rux--list__item"><strong>Do</strong> - enter the packing-slip reference per line and confirm</li>
         </ul>
+          <p class="ln-prose-measure"><span class="ln-t-named">— · Inventory 360</span> <span class="ln-t-exact">whwmd4300m000</span> · stage 2 · read</p>
+          <ul class="rux--list--unordered">
+          <li class="rux--list__item"><strong>Route</strong> — <span class="ln-t-route"><span>Warehousing</span><span class="sep">➔</span><span class="dest">Inventory 360</span></span></li>
+          <li class="rux--list__item"><strong>Does</strong> — answer the question the decision beside it asks. On-hand plus on-order for the item, which nothing in the sales order announces</li>
+          <li class="rux--list__item"><strong>Do</strong> - read on-hand at the shipping warehouse before the order is entered, and write the figure down</li>
+          <li class="rux--list__item"><strong>Leaves</strong> — nothing. It is a detour for information, and the only way to know which branch the route will take before it takes it</li>
+        </ul>
           <p class="ln-prose-measure"><strong>stock · Finished item into stock</strong> · stage 5 · outcome</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Does</strong> — hold the built item, which is only now sellable</li>
         </ul>
-          <p class="ln-prose-measure"><strong>ship · Advise, pick and ship</strong> · stage 5 · terminal</p>
+          <p class="ln-prose-measure"><strong>10 · Advise, pick and ship</strong> · stage 5 · terminal</p>
           <ul class="rux--list--unordered">
           <li class="rux--list__item"><strong>Does</strong> — take the sales order to a confirmed shipment, with on-hand down by the shipped quantity</li>
         </ul>
@@ -1683,25 +1744,25 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <table class="rux--data-table rux--data-table--md">
             <thead><tr><th scope="col"><div class="rux--table-header-label">From</div></th><th scope="col"><div class="rux--table-header-label">To</div></th><th scope="col"><div class="rux--table-header-label">Kind</div></th><th scope="col"><div class="rux--table-header-label">Label</div></th></tr></thead>
             <tbody>
-          <tr><td>items</td><td>order</td><td>feed</td><td>prerequisite for everything right of it</td></tr>
-          <tr><td>bom</td><td>mrp</td><td>feed</td><td>what MRP explodes</td></tr>
-          <tr><td>cluster</td><td>gate-data</td><td>feed</td><td>what the gate looks for</td></tr>
-          <tr><td>buyfrom</td><td>transfer</td><td>feed</td><td>without it the purchase half refuses</td></tr>
-          <tr><td>order</td><td>covered</td><td>flow</td><td>—</td></tr>
-          <tr><td>covered</td><td>ship</td><td>branch</td><td>SKIPS 3, 4 — YES, and no planned order is generated</td></tr>
-          <tr><td>covered</td><td>gate-data</td><td>branch</td><td>NO</td></tr>
-          <tr><td>gate-data</td><td>gate-horizon</td><td>flow</td><td>—</td></tr>
-          <tr><td>gate-horizon</td><td>mrp</td><td>flow</td><td>—</td></tr>
-          <tr><td>mrp</td><td>planned-prod</td><td>flow</td><td>—</td></tr>
-          <tr><td>mrp</td><td>planned-purch</td><td>flow</td><td>—</td></tr>
-          <tr><td>planned-prod</td><td>transfer</td><td>flow</td><td>—</td></tr>
-          <tr><td>planned-purch</td><td>transfer</td><td>flow</td><td>—</td></tr>
-          <tr><td>transfer</td><td>po</td><td>branch</td><td>supply source Purchase</td></tr>
-          <tr><td>transfer</td><td>prod</td><td>branch</td><td>supply source Job Shop</td></tr>
-          <tr><td>po</td><td>receive</td><td>flow</td><td>the order raises its own inbound</td></tr>
-          <tr><td>receive</td><td>prod</td><td>feed</td><td>components on hand first</td></tr>
-          <tr><td>prod</td><td>stock</td><td>flow</td><td>—</td></tr>
-          <tr><td>stock</td><td>ship</td><td>flow</td><td>—</td></tr>
+          <tr><td>items</td><td>1</td><td>feed</td><td>prerequisite for everything right of it</td></tr>
+          <tr><td>bom</td><td>5</td><td>feed</td><td>what MRP explodes</td></tr>
+          <tr><td>cluster</td><td>3</td><td>feed</td><td>what the gate looks for</td></tr>
+          <tr><td>buyfrom</td><td>6</td><td>feed</td><td>without it the purchase half refuses</td></tr>
+          <tr><td>1</td><td>2</td><td>flow</td><td>—</td></tr>
+          <tr><td>2</td><td>10</td><td>branch</td><td>SKIPS 3, 4 — YES, and no planned order is generated</td></tr>
+          <tr><td>2</td><td>3</td><td>branch</td><td>NO</td></tr>
+          <tr><td>3</td><td>4</td><td>flow</td><td>—</td></tr>
+          <tr><td>4</td><td>5</td><td>flow</td><td>—</td></tr>
+          <tr><td>5</td><td>planned-prod</td><td>flow</td><td>—</td></tr>
+          <tr><td>5</td><td>planned-purch</td><td>flow</td><td>—</td></tr>
+          <tr><td>planned-prod</td><td>6</td><td>flow</td><td>—</td></tr>
+          <tr><td>planned-purch</td><td>6</td><td>flow</td><td>—</td></tr>
+          <tr><td>6</td><td>7</td><td>branch</td><td>supply source Purchase</td></tr>
+          <tr><td>6</td><td>9</td><td>branch</td><td>supply source Job Shop</td></tr>
+          <tr><td>7</td><td>8</td><td>flow</td><td>the order raises its own inbound</td></tr>
+          <tr><td>8</td><td>9</td><td>feed</td><td>components on hand first</td></tr>
+          <tr><td>9</td><td>stock</td><td>flow</td><td>—</td></tr>
+          <tr><td>stock</td><td>10</td><td>flow</td><td>—</td></tr>
             </tbody>
           </table>
         </div>
@@ -1715,7 +1776,7 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
           <li class="rux--list__item"><strong>`the source on file`</strong> — level 2, where the same chain is named session by session.</li>
         </ol>
         </section>
-<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas ab9d6ca · contract 8</p>
+<p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas 63d9d53 · contract 8</p>
       </div>
     </div>
   </div>

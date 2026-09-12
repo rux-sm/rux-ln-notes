@@ -1257,9 +1257,36 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
 .ln-dg-band { align-self: stretch; background: var(--rux-layer-accent-01, #e0e0e0);
   border-inline-end: 2px solid var(--rux-support-error, #da1e28);
   margin-block: -.25rem; margin-inline: -.25rem; }
+/* A LANE NAME WRAPS RATHER THAN SETTING THE COLUMN ALONE. \`Enterprise Planning\`
+   measured 155px against a 183px first column, so one label of six was deciding
+   the width for all of them. Wrapped, the column falls to 134 and the figure
+   from 1138 to about 1089.
+
+   8.5rem IS THE LONGEST UNBREAKABLE WORD PLUS ITS PADDING. \`Manufacturing\` is
+   106px of text and the label carries 28px of padding-inline, so 134px is the
+   floor this column cannot go under -- and \`max-inline-size\` is a BORDER-box
+   limit here, which is the part worth writing down. 7rem was tried first: 112px
+   of box is 84px of content, so \`Manufacturing\` overflowed its cell by 22px and
+   \`Master Data\` wrapped for nothing at 90px. Both were visible only on
+   measurement; the overflow reads as a label drifting toward the tiles.
+
+   At 8.5rem exactly one label wraps, which is the one that was setting the
+   width.
+
+   \`min-content\` WAS THE TIDIER RULE AND IS WRONG. It wraps at the longest word
+   unconditionally, so \`Master Data\` -- 90px, comfortably inside the column
+   \`Manufacturing\` already requires -- would stack for no saving at all. Three
+   labels breaking to buy nothing is worse than one breaking to buy 49px.
+
+   THE NAME IS NOT SHORTENED, AND THAT IS NOT THIS SIDE'S CALL ANYWAY. The lanes
+   are LN's module vocabulary: atlas's session documents carry
+   \`module: Enterprise Planning\` in their frontmatter, so a map calling that lane
+   "Planning" would disagree with every session behind its tiles. Wrapping is
+   presentation; renaming is atlas's field and a memo. */
 .ln-dg-lane { grid-column: 1; font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
-  padding-block-start: 1.1rem; padding-inline: 1rem .75rem; }
+  padding-block-start: 1.1rem; padding-inline: 1rem .75rem;
+  max-inline-size: 8.5rem; }
 .ln-dg-cell { display: flex; flex-direction: column; gap: .5rem; padding-block-start: .5rem; }
 
 /* A NODE IS <details>, so the disclosure needs no script and keyboard and

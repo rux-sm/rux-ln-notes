@@ -1423,7 +1423,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    nothing at all, so nine of the overview's seventeen tiles carried three
    meanings in one appearance. atlas's own guide-json.md §5 rules the axis the
    other way: colour says what to do with a thing, form says what kind of thing
-   it is. DESIGN-diagram-kinds.md is the reasoning; this is the result.
+   it is. docs/diagram.md is the reasoning; this is the result.
 
    A reader at a screen with the map open asks five questions, so there are
    five categories, and THREE INDEPENDENT SIGNALS carry them rather than five
@@ -1716,8 +1716,27 @@ const issuesTag = n => n > 0
   ? `<span class="rux--tag rux--tag--magenta" title="${n} open issue${n === 1 ? '' : 's'} recorded against this document"><span class="rux--tag__label">${n} open</span></span>`
   : '';
 
+// THE DIAGRAM THE HOME PAGE LEADS WITH, settled with rux 2026-09-11. The site is
+// built around one diagram now -- `docs/diagram.md` opens with what it is for --
+// and a reader landing here should meet it before a list of documents. The
+// session map is kept and frozen, so this is named rather than inferred from
+// "the reference that has a diagram", which would match both.
+//
+// IT IS NOT FINISHED AND IT LEADS ANYWAY, which is rux's call. Shipping is one
+// tile, planning has two steps of six nodes, there is no Inquiry on it at all
+// and four branches are drawn where the library knows of more it cannot yet
+// source -- all four are atlas's to author and tracked in
+// `exchange/SEND-ATLAS-5.md`. A map that shows its own shape early is worth more
+// than one that appears when it is complete.
+//
+// ABSENT IS NOT FATAL. If a sync ever stops emitting it the home page loses the
+// figure and keeps everything else, rather than failing the build: a home page
+// is not the place to discover that upstream dropped a document.
+const HOME_DIAGRAM = 'order-to-shipment-overview';
+
 function indexPage(site) {
-  const { guides, exercises, summaries } = site;
+  const { guides, exercises, summaries, references } = site;
+  const home = (references ?? []).find(r => r.id === HOME_DIAGRAM && r.diagram);
   const cards = guides.map(g => `        <div class="rux--css-grid-column rux--sm:col-span-4 rux--md:col-span-4 rux--lg:col-span-8 ln-card-cell">
           <!-- NOT \`card--clickable\`. The captured clickable card is
                role="button" with tabindex 0, which is right for a card that
@@ -1800,6 +1819,17 @@ function indexPage(site) {
           </div>
         </div>`).join('\n');
 
+  const lead = home ? `
+        <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-map">
+          <h2 id="h-map">${esc(home.title)}</h2>
+          <p class="rux--type-body-02">Every path to a shipment and the planning that
+             decides which one runs. Open a tile for its route, what it does and the
+             guide that walks it. <a href="guides/${esc(home.id)}.html">Read the whole
+             document</a>.</p>
+          ${diagramFigure(home.diagram)}
+        </section>
+` : '';
+
   const body = `        <div class="rux--stack-vertical rux--stack-scale-5">
           <h1>Rux LN Notes</h1>
           <p class="rux--type-body-02">Procedures walked against a live Infor LN
@@ -1808,7 +1838,7 @@ function indexPage(site) {
              keeps the procedure; each exercise asks you to predict, observe
              and report back.</p>
         </div>
-
+${lead}
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-guides">
           <h2 id="h-guides">Scenario guides</h2>
           <!-- THE SPANS ARE PER-BREAKPOINT AND ALL THREE ARE REQUIRED: a bare
@@ -1854,7 +1884,8 @@ ${summaryCards}
           </div>
         </section>`;
 
-  return page({ title: 'Rux LN Notes', site, activeId: null, body, depth: 0 });
+  return page({ title: 'Rux LN Notes', site, activeId: null, body, depth: 0,
+    scripts: home ? ['js/diagram.js'] : [] });
 }
 
 // A REVIEW AND A SUMMARY ARE ONE PAGE BUILDER WITH TWO SLOT LISTS. They share

@@ -1,6 +1,6 @@
 // tools/specimen-kinds.mjs -- the kind vocabulary, three ways, side by side.
 //
-// WHY IT EXISTS. DESIGN-diagram-kinds.md proposes replacing five unkeyed hues
+// WHY IT EXISTS. docs/diagram.md proposes replacing five unkeyed hues
 // with three forms and one accent, and a plan about how something LOOKS cannot
 // be settled by reading it. This draws the alternatives against the real
 // diagrams so the choice is made by looking.
@@ -172,7 +172,7 @@ const NOT_A_SESSION = '.ln-dg-node:not(:has(.ln-dg-node-code))';
 // and it scored the overview at 4 looks and 14 colliding where the real
 // measurement on 2026-09-09 was 6 and 9. A reconstruction that misreports the
 // thing it reconstructs is worse than no reconstruction. The before-and-after
-// figures are in DESIGN-diagram-kinds.md, taken when both designs existed,
+// figures are in docs/diagram.md, taken when both designs existed,
 // which is the only time they could be taken honestly.
 //
 // SO WHAT IS LEFT IS A REGRESSION VIEW. One variant, no overrides, the built
@@ -200,7 +200,7 @@ const VARIANTS = [
   // 2026-09-11 -- max-content per column against a 12rem and a 10rem cap -- and
   // max-content shipped the same day, at which point variant A stopped being an
   // alternative and became a second copy of the baseline. What they measured is
-  // in DESIGN-diagram-kinds.md §10; what stays live is the column and scroll
+  // in docs/diagram.md §10; what stays live is the column and scroll
   // figures in the readout, taken on the shipped page every run.
   // THE THREE LANE VARIANTS ARE GONE, AND THAT IS THE SAME RULE §5.1 RECORDS.
   // They were drawn on 2026-09-11 -- a rule per lane, a sticky lane name, and
@@ -208,13 +208,13 @@ const VARIANTS = [
   // being an alternative to this page's baseline and became a second copy of it,
   // which is exactly how B, C and D quietly stopped meaning anything while still
   // printing numbers. So they are deleted rather than kept for reference: what
-  // they measured is in DESIGN-diagram-kinds.md §8, and what remains live is the
+  // they measured is in docs/diagram.md §8, and what remains live is the
   // lane readout below, taken on the shipped page every run.
 ];
 
 // WHAT THE READOUT COUNTS, AND THE ONE IT GOT WRONG FIRST. It began with a
 // single `collisions` figure -- tiles sharing an appearance with a tile of a
-// different KIND -- copied from DESIGN-diagram-kinds.md §5 item 1. Run against
+// different KIND -- copied from docs/diagram.md §5 item 1. Run against
 // the variants it scored B at 17 of 17 colliding, worse than today's 9, which
 // is nonsense: B deliberately merges nine kinds into three forms, so measuring
 // it by kind assumes the very thing A and C assert and B denies. A metric that

@@ -14,7 +14,7 @@ Nothing else here is checked by anything.
 **The diagram is one document: `order-to-shipment-overview`.** Every path and
 branch that leads to a shipment, and the planning that decides which one runs,
 with the configuration, results and status checks around it. Settled with rux
-2026-09-11 and written into `docs/DESIGN-diagram-kinds.md`.
+2026-09-11 and written into `docs/diagram.md`.
 
 **A wider goal — a map of every screen in LN — was considered and dropped the
 same day, on measurement.** LN ships thousands of sessions, atlas documents 124,
@@ -235,7 +235,7 @@ and was wrong within a day of doing so.
   card and, with the two `:not()`s that fix added, took the accent rule from
   (0,2,0) to (0,4,0) and past the rule protecting it. Fixed by keying the
   not-a-session refinement on Step, the one category it was ever about;
-  `DESIGN-diagram-kinds.md` §7 is the record, with the before-and-after
+  `docs/diagram.md` §7 is the record, with the before-and-after
   geometry. **None of the three figures that were green could ever have caught
   it** — a missing colour is not a collision — which is why the look itself is
   now a row.
@@ -285,7 +285,7 @@ and was wrong within a day of doing so.
   was declined on the day the lane rule shipped: a rule holds your row while your
   eye travels right, which was the question being asked, and a sticky label is an
   opaque block painting over every tile that passes under it — a second thing to
-  judge, not a free addition. `DESIGN-diagram-kinds.md` §8 carries the
+  judge, not a free addition. `docs/diagram.md` §8 carries the
   measurements.
 
   **What that gives up:** a reader working the right-hand half of the map has the

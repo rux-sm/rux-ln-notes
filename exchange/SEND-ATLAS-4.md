@@ -83,10 +83,15 @@ page rather than by reading the contract. Atlas fixed it the same night, and
 replaced a duplicate of the same list in the session map's §5 in the same pass.
 
 **How it came to be sent anyway.** It was carried from §6 of
-`docs/DESIGN-diagram-kinds.md`, written before the fix and not re-checked — in a
+`docs/diagram.md`, written before the fix and not re-checked — in a
 session that had already read the corrected sentence out of the same file for a
 different reason. The claim was restated from a design note instead of from the
 standard it was about. §6 now carries the same correction.
+
+**One housekeeping note, since your reply cites the old path.** That file was
+`docs/DESIGN-diagram-kinds.md` and is `docs/diagram.md` as of 2026-09-11. It
+stopped being about kinds several sections ago: it now opens with what the
+diagram is for and what it covers, and the vocabulary is one part of it.
 
 **Apologies for the section of your reply it cost.** The two naming answers in
 §2 and §3 are what this memo was for, and both landed.

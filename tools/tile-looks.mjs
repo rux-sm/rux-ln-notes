@@ -41,6 +41,17 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
+// THE READER-FACING NAME OF EACH CATEGORY, and the one place either side words
+// them. It lived in build.mjs until 2026-09-12 and moved here for one reason:
+// measure.mjs has to name a category that is ABSENT from a page, and a second
+// copy of these words is exactly the drift that let `Inquiry` render nothing
+// while a committed row said so. build.mjs imports it; nothing else defines it.
+// A NAME IS PRESENTATION, NOT CONTRACT -- atlas emits `kind` and never a
+// category. The fold itself is build.mjs's `categories()`, and atlas states
+// what it does in _standards/guide-json.md section 7.4.
+export const CATEGORY_NAME = { step: 'Step', config: 'Setup', info: 'Inquiry',
+  result: 'Result', check: 'Checkpoint' };
+
 // THE FIVE PROPERTIES ARE THE SPECIMEN'S, DELIBERATELY UNCHANGED. Its `sig()`
 // reads border-inline-start colour, style and width, background colour, and the
 // name's font style -- the stripe, the card and the italic, which are the three

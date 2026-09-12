@@ -1,5 +1,5 @@
 ---
-exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-12, state: open, title: a short purpose for a tile, and the strips that print nothing}
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-12, state: answered, answered_by: send-atlas-6-reply, title: a short purpose for a tile and the strips that print nothing}
 ---
 
 # A short purpose for a tile, and the strips that print nothing

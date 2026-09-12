@@ -29,7 +29,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { tileLooks, describeLook } from './tile-looks.mjs';
+import { tileLooks, describeLook, CATEGORY_NAME } from './tile-looks.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = [];
@@ -255,12 +255,30 @@ for (const d of dgDocs) {
   const page = `guides/${d.id}.html`;
   const k = `diagram.${d.id}`;
   if (!existsSync(join(ROOT, page))) {
-    for (const row of ['categories', 'looks', 'looks-per-category', 'colliding-by-category'])
+    for (const row of ['categories', 'categories-empty', 'looks', 'looks-per-category', 'colliding-by-category'])
       say(`${k}.${row}`, 'unbuilt');
     continue;
   }
   const r = tileLooks(readFileSync(join(ROOT, page), 'utf8'));
   say(`${k}.categories`, r.perCategory.map((c) => `${c.cat} ${c.tiles}`).join(' · '));
+  // A CATEGORY THAT DRAWS NOTHING LOOKS EXACTLY LIKE ONE NOBODY DECLARED, and
+  // the row above cannot tell them apart -- it lists what is there. `Inquiry`
+  // drew 0 tiles on the overview from the day that diagram became a block
+  // until 2026-09-12, with this file committed and read throughout, because
+  // the absence had no line of its own. Asked-and-the-answer-was-no is not the
+  // same fact as could-not-ask, and only one of them is a defect.
+  //
+  // IT IS A ROW AND NOT A GATE, deliberately. A level-1 diagram with no
+  // inquiries may be legitimate; three commits of this will say. Promote it
+  // once the evidence exists, never before, and never with an allow-list.
+  // READ FROM `tiles` AND NOT `perCategory`: that array is keyed by category
+  // AND screen state -- `config screen`, `config no-screen` -- so matching a
+  // bare category name against it finds nothing and reports all five missing,
+  // which is what the first cut of this row did.
+  const missing = Object.keys(CATEGORY_NAME)
+    .filter((c) => !r.tiles.some((t) => t.cat === c))
+    .map((c) => CATEGORY_NAME[c]);
+  say(`${k}.categories-empty`, missing.length ? missing.join(' · ') : 'none');
   say(`${k}.looks`, r.looks);
   say(`${k}.looks-per-category-state`, r.perCategory.map((c) => `${c.cat} ${c.looks}`).join(' · '));
   say(`${k}.colliding-by-category`, r.collidingByCategory);

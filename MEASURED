@@ -70,10 +70,12 @@ diagram.order-to-shipment-overview.edges-dangling = 0
 
 # diagram looks (tile-looks.mjs resolves these from each page's own CSS; the specimen paints them per theme)
 diagram.demand-to-shipment-session-map.categories = check screen 1 · config screen 2 · info screen 3 · result screen 4 · step screen 16
+diagram.demand-to-shipment-session-map.categories-empty = none
 diagram.demand-to-shipment-session-map.looks = 5
 diagram.demand-to-shipment-session-map.looks-per-category-state = check screen 1 · config screen 1 · info screen 1 · result screen 1 · step screen 1
 diagram.demand-to-shipment-session-map.colliding-by-category = 0
 diagram.order-to-shipment-overview.categories = check no-screen 3 · config no-screen 2 · config screen 2 · info screen 2 · result no-screen 4 · result screen 2 · step screen 4
+diagram.order-to-shipment-overview.categories-empty = none
 diagram.order-to-shipment-overview.looks = 7
 diagram.order-to-shipment-overview.looks-per-category-state = check no-screen 1 · config no-screen 1 · config screen 1 · info screen 1 · result no-screen 1 · result screen 1 · step screen 1
 diagram.order-to-shipment-overview.colliding-by-category = 0

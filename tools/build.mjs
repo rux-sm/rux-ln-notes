@@ -36,6 +36,7 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync
 import { execFileSync } from 'node:child_process';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CATEGORY_NAME } from './tile-looks.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // THE PUBLIC BUILD READS data/guides/ AND WRITES guides/, AND NOTHING ELSE
@@ -2326,8 +2327,7 @@ function categories(dg) {
 // `Inquiry` appears nowhere in atlas, which is recorded in that memo rather
 // than hidden: until it answers, a tile and its source document use different
 // words for the same thing.
-const CATEGORY_NAME = { step: 'Step', config: 'Setup', info: 'Inquiry',
-  result: 'Result', check: 'Checkpoint' };
+// Moved to tools/tile-looks.mjs 2026-09-12, imported above; see the note there.
 
 // `notes` IS FALSE ON THE HOME PAGE, and that is a judgement about audience
 // rather than a saving. The reading-order line described a loose grid and the

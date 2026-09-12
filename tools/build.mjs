@@ -1476,9 +1476,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    Dropping the glosses dropped the \`li\` rule with them, the span went back to
    inline, the block name broke out of it, and every swatch collapsed to a sliver
    with its label sitting outside the box it was meant to be in. */
-.ln-dg-legend-tile { display: inline-block; padding: .15rem .4rem;
-  color: var(--rux-text-primary, #161616); }
-.ln-dg-legend-tile .ln-dg-node-name { display: block; }
+
 /* AN EDGE WRAPS, ITS TWO ENDS DO NOT. \`nowrap\` on the whole span was free
    while an address was "7 → 8"; an address is a session name where a document
    numbers nothing, and “Bill of material and routing → Generate Order Planning
@@ -1582,6 +1580,43 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    category the rule is about cannot drift into another one's treatment. */
 .ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-legend-tile) {
   border-inline-start: 0; padding-inline-start: 3px; }
+
+/* THE LEGEND'S SPACING LIVES BELOW THE CATEGORY RULES ON PURPOSE. It sat above
+   them and lost: \`.ln-dg-node.ln-dg-legend-tile\` and
+   \`.ln-dg-node.ln-dg-cat--config\` are both two classes, so the later one won and
+   Setup kept \`padding-inline-start: 0\` while its three neighbours took .5rem --
+   one swatch flush and three inset, which is the inconsistency this block was
+   written to remove. Source order fixes it without a third class. Escalating
+   specificity is what armed the trap §7 of docs/diagram.md records, and it is
+   not spent on a legend. */
+/* SPACING BORROWED FROM \`rux--tag\`, AND ONLY THE SPACING. Every swatch was a
+   different shape: the category rules set \`padding-inline-start\` to 0 or 3px to
+   go with a 3px stripe, a 1px dashed border or no border at all, so four
+   swatches sat at four widths with their labels at four offsets. A legend whose
+   own entries do not line up is not a legend.
+
+   READ OUT OF \`rux-ds/css/rux.css\` rather than eyeballed: \`.rux--tag\` is
+   \`display: inline-flex\` with \`align-items: center\`, \`justify-content: center\`,
+   \`min-block-size\` 1.5rem at md, \`padding-inline: .5rem\` and \`label-01\` for the
+   type. Those four are taken and nothing else is.
+
+   WHAT IS NOT TAKEN. The tag's \`border-radius: 1rem\` stays behind -- these are
+   square because the tiles they stand for are square, and a rounded legend for a
+   right-angled canvas describes something that is not on the page. The stripe,
+   the dashed border, the ground and the italic are the categories' own and are
+   untouched: this rule sets where the label sits, never what the box looks like.
+
+   \`.ln-dg-node\` IS IN THE SELECTOR TO WIN A TIE. \`.ln-dg-node.ln-dg-cat--config\`
+   is two classes and would otherwise keep its \`padding-inline-start: 0\`, leaving
+   Setup flush while the others are inset. */
+.ln-dg-node.ln-dg-legend-tile { display: inline-flex; align-items: center;
+  justify-content: center; min-block-size: 1.5rem; padding-inline: .5rem;
+  padding-block: 0; vertical-align: middle;
+  font-size: var(--rux-label-01-font-size, .75rem);
+  line-height: var(--rux-label-01-line-height, 1.33333);
+  letter-spacing: var(--rux-label-01-letter-spacing, .32px);
+  color: var(--rux-text-primary, #161616); }
+.ln-dg-legend-tile .ln-dg-node-name { display: inline; }
 
 /* THE HEADER IS \`position: fixed\` AND 48px TALL, so every in-page anchor
    lands its target underneath it. Measured: jumping to a phase put the

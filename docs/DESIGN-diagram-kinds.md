@@ -615,14 +615,31 @@ three. Then it found §7.
 
 ---
 
-## 6. Owed to atlas, and not blocking
+## 6. ~~Owed to atlas, and not blocking~~ — WRONG, and it was wrong when sent
 
-`guide-json.md` §7 enumerates the kinds as *"`step`, `gate`, `planned`,
-`transfer`, `real`, `terminal`, `read`"* — seven. Its own changelog line at
-§1 says contract 7 *"adds the `decision` and `outcome` kinds"*, and both are
-in the emitted data. **The enumeration is stale by two.** It is the sentence
-a renderer reads to learn what it must handle, which is exactly how this
-project came to have no treatment for either.
+~~`guide-json.md` §7 enumerates the kinds as *"`step`, `gate`, `planned`,
+`transfer`, `real`, `terminal`, `read`"* — seven.~~ **It enumerates nine, and
+has since `cc7bff2` on 2026-09-11 at 00:19 — which is contained in
+`ab9d6ca`, the pin this repository's own data carries.** Verified here by
+reading `_standards/guide-json.md` at that pin rather than by taking atlas's
+word for it: `step`, `gate`, `planned`, `transfer`, `real`, `terminal`,
+`read`, `decision`, `outcome`.
+
+**The finding was real and is fixed; this section is what was left behind.**
+The enumeration genuinely was two short, four tiles of the overview genuinely
+drew as ordinary steps because of it, and it was found by measuring a built
+page rather than by reading the contract. Atlas fixed it the same night and
+also replaced a duplicate of the same list in the session map's §5, so there is
+one list again instead of two that can disagree.
+
+**What is worth recording is how the correction failed.** This section was
+carried into `exchange/SEND-ATLAS-4.md` §4 as a live defect and atlas spent a
+section of its reply answering it — while the corrected sentence had already
+been read in this session, from this very file, to check the `budget` contract.
+The evidence was open and the claim was restated from memory of a document
+rather than from the document. A stale line in a design note became a wrong
+statement to another repository, which is the cost of this file being both a
+record and a source for memos.
 
 ---
 

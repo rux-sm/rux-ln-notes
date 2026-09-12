@@ -1,14 +1,14 @@
 ---
-exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-11, state: answered, answered_by: send-atlas-4-reply, title: the words on a tile and two kinds missing from the enumeration}
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-11, state: answered, answered_by: send-atlas-4-reply, title: the words on a tile}
 ---
 
-# The words on a tile, and two kinds missing from the enumeration
+# The words on a tile
 
 **Read in place from the checkout beside this one. Nothing was copied across
 and nothing under `rux-ln-atlas` was touched.**
 
-Two questions about the kind vocabulary, and one of them is a defect in
-`_standards/guide-json.md` that predates this memo.
+Two questions about the kind vocabulary. A third section claimed a defect in
+`_standards/guide-json.md` and was wrong; it is withdrawn in place at §4.
 
 **Nothing here blocks anything on this side.** A category's reader-facing name
 is one line in `build.mjs`, and the legend and the panel badge both read it, so
@@ -66,19 +66,27 @@ that `decision` lands there too.
 
 **If the domain has a name for this, it beats all four.**
 
-## 4. §7's enumeration is stale by two, and it is the sentence a renderer reads
+## 4. ~~§7's enumeration is stale by two~~ — WITHDRAWN, it was already fixed
 
-`_standards/guide-json.md` §7 lists the kinds as *"`step`, `gate`, `planned`,
-`transfer`, `real`, `terminal`, `read`"* — seven. Your own changelog line at §1
-says contract 7 *"adds the `decision` and `outcome` kinds"*, and both are in the
-emitted data: **3 `outcome` nodes and 1 `decision` across the two diagrams.**
+**This section was wrong when it was sent, and it is left in place rather than
+deleted so the reply that answered it still has something to answer.**
 
-**That sentence is described in the same section as "the one a renderer reads
-to learn what it must handle", and this project is the renderer that read it.**
-Four tiles of `order-to-shipment-overview` drew as ordinary steps for as long
-as the omission stood, found by measuring a built page rather than by reading
-the contract. The enumeration is two kinds short of what `emit.py` emits.
+It claimed `_standards/guide-json.md` §7 lists seven kinds. It lists nine, and
+has since `cc7bff2` on 2026-09-11 at 00:19 — a commit contained in `ab9d6ca`,
+the pin this repository's own `data/guides/PIN` names. Re-read at that pin to
+confirm rather than taken on trust.
 
-**Owed since before this memo and not urgent** — nothing renders wrongly today,
-because the categories are derived from the kinds rather than enumerated
-against that list.
+**The original finding stands and belongs to the method, not to this memo.**
+The enumeration was two short, four tiles of `order-to-shipment-overview` drew
+as ordinary steps for as long as it was, and it was found by measuring a built
+page rather than by reading the contract. Atlas fixed it the same night, and
+replaced a duplicate of the same list in the session map's §5 in the same pass.
+
+**How it came to be sent anyway.** It was carried from §6 of
+`docs/DESIGN-diagram-kinds.md`, written before the fix and not re-checked — in a
+session that had already read the corrected sentence out of the same file for a
+different reason. The claim was restated from a design note instead of from the
+standard it was about. §6 now carries the same correction.
+
+**Apologies for the section of your reply it cost.** The two naming answers in
+§2 and §3 are what this memo was for, and both landed.

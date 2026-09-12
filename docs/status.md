@@ -9,44 +9,82 @@ Nothing else here is checked by anything.
 
 ---
 
-## Now — waiting on atlas for the overview's content
+## Now — atlas answered both memos; the depth is its to draw
 
-**The diagram is one document now: `order-to-shipment-overview`.** It carries
-every path and branch that leads to a shipment, and the planning that decides
-which one runs, with the configuration, results and status checks around it.
-The level-2 session map is not extended; retiring it is atlas's call. Settled
-with rux 2026-09-11 and written into `docs/DESIGN-diagram-kinds.md`.
+**The diagram is one document: `order-to-shipment-overview`.** Every path and
+branch that leads to a shipment, and the planning that decides which one runs,
+with the configuration, results and status checks around it. Settled with rux
+2026-09-11 and written into `docs/DESIGN-diagram-kinds.md`.
 
-**A wider goal was considered and dropped the same day, on measurement.** It
-was a map of every screen in LN, one tile each. LN ships thousands of sessions,
-atlas documents 124, and drawing them reproduces a menu the vendor already
-ships with help behind it. **The canvas was never the constraint** — 124
-synthetic tiles went through the renderer and held, 1.1 screens wide at five
-stages. What failed was the axis: `Common` holds 47 of the 124 and master data
-has no honest answer to *which point in the run*, so ten tiles stacked in one
-cell under a heading reading `PREPARE`. §11 of the design document has it.
+**A wider goal — a map of every screen in LN — was considered and dropped the
+same day, on measurement.** LN ships thousands of sessions, atlas documents 124,
+and drawing them reproduces a menu the vendor already ships. **The canvas was
+never the constraint**: 124 synthetic tiles went through the renderer and held,
+1.1 screens wide at five stages. The axis failed instead — `Common` holds 47 of
+the 124 and master data has no honest answer to *which point in the run*. §11
+of the design document has it.
 
-**Two memos went to atlas and both are open:**
+### The names are final, and atlas's evidence is why
 
-- **`SEND-ATLAS-5.md` — what the overview is missing.** Shipping is one tile;
-  planning has two steps out of six nodes; there is no Inquiry on the document
-  at all; four branches on a document whose own §1 is called *"the branch that
-  is the whole point"*. All four are authored upstream with fields that already
-  exist — no contract change is asked for.
-- **`SEND-ATLAS-4.md` — the words.** Whether the evidence carries a vendor term
-  for a display-only session, since `Inquiry` was chosen here and appears
-  nowhere in atlas; whether there is one for a condition LN evaluates on its
-  own, which `Checkpoint` provisionally covers; and §7's enumeration, still two
-  kinds short of what `emit.py` emits.
+**Step · Setup · Inquiry · Result · Checkpoint**, shipped and live.
 
-**Nothing on this side is blocked by either.** A category name is one line in
-`build.mjs` and moves the legend and the panel badge together. The renderer
-needs no work for any of the four gaps: the canvas is proven to 124 tiles and
-the document holds 17.
+- **`Inquiry` is kept, and it is not a coinage.** `send-atlas-4-reply` found it
+  in the deployed menu print — 47 lines under `Inquiry`/`Inquiries` folders
+  across seven places, holding exactly this category. **Two catches stand**: the
+  word is Financials and Project only, **zero in any lane either diagram draws**,
+  and the vendor guides use it once meaning a customer's *pre-sales inquiry*, a
+  sales document, in the module the diagrams are busiest in.
+- **`Overview` must not be used for it.** The vendor's *overview session* versus
+  *details session* is a list-versus-record pair, not read-versus-maintain:
+  **Items** is an overview session and is where items are maintained.
+- **`Checkpoint` stands as a recorded choice.** `checkpoint`, `control point`
+  and `decision point` all score 0 across the help and the vendor guides; the
+  domain says it as a verb — *"LN checks"* 79 times — and never as a noun.
+- **`automatic activity` is reserved, not spent.** It is a real Infor term for
+  *a step LN performs without you*, which is not a Checkpoint — a Checkpoint
+  evaluates and may stop, it does not act. It is the name if a sixth category is
+  ever wanted.
+- **One seam to watch, flagged by atlas and asking for no change.** `gate` and
+  `decision` fold into one badge, and on this document `covered` is the decision
+  while `gate-data` and `gate-horizon` are the machinery behind it. Three
+  identical badges in a row, where the first is the answer and the others are
+  the workings.
 
-**This repository's own, and not waiting on anyone:** the overview numbers 0 of
-17 nodes. If it is the document a reader follows branch by branch, a numbered
-node is how one is cited — and that is a request to atlas too, not a build.
+### Four of five asks taken, one refused, and nothing to build here
+
+`send-atlas-5-reply`, and none of it needs work on this side:
+
+- **Shipping.** Taken. `Execute` splits and `Deliver` becomes its own stage, as
+  the session map already has it. Two or three tiles, not four — the overview's
+  job is the shape.
+- **Planning.** Taken, and **one node is blocked**: `Confirm Order Planning`
+  (`cprrp1200m000`) has a verified route but no session file and no help
+  exported, so the session governing the `Confirmed`-status rule — the chain's
+  commonest silent failure — cannot be drawn at tile grain yet. **OI-019.** The
+  order is export, write the file, then draw.
+- **Inquiry.** Taken; `Inventory 360` and `Item Order Plan` are both ready. **An
+  open question comes back to us**: the session map holds reads as *strips on
+  the tile they prove* rather than tiles of their own. At the overview's
+  altitude that may flip, and the legend renders from what is present, so the
+  choice changes the counts. Atlas will say which it chose.
+- **Branches — refused, on evidence.** All three named are open issues: the
+  2026-08-04 shortage run stopped at advised 5 of 20 and never reached a
+  shipment (**OI-085**), back-order behaviour on a short shipment is
+  unconfirmed (**OI-077**), and which rows a pick confirms is not in the help
+  (**OI-036**). Drawing them would answer an open question with a picture, and
+  an arrow is the least markable form a claim can take. **What unblocks it is a
+  capture, not a decision.**
+- **Numbering and the title.** Both taken. `Order to shipment — the map` is the
+  agreed rename and lands in the same commit as the depth, not before — a title
+  promising branches before any are drawn is a label outrunning its contents.
+
+### The session map is not retired
+
+Atlas declined that explicitly. It keeps §7.1 — the four ways this chain fails
+with no message — which has no home on the overview at any depth, and
+`START-HERE.md` points a first-time reader at it. **Kept, published, and frozen
+as a diagram**: its `diagram` block stops growing and the depth lands on the
+overview. It still emits, so nothing here should be built assuming it goes away.
 
 **The item that used to be here was published, not re-read.** The item was to sync atlas's two prerequisite tiles and look at
 them. Done at `2ab6911`, atlas `ab9d6ca`, Pages green, and verified on

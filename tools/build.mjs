@@ -1612,9 +1612,34 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    open, italic says take this in -- the forms carry themselves. Yellow cannot
    say "this decides on its own and can stop without telling you", so Checkpoint
    keeps its sentence and the other three do not. */
+/* THE CLOSING RULE IS THE GRID'S, NOT THE CAPTION'S, and that is a fact about
+   scrolling rather than a preference. \`.ln-dg\` scrolls on the inline axis, so a
+   block child of it -- which is what a \`<figcaption>\` is -- is laid out at the
+   VISIBLE width while the grid inside sizes to \`max-content\` and sets the scroll
+   width. A border on the caption therefore stops wherever the frame happens to
+   end and cannot reach the far side of the table. Measured: the line crossed
+   about a third of the surface.
+
+   So the rule moves to \`.ln-dg-grid\`, which already spans the whole table, and
+   the caption keeps only its padding. The line now closes the table at the same
+   width every lane rule runs. */
+.ln-dg-grid { border-block-end: 1px solid var(--rux-border-subtle-01, #e0e0e0); }
+
+/* THE LINK SHARES THE CAPTION'S ROW, pushed to the far side. A legend on the
+   left and the way onward on the right is one line where it was three, and it
+   puts the link on the surface it belongs to rather than loose underneath it.
+   \`space-between\` with \`flex-wrap\` so a narrow frame drops it below rather than
+   crushing the swatches. */
+/* \`margin-inline-start: auto\` ON THE LINK, NOT \`space-between\` ON THE ROW. The
+   row has three children -- the KEY label, the swatches, the link -- and
+   \`space-between\` spreads all three, which pushed the swatches 117px off the
+   label they belong to and dropped the link onto a line of its own. Measured
+   before the fix. The auto margin keeps label and swatches together on the left
+   and takes only the link to the far side. */
 .ln-dg-legend { display: flex; align-items: baseline; flex-wrap: wrap;
-  gap: .5rem 1rem; margin: 0; padding: .75rem 1rem;
-  border-block-start: 1px solid var(--rux-border-subtle-01, #e0e0e0); }
+  gap: .5rem 1rem; margin: 0; padding: .75rem 1rem; }
+.ln-dg-legend-link { font-size: .8125rem; margin-inline-start: auto;
+  white-space: nowrap; }
 .ln-dg-legend-label { font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase;
   color: var(--rux-text-secondary, #525252); }
@@ -1877,9 +1902,8 @@ function indexPage(site) {
   const lead = home ? `
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-map">
           <h1 id="h-map">Order to shipment</h1>
-          ${diagramFigure(home.diagram, { notes: false })}
-          <p class="rux--type-body-02"><a href="guides/${esc(home.id)}.html">Read the whole
-             document</a></p>
+          ${diagramFigure(home.diagram, { notes: false,
+            link: `<a class="rux--link ln-dg-legend-link" href="guides/${esc(home.id)}.html">Read the whole document</a>` })}
         </section>
 ` : `
         <div class="rux--stack-vertical rux--stack-scale-5">
@@ -2237,7 +2261,7 @@ const CATEGORY_NAME = { step: 'Step', config: 'Setup', info: 'Inquiry',
 // this document's 17. Both stay on the document page, where reference detail
 // belongs; the home page is the map at a glance. The legend is on both, because
 // it is the key to what is drawn rather than a note about it.
-function diagramFigure(dg, { notes: withNotes = true } = {}) {
+function diagramFigure(dg, { notes: withNotes = true, link = '' } = {}) {
   const stages = dg.stages ?? [], lanes = dg.lanes ?? [];
   const cat = categories(dg);
   const col = new Map(stages.map((s, i) => [s.n, i + 2]));
@@ -2486,7 +2510,7 @@ function diagramFigure(dg, { notes: withNotes = true } = {}) {
     .filter(c => present.has(c)).map(c => `
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--${c}"><span class="ln-dg-node-name">${
       esc(CATEGORY_NAME[c])}</span></span>${GLOSS[c] ? `<span class="ln-dg-legend-gloss">${esc(GLOSS[c])}</span>` : ''}</li>`).join('')}
-          </ul>
+          </ul>${link}
         </figcaption>`;
 
   // THE EDGES FOLD. Nine of them on the overview and five on the map, printed as

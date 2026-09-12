@@ -777,9 +777,34 @@
    open, italic says take this in -- the forms carry themselves. Yellow cannot
    say "this decides on its own and can stop without telling you", so Checkpoint
    keeps its sentence and the other three do not. */
+/* THE CLOSING RULE IS THE GRID'S, NOT THE CAPTION'S, and that is a fact about
+   scrolling rather than a preference. `.ln-dg` scrolls on the inline axis, so a
+   block child of it -- which is what a `<figcaption>` is -- is laid out at the
+   VISIBLE width while the grid inside sizes to `max-content` and sets the scroll
+   width. A border on the caption therefore stops wherever the frame happens to
+   end and cannot reach the far side of the table. Measured: the line crossed
+   about a third of the surface.
+
+   So the rule moves to `.ln-dg-grid`, which already spans the whole table, and
+   the caption keeps only its padding. The line now closes the table at the same
+   width every lane rule runs. */
+.ln-dg-grid { border-block-end: 1px solid var(--rux-border-subtle-01, #e0e0e0); }
+
+/* THE LINK SHARES THE CAPTION'S ROW, pushed to the far side. A legend on the
+   left and the way onward on the right is one line where it was three, and it
+   puts the link on the surface it belongs to rather than loose underneath it.
+   `space-between` with `flex-wrap` so a narrow frame drops it below rather than
+   crushing the swatches. */
+/* `margin-inline-start: auto` ON THE LINK, NOT `space-between` ON THE ROW. The
+   row has three children -- the KEY label, the swatches, the link -- and
+   `space-between` spreads all three, which pushed the swatches 117px off the
+   label they belong to and dropped the link onto a line of its own. Measured
+   before the fix. The auto margin keeps label and swatches together on the left
+   and takes only the link to the far side. */
 .ln-dg-legend { display: flex; align-items: baseline; flex-wrap: wrap;
-  gap: .5rem 1rem; margin: 0; padding: .75rem 1rem;
-  border-block-start: 1px solid var(--rux-border-subtle-01, #e0e0e0); }
+  gap: .5rem 1rem; margin: 0; padding: .75rem 1rem; }
+.ln-dg-legend-link { font-size: .8125rem; margin-inline-start: auto;
+  white-space: nowrap; }
 .ln-dg-legend-label { font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase;
   color: var(--rux-text-secondary, #525252); }
@@ -1425,11 +1450,9 @@ h1, h2, h3 { scroll-margin-block-start: 4rem; }
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--config"><span class="ln-dg-node-name">Setup</span></span></li>
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--result"><span class="ln-dg-node-name">Result</span></span></li>
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--check"><span class="ln-dg-node-name">Checkpoint</span></span><span class="ln-dg-legend-gloss">decides on its own, and can stop without saying so</span></li>
-          </ul>
+          </ul><a class="rux--link ln-dg-legend-link" href="guides/order-to-shipment-overview.html">Read the whole document</a>
         </figcaption>
         </figure>
-          <p class="rux--type-body-02"><a href="guides/order-to-shipment-overview.html">Read the whole
-             document</a></p>
         </section>
 
 <p class="rux--type-caption-01 ln-revision">Built from rux-ln-atlas ab9d6ca · contract 8</p>

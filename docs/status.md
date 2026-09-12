@@ -9,40 +9,44 @@ Nothing else here is checked by anything.
 
 ---
 
-## Now — the diagram draws a fifth of what it is for
+## Now — waiting on atlas for the overview's content
 
-**The goal was stated on 2026-09-11 and it is wider than anything this
-repository had written down: an interactive visual of everything done in LN.**
-The step to take, the setup and configuration behind it, the results the system
-produces on its own, and the path that changes with status or inventory —
-every screen needed to do something in LN carrying a tile, in the right place,
-with a brief description, and its guide or SOP hanging off it.
-`docs/DESIGN-diagram-kinds.md` now opens with it.
+**The diagram is one document now: `order-to-shipment-overview`.** It carries
+every path and branch that leads to a shipment, and the planning that decides
+which one runs, with the configuration, results and status checks around it.
+The level-2 session map is not extended; retiring it is atlas's call. Settled
+with rux 2026-09-11 and written into `docs/DESIGN-diagram-kinds.md`.
 
-**The distance is measured, not estimated.** Atlas holds 124 session
-documents; the library cites 127 distinct session codes; **25 are drawn and
-102 are drawn nowhere.** Two diagrams exist and both trace one route. Twelve
-concepts, nine guides and sixteen reviews are also undrawn.
+**A wider goal was considered and dropped the same day, on measurement.** It
+was a map of every screen in LN, one tile each. LN ships thousands of sessions,
+atlas documents 124, and drawing them reproduces a menu the vendor already
+ships with help behind it. **The canvas was never the constraint** — 124
+synthetic tiles went through the renderer and held, 1.1 screens wide at five
+stages. What failed was the axis: `Common` holds 47 of the 124 and master data
+has no honest answer to *which point in the run*, so ten tiles stacked in one
+cell under a heading reading `PREPARE`. §11 of the design document has it.
 
-**What the renderer can and cannot do about that is also measured.** 124 tiles
-went through `build.mjs` and the canvas held — 1.1 screens wide at five
-stages, lane rules and legend intact, nothing overflowing. **Geometry is not
-the obstacle.** What fails is the axis: `Common` holds 47 of the 124 sessions
-and master data has no honest answer to "which point in the run", so ten tiles
-stack in one cell under a heading reading `PREPARE`. §11 of the design
-document has the figures.
+**Two memos went to atlas and both are open:**
 
-**So the one item here is a memo to atlas, and it is this side's to write**
-because this side is the renderer that measured the constraint. It asks what a
-map of every screen needs: a placement for 124 sessions when `module` exists
-and `stage` does not; whether a stage is honest for reference data or whether
-those screens want a different axis; and whether the answer is one map or a
-set. Until it is answered, authoring placements would be authoring them into a
-layout nobody has shown can carry them.
+- **`SEND-ATLAS-5.md` — what the overview is missing.** Shipping is one tile;
+  planning has two steps out of six nodes; there is no Inquiry on the document
+  at all; four branches on a document whose own §1 is called *"the branch that
+  is the whole point"*. All four are authored upstream with fields that already
+  exist — no contract change is asked for.
+- **`SEND-ATLAS-4.md` — the words.** Whether the evidence carries a vendor term
+  for a display-only session, since `Inquiry` was chosen here and appears
+  nowhere in atlas; whether there is one for a condition LN evaluates on its
+  own, which `Checkpoint` provisionally covers; and §7's enumeration, still two
+  kinds short of what `emit.py` emits.
 
-**Not blocked on that, and this repository's own:** nothing helps a reader find
-one tile among 124 — no search, no filter, no zoom. At 26 tiles it was not a
-question.
+**Nothing on this side is blocked by either.** A category name is one line in
+`build.mjs` and moves the legend and the panel badge together. The renderer
+needs no work for any of the four gaps: the canvas is proven to 124 tiles and
+the document holds 17.
+
+**This repository's own, and not waiting on anyone:** the overview numbers 0 of
+17 nodes. If it is the document a reader follows branch by branch, a numbered
+node is how one is cited — and that is a request to atlas too, not a build.
 
 **The item that used to be here was published, not re-read.** The item was to sync atlas's two prerequisite tiles and look at
 them. Done at `2ab6911`, atlas `ab9d6ca`, Pages green, and verified on

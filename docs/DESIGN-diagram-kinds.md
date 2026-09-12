@@ -13,82 +13,107 @@ front without a number, or at the back with the next one.
 
 ## Purpose
 
-**An interactive visual of everything done in LN.** The step to take, the
-setup and configuration standing behind it, the results the system produces on
-its own, and the path that changes with status or inventory. Everything needed
-to do something in LN has a tile, in the right place, carrying a brief
-description — and the guide or SOP for that section hangs off it.
+**One map of the order-to-shipment chain: every path and branch that leads to a
+shipment, and the planning that decides which one runs.** Around the main path
+sit the four other things a reader needs — what must be configured first, what
+the system produced on its own, what you open to find out where things stand,
+and where the chain decides for you.
 
-**Stated by rux on 2026-09-11, and it is wider than what this file was written
-for.** Everything from §1 to §5 was reasoned on a canvas of 17 to 26 tiles
-meant to be read in ten minutes, and several of those decisions are only
-correct at that size. They are marked where that matters. Nothing below is
-retracted on the strength of the new goal; what the goal changes is which
-questions are still open.
+**Settled with rux on 2026-09-11, and it replaces a wider goal considered the
+same day.** That one was an interactive visual of everything done in LN, every
+screen with a tile. It was dropped on measurement, not on ambition: LN ships
+thousands of sessions, atlas documents 124 of them, and a map of all of them
+would be a second copy of a menu the vendor already ships with help behind it.
+§11 has the scale test; the finding that ended it is that geometry was never the
+problem and the axis was. **What the chain needs is depth on one route, not
+breadth across a catalogue.**
 
-**The categories already say what the purpose says.** This is the one part of
-the old design that transfers whole, because the five were derived from the
-five questions a reader at a screen asks:
+**So there is one diagram, and it is the overview.** The level-2 session map is
+not extended; whether it is retired is atlas's call and not this file's.
 
-| the purpose | the category |
+### The five tile types, and what each answers
+
+| type | the question it answers | derived from |
+| :--- | :--- | :--- |
+| **Step** | what do I do here | everything else on the route |
+| **Setup** | what has to be configured before any of this runs | no `flow` edge, in or out |
+| **Inquiry** | what is true right now — opened, never changed | `kind` is `read` |
+| **Result** | what now exists, that nobody performed | `planned`, `real`, `outcome`, `terminal`, on the route |
+| **Checkpoint** | what decides on its own, and how would I know | `kind` is `gate` or `decision` |
+
+**Two of these were renamed on 2026-09-11 and one is provisional.** `Setup` was
+`Prerequisite` and `Inquiry` was `Reading`, both rux's own words for what they
+are. `Checkpoint` is provisional pending `exchange/SEND-ATLAS-4.md`. The
+internal classes are unchanged and still read `config` and `info`, because
+renaming those rewrites five `MEASURED` rows and four files for no reader-visible
+gain. **Sections 0 to 11 below were written under the old names** and are not
+rewritten — a record that edits its own history is worth less than one that
+maps it:
+
+| written as | reads as |
 | :--- | :--- |
-| the step to take | **Step** |
-| setup and configuration | **Prerequisite** |
-| what the system produced on its own | **Result** |
-| the path that changes with status or inventory | **Checkpoint**, and **Reading** for what is true now |
+| Prerequisite | **Setup** |
+| Reading | **Inquiry** |
 
 **And the SOP link is not future work.** `guide` is a node field today, it
-renders in the panel, and it is present on 26 of the 43 nodes. What is missing
-is coverage, not a mechanism.
+renders in the panel, and it is present on 26 of the 43 nodes.
 
-## Scope — what is drawn, and what is not
+## Scope — what the overview holds, and what it is missing
 
-Measured 2026-09-11 against the synced data and the atlas checkout at the pin:
+Measured on the document 2026-09-11: 17 nodes, 5 stages, 6 lanes, 19 edges.
 
 | | |
 | :--- | ---: |
-| session documents atlas holds | **124** |
-| distinct session codes the library cites | **127** |
-| session codes drawn on a diagram | **25** |
-| cited, drawn nowhere | **102** |
-| diagrams that exist | **2** |
-| drawn but not cited | **0** |
+| Setup | 4 |
+| Step | 4 |
+| Checkpoint | 3 |
+| Result | 6 |
+| **Inquiry** | **0** |
+| branch edges | 4 |
+| nodes numbered | 0 of 17 |
 
-Also upstream and undrawn: 12 concepts, 9 guides, 16 reviews, 3 tests, 3
-config documents.
+**Four gaps, against the two things the map is now for:**
 
-**So the map covers about a fifth of the screens, and both diagrams are of one
-route** — sales demand to shipment. That is not an oversight. The two documents
-describe themselves as levels of one process atlas: the overview is *"the shape
-of the whole chain… every guide in this library is one route across it"* and
-the session map is *"a level-2 companion… which session, reached how, and what
-do I actually do in it."* Coverage grew by route, because the unit was the
-guide.
+1. **Shipping is one tile.** The whole path to shipped is `Advise, pick and
+   ship`, a single Result at stage 5. Receipt, stock and outbound share one
+   column. The session map already carries `Deliver` and `Cash` stages this
+   document does not.
+2. **Planning has one real step.** Six nodes in Enterprise Planning, of which
+   only `Generate Order Planning (Item)` and `Transfer Order Planning` are
+   things you do. `Confirm Order Planning`, `Planned Orders` and `Item Order
+   Plan` exist upstream and are on the session map, not here.
+3. **There is no Inquiry at all.** Zero of 17. `Inventory 360` is in atlas and
+   on the session map. The legend renders four entries because it lists only
+   what is present; the first stock check makes it five on its own.
+4. **Four branches.** `covered → ship (YES)`, `covered → gate-data (NO)`, and
+   make-versus-buy off the transfer. Nothing else that can divert a route —
+   shortage, partial availability, a failed allocation — is drawn.
 
-**The purpose above changes the unit from the route to the screen**, and that
-is the real distance between where this is and where it is going. §11 measures
-what that costs.
+**All four are atlas's to author.** Nodes, edges, lanes, stages and `kind` are
+authored there and this side renders them, so what this repository owes is a
+specification and not a build. It is `exchange/SEND-ATLAS-5.md`.
 
 ## Where it stands
 
-**Decided and shipped:** five categories drawn by three signals (§0), one
-accent (§7), a rule between the lanes (§8), a legend (§9), columns sized to
-their own content (§10). Every category figure is watched by `MEASURED` and
-resolved by `tools/tile-looks.mjs`.
+**Decided and shipped:** five categories drawn by three signals (§0), one accent
+(§7), a rule between the lanes (§8), a legend (§9), columns sized to their own
+content (§10). Every category figure is watched by `MEASURED` and resolved by
+`tools/tile-looks.mjs`. §11 says the canvas has room: 124 tiles was 1.1 screens
+wide, and this document holds 17.
 
-**Open, and none of it is this repository's alone:**
+**Open:**
 
-- **Placement for 124 screens.** A session document carries `module` — a lane
-  — but no stage. The contract is explicit that both are atlas's: *"`lane` and
-  `stage` are coordinates… domain knowledge only atlas holds."* A whole-system
-  map needs a placement authored for every screen, and §11 shows that for
-  reference data there may be no honest one.
-- **A second axis, or a second kind of diagram.** Lane × stage answers *who
-  does it, and when in the run*. It does not answer *what must I understand
-  first*, and nothing in the data carries that today.
-- **Finding a tile among 124.** There is no search, no filter and no zoom at
-  any size. A reader opens a tile or scrolls.
-- **The enumeration owed to atlas** (§6), still unsent.
+- **The overview's content** — the four gaps above, asked in `SEND-ATLAS-5.md`.
+- **The vocabulary** — `Checkpoint`, and whether the domain has a word for a
+  display-only session that this side should use instead of `Inquiry`, asked in
+  `SEND-ATLAS-4.md` along with §6's stale enumeration.
+- **Numbering.** The overview numbers 0 of 17. If it becomes the document a
+  reader follows branch by branch, a numbered node is how one is cited.
+- **The title.** `Order to shipment — the overview` was accurate opposite a
+  level-2 map. It is atlas's to change.
+
+**Not open, and worth saying because it was:** the canvas, its geometry, and
+whether a tile can be told from its neighbour. Those are measured and green.
 
 ---
 

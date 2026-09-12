@@ -1156,11 +1156,36 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    heading, because the grid's .5rem gap would otherwise cut the ground into six
    pieces -- a header band with gaps in it is not a header band. Emitted before
    the headings so it paints behind them. */
+/* THE HEADER IS THE DESIGN SYSTEM'S OWN, not an impression of one. Every value
+   below was read out of \`rux-ds/css/rux.css\` rather than recalled: a row is
+   \`block-size: 3rem\`, a \`th\` is \`background-color: var(--rux-layer-accent)\` with
+   \`color: var(--rux-text-primary)\`, and \`thead\` is \`heading-compact-01\` --
+   .875rem, weight 600, line-height 1.28572, letter-spacing .16px.
+
+   \`--rux-layer-accent\` RATHER THAN \`-01\`, AND THEY ARE THE SAME PAINT. Measured
+   in all four themes: identical everywhere. The unsuffixed one is what the
+   compiled \`th\` uses, so it is the one named here -- the collision with the
+   transfer band and the Result ground is not solved by the swap and is recorded
+   in the commit that introduced it.
+
+   THE MONO UPPERCASE IS GONE. A stage read \`1 · PREPARE\` in the same register as
+   the lane labels beside it; a table header is sans and sentence case, and the
+   stage now renders as atlas authored it. The lane label keeps the mono register,
+   which is the right split: a column header and a row label are different things.
+
+   NO INLINE PADDING, WHICH IS A DEPARTURE AND DELIBERATE. Carbon gives \`th\` and
+   \`td\` the same \`padding-inline: 1rem\` so they align. Here the cell content is a
+   tile that sits flush to its track, so 1rem on the heading alone would push every
+   stage name a centimetre right of the tiles it names. Alignment with the column
+   beats matching the rule. */
 .ln-dg-head { grid-column: 1 / -1; grid-row: 1; align-self: stretch;
-  background: var(--rux-layer-accent-01, #e0e0e0); }
-.ln-dg-stage { grid-row: 1; font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
-  letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
-  padding-block: .5rem; }
+  background: var(--rux-layer-accent, #e0e0e0); }
+.ln-dg-stage { grid-row: 1; block-size: 3rem; display: flex; align-items: center;
+  font-size: var(--rux-heading-compact-01-font-size, .875rem);
+  font-weight: var(--rux-heading-compact-01-font-weight, 600);
+  line-height: var(--rux-heading-compact-01-line-height, 1.28572);
+  letter-spacing: var(--rux-heading-compact-01-letter-spacing, .16px);
+  color: var(--rux-text-primary, #161616); }
 
 /* THE INSET THE FIGURE GAVE UP. A lane name flush against the surface edge is
    the cost of rules that reach it, so the label takes the padding instead --
@@ -2158,7 +2183,13 @@ function diagramFigure(dg) {
   // stylesheet. It is decoration in the accessibility tree's sense -- an empty
   // div with no text and no role -- and the lane it belongs to is already named
   // beside it.
-  const laneRules = lanes.map(l =>
+  // THE FIRST LANE HAS NO RULE. It used to draw one directly under the stage
+  // headings, which was right while the header had no ground of its own and is a
+  // doubled edge now that it has: the band ends, the body begins, and a line on
+  // top of that boundary is the second thing saying it. Carbon separates a
+  // header from a body by the header's fill, not by a border. Every other lane
+  // keeps its rule -- those boundaries have nothing else marking them.
+  const laneRules = lanes.slice(1).map(l =>
     `<div class="ln-dg-rule" style="grid-row:${row.get(l.name)}"></div>`).join('\n          ');
 
   // The header's ground, behind the stage names. See `.ln-dg-head`.

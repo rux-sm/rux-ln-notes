@@ -1824,22 +1824,35 @@ function indexPage(site) {
   // below; a heading and a paragraph repeating the app's own description between
   // them was furniture between a reader and the thing they came for.
   //
-  // THE HEADING IS AUTHORED HERE AND IS NOT `home.title`, which is a departure
-  // worth naming. The document is called "Order to shipment — the overview"
-  // upstream and this reads "Order to shipment — overview" -- rux's edit, and
-  // atlas's field is not string-surgeried to get it, because cutting a word out
-  // of authored data is the filtering this project refuses everywhere else. So
-  // the two disagree by one word until atlas changes its own title, which it
-  // has already agreed to do when the depth lands: `exchange/SEND-ATLAS-5.md` §6
-  // settles on "— the map". This heading is revisited then.
+  // THE HEADING IS THE ROUTE AND NOTHING ELSE. It is authored here rather than
+  // taken from `home.title`, and the qualifier that title carries is dropped
+  // rather than trimmed out of atlas's data -- cutting a word from authored
+  // content is the filtering this project refuses everywhere, and it would have
+  // been the invisible kind, a page disagreeing with its own source where no
+  // gate could see it.
+  //
+  // DROPPING IT RATHER THAN RE-WORDING IT IS WHAT MAKES THE DISAGREEMENT GO
+  // AWAY. "Overview" names the altitude to a reader who is looking at the thing,
+  // and the altitude is about to change: atlas renames the document to "— the
+  // map" when the depth lands, `exchange/SEND-ATLAS-5.md` §6. A heading that is
+  // only the route survives that rename, so there is nothing here to revisit and
+  // no word for the two sides to differ over.
+  //
+  // Sentence case, because every document title on this site is. ALL CAPS is
+  // spoken for -- it is the grid's own register for lane and stage labels, and
+  // an all-caps heading over the figure would read as one of them.
+  //
+  // THE LINK SURVIVED THE PARAGRAPH THAT CARRIED IT. Everything above the figure
+  // is gone at rux's direction, and the only route from here to the document
+  // went with it; it is below the figure now, where the reading-order note and
+  // the legend already live.
   const lead = home ? `
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-map">
-          <h1 id="h-map">Order to shipment — overview</h1>
-          <p class="rux--type-body-02">Every path to a shipment and the planning that
-             decides which one runs. Open a tile for its route, what it does and the
-             guide that walks it. <a href="guides/${esc(home.id)}.html">Read the whole
-             document</a>.</p>
+          <h1 id="h-map">Order to shipment</h1>
           ${diagramFigure(home.diagram)}
+          <p class="rux--type-body-02"><a href="guides/${esc(home.id)}.html">Read the whole
+             document</a> — every tile with its route, what it does, and the guide that
+             walks it.</p>
         </section>
 ` : '';
 

@@ -1,5 +1,5 @@
 ---
-exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-11, state: open}
+exchange: {kind: ask, from: rux-ln-notes, to: rux-ln-atlas, sent: 2026-09-11, state: answered, answered_by: send-atlas-4-reply}
 ---
 
 # The words on a tile, and two kinds missing from the enumeration

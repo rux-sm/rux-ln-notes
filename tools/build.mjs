@@ -1102,7 +1102,17 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    7rem the same day, once the collapsible shell (see the header) gave the
    diagram the width back; the title shrinks to .75rem with them so a
    two-line name still reads as a title and not a wrapped sentence. */
-.ln-dg { margin: 0; overflow-x: auto; }
+/* THE FIGURE NO LONGER INSETS ITS CONTENTS, 2026-09-11. \`rux--tile\` brings
+   16px of padding, which held the grid 16px clear of the surface on every side
+   and stopped every lane rule 16px short of the edge -- a table whose rules do
+   not reach its sides reads as a drawing of a table. The padding moves inward to
+   the cells, which is where Carbon's data table puts it: the rule spans the
+   table, the padding is inside the cell.
+
+   THE TILE STAYS. The decision it was added for on 2026-09-10 still holds -- the
+   figure reads as one surface rather than sitting flush on the page -- and that
+   is the background, not the padding. */
+.ln-dg { margin: 0; overflow-x: auto; padding: 0; }
 /* EACH COLUMN AS WIDE AS ITS OWN CONTENT, 2026-09-11. It was
    \`minmax(7rem, 1fr)\` -- every column the same width, and every one of them
    stretching to fill the figure. That made the width of the single widest tile
@@ -1139,9 +1149,24 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    computes to zero. */
 .ln-dg-grid { display: grid; grid-template-columns: repeat(var(--dg-cols), max-content) 1fr;
   gap: .5rem; align-items: start; min-inline-size: max-content; }
+/* THE STAGE ROW IS A TABLE HEADER, 2026-09-11. Carbon's data table gives its
+   header its own ground, and this row had none: the stage names sat on the same
+   surface as the tiles under them, distinguished by case and weight alone. The
+   band is a grid item spanning every column rather than a background on each
+   heading, because the grid's .5rem gap would otherwise cut the ground into six
+   pieces -- a header band with gaps in it is not a header band. Emitted before
+   the headings so it paints behind them. */
+.ln-dg-head { grid-column: 1 / -1; grid-row: 1; align-self: stretch;
+  background: var(--rux-layer-accent-01, #e0e0e0); }
 .ln-dg-stage { grid-row: 1; font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
-  padding-block-end: .25rem; }
+  padding-block: .5rem; }
+
+/* THE INSET THE FIGURE GAVE UP. A lane name flush against the surface edge is
+   the cost of rules that reach it, so the label takes the padding instead --
+   the cell holds the space, the rule spans the table. The grid keeps a little
+   at the foot so the last lane's tiles do not sit on the edge. */
+.ln-dg-grid { padding-block-end: 1rem; }
 .ln-dg-stage--boundary { color: var(--rux-text-error, #da1e28); }
 
 /* THE LANE RULE, 2026-09-11 -- a line across the whole grid at the top of every
@@ -1191,7 +1216,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
   margin-block: -.25rem; margin-inline: -.25rem; }
 .ln-dg-lane { grid-column: 1; font: 600 .75rem/1.4 var(--rux-code-01-font-family, ui-monospace, monospace);
   letter-spacing: .08em; text-transform: uppercase; color: var(--rux-text-secondary, #525252);
-  padding-block-start: 1.1rem; padding-inline-end: .75rem; }
+  padding-block-start: 1.1rem; padding-inline: 1rem .75rem; }
 .ln-dg-cell { display: flex; flex-direction: column; gap: .5rem; padding-block-start: .5rem; }
 
 /* A NODE IS <details>, so the disclosure needs no script and keyboard and
@@ -2136,6 +2161,9 @@ function diagramFigure(dg) {
   const laneRules = lanes.map(l =>
     `<div class="ln-dg-rule" style="grid-row:${row.get(l.name)}"></div>`).join('\n          ');
 
+  // The header's ground, behind the stage names. See `.ln-dg-head`.
+  const headBand = '<div class="ln-dg-head"></div>';
+
   // THE BOUNDARY IS A PLACE, AND THE RENDERER IS THE ONE THAT DRAWS IT. The
   // stage carries `boundary: true` (guide-json.md section 7) precisely so this
   // side never has to recognise the word "Transfer"; until 2026-09-10 all it
@@ -2378,6 +2406,7 @@ function diagramFigure(dg) {
   return `<figure class="rux--tile ln-dg" style="--dg-cols:${stages.length + 1}">
           <div class="ln-dg-grid">
             ${bands}
+            ${headBand}
             ${laneRules}
             ${heads}
             ${laneLabels}

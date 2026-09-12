@@ -230,6 +230,13 @@ for (const d of dgDocs) {
 // what is measured is by-category -- the same test, over the vocabulary that
 // won.
 //
+// IT IS `looks-per-category-state` SINCE 2026-09-12, when the fill axis shipped:
+// a tile with a session code is filled and one without is an outline, so a
+// category has two legitimate appearances and grouping by category alone called
+// that a defect. The invariant is unchanged -- two tiles in the same category
+// and the same screen state must not be tellable apart -- and the row is renamed
+// rather than reinterpreted so a diff shows the meaning moved.
+//
 // `looks-per-category` IS THE ONE THAT EARNS ITS PLACE. Both collisions read 0
 // while a Prerequisite was drawn two ways, and read it correctly: a three-sided
 // box is nothing like a Step, so nothing collided. It read 2 then, and it would
@@ -255,11 +262,15 @@ for (const d of dgDocs) {
   const r = tileLooks(readFileSync(join(ROOT, page), 'utf8'));
   say(`${k}.categories`, r.perCategory.map((c) => `${c.cat} ${c.tiles}`).join(' · '));
   say(`${k}.looks`, r.looks);
-  say(`${k}.looks-per-category`, r.perCategory.map((c) => `${c.cat} ${c.looks}`).join(' · '));
+  say(`${k}.looks-per-category-state`, r.perCategory.map((c) => `${c.cat} ${c.looks}`).join(' · '));
   say(`${k}.colliding-by-category`, r.collidingByCategory);
   for (const t of r.tiles) {
-    if (!looksByCat.has(t.cat)) looksByCat.set(t.cat, new Set());
-    looksByCat.get(t.cat).add(describeLook(t.look));
+    // Keyed by screen state as well, since the fill axis gives a category two
+    // legitimate looks; a row saying "2 looks" would otherwise read as the
+    // defect it was written to report.
+    const key = `${t.cat}.${t.hasCode ? 'screen' : 'no-screen'}`;
+    if (!looksByCat.has(key)) looksByCat.set(key, new Set());
+    looksByCat.get(key).add(describeLook(t.look));
   }
   tileRules = r.rules.tile; stateRules = r.rules.state;
 }

@@ -1297,9 +1297,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    node. Before this the accent existed only as a border colour, which meant a
    yellow bar on Item Order Plan and nothing anywhere naming it a gate. */
 .ln-dg-node { position: relative; --dg-accent: var(--rux-border-strong-01, #8d8d8d);
-  border: 1px solid var(--rux-border-subtle-01, #e0e0e0);
-  border-inline-start: 3px solid var(--dg-accent);
-  background: var(--rux-layer-01, #f4f4f4); }
+  border: 1px solid var(--dg-accent); background: transparent; }
 /* THE NUMBER TAKES A ROW, NOT A COLUMN. It sat in a 1.25rem gutter until
    2026-09-10, which cost every tile that width for a two-character label and
    left the name a narrower column than the tile it is in. One column, one child
@@ -1577,10 +1575,11 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    it. The dashed border with no fill already says "off the line"; the indent
    was saying it a second time, for 52px of horizontal scroll. */
 .ln-dg-node.ln-dg-cat--config,
-.ln-dg-node.ln-dg-cat--info {
-  border: 1px dashed var(--rux-border-strong-01, #8d8d8d);
-  background: transparent; padding-inline-start: 0; }
+.ln-dg-node.ln-dg-cat--info { border-style: dashed; }
 .ln-dg-node.ln-dg-cat--config .ln-dg-node-name { font-style: normal; }
+.ln-dg-node.ln-dg-cat--info { --dg-accent: var(--rux-tag-color-blue, #0043ce); }
+.ln-dg-node.ln-dg-cat--info .ln-dg-node-name,
+.ln-dg-node.ln-dg-cat--info .ln-dg-node-code { color: var(--rux-tag-color-blue, #0043ce); }
 .ln-dg-node.ln-dg-cat--info .ln-dg-node-name { font-style: italic; }
 
 /* 4 RESULT -- on the route, and what now exists because of the step before.
@@ -1589,8 +1588,9 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    is what says "a box you open". This is the category the diagram never had,
    and it is 10 of the 41 nodes: a planned purchase order was drawn as a box
    exactly like a step, so it read as something to go and perform. */
-.ln-dg-cat--result { border-inline-start: 0; padding-inline-start: 3px;
-  background: var(--rux-layer-accent-01, #e0e0e0); }
+.ln-dg-cat--result { --dg-accent: var(--rux-tag-color-green, #0e6027); }
+.ln-dg-cat--result .ln-dg-node-name,
+.ln-dg-cat--result .ln-dg-node-code { color: var(--rux-tag-color-green, #0e6027); }
 .ln-dg-cat--result .ln-dg-node-name { font-style: italic; font-weight: 500; }
 
 /* 5 CHECKPOINT -- the only colour left in the figure. Italic because you do not
@@ -1598,9 +1598,9 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    produce no message at all. It keeps the yellow WHEREVER IT STANDS, on the
    route or beside it: a silent failure is the one thing no layout can show, and
    §2 of the session map is written around it. */
-.ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b);
-  border-inline-start: 3px solid var(--dg-accent); padding-inline-start: 0; }
-.ln-dg-cat--check .ln-dg-node-name { font-style: italic; font-weight: 500; }
+.ln-dg-cat--check { --dg-accent: var(--rux-support-warning, #f1c21b); }
+.ln-dg-cat--check .ln-dg-node-name { color: var(--rux-support-warning, #f1c21b);
+  font-style: italic; font-weight: 500; }
 
 /* NOT A SESSION, AND ONLY WHERE THE CATEGORY HAS NOT ALREADY DECIDED ITS OWN
    INLINE START. A tile with no code has nothing behind it to open, so it loses
@@ -1623,8 +1623,37 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    specificity. Measured in the browser before the fix: 0px none on all three.
    An exclusion list that has to grow is the wrong shape; naming the one
    category the rule is about cannot drift into another one's treatment. */
-.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-legend-tile) {
-  border-inline-start: 0; padding-inline-start: 3px; }
+/* THE FILL SAYS THERE IS A SCREEN BEHIND IT, 2026-09-12. A tile with a session
+   code is filled; one without is an outline. That is the signal the 3px accent
+   stripe used to carry -- grey for an ordinary screen, none for nothing to open
+   -- moved to a property that can hold it while colour takes the role. It costs
+   nothing to derive: \`:has(.ln-dg-node-code)\` is the test the stripe rule
+   already used.
+
+   NOT \`layer-01\`, WHICH IS THE FIGURE'S OWN GROUND. A neutral fill drawn with it
+   is invisible -- measured 57,57,57 on 57,57,57 in g90, in the specimen, before
+   this shipped. The gray tag pair is the neutral that differs from the surface.
+
+   THE LEGEND SWATCHES TAKE THE FILL TOO. A swatch carries no code, so it would
+   otherwise show every category in its unfilled form and teach the wrong half of
+   a two-state system. */
+.ln-dg-node:has(.ln-dg-node-code), .ln-dg-legend-tile {
+  background: var(--rux-tag-background-gray, #e0e0e0); }
+.ln-dg-node:has(.ln-dg-node-code) .ln-dg-node-name,
+.ln-dg-node:has(.ln-dg-node-code) .ln-dg-node-code,
+.ln-dg-legend-tile .ln-dg-node-name { color: var(--rux-tag-color-gray, #161616); }
+.ln-dg-cat--info:has(.ln-dg-node-code), .ln-dg-legend-tile.ln-dg-cat--info {
+  background: var(--rux-tag-background-blue, #d0e2ff); }
+.ln-dg-cat--info:has(.ln-dg-node-code) .ln-dg-node-name,
+.ln-dg-cat--info:has(.ln-dg-node-code) .ln-dg-node-code,
+.ln-dg-legend-tile.ln-dg-cat--info .ln-dg-node-name { color: var(--rux-tag-color-blue, #0043ce); }
+.ln-dg-cat--result:has(.ln-dg-node-code), .ln-dg-legend-tile.ln-dg-cat--result {
+  background: var(--rux-tag-background-green, #a7f0ba); }
+.ln-dg-cat--result:has(.ln-dg-node-code) .ln-dg-node-name,
+.ln-dg-cat--result:has(.ln-dg-node-code) .ln-dg-node-code,
+.ln-dg-legend-tile.ln-dg-cat--result .ln-dg-node-name { color: var(--rux-tag-color-green, #0e6027); }
+.ln-dg-cat--check:has(.ln-dg-node-code), .ln-dg-legend-tile.ln-dg-cat--check {
+  background: color-mix(in srgb, var(--rux-support-warning, #f1c21b) 25%, var(--rux-layer-01, #f4f4f4)); }
 
 /* THE LEGEND IS THE FIGURE'S CAPTION, and until now the figure had none. It is
    a \`<figcaption>\` rather than a loose \`<ul>\`: it is literally a caption for the
@@ -1653,10 +1682,12 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    escalating specificity is what armed the trap §7 of \`docs/diagram.md\` records,
    and it is not spent on a legend.
 
-   ONE GLOSS, AND ONLY ONE. Dashed says off the line, no stripe says nothing to
-   open, italic says take this in -- the forms carry themselves. Yellow cannot
-   say "this decides on its own and can stop without telling you", so Checkpoint
-   keeps its sentence and the other three do not. */
+   TWO GLOSSES, ONE PER AXIS THAT CANNOT SPEAK FOR ITSELF. Yellow cannot say
+   "this decides on its own and can stop without telling you", so Checkpoint
+   keeps its sentence. And since 2026-09-12 the fill carries a second axis
+   entirely -- filled means there is a screen behind the tile -- which the
+   swatches cannot teach, because every swatch is filled. A legend that teaches
+   one of two axes is the half-key this one was built to avoid. */
 /* THE CLOSING RULE IS THE GRID'S, NOT THE CAPTION'S, and that is a fact about
    scrolling rather than a preference. \`.ln-dg\` scrolls on the inline axis, so a
    block child of it -- which is what a \`<figcaption>\` is -- is laid out at the
@@ -2555,7 +2586,8 @@ function diagramFigure(dg, { notes: withNotes = true, link = '' } = {}) {
     .filter(c => present.has(c)).map(c => `
             <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--${c}"><span class="ln-dg-node-name">${
       esc(CATEGORY_NAME[c])}</span></span>${GLOSS[c] ? `<span class="ln-dg-legend-gloss">${esc(GLOSS[c])}</span>` : ''}</li>`).join('')}
-          </ul>${link}
+          </ul>
+          <span class="ln-dg-legend-gloss">a filled tile is a screen you can open</span>${link}
         </figcaption>`;
 
   // THE EDGES FOLD. Nine of them on the overview and five on the map, printed as

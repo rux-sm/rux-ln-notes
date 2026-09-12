@@ -37,13 +37,19 @@ const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 // map's nodes are sessions, so the new form draws nothing there and any change
 // it shows is a change the plan did not intend. Nine of the overview's
 // seventeen are not sessions, and three of its kinds collide today.
+// THE SESSION MAP IS FIRST BECAUSE IT IS THE ONLY DOCUMENT WITH ALL FIVE
+// CATEGORIES. The overview has 0 Inquiry tiles of 17 and 0 `guide` links of 17,
+// so a proposal about either draws nothing there -- and with the overview first
+// a reader met four types and an unchanged canvas before reaching anything the
+// variants do. The overview stays as the second section, where its two absences
+// are the point rather than a confusion.
 const DOCS = [
-  ['overview', 'guides/order-to-shipment-overview.html',
-    'Level 1. 8 of 17 nodes are sessions; step, decision and outcome collide today.',
-    'order-to-shipment-overview'],
   ['session map', 'guides/demand-to-shipment-session-map.html',
-    'Level 2. 24 of 24 are sessions, so the not-a-session form draws nothing.',
+    'Level 2. All five categories, 26 of 26 openable, 26 of 26 carrying a guide.',
     'demand-to-shipment-session-map'],
+  ['overview', 'guides/order-to-shipment-overview.html',
+    'Level 1. Four categories — no Inquiry at all — and not one of its 17 nodes carries a guide.',
+    'order-to-shipment-overview'],
 ];
 
 const slice = (html, open, close) => {
@@ -131,6 +137,7 @@ const markOffPath = (fig, dg) => {
     if (!node) throw new Error('more tiles in the figure than nodes in the data');
     if (node.kind !== kind) throw new Error(`tile ${i} is ${kind}, node ${node.id} is ${node.kind}`);
     const extra = (off.has(node.id) ? ' ln-dg-node--off-path' : '')
+      + (node.guide ? ' ln-dg-node--has-guide' : '')
       + ` ln-dg-cat--${categoryOf(node, off.has(node.id))}`;
     return `class="ln-dg-node ln-dg-node--${kind}${extra}"`;
   });
@@ -181,6 +188,24 @@ const NOT_A_SESSION = '.ln-dg-node:not(:has(.ln-dg-node-code))';
 // figure still fit -- which is the question that caught the three-sided
 // prerequisite card on the live site, after every collision figure had read 0
 // throughout and read it correctly.
+// TWO PROPOSALS, 2026-09-11, out of the tile audit, drawn rather than argued.
+//
+// WHAT THE AUDIT FOUND. A tile's face carries four of the fourteen fields a node
+// holds. `guide` is on 26 of the 43 and appears nowhere on the canvas -- the SOP
+// link this project exists to hang off a tile is invisible until the tile is
+// opened. And Setup and Inquiry are the same dashed border on the same
+// transparent ground, told apart by `font-style` alone, while italic already
+// carries Result and Checkpoint too: the weakest distinction on the busiest axis.
+//
+// `has-guide` IS INJECTED FROM THE DATA, like `off-path` above it, because
+// whether a node carries a guide is not in the markup. Variants that do not
+// style it are unaffected and the comparison stays CSS-only; if a treatment is
+// taken, `build.mjs` emits the class outright.
+//
+// THE OVERVIEW HAS NO INQUIRY AT ALL -- 0 of 17 -- so the teal draws nothing
+// there and everything on the session map's three. That is not a fault in the
+// variant: it is the gap `exchange/SEND-ATLAS-5.md` §3 asks atlas to fill,
+// showing up as an absence.
 const VARIANTS = [
   {
     id: 'shipped', name: 'Shipped — the five categories',
@@ -194,6 +219,49 @@ const VARIANTS = [
       <b>Every category should show exactly one look</b>; more than one means a category
       is being drawn two ways, which is how the open-sided prerequisite card shipped.`,
     css: '',
+  },
+
+  {
+    id: 'roles', name: 'A — three axes, one job each',
+    blurb: `<b>Border style says where you are.</b> Dashed for Setup and Inquiry, which sit
+      beside the route; solid for Step, Result and Checkpoint, which are on it. Dashed
+      rather than dotted because it carries further at 1px.
+      <b>Fill says whether there is a screen behind it.</b> A tile with a session code is
+      filled; one without is an outline. That is the signal the 3px stripe used to
+      carry, moved to a property that can hold it — and it costs nothing to derive,
+      because <code>:has(.ln-dg-node-code)</code> is already the test the shipped CSS
+      uses.
+      <b>Colour says the role.</b> Neutral Step and Setup, <b>blue</b> Inquiry,
+      <b>green</b> Result, <b>yellow</b> Checkpoint — on the border and the text always,
+      so an unfilled tile still shows its role.
+      <b>No accent stripe anywhere.</b> One border weight the whole way round.
+      Worth watching: the overview has 9 tiles of 17 with no code, so a third of it is
+      outlines; the session map has 26 of 26 coded, so every tile there is filled and
+      the fill axis says nothing at all on that document.`,
+    css: `
+.v-roles .ln-dg-node { border: 1px solid var(--rux-border-strong-01, #8d8d8d);
+  padding-inline-start: 0; background: transparent; }
+.v-roles .ln-dg-cat--config, .v-roles .ln-dg-cat--info { border-style: dashed; }
+.v-roles .ln-dg-cat--info { border-color: var(--rux-tag-color-blue, #0043ce); }
+.v-roles .ln-dg-cat--info .ln-dg-node-name,
+.v-roles .ln-dg-cat--info .ln-dg-node-code { color: var(--rux-tag-color-blue, #0043ce); }
+.v-roles .ln-dg-cat--result { border-color: var(--rux-tag-color-green, #0e6027); }
+.v-roles .ln-dg-cat--result .ln-dg-node-name,
+.v-roles .ln-dg-cat--result .ln-dg-node-code { color: var(--rux-tag-color-green, #0e6027); }
+.v-roles .ln-dg-cat--check { border-color: var(--rux-support-warning, #f1c21b); }
+.v-roles .ln-dg-cat--check .ln-dg-node-name { color: var(--rux-support-warning, #f1c21b); }
+
+/* the fill arrives only where there is a screen to open */
+/* NOT layer-01: that is the figure's OWN ground, so a neutral fill drawn with it
+   is invisible -- measured 57,57,57 on 57,57,57 in g90. The gray tag pair is the
+   neutral that differs from the surface. */
+.v-roles .ln-dg-node:has(.ln-dg-node-code) { background: var(--rux-tag-background-gray, #e0e0e0); }
+.v-roles .ln-dg-node:has(.ln-dg-node-code) .ln-dg-node-name,
+.v-roles .ln-dg-node:has(.ln-dg-node-code) .ln-dg-node-code { color: var(--rux-tag-color-gray, #161616); }
+.v-roles .ln-dg-cat--info:has(.ln-dg-node-code) { background: var(--rux-tag-background-blue, #d0e2ff); }
+.v-roles .ln-dg-cat--result:has(.ln-dg-node-code) { background: var(--rux-tag-background-green, #a7f0ba); }
+.v-roles .ln-dg-cat--check:has(.ln-dg-node-code) {
+  background: color-mix(in srgb, var(--rux-support-warning, #f1c21b) 25%, var(--rux-layer-01, #f4f4f4)); }`,
   },
 
   // THE COLUMN VARIANTS ARE GONE FOR THE SAME REASON THE LANE ONES ARE. Drawn

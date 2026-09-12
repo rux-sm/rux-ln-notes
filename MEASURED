@@ -1,6 +1,6 @@
 # upstreams
 rux-ln-atlas.pin = ab9d6ca
-rux-ds.head = 4122795
+rux-ds.head = f4b204e
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.live = 12
@@ -69,21 +69,24 @@ diagram.order-to-shipment-overview.nodes-marked = 6
 diagram.order-to-shipment-overview.edges-dangling = 0
 
 # diagram looks (tile-looks.mjs resolves these from each page's own CSS; the specimen paints them per theme)
-diagram.demand-to-shipment-session-map.categories = check 1 · config 2 · info 3 · result 4 · step 16
+diagram.demand-to-shipment-session-map.categories = check screen 1 · config screen 2 · info screen 3 · result screen 4 · step screen 16
 diagram.demand-to-shipment-session-map.looks = 5
-diagram.demand-to-shipment-session-map.looks-per-category = check 1 · config 1 · info 1 · result 1 · step 1
+diagram.demand-to-shipment-session-map.looks-per-category-state = check screen 1 · config screen 1 · info screen 1 · result screen 1 · step screen 1
 diagram.demand-to-shipment-session-map.colliding-by-category = 0
-diagram.order-to-shipment-overview.categories = check 3 · config 4 · result 6 · step 4
-diagram.order-to-shipment-overview.looks = 4
-diagram.order-to-shipment-overview.looks-per-category = check 1 · config 1 · result 1 · step 1
+diagram.order-to-shipment-overview.categories = check no-screen 3 · config no-screen 2 · config screen 2 · result no-screen 4 · result screen 2 · step screen 4
+diagram.order-to-shipment-overview.looks = 6
+diagram.order-to-shipment-overview.looks-per-category-state = check no-screen 1 · config no-screen 1 · config screen 1 · result no-screen 1 · result screen 1 · step screen 1
 diagram.order-to-shipment-overview.colliding-by-category = 0
-diagram-looks.rules-read = 10
+diagram-looks.rules-read = 16
 diagram-looks.rules-state-skipped = 1
-diagram-looks.check = stripe 3px solid var(--rux-support-warning, #f1c21b) · ground var(--rux-layer-01, #f4f4f4) · name italic
-diagram-looks.config = stripe 1px dashed var(--rux-border-strong-01, #8d8d8d) · ground transparent · name normal
-diagram-looks.info = stripe 1px dashed var(--rux-border-strong-01, #8d8d8d) · ground transparent · name italic
-diagram-looks.result = stripe none · ground var(--rux-layer-accent-01, #e0e0e0) · name italic
-diagram-looks.step = stripe 3px solid var(--rux-border-strong-01, #8d8d8d) · ground var(--rux-layer-01, #f4f4f4) · name normal
+diagram-looks.check.no-screen = border 1px solid var(--rux-support-warning, #f1c21b) · ground transparent · name italic
+diagram-looks.check.screen = border 1px solid var(--rux-support-warning, #f1c21b) · ground color-mix(in srgb, var(--rux-support-warning, #f1c21b) 25%, var(--rux-layer-01, #f4f4f4)) · name italic
+diagram-looks.config.no-screen = border 1px dashed var(--rux-border-strong-01, #8d8d8d) · ground transparent · name normal
+diagram-looks.config.screen = border 1px dashed var(--rux-border-strong-01, #8d8d8d) · ground var(--rux-tag-background-gray, #e0e0e0) · name normal
+diagram-looks.info.screen = border 1px dashed var(--rux-tag-color-blue, #0043ce) · ground var(--rux-tag-background-blue, #d0e2ff) · name italic
+diagram-looks.result.no-screen = border 1px solid var(--rux-tag-color-green, #0e6027) · ground transparent · name italic
+diagram-looks.result.screen = border 1px solid var(--rux-tag-color-green, #0e6027) · ground var(--rux-tag-background-green, #a7f0ba) · name italic
+diagram-looks.step.screen = border 1px solid var(--rux-border-strong-01, #8d8d8d) · ground var(--rux-tag-background-gray, #e0e0e0) · name normal
 
 # reviews (atlas _standards/review-shape.md quotes these)
 reviews.count = 8

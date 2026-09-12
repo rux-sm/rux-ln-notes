@@ -287,13 +287,16 @@ const figureOf = (html) => {
 };
 
 // ONE LOOK IN WORDS, so `MEASURED` and the command line say it the same way and
-// a diff on the row reads as a sentence about the drawing. A stripe of zero
-// width or `none` style is drawn as nothing, and saying `stripe none` rather
+// a diff on the row reads as a sentence about the drawing. A border of zero
+// width or `none` style is drawn as nothing, and saying `border none` rather
 // than `0 none currentcolor` is the difference between a row a person can read
-// and one they have to decode -- it was a stripe reading `0 none` that hid on
-// the overview for a day.
+// and one they have to decode -- it was an edge reading `0 none` that hid the
+// missing checkpoint accent on the overview for a day.
+//
+// IT SAID `stripe` UNTIL 2026-09-12, when the 3px accent edge was removed and
+// every tile went to one border weight. There is no stripe to name any more.
 export const describeLook = ([w, s, c, bg, fontStyle]) =>
-  `stripe ${w === '0' || w === '0px' || s === 'none' ? 'none' : `${w} ${s} ${c}`}`
+  `border ${w === '0' || w === '0px' || s === 'none' ? 'none' : `${w} ${s} ${c}`}`
   + ` · ground ${bg} · name ${fontStyle}`;
 
 // THE ANSWER. For one built page: every tile, the five properties resolved, and
@@ -341,10 +344,24 @@ export function tileLooks(html) {
   }
   readRules = seenTile.size; stateRules = seenState.size;
 
+  // ONE CATEGORY AND ONE SCREEN STATE, ONE LOOK -- and the second half of that
+  // was added 2026-09-12 when the fill axis shipped. A tile with a session code
+  // is filled and one without is an outline, deliberately, so a category now has
+  // two legitimate appearances and grouping by category alone reported `config 2`
+  // and `result 2` as defects on every run.
+  //
+  // THAT IS THE FAILURE §5.1 OF docs/diagram.md RECORDS, CAUGHT EARLY THIS TIME.
+  // A figure whose meaning the design has moved past keeps printing numbers and
+  // they stop meaning anything; the specimen showed it the moment the variant was
+  // drawn, so the metric changes in the commit that changes the design rather
+  // than after someone wonders why a green row went red. The invariant is the
+  // same one it always was: a reader meeting two tiles in the same category and
+  // the same screen state must not be able to tell them apart.
   const byCat = new Map();
   for (const t of tiles) {
-    if (!byCat.has(t.cat)) byCat.set(t.cat, { tiles: 0, looks: new Set() });
-    const e = byCat.get(t.cat); e.tiles++; e.looks.add(t.sig);
+    const key = `${t.cat} ${t.hasCode ? 'screen' : 'no-screen'}`;
+    if (!byCat.has(key)) byCat.set(key, { tiles: 0, looks: new Set() });
+    const e = byCat.get(key); e.tiles++; e.looks.add(t.sig);
   }
   // Colliding by category: tiles that cannot be told from a tile of another
   // category. Scored exactly as the specimen scores it.

@@ -619,12 +619,23 @@
    its stripe -- the single thing that swatch is there to show. The exemption is
    a `:not()` on that rule rather than an override after it, so the specificity
    trap §7 records cannot re-form: the rule is (0,3,0) and nothing competes. */
-.ln-dg-key { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem;
-  margin-block-start: .75rem; padding: 0; list-style: none;
-  font-size: .8125rem; color: var(--rux-text-secondary, #525252); }
-.ln-dg-key li { display: flex; align-items: center; gap: .5rem; }
-.ln-dg-key-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
-.ln-dg-key-tile .ln-dg-node-name { display: block; }
+/* `ln-dg-legend`, AND THE NAME IS THE WHOLE POINT OF THIS COMMENT. It was
+   `ln-dg-key` for a day, which is this project's class for the NEEDS and SPLITS
+   marks on a tile face -- see the note above `.ln-dg-node-link`. Two rules
+   defined one class, and the legend silently inherited the mark's
+   `text-transform: uppercase`, `font-weight: 600` and letter-spacing: every gloss
+   shipped shouting. Nothing caught it. `check-classes` validates `rux--*` names
+   and says nothing about this project's own, and `tile-looks` reads tiles and
+   never the legend.
+
+   THE SWATCH IS THE LABEL NOW. The glosses are gone: five categories, five
+   words, and the words were the only thing §4's no-legend argument was ever
+   missing -- the forms teach themselves and the panel spells the category out in
+   full when a tile is opened. One line instead of two. */
+.ln-dg-legend { display: flex; flex-wrap: wrap; gap: .25rem 1rem;
+  margin-block-start: .75rem; padding: 0; list-style: none; }
+.ln-dg-legend-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
+.ln-dg-legend-tile .ln-dg-node-name { display: block; }
 /* AN EDGE WRAPS, ITS TWO ENDS DO NOT. `nowrap` on the whole span was free
    while an address was "7 → 8"; an address is a session name where a document
    numbers nothing, and “Bill of material and routing → Generate Order Planning
@@ -726,7 +737,7 @@
    specificity. Measured in the browser before the fix: 0px none on all three.
    An exclusion list that has to grow is the wrong shape; naming the one
    category the rule is about cannot drift into another one's treatment. */
-.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-key-tile) {
+.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-legend-tile) {
   border-inline-start: 0; padding-inline-start: 3px; }
 
 /* THE HEADER IS `position: fixed` AND 48px TALL, so every in-page anchor

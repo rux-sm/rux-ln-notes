@@ -1454,12 +1454,23 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    its stripe -- the single thing that swatch is there to show. The exemption is
    a \`:not()\` on that rule rather than an override after it, so the specificity
    trap §7 records cannot re-form: the rule is (0,3,0) and nothing competes. */
-.ln-dg-key { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem;
-  margin-block-start: .75rem; padding: 0; list-style: none;
-  font-size: .8125rem; color: var(--rux-text-secondary, #525252); }
-.ln-dg-key li { display: flex; align-items: center; gap: .5rem; }
-.ln-dg-key-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
-.ln-dg-key-tile .ln-dg-node-name { display: block; }
+/* \`ln-dg-legend\`, AND THE NAME IS THE WHOLE POINT OF THIS COMMENT. It was
+   \`ln-dg-key\` for a day, which is this project's class for the NEEDS and SPLITS
+   marks on a tile face -- see the note above \`.ln-dg-node-link\`. Two rules
+   defined one class, and the legend silently inherited the mark's
+   \`text-transform: uppercase\`, \`font-weight: 600\` and letter-spacing: every gloss
+   shipped shouting. Nothing caught it. \`check-classes\` validates \`rux--*\` names
+   and says nothing about this project's own, and \`tile-looks\` reads tiles and
+   never the legend.
+
+   THE SWATCH IS THE LABEL NOW. The glosses are gone: five categories, five
+   words, and the words were the only thing §4's no-legend argument was ever
+   missing -- the forms teach themselves and the panel spells the category out in
+   full when a tile is opened. One line instead of two. */
+.ln-dg-legend { display: flex; flex-wrap: wrap; gap: .25rem 1rem;
+  margin-block-start: .75rem; padding: 0; list-style: none; }
+.ln-dg-legend-tile { padding: .15rem .4rem; color: var(--rux-text-primary, #161616); }
+.ln-dg-legend-tile .ln-dg-node-name { display: block; }
 /* AN EDGE WRAPS, ITS TWO ENDS DO NOT. \`nowrap\` on the whole span was free
    while an address was "7 → 8"; an address is a session name where a document
    numbers nothing, and “Bill of material and routing → Generate Order Planning
@@ -1561,7 +1572,7 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    specificity. Measured in the browser before the fix: 0px none on all three.
    An exclusion list that has to grow is the wrong shape; naming the one
    category the rule is about cannot drift into another one's treatment. */
-.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-key-tile) {
+.ln-dg-cat--step:not(:has(.ln-dg-node-code)):not(.ln-dg-legend-tile) {
   border-inline-start: 0; padding-inline-start: 3px; }
 
 /* THE HEADER IS \`position: fixed\` AND 48px TALL, so every in-page anchor
@@ -1810,7 +1821,7 @@ function indexPage(site) {
   const lead = home ? `
         <section class="rux--stack-vertical rux--stack-scale-5" aria-labelledby="h-map">
           <h1 id="h-map">Order to shipment</h1>
-          ${diagramFigure(home.diagram)}
+          ${diagramFigure(home.diagram, { notes: false })}
           <p class="rux--type-body-02"><a href="guides/${esc(home.id)}.html">Read the whole
              document</a> — every tile with its route, what it does, and the guide that
              walks it.</p>
@@ -2163,7 +2174,15 @@ function categories(dg) {
 const CATEGORY_NAME = { step: 'Step', config: 'Setup', info: 'Inquiry',
   result: 'Result', check: 'Checkpoint' };
 
-function diagramFigure(dg) {
+// `notes` IS FALSE ON THE HOME PAGE, and that is a judgement about audience
+// rather than a saving. The reading-order line described a loose grid and the
+// figure reads as a table now -- left to right and down is what a table already
+// promises. The off-sequence edge list is a second rendering of what the tiles
+// already carry: every node with one prints NEEDS or SPLITS on its face, 6 of
+// this document's 17. Both stay on the document page, where reference detail
+// belongs; the home page is the map at a glance. The legend is on both, because
+// it is the key to what is drawn rather than a note about it.
+function diagramFigure(dg, { notes: withNotes = true } = {}) {
   const stages = dg.stages ?? [], lanes = dg.lanes ?? [];
   const cat = categories(dg);
   const col = new Map(stages.map((s, i) => [s.n, i + 2]));
@@ -2403,19 +2422,12 @@ function diagramFigure(dg) {
   // the ground, the stripe and the italic all come from the canvas rules and the
   // key cannot say "dashed" on a day the tiles went solid. `ln-dg-key-tile` is
   // the one thing it adds, and the stylesheet says what it is for.
-  const GLOSS = {
-    step: 'what you do here',
-    config: 'true before the route runs',
-    info: 'opened to find out what is true now',
-    result: 'what now exists — nothing to perform',
-    check: 'decides on its own, and can stop without saying so',
-  };
   const present = new Set(cat.values());
   const key = `
-        <ul class="ln-dg-key">${['step', 'config', 'info', 'result', 'check']
+        <ul class="ln-dg-legend">${['step', 'config', 'info', 'result', 'check']
     .filter(c => present.has(c)).map(c => `
-          <li><span class="ln-dg-node ln-dg-key-tile ln-dg-cat--${c}"><span class="ln-dg-node-name">${
-      esc(CATEGORY_NAME[c])}</span></span> ${esc(GLOSS[c])}</li>`).join('')}
+          <li><span class="ln-dg-node ln-dg-legend-tile ln-dg-cat--${c}"><span class="ln-dg-node-name">${
+      esc(CATEGORY_NAME[c])}</span></span></li>`).join('')}
         </ul>`;
 
   // THE EDGES FOLD. Nine of them on the overview and five on the map, printed as
@@ -2442,7 +2454,7 @@ function diagramFigure(dg) {
             ${heads}
             ${laneLabels}
             ${cells.join('\n            ')}
-          </div>${notes}${key}
+          </div>${withNotes ? notes : ''}${key}
         </figure>`;
 }
 

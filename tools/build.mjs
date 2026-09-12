@@ -1102,7 +1102,24 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    7rem the same day, once the collapsible shell (see the header) gave the
    diagram the width back; the title shrinks to .75rem with them so a
    two-line name still reads as a title and not a wrapped sentence. */
-/* THE FIGURE NO LONGER INSETS ITS CONTENTS, 2026-09-11. \`rux--tile\` brings
+/* THE FIGURE IS A ONE-COLUMN GRID SO ITS CAPTION IS AS WIDE AS ITS TABLE. A
+   \`<figcaption>\` is a block child of a scroll container, so it is laid out at the
+   VISIBLE width while \`.ln-dg-grid\` sizes to \`max-content\` and sets the scroll
+   width -- measured, 796px of caption under 1138px of table. No width on the
+   caption can fix that, because its containing block is the frame and not the
+   content.
+
+   One column of \`minmax(max-content, 1fr)\` fixes both cases at once: every
+   child stretches to the column, the track cannot shrink below the table's own
+   max-content, and the \`1fr\` lets it grow to fill a frame that is wider. So the
+   caption spans the table when the figure scrolls and the frame when it does
+   not, which is the rule the closing gridline already follows.
+
+   \`minmax(100%, max-content)\` WAS TRIED FIRST AND DOES NOT WORK: a track with a
+   definite available space is clamped to it, so the column stayed at the frame's
+   692px under 1138px of table and the caption did not move.
+
+   THE FIGURE NO LONGER INSETS ITS CONTENTS, 2026-09-11. \`rux--tile\` brings
    16px of padding, which held the grid 16px clear of the surface on every side
    and stopped every lane rule 16px short of the edge -- a table whose rules do
    not reach its sides reads as a drawing of a table. The padding moves inward to
@@ -1112,7 +1129,8 @@ function page({ title, site, activeId, body, depth, scripts = [] }) {
    THE TILE STAYS. The decision it was added for on 2026-09-10 still holds -- the
    figure reads as one surface rather than sitting flush on the page -- and that
    is the background, not the padding. */
-.ln-dg { margin: 0; overflow-x: auto; padding: 0; }
+.ln-dg { margin: 0; overflow-x: auto; padding: 0;
+  display: grid; grid-template-columns: minmax(max-content, 1fr); }
 /* EACH COLUMN AS WIDE AS ITS OWN CONTENT, 2026-09-11. It was
    \`minmax(7rem, 1fr)\` -- every column the same width, and every one of them
    stretching to fill the figure. That made the width of the single widest tile

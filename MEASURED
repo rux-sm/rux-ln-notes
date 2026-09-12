@@ -1,6 +1,6 @@
 # upstreams
 rux-ln-atlas.pin = ab9d6ca
-rux-ds.head = bc2465c
+rux-ds.head = 4122795
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.live = 12

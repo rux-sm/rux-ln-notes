@@ -1,6 +1,6 @@
 # upstreams
 rux-ln-atlas.pin = 63d9d53
-rux-ds.head = f4b204e
+rux-ds.head = 7ef4563
 
 # rux-ds surface (SEND-DS.md quotes these)
 rux-ds.templates.live = 12
@@ -101,5 +101,5 @@ reviews.oi-ids.frontmatter = 55
 reviews.oi-ids.residual = 14
 
 # publishable (0 in every row is the condition for going public)
-publishable.pages = 42
+publishable.pages = 43
 publishable.pages-flagged = 0

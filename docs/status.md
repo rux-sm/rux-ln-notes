@@ -104,17 +104,10 @@ go to the overview, where all three Checkpoints were drawn with no stripe at all
 Eight themes of looking at the right tiles did not find it; resolving the
 stylesheet found it in one run. *Decided, not built* below has the record.
 
-**Two other things are still other people's moves:** rux-ds answering the
-vocabulary question, and atlas answering `SEND-ATLAS-2.md`, whose §1 blocks
-atlas's screen-reference emitter. Neither blocks the memo above.
-
-**Waiting on someone else, not on this repository** — the list below is prose
-and can rot; the answer that cannot is:
-
-    node ../rux-ds/tools/exchange.mjs
-
-which reads every memo's own `exchange:` frontmatter across all six checkouts.
-Added 2026-09-11, for the reason this file names at the top.
+**Still open elsewhere, since 2026-09-12 done in the same session rather than
+waited on:** the vocabulary question in rux-ds, and `SEND-ATLAS-2.md` §1,
+which blocks atlas's screen-reference emitter. The one list across the family
+is the hub's `docs/status.md`; the items below are the record of why.
 
 
 - **Whether `--rux-border-strong-01` is meant to keep 3:1 in every theme

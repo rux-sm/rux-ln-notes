@@ -77,25 +77,12 @@ across the family; `rux-ds/docs/consumer-policy.md` carries the rule.
 | root | `AGENTS.md` the policy, `CLAUDE.md` importing it, `README.md` the front door — plus what this project publishes |
 | `docs/status.md` | where this stands and what is outstanding. One name, one place, in every repository that has state to record |
 | `docs/` | working documents — reasoning, designs, measurements |
-| `exchange/` | cross-repository memos, one question each, the shape `rux-ln-atlas/exchange/` already used. `node ../rux-ds/tools/exchange.mjs` reads their frontmatter and lists what is open |
+| `exchange/` | the record of past memos to rux-ds and atlas; since 2026-09-12 nothing new is written there for routine work |
 
-**A memo stays in the repository that wrote it.** This one's asks live here and
-are read in place from the checkout beside; atlas's replies live in
-`../rux-ln-atlas/exchange/` and are never copied in. **The reason is this
-repository's one rule, not tidiness.** A memo may only live somewhere it would
-pass that repository's gate, and an atlas reply structurally cannot pass this
-one: measured 2026-09-11, two of three named the evidence extract they answer
-from, which `check-publishable` refuses and which atlas requires them to do. So
-a conversation between a public repository and a private one is split by
-construction, and `exchange.mjs` is what reads it whole. Every memo carries a
-`title:` inside its `exchange:` map, holding no comma — the map is parsed by
-splitting on them — so the listing reads as questions rather than as file paths.
-
-**Four asks written here were moved into atlas before 2026-09-11** under *the
-site keeps only what it publishes*, which the `.md` extension to
-`check-publishable` had already answered — all four pass this gate today. They
-stay there: re-adding a deleted file to a public repository is a fresh
-publication decision and buys nothing the listing does not already give.
+**A memo stays where it was written.** An atlas reply names the evidence it
+answers from, which this repository's gate refuses, so moving one across the
+tiers is a publication decision; the memos are read in place. The reasoning
+and its measurement are in `docs/log.md`.
 
 **The two checkouts are one workspace for ordinary work, and two publication
 tiers always.** Adopted 2026-09-12. A routine change — a guide's content in
@@ -110,19 +97,9 @@ originates in atlas from its evidence and is never authored from this side;
 was. The everyday loop is in `../rux-ln-atlas/HANDOFF.md`; the preview recipe
 is in `README.md` and is the only copy.
 
-**What a memo is for, then.** A contract change, a refusal, or a measurement
-someone will need in six months — a record written after a decision, not a
-question asked before one. The location rule above is unchanged and is the
-half that carries the disclosure argument.
-
 **A change to a control is still judged from a session that did not author
 it** — a gate, a check, a baseline, an instruction file, this one included.
 Same-session editing is a permission for implementation, not for self-review.
-
-**Nine documents sat at the root until today, against rux-scheduler's two.**
-The counts were identical — nine each — and only the placement differed.
-`TODO.md` is `docs/status.md` now, renamed rather than merged into `README.md`:
-they change at different rates and half of what was in it is record, not task.
 
 ## What is authored here, and what is not
 **The shared part of this is one document, not three.** `rux-ds/docs/consumer-policy.md`
@@ -143,8 +120,8 @@ what follows is only what is this repository's own. Added 2026-09-11.
   server, no account, and the page says so beside the notepad.
 - **Every `rux--*` class comes from rux-ds's `css/rux.css`,** read from the
   checkout beside this repository (or `DS=<dir>`). A class the design system
-  does not compile is a request to `rux-ds` with invented content, never a
-  local rule. `check-classes` catches the invented one.
+  does not compile is added to rux-ds, in the same session, with invented
+  content — never a local rule. `check-classes` catches the invented one.
 - **This project's page shell is its own, and `templates/document-page.html`
   is a reference, not a parent. Decided 2026-09-10, measured not argued.**
   `build.mjs` does not derive its shell from that template and records no
@@ -186,24 +163,13 @@ references and id references, over every page. Then this project's own:
 classes, structure, links, order, ancestry (needs a `rux-ds` checkout beside
 this one), data and publishable.
 
-**The rebuild gate was added 2026-09-09, after moving the pin to `v0.1.12`
-committed stale pages that only `pages.yml` caught, on push.** `build.mjs`
-inlines rux-ds's whole icon sprite into every page, and two icons had joined
-it since this project last built; the shared check could not see it, because
-it only verifies a page's inlined icons are somewhere in what rux-ds ships,
-never that the sprite is current. Neither `roll-out.sh` nor the sync recipe
-that used to move `vendor/rux-ds/` said to rebuild first. Both gaps are the
-same fix: the rebuild is now inside the one check itself, so nothing that
-calls `node tools/check.mjs` — a person, `roll-out.sh`, the commit hook —
-can skip it.
-
-**The shared check was wired up on 2026-09-09, and it should have been from the
-start.** None of the seven gates below it reads a TOKEN, so
-`var(--rux-font-mono)` — a name rux-ds has never declared — shipped in 28
-generated pages with every gate green. It rendered correctly throughout,
-because every use carried a fallback, which is why nothing noticed. It was
-found from outside, by running rux-ds's implementation from a rux-ds clone. The
-commit hook runs the privacy gate on the staged bytes and then this. `MEASURED` staleness is
+**The rebuild is inside the check on purpose.** `build.mjs` inlines rux-ds's
+whole icon sprite into every page, so a sprite that moved leaves committed
+pages stale and the shared check cannot see it; nothing that calls
+`node tools/check.mjs` — a person, the commit hook — can skip the rebuild.
+The shared check reads tokens, which none of the local gates do. Both were
+learned the hard way; `docs/log.md` has the dates. The commit hook runs the
+privacy gate on the staged bytes and then this. `MEASURED` staleness is
 reported, not enforced; re-run `node tools/measure.mjs` when it says so.
 
 ## Publishing
